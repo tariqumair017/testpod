@@ -1,7 +1,9 @@
+
+
 document.addEventListener("DOMContentLoaded", function (event) {
   const showNavbar = (toggleId, navId, bodyId, headerId) => {
     const toggle = document.getElementById(toggleId),
-      nav = document.getElementById(navId),
+    nav = document.getElementById(navId),
       bodypd = document.getElementById(bodyId),
       headerpd = document.getElementById(headerId);
 
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if (toggle && nav && bodypd && headerpd) {
       toggle.addEventListener("click", () => {
         // show navbar
-        nav.classList.toggle("show");
+        nav.classList.toggle("toggle-show");
         // change icon
         toggle.classList.toggle("bx-x");
         // add padding to body
