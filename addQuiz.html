@@ -16,63 +16,66 @@
         <link rel="stylesheet" href="css/dashboard.css" />
       </head>
 <body>
-    <body id="body-pd">
-        <header class="header bg-white" id="header">
+    <body id="body-pd" class="body-pd">
+        <header class="body-pd header bg-white" id="header">
             <div class="header_toggle"><img id="header-toggle" src="img/icons/menu.svg" alt=""/> </div>
             <div style="display: flex">
-                <p style="padding-top: 5px;padding-right: 5px;" >hello</p>
-            <div class="header_img">
-                <img src="https://i.imgur.com/hczKIze.jpg" alt=""/>
-            </div>
-        </div>
+              <p style="padding-top: 9px;padding-right: 5px;" >Rizwan Ramzan</p>
+          <div class="header_img">
+              <img src="img/logo/Screenshot_20230206_020906.png" alt=""/>
+          </div>
+      </div>
         </header>
-        <div class="l-navbar bg-white" id="nav-bar">
+        <div class="toggle-show l-navbar bg-white" id="nav-bar">
             <nav class="nav">
                 <div> <a href="dashboard.html" class="nav_logo"><img width="120px" src="img/logo/logo1.svg" /></a>
                     <div class="nav_list">
                         <a href="dashboard.html" class="nav_link">
-                            <i class='bx bx-grid-alt nav_icon'></i>
+                          <i class="fa-solid fa-gauge"></i>
                             <span class="nav_name">Dashboard</span></a>
                          <a href="userManagememt.html" class="nav_link">
-                             <i class='bx bx-grid-alt nav_icon'></i>
+                          <i class="fa-solid fa-people-roof"></i>
                              <span class="nav_name">User Management</span></a>
                              <a href="webAnalytics.html" class="nav_link">
-                                <i class='bx bx-user nav_icon'></i>
+                              <i class="fa-solid fa-chart-simple"></i>
                                  <span class="nav_name">Web Analytics</span> </a>
                                  
                                      <a href="gameManagement.html" class="nav_link">
-                                        <i class="fa-solid fa-people-roof"></i>
+                                      <i class="fa-solid fa-gamepad"></i>  
                                          <span class="nav_name">Game Management</span></a>
                                       <a href="#" class="nav_link active">
-                                         <i class='bx bx-bookmark nav_icon'></i>
+                                        <i class="fa-solid fa-list-check"></i>
                                          <div id="accordionExample">
                                                 <sapn class="nav_name" data-bs-toggle="collapse nav_link" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                     Quiz Management
+                                                    <i class="fa-solid fa-angle-right"></i>
                                                 </span>
                                                 <div id="collapseTwo" class="accordion-collapse collapse show nav_link active" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                                   <div class="accordion-body">
+                                                    <i class="fa-solid fa-plus"></i>
                                                     <h7 onclick="location='#'" >Add Quiz</h7>
                                                   </div>
                                               </div>
                                               <div id="collapseTwo" class="accordion-collapse collapse show nav_link" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
+                                                  <i class="fa-solid fa-broom"></i>
                                                   <h7 onclick="location='manageQuiz.html'" >Manage Quiz</h7>
                                                 </div>
                                             </div>
                                             </div>
                                         </a>
-                                         <a href="resultManagement.html" class="nav_link">
-                                             <i class='bx bx-folder nav_icon'></i>
-                                             <span class="nav_name">Result Management</span></a>
-                                             <a href="userManagememt.html" class="nav_link">
-                                                <i class="fa-solid fa-people-roof"></i>
-                                                 <span class="nav_name">Content Management</span></a>
-                                                 <a href="blogsManagement.html" class="nav_link">
-                                                    <i class="fa-solid fa-people-roof"></i>
-                                                     <span class="nav_name">Blogs Management</span></a>
-                                             <a href="analytics.html" class="nav_link">
-                                                <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                                                <span class="nav_name">Analytics</span> </a>
+                                        <a href="resultManagement.html" class="nav_link">
+                                          <i class="fa-solid fa-note-sticky"></i>
+                                          <span class="nav_name">Result Management</span></a>
+                                          <a href="contentManagement.html" class="nav_link"> 
+                                              <i class="fa-brands fa-contao"></i>
+                                              <span class="nav_name">Content Management</span> </a>
+                                              <a href="blogsManagement.html" class="nav_link">
+                                                  <i class="fa-solid fa-blog"></i>
+                                                   <span class="nav_name">Blogs Management</span></a>
+                                           <a href="analytics.html" class="nav_link">
+                                              <i class="fa-solid fa-book-tanakh"></i>
+                                              <span class="nav_name">Analytics</span> </a>
                                             </div>
                 </div>
             </nav>
@@ -80,47 +83,59 @@
         <!--Container Main start-->
         <div class="application bg-light">
             <h4>Add Quiz</h4>
-            <form class="add-quiz-form row needs-validation" novalidate>
-                <div class="col-md-12 position-relative">
+            <form class="add-quiz-form row g-4 needs-validation" novalidate >
+              <div id="setNewForm">
+                <div id="addNewForm" class="form-data">
+                  <div class="add-quiz-image">
+                    <input class="add-quiz-image-input form-control" type="file" id="formFile" onchange="preview()">
+                    <button onclick="clearImage()" class="btn btn-primary" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                  </div>
+                  <div class="col-md-12 position-relative">
                     <label for="validationTooltip03" class="form-label">Question</label>
-                    <input placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+                    <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
                     <div class="invalid-tooltip">
                       Please provide a Question.
                     </div>
                   </div>
-                  <div class="col-md-12 position-relative">
+                  <div class="row">
+                  <div class="col-md-3 position-relative">
                     <label for="validationTooltip03" class="form-label">Option A</label>
-                    <input placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                    <input name="optionA" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
                     <div class="invalid-tooltip">
                       Please provide a Option.
                     </div>
-                  </div> <div class="col-md-12 position-relative">
+                  </div> <div class="col-md-3 position-relative">
                     <label for="validationTooltip03" class="form-label">Option B</label>
-                    <input placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                    <input name="optionB" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
                     <div class="invalid-tooltip">
                       Please provide a Option.
                     </div>
-                  </div> <div class="col-md-12 position-relative">
+                  </div> <div class="col-md-3 position-relative">
                     <label for="validationTooltip03" class="form-label">Option C</label>
-                    <input placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                    <input name="optionC" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
                     <div class="invalid-tooltip">
                       Please provide a Option.
                     </div>
-                  </div> <div class="col-md-12 position-relative">
+                  </div> <div class="col-md-3 position-relative">
                     <label for="validationTooltip03" class="form-label">Option D</label>
-                    <input placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                    <input name="optionD" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
                     <div class="invalid-tooltip">
                       Please provide a Option.
                     </div>
+                  </div>
                   </div> <div class="col-md-12 position-relative">
                     <label for="validationTooltip03" class="form-label">Answer</label>
-                    <input placeholder="Please Enter Answer" type="text" class="form-control" id="validationTooltip03" required>
+                    <input name="answer" placeholder="Please Enter Answer" type="text" class="form-control" id="validationTooltip03" required>
                     <div class="invalid-tooltip">
                       Please provide a Answer.
                     </div>
                   </div>
-                <div class="col-12">
+                  <hr>
+                  </div>
+                  </div>
+                <div class="col-12 mt-2">
                   <button class="btn btn-primary" type="submit">Submit form</button>
+                    <button style="float: right; border-radius: 50%;" class="show-form btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
                 </div>
               </form>
         </div>
@@ -132,5 +147,6 @@
       crossorigin="anonymous"
     ></script>
         <script src="js/dashboard.js" ></script>
+        <script src="js/addQuiz.js" ></script>
 </body>
 </html>
