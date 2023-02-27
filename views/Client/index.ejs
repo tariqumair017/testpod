@@ -1,0 +1,739 @@
+<% layout('Client/layouts/boilerPlate') -%>
+ 
+ <!-- main-area -->
+ <main>
+    <!-- search-popup -->
+    <div
+      class="modal fade bs-example-modal-lg search-bg popup1"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content search-popup">
+          <div class="text-center">
+            <a href="#" class="close2" data-dismiss="modal" aria-label="Close"
+              >× close</a
+            >
+          </div>
+          <div class="row search-outer">
+            <div class="col-md-11">
+              <input type="text" placeholder="Search for products..." />
+            </div>
+            <div class="col-md-1 text-right">
+              <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /search-popup -->
+    <!-- slider-area -->
+    <section id="home" class="slider-area slider-four fix p-relative">
+      <div class="slider-active">
+        <div
+          class="single-slider slider-bg d-flex align-items-center"
+          style="
+            background: url(client/img/slider/slider_img_bg.png) no-repeat;
+            background-position: center center;
+          "
+        >
+          <div class="container">
+            <div class="row justify-content-center pt-50 pb-150">
+              <div class="col-lg-7">
+                <div class="slider-content s-slider-content mt-200">
+                  <h2 data-animation="fadeInUp" data-delay=".4s">
+                    Capture the knowledge!
+                  </h2>
+                  <p data-animation="fadeInUp" data-delay=".6s">
+                    Capture the flag (CTF) is a cybersecurity competition
+                    where participants attempt to find and exploit
+                    vulnerabilities in various systems and software to locate
+                    "flags" that contain a secret code or message. The flags
+                    are typically hidden within challenges that require skills
+                    in areas such as cryptography, reverse engineering, web
+                    security, network analysis, and more.
+                  </p>
+
+                  <div
+                    class="subricbe"
+                    data-animation="fadeInDown"
+                    data-delay=".4s"
+                  >
+                    <form
+                      action="news-mail.php"
+                      method="post"
+                      class="contact-form"
+                    >
+                      <label
+                        ><i class="icon fal fa-envelope"></i> Email
+                        Address</label
+                      >
+                      <input
+                        type="text"
+                        id="email2"
+                        name="email2"
+                        class="header-input"
+                        placeholder="Your Email Address..."
+                        required
+                      />
+                      <button class="btn header-btn">Subscribe Now</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div
+                  class="slider-img"
+                  data-animation="fadeInUp"
+                  data-delay=".4s"
+                >
+                  <img src="client/img/slider/slider_img05.png" alt="slider_img05" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- slider-area-end -->
+
+    <!-- <div class="game-slider" > -->
+      <div class="game-slider-start">
+<div class="game-slider-container">
+<swiper-container class="mySwiper" pagination="false"  slides-per-view="1" autoplay free-mode="true">
+<swiper-slide>
+  <div class="game-slider-inner-container">
+  <div>
+      <h2>Select Country Name</h2>
+      <h5 style="color: #eb2d00">
+        Can You Match Flag With Its Country?
+      </h5>
+  </div>
+  <div>
+    <button class="btn ss-btn">Play Game</button>
+  </div>
+</div>
+</swiper-slide>
+<swiper-slide>
+  <div class="game-slider-inner-container">
+  <div>
+      <h2>Select Country Name</h2>
+      <h5 style="color: #eb2d00">
+        Can You Match Flag With Its Country?
+      </h5>
+  </div>
+  <div>
+    <button class="btn ss-btn">Play Game</button>
+  </div>
+</div></swiper-slide>
+</swiper-container>
+</div>
+</div>
+   
+    
+    
+    <!-- Game Slider End -->
+
+    <!-- about-area -->
+    <section
+      id="about"
+      class="about-area about-p pt-70 pb-120 p-relative"
+      style="
+        background: url(client/img/features/about-bg-aliments.png) no-repeat;
+        background-position: center center;
+      "
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+            <div
+              class="s-about-img p-relative wow fadeInLeft animated"
+              data-animation="fadeInLeft"
+              data-delay=".4s"
+            >
+              <img src="client/img/features/about_img.png" alt="img" />
+              <div class="about-text second-about">
+                <div class="all-text">
+                  <h3>50</h3>
+                  <span
+                    >years of <br />
+                    experience</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div
+              class="about-content s-about-content wow fadeInRight animated"
+              data-animation="fadeInRight"
+              data-delay=".4s"
+            >
+              <div class="about-title second-atitle pb-25">
+                <h5>About</h5>
+                <h2>Welcome To Online Game.</h2>
+              </div>
+
+              <p>
+                Curabitur tristique, sem id sagittis varius, lacus ligula
+                mollis dui, ac condimentum felis metus ut nulla. Aenean ut
+                ultricies turpis, sed sollicitudin eros. Aliquam quis dui ut
+                diam lobortis dignissim ut aliquet ex.
+              </p>
+
+              <div class="about-content3">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="green">
+                      <li>
+                        Nulla pellentesque posuere metus, sed hendrerit purus
+                        venenatis in. Sed at vestibulum magna.
+                      </li>
+                      <li>
+                        Etiam quis lacinia ipsum. Aliquam blandit, mauris nec
+                        molestie interdum, quam massa finibus turpis, ut
+                        eleifend tellus massa eget nunc.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slider-btn mt-10">
+                <a
+                  href="about.html"
+                  class="btn ss-btn"
+                  data-animation="fadeInRight"
+                  data-delay=".8s"
+                  >Read More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about-area-end -->
+    <!-- vedio-area -->
+    <section
+      id="vedio"
+      class="vedio-area pt-120 pb-90 fix"
+      style="background-image: url(client/img/video/vedio-bg.png);
+        background-repeat: no-repeat;
+      ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title center-align text-center">
+              <h5>Solve Quiz</h5>
+              <h2>Start your flag learning journey now!</h2>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="video-align"> -->
+        <div class="quiz-box">
+          <div class="quiz-section">
+            <div class="left-part">
+              <img class="images" src="client/img/bg/warningsign.svg" />
+            </div>
+            <div class="right-part">
+              <div class="que-text">
+              </div>
+
+              <div class="option-list">
+              </input>
+              </div>
+              <button id="hint-icon">
+                <img src="./client/img/icon/hint.svg" /> Hint
+              </button>
+            </div>
+          </div>
+          <!-- quiz box footer -->
+          <footer>
+            <div class="total-que">
+              <span
+                ><p>2</p>
+                of
+                <p>5</p>
+                Questions</span
+              >
+            </div>
+            <button  class="next-btn">Next Question</button>
+          </footer>
+        </div>
+        <div class="slider-btn mt-10" style="display: flex;justify-content: center;margin-top: 50px;">
+          <a
+            href="quiz.html"
+            class="btn ss-btn"
+            data-animation="fadeInRight"
+            data-delay=".8s"
+            >View All Quiz</a
+          >
+        </div>
+      </div>
+    </section>
+    <!-- vedio-area-end -->
+
+    <!-- services-area -->
+    <section
+      id="services"
+      class="services-area pb-90 fix"
+      style="
+        background-image: url(client/img/bg/services-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-position: center;
+      "
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-12">
+            <div class="about-title second-atitle pb-20">
+              <h5>Services</h5>
+              <h2>Challenge yourself and learn about flags!</h2>
+              <p>
+                Pellentesque fringilla, massa sit amet feugiat mollis, leo
+                turpis elementum justo, vel consequat ex urna ut massa
+                maecenas justo sapien.
+              </p>
+            </div>
+
+            <div class="slider-btn mt-10">
+              <a
+                href="services.html"
+                class="btn ss-btn"
+                data-animation="fadeInRight"
+                data-delay=".8s"
+                >View All Services</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <div
+                  class="services-box wow fadeInDown animated"
+                  data-delay=".5s"
+                >
+                  <div class="services-icon">
+                    <img src="client/img/icon/pv-icon1.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5>
+                      <a href="services-detail.html">Skilled Lecturers</a>
+                    </h5>
+                    <p>
+                      Cras ornare sagittis tortor a facilisis nteger augue
+                      quam, placerat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div
+                  class="services-box wow fadeInDown animated"
+                  data-delay=".5s"
+                >
+                  <div class="services-icon">
+                    <img src="client/img/icon/pv-icon2.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5>
+                      <a href="services-detail.html">Hot Stone Message</a>
+                    </h5>
+                    <p>
+                      Cras ornare sagittis tortor a facilisis nteger augue
+                      quam, placerat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div
+                  class="services-box wow fadeInDown animated"
+                  data-delay=".5s"
+                >
+                  <div class="services-icon">
+                    <img src="client/img/icon/pv-icon3.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a href="services-detail.html">Book Library</a></h5>
+                    <p>
+                      Cras ornare sagittis tortor a facilisis nteger augue
+                      quam, placerat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div
+                  class="services-box wow fadeInDown animated"
+                  data-delay=".5s"
+                >
+                  <div class="services-icon">
+                    <img src="client/img/icon/pv-icon4.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a href="services-detail.html">Online Classes</a></h5>
+                    <p>
+                      Cras ornare sagittis tortor a facilisis nteger augue
+                      quam, placerat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div
+                  class="services-box wow fadeInDown animated"
+                  data-delay=".5s"
+                >
+                  <div class="services-icon">
+                    <img src="client/img/icon/pv-icon5.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a href="services-detail.html">Home Projects</a></h5>
+                    <p>
+                      Cras ornare sagittis tortor a facilisis nteger augue
+                      quam, placerat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div
+                  class="services-box wow fadeInDown animated"
+                  data-delay=".5s"
+                >
+                  <div class="services-icon">
+                    <img src="client/img/icon/pv-icon6.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a href="services-detail.html">24x7 Support</a></h5>
+                    <p>
+                      Cras ornare sagittis tortor a facilisis nteger augue
+                      quam, placerat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="best-game-slider">
+    <div class="col-lg-12">
+      <div class="section-title">
+        <h5>Best Games</h5>
+        <h2>Unleash your geography knowledge!</h2>
+      </div>
+    </div>
+    <swiper-container class="mYSwiper" pagination="false"  slides-per-view="3.3"
+    space-between="30" free-mode="true" autoplay>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+    <swiper-slide><div class="box-courses">
+      <a href="courses-details.html"
+        ><img
+          src="client/img/featured-courses/courses-img1.png"
+          alt="courses-img1"
+      /></a>
+      <div class="text">
+        <h5>3 Years</h5>
+        <h3><a href="courses-details.html">Falg Game</a></h3>
+      </div>
+    </div></swiper-slide>
+  </swiper-container>
+  </section>
+      
+    <!-- testimonial-area -->
+    <section
+      class="testimonial-area pt-120 pb-120"
+      style="
+        background-image: url(client/img/testimonial/test-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #fff7f5;
+        margin-top: 100px;
+      "
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="about-title second-atitle pt-15">
+              <h5>Testimonial</h5>
+              <h2>See What Our <br />Client Say’s</h2>
+              <p class="pt-15">
+                I recently introduced my kids to Testpod's flag game and they
+                absolutely love it! It's a great way for them to learn about
+                different countries and their flags in a fun and interactive
+                way. The game's multiple levels and timed gameplay make it a
+                challenge for them, and they love earning points for correct
+                answers. I love that the flags are grouped by continent for
+                focused learning. Thank you, Testpod, for providing such a
+                fantastic educational tool!
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="testimonial-active">
+              <swiper-container pagination-clickable="true" class="mySwiper" pagination="true"  slides-per-view="1"  free-mode="true">
+                <swiper-slide>
+                  <div class="single-testimonial">
+                    <div class="testi-author">
+                      <img src="client/img/testimonial/testi_avatar.png" alt="img" />
+                      <div class="ta-info">
+                        <h6>Eity Akhter</h6>
+                        <span>Student</span>
+                      </div>
+                    </div>
+                    <div class="qt-img">
+                      <img src="client/img/testimonial/qt-icon.png" alt="img" />
+                    </div>
+                    <p>
+                      I recently introduced my kids to Testpod's flag game and they absolutely love it! It's a great way for them to learn about different countries and their flags in a fun and interactive way. The game's multiple levels and timed gameplay make it a challenge for them, and they love earning points for correct answers.
+                    </p>
+                  </div>
+              </swiper-slide>
+                <swiper-slide>
+                  <div class="single-testimonial">
+                    <div class="testi-author">
+                      <img src="client/img/testimonial/testi_avatar.png" alt="img" />
+                      <div class="ta-info">
+                        <h6>Eity Akhter</h6>
+                        <span>Student</span>
+                      </div>
+                    </div>
+                    <div class="qt-img">
+                      <img src="client/img/testimonial/qt-icon.png" alt="img" />
+                    </div>
+                    <p>
+                      I recently introduced my kids to Testpod's flag game and they absolutely love it! It's a great way for them to learn about different countries and their flags in a fun and interactive way. The game's multiple levels and timed gameplay make it a challenge for them, and they love earning points for correct answers.
+                    </p>
+                  </div>
+                </swiper-slide>
+                <swiper-slide>
+                  <div class="single-testimonial">
+                    <div class="testi-author">
+                      <img src="client/img/testimonial/testi_avatar.png" alt="img" />
+                      <div class="ta-info">
+                        <h6>Eity Akhter</h6>
+                        <span>Student</span>
+                      </div>
+                    </div>
+                    <div class="qt-img">
+                      <img src="client/img/testimonial/qt-icon.png" alt="img" />
+                    </div>
+                    <p>
+                      I recently introduced my kids to Testpod's flag game and they absolutely love it! It's a great way for them to learn about different countries and their flags in a fun and interactive way. The game's multiple levels and timed gameplay make it a challenge for them, and they love earning points for correct answers.
+                    </p>
+                  </div>
+                </swiper-slide>
+              </swiper-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- testimonial-area-end -->
+
+    <!-- blog-area -->
+    <section
+      id="blog"
+      class="blog-area p-relative pt-120 pb-90 fix"
+      style="
+        background-image: url(client/img/bg/blog-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-position: center;
+      "
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="col-lg-12">
+              <div class="section-title center-align text-center mb-50">
+                <h5>Our Blog</h5>
+                <h2>Letest Blogs
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-12">
+            <div class="single-post2 mb-30 wow fadeInDown animated">
+              <div class="blog-thumb2">
+                <a href="blog-details.html"
+                  ><img src="client/img/blog/blog_img01.png" alt="img"
+                /></a>
+              </div>
+              <div class="blog-content2 text-center">
+                <div class="b-meta">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="date-b">
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <a href="blog-details.html"
+                        >Test Your Geography Knowledge with this Fun Quiz</a
+                      >
+                    </h4>
+                    <div class="blog-btn">
+                      <a href="blog-details.html"
+                        ><i class="fal fa-chevron-circle-right"></i> Read
+                        More</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="single-post2 mb-30 wow fadeInUp animated">
+              <div class="blog-thumb2">
+                <a href="blog-details.html"
+                  ><img src="client/img/blog/blog_img02.png" alt="img"
+                /></a>
+              </div>
+              <div class="blog-content2 text-center">
+                <div class="b-meta">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="date-b">
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <a href="blog-details.html"
+                        >You can make it more challenging by including obscure or lesser-known flags</a
+                      >
+                    </h4>
+                    <div class="blog-btn">
+                      <a href="blog-details.html"
+                        ><i class="fal fa-chevron-circle-right"></i> Read
+                        More</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="single-post2 mb-30 wow fadeInDown animated">
+              <div class="blog-thumb2">
+                <a href="blog-details.html"
+                  ><img src="client/img/blog/blog_img03.png" alt="img"
+                /></a>
+              </div>
+              <div class="blog-content2 text-center">
+                <div class="b-meta">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="date-b">
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <a href="blog-details.html"
+                        >Put your readers' history knowledge to the test with a quiz that covers major events </a
+                      >
+                    </h4>
+                    <div class="blog-btn">
+                      <a href="blog-details.html"
+                        ><i class="fal fa-chevron-circle-right"></i> Read
+                        More</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- blog-area-end -->
+  </main>
+  <!-- main-area-end -->

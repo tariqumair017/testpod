@@ -1,0 +1,68 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+
+<!--Container Main start-->
+ <div class="application bg-light">
+    <h4>Add Quiz</h4>
+    <form class="add-quiz-form row g-4 needs-validation" novalidate action="/add-quiz" method="POST">
+      <div id="setNewForm">
+        <div id="addNewForm" class="form-data">
+          <div class="add-quiz-image">
+            <input class="add-quiz-image-input form-control" type="file" id="formFile" onchange="preview()">
+            <button onclick="clearImage()" class="btn btn-primary" type="button" ><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="col-md-12 position-relative">
+            <label for="validationTooltip03" class="form-label">Question</label>
+            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+            <div class="invalid-tooltip">
+              Please provide a Question.
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 position-relative">
+            <label for="validationTooltip03" class="form-label">Option A</label>
+            <input name="optionA" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+            <div class="invalid-tooltip">
+              Please provide a Option.
+            </div>
+          </div> 
+          <div class="col-md-3 position-relative">
+            <label for="validationTooltip03" class="form-label">Option B</label>
+            <input name="optionB" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+            <div class="invalid-tooltip">
+              Please provide a Option.
+            </div>
+          </div> 
+          <div class="col-md-3 position-relative">
+            <label for="validationTooltip03" class="form-label">Option C</label>
+            <input name="optionC" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+            <div class="invalid-tooltip">
+              Please provide a Option.
+            </div>
+          </div> 
+          <div class="col-md-3 position-relative">
+            <label for="validationTooltip03" class="form-label">Option D</label>
+            <input name="optionD" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+            <div class="invalid-tooltip">
+              Please provide a Option.
+            </div>
+          </div>
+          </div> 
+          <div class="col-md-12 position-relative">
+            <label for="validationTooltip03" class="form-label">Answer</label>
+            <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="validationTooltip03" required>
+            <div class="invalid-tooltip">
+              Please provide a Answer.
+            </div>
+          </div>
+          <hr>
+          </div>
+          </div>
+        <div class="col-12 mt-2">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button style="float: right; border-radius: 50%;" class="show-form btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </form>
+</div>
+<!--Container Main end-->   
+

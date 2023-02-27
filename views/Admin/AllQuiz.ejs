@@ -1,0 +1,128 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+    
+     <!--Container Main start-->
+     <div class="application bg-light">
+      <h3>
+          All Quiz
+      </h3>
+      <table class="table">
+          <thead>
+            <tr>
+              <th class="table-hash-col" scope="col">#</th>
+              <th class="table-question-col" scope="col">Questions</th>
+              <th class="table-option-col" scope="col">Option A</th>
+              <th class="table-option-col" scope="col">Option B</th>
+              <th class="table-option-col" scope="col">Option C</th>
+              <th class="table-option-col" scope="col">Option D</th>
+              <th class="table-answer-col" scope="col">Answer</th>
+              <th class="table-action-col" class="table-buttons" scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%var count = 1%>
+            <% data.forEach(question => { %>
+              <tr>
+                <th scope="row"><%=count%></th>
+                <td><%=question.question%></td>
+                <td><%=question.optionA%></td>
+                <td><%=question.optionB%></td>
+                <td><%=question.optionC%></td>
+                <td><%=question.optionD%></td>
+                <td><%=question.correct%></td>
+                <td>
+                  <span class="table-buttons">
+                    <button onclick="editQuestion(`<%=question._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
+                    <form action="/all-quiz/<%=question._id%>?_method=DELETE" method="POST"> 
+                      <button type="submit" class="btn btn-danger">Delete</button> 
+                    </form>
+                  </span>
+                </td>
+              </tr> 
+            <%++count%>
+            <%})%>
+          </tbody>
+        </table>
+        </table>
+
+        <div>
+          <a href="/add-quiz" ><button type="button" class="btn btn-success">Add New Question</button></a>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="updateForm" class="add-quiz-form row g-4 needs-validation" novalidate action="" method="POST">
+                 
+                    <div class="col-md-12 position-relative">
+                        <label for="validationTooltip03" class="form-label">Question</label>
+                        <input name="Question[question]" id="questionID" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Question.
+                        </div>
+                      </div>
+                      <div class="modal-options  row" >
+                      <div class="col-md-6 position-relative">
+                        <label for="validationTooltip03" class="form-label">Option A</label>
+                        <input name="Question[optionA]" id="optionAID" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div> <div class="col-md-6 position-relative">
+                        <label for="validationTooltip03" class="form-label">Option B</label>
+                        <input name="Question[optionB]" id="optionBID" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div> <div class="col-md-6 position-relative">
+                        <label for="validationTooltip03" class="form-label">Option C</label>
+                        <input name="Question[optionC]" id="optionCID" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div> <div class="col-md-6 position-relative">
+                        <label for="validationTooltip03" class="form-label">Option D</label>
+                        <input name="Question[optionD]" id="optionDID" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div>
+                      </div> <div class="col-md-12 position-relative" style="margin: 0px;">
+                        <label for="validationTooltip03" class="form-label">Answer</label>
+                        <input name="Question[correct]" id="correctID" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Answer.
+                        </div>
+                      </div>
+                      
+                    <div class="col-12 mt-2">
+                      <button data-bs-toggle="tooltip"  class="btn btn-primary" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">Submit</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+</div> 
+<!--Container Main end-->   
+
+<script>
+  async function editQuestion(id) {     
+    const response = await fetch(`/all-quiz/${id}/edit`);
+    const data = await response.json();
+    document.getElementById("questionID").value = data.question;
+    document.getElementById("optionAID").value = data.optionA;
+    document.getElementById("optionBID").value = data.optionB;
+    document.getElementById("optionCID").value = data.optionC;
+    document.getElementById("optionDID").value = data.optionD;
+    document.getElementById("correctID").value = data.correct; 
+    document.getElementById("updateForm").action = `/all-quiz/${data._id}?_method=PUT`;
+}
+</script>
+ 

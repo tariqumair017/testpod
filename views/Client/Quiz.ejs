@@ -1,0 +1,367 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+<!-- main-area -->
+<main>
+    <!-- breadcrumb-area -->
+    <section
+      class="breadcrumb-area d-flex align-items-center"
+      style="background-image: url(client/img/testimonial/test-bg.png)"
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-12 col-lg-12">
+            <div class="breadcrumb-wrap text-left">
+              <div class="breadcrumb-title">
+                <h2>Quizzes</h2>
+                <div class="breadcrumb-wrap">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="index.html">Home</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Quizzes
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- main-area-end -->
+
+  <!-- All quizzes  Start-->
+  <div class="all-quiz">
+    <div class="all-quiz-upper-section">
+      <div class="all-quiz-upper-section-header">
+        <h6>New jersey Driver's Examination</h6>
+        <h6>DMV Permit Test #1</h6>
+      </div>
+      <div class="all-quiz-upper-section-inner">
+        <div class="all-quiz-upper-section-part-left">
+          <h4>FREE New Jersey DMV Practical Test</h4>
+          <p>
+            Anyone operating a motor vehicle or motor-driven bike on New
+            Jersey's public streets or highways must have a valid driver's
+            licence or learner's permit. New Jersey's DMV practise
+            examinations include questions based on the New Jersey Driver
+            Handbook's most essential traffic signals and..
+          </p>
+        </div>
+        <div class="all-quiz-upper-section-part-right">
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Question</p>
+            <h5 id="total-questions">--</h5>
+          </div>
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Passing Score</p>
+            <h5 id="total-score">--</h5>
+          </div>
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Total Tests</p>
+            <h5>02</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="all-quizzes">
+      <div class="all-quiz-left-part">
+        <div class="questions-box" >
+
+          <!-- Backend Data --> 
+          <%var count = 1%>
+          <% data.forEach(single => { %> 
+          <div class="questions-text">
+            <h5>
+              <%=count%>. <%=single.question%> 
+            </h5>
+          </div>
+          <div id="p<%=count%>" class="all-quiz-allradio-option">
+            <label>
+              <input
+                type="radio"
+                value="1"
+                name="p<%=count%>"
+                onclick="showAns('<%=count%>',this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500"><%=single.optionA%></h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="2"
+                name="p<%=count%>"
+                onclick="showAns('<%=count%>',this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500"><%=single.optionB%></h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="3"
+                name="p<%=count%>"
+                onclick="showAns('<%=count%>',this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500"><%=single.optionC%></h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="4"
+                name="p<%=count%>"
+                onclick="showAns('<%=count%>',this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500"><%=single.optionD%></h6>
+            </label>
+            <div id="all-quiz-discription">
+              <p>
+                When other drivers are behaving angrily, you should take
+                action to physically and mentally distance yourself from the
+                situation. Avoid making eye contact with them, or making body
+                movements or gestures that could provoke them. Slow down, move
+                over, or do whatever you safely can to put yourself out of
+                danger.
+              </p>
+            </div>
+          </div>
+          <%count++%>
+          <%})%>
+          <!-- Backend Data -->
+
+<!-- 
+          <div class="questions-text">
+            <h5>
+              2. When you see other drivers around you acting or reacting in
+              anger
+            </h5>
+          </div>
+          <div id="p2" class="all-quiz-allradio-option">
+            <label>
+              <input
+                type="radio"
+                value="1"
+                name="p2"
+                onclick="showAns(2,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="2"
+                name="p2"
+                onclick="showAns(2,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="3"
+                name="p2"
+                onclick="showAns(2,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="4"
+                name="p2"
+                onclick="showAns(2,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <div id="all-quiz-discription">
+              <p>
+                When other drivers are behaving angrily, you should take
+                action to physically and mentally distance yourself from the
+                situation. Avoid making eye contact with them, or making body
+                movements or gestures that could provoke them. Slow down, move
+                over, or do whatever you safely can to put yourself out of
+                danger.
+              </p>
+            </div>
+          </div>
+          <div class="questions-text">
+            <h5>
+              3. When you see other drivers around you acting or reacting in
+              anger
+            </h5>
+          </div>
+          <div id="p3" class="all-quiz-allradio-option">
+            <label>
+              <input
+                type="radio"
+                value="1"
+                name="p3"
+                onclick="showAns(3,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="2"
+                name="p3"
+                onclick="showAns(3,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="3"
+                name="p3"
+                onclick="showAns(3,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="4"
+                name="p3"
+                onclick="showAns(3,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <div id="all-quiz-discription">
+              <p>
+                When other drivers are behaving angrily, you should take
+                action to physically and mentally distance yourself from the
+                situation. Avoid making eye contact with them, or making body
+                movements or gestures that could provoke them. Slow down, move
+                over, or do whatever you safely can to put yourself out of
+                danger.
+              </p>
+            </div>
+          </div>
+          <div class="questions-text">
+            <h5>
+              4. When you see other drivers around you acting or reacting in
+              anger
+            </h5>
+          </div>
+          <div id="p4" class="all-quiz-allradio-option">
+            <label>
+              <input
+                type="radio"
+                value="1"
+                name="p4"
+                onclick="showAns(4,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="2"
+                name="p4"
+                onclick="showAns(4,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="3"
+                name="p4"
+                onclick="showAns(4,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="4"
+                name="p4"
+                onclick="showAns(4,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <div id="all-quiz-discription">
+              <p>
+                When other drivers are behaving angrily, you should take
+                action to physically and mentally distance yourself from the
+                situation. Avoid making eye contact with them, or making body
+                movements or gestures that could provoke them. Slow down, move
+                over, or do whatever you safely can to put yourself out of
+                danger.
+              </p>
+            </div>
+          </div>
+          <div class="questions-text">
+            <h5>
+              5. When you see other drivers around you acting or reacting in
+              anger
+            </h5>
+          </div>
+          <div id="p5" class="all-quiz-allradio-option">
+            <label>
+              <input
+                type="radio"
+                value="1"
+                name="p5"
+                onclick="showAns(5,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="2"
+                name="p5"
+                onclick="showAns(5,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="3"
+                name="p5"
+                onclick="showAns(5,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="4"
+                name="p5"
+                onclick="showAns(5,this)"
+              />
+              <h6 style="margin: 0%; font-weight: 500">hello</h6>
+            </label>
+            <div id="all-quiz-discription">
+              When other drivers are behaving angrily, you should take action
+              to physically and mentally distance yourself from the situation.
+              Avoid making eye contact with them, or making body movements or
+              gestures that could provoke them. Slow down, move over, or do
+              whatever you safely can to put yourself out of danger.
+            </div>
+          </div> -->
+        </div>
+        <div class="all-quiz-result">
+          <button onclick="checkResult()">Grade This Section</button>
+        </div>
+      </div>
+      <div class="all-quiz-right-part">
+        <div class="all-quiz-progress">
+          <h5>Your Progress</h5>
+          <p>
+            When other drivers are behaving angrily, you should take action to
+            physically and mentally distance yourself from the situation.
+            Avoid making eye contact with them, or making body movements or
+            gestures that could provoke them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- All quizzes Ens -->
