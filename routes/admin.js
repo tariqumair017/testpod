@@ -70,6 +70,47 @@ router.delete("/all-quiz/:id", asyncHandler(async (req, res) => {
     res.redirect("/all-quiz"); 
 }));
 
+//Admin Manage Quiz Page
+router.get("/manage-quiz", asyncHandler(async (req, res) => { 
+  res.render("Admin/ManageQuiz");
+}));
+
+//Admin Analytics Page
+router.get("/analytics", asyncHandler(async (req, res) => { 
+  res.render("Admin/Analytics");
+}));
+
+//Admin Blog Management Page
+router.get("/blogs-management", asyncHandler(async (req, res) => { 
+  res.render("Admin/BlogsManagement");
+}));
+
+//Admin Content Management Page
+router.get("/content-management", asyncHandler(async (req, res) => { 
+  res.render("Admin/ContentManagement");
+}));
+
+//Admin Game Management Page
+router.get("/game-management", asyncHandler(async (req, res) => { 
+  res.render("Admin/GameManagement");
+}));
+
+//Admin Result Management Page
+router.get("/result-management", asyncHandler(async (req, res) => { 
+  res.render("Admin/ResultManagement");
+}));
+
+//Admin User Management Page
+router.get("/user-management", asyncHandler(async (req, res) => { 
+  res.render("Admin/UserManagement");
+}));
+
+//Admin Web Analytics Page
+router.get("/web-analytics", asyncHandler(async (req, res) => { 
+  res.render("Admin/WebAnalytics");
+}));
+
+
 
 // router.get("/filteredExpenses", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
 //   var fromDate = '';

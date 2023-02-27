@@ -72,7 +72,7 @@ next_btn.onclick = () => {
 function showQuestions(index) {
   const que_text = document.querySelector(".que-text");
   const img = document.querySelector(".images");
-
+ 
   img.src = questions[index].img;
 
   let que_tag =

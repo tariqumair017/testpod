@@ -5,100 +5,91 @@ import asyncHandler from "express-async-handler";
 // import connectEnsureLogin from "connect-ensure-login";
 
 
-
+//Client Index page
 router.get("/", asyncHandler(async (req, res) => { 
     res.render("Client/index");
 }));
 
+//Client Quiz page
 router.get("/quiz", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   
     res.render("Client/Quiz", { data });
 }));
-
-
-// //Total Income for Landing Page
-// router.get("/totalIncomeForLandingPage", asyncHandler(async (req, res) => {
-//     const data = await Income.find({}); 
-//     res.send(data);
-// }));
-
-// router.get("/income", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-//     res.render("Income");
-// }));
-  
-// router.post("/income", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {   
-  
-//   if(req.body.IncomeData.incomeDate != '')
-//   {
-//     const date1 = new Date(req.body.IncomeData.incomeDate); 
-//     req.body.IncomeData.incomeDate = date1; 
-//   }
-//   else
-//   {
-//     const date1 = new Date(); 
-//     req.body.IncomeData.incomeDate = date1;
-//   }
-
-//     const IncomeToSave = new Income(req.body.IncomeData);
-//     await IncomeToSave.save();
-//     console.log("Income Added Successfully");
-//     req.flash("success", "Income Added Successfully");
-//     res.redirect("/income");
-// }));
-
-// router.get("/show-income", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-//     res.render("ShowIncome");
-// })); 
-
-// router.get('/show-income/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-//         const data = await Income.findById(req.params.id);
-//         res.render("EditIncome", {data});  
-// }));
-
-
-// router.put("/show-income/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-//     await Income.findByIdAndUpdate(req.params.id, req.body.IncomeData);
-//     res.redirect("/show-income"); 
-// }));
-
-// router.delete("/show-income/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
-//     await Income.findByIdAndDelete(req.params.id);
-//     res.send("/show-income"); 
-// }));
-
  
-// router.get("/filteredIncome", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
+//Client About page
+router.get("/about", asyncHandler(async (req, res) => {  
+    res.render("Client/About");
+}));
 
-//   var fromDate = '';
-//   var toDate = '';
+//Client Blog-Details page
+router.get("/blog-details", asyncHandler(async (req, res) => {  
+    res.render("Client/Blog-Details");
+}));
+ 
+//Client Blog page
+router.get("/blog", asyncHandler(async (req, res) => {  
+    res.render("Client/Blog");
+}));
 
-//   if(req.query.fromDate != '' && req.query.toDate != '')
-//   {
-//     fromDate = new Date(req.query.fromDate); 
-//     toDate = new Date(req.query.toDate); 
-//     toDate.setDate(toDate.getDate()+1); 
-//   }
-//   else
-//   {
-//     fromDate = req.query.fromDate;
-//     toDate = req.query.toDate;
-//   }
-  
-//     if (fromDate == "" && toDate == "") {
-//         console.log("All Should Showing");
-//         const data = await Income.find({});
-//         res.send(data);
-//       } else if (fromDate != "" && toDate != "") {
-//         console.log("From-date To to-date");
-//         const data1 = await Income.find({ 
-//           $and: [
-//             { incomeDate: { $gte: fromDate } },
-//             { incomeDate: { $lte: toDate } },
-//           ],
-//         });
-//         res.send(data1);
-//       }
-// }));
+//Client Contact page
+router.get("/contact", asyncHandler(async (req, res) => {  
+    res.render("Client/Contact");
+}));
+
+//Client Courses-Details page
+router.get("/courses-details", asyncHandler(async (req, res) => {  
+    res.render("Client/Courses-Details");
+}));
+
+//Client Courses page
+router.get("/courses", asyncHandler(async (req, res) => {  
+    res.render("Client/Courses");
+}));
+
+//Client FAQ page
+router.get("/faq", asyncHandler(async (req, res) => {  
+    res.render("Client/FAQ");
+}));
+
+//Client Pricing page
+router.get("/pricing", asyncHandler(async (req, res) => {  
+    res.render("Client/Pricing");
+}));
+
+//Client Services-Details page
+router.get("/services-details", asyncHandler(async (req, res) => {  
+    res.render("Client/Services-Details");
+}));
+
+//Client Services page
+router.get("/services", asyncHandler(async (req, res) => {  
+    res.render("Client/Services");
+}));
+
+//Client Shop-Details page
+router.get("/shop-details", asyncHandler(async (req, res) => {  
+    res.render("Client/Shop-Details");
+}));
+
+//Client Shop page
+router.get("/shop", asyncHandler(async (req, res) => {  
+    res.render("Client/Shop");
+}));
+
+//Client Team-Details page
+router.get("/team-details", asyncHandler(async (req, res) => {  
+    res.render("Client/Team-Details");
+}));
+
+//Client Team page
+router.get("/team", asyncHandler(async (req, res) => {  
+    res.render("Client/Team");
+}));
+
+//Client Team page
+router.get("/thank-you", asyncHandler(async (req, res) => {  
+    res.render("Client/Thank-You");
+}));
 
  
 export default router;

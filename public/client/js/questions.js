@@ -1,5 +1,5 @@
 
-let questions = [
+var questions = [
 	{
         numer:1,
 		img: "../img/bg/warningsign35.svg",

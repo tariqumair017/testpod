@@ -44,9 +44,9 @@ let correct = [1, 1, 1, 1, 1];
 let option_text = [];
 
 let wrong = 0;
-
-document.getElementById("total-questions").innerHTML = "0" + correct.length;
-document.getElementById("total-score").innerHTML = "00";
+ 
+// document.getElementById("total-questions").innerHTML = "0" + correct.length;
+// document.getElementById("total-score").innerHTML = "00";
 
 function showAns(numer, selectedOptions) {
   option_text[numer] = selectedOptions;
@@ -63,7 +63,7 @@ function showAns(numer, selectedOptions) {
   selectedOptions.parentNode.style.backgroundColor = "#EBEFF5";
 }
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
-const all_quiz_allradio_option = document.querySelector(".questions-box")
+const all_quiz_allradio_option = document.querySelector(".questions-box");
 
 function checkResult() {
   wrong = 0;
