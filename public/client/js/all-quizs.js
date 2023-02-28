@@ -39,12 +39,14 @@
 // }
 // showQuestionsText();
 
-let correct = [1, 1, 1, 1, 1];
+
+
 
 let option_text = [];
 
+
 let wrong = 0;
- 
+
 // document.getElementById("total-questions").innerHTML = "0" + correct.length;
 // document.getElementById("total-score").innerHTML = "00";
 
@@ -65,15 +67,21 @@ function showAns(numer, selectedOptions) {
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
 
-function checkResult() {
-  wrong = 0;
-  for (let i = 0; i < correct.length; i++) {
-    if (correct[i] == option_text[i + 1].value) {
+async function checkResult() {
+
+  const getData=await fetch("/quiz-list")
+  .then((response) => response.json())
+  .then((data) =>  data);
+
+  wrong = 0;  
+  option_text.splice(0, 1);
+  for (let i = 0; i < getData.length; i++) {
+    if (getData[i].correct == option_text[i].value) {
       wrong++;
-      option_text[i + 1].parentNode.style.backgroundColor = "#4dea8e";
+      option_text[i].parentNode.style.backgroundColor = "#4dea8e";
     }
      else {
-      option_text[i + 1].parentNode.style.backgroundColor = "red";
+      option_text[i].parentNode.style.backgroundColor = "red";
     }
     showDiscription[i].classList.add("all-quiz-show-discription");
   }

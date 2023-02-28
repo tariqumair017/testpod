@@ -33,7 +33,7 @@
     </section>
   </main>
   <!-- main-area-end -->
-
+  <% var count = 1; %>
   <!-- All quizzes  Start-->
   <div class="all-quiz">
     <div class="all-quiz-upper-section">
@@ -55,7 +55,7 @@
         <div class="all-quiz-upper-section-part-right">
           <div class="all-quiz-upper-section-scorus-card">
             <p>Question</p>
-            <h5 id="total-questions">--</h5>
+            <h5 id="total-questions"><%=data.length%> </h5>
           </div>
           <div class="all-quiz-upper-section-scorus-card">
             <p>Passing Score</p>
@@ -73,7 +73,6 @@
         <div class="questions-box" >
 
           <!-- Backend Data --> 
-          <%var count = 1%>
           <% data.forEach(single => { %> 
           <div class="questions-text">
             <h5>
@@ -84,7 +83,7 @@
             <label>
               <input
                 type="radio"
-                value="1"
+                value="<%=single.optionA %>"
                 name="p<%=count%>"
                 onclick="showAns('<%=count%>',this)"
               />
@@ -93,7 +92,7 @@
             <label>
               <input
                 type="radio"
-                value="2"
+                value="<%=single.optionB %>"
                 name="p<%=count%>"
                 onclick="showAns('<%=count%>',this)"
               />
@@ -102,7 +101,7 @@
             <label>
               <input
                 type="radio"
-                value="3"
+                value="<%=single.optionC %>"
                 name="p<%=count%>"
                 onclick="showAns('<%=count%>',this)"
               />
@@ -111,7 +110,7 @@
             <label>
               <input
                 type="radio"
-                value="4"
+                value="<%=single.optionD %>"
                 name="p<%=count%>"
                 onclick="showAns('<%=count%>',this)"
               />

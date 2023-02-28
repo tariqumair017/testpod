@@ -4,7 +4,7 @@ const menu_button = document.querySelector("#menu")
 
 
 menu_tigger.onclick=()=>{
-  document.getElementById("offcanvas-menu").classList.add("active")
+  document.getElementById("offcanvas-menu").classList.toggle("active")
 
 }
 

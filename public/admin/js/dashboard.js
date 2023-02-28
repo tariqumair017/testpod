@@ -28,9 +28,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
     "body-pd",
     "header",
   );
+
+  
   
   /*===== LINK ACTIVE =====*/
   const linkColor = document.querySelectorAll(".nav_link");
+  const dashboard = document.getElementById("#dashboard")
+
+  dashboard.onclick=()=>{
+      dashboard.classList.add("active")
+  }
+
   function colorLink() {
       if (linkColor) {
           linkColor.forEach((l) => l.classList.remove("active"));

@@ -30,7 +30,7 @@ const result_box = document.querySelector(".result-box");
 
 
 menu_tigger.onclick=()=>{
-  document.getElementById("offcanvas-menu").classList.add("active")
+  document.getElementById("offcanvas-menu").classList.toggle("active")
 }
 
 menu_button.onclick=()=>{
@@ -72,6 +72,7 @@ next_btn.onclick = () => {
 function showQuestions(index) {
   const que_text = document.querySelector(".que-text");
   const img = document.querySelector(".images");
+  console.log(questions[index].img,"helloooooooo")
  
   img.src = questions[index].img;
 

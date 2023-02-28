@@ -2,7 +2,7 @@
     <nav class="nav">
         <div> <a href="/dashboard" class="nav_logo"><img width="120px" src="/admin/img/logo/logo1.svg" /></a>
             <div class="nav_list">
-                <a href="/dashboard" class="nav_link">
+                <a id="dashboard" href="/dashboard" class="nav_link">
                   <i class="fa-solid fa-gauge"></i>
                     <span class="nav_name">Dashboard</span></a>
                  <a href="/user-management" class="nav_link">
@@ -15,27 +15,26 @@
                              <a href="/game-management" class="nav_link">
                               <i class="fa-solid fa-gamepad"></i>  
                                  <span class="nav_name">Game Management</span></a>
-                              <a href="#" class="nav_link active">
-                                <i class="fa-solid fa-list-check"></i>
-                                 <div id="accordionExample">
-                                        <sapn class="nav_name" data-bs-toggle="collapse nav_link" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Quiz Management
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </span>
-                                        <div id="collapseTwo" class="accordion-collapse collapse show nav_link active" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                          <div class="accordion-body">
-                                            <i class="fa-solid fa-plus"></i>
-                                            <h7 onclick="location='/add-quiz'" >Add Quiz</h7>
-                                          </div>
-                                      </div>
-                                      <div id="collapseTwo" class="accordion-collapse collapse show nav_link" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                          <i class="fa-solid fa-broom"></i>
-                                          <h7 onclick="location='/all-quiz'" >Manage Quiz</h7>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </a>
+                                 <a href="#" class="nav_link">
+                                  <i class="fa-solid fa-list-check"></i>
+                                  <div id="accordionExample">
+                                    <span class="nav_name btn-toggle align-items-center rounded"  data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+                                        Quiz Management
+                                    </span>
+                                    <div id="collapseTwo" class="collapse">
+                                      <ul>
+                                        <li class="nav_link">
+                                        <i class="fa-solid fa-plus"></i>
+                                        <span onclick="location='/add-quiz'" >Add Quiz</span>
+                                      </li>
+                                      <li class="nav_link">
+                                        <i class="fa-solid fa-broom"></i>
+                                        <span onclick="location='/manage-quiz'" >Manage Quiz</span>
+                                      </li>
+                                      </ul>
+                                  </div>
+                                </div>
+                                  </a>
                                 <a href="/result-management" class="nav_link">
                                   <i class="fa-solid fa-note-sticky"></i>
                                   <span class="nav_name">Result Management</span></a>
