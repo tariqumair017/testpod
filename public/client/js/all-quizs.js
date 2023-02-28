@@ -85,7 +85,7 @@ async function checkResult() {
     }
     showDiscription[i].classList.add("all-quiz-show-discription");
   }
-  all_quiz_allradio_option.classList.add("disable")
   document.getElementById("total-score").innerHTML = "0" + wrong;
+  all_quiz_allradio_option.classList.add("disable")
 
 }

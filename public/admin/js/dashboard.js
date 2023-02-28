@@ -29,15 +29,67 @@ document.addEventListener("DOMContentLoaded", function (event) {
     "header",
   );
 
+  const header_logo = document.getElementById("header-toggle") 
+
+  header_logo.onclick=()=>{
+    const toggle= document.querySelector(".header-logo").classList.toggle("active")
+    if(toggle){
+      document.querySelector(".header-logo").src = "/admin/img/logo/logo.png"
+    }else{
+      document.querySelector(".header-logo").src = "/admin/img/logo/logo1.svg"
+    }
+    }
+
+    const linkColor = document.querySelectorAll(".nav_link");
+    console.log(linkColor,"linkColor")
+    const pathname=this.location.pathname
+    linkColor.forEach((item,index)=>{
+    if(pathname == "/dashboard"){
+      document.getElementById("dashboard").classList.add("active")
+    }
+    else if(pathname == "/user-management"){
+      document.getElementById("user-management").classList.add("active")
+    }
+    else if(pathname == "/user-management"){
+      document.getElementById("user-management").classList.add("active")
+    }
+    else if(pathname == "/web-analytics"){
+      document.getElementById("web-analytics").classList.add("active")
+    }
+    else if(pathname == "/game-management"){
+      document.getElementById("game-management").classList.add("active")
+    }
+    else if(pathname == "/add-quiz"){
+      document.getElementById("quiz-management").classList.add("active")
+      document.getElementById("collapseTwo").classList.add("show")
+      document.getElementById("add-quiz").classList.add("active")
+    }
+    else if(pathname == "/manage-quiz"){
+      document.getElementById("quiz-management").classList.add("active")
+      document.getElementById("collapseTwo").classList.add("show")
+      document.getElementById("manage-quiz").classList.add("active")
+    }
+    else if(pathname == "/result-management"){
+      document.getElementById("result-management").classList.add("active")
+    }
+    else if(pathname == "/content-management"){
+      document.getElementById("content-management").classList.add("active")
+    }
+    else if(pathname == "/blogs-management"){
+      document.getElementById("blogs-management").classList.add("active")
+    }
+    else if(pathname == "/analytics"){
+      document.getElementById("analytics").classList.add("active")
+    }
+    else{
+      document.getElementById("dashboard").classList.add("active")
+    }
+  }
+
+    )
   
   
   /*===== LINK ACTIVE =====*/
-  const linkColor = document.querySelectorAll(".nav_link");
-  const dashboard = document.getElementById("#dashboard")
-
-  dashboard.onclick=()=>{
-      dashboard.classList.add("active")
-  }
 
   function colorLink() {
       if (linkColor) {

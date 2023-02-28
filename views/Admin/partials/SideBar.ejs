@@ -1,33 +1,35 @@
 <div class="toggle-show l-navbar bg-white" id="nav-bar">
     <nav class="nav">
-        <div> <a href="/dashboard" class="nav_logo"><img width="120px" src="/admin/img/logo/logo1.svg" /></a>
+        <div> <a href="/dashboard" class="nav_logo"><img class="header-logo" src="/admin/img/logo/logo1.svg" /></a>
             <div class="nav_list">
                 <a id="dashboard" href="/dashboard" class="nav_link">
                   <i class="fa-solid fa-gauge"></i>
                     <span class="nav_name">Dashboard</span></a>
-                 <a href="/user-management" class="nav_link">
+                 <a id="user-management" href="/user-management" class="nav_link">
                   <i class="fa-solid fa-people-roof"></i>
                      <span class="nav_name">User Management</span></a>
-                     <a href="/web-analytics" class="nav_link">
+                     <a id="web-analytics" href="/web-analytics" class="nav_link">
                       <i class="fa-solid fa-chart-simple"></i>
                          <span class="nav_name">Web Analytics</span> </a>
                          
-                             <a href="/game-management" class="nav_link">
+                             <a id="game-management" href="/game-management" class="nav_link">
                               <i class="fa-solid fa-gamepad"></i>  
                                  <span class="nav_name">Game Management</span></a>
-                                 <a href="#" class="nav_link">
-                                  <i class="fa-solid fa-list-check"></i>
-                                  <div id="accordionExample">
+                                 <a id="quiz-management" href="#" class="nav_link">
+                                   <div id="accordionExample">
+                                    <div  style="display: flex;align-items: center;gap: 15px;">
+                                    <i class="fa-solid fa-list-check"></i>
                                     <span class="nav_name btn-toggle align-items-center rounded"  data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
                                         Quiz Management
                                     </span>
+                                  </div>
                                     <div id="collapseTwo" class="collapse">
                                       <ul>
-                                        <li class="nav_link">
+                                        <li id="add-quiz"  class="nav_link">
                                         <i class="fa-solid fa-plus"></i>
                                         <span onclick="location='/add-quiz'" >Add Quiz</span>
                                       </li>
-                                      <li class="nav_link">
+                                      <li id="manage-quiz" class="nav_link">
                                         <i class="fa-solid fa-broom"></i>
                                         <span onclick="location='/manage-quiz'" >Manage Quiz</span>
                                       </li>
@@ -35,16 +37,16 @@
                                   </div>
                                 </div>
                                   </a>
-                                <a href="/result-management" class="nav_link">
+                                <a id="result-management" href="/result-management" class="nav_link">
                                   <i class="fa-solid fa-note-sticky"></i>
                                   <span class="nav_name">Result Management</span></a>
-                                  <a href="/content-management" class="nav_link"> 
+                                  <a id="content-management" href="/content-management" class="nav_link"> 
                                       <i class="fa-brands fa-contao"></i>
                                       <span class="nav_name">Content Management</span> </a>
-                                      <a href="/blogs-management" class="nav_link">
+                                      <a id="blogs-management" href="/blogs-management" class="nav_link">
                                           <i class="fa-solid fa-blog"></i>
                                            <span class="nav_name">Blogs Management</span></a>
-                                   <a href="/analytics" class="nav_link">
+                                   <a id="analytics" href="/analytics" class="nav_link">
                                       <i class="fa-solid fa-book-tanakh"></i>
                                       <span class="nav_name">Analytics</span> </a>
                                     </div>

@@ -72,7 +72,6 @@ next_btn.onclick = () => {
 function showQuestions(index) {
   const que_text = document.querySelector(".que-text");
   const img = document.querySelector(".images");
-  console.log(questions[index].img,"helloooooooo")
  
   img.src = questions[index].img;
 
