@@ -75,7 +75,8 @@ async function checkResult() {
 
   wrong = 0;  
   option_text.splice(0, 1);
-  for (let i = 0; i < getData.length; i++) {
+  for (let i = 0; i < getData.length; i++) { 
+    
     if (getData[i].correct == option_text[i].value) {
       wrong++;
       option_text[i].parentNode.style.backgroundColor = "#4dea8e";

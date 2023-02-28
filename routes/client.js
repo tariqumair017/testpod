@@ -15,10 +15,13 @@ router.get("/quiz", asyncHandler(async (req, res) => {
     const data = await QuestionModel.find({});   
     res.render("Client/Quiz", { data });
 }));
+
+//All Quizes for all-quizes.js (client) 
 router.get("/quiz-list", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   
     res.send(data);
-}));
+})); 
+
 //Client About page
 router.get("/about", asyncHandler(async (req, res) => {  
     res.render("Client/About");

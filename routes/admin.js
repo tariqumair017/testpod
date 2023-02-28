@@ -40,7 +40,8 @@ router.post("/add-quiz", asyncHandler(async (req, res) => {
           optionB: req.body.optionB[i],
           optionC: req.body.optionC[i],
           optionD: req.body.optionD[i],
-          correct: req.body.correct[i]
+          correct: req.body.correct[i],
+          hint: req.body.hint[i]
         });
         await newQuiz.save(); 
     }
