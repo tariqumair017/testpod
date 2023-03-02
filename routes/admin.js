@@ -4,7 +4,19 @@ import QuestionModel from "../models/questions.js";
 import asyncHandler from "express-async-handler";  
 // import connectEnsureLogin from "connect-ensure-login";
 
+
+// Sign Up
+
+router.get("/sign-up", asyncHandler(async (req, res) => { 
+  res.render("Admin/SignUp");
+}));
  
+// Login Page
+
+router.get("/login", asyncHandler(async (req, res) => { 
+  res.render("Admin/Login");
+}));
+
 //Admin Dashboard
 router.get("/dashboard", asyncHandler(async (req, res) => { 
   res.render("Admin/Dashboard");
