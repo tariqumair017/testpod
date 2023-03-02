@@ -4,6 +4,58 @@
 <!--Container Main start-->
  <div class="application bg-light">
     <h4>Add Quiz</h4>
+    <form class="add-quiz-form row needs-validation mb-20" novalidate>
+      <div class="col-md-12 position-relative">
+        <label for="validationTooltip03" class="form-label">Quiz Name</label>
+        <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+        <div class="invalid-tooltip">
+          Please provide a Name.
+        </div>
+      </div>
+      <div class="row quiz-detail ">
+        <div class="col-md-6 position-relative" >
+          <label for="validationTooltip03" class="form-label">Country</label>
+          <select class="form-select">
+            <option hidden >Please Select Country</option>
+            <option value="china">China</option>
+            <option value="united states">United States</option>
+            <option value="united kindom">United Kingdom</option>
+            <option value="germany">Germany</option>
+            <option value="russia">Russia</option>
+
+          </select>
+          </div> <div class="col-md-6 position-relative" >
+            <label for="validationTooltip03" class="form-label">States</label>
+            <select title="Please Select Category" class="form-select">
+              <option hidden >Please Select State</option>
+              <option value="california">California</option>
+              <option value="england-london">England - London</option>
+              <option value="anhui">Anhui</option>
+              <option value="baden-württemberg-stuttgart">Baden-Württemberg - Stuttgart</option>
+              <option value="republic-of-adygea-maykop">Republic of Adygea - Maykop</option>
+            </select>
+            </div>
+      
+      <div class="col-md-6 position-relative" style="margin-top: 20px;">
+      <label for="validationTooltip03" class="form-label">Category</label>
+      <select title="Please Select Category" class="form-select">
+        <option hidden >Please Select Category</option>
+        <option value="drivering-quiz">Drivering Quiz</option>
+        <option value="flag-game">Flag Game</option>
+        <option value="others">Others</option>
+      </select>
+      </div>
+      <div class="col-md-6 position-relative" style="margin-top: 20px;">
+        <label for="validationTooltip03" class="form-label">Quiz Detail</label>
+        <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+        <div class="invalid-tooltip">
+          Please provide a Detail.
+        </div>
+      </div>
+      </div>
+
+    </form>
+    <hr>
     <form class="add-quiz-form row g-4 needs-validation" novalidate action="/add-quiz" method="POST">
       <div id="setNewForm">
         <div class="form-data">

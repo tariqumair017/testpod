@@ -16,6 +16,12 @@ router.get("/quiz", asyncHandler(async (req, res) => {
     res.render("Client/Quiz", { data });
 }));
 
+//Client Quiz-Citys page
+router.get("/quiz-citys", asyncHandler(async (req, res) => { 
+    const data = await QuestionModel.find({});   
+    res.render("Client/Quiz-Citys", { data });
+}));
+
 //All Quizes for all-quizes.js (client) 
 router.get("/quiz-list", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   

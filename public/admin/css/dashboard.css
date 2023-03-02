@@ -152,6 +152,10 @@ a {
 .active {
   color: black;
 }
+.collapse-option{
+  padding: 0%;
+  margin-top: 10px;
+}
 .active::before {
   content: "";
   position: absolute;
@@ -166,6 +170,24 @@ a {
 
 .btn-toggle{
   display: flex;
+}
+
+.dashboard-total-rating{
+  font-weight: 600;
+}
+
+.dashboard-persentage-rating{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  color: #00DE73;
+  padding-top: 10px;
+}
+
+.dashboard-rating-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #dashboard.active{
@@ -226,6 +248,7 @@ li{
 
 .application {
   padding: 20px;
+  overflow: auto;
 }
 
 .cards {
@@ -233,7 +256,6 @@ li{
 }
 .card-title{
     font-weight: 700;
-    color: rgb(189, 186, 186);
 }
 
 .card-icon{
@@ -242,6 +264,28 @@ li{
 
 .card{
     cursor: pointer;
+}
+
+.header-avatar{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.header-title{
+  margin: 0%;
+}
+
+.dashboard-card{
+  transition: all 0.3s;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+.dashboard-card:hover{
+  padding: 5px;
+  margin-top: 2px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
@@ -271,14 +315,15 @@ li{
   }
 
   .table-question-col{
-    width: 25%;
+    width: 250px;
   }
   .table-option-col{
-    width: 13%;
+    width: 100px;
   }.table-answer-col{
-    width: 10%;
+    width: 50px;
   }.table-action-col{
-    width: 8%;
+    width: 100px;
+    text-align: center;
   }
 
 
@@ -306,6 +351,12 @@ li{
   .add-quiz-image-input{
     width: 300px;
   }
+
+  .quiz-detail{
+    margin-bottom: 30px;
+  }
+
+
 
 
 

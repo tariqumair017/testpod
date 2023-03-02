@@ -39,13 +39,10 @@
 // }
 // showQuestionsText();
 
-
-
-
 let option_text = [];
 
-
 let wrong = 0;
+let correct = 0;
 
 // document.getElementById("total-questions").innerHTML = "0" + correct.length;
 // document.getElementById("total-score").innerHTML = "00";
@@ -68,25 +65,34 @@ const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
 
 async function checkResult() {
+  const getData = await fetch("/quiz-list")
+    .then((response) => response.json())
+    .then((data) => data);
 
-  const getData=await fetch("/quiz-list")
-  .then((response) => response.json())
-  .then((data) =>  data);
-
-  wrong = 0;  
   option_text.splice(0, 1);
-  for (let i = 0; i < getData.length; i++) { 
-    
+  for (let i = 0; i < getData.length; i++) {
     if (getData[i].correct == option_text[i].value) {
+      correct++;
+      option_text[i].parentNode.querySelector("h6").classList.add("correct-quiz");
+      option_text[i].parentNode.querySelector("input").classList.add("option-corrent");
+
+    } else {
       wrong++;
-      option_text[i].parentNode.style.backgroundColor = "#4dea8e";
-    }
-     else {
-      option_text[i].parentNode.style.backgroundColor = "red";
+      option_text[i].parentNode.querySelector("h6").classList.add("incorrect-quiz");
+      option_text[i].parentNode.querySelector("input").classList.add("option-incorrent");
+
     }
     showDiscription[i].classList.add("all-quiz-show-discription");
   }
-  document.getElementById("total-score").innerHTML = "0" + wrong;
-  all_quiz_allradio_option.classList.add("disable")
-
+  if (correct < 10) {
+    document.getElementById("total-correct").innerHTML = "0" + correct;
+  } else {
+    document.getElementById("total-correct").innerHTML = correct;
+  }
+  if (wrong < 10) {
+    document.getElementById("total-in-correct").innerHTML = "0" + wrong;
+  } else {
+    document.getElementById("total-in-correct").innerHTML = wrong;
+  }
+  all_quiz_allradio_option.classList.add("disable");
 }

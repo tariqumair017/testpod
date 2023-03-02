@@ -7028,6 +7028,90 @@ label {
 #scrollUp:hover {
   background: #EB2D00;
 }
+
+/* Quiz-Citys */
+
+.quiz-citys{
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width:700px) {
+  .quiz-citys{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+}
+.quiz-card{
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card-question-number{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.card-total-scorce{
+  padding: 0px;
+  margin: 0%;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.card-question{
+  color: #808080;
+  font-weight: 500;
+}
+
+.quiz-card-title{
+  color: #000;
+}
+
+.card-img{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 170px;
+}
+
+.quiz-card-item{
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.quiz-card-item:hover{
+  margin-top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.card-mistakes{
+  padding: 0px;
+  margin: 0%;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.card-allow-pass{
+  color: #808080;
+  font-weight: 500;
+}
+
+/* Quiz-Citys-End */
+
 /* 2. header */
 
 .header-top {
@@ -7894,6 +7978,14 @@ input[type='radio']:before {
 accent-color: green;
 }
 
+.option-incorrent{
+  accent-color: red;
+}
+
+.option-corrent{
+accent-color: green;
+/* content: url(../img/icon/icons8-done-50.png); */
+}
 
 .video-play-button{
     background-color: grey;
@@ -8371,6 +8463,13 @@ footer .next-btn:hover {
   pointer-events: auto;
   transform: translate((-50%, -50%) scale(1));
   transition: all 0.3s;
+}
+
+.correct-quiz{
+  color: #4dea8e;
+}
+.incorrect-quiz{
+  color: red;
 }
 
 

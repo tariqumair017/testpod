@@ -17,21 +17,21 @@
                                  <span class="nav_name">Game Management</span></a>
                                  <a id="quiz-management" href="#" class="nav_link">
                                    <div id="accordionExample">
-                                    <div  style="display: flex;align-items: center;gap: 15px;">
+                                    <div class="btn-toggle align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" style="display: flex;align-items: center;gap: 15px;">
                                     <i class="fa-solid fa-list-check"></i>
-                                    <span class="nav_name btn-toggle align-items-center rounded"  data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+                                    <span class="nav_name">
                                         Quiz Management
                                     </span>
                                   </div>
                                     <div id="collapseTwo" class="collapse">
                                       <ul>
-                                        <li id="add-quiz"  class="nav_link">
+                                        <li onclick="location='/add-quiz'" id="add-quiz"  class="collapse-option nav_link">
                                         <i class="fa-solid fa-plus"></i>
-                                        <span onclick="location='/add-quiz'" >Add Quiz</span>
+                                        <span >Add Quiz</span>
                                       </li>
-                                      <li id="manage-quiz" class="nav_link">
+                                      <li onclick="location='/manage-quiz'" id="manage-quiz" class="nav_link collapse-option">
                                         <i class="fa-solid fa-broom"></i>
-                                        <span onclick="location='/manage-quiz'" >Manage Quiz</span>
+                                        <span>Manage Quiz</span>
                                       </li>
                                       </ul>
                                   </div>

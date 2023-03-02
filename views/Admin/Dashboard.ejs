@@ -1,72 +1,153 @@
 <% layout('Admin/layouts/boilerPlate') -%>
-     
-    
-   <!--Container Main start-->
-   <div class="application bg-light">
-    <h4>Dashboard</h4>
-    <div class="cards row">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-bottom-primary shadow h-100 py-2" onclick="location='/all-quiz'">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="card-title  text-xs font-weight-bold text-uppercase mb-1">
-                                Top Users</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">--</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="card-icon fas fa-calendar fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
+
+<!--Container Main start-->
+<div class="application bg-light">
+  <h4>Dashboard</h4>
+  <div class="cards row">
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div
+        class="card dashboard-card border-bottom-success shadow h-100 py-2"
+        onclick="location='/all-quiz'"
+      >
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div
+                class="card-title text-xs font-weight-bold text-uppercase mb-1"
+              >
+                Top Users
+                <i style="float: right" class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
+              <div class="dashboard-rating-arrow">
+                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-bottom-success shadow h-100 py-2" onclick="location='/all-quiz'">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class=" card-title text-xs font-weight-bold text-uppercase mb-1">
-                                Subscriptions </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">--</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="card-icon fas fa-calendar fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-bottom-secondary shadow h-100 py-2" onclick="location='/all-quiz'">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="card-title text-xs font-weight-bold text-uppercase mb-1">
-                                Top Popular test </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">--</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="card-icon fas fa-calendar fa-2x "></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-bottom-danger shadow h-100 py-2" onclick="location='/all-quiz'">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="card-title text-xs font-weight-bold text-uppercase mb-1">
-                                Recent Activities</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">--</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="card-icon fas fa-calendar fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div
+        class="card dashboard-card border-bottom-success shadow h-100 py-2"
+        onclick="location='/all-quiz'"
+      >
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div
+                class="card-title text-xs font-weight-bold text-uppercase mb-1"
+              >
+                Subscriptions
+                <i style="float: right" class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="h2 mb-0 dashboard-total-rating">580.5k</div>
+              <div class="dashboard-rating-arrow">
+                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div
+        class="card dashboard-card border-bottom-success shadow h-100 py-2"
+        onclick="location='/all-quiz'"
+      >
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div
+                class="card-title text-xs font-weight-bold text-uppercase mb-1"
+              >
+                Top Popular
+                <i style="float: right" class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="h2 mb-0 dashboard-total-rating">15.43%</div>
+              <div class="dashboard-rating-arrow">
+                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div
+        class="card dashboard-card border-bottom-success shadow h-100 py-2"
+        onclick="location='/all-quiz'"
+      >
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div
+                class="card-title text-xs font-weight-bold text-uppercase mb-1"
+              >
+                Unique Visitors
+                <i style="float: right" class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
+              <div class="dashboard-rating-arrow">
+                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div
+        class="card dashboard-card border-bottom-success shadow h-100 py-2"
+        onclick="location='/all-quiz'"
+      >
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div
+                class="card-title text-xs font-weight-bold text-uppercase mb-1"
+              >
+                New Users
+                <i style="float: right" class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="h2 mb-0 dashboard-total-rating">17,805</div>
+              <div class="dashboard-rating-arrow">
+                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div
+        class="card dashboard-card border-bottom-success shadow h-100 py-2"
+        onclick="location='/all-quiz'"
+      >
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div
+                class="card-title text-xs font-weight-bold text-uppercase mb-1"
+              >
+                Online Users
+                <i style="float: right" class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="h2 mb-0 dashboard-total-rating">1,846</div>
+              <div class="dashboard-rating-arrow">
+                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!--Container Main end-->  
+<!--Container Main end-->
