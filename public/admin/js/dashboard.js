@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   header_logo.onclick=()=>{
     const toggle= document.querySelector(".header-logo").classList.toggle("active")
     if(toggle){
-      document.querySelector(".header-logo").src = "/admin/img/logo/logo.png"
+      document.querySelector(".header-logo").src = "/admin/img/logo/imgpsh_fullsize_anim.jpeg"
     }else{
       document.querySelector(".header-logo").src = "/admin/img/logo/logo1.svg"
     }

@@ -7112,6 +7112,225 @@ label {
 
 /* Quiz-Citys-End */
 
+/* Flag Game  */
+
+.sectionTittle h6{
+
+  color: #EB2D00;
+
+  position: relative;
+
+  display: inline-block;
+
+  text-transform: capitalize;
+
+  }
+
+  .sectionTittle h6:after, .sectionTittle h6:before{
+
+  position: absolute;
+
+  content: "";
+
+  width: 50px;
+
+  height: 3px;
+
+  background: #EB2D00;
+
+  top: 50%;
+
+  }
+
+  .sectionTittle h6:after{
+
+  right: 105%;
+
+  }
+
+  .sectionTittle h6:before{
+
+  left: 105%;
+
+  }
+
+  .quiz-image{
+    border-radius: 10px;
+  }
+
+  .progress-timer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .customRadio{display: none;}
+
+  .customLable{
+
+  background: #f3f3f3;
+
+  font-size: 25px;
+
+  display: flex;
+
+  padding: 8px 0px;
+
+  border-radius: 5px;
+
+  cursor:pointer;
+
+  margin-bottom: 10px;
+
+  position: relative;
+
+
+  }
+
+  .customLable:hover{
+
+  box-shadow: 0 0 2px 0 #EB2D00;
+
+  }
+
+  .customLable strong{
+
+  background: #ccc;
+
+  padding: 0px 10px;
+
+  font-weight: 500;
+
+  margin-right: 10px;
+
+  }
+
+  .customLable.correct{
+
+  background:#1DCF71;
+
+  box-shadow: 0 0 2px 0 #EB2D00;
+
+  font-weight: 600;
+
+  color: #fff;
+
+  }
+
+  .customLable.incorrect{
+
+  background:#EA4A4A;
+
+  box-shadow: 0 0 2px 0 #EB2D00;
+
+  font-weight: 600;
+
+  color: #fff;
+
+  }
+
+  .customLable.incorrect strong, .customLable.correct strong {
+
+  background: #EB2D00;
+
+  font-weight: 600;
+
+  }
+
+  .disabled{
+
+  pointer-events: none;
+
+  }
+
+.option_list .icon{
+
+  height: 30px;
+
+  width: 30px;
+
+  border: 2px solid transparent;
+
+  border-radius: 50%;
+
+  text-align: center;
+
+  font-size: 17px;
+
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+
+  line-height: 28px;
+
+  position: absolute;
+
+  right: 12px;
+
+  top: 6px;
+
+  }
+
+
+  .icon.tick{
+
+  color: #1dcf71;
+
+  background: #ffffff;
+
+  }
+
+  .icon.cross{
+
+  color: #ea4a4a;
+
+  background: #ffffff;
+
+  }
+
+  .shakeIt{
+
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+
+  animation: shake 0.5s;
+
+
+
+  /* When the animation is finished, start again */
+
+  animation-iteration-count: 3;
+
+  }
+
+  @keyframes shake {
+
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+
+  }
+
+
+/* Flag Game End */
+
 /* 2. header */
 
 .header-top {
@@ -8484,10 +8703,16 @@ footer .next-btn:hover {
   padding: 20px;
 }
 
+
+
 .all-quiz-progress{
-  padding: 20px;
+  padding: 10px;
   position: sticky;
   top: 0px;
+}
+
+.all-quiz-progress h5 {
+  margin-top: 10px;
 }
 
 .all-quiz-progress p {

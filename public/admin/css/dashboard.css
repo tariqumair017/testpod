@@ -115,7 +115,6 @@ a {
 
 .header-logo.active{
   width: 30px;
-  border-radius: 50px;
   margin-left: 20px;
   transition: all 0.3s;
 }
@@ -247,14 +246,14 @@ a {
 .login-container{
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 50px;
   width: 50%;
 }
 
 .signup-container{
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 50px;
   width: 50%;
 }
 
@@ -262,7 +261,7 @@ a {
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 }
 
 .signup-right-part{
@@ -319,17 +318,11 @@ a {
   border: 1px solid #A8171A;
   padding: 10px;
 }
-
-@media screen and (max-width:1000px) {
-    .login-form{
-    }
-    .login-form{
-      margin-left: 50px;
-      margin-right: 50px;
-    }
+.mobile-ligin-logo{
+  display: none;
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:1000px) {
   .login-right-part{
     width: 100%;
   }
@@ -339,7 +332,44 @@ a {
   .login-container{
     display: none;
   }
+  .mobile-ligin-logo{
+    display: contents;
+  }
+  .mobile-logo{
+    width: 120px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  .signup-container{
+    display: none;
+  }
+  .signup-right-part{
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .login-right-part{
+    width: 100%;
+    gap: 20px;
+  }
+  .login-img{
+    display: none;
+  }
+  .login-container{
+    display: none;
+  }
   .login-form{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .sign-bottom{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .mobile-logo{
+    width: 120px;
     margin-left: 20px;
     margin-right: 20px;
   }
