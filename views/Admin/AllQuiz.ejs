@@ -21,25 +21,25 @@
           </thead>
           <tbody>
             <%var count = 1%>
-            <% data.forEach(question => { %>
+            <% data.questions.forEach(item => { %> 
               <tr>
                 <th scope="row"><%=count%></th>
-                <td><%=question.question%></td>
-                <td><%=question.optionA%></td>
-                <td><%=question.optionB%></td>
-                <td><%=question.optionC%></td>
-                <td><%=question.optionD%></td>
-                <td><%=question.correct%></td>
+                <td><%=item.question%></td>
+                <td><%=item.optionA%></td>
+                <td><%=item.optionB%></td>
+                <td><%=item.optionC%></td>
+                <td><%=item.optionD%></td>
+                <td><%=item.correct%></td>
                 <td>
                   <span class="table-buttons">
-                    <button onclick="editQuestion(`<%=question._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
-                    <form action="/all-quiz/<%=question._id%>?_method=DELETE" method="POST"> 
+                    <button onclick="editQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
+                    <form action="/all-quiz/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                       <button type="submit" class="btn btn-danger">Delete</button> 
                     </form>
                   </span>
                 </td>
               </tr> 
-            <%++count%>
+             <%++count%> 
             <%})%>
           </tbody>
         </table>
@@ -121,9 +121,16 @@
 <!--Container Main end-->   
 
 <script>
-  async function editQuestion(id) {     
-    const response = await fetch(`/all-quiz/${id}/edit`);
-    const data = await response.json();
+  async function editQuestion(Pid, Cid) {   
+    const response = await fetch(`/all-quiz/${Pid}/edit`);
+    const finalData = await response.json(); 
+    var data;
+    finalData.questions.forEach(element => {
+      if(element._id == Cid)
+      {
+        data = element;
+      }
+    }); 
     document.getElementById("questionID").value = data.question;
     document.getElementById("optionAID").value = data.optionA;
     document.getElementById("optionBID").value = data.optionB;
@@ -131,7 +138,7 @@
     document.getElementById("optionDID").value = data.optionD;
     document.getElementById("correctID").value = data.correct; 
     document.getElementById("hintID").value = data.hint; 
-    document.getElementById("updateForm").action = `/all-quiz/${data._id}?_method=PUT`;
+    document.getElementById("updateForm").action = `/all-quiz/${data._id}/${Pid}?_method=PUT`;
 }
 </script>
  

@@ -23,7 +23,7 @@ var set = document.getElementById("setNewForm")
 
 add_new_form.onclick=()=>{
     const clone =get.cloneNode(true)
-      set.appendChild(clone)
+    set.appendChild(clone)
     }
 
     function clearImage() {

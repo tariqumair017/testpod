@@ -11,44 +11,104 @@ router.get("/dashboard", asyncHandler(async (req, res) => {
 }));
 
 //Admin show All Question
-router.get("/all-quiz", asyncHandler(async (req, res) => {
-  const data = await QuestionModel.find({});  
+router.get("/:id/all-quiz", asyncHandler(async (req, res) => {
+  const data = await QuestionModel.findById(req.params.id);
   res.render("Admin/AllQuiz", { data });
 }));
 
-//Admin Add Question show page
+//Admin Add Question page
 router.get("/add-quiz", asyncHandler(async (req, res) => { 
-  res.render("Admin/AddQuiz");
+  const data = await QuestionModel.distinct("country"); 
+  res.render("Admin/AddQuiz", { data });
 }));
   
+router.get("/all-quiz/:state/state", asyncHandler(async (req, res) => { 
+  const data = await QuestionModel.find({country: req.params.state});  
+  res.send(data);
+}))
+
+
 //Admin Add Questions
 router.post("/add-quiz", asyncHandler(async (req, res) => {   
+  
+  const find = await QuestionModel.findOne({country: req.body.country, stateName: req.body.stateName, category: req.body.category});
  
-  if(typeof(req.body.question) == "string")
+  if(!find)
   {
-    const singleQuiz = new QuestionModel(req.body);
-    await singleQuiz.save();
-    console.log("Single Quiz Added Successfully"); 
-    res.redirect("/all-quiz");
-  }
-  else if(typeof(req.body.question) == "object")
-  {
-    for (let i = 0; i < req.body.question.length; i++) { 
-        const newQuiz = new QuestionModel({
-          question: req.body.question[i], 
-          optionA: req.body.optionA[i],
-          optionB: req.body.optionB[i],
-          optionC: req.body.optionC[i],
-          optionD: req.body.optionD[i],
-          correct: req.body.correct[i],
-          hint: req.body.hint[i]
-        });
-        await newQuiz.save(); 
+    if(typeof(req.body.questions.question) == "string")
+    {
+      const singleQuiz = new QuestionModel({
+        quizName: req.body.quizName,
+        country: req.body.country,
+        stateName: req.body.stateName,
+        questions: req.body.questions,
+        category: req.body.category,
+        quizDetail: req.body.quizDetail,
+      });
+      await singleQuiz.save();
+      console.log("Single Quiz Added Successfully"); 
+      res.redirect("/manage-quiz");
     }
-    console.log("Multiple Quiz Added Successfully"); 
-    res.redirect("/all-quiz");
-  } 
+    else if(typeof(req.body.questions.question) == "object")
+    {
+      const newQuestions = [];
+      for (let i = 0; i < req.body.questions.question.length; i++) { 
+          const newQuestion = {
+            question: req.body.questions.question[i], 
+            optionA: req.body.questions.optionA[i],
+            optionB: req.body.questions.optionB[i],
+            optionC: req.body.questions.optionC[i],
+            optionD: req.body.questions.optionD[i],
+            correct: req.body.questions.correct[i],
+            hint: req.body.questions.hint[i]
+          }
+  
+        newQuestions.push(newQuestion);
+      }
+      const newQuiz = new QuestionModel({
+        quizName: req.body.quizName,
+        country: req.body.country,
+        stateName: req.body.stateName,
+        questions: newQuestions,
+        category: req.body.category,
+        quizDetail: req.body.quizDetail,
+      });
+      await newQuiz.save(); 
+      console.log("Multiple Quiz Added Successfully"); 
+      res.redirect("/manage-quiz");
+    }  
+  }
+  else
+  {  
+    if(typeof(req.body.questions.question) == "string")
+    {
+      await QuestionModel.updateMany({_id: find._id}, {$push:{questions: req.body.questions}});
+      console.log("Single Questions Updated Successfully"); 
+      res.redirect("/manage-quiz");
+    }
+    else if(typeof(req.body.questions.question) == "object")
+    {
+      const newQuestions = [];
+      for (let i = 0; i < req.body.questions.question.length; i++) { 
+          const newQuestion = {
+            question: req.body.questions.question[i], 
+            optionA: req.body.questions.optionA[i],
+            optionB: req.body.questions.optionB[i],
+            optionC: req.body.questions.optionC[i],
+            optionD: req.body.questions.optionD[i],
+            correct: req.body.questions.correct[i],
+            hint: req.body.questions.hint[i]
+          }
+  
+        newQuestions.push(newQuestion);
+      }
 
+      await QuestionModel.updateMany({_id: find._id}, {$push:{questions: newQuestions}});
+      console.log("Many Questions Updated Successfully"); 
+      res.redirect("/manage-quiz"); 
+    } 
+  }
+ 
 }));
  
 // Admin Edit Question
@@ -58,22 +118,23 @@ router.get('/all-quiz/:id/edit', asyncHandler(async (req, res) => {
 }));
  
 //Admin Update Question
-router.put("/all-quiz/:id", asyncHandler(async (req, res) => {  
-  await QuestionModel.findByIdAndUpdate(req.params.id, req.body.Question);
+router.put("/all-quiz/:cid/:pid", asyncHandler(async (req, res) => {   
+  await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
   console.log("Quiz Updated Successfully");
-  res.redirect("/all-quiz"); 
+  res.redirect(`/${req.params.pid}/all-quiz`); 
 }));
 
 //Admin Delete Question
-router.delete("/all-quiz/:id", asyncHandler(async (req, res) => {
-    await QuestionModel.findByIdAndDelete(req.params.id);
-    console.log("Quiz Deleted Successfully");
-    res.redirect("/all-quiz"); 
+router.delete("/all-quiz/:pid/:cid", asyncHandler(async (req, res) => {  
+  await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
+  console.log("Quiz Deleted Successfully");
+  res.redirect(`/${req.params.pid}/all-quiz`);  
 }));
 
 //Admin Manage Quiz Page
 router.get("/manage-quiz", asyncHandler(async (req, res) => { 
-  res.render("Admin/ManageQuiz");
+  const data = await QuestionModel.find({}); 
+  res.render("Admin/ManageQuiz", { data });
 }));
 
 //Admin Analytics Page
