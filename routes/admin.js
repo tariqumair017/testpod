@@ -5,35 +5,34 @@ import asyncHandler from "express-async-handler";
 // import connectEnsureLogin from "connect-ensure-login";
 
 
-// Sign Up
-
+// Sign Up 
 router.get("/sign-up", asyncHandler(async (req, res) => { 
   res.render("Admin/SignUp");
 }));
  
-// Login Page
-
+// Login Page 
 router.get("/login", asyncHandler(async (req, res) => { 
   res.render("Admin/Login");
 }));
 
-//Admin Dashboard
+//Admin: Dashboard Page
 router.get("/dashboard", asyncHandler(async (req, res) => { 
   res.render("Admin/Dashboard");
 }));
  
-//Admin Add Question page
+//Admin: Add Question page
 router.get("/add-quiz", asyncHandler(async (req, res) => { 
   const data = await QuestionModel.distinct("country"); 
   res.render("Admin/AddQuiz", { data });
 }));
   
+//Admin:  State and Category Filter
 router.get("/add-quiz/:state/state", asyncHandler(async (req, res) => { 
   const data = await QuestionModel.find({country: req.params.state});  
   res.send(data);
 })) 
 
-//Admin Add Questions
+//Admin: Add Questions
 router.post("/add-quiz", asyncHandler(async (req, res) => {   
   
   const find = await QuestionModel.findOne({country: req.body.country, stateName: req.body.stateName, category: req.body.category});
@@ -116,69 +115,69 @@ router.post("/add-quiz", asyncHandler(async (req, res) => {
  
 })); 
 
-//Admin Manage Quiz Page
+//Admin: Manage Quiz Page
 router.get("/manage-quiz", asyncHandler(async (req, res) => { 
   const data = await QuestionModel.find({}); 
   res.render("Admin/ManageQuiz", { data });
 }));
 
-//Admin show All Question
+//Admin: show All Question
 router.get("/manage-quiz/:id/all-quiz", asyncHandler(async (req, res) => {
   const data = await QuestionModel.findById(req.params.id);
   res.render("Admin/AllQuiz", { data });
 }));
 
-// Admin Edit Question
+// Admin: Edit Question
 router.get('/all-quiz/:id/edit', asyncHandler(async (req, res) => { 
   const data = await QuestionModel.findById(req.params.id);
   res.send(data);  
 }));
 
-//Admin Update Question
+//Admin: Update Question
 router.put("/all-quiz/:cid/:pid", asyncHandler(async (req, res) => {   
 await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
 console.log("Quiz Updated Successfully");
 res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`); 
 }));
 
-//Admin Delete Question
+//Admin: Delete Question
 router.delete("/all-quiz/:pid/:cid", asyncHandler(async (req, res) => {  
 await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
 console.log("Quiz Deleted Successfully");
 res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`);  
 }));
 
-//Admin Analytics Page
+//Admin: Analytics Page
 router.get("/analytics", asyncHandler(async (req, res) => { 
   res.render("Admin/Analytics");
 }));
 
-//Admin Blog Management Page
+//Admin: Blog Management Page
 router.get("/blogs-management", asyncHandler(async (req, res) => { 
   res.render("Admin/BlogsManagement");
 }));
 
-//Admin Content Management Page
+//Admin: Content Management Page
 router.get("/content-management", asyncHandler(async (req, res) => { 
   res.render("Admin/ContentManagement");
 }));
 
-//Admin Game Management Page
+//Admin: Game Management Page
 router.get("/game-management", asyncHandler(async (req, res) => { 
   res.render("Admin/GameManagement");
 }));
 
-//Admin Result Management Page
+//Admin: Result Management Page
 router.get("/result-management", asyncHandler(async (req, res) => { 
   res.render("Admin/ResultManagement");
 }));
 
-//Admin User Management Page
+//Admin: User Management Page
 router.get("/user-management", asyncHandler(async (req, res) => { 
   res.render("Admin/UserManagement");
 }));
 
-//Admin Web Analytics Page
+//Admin: Web Analytics Page
 router.get("/web-analytics", asyncHandler(async (req, res) => { 
   res.render("Admin/WebAnalytics");
 }));
