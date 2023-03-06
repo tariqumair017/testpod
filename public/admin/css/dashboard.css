@@ -495,6 +495,10 @@ li{
     display: flex;
     justify-content: end;
   }
+  .add-quiz-state-image{
+    display: flex;
+    height: fit-content;
+  }
 
   .add-quiz-image-input{
     width: 300px;

@@ -32,12 +32,18 @@ add_new_form.onclick=()=>{
 
 var uploadField = document.querySelector(".add-quiz-image");
 
-console.log(uploadField,"uploadField")
+var stateuploadfile = document.querySelector(".add-quiz-state-image")
+
+stateuploadfile.children[0].onchange = function() {
+  if(this.files[0].size > 15000){
+     alert("State image is too big!");
+     this.value = "";
+  };
+};
 
 uploadField.children[0].onchange = function() {
-  console.log(this.files[0],"hello baba g ki hal a")
     if(this.files[0].size > 10000){
-       alert("File is too big!");
+       alert("Quiz image is too big!");
        this.value = "";
     };
 };

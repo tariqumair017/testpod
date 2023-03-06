@@ -19,7 +19,8 @@
             <!-- <option hidden >Please Select Country</option>  -->
             <option selected value="united states">United States</option> 
           </select>
-          </div> <div class="col-md-6 position-relative" >
+          </div>
+           <div class="col-md-6 position-relative" >
             <label for="validationTooltip03" class="form-label">States</label>
             <select class="form-select" id="stateID" name="stateName">
               <option hidden >Please Select State</option>  
@@ -32,6 +33,14 @@
               <option value="montana">Montana</option>
             </select>
             </div>
+            <div class="col-md-6 " style="margin-top: 20px;"> 
+            <label for="validationTooltip03" class="form-label">State Image</label>
+            <div class="add-quiz-state-image">
+              <input style="width: 100%;" class="add-quiz-image-input form-control" type="file" id="formFile" onchange="preview()">
+              <button onclick="clearImage()"  style="width: 40px;" class="btn btn-primary" type="button" ><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+          </div>
       
       <div class="col-md-6 position-relative" style="margin-top: 20px;">
       <label for="validationTooltip03" class="form-label">Category</label>
@@ -184,24 +193,4 @@
       </div> 
 </div>
 <!--Container Main end-->   
-
-
-<!-- <script>
-    document.addEventListener('input', async function (event) {
-
-    // Only run for #countryID select
-    if (event.target.id !== 'countryID') return;
-  
-    //get distinct states for the selected country
-    const response = await fetch(`/add-quiz/${event.target.value}/state`);
-    const finalData = await response.json(); 
-    var _html = '<option hidden >Please Select State</option>';
-    finalData.forEach(element => { 
-      _html += `<option value="${element.stateName}">${element.stateName}</option>`;
-    });
- 
-    document.getElementById("stateID").innerHTML = _html;
-
-    }, false);
-</script> -->
 <script src="/admin/js/addQuiz.js" ></script>

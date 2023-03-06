@@ -48,7 +48,7 @@ let correct = 0;
 
 function showAns(numer, selectedOptions) { 
 
-  option_text.push(selectedOptions); 
+  option_text[numer]=selectedOptions; 
 
   id = "p" + numer;
 
@@ -66,24 +66,24 @@ const all_quiz_allradio_option = document.querySelector(".questions-box");
 
 async function checkResult() {
   const getData = await fetch("/quiz-list")
-    .then((response) => response.json())
-    .then((data) => data); 
-
+  .then((response) => response.json())
+  .then((data) => data); 
+  
   // option_text.splice(0, 1);
+  option_text.splice(0,1)
   var count = -1;
   for (let i = 0; i < getData.length; i++) {
     for (let j = 0; j < getData[i].questions.length; j++) {
       count++;
-      debugger; 
       if (getData[i].questions[j].correct == option_text[count].value) {
         correct++;
-        option_text[i].parentNode.querySelector("h6").classList.add("correct-quiz");
-        option_text[i].parentNode.querySelector("input").classList.add("option-corrent");
-  
+        option_text[count].parentNode.querySelector("h6").classList.add("correct-quiz");
+        option_text[count].parentNode.querySelector("input").classList.add("option-corrent");
+        
       } else {
         wrong++;
-        option_text[i].parentNode.querySelector("h6").classList.add("incorrect-quiz");
-        option_text[i].parentNode.querySelector("input").classList.add("option-incorrent");
+        option_text[count].parentNode.querySelector("h6").classList.add("incorrect-quiz");
+        option_text[count].parentNode.querySelector("input").classList.add("option-incorrent");
   
       }
       showDiscription[i].classList.add("all-quiz-show-discription");
