@@ -197,7 +197,7 @@
     if (event.target.id !== 'countryID') return;
   
     //get distinct states for the selected country
-    const response = await fetch(`/all-quiz/${event.target.value}/state`);
+    const response = await fetch(`/add-quiz/${event.target.value}/state`);
     const finalData = await response.json(); 
     var _html = '<option hidden >Please Select State</option>';
     finalData.forEach(element => { 

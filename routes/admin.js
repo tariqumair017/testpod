@@ -9,24 +9,17 @@ import asyncHandler from "express-async-handler";
 router.get("/dashboard", asyncHandler(async (req, res) => { 
   res.render("Admin/Dashboard");
 }));
-
-//Admin show All Question
-router.get("/:id/all-quiz", asyncHandler(async (req, res) => {
-  const data = await QuestionModel.findById(req.params.id);
-  res.render("Admin/AllQuiz", { data });
-}));
-
+ 
 //Admin Add Question page
 router.get("/add-quiz", asyncHandler(async (req, res) => { 
   const data = await QuestionModel.distinct("country"); 
   res.render("Admin/AddQuiz", { data });
 }));
   
-router.get("/all-quiz/:state/state", asyncHandler(async (req, res) => { 
+router.get("/add-quiz/:state/state", asyncHandler(async (req, res) => { 
   const data = await QuestionModel.find({country: req.params.state});  
   res.send(data);
-}))
-
+})) 
 
 //Admin Add Questions
 router.post("/add-quiz", asyncHandler(async (req, res) => {   
@@ -109,32 +102,38 @@ router.post("/add-quiz", asyncHandler(async (req, res) => {
     } 
   }
  
-}));
- 
-// Admin Edit Question
-router.get('/all-quiz/:id/edit', asyncHandler(async (req, res) => { 
-    const data = await QuestionModel.findById(req.params.id);
-    res.send(data);  
-}));
- 
-//Admin Update Question
-router.put("/all-quiz/:cid/:pid", asyncHandler(async (req, res) => {   
-  await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
-  console.log("Quiz Updated Successfully");
-  res.redirect(`/${req.params.pid}/all-quiz`); 
-}));
-
-//Admin Delete Question
-router.delete("/all-quiz/:pid/:cid", asyncHandler(async (req, res) => {  
-  await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
-  console.log("Quiz Deleted Successfully");
-  res.redirect(`/${req.params.pid}/all-quiz`);  
-}));
+})); 
 
 //Admin Manage Quiz Page
 router.get("/manage-quiz", asyncHandler(async (req, res) => { 
   const data = await QuestionModel.find({}); 
   res.render("Admin/ManageQuiz", { data });
+}));
+
+//Admin show All Question
+router.get("/manage-quiz/:id/all-quiz", asyncHandler(async (req, res) => {
+  const data = await QuestionModel.findById(req.params.id);
+  res.render("Admin/AllQuiz", { data });
+}));
+
+// Admin Edit Question
+router.get('/all-quiz/:id/edit', asyncHandler(async (req, res) => { 
+  const data = await QuestionModel.findById(req.params.id);
+  res.send(data);  
+}));
+
+//Admin Update Question
+router.put("/all-quiz/:cid/:pid", asyncHandler(async (req, res) => {   
+await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
+console.log("Quiz Updated Successfully");
+res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`); 
+}));
+
+//Admin Delete Question
+router.delete("/all-quiz/:pid/:cid", asyncHandler(async (req, res) => {  
+await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
+console.log("Quiz Deleted Successfully");
+res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`);  
 }));
 
 //Admin Analytics Page
