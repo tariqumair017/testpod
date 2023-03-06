@@ -14,22 +14,22 @@ router.get("/", asyncHandler(async (req, res) => {
 router.get("/select-country", asyncHandler(async (req, res) => { 
     res.render("Client/Select-Country");
 }));
-
-//Client Quiz page
-router.get("/quiz", asyncHandler(async (req, res) => { 
-    const data = await QuestionModel.find({});   
-    res.render("Client/Quiz", { data });
-}));
-
+ 
 //Client Quiz-Citys page
 router.get("/quiz-citys", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   
     res.render("Client/Quiz-Citys", { data });
 }));
 
+//Client Quiz page
+router.get("/quiz-citys/:id/quiz", asyncHandler(async (req, res) => { 
+    const data = await QuestionModel.findById(req.params.id);   
+    res.render("Client/Quiz", { data });
+}));
+
 //All Quizes for all-quizes.js (client) 
-router.get("/quiz-list", asyncHandler(async (req, res) => { 
-    const data = await QuestionModel.find({});   
+router.get("/quiz-list/:id", asyncHandler(async (req, res) => {  
+    const data = await QuestionModel.findById(req.params.id);     
     res.send(data);
 })); 
 

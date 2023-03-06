@@ -64,31 +64,27 @@ function showAns(numer, selectedOptions) {
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
 
-async function checkResult() {
-  const getData = await fetch("/quiz-list")
+async function checkResult(id) { 
+  const getData = await fetch(`/quiz-list/${id}`)
   .then((response) => response.json())
   .then((data) => data); 
   
   // option_text.splice(0, 1);
-  option_text.splice(0,1)
-  var count = -1;
-  for (let i = 0; i < getData.length; i++) {
-    for (let j = 0; j < getData[i].questions.length; j++) {
-      count++;
-      if (getData[i].questions[j].correct == option_text[count].value) {
+  option_text.splice(0,1) 
+    for (let j = 0; j < getData.questions.length; j++) { 
+      if (getData.questions[j].correct == option_text[j].value) {
         correct++;
-        option_text[count].parentNode.querySelector("h6").classList.add("correct-quiz");
-        option_text[count].parentNode.querySelector("input").classList.add("option-corrent");
+        option_text[j].parentNode.querySelector("h6").classList.add("correct-quiz");
+        option_text[j].parentNode.querySelector("input").classList.add("option-corrent");
         
       } else {
         wrong++;
-        option_text[count].parentNode.querySelector("h6").classList.add("incorrect-quiz");
-        option_text[count].parentNode.querySelector("input").classList.add("option-incorrent");
+        option_text[j].parentNode.querySelector("h6").classList.add("incorrect-quiz");
+        option_text[j].parentNode.querySelector("input").classList.add("option-incorrent");
   
       }
-      showDiscription[i].classList.add("all-quiz-show-discription");
-    }  
-  }
+      showDiscription[j].classList.add("all-quiz-show-discription");
+    }   
   if (correct < 10) {
     document.getElementById("total-correct").innerHTML = "0" + correct;
   } else {

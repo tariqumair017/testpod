@@ -34,26 +34,20 @@
 </main>
 <!-- main-area-end -->
 <% var count = 1; %>
-<% var counting = 0; %> 
-<%data.forEach(element => { %>
-    <%counting += element.questions.length%>
-<%})%>
+<% var counting = 0; %>  
+<%counting = data.questions.length%> 
 <!-- All quizzes  Start-->
 <div class="all-quiz">
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
-      <h6>New jersey Driver's Examination</h6>
+      <h6><%=data.stateName.charAt(0).toUpperCase()+data.stateName.substring(1)%> <%=data.category.charAt(0).toUpperCase()+data.category.substring(1)%>'s Examination</h6>
       <h6>DMV Permit Test #1</h6>
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
-        <h4>FREE New Jersey DMV Practical Test</h4>
+        <h4>FREE <%=data.stateName.charAt(0).toUpperCase()+data.stateName.substring(1)%> DMV Practical Test</h4>
         <p>
-          Anyone operating a motor vehicle or motor-driven bike on New Jersey's
-          public streets or highways must have a valid driver's licence or
-          learner's permit. New Jersey's DMV practise examinations include
-          questions based on the New Jersey Driver Handbook's most essential
-          traffic signals and..
+           <%=data.quizDetail%>
         </p>
       </div>
       <div class="all-quiz-upper-section-part-right">
@@ -78,8 +72,7 @@
     <div class="all-quiz-left-part">
       <div class="questions-box">
         <!-- Backend Data -->
-        <% data.forEach(single => { %>
-          <% single.questions.forEach(item => { %>
+        <% data.questions.forEach(item => { %> 
         <div class="questions-text">
           <h5><%=count%>. <%=item.question%></h5>
         </div>
@@ -124,13 +117,12 @@
             <p><%=item.hint%></p>
           </div>
         </div> 
-          <%count++%> 
-          <%})%>
+          <%count++%>  
         <%})%>
         <!-- Backend Data -->
       </div>
       <div class="all-quiz-result">
-        <button onclick="checkResult()">Grade This Section</button>
+        <button onclick="checkResult('<%=data._id%>')">Grade This Section</button>
       </div>
     </div>
     <div class="all-quiz-right-part">
