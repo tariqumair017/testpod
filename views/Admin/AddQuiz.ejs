@@ -16,24 +16,20 @@
         <div class="col-md-6 position-relative" >
           <label for="validationTooltip03" class="form-label">Country</label>
           <select class="form-select" id="countryID" name="country">
-            <option hidden >Please Select Country</option>
-            <%data.forEach(item => {%>
-            <option value="<%=item%>"><%=item%></option>
-            <!-- <option value="united states">United States</option>
-            <option value="united kindom">United Kingdom</option>
-            <option value="germany">Germany</option>
-            <option value="russia">Russia</option>  -->
-            <%})%>
+            <!-- <option hidden >Please Select Country</option>  -->
+            <option selected value="united states">United States</option> 
           </select>
           </div> <div class="col-md-6 position-relative" >
             <label for="validationTooltip03" class="form-label">States</label>
             <select class="form-select" id="stateID" name="stateName">
-              <option hidden >Please Select State</option>
-              <!-- <option value="california">California</option>
-              <option value="england-london">England - London</option>
-              <option value="anhui">Anhui</option>
-              <option value="baden-württemberg-stuttgart">Baden-Württemberg - Stuttgart</option>
-              <option value="republic-of-adygea-maykop">Republic of Adygea - Maykop</option> -->
+              <option hidden >Please Select State</option>  
+              <option value="california">California</option>
+              <option value="texas">Texas</option>
+              <option value="florida">Florida</option>
+              <option value="Hawaii">hawaii</option>
+              <option value="alaska">Alaska</option>
+              <option value="washington">Washington</option>
+              <option value="montana">Montana</option>
             </select>
             </div>
       
@@ -190,7 +186,7 @@
 <!--Container Main end-->   
 
 
-<script>
+<!-- <script>
     document.addEventListener('input', async function (event) {
 
     // Only run for #countryID select
@@ -207,5 +203,5 @@
     document.getElementById("stateID").innerHTML = _html;
 
     }, false);
-</script>
+</script> -->
 <script src="/admin/js/addQuiz.js" ></script>

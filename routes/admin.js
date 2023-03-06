@@ -22,15 +22,15 @@ router.get("/dashboard", asyncHandler(async (req, res) => {
  
 //Admin: Add Question page
 router.get("/add-quiz", asyncHandler(async (req, res) => { 
-  const data = await QuestionModel.distinct("country"); 
-  res.render("Admin/AddQuiz", { data });
+  // const data = await QuestionModel.distinct("stateName");  
+  res.render("Admin/AddQuiz");
 }));
   
 //Admin:  State and Category Filter
-router.get("/add-quiz/:state/state", asyncHandler(async (req, res) => { 
-  const data = await QuestionModel.find({country: req.params.state});  
-  res.send(data);
-})) 
+// router.get("/add-quiz/:state/state", asyncHandler(async (req, res) => { 
+//   const data = await QuestionModel.find({country: req.params.state});  
+//   res.send(data);
+// })) 
 
 //Admin: Add Questions
 router.post("/add-quiz", asyncHandler(async (req, res) => {   

@@ -34,6 +34,10 @@
 </main>
 <!-- main-area-end -->
 <% var count = 1; %>
+<% var counting = 0; %> 
+<%data.forEach(element => { %>
+    <%counting += element.questions.length%>
+<%})%>
 <!-- All quizzes  Start-->
 <div class="all-quiz">
   <div class="all-quiz-upper-section">
@@ -54,9 +58,9 @@
       </div>
       <div class="all-quiz-upper-section-part-right">
         <div class="all-quiz-upper-section-scorus-card">
-          <p>Question</p>
+          <p>Questions</p>
           <h5 id="total-questions">
-            <%=data.length < 10 ? "0" + data.length : data.length%>
+             <%=counting%>
           </h5>
         </div>
         <div class="all-quiz-upper-section-scorus-card">
@@ -75,51 +79,54 @@
       <div class="questions-box">
         <!-- Backend Data -->
         <% data.forEach(single => { %>
+          <% single.questions.forEach(item => { %>
         <div class="questions-text">
-          <h5><%=count%>. <%=single.question%></h5>
+          <h5><%=count%>. <%=item.question%></h5>
         </div>
         <div id="p<%=count%>" class="all-quiz-allradio-option">
           <label>
             <input
               type="radio"
-              value="<%=single.optionA%>"
+              value="<%=item.optionA%>"
               name="p<%=count%>"
               onclick="showAns('<%=count%>',this)"
             />
-            <h6 style="margin: 0%; font-weight: 500"><%=single.optionA%></h6>
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionA%></h6>
           </label>
           <label>
             <input
               type="radio"
-              value="<%=single.optionB %>"
+              value="<%=item.optionB%>"
               name="p<%=count%>"
               onclick="showAns('<%=count%>',this)"
             />
-            <h6 style="margin: 0%; font-weight: 500"><%=single.optionB%></h6>
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionB%></h6>
           </label>
           <label>
             <input
               type="radio"
-              value="<%=single.optionC %>"
+              value="<%=item.optionC%>"
               name="p<%=count%>"
               onclick="showAns('<%=count%>',this)"
             />
-            <h6 style="margin: 0%; font-weight: 500"><%=single.optionC%></h6>
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionC%></h6>
           </label>
           <label>
             <input
               type="radio"
-              value="<%=single.optionD %>"
+              value="<%=item.optionD%>"
               name="p<%=count%>"
               onclick="showAns('<%=count%>',this)"
             />
-            <h6 style="margin: 0%; font-weight: 500"><%=single.optionD%></h6>
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
           </label>
           <div id="all-quiz-discription">
-            <p><%=single.hint%></p>
+            <p><%=item.hint%></p>
           </div>
-        </div>
-        <%count++%> <%})%>
+        </div> 
+        <%count++%> 
+        <%})%>
+        <%})%>
         <!-- Backend Data -->
       </div>
       <div class="all-quiz-result">

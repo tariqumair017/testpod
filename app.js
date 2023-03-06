@@ -22,22 +22,25 @@ const port = process.env.PORT || 3000;
 import AdminRoutes from "./routes/admin.js"; 
 import ClientRoutes from "./routes/client.js"; 
 
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
-    autoIndex: false, // Don't build indexes
-    maxPoolSize: 10, // Maintain up to 10 socket connections
-    serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
-    socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-    family: 4 // Use IPv4, skip trying IPv6
-} 
+// const options = {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     serverSelectionTimeoutMS: 5000,
+//     autoIndex: false, // Don't build indexes
+//     maxPoolSize: 10, // Maintain up to 10 socket connections
+//     serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+//     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+//     family: 4 // Use IPv4, skip trying IPv6
+// } 
 
 //mongoDB Connection with mongoose
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://localhost:27017/TestPod", options, () => {
+mongoose.connect("mongodb://nadir:salt-water-toffee@dev154.bigfoot.com", { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
     console.log("Connected to MongoDB");
 });
+// mongoose.connect("mongodb://localhost:27017/TestPod", options, () => {
+//     console.log("Connected to MongoDB");
+// });
  
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); 
