@@ -115,7 +115,6 @@ a {
 
 .header-logo.active{
   width: 30px;
-  border-radius: 50px;
   margin-left: 20px;
   transition: all 0.3s;
 }
@@ -235,12 +234,161 @@ a {
   
 }
 
+/* Login  */
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 50%;
+}
+
+.signup-container{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 50%;
+}
+
+.login-right-part{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.signup-right-part{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.login-form{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.login-text-1{
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0px;
+}
+
+.login-text-2{
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.login-sign-text{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.sign-bottom{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.sign-in-bottom-text{
+  font-weight: 400;
+  font-size: 14px;
+  color: #828282;
+}
+
+.login-button{
+  width: 100%;
+  border-radius: 50px;
+  background-color: #A8171A;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px;
+}
+
+.sign-in-bottom-button{
+  width: 100%;
+  border-radius: 50px;
+  background-color: #FFFFFF;
+  border: 1px solid #A8171A;
+  padding: 10px;
+}
+.mobile-ligin-logo{
+  display: none;
+}
+
+@media screen and (max-width:1000px) {
+  .login-right-part{
+    width: 100%;
+  }
+  .login-img{
+    display: none;
+  }
+  .login-container{
+    display: none;
+  }
+  .mobile-ligin-logo{
+    display: contents;
+  }
+  .mobile-logo{
+    width: 120px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  .signup-container{
+    display: none;
+  }
+  .signup-right-part{
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .login-right-part{
+    width: 100%;
+    gap: 20px;
+  }
+  .login-img{
+    display: none;
+  }
+  .login-container{
+    display: none;
+  }
+  .login-form{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .sign-bottom{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .mobile-logo{
+    width: 120px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+
+/* Login End */
+
 ul{
   margin: 0%;
-  padding: 0%;
 }
 li{
   list-style: none;
+}
+
+@media screen and (max-width:700px) {
+  ul{
+    padding: 0%;
+  }
 }
 
 

@@ -1,0 +1,227 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css"
+  rel="stylesheet"
+/>
+
+<main>
+  <!-- search-popup -->
+  <div
+    class="modal fade bs-example-modal-lg search-bg popup1"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content search-popup">
+        <div class="text-center">
+          <a href="#" class="close2" data-dismiss="modal" aria-label="Close"
+            >× close</a
+          >
+        </div>
+        <div class="row search-outer">
+          <div class="col-md-11">
+            <input type="text" placeholder="Search for products..." />
+          </div>
+          <div class="col-md-1 text-right">
+            <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /search-popup -->
+  <!-- breadcrumb-area -->
+  <section
+    class="breadcrumb-area d-flex align-items-center"
+    style="background-image: url(/client/img/testimonial/test-bg.png)"
+  >
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-12 col-lg-12">
+          <div class="breadcrumb-wrap text-left">
+            <div class="breadcrumb-title">
+              <h2>Select Country Name</h2>
+              <div class="breadcrumb-wrap">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Can You Match Flag With Its Country?
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="all-quiz">
+    <div class="all-quiz-upper-section">
+      <div class="all-quiz-upper-section-header">
+        <h6>New jersey Flags Examination</h6>
+        <h6>DMV Permit Test #1</h6>
+      </div>
+      <div class="all-quiz-upper-section-inner">
+        <div class="all-quiz-upper-section-part-left">
+          <h4>FREE New Jersey DMV Practical Test</h4>
+          <p>
+            Anyone operating a motor vehicle or motor-driven bike on New
+            Jersey's public streets or highways must have a valid driver's
+            licence or learner's permit. New Jersey's DMV practise examinations
+            include questions based on the New Jersey Driver Handbook's most
+            essential traffic signals and..
+          </p>
+        </div>
+        <div class="all-quiz-upper-section-part-right">
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Question</p>
+            <h5 id="total-questions">05</h5>
+          </div>
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Correct</p>
+            <h5 id="total-correct">--</h5>
+          </div>
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>In-Correct</p>
+            <h5 id="total-in-correct">--</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="all-quizzes">
+      <div class="all-quiz-left-part">
+        <div class="questions-box">
+          <div class="align-items-center">
+            <div class="quiz-image">
+              <div class="que_text"></div>
+            </div>
+
+            <div>
+              <div class="option_list"></div>
+            </div>
+            <div style="width: 100%">
+              <div
+                class="time_line"
+                style="
+                  background: #eb2d00;
+                  height: 7px;
+                  border-radius: 50px;
+                  transition: all 0.2s;
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-6 text-center">
+              <button
+                class="btn btn ss-btn next_btn d-none"
+                style="width: 200px"
+              >
+                Next Question ➜
+              </button>
+
+              <button
+                class="btn btn-danger result_btn d-none"
+                style="width: 200px"
+              >
+                Show Result
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="result_box d-none">
+            <canvas
+              id="myChart"
+              style="
+                width: 100%;
+                display: block;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 2px 2px 5px #ccc;
+                padding: 15px;
+              "
+            ></canvas>
+          </div>
+      </div>
+      <div class="all-quiz-right-part">
+        <div class="all-quiz-progress">
+          <div class="progress-timer">
+            <span
+              class="total_que"
+              style="font-size: 30px; font-weight: bold"
+            ></span>
+            <h2
+              id="testDuration"
+              style="font-size: 30px; font-weight: bold; color: #eb2d00"
+            >
+              02:30
+            </h2>
+          </div>
+          <h5>Your Progress</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid px-5 pt-5">
+      <!--MCQ starts here-->
+
+      <div class="ques_wrapper">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-2 text-end mb-3">
+            <span
+              class="total_que"
+              style="font-size: 50px; font-weight: bold; color: #ccc"
+            ></span>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="que_text"></div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <div class="option_list"></div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+
+      <div
+        class="row justify-content-center align-items-center mt-3 time_up d-none"
+      >
+        <div class="col-md-6 text-center py-5">
+          <h2 style="font-size: 40px; font-weight: bold; color: #eb2d00">
+            Time Up
+          </h2>
+        </div>
+      </div>
+
+      <div class="row justify-content-center align-items-center mt-3">
+        <div class="col-md-6 text-center">
+          <button class="btn btn ss-btn next_btn d-none" style="width: 200px">
+            Next Question ➜
+          </button>
+
+          <button class="btn btn-danger result_btn d-none" style="width: 200px">
+            Show Result
+          </button>
+        </div>
+      </div>
+
+      <!--MCQ ends here-->
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="client/js/select-country.js"></script>

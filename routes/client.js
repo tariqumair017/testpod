@@ -10,6 +10,11 @@ router.get("/", asyncHandler(async (req, res) => {
     res.render("Client/index");
 }));
 
+//Client Select Country
+router.get("/select-country", asyncHandler(async (req, res) => { 
+    res.render("Client/Select-Country");
+}));
+
 //Client Quiz page
 router.get("/quiz", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   

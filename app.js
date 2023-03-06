@@ -15,7 +15,7 @@ import methodOverride from "method-override";
 // import User from "./models/user.js";
 const app = express();
 const { urlencoded } = bodyParser;
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
  
 //Requring Routes
