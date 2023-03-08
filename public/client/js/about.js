@@ -10,7 +10,7 @@ menu_tigger.onclick=()=>{
 
 menu_button.onclick=()=>{
     document.getElementById("offcanvas-menu").classList.toggle("active")
-    document.body.classList.add("stop-scrolling");
+    document.body.classList.toggle("stop-scrolling");
   }
   
 menu_close.onclick=()=>{

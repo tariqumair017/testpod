@@ -9146,12 +9146,11 @@ footer .next-btn:hover {
     width: 150px;
     height: 150px;
   }
-
-  .about-years{
-    font-size: 20px !important;
-  }
   .about-experience{
     font-size: 10px !important;
+  }
+  .second-about {
+    left: 10% !important;
   }
   
 }
@@ -9166,10 +9165,11 @@ footer .next-btn:hover {
   padding-top: 19px;
   line-height: 20px;
 }
-.about-text .all-text h3 {
+.about-text .all-text h5 {
   color: #A8171A;
-  font-size: 36px;
-  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .about-text span sub {
