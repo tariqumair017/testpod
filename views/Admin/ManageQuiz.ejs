@@ -10,17 +10,19 @@
         <div class="card-body">
           <div class="row no-gutters">
             <div class="col mr-2">
-              <div class="card-title text-xs font-weight-bold text-uppercase mb-1">
-                <li><%=single.stateName%></li> 
+              <div class="card-title text-xs font-weight-bold text-uppercase">
                 <li><%=single.quizName%></li> 
+                <li class="manage-state-name" ><%=single.stateName%></li> 
               </div>
-              <div class="h5 mb-2 dashboard-total-rating">Questions: <%=single.questions.length%></div>
-              <div class="">
-                <a class="btn btn-info" href="/manage-quiz/<%=single._id%>/all-quiz">Edit</a>
-                <a class="btn btn-danger" onclick="deleteItem('<%=single._id%>')">Delete</a>
+              <div class="manage-action-btn" >
+              <div class="dashboard-total-rating"><%=single.questions.length%></div>
+              <span>
+                <a style="margin-right: 10px;" href="/manage-quiz/<%=single._id%>/all-quiz"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
+                <a onclick="deleteItem('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
                 <!-- <form class="d-inline" id="delete-form" action="/manage-quiz/<%=single._id%>?_method=DELETE" method="POST">
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form> -->
+              </span>
               </div>
             </div>
           </div>

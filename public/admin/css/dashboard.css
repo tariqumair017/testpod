@@ -173,6 +173,7 @@ a {
 
 .dashboard-total-rating{
   font-weight: 600;
+  font-size: 2rem ;
 }
 
 .dashboard-persentage-rating{
@@ -503,6 +504,25 @@ li{
   }
   .test-edit.active{
     display: none;
+  }
+
+  .manage-state-name{
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .manage-edit-btn{
+    font-size: 24px;
+  }
+  .manage-delete-btn{
+    font-size: 24px;
+    color: red;
+  }
+
+  .manage-action-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .test-name{
