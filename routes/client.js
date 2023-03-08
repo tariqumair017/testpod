@@ -27,7 +27,7 @@ router.get("/quiz-citys/:id/quiz", asyncHandler(async (req, res) => {
     res.render("Client/Quiz", { data });
 }));
 
-//All Quizes for all-quizes.js (client) 
+//Quizes by state id all-quizes.js (client) 
 router.get("/quiz-list/:id", asyncHandler(async (req, res) => {  
     const data = await QuestionModel.findById(req.params.id);     
     res.send(data);

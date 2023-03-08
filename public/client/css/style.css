@@ -6158,6 +6158,7 @@ top: 20px;
 height: 109px;
 width: 214px;
 }
+
 .about-content.pl-30 {
   padding-left: 0;
   margin-top: 30px;
@@ -7092,7 +7093,6 @@ label {
 }
 
 .quiz-card-item:hover{
-  margin-top: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -7841,8 +7841,15 @@ label {
 .slider-four .slider-bg {
 }
 .slider-four .slider-img {
-  margin-top: 90px;
+  margin-top: 50px;
   margin-right: -120px;
+}
+
+@media screen and (max-width:700px) {
+  .slider-four .slider-img {
+    margin-right: 0px;
+  }
+  
 }
 .slider-four .slider-img img {
   position: relative;
@@ -7904,7 +7911,6 @@ label {
   bottom: 10px;
   border-radius: 10px;
   background-color: #A8171A;
-  box-shadow: 2.5px 4.33px 15px 0px rgba(250, 162, 146, 0.4);
   color: #fff;
 }
 
@@ -8235,7 +8241,6 @@ accent-color: green;
   /* box-shadow: 0px 0px 25px 3px #eb2d00; */
 }
 
-/* best-game-slider */
 
 .section-title{
   text-align: center;
@@ -9124,6 +9129,21 @@ footer .next-btn:hover {
   border-radius: 50%;
   display: flex;
 }
+
+@media screen and (max-width:700px) {
+  .about-text {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about-years{
+    font-size: 20px !important;
+  }
+  .about-experience{
+    font-size: 10px !important;
+  }
+  
+}
 .about-text .all-text {
   color: #010f2e;
   position: relative;
@@ -9312,9 +9332,9 @@ footer .next-btn:hover {
   line-height: 1;
 }
 .second-about {
-  top: 62%;
+  top: 80%;
   transform: translate(-37%, -80px);
-  left: 74%;
+  left: 0%;
   right: 0;
   bottom: 0;
 }
