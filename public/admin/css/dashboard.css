@@ -491,6 +491,28 @@ li{
     gap: 20px;
   }
 
+  .edit-test{
+    display: none;
+  }
+
+  .edit-test.active{
+    display: contents;
+  }
+  .edit-test-btn{
+    border: none;
+  }
+  .test-edit.active{
+    display: none;
+  }
+
+  .test-name{
+    display: contents;
+  }
+
+  .test-name.active{
+    display: none;
+  }
+
   .add-quiz-image{
     display: flex;
     justify-content: end;

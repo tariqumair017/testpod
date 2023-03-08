@@ -3,9 +3,19 @@
     
      <!--Container Main start-->
      <div class="application bg-light">
-      <h3>
-          <%=data.stateName.toUpperCase()%>
+      <span style="display: flex;">
+      <h3 class="test-name" >
+          <%=data.quizName.toUpperCase()%>
       </h3>
+      <form class="edit-test" >
+        <div style="display: flex;">
+          <input value=<%=data.quizName.toUpperCase()%> class="add-quiz-image-input form-control" name="questionImg0" id="formFile">
+          <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
+        </div>
+      </form>
+      <i style="margin-left: 20px; margin-top: 5px;cursor: pointer;" class="test-edit fa-solid fa-pen"></i>
+      </span>
+      <p ><%=data.stateName.toUpperCase()%></p>
       <table class="table">
           <thead>
             <tr>
@@ -46,9 +56,91 @@
         </table>
 
         <div>
-          <a href="/add-quiz" ><button type="button" class="btn btn-success">Add New Question</button></a>
+         <button data-bs-toggle="modal" data-bs-target="#exampleModal1" type="button" class="btn btn-success">Add New Question</button>
         </div>
 
+        <!-- Add New Quiz -->
+
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="updateForm" class="add-quiz-form row g-4 needs-validation" novalidate action="" method="POST">
+                  <div id="setNewForm">
+                    <div class="form-data">
+                      <div class="add-quiz-image">
+                        <input class="add-quiz-image-input form-control" type="file" name="questionImg0" id="formFile" onchange="preview()">
+                        <button onclick="clearImage()" class="btn btn-primary" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                      </div>
+                      <div class="col-md-12 position-relative">
+                        <label for="validationTooltip03" class="form-label">Question</label>
+                        <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Question.
+                        </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-md-6 position-relative">
+                        <label for="validationTooltip03" class="form-label">Option A</label>
+                        <input name="optionA" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div> 
+                      <div class="col-md-6 position-relative">
+                        <label for="validationTooltip03" class="form-label">Option B</label>
+                        <input name="optionB" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div> 
+                      <div class="col-md-6 position-relative" style="margin-top: 10px;">
+                        <label for="validationTooltip03" class="form-label">Option C</label>
+                        <input name="optionC" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div> 
+                      <div class="col-md-6 position-relative" style="margin-top: 10px;">
+                        <label for="validationTooltip03" class="form-label">Option D</label>
+                        <input name="optionD" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Option.
+                        </div>
+                      </div>
+                      </div> 
+                      <div class="col-md-12 position-relative">
+                        <label for="validationTooltip03" class="form-label">Answer</label>
+                        <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Answer.
+                        </div>
+                      </div>
+                      <div class="col-md-12 position-relative">
+                        <label for="validationTooltip03" class="form-label">Hint</label>
+                        <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="validationTooltip03" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Hint.
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add New Quiz -->
+ 
+        <!-- Edit Quiz -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -116,6 +208,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Edit Quiz -->
         
 </div> 
 <!--Container Main end-->   
@@ -141,4 +235,5 @@
     document.getElementById("updateForm").action = `/all-quiz/${data._id}/${Pid}?_method=PUT`;
 }
 </script>
+<script src="/admin/js/allQuiz.js" ></script>
  

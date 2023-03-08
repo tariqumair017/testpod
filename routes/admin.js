@@ -42,19 +42,19 @@ router.get("/dashboard", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandl
 }));
  
 //Admin: Add Question page
-router.get("/add-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/add-test", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   // const data = await QuestionModel.distinct("stateName");  
-  res.render("Admin/AddQuiz");
+  res.render("Admin/AddTest");
 }));
   
 //Admin:  State and Category Filter
-// router.get("/add-quiz/:state/state", asyncHandler(async (req, res) => { 
+// router.get("/add-test/:state/state", asyncHandler(async (req, res) => { 
 //   const data = await QuestionModel.find({country: req.params.state});  
 //   res.send(data);
 // })) 
 
 //Admin: Add Questions
-router.post("/add-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.post("/add-test", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
    
   const find = await QuestionModel.findOne({country: req.body.country, stateName: req.body.stateName, quizName: req.body.quizName});
  
@@ -131,7 +131,7 @@ router.post("/add-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandl
   else
   {   
     req.flash("error", `${find.quizName} is already exist`);
-    res.redirect("/add-quiz");
+    res.redirect("/add-test");
 
     // if(typeof(req.body.question) == "string")
     // {

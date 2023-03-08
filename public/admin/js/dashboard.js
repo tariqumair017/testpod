@@ -60,10 +60,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     else if(pathname == "/game-management"){
       document.getElementById("game-management").classList.add("active")
     }
-    else if(pathname == "/add-quiz"){
+    else if(pathname == "/add-test"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseTwo").classList.add("show")
-      document.getElementById("add-quiz").classList.add("active")
+      document.getElementById("add-test").classList.add("active")
     }
     else if(pathname == "/manage-quiz"){
       document.getElementById("quiz-management").classList.add("active")
