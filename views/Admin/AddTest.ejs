@@ -5,7 +5,7 @@
  <div class="application bg-light">
     <h4>Add Test</h4>
     <%- include ('./partials/SuccessError'); -%>
-    <form class="add-quiz-form row needs-validation mb-20" action="/add-quiz" method="POST" enctype="multipart/form-data" novalidate>
+    <form class="add-quiz-form row needs-validation mb-20" action="/add-test" method="POST" enctype="multipart/form-data" novalidate>
       <div class="col-md-12 position-relative">
         <label for="validationTooltip03" class="form-label">Quiz Name</label>
         <input name="quizName" placeholder="Please Enter Quiz Name" type="text" class="form-control" id="validationTooltip03" required>
@@ -53,12 +53,9 @@
           Please provide a Detail.
         </div>
       </div>
-      </div>
-
-    <!-- </form> -->
+      </div> 
     <hr>
-    <!-- <form class="add-quiz-form row g-4 needs-validation" novalidate action="/add-quiz" method="POST"> -->
-      <div id="setNewForm">
+     <div id="setNewForm">
         <div class="form-data">
           <div class="add-quiz-image">
             <input class="add-quiz-image-input form-control" type="file" name="questionImg0" id="formFile" onchange="preview()">
@@ -124,7 +121,7 @@
         </div>
       </form>
 
-
+    <!-- Add Multiple Questions -->
       <div style="display: none;" >
         <div id="addNewForm" class="form-data">
           <div class="add-quiz-image">

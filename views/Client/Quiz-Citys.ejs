@@ -40,16 +40,16 @@
     background-position: center center;
   ">
   <div class="quiz-citys">
-    <h2 class="font-weight-bold mb-2">sdgfdfgdfdfh</h2>
+    <h2 class="font-weight-bold mb-2"><%=data[0]?.stateName.toUpperCase()%></h2>
     <p class="font-italic text-muted mb-4 text-center">
-      dfsdfsdfsdf
+      
     </p>
     <div class="row quiz-card">
       <%data.forEach(value => {%>
       <div onclick="location='/quiz-citys/<%=value._id%>/quiz'" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
         <img src="/upload-images/<%=value.stateImg%>" class="card-img-top card-img" alt="..." />
         <div class="card-body">
-          <h5 class="card-title quiz-card-title"><%=value.stateName.toUpperCase()%></h5>
+          <h5 class="card-title quiz-card-title"><%=value.quizName.toUpperCase()%></h5>
           <!-- <p class="card-text">
             <%=value.quizDetail%>
           </p> -->

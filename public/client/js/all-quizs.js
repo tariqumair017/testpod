@@ -71,8 +71,8 @@ async function checkResult(id) {
   
   // option_text.splice(0, 1);
   option_text.splice(0,1) 
-    for (let j = 0; j < getData.questions.length; j++) { 
-      if (getData.questions[j].correct == option_text[j].value) {
+    for (let j = 0; j < getData.questions.length; j++) {  
+      if (getData.questions[j].correct.toLowerCase().replaceAll(/\s/g, "") == option_text[j].value.toLowerCase().replaceAll(/\s/g, "")) {
         correct++;
         option_text[j].parentNode.querySelector("h6").classList.add("correct-quiz");
         option_text[j].parentNode.querySelector("input").classList.add("option-corrent");

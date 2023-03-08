@@ -4,18 +4,19 @@
      <!--Container Main start-->
      <div class="application bg-light">
       <span style="display: flex;">
-      <h3 class="test-name" >
+        <h3 class="test-name" >
           <%=data.quizName.toUpperCase()%>
-      </h3>
-      <form class="edit-test" >
+        </h3>
+      <form class="edit-test" action="/manage-quiz/<%=data._id%>?_method=PUT" method="POST">
         <div style="display: flex;">
-          <input value=<%=data.quizName.toUpperCase()%> class="add-quiz-image-input form-control" name="questionImg0" id="formFile">
+          <input value="<%=data.quizName.toUpperCase()%>" class="add-quiz-image-input form-control" name="testName" id="formFile">
           <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
         </div>
       </form>
       <i style="margin-left: 20px; margin-top: 5px;cursor: pointer;" class="test-edit fa-solid fa-pen"></i>
       </span>
       <p ><%=data.stateName.toUpperCase()%></p>
+      <%- include ('./partials/SuccessError'); -%>
       <table class="table">
           <thead>
             <tr>
@@ -59,21 +60,20 @@
          <button data-bs-toggle="modal" data-bs-target="#exampleModal1" type="button" class="btn btn-success">Add New Question</button>
         </div>
 
-        <!-- Add New Quiz -->
-
+        <!-- Add New Quiz --> 
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">New Question</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form id="updateForm" class="add-quiz-form row g-4 needs-validation" novalidate action="" method="POST">
+                <form id="newQuestion" class="add-quiz-form row g-4 needs-validation" action="/manage-quiz/<%=data._id%>/new" method="POST" enctype="multipart/form-data" novalidate>
                   <div id="setNewForm">
                     <div class="form-data">
                       <div class="add-quiz-image">
-                        <input class="add-quiz-image-input form-control" type="file" name="questionImg0" id="formFile" onchange="preview()">
+                        <input class="add-quiz-image-input form-control" type="file" name="questionImg" id="formFile" onchange="preview()">
                         <button onclick="clearImage()" class="btn btn-primary" type="button" ><i class="fa-solid fa-xmark"></i></button>
                       </div>
                       <div class="col-md-12 position-relative">
@@ -136,8 +136,7 @@
               </div>
             </div>
           </div>
-        </div>
-
+        </div> 
         <!-- Add New Quiz -->
  
         <!-- Edit Quiz -->
@@ -145,7 +144,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Question</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">

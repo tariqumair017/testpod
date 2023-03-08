@@ -7,6 +7,7 @@ import QuestionModel from "../models/questions.js";
 import Admin from "../models/admin.js";
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login";
+import { Console } from "console";
 
 // Sign Up 
 // router.get("/sign-up", asyncHandler(async (req, res) => { 
@@ -131,23 +132,63 @@ router.post("/add-test", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandl
   else
   {   
     req.flash("error", `${find.quizName} is already exist`);
-    res.redirect("/add-test");
+    res.redirect("/add-test"); 
+  }
+ 
+})); 
 
-    // if(typeof(req.body.question) == "string")
-    // {
-    //   var questionFileName = '';
-    //  if(req.files.questionImg0 != undefined)
-    //  {
-    //   questionFileName = Date.now() + '-' + req.files.questionImg0.name;
-    //   const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-    //   req.files.questionImg0.mv(newPath);
-    //  }
+//Admin: Manage Quiz Page
+router.get("/manage-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  const data = await QuestionModel.find({}); 
+  res.render("Admin/ManageQuiz", { data });
+}));
 
-    //   const questions = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
-    //   await QuestionModel.updateMany({_id: find._id}, {$push:{questions: questions}});
-    //   console.log("Single Questions Updated Successfully"); 
-    //   res.redirect("/manage-quiz");
-    // }
+//Admin - Edit Test Name
+router.put("/manage-quiz/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  await QuestionModel.updateOne({_id: req.params.id}, {$set:{"quizName": req.body.testName}});
+  res.redirect(`/manage-quiz/${req.params.id}/all-quiz`); 
+}));
+
+//Admin - Destroy Whole Question
+router.delete("/manage-quiz/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  const { id } = req.params;
+  await QuestionModel.findByIdAndDelete(id);
+  console.log("Whole Question Deleted Successfully"); 
+  res.send({url: "/manage-quiz"}); 
+}));
+
+//Admin: show All Question
+router.get("/manage-quiz/:id/all-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
+  const data = await QuestionModel.findById(req.params.id);
+  res.render("Admin/AllQuiz", { data });
+}));
+
+// Admin: Add new Question in Test
+router.post('/manage-quiz/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  
+  var find = await QuestionModel.findById(req.params.id);
+
+    if(find)
+    {
+      var questionFileName = '';
+     if(req.files)
+     {
+      questionFileName = Date.now() + '-' + req.files.questionImg.name;
+      const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
+      req.files.questionImg.mv(newPath);
+     }
+
+      const question = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
+      await QuestionModel.updateOne({_id: find._id}, {$push:{questions: question}});
+      console.log("New Question Added"); 
+      req.flash("success", "New Question Added");
+      res.redirect(`/manage-quiz/${req.params.id}/all-quiz`);
+    }
+    else
+    {
+      req.flash("error", "Test not found");
+      res.redirect(`/manage-quiz/${req.params.id}/all-quiz`);
+    }
     // else if(typeof(req.body.question) == "object")
     // { 
     //   const newQuestions = [];
@@ -178,29 +219,7 @@ router.post("/add-test", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandl
     //   await QuestionModel.updateMany({_id: find._id}, {$push:{questions: newQuestions}});
     //   console.log("Many Questions Updated Successfully"); 
     //   res.redirect("/manage-quiz"); 
-    // } 
-  }
- 
-})); 
-
-//Admin: Manage Quiz Page
-router.get("/manage-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  const data = await QuestionModel.find({}); 
-  res.render("Admin/ManageQuiz", { data });
-}));
-
-//Admin - Destroy Whole Question
-router.delete("/manage-quiz/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  const { id } = req.params;
-  await QuestionModel.findByIdAndDelete(id);
-  console.log("Whole Question Deleted Successfully"); 
-  res.send({url: "/manage-quiz"}); 
-}));
-
-//Admin: show All Question
-router.get("/manage-quiz/:id/all-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
-  const data = await QuestionModel.findById(req.params.id);
-  res.render("Admin/AllQuiz", { data });
+    // }   
 }));
 
 // Admin: Edit Question
@@ -210,7 +229,7 @@ router.get('/all-quiz/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), as
 }));
 
 //Admin: Update Question
-router.put("/all-quiz/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {   
+router.put("/all-quiz/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {    
 await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
 console.log("Quiz Updated Successfully");
 res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`); 

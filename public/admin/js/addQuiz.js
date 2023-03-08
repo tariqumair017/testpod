@@ -38,7 +38,7 @@ var uploadField = document.querySelector(".add-quiz-image");
 var stateuploadfile = document.querySelector(".add-quiz-state-image")
 
 stateuploadfile.children[0].onchange = function () {
-  if (this.files[0].size > 15000) {
+  if (this.files[0].size > 100000) {
     alert("State image is too big!");
     this.value = "";
   };
