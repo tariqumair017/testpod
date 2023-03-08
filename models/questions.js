@@ -12,6 +12,10 @@ const QuestionSchema = new mongoose.Schema({
   stateName: {
     type: String,
     required: true
+    },
+  stateImg: {
+    type: String,
+    required: true
     }, 
   questions: [{
     question: {
@@ -42,7 +46,7 @@ const QuestionSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    img: String,
+    questionImg: String
   }], 
   category: {
     type: String,

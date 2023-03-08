@@ -1,26 +1,48 @@
 import express, { Router } from "express";
 const router = Router();
+import passport from "passport";
+import bcryptjs from "bcryptjs";
+import path from "path";
 import QuestionModel from "../models/questions.js";
+import Admin from "../models/admin.js";
 import asyncHandler from "express-async-handler";  
-// import connectEnsureLogin from "connect-ensure-login";
+import connectEnsureLogin from "connect-ensure-login";
 
 // Sign Up 
 router.get("/sign-up", asyncHandler(async (req, res) => { 
   res.render("Admin/SignUp");
 }));
+
+//Handel Sign Up Logic
+// router.post('/sign-up', asyncHandler(async function(req, res, next) {  
+//     const newAdmin = new Admin({username: req.body.username, password: req.body.password, name: req.body.name})
+//     const salt = await bcryptjs.genSalt(10);
+//     const hash = await bcryptjs.hash(newAdmin.password, salt); 
+//     newAdmin.password = hash;
+//     await newAdmin.save();
+//     res.redirect("/login");
+// }));
  
 // Login Page 
-router.get("/login", asyncHandler(async (req, res) => { 
+router.get("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), asyncHandler(async (req, res) => { 
   res.render("Admin/Login");
 }));
 
+//Handel Login Logic
+router.post("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), passport.authenticate("local", {
+  failureRedirect: "/login",
+  failureFlash: true,
+}),(req, res) => {   
+  res.redirect("/dashboard"); 
+});
+
 //Admin: Dashboard Page
-router.get("/dashboard", asyncHandler(async (req, res) => { 
+router.get("/dashboard", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/Dashboard");
 }));
  
 //Admin: Add Question page
-router.get("/add-quiz", asyncHandler(async (req, res) => { 
+router.get("/add-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   // const data = await QuestionModel.distinct("stateName");  
   res.render("Admin/AddQuiz");
 }));
@@ -32,19 +54,33 @@ router.get("/add-quiz", asyncHandler(async (req, res) => {
 // })) 
 
 //Admin: Add Questions
-router.post("/add-quiz", asyncHandler(async (req, res) => {   
-  
-  const find = await QuestionModel.findOne({country: req.body.country, stateName: req.body.stateName, category: req.body.category});
+router.post("/add-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+   
+  const find = await QuestionModel.findOne({country: req.body.country, stateName: req.body.stateName, quizName: req.body.quizName});
  
   if(!find)
-  {
-    if(typeof(req.body.questions.question) == "string")
+  { 
+    var stateFileName = Date.now() + '-' + req.files.stateImg.name;
+    const newPath  = path.join(process.cwd(), '/public/upload-images', stateFileName);
+    req.files.stateImg.mv(newPath);
+
+    if(typeof(req.body.question) == "string")
     {
+      var questionFileName = '';
+      if(req.files.questionImg0 != undefined)
+      {
+        questionFileName = Date.now() + '-' + req.files.questionImg0.name;
+        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
+        req.files.questionImg0.mv(newPath);
+      }
+
+      const questions = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
       const singleQuiz = new QuestionModel({
         quizName: req.body.quizName,
         country: req.body.country,
         stateName: req.body.stateName,
-        questions: req.body.questions,
+        stateImg: stateFileName,
+        questions: questions,
         category: req.body.category,
         quizDetail: req.body.quizDetail,
       });
@@ -52,18 +88,28 @@ router.post("/add-quiz", asyncHandler(async (req, res) => {
       console.log("Single Quiz Added Successfully"); 
       res.redirect("/manage-quiz");
     }
-    else if(typeof(req.body.questions.question) == "object")
+    else if(typeof(req.body.question) == "object")
     {
       const newQuestions = [];
-      for (let i = 0; i < req.body.questions.question.length; i++) { 
+      for (let i = 0; i < req.body.question.length; i++) { 
+
+      var questionFileName = '';  
+      if(req.files[`questionImg${i}`] != undefined)
+      {
+        questionFileName = Date.now() + '-' + req.files[`questionImg${i}`].name;
+        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
+        req.files[`questionImg${i}`].mv(newPath);
+      }
+
           const newQuestion = {
-            question: req.body.questions.question[i], 
-            optionA: req.body.questions.optionA[i],
-            optionB: req.body.questions.optionB[i],
-            optionC: req.body.questions.optionC[i],
-            optionD: req.body.questions.optionD[i],
-            correct: req.body.questions.correct[i],
-            hint: req.body.questions.hint[i]
+            question: req.body.question[i], 
+            optionA: req.body.optionA[i],
+            optionB: req.body.optionB[i],
+            optionC: req.body.optionC[i],
+            optionD: req.body.optionD[i],
+            correct: req.body.correct[i],
+            hint: req.body.hint[i],
+            questionImg: questionFileName
           }
   
         newQuestions.push(newQuestion);
@@ -72,6 +118,7 @@ router.post("/add-quiz", asyncHandler(async (req, res) => {
         quizName: req.body.quizName,
         country: req.body.country,
         stateName: req.body.stateName,
+        stateImg: stateFileName,
         questions: newQuestions,
         category: req.body.category,
         quizDetail: req.body.quizDetail,
@@ -82,138 +129,142 @@ router.post("/add-quiz", asyncHandler(async (req, res) => {
     }  
   }
   else
-  {  
-    if(typeof(req.body.questions.question) == "string")
-    {
-      await QuestionModel.updateMany({_id: find._id}, {$push:{questions: req.body.questions}});
-      console.log("Single Questions Updated Successfully"); 
-      res.redirect("/manage-quiz");
-    }
-    else if(typeof(req.body.questions.question) == "object")
-    {
-      const newQuestions = [];
-      for (let i = 0; i < req.body.questions.question.length; i++) { 
-          const newQuestion = {
-            question: req.body.questions.question[i], 
-            optionA: req.body.questions.optionA[i],
-            optionB: req.body.questions.optionB[i],
-            optionC: req.body.questions.optionC[i],
-            optionD: req.body.questions.optionD[i],
-            correct: req.body.questions.correct[i],
-            hint: req.body.questions.hint[i]
-          }
-  
-        newQuestions.push(newQuestion);
-      }
+  {   
+    req.flash("error", `${find.quizName} is already exist`);
+    res.redirect("/add-quiz");
 
-      await QuestionModel.updateMany({_id: find._id}, {$push:{questions: newQuestions}});
-      console.log("Many Questions Updated Successfully"); 
-      res.redirect("/manage-quiz"); 
-    } 
+    // if(typeof(req.body.question) == "string")
+    // {
+    //   var questionFileName = '';
+    //  if(req.files.questionImg0 != undefined)
+    //  {
+    //   questionFileName = Date.now() + '-' + req.files.questionImg0.name;
+    //   const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
+    //   req.files.questionImg0.mv(newPath);
+    //  }
+
+    //   const questions = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
+    //   await QuestionModel.updateMany({_id: find._id}, {$push:{questions: questions}});
+    //   console.log("Single Questions Updated Successfully"); 
+    //   res.redirect("/manage-quiz");
+    // }
+    // else if(typeof(req.body.question) == "object")
+    // { 
+    //   const newQuestions = [];
+    //   for (let i = 0; i < req.body.question.length; i++) { 
+
+    //     var questionFileName = '';  
+    //     if(req.files[`questionImg${i}`] != undefined)
+    //     {
+    //       questionFileName = Date.now() + '-' + req.files[`questionImg${i}`].name;
+    //       const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
+    //       req.files[`questionImg${i}`].mv(newPath);
+    //     }
+
+    //       const newQuestion = {
+    //         question: req.body.question[i], 
+    //         optionA: req.body.optionA[i],
+    //         optionB: req.body.optionB[i],
+    //         optionC: req.body.optionC[i],
+    //         optionD: req.body.optionD[i],
+    //         correct: req.body.correct[i],
+    //         hint: req.body.hint[i],
+    //         questionImg: questionFileName
+    //       }
+  
+    //     newQuestions.push(newQuestion);
+    //   }
+
+    //   await QuestionModel.updateMany({_id: find._id}, {$push:{questions: newQuestions}});
+    //   console.log("Many Questions Updated Successfully"); 
+    //   res.redirect("/manage-quiz"); 
+    // } 
   }
  
 })); 
 
 //Admin: Manage Quiz Page
-router.get("/manage-quiz", asyncHandler(async (req, res) => { 
+router.get("/manage-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   const data = await QuestionModel.find({}); 
   res.render("Admin/ManageQuiz", { data });
 }));
 
+//Admin - Destroy Whole Question
+router.delete("/manage-quiz/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  const { id } = req.params;
+  await QuestionModel.findByIdAndDelete(id);
+  console.log("Whole Question Deleted Successfully"); 
+  res.send({url: "/manage-quiz"}); 
+}));
+
 //Admin: show All Question
-router.get("/manage-quiz/:id/all-quiz", asyncHandler(async (req, res) => {
+router.get("/manage-quiz/:id/all-quiz", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
   const data = await QuestionModel.findById(req.params.id);
   res.render("Admin/AllQuiz", { data });
 }));
 
 // Admin: Edit Question
-router.get('/all-quiz/:id/edit', asyncHandler(async (req, res) => { 
+router.get('/all-quiz/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   const data = await QuestionModel.findById(req.params.id);
   res.send(data);  
 }));
 
 //Admin: Update Question
-router.put("/all-quiz/:cid/:pid", asyncHandler(async (req, res) => {   
+router.put("/all-quiz/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {   
 await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
 console.log("Quiz Updated Successfully");
 res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`); 
 }));
 
 //Admin: Delete Question
-router.delete("/all-quiz/:pid/:cid", asyncHandler(async (req, res) => {  
+router.delete("/all-quiz/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {  
 await QuestionModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
 console.log("Quiz Deleted Successfully");
 res.redirect(`/manage-quiz/${req.params.pid}/all-quiz`);  
 }));
 
 //Admin: Analytics Page
-router.get("/analytics", asyncHandler(async (req, res) => { 
+router.get("/analytics", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/Analytics");
 }));
 
 //Admin: Blog Management Page
-router.get("/blogs-management", asyncHandler(async (req, res) => { 
+router.get("/blogs-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/BlogsManagement");
 }));
 
 //Admin: Content Management Page
-router.get("/content-management", asyncHandler(async (req, res) => { 
+router.get("/content-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/ContentManagement");
 }));
 
 //Admin: Game Management Page
-router.get("/game-management", asyncHandler(async (req, res) => { 
+router.get("/game-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/GameManagement");
 }));
 
 //Admin: Result Management Page
-router.get("/result-management", asyncHandler(async (req, res) => { 
+router.get("/result-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/ResultManagement");
 }));
 
 //Admin: User Management Page
-router.get("/user-management", asyncHandler(async (req, res) => { 
+router.get("/user-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/UserManagement");
 }));
 
 //Admin: Web Analytics Page
-router.get("/web-analytics", asyncHandler(async (req, res) => { 
+router.get("/web-analytics", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/WebAnalytics");
 }));
 
-
-
-// router.get("/filteredExpenses", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
-//   var fromDate = '';
-//   var toDate = '';
-
-//   if(req.query.fromDate != '' && req.query.toDate != '')
-//   {
-//     fromDate = new Date(req.query.fromDate); 
-//     toDate = new Date(req.query.toDate); 
-//     toDate.setDate(toDate.getDate()+1); 
-//   }
-//   else
-//   {
-//     fromDate = req.query.fromDate;
-//     toDate = req.query.toDate;
-//   }
-
-//     if (fromDate == "" && toDate == "") {
-//         console.log("All Should Showing");
-//         const data = await Expense.find({});
-//         res.send(data);
-//       } else if (fromDate != "" && toDate != "") {
-//         console.log("From-date To to-date");
-//         const data1 = await Expense.find({ 
-//           $and: [
-//             { itemDate: { $gte: fromDate } },
-//             { itemDate: { $lte: toDate } },
-//           ],
-//         });
-//         res.send(data1);
-//       }
-// }));
+//Logout
+router.get('/logout', connectEnsureLogin.ensureLoggedIn("/"), function(req, res, next) { 
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 
 
 export default router;

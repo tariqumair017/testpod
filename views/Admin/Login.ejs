@@ -44,8 +44,9 @@
             </div>
             <div>
                 <p style="margin: 0%;" class="login-sign-text text-center" >SIGN IN</p>
-            </div>
-          <form class="login-form needs-validation" novalidate>
+            </div> 
+          <form class="login-form needs-validation" action="/login" method="post" novalidate>
+            <%- include ('./partials/SuccessError'); -%>
             <!-- Email input -->
             <div class="form-outline mb-4">
               <label for="validationCustom01" class="form-label"
@@ -53,7 +54,8 @@
               >
               <input
                 placeholder="Please Enter Login Id"
-                type="email"
+                type="text"
+                name="username"
                 class="form-control"
                 id="validationCustom01"
                 required
@@ -71,6 +73,7 @@
               <input
                 placeholder="Please Enter Password"
                 type="password"
+                name="password"
                 class="form-control"
                 id="myInput"
                 required

@@ -6,22 +6,21 @@
   <div class="cards row">
     <% data.forEach(single => { %> 
     <div class="col-xl-4 col-md-6 mb-4">
-      <div
-        class="card dashboard-card border-bottom-success shadow h-100 py-2"
-        onclick="location='/manage-quiz/<%=single._id%>/all-quiz'"
-      >
+      <div class="card dashboard-card border-bottom-success shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters">
             <div class="col mr-2">
               <div class="card-title text-xs font-weight-bold text-uppercase mb-1">
-                <li><%=single.country%> </li> 
-                <li> <%=single.stateName%></li>
-                <i style="float: right" class="fa-solid fa-user-plus"></i>
+                <li><%=single.stateName%></li> 
+                <li><%=single.quizName%></li> 
               </div>
-              <div class="h2 mb-0 dashboard-total-rating"><%=single.questions.length%></div>
-              <div class="dashboard-rating-arrow">
-                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
-                <i class="fa-solid fa-arrow-trend-up"></i>
+              <div class="h5 mb-2 dashboard-total-rating">Questions: <%=single.questions.length%></div>
+              <div class="">
+                <a class="btn btn-info" href="/manage-quiz/<%=single._id%>/all-quiz">Edit</a>
+                <a class="btn btn-danger" onclick="deleteItem('<%=single._id%>')">Delete</a>
+                <!-- <form class="d-inline" id="delete-form" action="/manage-quiz/<%=single._id%>?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form> -->
               </div>
             </div>
           </div>
@@ -29,126 +28,27 @@
       </div>
     </div> 
     <%})%>
-    <!-- <div class="col-xl-4 col-md-6 mb-4">
-      <div
-        class="card dashboard-card border-bottom-success shadow h-100 py-2"
-        onclick="location='/manage-quiz'"
-      >
-        <div class="card-body">
-          <div class="row no-gutters">
-            <div class="col mr-2">
-              <div
-                class="card-title text-xs font-weight-bold text-uppercase mb-1"
-              >
-                New Users
-                <i style="float: right" class="fa-solid fa-user-plus"></i>
-              </div>
-              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
-              <div class="dashboard-rating-arrow">
-                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
-                <i class="fa-solid fa-arrow-trend-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4 col-md-6 mb-4">
-      <div
-        class="card dashboard-card border-bottom-success shadow h-100 py-2"
-        onclick="location='/manage-quiz'"
-      >
-        <div class="card-body">
-          <div class="row no-gutters">
-            <div class="col mr-2">
-              <div
-                class="card-title text-xs font-weight-bold text-uppercase mb-1"
-              >
-                New Users
-                <i style="float: right" class="fa-solid fa-user-plus"></i>
-              </div>
-              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
-              <div class="dashboard-rating-arrow">
-                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
-                <i class="fa-solid fa-arrow-trend-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4 col-md-6 mb-4">
-      <div
-        class="card dashboard-card border-bottom-success shadow h-100 py-2"
-        onclick="location='/manage-quiz'"
-      >
-        <div class="card-body">
-          <div class="row no-gutters">
-            <div class="col mr-2">
-              <div
-                class="card-title text-xs font-weight-bold text-uppercase mb-1"
-              >
-                New Users
-                <i style="float: right" class="fa-solid fa-user-plus"></i>
-              </div>
-              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
-              <div class="dashboard-rating-arrow">
-                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
-                <i class="fa-solid fa-arrow-trend-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4 col-md-6 mb-4">
-      <div
-        class="card dashboard-card border-bottom-success shadow h-100 py-2"
-        onclick="location='/manage-quiz'"
-      >
-        <div class="card-body">
-          <div class="row no-gutters">
-            <div class="col mr-2">
-              <div
-                class="card-title text-xs font-weight-bold text-uppercase mb-1"
-              >
-                New Users
-                <i style="float: right" class="fa-solid fa-user-plus"></i>
-              </div>
-              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
-              <div class="dashboard-rating-arrow">
-                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
-                <i class="fa-solid fa-arrow-trend-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4 col-md-6 mb-4">
-      <div
-        class="card dashboard-card border-bottom-success shadow h-100 py-2"
-        onclick="location='/manage-quiz'"
-      >
-        <div class="card-body">
-          <div class="row no-gutters">
-            <div class="col mr-2">
-              <div
-                class="card-title text-xs font-weight-bold text-uppercase mb-1"
-              >
-                New Users
-                <i style="float: right" class="fa-solid fa-user-plus"></i>
-              </div>
-              <div class="h2 mb-0 dashboard-total-rating">92,680</div>
-              <div class="dashboard-rating-arrow">
-                <div class="dashboard-persentage-rating">+210K (16,20%)</div>
-                <i class="fa-solid fa-arrow-trend-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </div>
 <!--Container Main end-->
+
+<script>
+  async function deleteItem(id) {    
+    if(confirm("Sure you want to delete this Question..?"))
+    {
+      await fetch(`/manage-quiz/${id}`, {
+        method: "DELETE", 
+        headers: {
+          "Content-Type": "application/json",
+        }
+      }).then((response) => response.json())
+        .then((data) => {  
+          window.location.href = data.url;
+        })
+        .catch((error) => {
+          console.log("Error:");
+          console.log(error);
+        });
+    } 
+  }  
+</script>

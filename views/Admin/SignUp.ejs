@@ -44,7 +44,7 @@
             <div>
                 <p style="margin: 0%;"  class="login-sign-text text-center" >SIGN UP</p>
             </div>
-          <form class="login-form needs-validation" novalidate>
+          <form class="login-form needs-validation" action="#" method="post" novalidate>
             <!-- Email input -->
             <div class="form-outline mb-4">
               <label for="validationCustom01" class="form-label"
@@ -53,9 +53,9 @@
               <input
                 placeholder="Please Enter Name"
                 type="text"
+                name="name"
                 class="form-control"
-                id="validationCustom01"
-                required
+                id="validationCustom01" 
               />
               <div class="invalid-feedback">
                 Please provide a valid Name.
@@ -69,6 +69,7 @@
                 <input
                   placeholder="Please Enter Email"
                   type="email"
+                  name="username"
                   class="form-control"
                   id="validationCustom01"
                   required
@@ -85,6 +86,7 @@
                 <input
                   placeholder="Please Enter Password"
                   type="password"
+                  name="password"
                   class="form-control"
                   id="myInput"
                   required

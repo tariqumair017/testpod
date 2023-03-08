@@ -3,8 +3,7 @@ const router = Router();
 import QuestionModel from "../models/questions.js";
 import asyncHandler from "express-async-handler";  
 // import connectEnsureLogin from "connect-ensure-login";
-
-
+ 
 //Client Index page
 router.get("/", asyncHandler(async (req, res) => { 
     res.render("Client/index");
@@ -18,7 +17,7 @@ router.get("/select-country", asyncHandler(async (req, res) => {
 //Client Quiz-Citys page
 router.get("/quiz-citys", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   
-    res.render("Client/Quiz-Citys", { data });
+    res.render("Client/Quiz-Citys", { data }); 
 }));
 
 //Client Quiz page
@@ -107,6 +106,7 @@ router.get("/team", asyncHandler(async (req, res) => {
 router.get("/thank-you", asyncHandler(async (req, res) => {  
     res.render("Client/Thank-You");
 }));
+ 
 
  
 export default router;
