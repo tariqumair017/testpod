@@ -432,9 +432,7 @@ li{
 
 }
 .dashboard-card:hover{
-  padding: 5px;
-  margin-top: 2px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 
@@ -442,7 +440,7 @@ li{
   border-bottom: 0.25rem solid #4e73df !important;
 }
 .border-bottom-success {
-  border-bottom: 0.25rem solid #1cc88a !important;
+  border-bottom: 0.25rem solid #A8171A !important;
 }
 .border-bottom-secondary {
   border-bottom: 0.25rem solid #858796 !important;
