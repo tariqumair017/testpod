@@ -262,6 +262,16 @@ router.get("/game-management", connectEnsureLogin.ensureLoggedIn("/login"), asyn
   res.render("Admin/GameManagement");
 }));
 
+//Admin: Add Flag Page
+router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  res.render("Admin/AddFlagsGames");
+}));
+
+//Admin: Manage Flag Page
+router.get("/game-management/manage-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  res.render("Admin/ManageFlagsGame");
+}));
+
 //Admin: Result Management Page
 router.get("/result-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/ResultManagement");
