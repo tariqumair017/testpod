@@ -1,0 +1,179 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+<!-- main-area -->
+<main>
+  <!-- search-popup -->
+  <div
+    class="modal fade bs-example-modal-lg search-bg popup1"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content search-popup">
+        <div class="text-center">
+          <a href="#" class="close2" data-dismiss="modal" aria-label="Close"
+            >× close</a
+          >
+        </div>
+        <div class="row search-outer">
+          <div class="col-md-11">
+            <input type="text" placeholder="Search for products..." />
+          </div>
+          <div class="col-md-1 text-right">
+            <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /search-popup -->
+  <!-- breadcrumb-area -->
+  <section
+    class="breadcrumb-area d-flex align-items-center"
+    style="background-image: url(/client/img/testimonial/test-bg.png)"
+  >
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-12 col-lg-12">
+          <div class="breadcrumb-wrap text-left">
+            <div class="breadcrumb-title">
+              <h2>Contact Us</h2>
+              <div class="breadcrumb-wrap">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Contact Us
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb-area-end -->
+
+  <!-- services-area -->
+  <section
+    id="services"
+    class="services-area spacing pb-50 fix"
+    style="
+      background-image: url(/client/img/bg/blog-bg-aliments.png);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+    "
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title center-align text-center mb-50">
+            <h5>Contact</h5>
+            <h2>Get In Tuch</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="services-boxs col-md-4">
+          <div class="services-box mt-0 text-center">
+            <div class="services-icon">
+              <img src="client/img/icon/cn-icon1.png" alt="icon01" />
+            </div>
+            <div class="services-content2">
+              <h5>Email Address</h5>
+              <p>
+                Loremipsum@.com <br />
+                Loremipsum@.com
+              </p>
+            </div>
+          </div>
+          <div class="services-box mt-0 text-center">
+            <div class="services-icon">
+              <img src="client/img/icon/cn-icon2.png" alt="icon01" />
+            </div>
+            <div class="services-content2">
+              <h5>Phone Number</h5>
+              <p>000-000-000-00 <br />000-000-000-000-0</p>
+            </div>
+          </div>
+          <div class="services-box mt-0 text-center">
+            <div class="services-icon">
+              <img src="client/img/icon/cn-icon3.png" alt="icon01" />
+            </div>
+            <div class="services-content2">
+              <h5>Office Address</h5>
+              <p>Lorem ipsum<br />Lorem ipsum</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-right-container col-md-8">
+          <form class="row g-3 needs-validation contact-form" novalidate>
+            <div class="col-md-12" style="margin: 0%">
+              <input
+                placeholder="First Name"
+                type="text"
+                class="form-control"
+                id="validationCustom01"
+                required
+              />
+              <div class="invalid-feedback">PLease Enter Your Firts Name</div>
+            </div>
+            <div class="col-md-12" style="margin: 0%">
+              <input
+                placeholder="Last Name"
+                type="text"
+                class="form-control"
+                id="validationCustom01"
+                required
+              />
+              <div class="invalid-feedback">PLease Enter Your Last Name</div>
+            </div>
+            <div class="col-md-12" style="margin: 0%">
+              <input
+                placeholder="Email"
+                type="email"
+                class="form-control"
+                id="validationCustom01"
+                required
+              />
+              <div class="invalid-feedback">PLease Enter Your Email</div>
+            </div>
+            <div class="col-md-12" style="margin: 0%">
+              <input
+                placeholder="Phone Number"
+                type="number"
+                class="form-control"
+                id="validationCustom01"
+                required
+              />
+              <div class="invalid-feedback">PLease Enter Your Phone Number</div>
+            </div>
+            <div class="col-md-12" style="margin: 0%">
+              <textarea
+                placeholder="Message"
+                class="form-control"
+                id="validationCustom01"
+                rows="5"
+                required
+              ></textarea>
+              <div class="invalid-feedback">PLease Enter Your Message</div>
+            </div>
+            <div class="col-12" style="text-align: center; margin: 0px">
+              <button class="btn ss-btn" type="submit">Submit form</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- services-area-end -->
+
+  <!-- services-area -->
+</main>
+<!-- main-area-end -->
+
+<script src="/client/js/about.js"></script>
+<script src = "/client/js/form-validations.js"></script>

@@ -1,0 +1,140 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+<!-- main-area -->
+<main>
+  <!-- breadcrumb-area -->
+  <section
+    class="breadcrumb-area d-flex align-items-center"
+    style="background-image: url(/client/img/testimonial/test-bg.png)"
+  >
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-12 col-lg-12">
+          <div class="breadcrumb-wrap text-left">
+            <div class="breadcrumb-title">
+              <h2>Quizzes</h2>
+              <div class="breadcrumb-wrap">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Quizzes
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- main-area-end -->
+<% var count = 1; %>
+<% var counting = 0; %>  
+<%counting = data.questions.length%> 
+<!-- All quizzes  Start-->
+<div class="all-quiz">
+  <div class="all-quiz-upper-section">
+    <div class="all-quiz-upper-section-header">
+      <h6><%=data.stateName.toUpperCase()%></h6>
+      <h6><%=data.category.toUpperCase()%></h6>
+    </div>
+    <div class="all-quiz-upper-section-inner">
+      <div class="all-quiz-upper-section-part-left">
+        <h4><%=data.quizName%></h4>
+        <p>
+           <%=data.quizDetail%>
+        </p>
+      </div>
+      <div class="all-quiz-upper-section-part-right">
+        <div class="all-quiz-upper-section-scorus-card">
+          <p>Questions</p>
+          <h5 id="total-questions">
+             <%=counting%>
+          </h5>
+        </div>
+        <div class="all-quiz-upper-section-scorus-card">
+          <p>Correct</p>
+          <h5 id="total-correct">--</h5>
+        </div>
+        <div class="all-quiz-upper-section-scorus-card">
+          <p>In-Correct</p>
+          <h5 id="total-in-correct">--</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="all-quizzes">
+    <div class="all-quiz-left-part">
+      <div class="questions-box">
+        <!-- Backend Data -->
+        <% data.questions.forEach(item => { %> 
+        <div class="questions-text">
+          <h5><%=count%>. <%=item.question%></h5>
+        </div>
+        <div id="p<%=count%>" class="all-quiz-allradio-option">
+          <label>
+            <input
+              type="radio"
+              value="<%=item.optionA%>"
+              name="p<%=count%>"
+              onclick="showAns('<%=count%>',this)"
+            />
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionA%></h6>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="<%=item.optionB%>"
+              name="p<%=count%>"
+              onclick="showAns('<%=count%>',this)"
+            />
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionB%></h6>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="<%=item.optionC%>"
+              name="p<%=count%>"
+              onclick="showAns('<%=count%>',this)"
+            />
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionC%></h6>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="<%=item.optionD%>"
+              name="p<%=count%>"
+              onclick="showAns('<%=count%>',this)"
+            />
+            <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
+          </label>
+          <div id="all-quiz-discription">
+            <p><%=item.hint%></p>
+          </div>
+        </div> 
+          <%count++%>  
+        <%})%>
+        <!-- Backend Data -->
+      </div>
+      <div class="all-quiz-result">
+        <button onclick="checkResult('<%=data._id%>')">Grade This Section</button>
+      </div>
+    </div>
+    <div class="all-quiz-right-part">
+      <div class="all-quiz-progress">
+        <h5>Your Progress</h5>
+        <p>
+          The New Jersey DMV Parking Practical Test is designed to evaluate a driver's ability to properly and safely park a vehicle. This test is commonly required for individuals seeking a driver's license in New Jersey, as parallel parking and other parking maneuvers are an essential part of driving on busy city streets. During the test, drivers must demonstrate their ability to perform various parking maneuvers, including parallel parking, angle parking, and parking on hills.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- All quizzes Ens -->
+
+<script src="/client/js/about.js"></script>
