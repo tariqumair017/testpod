@@ -17,8 +17,8 @@ import Admin from "./models/admin.js";
 const app = express();
 const { urlencoded } = bodyParser;
 const port = process.env.PORT || 3000;
-
  
+
 //Requring Routes
 import AdminRoutes from "./routes/admin.js"; 
 import ClientRoutes from "./routes/client.js"; 

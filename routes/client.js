@@ -10,8 +10,8 @@ router.get("/", asyncHandler(async (req, res) => {
 }));
 
 //Client Select Country
-router.get("/select-country", asyncHandler(async (req, res) => { 
-    res.render("Client/Select-Country");
+router.get("/select-countryFlag-game", asyncHandler(async (req, res) => { 
+    res.render("Client/Select-CountryFlag-Game");
 }));
  
 //Client Quiz-Citys page
