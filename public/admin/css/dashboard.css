@@ -461,6 +461,10 @@ li{
     width: 5px;
   }
 
+  .table-question-col-flag{
+    width: 50px;
+  }
+
   .table-question-col{
     width: 250px;
   }
