@@ -9517,7 +9517,6 @@ section:hover .section-title h2::before {
   left: 83%;
 }
 .about-content3 li::before {
-  /* font-family: "Font Awesome 5 Pro"; */
   content: "";
   margin-right: 10px;
   color: #A8171A;

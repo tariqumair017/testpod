@@ -1,237 +1,440 @@
 <% layout('Admin/layouts/boilerPlate') -%>
- 
-     <!--Container Main start-->
-     <div class="application bg-light">
-      <span style="display: flex;">
-        <h3 class="test-name" >
-          <%=data.quizName.toUpperCase()%>
-        </h3>
-      <form class="edit-test" action="/manage-quiz/<%=data._id%>?_method=PUT" method="POST">
-        <div style="display: flex;">
-          <input value="<%=data.quizName.toUpperCase()%>" class="add-quiz-image-input form-control" name="testName" id="formFile">
-          <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
-        </div>
-      </form>
-      <i style="margin-left: 20px; margin-top: 5px;cursor: pointer;" class="test-edit fa-solid fa-pen"></i>
-      </span>
-      <p ><%=data.stateName.toUpperCase()%></p>
-      <%- include ('./partials/SuccessError'); -%>
-      <table class="table">
-          <thead>
-            <tr>
-              <th class="table-hash-col" >#</th>
-              <th class="table-question-col">Questions</th>
-              <th class="table-option-col" >Option A</th>
-              <th class="table-option-col" >Option B</th>
-              <th class="table-option-col" >Option C</th>
-              <th class="table-option-col" >Option D</th>
-              <th class="table-answer-col" >Answer</th>
-              <th class="table-action-col" class="table-buttons" >Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%var count = 1%>
-            <% data.questions.forEach(item => { %> 
-              <tr>
-                <th scope="row"><%=count%></th>
-                <td><%=item.question%></td>
-                <td><%=item.optionA%></td>
-                <td><%=item.optionB%></td>
-                <td><%=item.optionC%></td>
-                <td><%=item.optionD%></td>
-                <td><%=item.correct%></td>
-                <td>
-                  <span class="table-buttons">
-                    <button onclick="editQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
-                    <form action="/all-quiz/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
-                      <button type="submit" class="btn btn-danger">Delete</button> 
-                    </form>
-                  </span>
-                </td>
-              </tr> 
-             <%++count%> 
-            <%})%>
-          </tbody>
-        </table>
-        </table>
 
-        <div>
-         <button data-bs-toggle="modal" data-bs-target="#exampleModal1" type="button" class="btn btn-success">Add New Question</button>
-        </div>
+<!--Container Main start-->
+<div class="application bg-light">
+  <span style="display: flex">
+    <h3 class="test-name"><%=data.quizName.toUpperCase()%></h3>
+    <form
+      class="edit-test"
+      action="/manage-quiz/<%=data._id%>?_method=PUT"
+      method="POST"
+    >
+      <div style="display: flex">
+        <input
+          value="<%=data.quizName.toUpperCase()%>"
+          class="add-quiz-image-input form-control"
+          name="testName"
+          id="formFile"
+        />
+        <button class="edit-test-btn" type="submit">
+          <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+    </form>
+    <i
+      style="margin-left: 20px; margin-top: 5px; cursor: pointer"
+      class="test-edit fa-solid fa-pen"
+    ></i>
+  </span>
+  <p><%=data.stateName.toUpperCase()%></p>
+  <%- include ('./partials/SuccessError'); -%>
+  <div style="overflow-x:auto;">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th class="table-hash-col">#</th>
+          <th class="table-question-col">Questions</th>
+          <th class="table-option-col">Option A</th>
+          <th class="table-option-col">Option B</th>
+          <th class="table-option-col">Option C</th>
+          <th class="table-option-col">Option D</th>
+          <th class="table-answer-col">Answer</th>
+          <th class="table-action-col" class="table-buttons">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%var count = 1%> <% data.questions.forEach(item => { %>
+        <tr>
+          <th scope="row"><%=count%></th>
+          <td><%=item.question%></td>
+          <td><%=item.optionA%></td>
+          <td><%=item.optionB%></td>
+          <td><%=item.optionC%></td>
+          <td><%=item.optionD%></td>
+          <td><%=item.correct%></td>
+          <td>
+            <span class="table-buttons">
+              <button
+                onclick="editQuestion(`<%=data._id%>`, `<%=item._id%>`)"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                class="btn btn-primary"
+              >
+                Edit
+              </button>
+              <form
+                action="/all-quiz/<%=data._id%>/<%=item._id%>?_method=DELETE"
+                method="POST"
+              >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </span>
+          </td>
+        </tr>
+        <%++count%> <%})%>
+      </tbody>
+    </table>
+    </div>
 
-        <!-- Add New Quiz --> 
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">New Question</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form id="newQuestion" class="add-quiz-form row g-4 needs-validation" action="/manage-quiz/<%=data._id%>/new" method="POST" enctype="multipart/form-data" novalidate>
-                  <div id="setNewForm">
-                    <div class="form-data">
-                      <div class="add-quiz-image">
-                        <input class="add-quiz-image-input form-control" type="file" name="questionImg" id="formFile" onchange="preview()">
-                        <button onclick="clearImage()" class="btn btn-primary" type="button" ><i class="fa-solid fa-xmark"></i></button>
-                      </div>
-                      <div class="col-md-12 position-relative">
-                        <label for="validationTooltip03" class="form-label">Question</label>
-                        <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Question.
-                        </div>
-                      </div>
-                      <div class="row">
-                      <div class="col-md-6 position-relative">
-                        <label for="validationTooltip03" class="form-label">Option A</label>
-                        <input name="optionA" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div> 
-                      <div class="col-md-6 position-relative">
-                        <label for="validationTooltip03" class="form-label">Option B</label>
-                        <input name="optionB" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div> 
-                      <div class="col-md-6 position-relative" style="margin-top: 10px;">
-                        <label for="validationTooltip03" class="form-label">Option C</label>
-                        <input name="optionC" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div> 
-                      <div class="col-md-6 position-relative" style="margin-top: 10px;">
-                        <label for="validationTooltip03" class="form-label">Option D</label>
-                        <input name="optionD" placeholder="Please Enter Option" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div>
-                      </div> 
-                      <div class="col-md-12 position-relative">
-                        <label for="validationTooltip03" class="form-label">Answer</label>
-                        <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Answer.
-                        </div>
-                      </div>
-                      <div class="col-md-12 position-relative">
-                        <label for="validationTooltip03" class="form-label">Hint</label>
-                        <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="validationTooltip03" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Hint.
-                        </div>
-                      </div>
-                      </div>
-                      </div>
-                    <div class="col-12 mt-2">
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </div>
-                  </form>
-              </div>
-            </div>
+    <div>
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal1"
+        type="button"
+        class="btn btn-success"
+      >
+        Add New Question
+      </button>
+    </div>
+
+    <!-- Add New Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              New Question
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-        </div> 
-        <!-- Add New Quiz -->
- 
-        <!-- Edit Quiz -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Question</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form id="updateForm" class="add-quiz-form row g-4 needs-validation" novalidate action="" method="POST">
-                 
-                    <div class="col-md-12 position-relative">
-                        <label for="validationTooltip03" class="form-label">Question</label>
-                        <input name="Question[question]" id="questionID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Question.
-                        </div>
-                      </div>
-                      <div class="modal-options  row" >
-                      <div class="col-md-6 position-relative">
-                        <label for="validationTooltip03" class="form-label">Option A</label>
-                        <input name="Question[optionA]" id="optionAID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div> <div class="col-md-6 position-relative">
-                        <label for="validationTooltip03" class="form-label">Option B</label>
-                        <input name="Question[optionB]" id="optionBID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div> <div class="col-md-6 position-relative">
-                        <label for="validationTooltip03" class="form-label">Option C</label>
-                        <input name="Question[optionC]" id="optionCID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div> <div class="col-md-6 position-relative">
-                        <label for="validationTooltip03" class="form-label">Option D</label>
-                        <input name="Question[optionD]" id="optionDID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Option.
-                        </div>
-                      </div>
-                      </div> 
-                      <div class="col-md-12 position-relative" style="margin: 0px;">
-                        <label for="validationTooltip03" class="form-label">Answer</label>
-                        <input name="Question[correct]" id="correctID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide a Answer.
-                        </div>
-                      </div>
-                      <div class="col-md-12 position-relative" style="margin: 0px;">
-                        <label for="validationTooltip03" class="form-label">Hint</label>
-                        <input name="Question[hint]" id="hintID" type="text" class="form-control" required>
-                        <div class="invalid-tooltip">
-                          Please provide Hint.
-                        </div>
-                      </div>
-                      
-                    <div class="col-12 mt-2">
-                      <button data-bs-toggle="tooltip"  class="btn btn-primary" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">Submit</button>
+          <div class="modal-body">
+            <form
+              id="newQuestion"
+              class="add-quiz-form row g-4 needs-validation"
+              action="/manage-quiz/<%=data._id%>/new"
+              method="POST"
+              enctype="multipart/form-data"
+              novalidate
+            >
+              <div id="setNewForm">
+                <div class="form-data">
+                  <div class="add-quiz-image">
+                    <input
+                      class="add-quiz-image-input form-control"
+                      type="file"
+                      name="questionImg"
+                      id="formFile"
+                      onchange="preview()"
+                    />
+                    <button
+                      onclick="clearImage()"
+                      style="background-color: #a8171a; color: white"
+                      class="btn"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  <div class="col-md-12 position-relative">
+                    <label for="validationTooltip03" class="form-label"
+                      >Question</label
+                    >
+                    <input
+                      name="question"
+                      placeholder="Please Enter Question"
+                      type="text"
+                      class="form-control"
+                      id="validationTooltip03"
+                      required
+                    />
+                    <div class="invalid-tooltip">
+                      Please provide a Question.
                     </div>
-                  </form>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 position-relative">
+                      <label for="validationTooltip03" class="form-label"
+                        >Option A</label
+                      >
+                      <input
+                        name="optionA"
+                        placeholder="Please Enter Option"
+                        type="text"
+                        class="form-control"
+                        id="validationTooltip03"
+                        required
+                      />
+                      <div class="invalid-tooltip">
+                        Please provide a Option.
+                      </div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                      <label for="validationTooltip03" class="form-label"
+                        >Option B</label
+                      >
+                      <input
+                        name="optionB"
+                        placeholder="Please Enter Option"
+                        type="text"
+                        class="form-control"
+                        id="validationTooltip03"
+                        required
+                      />
+                      <div class="invalid-tooltip">
+                        Please provide a Option.
+                      </div>
+                    </div>
+                    <div
+                      class="col-md-6 position-relative"
+                      style="margin-top: 10px"
+                    >
+                      <label for="validationTooltip03" class="form-label"
+                        >Option C</label
+                      >
+                      <input
+                        name="optionC"
+                        placeholder="Please Enter Option"
+                        type="text"
+                        class="form-control"
+                        id="validationTooltip03"
+                        required
+                      />
+                      <div class="invalid-tooltip">
+                        Please provide a Option.
+                      </div>
+                    </div>
+                    <div
+                      class="col-md-6 position-relative"
+                      style="margin-top: 10px"
+                    >
+                      <label for="validationTooltip03" class="form-label"
+                        >Option D</label
+                      >
+                      <input
+                        name="optionD"
+                        placeholder="Please Enter Option"
+                        type="text"
+                        class="form-control"
+                        id="validationTooltip03"
+                        required
+                      />
+                      <div class="invalid-tooltip">
+                        Please provide a Option.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 position-relative">
+                    <label for="validationTooltip03" class="form-label"
+                      >Answer</label
+                    >
+                    <input
+                      name="correct"
+                      placeholder="Please Enter Answer"
+                      type="text"
+                      class="form-control"
+                      id="validationTooltip03"
+                      required
+                    />
+                    <div class="invalid-tooltip">Please provide a Answer.</div>
+                  </div>
+                  <div class="col-md-12 position-relative">
+                    <label for="validationTooltip03" class="form-label"
+                      >Hint</label
+                    >
+                    <input
+                      name="hint"
+                      placeholder="Please Enter Hint"
+                      type="text"
+                      class="form-control"
+                      id="validationTooltip03"
+                      required
+                    />
+                    <div class="invalid-tooltip">Please provide a Hint.</div>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div class="col-12 mt-2">
+                <button
+                  class="btn"
+                  style="background-color: #a8171a; color: white"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Add New Quiz -->
 
-        <!-- Edit Quiz -->
-        
-</div> 
-<!--Container Main end-->   
+    <!-- Edit Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Edit Question
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              id="updateForm"
+              class="add-quiz-form row g-4 needs-validation"
+              novalidate
+              action=""
+              method="POST"
+            >
+              <div class="col-md-12 position-relative">
+                <label for="validationTooltip03" class="form-label"
+                  >Question</label
+                >
+                <input
+                  name="Question[question]"
+                  id="questionID"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-tooltip">Please provide a Question.</div>
+              </div>
+              <div class="modal-options row">
+                <div class="col-md-6 position-relative">
+                  <label for="validationTooltip03" class="form-label"
+                    >Option A</label
+                  >
+                  <input
+                    name="Question[optionA]"
+                    id="optionAID"
+                    type="text"
+                    class="form-control"
+                    required
+                  />
+                  <div class="invalid-tooltip">Please provide a Option.</div>
+                </div>
+                <div class="col-md-6 position-relative">
+                  <label for="validationTooltip03" class="form-label"
+                    >Option B</label
+                  >
+                  <input
+                    name="Question[optionB]"
+                    id="optionBID"
+                    type="text"
+                    class="form-control"
+                    required
+                  />
+                  <div class="invalid-tooltip">Please provide a Option.</div>
+                </div>
+                <div class="col-md-6 position-relative">
+                  <label for="validationTooltip03" class="form-label"
+                    >Option C</label
+                  >
+                  <input
+                    name="Question[optionC]"
+                    id="optionCID"
+                    type="text"
+                    class="form-control"
+                    required
+                  />
+                  <div class="invalid-tooltip">Please provide a Option.</div>
+                </div>
+                <div class="col-md-6 position-relative">
+                  <label for="validationTooltip03" class="form-label"
+                    >Option D</label
+                  >
+                  <input
+                    name="Question[optionD]"
+                    id="optionDID"
+                    type="text"
+                    class="form-control"
+                    required
+                  />
+                  <div class="invalid-tooltip">Please provide a Option.</div>
+                </div>
+              </div>
+              <div class="col-md-12 position-relative" style="margin: 0px">
+                <label for="validationTooltip03" class="form-label"
+                  >Answer</label
+                >
+                <input
+                  name="Question[correct]"
+                  id="correctID"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-tooltip">Please provide a Answer.</div>
+              </div>
+              <div class="col-md-12 position-relative" style="margin: 0px">
+                <label for="validationTooltip03" class="form-label">Hint</label>
+                <input
+                  name="Question[hint]"
+                  id="hintID"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-tooltip">Please provide Hint.</div>
+              </div>
 
-<script>
-  async function editQuestion(Pid, Cid) {   
-    const response = await fetch(`/all-quiz/${Pid}/edit`);
-    const finalData = await response.json(); 
-    var data;
-    finalData.questions.forEach(element => {
-      if(element._id == Cid)
-      {
-        data = element;
-      }
-    }); 
-    document.getElementById("questionID").value = data.question;
-    document.getElementById("optionAID").value = data.optionA;
-    document.getElementById("optionBID").value = data.optionB;
-    document.getElementById("optionCID").value = data.optionC;
-    document.getElementById("optionDID").value = data.optionD;
-    document.getElementById("correctID").value = data.correct; 
-    document.getElementById("hintID").value = data.hint; 
-    document.getElementById("updateForm").action = `/all-quiz/${data._id}/${Pid}?_method=PUT`;
-}
-</script>
-<script src="/admin/js/allQuiz.js" ></script>
- 
+              <div class="col-12 mt-2">
+                <button
+                  data-bs-toggle="tooltip"
+                  class="btn"
+                  type="submit"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  data-bs-title="Tooltip on top"
+                  style="background-color: #a8171a;color: white;"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Quiz -->
+  </div>
+  <!--Container Main end-->
+
+  <script>
+    async function editQuestion(Pid, Cid) {
+      const response = await fetch(`/all-quiz/${Pid}/edit`);
+      const finalData = await response.json();
+      var data;
+      finalData.questions.forEach((element) => {
+        if (element._id == Cid) {
+          data = element;
+        }
+      });
+      document.getElementById("questionID").value = data.question;
+      document.getElementById("optionAID").value = data.optionA;
+      document.getElementById("optionBID").value = data.optionB;
+      document.getElementById("optionCID").value = data.optionC;
+      document.getElementById("optionDID").value = data.optionD;
+      document.getElementById("correctID").value = data.correct;
+      document.getElementById("hintID").value = data.hint;
+      document.getElementById(
+        "updateForm"
+      ).action = `/all-quiz/${data._id}/${Pid}?_method=PUT`;
+    }
+  </script>
+  <script src="/admin/js/allQuiz.js"></script>
+</div>

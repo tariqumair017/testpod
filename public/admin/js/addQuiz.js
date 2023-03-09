@@ -30,7 +30,10 @@ add_new_form.onclick = () => {
 }
 
 function clearImage() {
-  document.getElementById('formFile').value = null;
+  let array= document.getElementsByClassName('formFile')
+  for (let i = 0; i < array.length; i++) {
+    array[i].value = null
+  }
 }
 
 var uploadField = document.querySelector(".add-quiz-image");
@@ -45,7 +48,7 @@ stateuploadfile.children[0].onchange = function () {
 };
 
 uploadField.children[0].onchange = function () {
-  if (this.files[0].size > 10000) {
+    if (this.files[0].size > 10000) {
     alert("Quiz image is too big!");
     this.value = "";
   };

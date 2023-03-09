@@ -71,7 +71,7 @@
                   <form id="newQuestion" class="add-quiz-form row g-4 needs-validation" action="/game-management/manage-flags-games/<%=data._id%>/new" method="POST" enctype="multipart/form-data" novalidate>
                     <div id="setNewForm">
                       <div class="form-data">
-                        <div class="add-quiz-image">
+                        <div>
                             <label for="validationTooltip03" class="form-label">Select Flage</label>
                             <input  class="add-quiz-image-input form-control" type="file" name="flag" id="formFile" onchange="preview()" required>
                         </div>
@@ -116,7 +116,7 @@
                         </div>
                         </div>
                       <div class="col-12 mt-2">
-                          <button class="btn btn-primary" type="submit">Submit</button>
+                          <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Submit</button>
                       </div>
                     </form>
                 </div>
@@ -152,13 +152,13 @@
                           <div class="invalid-tooltip">
                             Please provide a Option.
                           </div>
-                        </div> <div class="col-md-6 position-relative">
+                        </div> <div class="col-md-6 position-relative" style="margin-top: 20px;">
                           <label for="validationTooltip03" class="form-label">Option C</label>
                           <input name="optionC" id="optionCID" type="text" class="form-control" required>
                           <div class="invalid-tooltip">
                             Please provide a Option.
                           </div>
-                        </div> <div class="col-md-6 position-relative">
+                        </div> <div class="col-md-6 position-relative" style="margin-top: 20px;">
                           <label for="validationTooltip03" class="form-label">Option D</label>
                           <input name="optionD" id="optionDID" type="text" class="form-control" required>
                           <div class="invalid-tooltip">
@@ -181,7 +181,7 @@
                           </div>
                         </div> 
                       <div class="col-12 mt-2">
-                        <button data-bs-toggle="tooltip"  class="btn btn-primary" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">Submit</button>
+                        <button data-bs-toggle="tooltip"  class="btn" style="background-color: #a8171a;color: white;" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">Submit</button>
                       </div>
                     </form>
                 </div>

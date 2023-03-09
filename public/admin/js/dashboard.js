@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     const linkColor = document.querySelectorAll(".nav_link");
-    console.log(linkColor,"linkColor")
     const pathname=this.location.pathname
     linkColor.forEach((item,index)=>{
     if(pathname == "/dashboard"){
