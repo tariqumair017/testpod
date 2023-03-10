@@ -104,6 +104,7 @@ let questions = [
 
 //audios
 
+
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 
 //define required constants
@@ -132,6 +133,7 @@ const result_btn = document.querySelector(".result_btn");
 const result_box = document.querySelector(".result_box");
 
 const time_up = document.querySelector(".time_up");
+
 
 
 //required variable
@@ -231,6 +233,7 @@ function queCounter(index) {
 }
 
 //when user clicks on options
+
 
 function optionSelected(answer) {
   clearInterval(counterLine); //clear counterLine

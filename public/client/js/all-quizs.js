@@ -64,10 +64,14 @@ function showAns(numer, selectedOptions) {
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
 
-async function checkResult(id) { 
+
+
+
+async function checkResult(id) {
   const getData = await fetch(`/quiz-list/${id}`)
   .then((response) => response.json())
   .then((data) => data); 
+
   
   // option_text.splice(0, 1);
   option_text.splice(0,1) 
