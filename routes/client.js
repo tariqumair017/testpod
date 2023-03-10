@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 const router = Router(); 
 import QuestionModel from "../models/questions.js";
+import CountryFlagGame from "../models/selectCountryFlagGame.js";
 import asyncHandler from "express-async-handler";  
 // import connectEnsureLogin from "connect-ensure-login";
  
@@ -11,9 +12,16 @@ router.get("/", asyncHandler(async (req, res) => {
 
 //Client Select Country
 router.get("/select-countryFlag-game", asyncHandler(async (req, res) => { 
-    res.render("Client/Select-CountryFlag-Game");
+    const data = await CountryFlagGame.find({});
+    res.render("Client/Select-CountryFlag-Game", { data });
 }));
  
+//Client fetch All Games for Select-CountryFlag-Game
+router.get("/select-countryFlag-game/all", asyncHandler(async (req, res) => { 
+    const data = await CountryFlagGame.find({});
+    res.send(data);
+}));
+
 //Client Quiz-Citys page
 router.get("/quiz-citys", asyncHandler(async (req, res) => { 
     const data = await QuestionModel.find({});   
