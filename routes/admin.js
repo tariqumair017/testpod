@@ -31,7 +31,7 @@ router.get("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), asyncHand
 }));
 
 //Handel Login Logic
-router.post("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), passport.authenticate("local", {
+router.post("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), passport.authenticate("Admin", {
   failureRedirect: "/login",
   failureFlash: true,
 }),(req, res) => {   

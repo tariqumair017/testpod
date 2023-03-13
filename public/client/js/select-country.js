@@ -1,114 +1,8 @@
 //array of questions
 
-let questions = [
-  {
-    numb: 1,
-
-    question: "flag-icon-jp",
-
-    answer: "Japan",
-
-    options: ["Japan", "Argentina", "Bangladesh", "Cameroon"],
-  },
-
-  {
-    numb: 2,
-
-    question: "flag-icon-ad",
-
-    answer: "Andorra",
-
-    options: ["Afghanistan", "Andorra", "Barbados", "Canada"],
-  },
-
-  {
-    numb: 3,
-
-    question: "flag-icon-au",
-
-    answer: "Australia",
-
-    options: ["Bermuda", "Cook Islands", "Australia", "Falkland Islands"],
-  },
-
-  {
-    numb: 4,
-
-    question: "flag-icon-at",
-
-    answer: "Austria",
-
-    options: ["Bulgaria", "Belgium", "Austria", "Canada"],
-  },
-
-  {
-    numb: 5,
-
-    question: "flag-icon-de",
-
-    answer: "Germany",
-
-    options: ["Germany", "Colombia", "Cameroon", "Belgium"],
-  },
-
-  {
-    numb: 6,
-
-    question: "flag-icon-ar",
-
-    answer: "Argentina",
-
-    options: ["Botswana", "Antarctica", "Argentina", "Guatemala"],
-  },
-
-  {
-    numb: 7,
-
-    question: "flag-icon-vn",
-
-    answer: "Vietnam",
-
-    options: ["Turkey", "Vietnam", "Somalia", "Senegal"],
-  },
-
-  {
-    numb: 8,
-
-    question: "flag-icon-ru",
-
-    answer: "Russia",
-
-    options: ["Réunion", "Russia", "Romania", "Slovenia"],
-  },
-
-  {
-    numb: 9,
-
-    question: "flag-icon-my",
-
-    answer: "Malaysia",
-
-    options: ["Niue", "Malaysia", "New Zealand", "Pitcairn"],
-  },
-
-  {
-    numb: 10,
-
-    question: "flag-icon-fi",
-
-    answer: "Finland",
-
-    options: ["Faroe Islands", "Georgia", "Iceland", "Finland"],
-  },
-];
-
-//audios
-
-
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 
-//define required constants
-
+//define required constants 
 const time_line = document.querySelector(".time_line");
 
 const questions_box = document.querySelector(".questions-box");
@@ -135,9 +29,7 @@ const result_box = document.querySelector(".result_box");
 const time_up = document.querySelector(".time_up");
 
 
-
-//required variable
-
+//required variable 
 let que_count = 0;
 
 let que_numb = 1;
@@ -155,6 +47,128 @@ let completeTestDuration;
 let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+var questions;
+
+fetch('/select-countryFlag-game/all')
+  .then(res => res.json())
+  .then(data => {
+    questions = data[1].questions.map((val, i) => (
+      {
+        numb: i,
+    
+        question: val.flag,
+    
+        answer: val.correct,
+    
+        options: [val.optionA, val.optionB, val.optionC, val.optionD],
+      }
+    ));
+
+
+// let questions = [
+//   {
+//     numb: 1,
+
+//     question: "flag-icon-jp",
+
+//     answer: "Japan",
+
+//     options: ["Japan", "Argentina", "Bangladesh", "Cameroon"],
+//   },
+
+//   {
+//     numb: 2,
+
+//     question: "flag-icon-ad",
+
+//     answer: "Andorra",
+
+//     options: ["Afghanistan", "Andorra", "Barbados", "Canada"],
+//   },
+
+//   {
+//     numb: 3,
+
+//     question: "flag-icon-au",
+
+//     answer: "Australia",
+
+//     options: ["Bermuda", "Cook Islands", "Australia", "Falkland Islands"],
+//   },
+
+//   {
+//     numb: 4,
+
+//     question: "flag-icon-at",
+
+//     answer: "Austria",
+
+//     options: ["Bulgaria", "Belgium", "Austria", "Canada"],
+//   },
+
+//   {
+//     numb: 5,
+
+//     question: "flag-icon-de",
+
+//     answer: "Germany",
+
+//     options: ["Germany", "Colombia", "Cameroon", "Belgium"],
+//   },
+
+//   {
+//     numb: 6,
+
+//     question: "flag-icon-ar",
+
+//     answer: "Argentina",
+
+//     options: ["Botswana", "Antarctica", "Argentina", "Guatemala"],
+//   },
+
+//   {
+//     numb: 7,
+
+//     question: "flag-icon-vn",
+
+//     answer: "Vietnam",
+
+//     options: ["Turkey", "Vietnam", "Somalia", "Senegal"],
+//   },
+
+//   {
+//     numb: 8,
+
+//     question: "flag-icon-ru",
+
+//     answer: "Russia",
+
+//     options: ["Réunion", "Russia", "Romania", "Slovenia"],
+//   },
+
+//   {
+//     numb: 9,
+
+//     question: "flag-icon-my",
+
+//     answer: "Malaysia",
+
+//     options: ["Niue", "Malaysia", "New Zealand", "Pitcairn"],
+//   },
+
+//   {
+//     numb: 10,
+
+//     question: "flag-icon-fi",
+
+//     answer: "Finland",
+
+//     options: ["Faroe Islands", "Georgia", "Iceland", "Finland"],
+//   },
+// ];
+
+//audios 
+
 
 window.load = startQuiz();
 
@@ -175,9 +189,7 @@ function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
 
   let que_tag =
-    '<span class="flag-icon-background ' +
-    questions[index].question +
-    '" style="border-radius:7px;width:100%;height: 220px;display:inline-block;margin-right:5px; border: 2px solid #f9f9f9;"></span>';
+    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height: 220px;display:inline-block;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
 
 
   let option_tag =
@@ -203,7 +215,7 @@ function showQuetions(index) {
   // set onclick attribute to all available options
 
   for (i = 0; i < option.length; i++) {
-    option[i].setAttribute("onclick", "optionSelected(this)");
+    option[i].setAttribute("onclick", `optionSelected(this)`);
   }
 }
 
@@ -232,60 +244,6 @@ function queCounter(index) {
   ques_counter.innerHTML = totalQueCounTag;
 }
 
-//when user clicks on options
-
-
-function optionSelected(answer) {
-  clearInterval(counterLine); //clear counterLine
-
-  answer.classList.add("correct");
-
-  let userAns = answer.textContent; //getting user selected option
-
-  userAns = userAns.substring(2);
-
-  let correcAns = questions[que_count].answer; //getting correct answer from array
-
-
-  if (userAns === correcAns) {
-    userScore += 1; //upgrading score value with 1
-
-    total_correct.innerHTML = userScore;
-
-    answer.classList.add("correct");
-
-    answer.insertAdjacentHTML("beforeend", tickIconTag);
-
-    if (que_numb === questions.length) {
-      result_btn.classList.remove("d-none");
-    } else {
-      next_btn.classList.remove("d-none");
-    }
-  } else {
-    incorrect++
-    total_in_correct.innerHTML = incorrect
-    answer.classList.add("incorrect");
-
-    answer.classList.add("shakeIt");
-
-    wrongClickAudio.play();
-
-    setTimeout(function () {
-      answer.classList.remove("shakeIt");
-    }, 500);
-
-    answer.insertAdjacentHTML("beforeend", crossIconTag);
-
-
-    //auto select correct option
-
-    callCorrectOption();
-  }
-
-  //disable all options
-
-  disableOptions();
-}
 
 //run time line
 
@@ -306,48 +264,8 @@ function startTimerLine(time) {
     }
   }
 }
-
-//auto call correct option
-
-function callCorrectOption() {
-  const allOptions = option_list.children.length;
-
-  let correcAns1 = questions[que_count].answer; //getting correct answer from array
-
-  for (i = 0; i < allOptions; i++) {
-    let optionAns = option_list.children[i].textContent;
-
-    optionAns = optionAns.substring(2);
-
-    if (optionAns == correcAns1) {
-      option_list.children[i].setAttribute(
-        "class",
-        "customLable correct disabled"
-      ); //adding green color to matched option
-
-      option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
-
-    }
-  }
-
-  if (que_numb === questions.length) {
-    result_btn.classList.remove("d-none");
-  } else {
-    next_btn.classList.remove("d-none");
-  }
-
-  disableOptions();
-}
-
-//disable all option
-
-function disableOptions() {
-  const allOptions1 = option_list.children.length;
-
-  for (i = 0; i < allOptions1; i++) {
-    option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
-  }
-}
+ 
+ 
 
 //show result box-shadow
 
@@ -405,6 +323,7 @@ result_btn.onclick = () => {
 //time for whole test
 
 function startTimer(duration, display) {
+  
   var timer = duration,
     minutes,
     seconds;
@@ -440,9 +359,105 @@ function startTimer(duration, display) {
   }
 }
 
-window.onload = function () {
+// runInterval();
+// function runInterval() {  
   var interval = 2.5 * 60,
     display = document.querySelector("#testDuration");
-
+  
   startTimer(interval, display);
-};
+// };
+
+});
+
+//when user clicks on options 
+function optionSelected(answer) { 
+  clearInterval(counterLine); //clear counterLine
+
+  answer.classList.add("correct");
+
+  let userAns = answer.textContent; //getting user selected option
+
+  userAns = userAns.substring(2);
+
+  let correcAns = questions[que_count].answer; //getting correct answer from array
+
+
+  if (userAns === correcAns) {
+    userScore += 1; //upgrading score value with 1
+
+    total_correct.innerHTML = userScore;
+
+    answer.classList.add("correct");
+
+    answer.insertAdjacentHTML("beforeend", tickIconTag);
+
+    if (que_numb === questions.length) {
+      result_btn.classList.remove("d-none");
+    } else {
+      next_btn.classList.remove("d-none");
+    }
+  } else {
+    incorrect++
+    total_in_correct.innerHTML = incorrect
+    answer.classList.add("incorrect");
+
+    answer.classList.add("shakeIt");
+
+    wrongClickAudio.play();
+
+    setTimeout(function () {
+      answer.classList.remove("shakeIt");
+    }, 500);
+
+    answer.insertAdjacentHTML("beforeend", crossIconTag);
+
+
+    //auto select correct option
+
+    callCorrectOption();
+  }
+
+  //disable all options
+
+  disableOptions();
+}
+
+//auto call correct option 
+function callCorrectOption() {
+  const allOptions = option_list.children.length;
+
+  let correcAns1 = questions[que_count].answer; //getting correct answer from array
+
+  for (i = 0; i < allOptions; i++) {
+    let optionAns = option_list.children[i].textContent;
+
+    optionAns = optionAns.substring(2);
+
+    if (optionAns == correcAns1) {
+      option_list.children[i].setAttribute(
+        "class",
+        "customLable correct disabled"
+      ); //adding green color to matched option
+
+      option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+
+    }
+  }
+
+  if (que_numb === questions.length) {
+    result_btn.classList.remove("d-none");
+  } else {
+    next_btn.classList.remove("d-none");
+  }
+
+  disableOptions();
+}
+
+//disable all option 
+function disableOptions() {
+  const allOptions1 = option_list.children.length;
+
+  for (i = 0; i < allOptions1; i++) {
+    option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+  }
+}

@@ -42,16 +42,17 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(flash());
 
+
+// PASSPORT CONFIGURATION
 app.use(session({
     secret: "This is My UXH First project with the name testpod",
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60 * 60 * 1000 }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
-passport.use(new LocalStrategy(async function verify(username, password, done) {   
+//For Admin
+passport.use('Admin', new LocalStrategy(async function verify(username, password, done) {   
       
     const user = await Admin.findOne({username: username}); 
 
@@ -74,16 +75,19 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
         return done(null, false, {message: "This User is Not Regictered"});
     } 
 }));
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function(Admin, done) {
     process.nextTick(function() {
-        done(null, user);
+        done(null, Admin);
     });
 });  
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function(Admin, done) {
     process.nextTick(function() {
-      return done(null, user);
+      return done(null, Admin);
     });
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(function(req, res, next){
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
