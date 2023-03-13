@@ -11,6 +11,8 @@ const option_list = document.querySelector(".option_list");
 
 const que_text = document.querySelector(".que_text");
 
+const your_progress = document.querySelector(".your-progress")
+
 const next_btn = document.querySelector(".next_btn");
 
 const ques_counter = document.querySelector(".total_que");
@@ -61,6 +63,8 @@ fetch('/select-countryFlag-game/all')
         answer: val.correct,
     
         options: [val.optionA, val.optionB, val.optionC, val.optionD],
+
+        hint : val.hint
       }
     ));
 
@@ -189,8 +193,9 @@ function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
 
   let que_tag =
-    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height: 220px;display:inline-block;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
+    `<span class="flag-icon-background" style="border-radius:7px;width:100%;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
 
+  let detail = '<p class="your-progress-detail" >'+ questions[index].hint +'<p>'
 
   let option_tag =
     '<div class="customLable"><strong>a)</strong>' +
@@ -207,11 +212,13 @@ function showQuetions(index) {
     "</div>";
 
   que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-
+  
   option_list.innerHTML = option_tag; //adding new div tag inside option_tag
 
+  
   const option = option_list.querySelectorAll(".customLable");
-
+  
+  your_progress.innerHTML = detail //adding new p tag inside your-progress
   // set onclick attribute to all available options
 
   for (i = 0; i < option.length; i++) {
@@ -347,9 +354,6 @@ function startTimer(duration, display) {
       result_btn.classList.remove("d-none");
 
       time_up.classList.remove("d-none");
-
-      ques_wrapper.classList.add("d-none");
-
       next_btn.classList.add("d-none");
 
       clearInterval(completeTestDuration);
@@ -381,6 +385,10 @@ function optionSelected(answer) {
 
   let correcAns = questions[que_count].answer; //getting correct answer from array
 
+  if(que_numb === questions.length){
+    document.querySelector("#testDuration").classList.add("d-none");
+  }
+
 
   if (userAns === correcAns) {
     userScore += 1; //upgrading score value with 1
@@ -393,6 +401,9 @@ function optionSelected(answer) {
 
     if (que_numb === questions.length) {
       result_btn.classList.remove("d-none");
+      time_up.classList.add("d-none");
+      next_btn.classList.add("d-none");
+
     } else {
       next_btn.classList.remove("d-none");
     }

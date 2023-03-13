@@ -56,6 +56,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
     else if(pathname == "/web-analytics"){
       document.getElementById("web-analytics").classList.add("active")
     }
+    else if(pathname == "/web-analytics/quizzes"){
+      document.getElementById("web-analytics").classList.add("active")
+      document.getElementById("collapseThree").classList.add("show")
+      document.getElementById("quizze").classList.add("active")
+    }
+    else if(pathname == "/web-analytics/flag-game"){
+      document.getElementById("web-analytics").classList.add("active")
+      document.getElementById("collapseThree").classList.add("show")
+      document.getElementById("flag-game").classList.add("active")
+    }
     else if(pathname == "/game-management/add-flags-games"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")

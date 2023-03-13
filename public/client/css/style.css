@@ -7269,6 +7269,7 @@ label {
 
   top: 6px;
 
+
   }
 
 
@@ -8731,7 +8732,7 @@ footer .next-btn:hover {
   margin-top: 10px;
 }
 
-.all-quiz-progress p {
+.your-progress-detail{
   padding: 10px;
   font-weight: 500;
   border-radius: 10px;

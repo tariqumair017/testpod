@@ -294,6 +294,20 @@ router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedI
   }
 }));
 
+// Analysis : Analysis-Quizzes
+
+router.get("/web-analytics/quizzes", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  res.render("Admin/Analysis-Quizzes");
+}));
+
+// Analysis : Analysis-Flag-Game
+
+router.get("/web-analytics/flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  res.render("Admin/Analysis-Flag-Game");
+}));
+
+
+
 //Admin: Manage Flag Page
 router.get("/game-management/manage-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   const data = await CountryFlagGame.find({});

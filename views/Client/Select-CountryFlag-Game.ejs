@@ -1,12 +1,12 @@
 <% layout('Client/layouts/boilerPlate') -%>
 
- 
 <main>
   <!-- search-popup -->
   <div
     class="modal fade bs-example-modal-lg search-bg popup1"
     tabindex="-1"
-    role="dialog">
+    role="dialog"
+  >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content search-popup">
         <div class="text-center">
@@ -96,7 +96,7 @@
               <div class="que_text"></div>
             </div>
 
-            <div>
+            <div style="margin-top: 10px">
               <div class="option_list"></div>
             </div>
             <div style="width: 100%">
@@ -122,7 +122,7 @@
 
               <button
                 class="btn btn-danger result_btn d-none"
-                style="width: 200px;margin-top: 10px;"
+                style="width: 200px; margin-top: 10px"
               >
                 Show Result
               </button>
@@ -130,18 +130,18 @@
           </div>
         </div>
         <div class="result_box d-none">
-            <canvas
-              id="myChart"
-              style="
-                width: 100%;
-                display: block;
-                border: 2px solid #ccc;
-                border-radius: 5px;
-                box-shadow: 2px 2px 5px #ccc;
-                padding: 15px;
-              "
-            ></canvas>
-          </div>
+          <canvas
+            id="myChart"
+            style="
+              width: 100%;
+              display: block;
+              border: 2px solid #ccc;
+              border-radius: 5px;
+              box-shadow: 2px 2px 5px #ccc;
+              padding: 15px;
+            "
+          ></canvas>
+        </div>
       </div>
       <div class="all-quiz-right-part">
         <div class="all-quiz-progress">
@@ -154,22 +154,20 @@
               id="testDuration"
               style="font-size: 30px; font-weight: bold; color: #eb2d00"
             >
-              02:30
+              --
             </h2>
           </div>
           <div
-          class="row justify-content-center align-items-center mt-3 time_up d-none"
-        >
-          <div class="col-md-6 text-center py-5">
-            <h2 style="font-size: 40px; font-weight: bold; color: #eb2d00">
-              Time Up
-            </h2>
+            class="row justify-content-center align-items-center mt-3 time_up d-none">
+            <div class="col-md-6 text-center py-5">
+              <h2 style="font-size: 40px; font-weight: bold; color: #eb2d00">
+                Time Up
+              </h2>
+            </div>
           </div>
-        </div>
           <h5>Your Progress</h5>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+          <div class="your-progress">
+        </div>
         </div>
       </div>
     </div>
@@ -205,3 +203,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="client/js/select-country.js"></script>
+<script src="/client/js/about.js"></script>
+
