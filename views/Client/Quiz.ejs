@@ -113,9 +113,11 @@
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
           </label>
+          <%if(item.hint){%>
           <div id="all-quiz-discription">
             <p><%=item.hint%></p>
           </div>
+          <%}%>
         </div> 
           <%count++%>  
         <%})%>

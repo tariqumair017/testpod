@@ -44,7 +44,6 @@ const QuestionSchema = new mongoose.Schema({
     },
     hint: {
       type: String,
-      required: true
     },
     questionImg: String
   }], 
