@@ -72,7 +72,7 @@ async function checkResult(id) {
   .then((response) => response.json())
   .then((data) => data); 
 
-  
+  console.log(option_text,"option_textoption_text")
   // option_text.splice(0, 1);
   option_text.splice(0,1) 
     for (let j = 0; j < getData.questions.length; j++) {  

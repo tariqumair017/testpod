@@ -160,7 +160,12 @@ const ques_counter = document.querySelector(".total_que");
 
 const que_heading = document.querySelector(".que_heading");
 
+const draw_total_questions = document.querySelector('.draw-total-questions')
+
 const draw_total_correct = document.querySelector(".draw-total-correct");
+
+const draw_total_in_correct = document.querySelector(".draw-total-in-correct");
+
 
 const score_board = document.querySelector(".score_board");
 
@@ -182,6 +187,8 @@ let completeTestInterval;
 
 let userScore = 0;
 
+let incorrect = 0;
+
 let tryAgainInterval;
 
 let rightAnsInterval;
@@ -197,6 +204,8 @@ function startQuiz() {
 }
 
 // getting questions and options from array
+
+draw_total_questions.innerHTML = paintFlags.length
 
 function showQuetions(index) {
   //set attribute in flag canvas
@@ -237,6 +246,8 @@ function showQuetions(index) {
 }
 
 //allow user to select flag arrangement
+
+
 
 function choseFlagArrangemnet(x) {
   var paintingSarted = document
@@ -425,6 +436,7 @@ function checkIfFlagPaintingIsComplete(x) {
     console.log("me wrong");
   }
 
+  console.log(rightFilledLayers,"==",flagLayersLength)
   if (rightFilledLayers === flagLayersLength) {
     userScore += 1; //upgrading score value with 1
 
