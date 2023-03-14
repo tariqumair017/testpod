@@ -82,7 +82,7 @@
               type="radio"
               value="<%=item.optionA%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionA%></h6>
           </label>
@@ -91,7 +91,7 @@
               type="radio"
               value="<%=item.optionB%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionB%></h6>
           </label>
@@ -100,7 +100,7 @@
               type="radio"
               value="<%=item.optionC%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionC%></h6>
           </label>
@@ -109,7 +109,7 @@
               type="radio"
               value="<%=item.optionD%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
           </label>

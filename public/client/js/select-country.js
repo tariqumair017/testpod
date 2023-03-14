@@ -21,8 +21,7 @@ const total_correct = document.getElementById("total-correct");
 
 const total_in_correct = document.getElementById("total-in-correct")
 
-const total_questions = document.getElementById("total-questions")
- 
+const total_questions = document.getElementById("total-questions") 
 
 const result_btn = document.querySelector(".result_btn");
 
@@ -38,7 +37,7 @@ let que_numb = 1;
 
 let userScore = 0;
 
-let incorrect = 0;
+let incorrect = 0; 
 
 let counterLine;
 
@@ -51,10 +50,12 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 var questions;
 
-fetch('/select-countryFlag-game/all')
+var _id = total_questions.getAttribute("_id");
+
+fetch(`/game/all/${_id}`)
   .then(res => res.json())
-  .then(data => {
-    questions = data[1].questions.map((val, i) => (
+  .then(data => { 
+    questions = data.questions.map((val, i) => (
       {
         numb: i,
     
@@ -257,7 +258,7 @@ function queCounter(index) {
 function startTimerLine(time) {
   counterLine = setInterval(timer, 150);
 
-  function timer() {
+  async function timer() {
     time += 1; //upgrading time value with 1
 
     time_line.style.width = time + "%"; //increasing width of time_line with px by time value
@@ -267,7 +268,9 @@ function startTimerLine(time) {
 
       clearInterval(counterLine); //clear counterLine
 
-      callCorrectOption();
+      callCorrectOption(); 
+      total_in_correct.innerHTML = ++incorrect;
+      await storeResultForGame();
     }
   }
 }
@@ -276,7 +279,7 @@ function startTimerLine(time) {
 
 //show result box-shadow
 
-result_btn.onclick = () => {
+result_btn.onclick = async () => {
     questions_box.classList.add("d-none");
 
   result_box.classList.remove("d-none");
@@ -289,7 +292,10 @@ result_btn.onclick = () => {
 
   console.log(userScore,"total_correct")
   console.log(questions,"questions")
-  console.log((userScore / questions.length) * 360,"total")
+  console.log(que_numb);
+ 
+  //Post Api  
+  
 
   var valRight = (userScore / questions.length) * 360;
 
@@ -374,7 +380,7 @@ function startTimer(duration, display) {
 });
 
 //when user clicks on options 
-function optionSelected(answer) { 
+async function optionSelected(answer) {  
   clearInterval(counterLine); //clear counterLine
 
   answer.classList.add("correct");
@@ -390,7 +396,7 @@ function optionSelected(answer) {
   }
 
 
-  if (userAns === correcAns) {
+  if (userAns === correcAns) { 
     userScore += 1; //upgrading score value with 1
 
     total_correct.innerHTML = userScore;
@@ -427,6 +433,8 @@ function optionSelected(answer) {
 
     callCorrectOption();
   }
+ 
+  await storeResultForGame();
 
   //disable all options
 
@@ -471,4 +479,19 @@ function disableOptions() {
   for (i = 0; i < allOptions1; i++) {
     option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
   }
+}
+
+async function storeResultForGame() { 
+  var obj = {correct: userScore, incorrect: incorrect, attempted: que_numb};
+  // console.log(obj); 
+  const response = await fetch(`/game-result/${_id}`, {
+    method: 'POST',
+    body: JSON.stringify({objToStore: obj}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    }
+  });
+
+  // const finalData = await response.json();
+  console.log(response);
 }

@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Log from "./logs.js";
+import Result from "./result.js";
 
 const QuestionSchema = new mongoose.Schema({
   quizName: {
@@ -54,7 +56,27 @@ const QuestionSchema = new mongoose.Schema({
   quizDetail: {
     type: String,
     required: true
+    },
+  logs: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Log"
     }
+  },
+  results: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Result"
+    }
+  ]
 });
+
+QuestionSchema.post("findOneAndDelete", async function(doc){
+  if(doc)
+  {
+      await Log.deleteMany({_id: {$in: doc.logs}});
+      await Result.deleteMany({_id: {$in: doc.results}});
+  }
+})
 
 export default mongoose.model("Questions", QuestionSchema);

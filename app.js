@@ -18,7 +18,7 @@ const app = express();
 const { urlencoded } = bodyParser;
 const port = process.env.PORT || 9898;  
  
-
+ 
 //Requring Routes
 import AdminRoutes from "./routes/admin.js"; 
 import ClientRoutes from "./routes/client.js"; 
@@ -89,11 +89,19 @@ passport.deserializeUser(function(Admin, done) {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next){
+// Server cache clear
+app.use(function(req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    next();
+});
+
+// Local Storage variables
+app.use(function(req, res, next){
     res.locals.currentUser = req.user; 
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.newResultIDForGame = req.session.newResultIDForGame;
+    res.locals.newResultIDForQuiz = req.session.newResultIDForQuiz;
     next();
 });
 
