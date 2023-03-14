@@ -10,6 +10,12 @@ router.get("/", asyncHandler(async (req, res) => {
     res.render("Client/index");
 }));
 
+
+//Client Draw Flag
+router.get("/draw-flags", asyncHandler(async (req, res) => { 
+    res.render("Client/Draw-Flags");
+}));
+
 //Client Select Country
 router.get("/select-countryFlag-game", asyncHandler(async (req, res) => { 
     const data = await CountryFlagGame.find({});

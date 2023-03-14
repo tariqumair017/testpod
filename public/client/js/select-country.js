@@ -195,19 +195,19 @@ function showQuetions(index) {
   let que_tag =
     `<span class="flag-icon-background" style="border-radius:7px;width:100%;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
 
-  let detail = '<p class="your-progress-detail" >'+ questions[index].hint +'<p>'
+  let detail = '<p class="your-quiz-progress-detail" >'+ questions[index].hint +'<p>'
 
   let option_tag =
-    '<div class="customLable"><strong>a)</strong>' +
+    '<div class="customLable"><strong>A)</strong>' +
     questions[index].options[0] +
     "</div>" +
-    '<div class="customLable"><strong>b)</strong>' +
+    '<div class="customLable"><strong>B)</strong>' +
     questions[index].options[1] +
     "</div>" +
-    '<div class="customLable"><strong>c)</strong>' +
+    '<div class="customLable"><strong>C)</strong>' +
     questions[index].options[2] +
     "</div>" +
-    '<div class="customLable"><strong>b)</strong>' +
+    '<div class="customLable"><strong>D)</strong>' +
     questions[index].options[3] +
     "</div>";
 

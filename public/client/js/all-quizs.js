@@ -87,7 +87,9 @@ async function checkResult(id) {
         option_text[j].parentNode.querySelector("input").classList.add("option-incorrent");
   
       }
-      showDiscription[j].classList.add("all-quiz-show-discription");
+     
+      showDiscription[j] && showDiscription[j].classList.add("all-quiz-show-discription");
+      
     }   
   if (correct < 10) {
     document.getElementById("total-correct").innerHTML = "0" + correct;

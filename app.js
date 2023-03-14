@@ -16,7 +16,7 @@ import methodOverride from "method-override";
 import Admin from "./models/admin.js";
 const app = express();
 const { urlencoded } = bodyParser;
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9898;  
  
 
 //Requring Routes
