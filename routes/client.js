@@ -13,6 +13,15 @@ router.get("/", asyncHandler(async (req, res) => {
     res.render("Client/index", {data});
 }));
 
+//Client GuessFlags
+router.get("/guess-flags", asyncHandler(async (req, res) => { 
+    res.render("Client/Guess-Flags");
+}));
+
+//Client Learn-About-Flags
+router.get("/learn-about-flags", asyncHandler(async (req, res) => { 
+    res.render("Client/Learn-About-Flags");
+}));
 
 //Client Draw Flag
 router.get("/draw-flags", asyncHandler(async (req, res) => { 

@@ -9240,6 +9240,156 @@ label {
 
 /* draw flag end */
 
+
+/* Learn About Flags  */
+
+
+.flagWrapper {
+  position: relative;
+
+  display: block;
+}
+
+.flagOverlay {
+  width: 85%;
+
+  height: 70%;
+
+  left: 22px;
+
+  top: 35px;
+
+  background: rgb(0 0 0 / 70%);
+
+  position: absolute;
+
+  outline: 5px solid rgb(0 0 0 / 70%);
+
+  outline-offset: 3px;
+
+  transition: all 0.4s linear;
+
+  -webkit-transition: all 0.4s linear;
+
+  -moz-transition: all 0.4s linear;
+
+  -o-transition: all 0.4s linear;
+
+  cursor: pointer;
+
+  opacity: 0;
+}
+
+.flagOverlay h2 {
+  color: #fff;
+
+  text-align: center;
+
+  position: relative;
+
+  top: 40%;
+
+  text-shadow: 2px 2px 2px #68686891;
+
+  font-weight: bold;
+}
+
+.sectionTittle h6 {
+  color: #9f1619;
+
+  position: relative;
+
+  display: inline-block;
+
+  text-transform: capitalize;
+}
+
+.sectionTittle h6:after,
+.sectionTittle h6:before {
+  position: absolute;
+
+  content: "";
+
+  width: 50px;
+
+  height: 3px;
+
+  background: #9f1619;
+
+  top: 50%;
+}
+
+.sectionTittle h6:after {
+  right: 105%;
+}
+
+.sectionTittle h6:before {
+  left: 105%;
+}
+
+
+/* Learn About Flags End */
+
+
+/* Guess Flags */
+
+
+.customRadio{display: none;}
+
+.customLableWimage {
+
+width: 100%;
+
+height: 220px;
+
+display: inline-block;
+
+margin-right: 5px;
+
+border: 2px solid #f9f9f9;
+
+cursor: pointer;
+
+margin-bottom: 10px;
+
+}
+
+.customLableWimage:hover{
+
+box-shadow: 0 0 2px 0 #9f1619;
+
+}
+
+.customLableWimage strong{
+
+background: #ccc;
+
+padding: 0px 10px;
+
+font-weight: 500;
+
+margin-right: 10px;
+
+}
+
+.customRadio[ans="t"]:checked + .customLableWimage{
+
+box-shadow: 0 0 2px 0 #1dcf71;
+
+border-color: #1DCF71;
+
+}
+
+.customRadio:checked + .customLableWimage{
+
+box-shadow: 0 0 2px 0 #EA4A4A;
+
+border-color: #EA4A4A;
+
+}
+
+/* Guess Flags End */
+
 /* breadcrumb */
 .breadcrumb-area {
   background-position: 0 center;
