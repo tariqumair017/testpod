@@ -7,8 +7,7 @@ import fileUpload from "express-fileupload";
 import flash from "connect-flash";
 import session from "express-session";
 import passport from "passport";
-import LocalStrategy from "passport-local";
-// import connectEnsureLogin from "connect-ensure-login";
+import LocalStrategy from "passport-local"; 
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import { fileURLToPath } from "url";  
@@ -22,7 +21,9 @@ const port = process.env.PORT || 9898;
 //Requring Routes
 import AdminRoutes from "./routes/admin.js"; 
 import ClientRoutes from "./routes/client.js"; 
-import IndexRoutes from "./routes/index.js"; 
+import SelectCountryFlagGameRoutes from "./routes/selectCountryFlagGame.js"; 
+import QuizRoutes from "./routes/quiz.js"; 
+// import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
  
 //mongoDB Connection with mongoose
 mongoose.set("strictQuery", false);
@@ -107,7 +108,9 @@ app.use(function(req, res, next){
 
 app.use(AdminRoutes); 
 app.use(ClientRoutes);
-app.use(IndexRoutes);
+app.use(SelectCountryFlagGameRoutes);
+app.use(QuizRoutes);
+// app.use(DrawFlagGameRoutes);
 
 app.use((req, res, next) => {
     // res.status(404).send(`<h2 style="text-align: center; margin-top: 30px"><u>Page Not Found</u></h2>`);
