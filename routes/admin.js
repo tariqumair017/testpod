@@ -56,8 +56,8 @@ router.get("/content-management", connectEnsureLogin.ensureLoggedIn("/login"), a
 }));
 
 // Analysis : Analysis-Quizzes 
-router.get("/web-analytics/quizzes", asyncHandler(async (req, res) => { 
-  const data = await QuizModel.find().populate("logs"); 
+router.get("/web-analytics/quizzes", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  const data = await QuizModel.find().populate("logs").populate("results"); 
   res.render("Admin/Analysis-Quizzes", { data });
 }));
 
