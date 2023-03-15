@@ -41,16 +41,14 @@ const SelectCountryFlagGameSchema = new mongoose.Schema({
       required: true
     }
   }],
-  logs: {
-    id: {
+  logs: { 
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Log"
-    }
+      ref: "Logs" 
   },
   results: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Result"
+      ref: "Results"
     }
   ]
 });
@@ -63,4 +61,4 @@ SelectCountryFlagGameSchema.post("findOneAndDelete", async function(doc){
   }
 })
 
-export default mongoose.model("SelectFlagQuestions", SelectCountryFlagGameSchema);
+export default mongoose.model("SelectCountryOfFlag", SelectCountryFlagGameSchema);

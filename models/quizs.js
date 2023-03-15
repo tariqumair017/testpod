@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import Log from "./logs.js";
 import Result from "./result.js";
 
-const QuestionSchema = new mongoose.Schema({
+const QuizSchema = new mongoose.Schema({
   quizName: {
     type: String,
     required: true
@@ -57,21 +57,19 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     required: true
     },
-  logs: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Log"
-    }
+  logs: { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Logs" 
   },
   results: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Result"
+      ref: "Results"
     }
   ]
 });
 
-QuestionSchema.post("findOneAndDelete", async function(doc){
+QuizSchema.post("findOneAndDelete", async function(doc){
   if(doc)
   {
       await Log.deleteMany({_id: {$in: doc.logs}});
@@ -79,4 +77,4 @@ QuestionSchema.post("findOneAndDelete", async function(doc){
   }
 })
 
-export default mongoose.model("Questions", QuestionSchema);
+export default mongoose.model("Quizs", QuizSchema);

@@ -77,7 +77,7 @@ async function showAns(numer, selectedOptions, id) {
   .then((data) => data);  
 
   var farzi = --numer;
-    if (getData.questions[farzi].correct.toLowerCase().replaceAll(/\s/g, "") == selectedOptions.value.toLowerCase().replaceAll(/\s/g, "")) 
+    if (getData.questions[farzi].correct.toLowerCase().replaceAll(/\s/g, "") == selectedOptions.value.toLowerCase().replaceAll(/\s/g, "") && previousAttempte != numer) 
     {
       optionSeletCorrect++; 
     }
@@ -91,7 +91,6 @@ async function showAns(numer, selectedOptions, id) {
 
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
-
  
 
 async function checkResult(id) {

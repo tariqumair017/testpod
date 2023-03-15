@@ -10,29 +10,22 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Quiz</th>
+        <th scope="col">views</th>
+        <th scope="col">Result</th>
       </tr>
     </thead>
     <tbody>
+      <% var count = 1%>
+      <%data.forEach(item => {%>
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row"><%=count%></th>
+        <td><%=item.quizName%></td>
+        <td><%=item.logs.views%></td>
+        <td><%=item.logs.views%></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      <%count++%>
+      <%})%>
     </tbody>
   </table>
 
