@@ -71,11 +71,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("collapseOne").classList.add("show")
       document.getElementById("add-flags-games").classList.add("active")
     }
+    else if(pathname == "/game-management/draw-flags-games"){
+      document.getElementById("quiz-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("draw-flags-games").classList.add("active")
+    }
     else if(pathname == "/game-management/manage-flags-games"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
       document.getElementById("manage-flags-games").classList.add("active")
-    }
+    } 
     else if(pathname == "/add-test"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseTwo").classList.add("show")

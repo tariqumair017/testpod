@@ -2,9 +2,9 @@
 
 <!--Container Main start-->
  <div class="application bg-light">
-    <h4>Add Draw Game</h4>
+    <h4>Add Draw Flag Game</h4>
     <%- include ('./partials/SuccessError'); -%>
-    <form class="add-quiz-form row needs-validation" action="/game-management/add-flags-games" method="POST" enctype="multipart/form-data" novalidate>
+    <form class="add-quiz-form row needs-validation" action="/game-management/draw-flags-games" method="POST" enctype="multipart/form-data" novalidate>
     <div class="row" >
       <div class="col-md-6">
         <input name="gameName" placeholder="Please Enter Game Name" type="text" class="form-control" id="validationTooltip03" required>
@@ -12,27 +12,39 @@
       <div class="col-md-6">
         <input name="gameDetail" placeholder="Please Enter Game Detail" type="text" class="form-control" id="validationTooltip03" required>
       </div>
-      </div>
+      <div class="col-md-6 mt-3">
+        <label for="validationTooltip03" class="form-label">Country Image</label>
+        <div class="add-quiz-state-image">
+            <input class="add-quiz-image-input formFile form-control" type="file" name="countryImg" onchange="preview()" required>
+            <button onclick="clearImage()"  style="width: 40px;background-color: #a8171a;color: white;" class="btn" type="button" ><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div> 
+    </div>
     <hr>
      <div id="setNewForm">
         <div class="form-data">
           <div class="row">
             <div class="col-md-6 position-relative mt-4">
-                <input name="arrangements" placeholder="Please Enter Country Name" type="text" class="form-control" id="validationTooltip03" required>
-                <div class="invalid-tooltip">
-                  Please provide a Country Name.
-                </div>
+                <select class="form-select" id="countryID" name="country" onchange="selectedOption()" required> 
+                    <option hidden >Please Select Country Name</option>  
+                </select> 
               </div>
               <div class="col-md-6 position-relative mt-4">
-                <input name="arrangements" placeholder="Please Enter Flags Details" type="text" class="form-control" id="validationTooltip03" required>
+                <input name="flagDetails" placeholder="Please Enter Flags Details" type="text" class="form-control" id="validationTooltip03" required>
                 <div class="invalid-tooltip">
                   Please provide a Flags Details.
                 </div>
               </div>
-            <div class="col-md-6 position-relative mt-4">
+              <div class="col-md-6 position-relative mt-4">
+                <label class="form-label"></label>
+                <select class="form-select" id="shapeID" name="shape" required> 
+                    <option hidden >Please Select Flag Shape</option>   
+                </select>  
+              </div>
+            <div class="col-md-6 position-relative mt-3">
                 <div class="container" style="padding: 0%;">
                     <label class="form-label">Select Colors</label>
-                    <select multiple data-multi-select-plugin required>
+                    <select multiple data-multi-select-plugin name="correctColors" required>
                         <option value="red">Red</option>
                         <option value="pink">Pink</option>
                         <option value="black">Black</option>
@@ -45,16 +57,21 @@
             </div>
             <div class="col-md-6 position-relative mt-4">
                 <div class="container" style="padding: 0%;">
-                    <label class="form-label">Select Arrangement</label>
-                    <select multiple data-multi-select-plugin required>
-                        <option value="Three Stripes">Three Stripes</option>
-                        <option value="Two Stripes">Two Stripes</option>
+                    <label for="validationTooltip03" class="form-label">Select Arrangement</label>
+                    <select class="form-select" id="arrangementID" name="arrangement" required> 
+                        <option hidden >Please Select Arrangement</option>                     
+                      <option value="Three Stripes">Three Stripes</option>
+                      <option value="Two Stripes">Two Stripes</option>
                     </select>
                 </div>
             </div>
-          <div class="col-md-6 position-relative mt-4" >
-            <input class="add-quiz-image-input form-control" type="file" name="flag" id="formFile" onchange="preview()" required>
-          </div>
+            <div class="col-md-6 position-relative mt-4">
+                <label for="flagUrl" class="form-label">Flag Url</label>
+                <input disabled name="flagDetails" placeholder="Flag Url" type="text" class="form-control" id="flagUrl" required>
+                <div class="invalid-tooltip">
+                  Please provide a Flag Url.
+                </div>
+            </div>
           </div>
           <hr>
           </div>
@@ -115,8 +132,8 @@
 </div>
 <!--Container Main end-->   
 <script src="/admin/js/addQuiz.js" ></script>
+<script src="/admin/js/drawFlagGame.js"></script>
 <script>
-
 
 // Initialize function, create initial tokens with itens that are already selected by the user
 function init(element) {

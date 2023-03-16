@@ -3,6 +3,7 @@ const router = Router();
 import passport from "passport"; 
 import asyncHandler from "express-async-handler";  
 import QuizModel from "../models/quizs.js";  
+import CountryFlagGame from "../models/selectCountryFlagGame.js"; 
 import connectEnsureLogin from "connect-ensure-login";
 import { Console } from "console";
 
@@ -45,11 +46,6 @@ router.get("/analytics", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandl
   res.render("Admin/Analytics");
 }));
 
-//Admin: Blog Management Page
-router.get("/blogs-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  res.render("Admin/BlogsManagement");
-}));
-
 //Admin: Content Management Page
 router.get("/content-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/ContentManagement");
@@ -57,13 +53,14 @@ router.get("/content-management", connectEnsureLogin.ensureLoggedIn("/login"), a
 
 // Analysis : Analysis-Quizzes 
 router.get("/web-analytics/quizzes", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  const data = await QuizModel.find().populate("logs").populate("results"); 
+  const data = await QuizModel.find().populate("logs").populate("results");  
   res.render("Admin/Analysis-Quizzes", { data });
 }));
 
 // Analysis : Analysis-Flag-Game 
 router.get("/web-analytics/flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  res.render("Admin/Analysis-Flag-Game");
+  const data = await CountryFlagGame.find().populate("logs").populate("results");
+  res.render("Admin/Analysis-Flag-Game", { data });
 }));
 
  

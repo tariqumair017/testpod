@@ -10,21 +10,29 @@ const drawFlagGameSchema = new mongoose.Schema({
   gameDetail: {
     type: String,
     required: true
-    }, 
+    },
+  countryImg: {
+    type: String,
+    required: true
+  },
   questions: [{
     country: {
-    type: String,
-    required: true
-    },
-    arrangement: {
-    type: String,
-    required: true
-    },
-    correctColors: [], 
-    questionDetails: {
       type: String,
       required: true
-    }
+    },
+    flagDetails: {
+      type: String,
+      required: true
+    },
+    correctColors: [],
+    arrangement: {
+      type: String,
+      required: true
+    },
+    flag: {
+      type: String,
+      required: true
+    },
   }],
   logs: { 
     type: mongoose.Schema.Types.ObjectId,

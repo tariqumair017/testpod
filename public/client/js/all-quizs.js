@@ -51,7 +51,7 @@ var previousAttempte;
 // document.getElementById("total-questions").innerHTML = "0" + correct.length;
 // document.getElementById("total-score").innerHTML = "00";
 
-async function showAns(numer, selectedOptions, id) {  
+async function showAns(numer, selectedOptions, id) {   
   if(previousAttempte != numer)
   {
     attempetedQuestions++;

@@ -13,22 +13,18 @@
         <th scope="col">Quiz</th>
         <th scope="col">views</th>
         <th scope="col">Completed</th>
-        <th scope="col">Incompleted</th>
+        <th scope="col">Incomplete</th>
       </tr>
     </thead>
     <tbody>
       <% var count = 1%>
       <%data.forEach(item => {%>    
-        <% var counterForComplete = 0, counterForInComplete = 0;%>
-       <%for(var i = 0; i < item.results.length; i++){%>
-          <%if(item.results[i].status == "Incomplete") {counterForInComplete++} else if(item.results[i].status == "complete"){counterForComplete++}%>
-       <%}%>
       <tr>
         <th scope="row"><%=count%></th>
         <td><%=item.quizName%></td>
-        <td><%=item.logs.views%></td>
-        <td><%=counterForComplete%></td>
-        <td><%=counterForInComplete%></td>
+        <td><%=item.logs?.views%></td>
+        <td><%=(item.results.filter(x => x.status == 'complete')).length%></td>
+        <td><%=(item.results.filter(x => x.status == 'Incomplete')).length%></td>
       </tr>
       <%count++%>
       <%})%>

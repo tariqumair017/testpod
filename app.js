@@ -23,7 +23,7 @@ import AdminRoutes from "./routes/admin.js";
 import ClientRoutes from "./routes/client.js"; 
 import SelectCountryFlagGameRoutes from "./routes/selectCountryFlagGame.js"; 
 import QuizRoutes from "./routes/quiz.js"; 
-// import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
+import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
  
 //mongoDB Connection with mongoose
 mongoose.set("strictQuery", false);
@@ -110,7 +110,7 @@ app.use(AdminRoutes);
 app.use(ClientRoutes);
 app.use(SelectCountryFlagGameRoutes);
 app.use(QuizRoutes);
-// app.use(DrawFlagGameRoutes);
+app.use(DrawFlagGameRoutes);
 
 app.use((req, res, next) => {
     // res.status(404).send(`<h2 style="text-align: center; margin-top: 30px"><u>Page Not Found</u></h2>`);
