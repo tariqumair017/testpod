@@ -204,7 +204,7 @@
             data-animation="fadeInLeft"
             data-delay=".4s"
           >
-            <img src="/client/img/features/about_img.svg" alt="img" />
+            <img src="/client/img/bg/mission-variation-02.svg" alt="img" />
           </div>
         </div>
       </div>
@@ -212,124 +212,6 @@
   </section>
 
   <!-- mission-area-end -->
-
-  <!-- FAQ-area-start -->
-
-  <section
-    id="about"
-    class="about-area about-p spacing p-relative"
-    style="
-      background: url(/client/img/features/about-bg-aliments.png) no-repeat;
-      background-position: center center;
-    "
-  >
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-          <div
-            class="about-content s-about-content wow fadeInRight animated"
-            data-animation="fadeInRight"
-            data-delay=".4s"
-          >
-            <div class="about-title second-atitle pb-25">
-              <h5>FAQ</h5>
-              <h2>Frequently Asked Questions</h2>
-              <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button
-                      class="accordion-button"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      Lorem ipsum dolor sit amet
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseOne"
-                    class="accordion-collapse collapse show"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div class="accordion-body">
-                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum
-                      dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button
-                      class="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo"
-                      aria-expanded="false"
-                      aria-controls="collapseTwo"
-                    >
-                    Lorem ipsum dolor sit amet
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseTwo"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="headingTwo"
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div class="accordion-body">
-                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum
-                      dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button
-                      class="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree"
-                      aria-expanded="false"
-                      aria-controls="collapseThree"
-                    >
-                    Lorem ipsum dolor sit amet
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseThree"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="headingThree"
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div class="accordion-body">
-                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum
-                      dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <p style="line-height: 28px"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ-area end -->
 
   <!-- Vision-area-start -->
 
@@ -349,7 +231,7 @@
             data-animation="fadeInLeft"
             data-delay=".4s"
           >
-            <img src="/client/img/features/about_img.svg" alt="img" />
+            <img src="/client/img/bg/OurVision.svg" alt="img" />
           </div>
         </div>
 
@@ -359,7 +241,7 @@
             data-animation="fadeInRight"
             data-delay=".4s"
           >
-            <div class="about-title second-atitle pb-25">
+            <div class="about-title second-atitle">
               <h5>Vision</h5>
               <h2>Free DMV Practice Tests for Success</h2>
             </div>
@@ -416,15 +298,17 @@
               background-position: center;
             "
           >
-            <a
-              href="#"
-              class="video-i popup-video"
-            >
+            <a id="play-video" class="video-i popup-video">
               <img
                 src="/client/img/video/play.svg"
                 alt="img"
                 class="active-icon"
             /></a>
+            <video class="about-video" width="100%" style="border-radius: 10px;" controls>
+              <source src="/client/img/video/Testpodfinalvideo.mp4" type="video/mp4">
+              <source src="mov_bbb.ogg" type="video/ogg">
+              Your browser does not support HTML video.
+            </video>
           </div>
         </div>
       </div>
@@ -548,7 +432,126 @@
     </div>
   </section>
   <!-- testimonial-area-end -->
+
+  <!-- FAQ-area-start -->
+
+  <section
+    id="about"
+    class="about-area about-p spacing p-relative"
+    style="
+      background: url(/client/img/features/about-bg-aliments.png) no-repeat;
+      background-position: center center;
+    "
+  >
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div
+            class="about-content s-about-content wow fadeInRight animated"
+            data-animation="fadeInRight"
+            data-delay=".4s"
+          >
+            <div class="about-title second-atitle">
+              <h5>FAQ</h5>
+              <h2>Frequently Asked Questions</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button
+                      class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse show"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum
+                      dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum
+                      dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum
+                      dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p style="line-height: 28px"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ-area end -->
 </main>
 <!-- main-area-end -->
 
 <script src="/client/js/about.js"></script>
+<script src="/client/js/playVideo.js"

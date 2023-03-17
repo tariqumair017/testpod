@@ -7,8 +7,7 @@ import fileUpload from "express-fileupload";
 import flash from "connect-flash";
 import session from "express-session";
 import passport from "passport";
-import LocalStrategy from "passport-local";
-// import connectEnsureLogin from "connect-ensure-login";
+import LocalStrategy from "passport-local"; 
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import { fileURLToPath } from "url";  
@@ -16,13 +15,16 @@ import methodOverride from "method-override";
 import Admin from "./models/admin.js";
 const app = express();
 const { urlencoded } = bodyParser;
-const port = process.env.PORT || 3000;
-
+const port = process.env.PORT || 9898;  
+ 
  
 //Requring Routes
 import AdminRoutes from "./routes/admin.js"; 
 import ClientRoutes from "./routes/client.js"; 
-import IndexRoutes from "./routes/index.js"; 
+import SelectCountryFlagGameRoutes from "./routes/selectCountryFlagGame.js"; 
+import QuizRoutes from "./routes/quiz.js"; 
+import DrawNewFlagRoutes from "./routes/drawNewFlag.js"; 
+import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
  
 //mongoDB Connection with mongoose
 mongoose.set("strictQuery", false);
@@ -42,16 +44,17 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(flash());
 
+
+// PASSPORT CONFIGURATION
 app.use(session({
     secret: "This is My UXH First project with the name testpod",
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60 * 60 * 1000 }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
-passport.use(new LocalStrategy(async function verify(username, password, done) {   
+//For Admin
+passport.use('Admin', new LocalStrategy(async function verify(username, password, done) {   
       
     const user = await Admin.findOne({username: username}); 
 
@@ -74,28 +77,42 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
         return done(null, false, {message: "This User is Not Regictered"});
     } 
 }));
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function(Admin, done) {
     process.nextTick(function() {
-        done(null, user);
+        done(null, Admin);
     });
 });  
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function(Admin, done) {
     process.nextTick(function() {
-      return done(null, user);
+      return done(null, Admin);
     });
 });
 
-app.use(function(req, res, next){
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Server cache clear
+app.use(function(req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    next();
+});
+
+// Local Storage variables
+app.use(function(req, res, next){
     res.locals.currentUser = req.user; 
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.newResultIDForGame = req.session.newResultIDForGame;
+    res.locals.newResultIDForQuiz = req.session.newResultIDForQuiz;
     next();
 });
 
 app.use(AdminRoutes); 
 app.use(ClientRoutes);
-app.use(IndexRoutes);
+app.use(SelectCountryFlagGameRoutes);
+app.use(QuizRoutes);
+app.use(DrawNewFlagRoutes);
+app.use(DrawFlagGameRoutes);
 
 app.use((req, res, next) => {
     // res.status(404).send(`<h2 style="text-align: center; margin-top: 30px"><u>Page Not Found</u></h2>`);

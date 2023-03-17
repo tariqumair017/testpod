@@ -82,7 +82,7 @@
               type="radio"
               value="<%=item.optionA%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionA%></h6>
           </label>
@@ -91,7 +91,7 @@
               type="radio"
               value="<%=item.optionB%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionB%></h6>
           </label>
@@ -100,7 +100,7 @@
               type="radio"
               value="<%=item.optionC%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionC%></h6>
           </label>
@@ -109,13 +109,15 @@
               type="radio"
               value="<%=item.optionD%>"
               name="p<%=count%>"
-              onclick="showAns('<%=count%>',this)"
+              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
             />
             <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
           </label>
+          <%if(item.hint){%>
           <div id="all-quiz-discription">
             <p><%=item.hint%></p>
           </div>
+          <%}%>
         </div> 
           <%count++%>  
         <%})%>
@@ -128,7 +130,7 @@
     <div class="all-quiz-right-part">
       <div class="all-quiz-progress">
         <h5>Your Progress</h5>
-        <p>
+        <p class="your-quiz-progress-detail" >
           The New Jersey DMV Parking Practical Test is designed to evaluate a driver's ability to properly and safely park a vehicle. This test is commonly required for individuals seeking a driver's license in New Jersey, as parallel parking and other parking maneuvers are an essential part of driving on busy city streets. During the test, drivers must demonstrate their ability to perform various parking maneuvers, including parallel parking, angle parking, and parking on hills.
         </p>
       </div>
