@@ -50,15 +50,15 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
       <div class="all-quiz-upper-section-part-right">
         <div class="all-quiz-upper-section-scorus-card">
           <p>Question</p>
-          <h5 class="draw-total-questions">05</h5>
+          <h5 class="guess-total-questions">05</h5>
         </div>
         <div class="all-quiz-upper-section-scorus-card">
           <p>Correct</p>
-          <h5 class="draw-total-correct">--</h5>
+          <h5 class="guess-total-correct">--</h5>
         </div>
         <div class="all-quiz-upper-section-scorus-card">
           <p>In-Correct</p>
-          <h5 class="draw-total-in-correct">--</h5>
+          <h5 class="guess-total-in-correct">--</h5>
         </div>
       </div>
     </div>
@@ -66,34 +66,61 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
 
   <div class="all-quizzes">
     <div class="all-quiz-left-part">
-      <div class="row justify-content-center align-items-center">
+      <div class="row justify-content-center align-items-center guess-check">
 
-        <div class="col-md-12 text-center mb-3">
+        <div class="col-md-12 text-center mb-3 questions-name">
 
           <span style="font-size: 30px;font-weight: bold;color: #a8171a;">Can you guess flag of Japan?</span>
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 option-left">
 
-          <input class="customRadio" ans="t" type="radio" name="q1" id="japan">
+          <!-- <input class="customRadio" ans="correct" type="radio" name="q1" id="japan">
 
-          <label class="flag-icon-background flag-icon-jp customLableWimage" for="japan"></label>
-
-        </div>
-
-        <div class="col-md-6">
-
-          <input class="customRadio" type="radio" name="q1" id="Bangladesh">
-
-          <label class="flag-icon-background flag-icon-bd customLableWimage" for="Bangladesh"></label>
+          <label class="flag-icon-background flag-icon-jp customLableWimage" for="japan"></label> -->
 
         </div>
 
+        <div class="col-md-6 option-right">
+
+          <!-- <input class="customRadio" ans="incorrect" type="radio" name="q1" id="Bangladesh">
+
+          <label class=" flag-icon-background flag-icon-bd customLableWimage" for="Bangladesh"></label> -->
+
+        </div>
+      </div>
+      <div class="result_box d-none">
+        <canvas
+          id="myChart"
+          style="
+            width: 100%;
+            display: block;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #ccc;
+            padding: 15px;
+          "
+        ></canvas>
       </div>
 
       <!--MCQ ends here-->
-
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 text-center">
+          <button
+            class="btn btn ss-btn next_btn d-none"
+            style="width: 200px"
+          >
+            Next Question ➜
+          </button>
+          <button
+                class="btn btn-danger result_btn d-none"
+                style="width: 200px; margin-top: 10px"
+              >
+                Show Result
+              </button>
+        </div>
+      </div>
     </div>
     <div class="all-quiz-right-part">
       <div class="all-quiz-progress">
@@ -102,6 +129,10 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
             class="total_que"
             style="font-size: 30px; font-weight: bold"
           ></span>
+          <span
+            class="time_up d-none"
+            style="font-size: 30px; font-weight: bold"
+          >Time Up</span>
           <h2
             id="testDuration"
             style="font-size: 30px; font-weight: bold; color: #eb2d00"

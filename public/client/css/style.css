@@ -8059,7 +8059,7 @@ label {
 
   }
 
-  .customRadio[ans="t"]:checked + .customLableWimage{
+  .customRadio[ans="correct"]:checked + .customLableWimage{
 
   box-shadow: 0 0 2px 0 #1dcf71;
 
@@ -8067,7 +8067,11 @@ label {
 
   }
 
-  .customRadio:checked + .customLableWimage{
+  .guess-check.active{
+    pointer-events: none;
+  }
+
+  .customRadio[ans="incorrect"]:checked + .customLableWimage{
 
   box-shadow: 0 0 2px 0 #EA4A4A;
 

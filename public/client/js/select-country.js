@@ -289,10 +289,6 @@ result_btn.onclick = async () => {
   time_up.classList.add("d-none");
 
   document.querySelector("#testDuration").classList.add("d-none");
-
-  console.log(userScore,"total_correct")
-  console.log(questions,"questions")
-  console.log(que_numb);
  
   //Post Api  
   
