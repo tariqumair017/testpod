@@ -68,22 +68,34 @@
     <div class="game-slider-start spacing">
       <div class="game-slider-container">
         <swiper-container class="mySwiper" pagination="false" slides-per-view="1" autoplay free-mode="true">
-          <%data.forEach(val => {%>
           <swiper-slide>
             <div class="game-slider-inner-container">
               <div>
-                <h2><%=val.gameName%></h2> 
+                <h2>Guess Country</h2> 
                 <h5 style="color: #a8171a">
                   Can You Match Flag With Its Country?
                 </h5>
               </div>
               <div>
-                <a onclick="storeLog('<%=val._id%>')" href="/game/flag_game/<%=val._id%>"><button class="btn ss-btn">Play
+                <a href="/guess-country"><button class="btn ss-btn">Play
                     Game</button></a>
               </div>
             </div>
           </swiper-slide>
-          <%})%>
+          <swiper-slide>
+            <div class="game-slider-inner-container">
+              <div>
+                <h2>Draw Country</h2> 
+                <h5 style="color: #a8171a">
+                  Can You Match Flag With Its Country?
+                </h5>
+              </div>
+              <div>
+                <a href="/guess-country"><button class="btn ss-btn">Play
+                    Game</button></a>
+              </div>
+            </div>
+          </swiper-slide>
           <!-- <swiper-slide>
             <div class="game-slider-inner-container">
               <div>

@@ -1,144 +1,144 @@
-let paintFlags = [
-  {
-    numb: 1,
+  let paintFlags = [
+    {
+      numb: 1,
 
-    question: "Germany",
+      question: "Germany",
 
-    image: "https://flagpedia.net/data/flags/h80/de.webp",
+      image: "https://flagpedia.net/data/flags/h80/de.webp",
 
-    arrangement: "threeStripesVert",
+      arrangement: "threeStripesVert",
 
-    allowedColors: ["black", "red", "orange"],
+      allowedColors: ["black", "red", "orange"],
 
-    colorPalette: ["red", "green", "yellow", "black", "orange", "blue"],
-  },
+      colorPalette: ["red", "green", "yellow", "black", "orange", "blue"],
+    },
 
-  {
-    numb: 2,
+    {
+      numb: 2,
 
-    question: "Ukraine",
+      question: "Ukraine",
 
-    image: "https://flagpedia.net/data/flags/h80/ua.webp",
+      image: "https://flagpedia.net/data/flags/h80/ua.webp",
 
-    arrangement: "twoStripesVert",
+      arrangement: "twoStripesVert",
 
-    allowedColors: ["blue", "yellow"],
+      allowedColors: ["blue", "yellow"],
 
-    colorPalette: ["blue", "green", "yellow", "black", "orange", "pink"],
-  },
+      colorPalette: ["blue", "green", "yellow", "black", "orange", "pink"],
+    },
 
-  {
-    numb: 3,
+    {
+      numb: 3,
 
-    question: "Netherlands",
+      question: "Netherlands",
 
-    image: "https://flagpedia.net/data/flags/h80/nl.webp",
+      image: "https://flagpedia.net/data/flags/h80/nl.webp",
 
-    arrangement: "threeStripesVert",
+      arrangement: "threeStripesVert",
 
-    allowedColors: ["red", "white", "blue"],
+      allowedColors: ["red", "white", "blue"],
 
-    colorPalette: ["red", "green", "white", "pink", "orange", "blue"],
-  },
+      colorPalette: ["red", "green", "white", "pink", "orange", "blue"],
+    },
 
-  {
-    numb: 4,
+    {
+      numb: 4,
 
-    question: "Austria",
+      question: "Austria",
 
-    image: "https://flagpedia.net/data/flags/h80/at.webp",
+      image: "https://flagpedia.net/data/flags/h80/at.webp",
 
-    arrangement: "threeStripesVert",
+      arrangement: "threeStripesVert",
 
-    allowedColors: ["red", "white", "red"],
+      allowedColors: ["red", "white", "red"],
 
-    colorPalette: ["red", "green", "white", "yellow", "grey", "blue"],
-  },
+      colorPalette: ["red", "green", "white", "yellow", "grey", "blue"],
+    },
 
-  {
-    numb: 5,
+    {
+      numb: 5,
 
-    question: "Indonasia",
+      question: "Indonasia",
 
-    image: "https://flagpedia.net/data/flags/h80/id.webp",
+      image: "https://flagpedia.net/data/flags/h80/id.webp",
 
-    arrangement: "twoStripesVert",
+      arrangement: "twoStripesVert",
 
-    allowedColors: ["red", "white"],
+      allowedColors: ["red", "white"],
 
-    colorPalette: ["red", "green", "white", "yellow", "pink", "blue"],
-  },
+      colorPalette: ["red", "green", "white", "yellow", "pink", "blue"],
+    },
 
-  {
-    numb: 6,
+    {
+      numb: 6,
 
-    question: "Romania",
+      question: "Romania",
 
-    image: "https://flagpedia.net/data/flags/h80/ro.webp",
+      image: "https://flagpedia.net/data/flags/h80/ro.webp",
 
-    arrangement: "threeStripesHoriz",
+      arrangement: "threeStripesHoriz",
 
-    allowedColors: ["blue", "yellow", "red"],
+      allowedColors: ["blue", "yellow", "red"],
 
-    colorPalette: ["red", "green", "black", "yellow", "pink", "blue"],
-  },
+      colorPalette: ["red", "green", "black", "yellow", "pink", "blue"],
+    },
 
-  {
-    numb: 7,
+    {
+      numb: 7,
 
-    question: "Hungary",
+      question: "Hungary",
 
-    image: "https://flagpedia.net/data/flags/h80/hu.webp",
+      image: "https://flagpedia.net/data/flags/h80/hu.webp",
 
-    arrangement: "threeStripesVert",
+      arrangement: "threeStripesVert",
 
-    allowedColors: ["#CD2A3E", "white", "#436F4D"],
+      allowedColors: ["#CD2A3E", "white", "#436F4D"],
 
-    colorPalette: ["#CD2A3E", "grey", "black", "yellow", "#436F4D", "white"],
-  },
+      colorPalette: ["#CD2A3E", "grey", "black", "yellow", "#436F4D", "white"],
+    },
 
-  {
-    numb: 8,
+    {
+      numb: 8,
 
-    question: "Colombia",
+      question: "Colombia",
 
-    image: "https://flagpedia.net/data/flags/h80/co.webp",
+      image: "https://flagpedia.net/data/flags/h80/co.webp",
 
-    arrangement: "threeStripesVert",
+      arrangement: "threeStripesVert",
 
-    allowedColors: ["yellow", "blue", "red"],
+      allowedColors: ["yellow", "blue", "red"],
 
-    colorPalette: ["red", "grey", "black", "yellow", "green", "blue"],
-  },
+      colorPalette: ["red", "grey", "black", "yellow", "green", "blue"],
+    },
 
-  {
-    numb: 9,
+    {
+      numb: 9,
 
-    question: "France",
+      question: "France",
 
-    image: "https://flagpedia.net/data/flags/h80/fr.webp",
+      image: "https://flagpedia.net/data/flags/h80/fr.webp",
 
-    arrangement: "threeStripesHoriz",
+      arrangement: "threeStripesHoriz",
 
-    allowedColors: ["blue", "white", "red"],
+      allowedColors: ["blue", "white", "red"],
 
-    colorPalette: ["red", "pink", "black", "yellow", "white", "blue"],
-  },
+      colorPalette: ["red", "pink", "black", "yellow", "white", "blue"],
+    },
 
-  {
-    numb: 10,
+    {
+      numb: 10,
 
-    question: "Italy",
+      question: "Italy",
 
-    image: "https://flagpedia.net/data/flags/h80/it.webp",
+      image: "https://flagpedia.net/data/flags/h80/it.webp",
 
-    arrangement: "threeStripesHoriz",
+      arrangement: "threeStripesHoriz",
 
-    allowedColors: ["green", "white", "red"],
+      allowedColors: ["green", "white", "red"],
 
-    colorPalette: ["red", "pink", "green", "yellow", "white", "black"],
-  },
-];
+      colorPalette: ["red", "pink", "green", "yellow", "white", "black"],
+    },
+  ];
 
 //audios
 
@@ -203,10 +203,12 @@ function startQuiz() {
   //   paintFlags.length;
 }
 
+
 // getting questions and options from array
 
 draw_total_questions.innerHTML = paintFlags.length
 
+var queNumber = 0;
 function showQuetions(index) {
   //set attribute in flag canvas
 
@@ -214,7 +216,7 @@ function showQuetions(index) {
 
   flag_canvas.setAttribute("arrangement", paintFlags[index].arrangement);
 
-  let queNumber = index + 1;
+  queNumber = index+1
 
   let questionHeadingHtml =
     "<h2>" +
@@ -245,6 +247,11 @@ function showQuetions(index) {
   color_palette.innerHTML = colorPaletteHtml;
 }
 
+console.log(queNumber,"queNumberqueNumber")
+if(queNumber == paintFlags.length){
+console.log("hello")
+}
+
 //allow user to select flag arrangement
 
 
@@ -257,7 +264,6 @@ function choseFlagArrangemnet(x) {
   var defaultArrangment = flag_canvas.getAttribute("arrangement");
 
   if (paintingSarted === "false") {
-    console.log("not started");
 
     if (x === defaultArrangment) {
       if (defaultArrangment === "threeStripesVert") {
@@ -325,7 +331,6 @@ function setColorAttributeToCanvasChilds(colors) {
   var getArrangement;
 
   for (var i = 0; i < flagLayers; i++) {
-    console.log(colors[i]);
 
     flag_canvas.children[i].setAttribute("allowedColor", colors[i]);
   }
@@ -339,13 +344,11 @@ function getColor(color) {
   if (flag_canvas.getAttribute("shape") === "true") {
     bgColor = color;
 
-    console.log("selected color " + bgColor);
 
     //animate arrow's step three
 
     animateStepThree();
   } else if (flag_canvas.getAttribute("shape") === "false") {
-    console.log("false");
 
     //animate arrow's step one
 
@@ -366,7 +369,6 @@ function fillBgColor(x) {
 
   var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
 
-  console.log(allowedColor);
 
   paintAudio.play();
 
@@ -416,33 +418,29 @@ function checkIfFlagPaintingIsComplete(x) {
 
   var boolFilled = document.getElementById(x).getAttribute("filled");
 
+
   var layerCounted = document.getElementById(x).getAttribute("counted");
+
 
   if (boolFilled === "true" && layerCounted != "true") {
     rightFilledLayers += 1;
 
     document.getElementById(x).setAttribute("counted", "true");
 
-    console.log("Correct Filled layers: " + rightFilledLayers);
 
-    console.log("me true");
   } else if (boolFilled === "false" && layerCounted != "true") {
     wrongFilledLayers += 1;
 
     document.getElementById(x).setAttribute("counted", "true");
 
-    console.log("Wrong Filled layers: " + wrongFilledLayers);
 
-    console.log("me wrong");
   }
 
-  console.log(rightFilledLayers,"==",flagLayersLength)
   if (rightFilledLayers === flagLayersLength) {
     userScore += 1; //upgrading score value with 1
 
     draw_total_correct.innerHTML = userScore;
 
-    console.log("All Filled");
 
     callRightAnsDialog();
 
@@ -451,12 +449,10 @@ function checkIfFlagPaintingIsComplete(x) {
 
   var totalFilledLayers = rightFilledLayers + wrongFilledLayers;
 
-  console.log("Total Filled layers: " + totalFilledLayers);
 
   if (wrongFilledLayers != 0 && totalFilledLayers === flagLayersLength) {
     callTryAgainDialog();
 
-    console.log("All Filled");
 
     animateStepOne();
   }
@@ -483,7 +479,6 @@ function callNextQuestion() {
 
   clearInterval(tryAgainInterval);
 
-  console.log("callNextQuestion called");
 
   flag_canvas.style.backgroundColor = "#fff";
 
@@ -513,7 +508,6 @@ function callSameQuestion() {
 
   wrongFilledLayers = 0;
 
-  console.log("callSameQuestion called");
 
   flag_canvas.style.backgroundColor = "#fff";
 
@@ -522,7 +516,6 @@ function callSameQuestion() {
   clearInterval(tryAgainInterval);
 
   if (que_count > 0) {
-    console.log("que count" + que_count);
 
     que_count;
 
@@ -589,7 +582,6 @@ function totalTestTime(min, sec) {
 
   var totalTime = min * 60 + sec * 1;
 
-  console.log("total time" + totalTime);
 
   circleSvg.style.animation = `Loop ${totalTime}s linear 1s`;
 
@@ -630,7 +622,6 @@ function totalTestTime(min, sec) {
 
         circleSvg.style.animation = "none";
 
-        console.log("Test complete!");
 
         clearInterval(completeTestInterval);
 
@@ -651,7 +642,6 @@ function totalTestTime(min, sec) {
 function tryAgainTime(min, sec) {
   var totalTime = min * 60 + sec * 1;
 
-  console.log("total time" + totalTime);
 
   if (min != "" || sec != "") {
     tryAgainInterval = setInterval(() => {
@@ -668,7 +658,6 @@ function tryAgainTime(min, sec) {
       if (totalTime > 0) {
         totalTime--;
       } else {
-        console.log("Try again time completed");
 
         closeDialog();
 
@@ -687,7 +676,6 @@ function tryAgainTime(min, sec) {
 function rightAnsTime(min, sec) {
   var totalTime = min * 60 + sec * 1;
 
-  console.log("total time" + totalTime);
 
   if (min != "" || sec != "") {
     rightAnsInterval = setInterval(() => {
@@ -704,7 +692,6 @@ function rightAnsTime(min, sec) {
       if (totalTime > 0) {
         totalTime--;
       } else {
-        console.log("Right ans time completed");
 
         closeDialog();
 
@@ -717,6 +704,54 @@ function rightAnsTime(min, sec) {
 
   return totalTime;
 }
+
+  questions_box.classList.add("d-none");
+
+result_box.classList.remove("d-none");
+
+result_btn.classList.add("d-none");
+
+time_up.classList.add("d-none");
+
+document.querySelector("#testDuration").classList.add("d-none");
+
+//Post Api  
+
+
+var valRight = (userScore / questions.length) * 360;
+
+var valWrong = 360 - valRight;
+
+
+var xValues = ["Right", "Wrong"];
+
+var yValues = [valRight, valWrong];
+
+var barColors = ["#1DCF71", "#EA4A4A"];
+
+new Chart("DrawMyChart", {
+  type: "pie",
+
+  data: {
+    labels: xValues,
+
+    datasets: [
+      {
+        backgroundColor: barColors,
+
+        data: yValues,
+      },
+    ],
+  },
+
+  options: {
+    title: {
+      display: true,
+
+      text: "You got " + userScore + " out of " + questions.length,
+    },
+  },
+});
 
 function callResultScreen() {
   que_heading.classList.add("d-none");

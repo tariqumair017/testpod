@@ -298,12 +298,17 @@
               background-position: center;
             "
           >
-            <a href="#" class="video-i popup-video">
+            <a id="play-video" class="video-i popup-video">
               <img
                 src="/client/img/video/play.svg"
                 alt="img"
                 class="active-icon"
             /></a>
+            <video class="about-video" width="100%" style="border-radius: 10px;" controls>
+              <source src="/client/img/video/Testpodfinalvideo.mp4" type="video/mp4">
+              <source src="mov_bbb.ogg" type="video/ogg">
+              Your browser does not support HTML video.
+            </video>
           </div>
         </div>
       </div>
@@ -549,3 +554,4 @@
 <!-- main-area-end -->
 
 <script src="/client/js/about.js"></script>
+<script src="/client/js/playVideo.js"

@@ -71,6 +71,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("collapseOne").classList.add("show")
       document.getElementById("add-flags-games").classList.add("active")
     }
+    else if(pathname == "/game-management/draw-new-flags"){
+      document.getElementById("quiz-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("draw-new-flags").classList.add("active")
+    }
     else if(pathname == "/game-management/draw-flags-games"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")

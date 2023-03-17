@@ -212,54 +212,6 @@
             <div id="drawCheck" class="checkmark draw d-none"></div>
           </div>
         </div>
-        <div class="col-md-2 p-0" id="scoreWrapper">
-    
-          <h2
-            style="
-              color: #fff;
-              font-weight: 600;
-              font-size: 15px;
-              text-align: center;
-              margin-top: 10px;
-            "
-          >
-            Your Score
-          </h2>
-    
-          <p
-            id="txtWarnArrangment"
-            style="
-              color: #fff;
-              font-size: 12px;
-              line-height: 15px;
-              border: 1px solid #ccc;
-              padding: 3px;
-              border-radius: 4px;
-              box-shadow: 2px 2px 4px #cccccc87;
-              transition: all 1s ease-in-out;
-              display: none;
-            "
-          >
-            You can't change arrangement at this moment!
-          </p>
-    
-          <p
-            id="txtWrongArrangment"
-            style="
-              color: #fff;
-              font-size: 12px;
-              line-height: 15px;
-              border: 1px solid #ccc;
-              padding: 3px;
-              border-radius: 4px;
-              box-shadow: 2px 2px 4px #cccccc87;
-              transition: all 1s ease-in-out;
-              display: none;
-            "
-          >
-            Please select right arrangement!
-          </p>
-        </div>
       </div>
       <div class="paint-game-color">
         <ul class="nav color_palette"></ul>
@@ -267,6 +219,19 @@
       <button class="btn ss-btn btn_I_dont_know" type="button">
         I don't know
       </button>
+      <div class="result_box d-none">
+        <canvas
+          id="DrawMyChart"
+          style="
+            width: 100%;
+            display: block;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #ccc;
+            padding: 15px;
+          "
+        ></canvas>
+      </div>
     </div>
     <div class="all-quiz-right-part">
       <div class="all-quiz-progress">

@@ -11,6 +11,19 @@ router.get("/", asyncHandler(async (req, res) => {
     res.render("Client/index", {data});
 }));
 
+//Client Guess-Country page
+router.get("/guess-country", asyncHandler(async (req, res) => { 
+    const data = await CountryFlagGame.find({}); 
+    res.render("Client/Guess-Country", {data});
+}));
+
+//Client Guess-Country by id page
+router.get("/guess-country/:name/:id", asyncHandler(async (req, res) => { 
+    req.session.newResultIDForGame = undefined;
+    const data = await CountryFlagGame.findById(req.params.id); 
+    res.render("Client/"+req.params.name, { data });
+}));
+
 //Client GuessFlags
 router.get("/guess-flags", asyncHandler(async (req, res) => { 
     res.render("Client/Guess-Flags");

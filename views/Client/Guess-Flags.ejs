@@ -30,29 +30,51 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
 </div>
 </section>
 
-
-
-<div class="container-fluid px-5">
-
-    <div class="sectionTittle text-center pt-5 pb-3">
-
-       <h2>Select Country Name</h2>
-
-       <h6>Can you match country with its flag?</h6> 
-
+<section class="all-quiz">
+  <div class="all-quiz-upper-section">
+    <div class="all-quiz-upper-section-header">
+      <h6>New jersey Flags Examination</h6>
+      <h6>DMV Permit Test #1</h6>
     </div>
+    <div class="all-quiz-upper-section-inner">
+      <div class="all-quiz-upper-section-part-left">
+        <h4>FREE New Jersey DMV Practical Test</h4>
+        <p>
+          Anyone operating a motor vehicle or motor-driven bike on New Jersey's
+          public streets or highways must have a valid driver's licence or
+          learner's permit. New Jersey's DMV practise examinations include
+          questions based on the New Jersey Driver Handbook's most essential
+          traffic signals and..
+        </p>
+      </div>
+      <div class="all-quiz-upper-section-part-right">
+        <div class="all-quiz-upper-section-scorus-card">
+          <p>Question</p>
+          <h5 class="draw-total-questions">05</h5>
+        </div>
+        <div class="all-quiz-upper-section-scorus-card">
+          <p>Correct</p>
+          <h5 class="draw-total-correct">--</h5>
+        </div>
+        <div class="all-quiz-upper-section-scorus-card">
+          <p>In-Correct</p>
+          <h5 class="draw-total-in-correct">--</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <!--MCQ starts here-->
-
+  <div class="all-quizzes">
+    <div class="all-quiz-left-part">
       <div class="row justify-content-center align-items-center">
 
         <div class="col-md-12 text-center mb-3">
 
-          <span style="font-size: 30px;font-weight: bold;color: #a8171a;"><span style="color: #cacaca;">01<span style="color: #e9e9e9;font-size: 15px;margin-right: 10px;">/10</span></span>Can you guess flag of Japan?</span>
+          <span style="font-size: 30px;font-weight: bold;color: #a8171a;">Can you guess flag of Japan?</span>
 
         </div>
 
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6">
 
           <input class="customRadio" ans="t" type="radio" name="q1" id="japan">
 
@@ -60,7 +82,7 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
 
         </div>
 
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6">
 
           <input class="customRadio" type="radio" name="q1" id="Bangladesh">
 
@@ -72,70 +94,32 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
 
       <!--MCQ ends here-->
 
-      <!--MCQ starts here-->
-
-      <div class="row justify-content-center align-items-center">
-
-        <div class="col-md-12 text-center mb-3">
-
-          <span style="font-size: 30px;font-weight: bold;color: #a8171a;"><span style="color: #cacaca;">02<span style="color: #e9e9e9;font-size: 15px;margin-right: 10px;">/10</span></span>Can you guess flag of Australia?</span>
-
-        </div>
-
-        <div class="col-md-3 mb-3">
-
-          <input class="customRadio" ans="t" type="radio" name="q2" id="Australia">
-
-          <label class="flag-icon-background flag-icon-au customLableWimage" for="Australia"></label>
-
-        </div>
-
-        <div class="col-md-3 mb-3">
-
-          <input class="customRadio" type="radio" name="q2" id="NewZealand">
-
-          <label class="flag-icon-background flag-icon-nz customLableWimage" for="NewZealand"></label>
-
-        </div>
-
-      </div>
-
-      <!--MCQ ends here-->
-
-      <!--MCQ starts here-->
-
-      <div class="row justify-content-center align-items-center">
-
-        <div class="col-md-12 text-center mb-3">
-
-          <span style="font-size: 30px;font-weight: bold;color: #a8171a;"><span style="color: #cacaca;">01<span style="color: #e9e9e9;font-size: 15px;margin-right: 10px;">/10</span></span>Can you guess flag of Italy?</span>
-
-        </div>
-
-        <div class="col-md-3 mb-3">
-
-          <input class="customRadio" type="radio" name="q3" id="Mexico">
-
-          <label class="flag-icon-background flag-icon-mx customLableWimage" for="Mexico"></label>
-
-        </div>
-
-        <div class="col-md-3 mb-3">
-
-          <input class="customRadio" ans="t" type="radio" name="q3" id="Italy">
-
-          <label class="flag-icon-background flag-icon-it customLableWimage" for="Italy"></label>
-
-        </div>
-
-      </div>
-
-      <!--MCQ ends here-->
-
-      
-
     </div>
+    <div class="all-quiz-right-part">
+      <div class="all-quiz-progress">
+        <div class="progress-timer">
+          <span
+            class="total_que"
+            style="font-size: 30px; font-weight: bold"
+          ></span>
+          <h2
+            id="testDuration"
+            style="font-size: 30px; font-weight: bold; color: #eb2d00"
+          >
+            --
+          </h2>
+        </div>
+        <h5>Your Progress</h5>
+        <div class="your-quiz-progress-detail">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
- </div>
-
- <script src="/client/js/about.js"></script>
+<script src="/client/js/about.js"></script>
+<script src="/client/js/guess-flags.js" ></script>
