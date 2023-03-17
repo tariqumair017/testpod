@@ -171,9 +171,7 @@ function selectedOption() {
             document.getElementById("flagUrl").value = `${questions[i].image}`;
             break;
         }
-    } 
-
-
+    }  
 }
 
 //Fill Select Shape 

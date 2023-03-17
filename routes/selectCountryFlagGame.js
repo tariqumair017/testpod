@@ -21,6 +21,10 @@ router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn
    
     if(!find)
     {  
+      var testFileName = Date.now() + '-' + req.files.testImg.name;
+      const newPath1  = path.join(process.cwd(), '/public/upload-images', testFileName);
+      req.files.testImg.mv(newPath1);
+
       if(typeof(req.body.correct) == "string")
       { 
         var flagFileName = Date.now() + '-' + req.files.flag.name;
@@ -30,6 +34,7 @@ router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn
         const singleQuiz = new CountryFlagGame({
           gameName: req.body.gameName,
           gameDetail: req.body.gameDetail, 
+          testImg: testFileName,
           questions: question
         });
         await singleQuiz.save();
@@ -60,6 +65,7 @@ router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn
         const newQuiz = new CountryFlagGame({
           gameName: req.body.gameName,
           gameDetail: req.body.gameDetail, 
+          testImg: testFileName,
           questions: newQuestions
         });
         await newQuiz.save(); 

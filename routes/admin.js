@@ -40,13 +40,6 @@ router.get("/dashboard", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandl
   res.render("Admin/Dashboard");
 }));
 
-
-//Admin: Draw-New-Flags Page
-router.get("/game-management/draw-new-flags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  res.render("Admin/Draw-New-Flags");
-}));
-
-
 //Admin: Analytics Page
 router.get("/analytics", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   res.render("Admin/Analytics");

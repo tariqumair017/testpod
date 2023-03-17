@@ -75,8 +75,6 @@ else
 }
 }));
   
-
-
 //Admin: Manage Flag Page
 router.get("/game-management/manage-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     const data = await CountryFlagGame.find({});

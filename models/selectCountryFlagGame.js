@@ -10,7 +10,11 @@ const SelectCountryFlagGameSchema = new mongoose.Schema({
   gameDetail: {
     type: String,
     required: true
-    }, 
+    },
+  testImg: {
+    type: String,
+    required: true
+    },  
   questions: [{
     flag: {
     type: String,

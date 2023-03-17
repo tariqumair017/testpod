@@ -23,6 +23,7 @@ import AdminRoutes from "./routes/admin.js";
 import ClientRoutes from "./routes/client.js"; 
 import SelectCountryFlagGameRoutes from "./routes/selectCountryFlagGame.js"; 
 import QuizRoutes from "./routes/quiz.js"; 
+import DrawNewFlagRoutes from "./routes/drawNewFlag.js"; 
 import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
  
 //mongoDB Connection with mongoose
@@ -110,6 +111,7 @@ app.use(AdminRoutes);
 app.use(ClientRoutes);
 app.use(SelectCountryFlagGameRoutes);
 app.use(QuizRoutes);
+app.use(DrawNewFlagRoutes);
 app.use(DrawFlagGameRoutes);
 
 app.use((req, res, next) => {

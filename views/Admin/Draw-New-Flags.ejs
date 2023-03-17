@@ -10,39 +10,41 @@
         <tr>
           <th class="table-hash-col">#</th>
           <th class="table-question-col">Country Name</th>
-          <th class="table-option-col">Images</th>
-          <th class="table-option-col">Arrangements</th>
-          <th class="table-option-col">Corrent Colors</th>
-          <th class="table-answer-col">Details</th>
+          <th class="table-option-col">Flag Url</th>
+          <th class="table-option-col">Shape Img</th>
+          <th class="table-answer-col">Colors</th>
+          <th class="table-option-col">Arrangement</th>
           <th class="table-action-col" class="table-buttons">Actions</th>
         </tr>
       </thead>
       <tbody>
+        <%var count = 1%>
+        <%data.forEach(val => {%>
         <tr>
-          <th scope="row">1</th>
-          <td>hello</td>
-          <td>hello</td>
-          <td>hello</td>
-          <td>hello</td>
-          <td>hello</td>
-          <td>hello</td>
+          <th scope="row"><%=count%></th>
+          <td><%=val.country%></td>
+          <td><%=val.flagUrl%></td>
+          <td><%=val.shapeImg%></td>
+          <td><%=val.correctColors%></td>
+          <td><%=val.arrangement%></td>
           <td>
             <span class="table-buttons">
               <button
+              onclick="editFlag(`<%=val._id%>`)"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 class="btn btn-primary"
               >
                 Edit
               </button>
-              <form
-                method="POST"
-              >
+              <form action="/game-management/draw-new-flags/<%=val._id%>?_method=Delete" method="POST">
                 <button type="submit" class="btn btn-danger">Delete</button>
               </form>
             </span>
           </td>
         </tr>
+        <%count++%>
+        <%})%>
       </tbody>
     </table>
     </div>
@@ -70,7 +72,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              New Question
+              Add New Flag
             </h1>
             <button
               type="button"
@@ -80,57 +82,51 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="add-quiz-form row needs-validation" action="/game-management/draw-flags-games" method="POST" enctype="multipart/form-data" novalidate>
+            <form class="add-quiz-form row needs-validation" action="/game-management/draw-new-flags" method="POST" enctype="multipart/form-data" novalidate>
                  <div id="setNewForm">
                     <div class="form-data">
                       <div class="row">
                         <div class="col-md-6 position-relative mt-4">
-                            <select class="form-select" id="countryID" name="country" onchange="selectedOption()" required> 
-                                <option hidden >Please Select Country Name</option>  
-                            </select> 
+                          <label for="newCountry" class="form-label">Country</label>
+                          <input name="country" placeholder="Enter Country Name" type="text" class="form-control" id="newCountry" required>
+                          <div class="invalid-tooltip">
+                            Please provide Country Name.
                           </div>
-                          <div class="col-md-6 position-relative mt-4">
-                            <input name="flagDetails" placeholder="Please Enter Flags Details" type="text" class="form-control" id="validationTooltip03" required>
-                            <div class="invalid-tooltip">
-                              Please provide a Flags Details.
-                            </div>
+                      </div>
+                      <div class="col-md-6 position-relative mt-4">
+                        <label for="newFlagUrl" class="form-label">Flag Url</label>
+                        <input name="flagUrl" placeholder="Flag Url" type="text" class="form-control" id="newFlagUrl" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Flag Url.
+                        </div>
+                    </div>
+                        <div class="col-md-6 position-relative mt-3">
+                          <label for="newflagDetails" class="form-label">Flag Details</label>
+                          <input name="flagDetails" placeholder="Please Enter Flags Details" type="text" class="form-control" id="newflagDetails" required>
+                          <div class="invalid-tooltip">
+                            Please provide a Flags Details.
                           </div>
-                          <div class="col-md-6 position-relative mt-4">
-                            <label class="form-label"></label>
-                            <select class="form-select" id="shapeID" name="shape" required> 
-                                <option hidden >Please Select Flag Shape</option>   
-                            </select>  
+                        </div>
+                          <div class="col-md-6 position-relative mt-3">
+                            <label class="form-label">Select Shape</label>
+                            <div class="add-quiz-state-image">
+                              <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" onchange="preview()" required> 
+                            </div> 
                           </div>
                         <div class="col-md-6 position-relative mt-3">
                             <div class="container" style="padding: 0%;">
                                 <label class="form-label">Select Colors</label>
-                                <select multiple data-multi-select-plugin name="correctColors" required>
-                                    <option value="red">Red</option>
-                                    <option value="pink">Pink</option>
-                                    <option value="black">Black</option>
-                                    <option value="yellow">Yellow</option>
-                                    <option value="white">White</option>
-                                    <option value="blue">Blue</option>
-                                   <option value="grey">Grey</option>
+                                <select multiple data-multi-select-plugin name="correctColors" id="colorsID" required>
+                                  <option  hidden>Please Select Colors</option>                     
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative mt-4">
-                            <div class="container" style="padding: 0%;">
-                                <label for="validationTooltip03" class="form-label">Select Arrangement</label>
-                                <select class="form-select" id="arrangementID" name="arrangement" required> 
-                                    <option hidden >Please Select Arrangement</option>                     
-                                  <option value="Three Stripes">Three Stripes</option>
-                                  <option value="Two Stripes">Two Stripes</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-4">
-                            <label for="flagUrl" class="form-label">Flag Url</label>
-                            <input disabled name="flagDetails" placeholder="Flag Url" type="text" class="form-control" id="flagUrl" required>
+                        <div class="col-md-6 position-relative mt-3"> 
+                            <label for="arrangementID" class="form-label">Enter Arrangement</label>
+                            <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="arrangementID" required>
                             <div class="invalid-tooltip">
-                              Please provide a Flag Url.
-                            </div>
+                              Please provide Arrangement.
+                            </div>  
                         </div>
                       </div>
                       </div>
@@ -158,7 +154,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Question
+              Edit Flag
             </h1>
             <button
               type="button"
@@ -169,78 +165,63 @@
           </div>
           <div class="modal-body">
             <form
-              id="updateForm"
+              id="editFlagForm"
               class="add-quiz-form row g-4 needs-validation"
               novalidate
               action=""
               method="POST"
+              enctype="multipart/form-data"
             >
-            <div class="row">
-                <div class="col-md-6 position-relative mt-4">
-                    <select class="form-select" id="countryID" name="country" onchange="selectedOption()" required> 
-                        <option hidden >Please Select Country Name</option>  
-                    </select> 
-                  </div>
+            <div id="setEditForm">
+              <div class="form-data">
+                <div class="row">
                   <div class="col-md-6 position-relative mt-4">
-                    <input name="flagDetails" placeholder="Please Enter Flags Details" type="text" class="form-control" id="validationTooltip03" required>
+                    <label for="newCountry" class="form-label">Country</label>
+                    <input name="country" placeholder="Enter Country Name" type="text" class="form-control" id="editCountry" required>
+                    <div class="invalid-tooltip">
+                      Please provide Country Name.
+                    </div>
+                </div>
+                <div class="col-md-6 position-relative mt-4">
+                  <label for="newFlagUrl" class="form-label">Flag Url</label>
+                  <input name="flagUrl" placeholder="Flag Url" type="text" class="form-control" id="editFlagUrl" required>
+                  <div class="invalid-tooltip">
+                    Please provide a Flag Url.
+                  </div>
+              </div>
+                  <div class="col-md-6 position-relative mt-3">
+                    <label for="newflagDetails" class="form-label">Flag Details</label>
+                    <input name="flagDetails" placeholder="Please Enter Flags Details" type="text" class="form-control" id="editFlagDetails" required>
                     <div class="invalid-tooltip">
                       Please provide a Flags Details.
                     </div>
                   </div>
-                  <div class="col-md-6 position-relative mt-4">
-                    <label class="form-label"></label>
-                    <select class="form-select" id="shapeID" name="shape" required> 
-                        <option hidden >Please Select Flag Shape</option>   
-                    </select>  
-                  </div>
-                <div class="col-md-6 position-relative mt-3">
-                    <div class="container" style="padding: 0%;">
-                        <label class="form-label">Select Colors</label>
-                        <select multiple data-multi-select-plugin name="correctColors" required>
-                            <option value="red">Red</option>
-                            <option value="pink">Pink</option>
-                            <option value="black">Black</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="white">White</option>
-                            <option value="blue">Blue</option>
-                           <option value="grey">Grey</option>
-                        </select>
+                    <div class="col-md-6 position-relative mt-3">
+                      <label class="form-label">Select Shape</label>
+                      <div class="add-quiz-state-image">
+                        <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" onchange="preview()"> 
+                      </div> 
                     </div>
-                </div>
-                <div class="col-md-6 position-relative mt-4">
-                    <div class="container" style="padding: 0%;">
-                        <label for="validationTooltip03" class="form-label">Select Arrangement</label>
-                        <select class="form-select" id="arrangementID" name="arrangement" required> 
-                            <option hidden >Please Select Arrangement</option>                     
-                          <option value="Three Stripes">Three Stripes</option>
-                          <option value="Two Stripes">Two Stripes</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 position-relative mt-4">
-                    <label for="flagUrl" class="form-label">Flag Url</label>
-                    <input disabled name="flagDetails" placeholder="Flag Url" type="text" class="form-control" id="flagUrl" required>
-                    <div class="invalid-tooltip">
-                      Please provide a Flag Url.
-                    </div>
-                </div>
-              </div>
-              </div>
-              </div>
-              </div>
+                  <div class="col-md-6 position-relative mt-3">
+                      <div class="container" style="padding: 0%;">
+                          <label class="form-label">Select Colors</label>
+                          <select multiple data-multi-select-plugin name="correctColors" id="editColorsID">  
 
-              <div class="col-12 mt-2">
-                <button
-                  data-bs-toggle="tooltip"
-                  class="btn"
-                  type="submit"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Tooltip on top"
-                  style="background-color: #a8171a;color: white;"
-                >
-                  Submit
-                </button>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-6 position-relative mt-3"> 
+                      <label for="arrangementID" class="form-label">Enter Arrangement</label>
+                      <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="editArrangementID" required>
+                      <div class="invalid-tooltip">
+                        Please provide Arrangement.
+                      </div>  
+                  </div>
+                </div>
+                </div>
+                </div>
+              <div class="col-12 mt-4">
+                  <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Edit</button>
               </div>
             </form>
           </div>
@@ -253,25 +234,16 @@
   <!--Container Main end-->
 
   <script>
-    async function editQuestion(Pid, Cid) {
-      const response = await fetch(`/all-quiz/${Pid}/edit`);
-      const finalData = await response.json();
-      var data;
-      finalData.questions.forEach((element) => {
-        if (element._id == Cid) {
-          data = element;
-        }
-      });
-      document.getElementById("questionID").value = data.question;
-      document.getElementById("optionAID").value = data.optionA;
-      document.getElementById("optionBID").value = data.optionB;
-      document.getElementById("optionCID").value = data.optionC;
-      document.getElementById("optionDID").value = data.optionD;
-      document.getElementById("correctID").value = data.correct;
-      document.getElementById("hintID").value = data.hint;
-      document.getElementById(
-        "updateForm"
-      ).action = `/all-quiz/${data._id}/${Pid}?_method=PUT`;
+    async function editFlag(id) { 
+      const response = await fetch(`/game-management/draw-new-flags/${id}/edit`);
+      const data = await response.json();
+  
+      document.getElementById("editCountry").value = data.country; 
+      document.getElementById("editFlagUrl").value = data.flagUrl;
+      document.getElementById("editFlagDetails").value = data.flagDetails; 
+      document.getElementById("editArrangementID").value = data.arrangement;
+     
+      document.getElementById("editFlagForm").action = `/game-management/draw-new-flags/${id}?_method=PUT`;
     }
   </script>
   <script src="/admin/js/allQuiz.js"></script>
