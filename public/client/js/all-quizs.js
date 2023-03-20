@@ -111,6 +111,7 @@ async function checkResult(id) {
         wrong++;
         filtered[j].parentNode.querySelector("h6").classList.add("incorrect-quiz");
         filtered[j].parentNode.querySelector("input").classList.add("option-incorrent");
+        
   
       }
      

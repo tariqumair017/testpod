@@ -12,12 +12,12 @@
             <div class="col mr-2">
               <div class="card-title text-xs font-weight-bold text-uppercase">
                 <li><%=single.gameName%></li> 
-                <li class="manage-state-name" ><%=single.gameDetail%></li> 
+                <li class="manage-state-name" ><b>Asia</b></li> 
               </div>
               <div class="manage-action-btn" >
               <div class="dashboard-total-rating"><%=single.questions.length%></div>
               <span>
-                <a style="margin-right: 10px;" href="/game-management/manage-flags-games/<%=single._id%>/all-questions"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
+                <a style="margin-right: 10px;" href="/game-management/manage-draw-flags-games/<%=single._id%>/all-questions"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
                 <a onclick="deleteItem('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
               </span>
               </div>

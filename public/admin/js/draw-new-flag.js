@@ -157,7 +157,7 @@ for (const key in allColors) {
     colorsOptions += `<option value="${key.toLowerCase()}" >${key.toLowerCase()}</option>`;
 } 
 colorsID.innerHTML = colorsOptions;
-editColorsID.innerHTML = colorsOptions;
+// editColorsID.innerHTML = colorsOptions;
 
 function init(element) {
 

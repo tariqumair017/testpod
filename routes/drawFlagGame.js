@@ -88,6 +88,12 @@ router.get("/game-management/manage-draw-flag-games", asyncHandler(async (req, r
     const data = await DrawFlagGameModel.find({});
     res.render("Admin/ManageDrawFlagGame", { data });
 }));
+
+//Admin: Show All Questions of Game Edit Icon
+router.get("/game-management/manage-draw-flags-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
+  const data = await DrawFlagGameModel.findById(req.params.id);
+  res.render("Admin/AllDrawFlagsGames", { data });
+}));
   
   //Admin - Delete Whole Flag Game
   // router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
