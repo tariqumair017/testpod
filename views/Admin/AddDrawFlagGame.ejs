@@ -13,10 +13,10 @@
         <input name="gameDetail" placeholder="Please Enter Game Detail" type="text" class="form-control" id="validationTooltip03" required>
       </div>
       <div class="col-md-6 mt-3">
-        <label for="validationTooltip03" class="form-label">Country Image</label>
+        <label for="countryImg" class="form-label">Country Image</label>
         <div class="add-quiz-state-image">
-            <input class="add-quiz-image-input formFile form-control" type="file" name="countryImg" onchange="preview()" required>
-            <button onclick="clearImage()"  style="width: 40px;background-color: #a8171a;color: white;" class="btn" type="button" ><i class="fa-solid fa-xmark"></i></button>
+            <input class="add-quiz-image-input formFile form-control" type="file" id="countryImg" name="countryImg" required>
+            <!-- <button onclick="clearImage()"  style="width: 40px;background-color: #a8171a;color: white;" class="btn" type="button" ><i class="fa-solid fa-xmark"></i></button> -->
         </div>
       </div> 
     </div>
@@ -24,54 +24,46 @@
      <div id="setNewForm">
         <div class="form-data">
           <div class="row">
-            <div class="col-md-6 position-relative mt-4">
-                <select class="form-select" id="countryID" name="country" onchange="selectedOption()" required> 
-                    <option hidden >Please Select Country Name</option>  
+            <div class="col-md-6 position-relative mt-3">
+                <select class="form-select" name="country" id="countryIDAdd" onchange="selectedCountry()" required> 
+                  <%data.forEach(item => {%>  
+                    <option hidden>Please Select Country</option>                     
+                    <option value="<%=item.country%>"><%=item.country%></option>  
+                  <%})%>
                 </select> 
               </div>
-              <div class="col-md-6 position-relative mt-4">
-                <input name="flagDetails" placeholder="Please Enter Flags Details" type="text" class="form-control" id="validationTooltip03" required>
+              <div class="col-md-6 position-relative mt-3">
+                <input readonly name="flagUrl" placeholder="Flag Url" type="text" class="form-control" id="flagUrlAdd" required>
                 <div class="invalid-tooltip">
-                  Please provide a Flags Details.
+                  Please provide Flags Url.
                 </div>
               </div>
-              <div class="col-md-6 position-relative mt-4">
-                <label class="form-label"></label>
-                <select class="form-select" id="shapeID" name="shape" required> 
-                    <option hidden >Please Select Flag Shape</option>   
-                </select>  
+              <div class="col-md-6 position-relative mt-3">
+                <div class="mt-3">
+                  <input readonly name="flagDetails" placeholder="Flags Details" type="text" class="form-control" id="flagDetailsAdd" required>
+                  <div class="invalid-tooltip">
+                    Please provide Flags Details.
+                  </div>
+                </div>
+                <div class="mt-3">  
+                    <label class="form-label">Selected Colors</label>
+                    <select multiple name="correctColors" id="correctColorsAdd" class="form-control" style="height: 91px !important;" required>
+                      <option hidden>Please Select Colors</option>                     
+                    </select> 
+                </div>
+                <div class="mt-3">
+                  <input readonly name="arrangement" placeholder="Selected Arrangement" type="text" class="form-control" id="arrangementAdd" required>
+                  <div class="invalid-tooltip">
+                    Please provide Arrangement.
+                  </div>
+                </div> 
               </div>
-            <div class="col-md-6 position-relative mt-3">
-                <div class="container" style="padding: 0%;">
-                    <label class="form-label">Select Colors</label>
-                    <select multiple data-multi-select-plugin name="correctColors" required>
-                        <option value="red">Red</option>
-                        <option value="pink">Pink</option>
-                        <option value="black">Black</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="white">White</option>
-                        <option value="blue">Blue</option>
-                       <option value="grey">Grey</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6 position-relative mt-4">
-                <div class="container" style="padding: 0%;">
-                    <label for="validationTooltip03" class="form-label">Select Arrangement</label>
-                    <select class="form-select" id="arrangementID" name="arrangement" required> 
-                        <option hidden >Please Select Arrangement</option>                     
-                      <option value="Three Stripes">Three Stripes</option>
-                      <option value="Two Stripes">Two Stripes</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6 position-relative mt-4">
-                <label for="flagUrl" class="form-label">Flag Url</label>
-                <input disabled name="flagDetails" placeholder="Flag Url" type="text" class="form-control" id="flagUrl" required>
-                <div class="invalid-tooltip">
-                  Please provide a Flag Url.
-                </div>
-            </div>
+              <div class="col-md-6 position-relative mt-3">
+                <div id="shapeDiv" class="mt-3 p-2">
+                  <img id="shapeImgID" src="" alt="image" class="" width="180" height="91">
+                </div> 
+                <input readonly name="shapeImg" placeholder="Flag shape" type="text" class="form-control" id="shapeImgAdd" required>
+              </div>
           </div>
           <hr>
           </div>
@@ -130,4 +122,24 @@
                 </div>
       </div> 
 </div>
-<script src="/admin/js/draw-new-flag.js" ></script>
+<script>
+  async function selectedCountry()
+  {
+    const countryName = document.getElementById("countryIDAdd").value;
+    const response = await fetch(`/game-management/draw-flags-games/countryName/${countryName}`);
+    const data = await response.json(); 
+   
+    document.getElementById("flagUrlAdd").value = data.flagUrl;
+    document.getElementById("flagDetailsAdd").value = data.flagDetails;
+    document.getElementById("shapeImgID").src = `/upload-images/${data.shapeImg}`;
+    document.getElementById("shapeDiv").style.width = "195px";
+    document.getElementById("shapeDiv").style.backgroundColor = "black";
+    document.getElementById("shapeImgAdd").value = data.shapeImg;
+    var selectedColors = '';
+    data.correctColors.forEach(element => {  
+      selectedColors += `<option selected value="${element}">${element}</option>`;      
+    }); 
+    document.getElementById("correctColorsAdd").innerHTML = selectedColors;
+    document.getElementById("arrangementAdd").value = data.arrangement;  
+  }
+</script>  
