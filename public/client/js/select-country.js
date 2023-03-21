@@ -30,6 +30,7 @@ const result_box = document.querySelector(".result_box");
 const time_up = document.querySelector(".time_up");
 
 
+
 //required variable 
 let que_count = 0;
 

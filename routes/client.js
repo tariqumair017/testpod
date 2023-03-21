@@ -77,8 +77,14 @@ router.get("/quiz-list/:id", asyncHandler(async (req, res) => {
     res.send(data);
 })); 
 
+
+//Client all-quiz js file 
+router.get("/quiz-citys/all-quiz/:id", asyncHandler(async (req, res) => {  
+    const data = await QuizModel.findById(req.params.id);   
+    res.send( data);
+}));
 //Client Quiz page
-router.get("/quiz-citys/:name/:id", asyncHandler(async (req, res) => { 
+router.get("/quiz-citys/:name/:id", asyncHandler(async (req, res) => {  
     req.session.newResultIDForQuiz = undefined;
     const data = await QuizModel.findById(req.params.id);   
     res.render("Client/"+req.params.name, { data });

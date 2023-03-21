@@ -6,13 +6,11 @@
 //       userAns += data[i].value;
 //     }
 //   }
-//   console.log(userAns, "userAns");
 // }
 
 // function showQuestionsText() {
 //   const question_text = document.querySelector(".all-quiz-left-part");
 //   const question_options_text = document.querySelector(".ooooo");
-//   console.log(question_options_text, "question_options_text");
 //   let question_tag = "";
 //   let question_options = "";
 //   for (let i = 0; i < allQuestipons.length; i++) {
@@ -38,6 +36,7 @@
 //   question_options_text.innerHTML = question_options;
 // }
 // showQuestionsText();
+
 
 var option_text = [];
 var wrong = 0;
@@ -93,6 +92,7 @@ const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
  
 
+
 async function checkResult(id) {
   const getData = await fetch(`/quiz-list/${id}`)
   .then((response) => response.json())
@@ -111,13 +111,12 @@ async function checkResult(id) {
         wrong++;
         filtered[j].parentNode.querySelector("h6").classList.add("incorrect-quiz");
         filtered[j].parentNode.querySelector("input").classList.add("option-incorrent");
-        
-  
       }
      
       showDiscription[j] && showDiscription[j].classList.add("all-quiz-show-discription");
       
     }   
+
     if (correct < 10) {
       document.getElementById("total-correct").innerHTML = "0" + correct;
     } else {
@@ -133,9 +132,9 @@ async function checkResult(id) {
 }
 
 
+
 async function storeResultForQuiz(id) {    
   var obj = {correct: optionSeletCorrect, incorrect: optionSeletWrong, attempted: attempetedQuestions};
-  console.log(obj); 
   const response = await fetch(`/quiz-result/${id}`, {
     method: 'POST',
     body: JSON.stringify({objToStore: obj}),
@@ -143,5 +142,4 @@ async function storeResultForQuiz(id) {
       'Content-type': 'application/json; charset=UTF-8',
     }
   }); 
-  console.log(response);
 }

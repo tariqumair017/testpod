@@ -6982,7 +6982,6 @@ label {
   transition: all 0.3s ease 0s;
   vertical-align: middle;
   white-space: nowrap;
-  position: relative;
   z-index: 999;
   border-radius: 10;
 }
@@ -7833,6 +7832,11 @@ label {
 }
 .header-three .main-menu ul li a {
   color: #201e1a;
+}
+.game-image-slider{
+  display: flex;
+  align-items: center;
+  margin-bottom: -1px;
 }
 .slider-three .slider-img {
   margin-left: -25px;
@@ -9458,7 +9462,6 @@ border-color: #EA4A4A;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
 }
 
 
