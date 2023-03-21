@@ -1,146 +1,182 @@
-  let paintFlags = [
-    {
-      numb: 1,
+var paintFlags;
+var colors = ["red", "green", "yellow", "black", "orange", "blue", "pink", "white", "grey"];
+fetch(`/draw-flags/all`)
+  .then(res => res.json())
+  .then((data) => {  
+    paintFlags = data[1].questions.map((val, i) => {
+      // var colorOptions = [];  
+      // colorOptions = val.correctColors;  
+      // var index = Math.floor(Math.random()*colors.length);
+      // console.log(val.correctColors,"colorOptions[index]")
+      // // debugger; 
+      // colorOptions.push(colors[index]); 
+      // colors.splice(index, 1);
+      return {
+        numb: i,
+  
+        question: val.country,
+  
+        image: val.flagUrl,
 
-      question: "Germany",
+        shapeImg: val.shapeImg,
+  
+        arrangement: val.arrangement,
+  
+        allowedColors: val.correctColors,
+  
+        colorPalette: val.correctColors,
+      }
+  });
 
-      image: "https://flagpedia.net/data/flags/h80/de.webp",
+    console.log(paintFlags);
+    runDraw(paintFlags);
+  });  
+ 
+  
+  // let paintFlags = [
+  //   {
+  //     numb: 1,
 
-      arrangement: "threeStripesVert",
+  //     question: "Germany",
 
-      allowedColors: ["black", "red", "orange"],
+  //     image: "https://flagpedia.net/data/flags/h80/de.webp",
 
-      colorPalette: ["red", "green", "yellow", "black", "orange", "blue"],
-    },
+  //     arrangement: "threeStripesVert",
 
-    {
-      numb: 2,
+  //     allowedColors: ["black", "red", "orange"],
 
-      question: "Ukraine",
+  //     colorPalette: ["red", "green", "yellow", "black", "orange", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/ua.webp",
+  //   {
+  //     numb: 2,
 
-      arrangement: "twoStripesVert",
+  //     question: "Ukraine",
 
-      allowedColors: ["blue", "yellow"],
+  //     image: "https://flagpedia.net/data/flags/h80/ua.webp",
 
-      colorPalette: ["blue", "green", "yellow", "black", "orange", "pink"],
-    },
+  //     arrangement: "twoStripesVert",
 
-    {
-      numb: 3,
+  //     allowedColors: ["blue", "yellow"],
 
-      question: "Netherlands",
+  //     colorPalette: ["blue", "green", "yellow", "black", "orange", "pink"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/nl.webp",
+  //   {
+  //     numb: 3,
 
-      arrangement: "threeStripesVert",
+  //     question: "Netherlands",
 
-      allowedColors: ["red", "white", "blue"],
+  //     image: "https://flagpedia.net/data/flags/h80/nl.webp",
 
-      colorPalette: ["red", "green", "white", "pink", "orange", "blue"],
-    },
+  //     arrangement: "threeStripesVert",
 
-    {
-      numb: 4,
+  //     allowedColors: ["red", "white", "blue"],
 
-      question: "Austria",
+  //     colorPalette: ["red", "green", "white", "pink", "orange", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/at.webp",
+  //   {
+  //     numb: 4,
 
-      arrangement: "threeStripesVert",
+  //     question: "Austria",
 
-      allowedColors: ["red", "white", "red"],
+  //     image: "https://flagpedia.net/data/flags/h80/at.webp",
 
-      colorPalette: ["red", "green", "white", "yellow", "grey", "blue"],
-    },
+  //     arrangement: "threeStripesVert",
 
-    {
-      numb: 5,
+  //     allowedColors: ["red", "white", "red"],
 
-      question: "Indonasia",
+  //     colorPalette: ["red", "green", "white", "yellow", "grey", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/id.webp",
+  //   {
+  //     numb: 5,
 
-      arrangement: "twoStripesVert",
+  //     question: "Indonasia",
 
-      allowedColors: ["red", "white"],
+  //     image: "https://flagpedia.net/data/flags/h80/id.webp",
 
-      colorPalette: ["red", "green", "white", "yellow", "pink", "blue"],
-    },
+  //     arrangement: "twoStripesVert",
 
-    {
-      numb: 6,
+  //     allowedColors: ["red", "white"],
 
-      question: "Romania",
+  //     colorPalette: ["red", "green", "white", "yellow", "pink", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/ro.webp",
+  //   {
+  //     numb: 6,
 
-      arrangement: "threeStripesHoriz",
+  //     question: "Romania",
 
-      allowedColors: ["blue", "yellow", "red"],
+  //     image: "https://flagpedia.net/data/flags/h80/ro.webp",
 
-      colorPalette: ["red", "green", "black", "yellow", "pink", "blue"],
-    },
+  //     arrangement: "threeStripesHoriz",
 
-    {
-      numb: 7,
+  //     allowedColors: ["blue", "yellow", "red"],
 
-      question: "Hungary",
+  //     colorPalette: ["red", "green", "black", "yellow", "pink", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/hu.webp",
+  //   {
+  //     numb: 7,
 
-      arrangement: "threeStripesVert",
+  //     question: "Hungary",
 
-      allowedColors: ["#CD2A3E", "white", "#436F4D"],
+  //     image: "https://flagpedia.net/data/flags/h80/hu.webp",
 
-      colorPalette: ["#CD2A3E", "grey", "black", "yellow", "#436F4D", "white"],
-    },
+  //     arrangement: "threeStripesVert",
 
-    {
-      numb: 8,
+  //     allowedColors: ["#CD2A3E", "white", "#436F4D"],
 
-      question: "Colombia",
+  //     colorPalette: ["#CD2A3E", "grey", "black", "yellow", "#436F4D", "white"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/co.webp",
+  //   {
+  //     numb: 8,
 
-      arrangement: "threeStripesVert",
+  //     question: "Colombia",
 
-      allowedColors: ["yellow", "blue", "red"],
+  //     image: "https://flagpedia.net/data/flags/h80/co.webp",
 
-      colorPalette: ["red", "grey", "black", "yellow", "green", "blue"],
-    },
+  //     arrangement: "threeStripesVert",
 
-    {
-      numb: 9,
+  //     allowedColors: ["yellow", "blue", "red"],
 
-      question: "France",
+  //     colorPalette: ["red", "grey", "black", "yellow", "green", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/fr.webp",
+  //   {
+  //     numb: 9,
 
-      arrangement: "threeStripesHoriz",
+  //     question: "France",
 
-      allowedColors: ["blue", "white", "red"],
+  //     image: "https://flagpedia.net/data/flags/h80/fr.webp",
 
-      colorPalette: ["red", "pink", "black", "yellow", "white", "blue"],
-    },
+  //     arrangement: "threeStripesHoriz",
 
-    {
-      numb: 10,
+  //     allowedColors: ["blue", "white", "red"],
 
-      question: "Italy",
+  //     colorPalette: ["red", "pink", "black", "yellow", "white", "blue"],
+  //   },
 
-      image: "https://flagpedia.net/data/flags/h80/it.webp",
+  //   {
+  //     numb: 10,
 
-      arrangement: "threeStripesHoriz",
+  //     question: "Italy",
 
-      allowedColors: ["green", "white", "red"],
+  //     image: "https://flagpedia.net/data/flags/h80/it.webp",
 
-      colorPalette: ["red", "pink", "green", "yellow", "white", "black"],
-    },
-  ];
+  //     arrangement: "threeStripesHoriz",
 
-//audios
+  //     allowedColors: ["green", "white", "red"],
+
+  //     colorPalette: ["red", "pink", "green", "yellow", "white", "black"],
+  //   },
+  // ];
+
+//audios 
+
 
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 
@@ -150,8 +186,7 @@ var paintSartedAudio = new Audio("/client/sounds/paint-started.mp3");
 
 var bell = new Audio("/client/sounds/bell.mp3");
 
-//required constants
-
+//required constants 
 const flag_canvas = document.querySelector(".flag_canvas");
 
 const color_palette = document.querySelector(".color_palette");
@@ -179,6 +214,8 @@ const circleSvg = document.querySelector("circle");
 
 const btnDontKnow = document.querySelector(".btn_I_dont_know");
 
+const arrangementWrapper = document.getElementById("arrangementWrapper");
+
 //required variable
 
 let que_count = 0;
@@ -193,9 +230,40 @@ let tryAgainInterval;
 
 let rightAnsInterval;
 
+const randomShapeOptions = [
+  {"shapeImg": "/client/img/images/white.two.layers.vertical.svg","arrangement": "twoStripesVert"},
+  {"shapeImg": "/client/img/images/white.three.layers.vertical.svg","arrangement": "threeStripesVert"},
+  {"shapeImg": "/client/img/images/white.two.layers.horizontal.svg","arrangement": "twoStripesHoriz"},
+  ];
+
+var bgColor = "none";
+
+var flagOf = document.getElementById("flagCanvas").getAttribute("flagOf");
+
+var rightFilledLayers = 0;
+
+var wrongFilledLayers = 0;
+
+function runDraw(paintFlags)
+{
+  var shapeOptions = '';
+
+  const correctShapeOptions = [{"shapeImg": `/upload-images/${paintFlags[0].shapeImg}`,"arrangement": paintFlags[0].arrangement}];
+  correctShapeOptions.push(...randomShapeOptions);
+  shuffle(correctShapeOptions);
+
+  console.log(correctShapeOptions);
+  
+  correctShapeOptions.forEach(element => { 
+    shapeOptions += `<img id="${element.arrangement}" onclick="choseFlagArrangemnet('${element.arrangement}')" src="${element.shapeImg}" class="img-fluid" style="cursor: pointer"/>`;
+  }); 
+  arrangementWrapper.innerHTML = shapeOptions;
+ 
+  // console.log(arrangementWrapper);
+
 window.load = startQuiz();
 
-function startQuiz() {
+function startQuiz() {  
   showQuetions(0);
 
   // outOf.innerHTML =
@@ -209,254 +277,14 @@ function startQuiz() {
 draw_total_questions.innerHTML = paintFlags.length
 
 var queNumber = 0;
-function showQuetions(index) {
-  //set attribute in flag canvas
-
-  flag_canvas.setAttribute("flagOf", paintFlags[index].question);
-
-  flag_canvas.setAttribute("arrangement", paintFlags[index].arrangement);
-
-  queNumber = index+1
-
-  let questionHeadingHtml =
-    "<h2>" +
-    "<span>Can you paint flag of " +
-    paintFlags[index].question +
-    "?</span></h2>";
-
-  score_board.innerHTML =
-    '<span class="total_que" style="font-weight: bold">' +
-    queNumber +
-    '<span style="font-size: 15px;">/' +
-    paintFlags.length +
-    " </span></span>";
-
-  que_heading.innerHTML = questionHeadingHtml;
-
-  let colorPaletteHtml = "";
-
-  for (var i = 0; i < paintFlags[index].colorPalette.length; i++) {
-    colorPaletteHtml +=
-      '<li class="cpli" onclick="getColor(\'' +
-      paintFlags[index].colorPalette[i] +
-      '\')" style="background: ' +
-      paintFlags[index].colorPalette[i] +
-      ';"></li>';
-  }
-
-  color_palette.innerHTML = colorPaletteHtml;
-}
 
 console.log(queNumber,"queNumberqueNumber")
 if(queNumber == paintFlags.length){
 console.log("hello")
-}
-
-//allow user to select flag arrangement
-
-
-
-function choseFlagArrangemnet(x) {
-  var paintingSarted = document
-    .getElementById("flagCanvas")
-    .getAttribute("paintSarted");
-
-  var defaultArrangment = flag_canvas.getAttribute("arrangement");
-
-  if (paintingSarted === "false") {
-
-    if (x === defaultArrangment) {
-      if (defaultArrangment === "threeStripesVert") {
-        document.getElementById("flagCanvas").innerHTML =
-          '<div id="threeSV1" onclick="fillBgColor(\'threeSV1\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV2" onclick="fillBgColor(\'threeSV2\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV3" onclick="fillBgColor(\'threeSV3\')" style="width: 100%;height: 100px;border: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div>';
-
-        flag_canvas.style.display = "block";
-      } else if (defaultArrangment === "twoStripesVert") {
-        document.getElementById("flagCanvas").innerHTML =
-          '<div id="twoSV1" onclick="fillBgColor(\'twoSV1\')" style="width: 100%;height: 150px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSV2" onclick="fillBgColor(\'twoSV2\')" style="width: 100%;height: 150px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
-
-        flag_canvas.style.display = "block";
-      } else if (defaultArrangment === "threeStripesHoriz") {
-        document.getElementById("flagCanvas").innerHTML =
-          '<div id="threeSH1" onclick="fillBgColor(\'threeSH1\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH2" onclick="fillBgColor(\'threeSH2\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH3" onclick="fillBgColor(\'threeSH3\')" style="width: 33.3333%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
-
-        flag_canvas.style.display = "flex";
-      } else if (defaultArrangment === "twoStripesHoriz") {
-        document.getElementById("flagCanvas").innerHTML =
-          '<div id="twoSH1" onclick="fillBgColor(\'twoSH1\')" style="width: 50%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSH2" onclick="fillBgColor(\'twoSH2\')" style="width: 50%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
-
-        flag_canvas.style.display = "flex";
-      }
-
-      document.getElementById("flagCanvas").style.backgroundColor = "#ffffff";
-
-      setColorAttributeToCanvasChilds(paintFlags[que_count].allowedColors);
-
-      //animate arrow's step two
-
-      animateStepTwo();
-
-      flag_canvas.setAttribute("shape", true);
-    } else {
-      document.getElementById(x).classList.add("shakeIt");
-
-      wrongClickAudio.play();
-
-      document.getElementById("txtWrongArrangment").style.display = "block";
-
-      setTimeout(function () {
-        document.getElementById(x).classList.remove("shakeIt");
-      }, 500);
-
-      setTimeout(function () {
-        document.getElementById("txtWrongArrangment").style.display = "none";
-      }, 1000);
-    }
-  } else if (paintingSarted === "true") {
-    paintSartedAudio.play();
-
-    document.getElementById("txtWarnArrangment").style.display = "block";
-
-    setTimeout(function () {
-      document.getElementById("txtWarnArrangment").style.display = "none";
-    }, 1000);
-  }
-}
-
-//setting allowed color attribute to each flag layer
-
-function setColorAttributeToCanvasChilds(colors) {
-  const flagLayers = flag_canvas.children.length;
-
-  var getArrangement;
-
-  for (var i = 0; i < flagLayers; i++) {
-
-    flag_canvas.children[i].setAttribute("allowedColor", colors[i]);
-  }
-}
+} 
 
 //copy selected color to be used
 
-var bgColor = "none";
-
-function getColor(color) {
-  if (flag_canvas.getAttribute("shape") === "true") {
-    bgColor = color;
-
-
-    //animate arrow's step three
-
-    animateStepThree();
-  } else if (flag_canvas.getAttribute("shape") === "false") {
-
-    //animate arrow's step one
-
-    animateStepOne();
-
-    document.getElementById("txtpickShape").classList.add("shakeIt");
-
-    setTimeout(function () {
-      document.getElementById("txtpickShape").classList.remove("shakeIt");
-    }, 500);
-  }
-}
-
-var flagOf = document.getElementById("flagCanvas").getAttribute("flagOf");
-
-function fillBgColor(x) {
-  flag_canvas.setAttribute("paintSarted", "true");
-
-  var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
-
-
-  paintAudio.play();
-
-  document.getElementById(x).style.backgroundColor = bgColor;
-
-  animateStepTwo();
-
-  if (bgColor === "none") {
-    document.getElementById("txtSelectColor").classList.add("shakeIt");
-
-    setTimeout(function () {
-      document.getElementById("txtSelectColor").classList.remove("shakeIt");
-    }, 500);
-  } else if (bgColor === allowedColor) {
-    document.getElementById(x).setAttribute("filled", "true");
-
-    checkIfFlagPaintingIsComplete(x);
-  } else if (allowedColor === "yellow" && bgColor === "orange") {
-    document.getElementById(x).setAttribute("filled", "true");
-
-    checkIfFlagPaintingIsComplete(x);
-  } else if (allowedColor === "orange" && bgColor === "yellow") {
-    document.getElementById(x).setAttribute("filled", "true");
-
-    checkIfFlagPaintingIsComplete(x);
-  } else {
-    document.getElementById("flagCanvas").classList.add("shakeIt");
-
-    wrongClickAudio.play();
-
-    setTimeout(function () {
-      document.getElementById("flagCanvas").classList.remove("shakeIt");
-    }, 500);
-
-    document.getElementById(x).setAttribute("filled", "false");
-
-    checkIfFlagPaintingIsComplete(x);
-  }
-}
-
-var rightFilledLayers = 0;
-
-var wrongFilledLayers = 0;
-
-function checkIfFlagPaintingIsComplete(x) {
-  const flagLayersLength = flag_canvas.children.length;
-
-  var boolFilled = document.getElementById(x).getAttribute("filled");
-
-
-  var layerCounted = document.getElementById(x).getAttribute("counted");
-
-
-  if (boolFilled === "true" && layerCounted != "true") {
-    rightFilledLayers += 1;
-
-    document.getElementById(x).setAttribute("counted", "true");
-
-
-  } else if (boolFilled === "false" && layerCounted != "true") {
-    wrongFilledLayers += 1;
-
-    document.getElementById(x).setAttribute("counted", "true");
-
-
-  }
-
-  if (rightFilledLayers === flagLayersLength) {
-    userScore += 1; //upgrading score value with 1
-
-    draw_total_correct.innerHTML = userScore;
-
-
-    callRightAnsDialog();
-
-    animateStepOne();
-  }
-
-  var totalFilledLayers = rightFilledLayers + wrongFilledLayers;
-
-
-  if (wrongFilledLayers != 0 && totalFilledLayers === flagLayersLength) {
-    callTryAgainDialog();
-
-
-    animateStepOne();
-  }
-}
 
 btnDontKnow.onclick = () => {
   callNextQuestion();
@@ -464,116 +292,11 @@ btnDontKnow.onclick = () => {
   animateStepOne();
 };
 
-// call next Question
 
-function callNextQuestion() {
-  flag_canvas.setAttribute("shape", "false");
-
-  bgColor = "none";
-
-  rightFilledLayers = 0;
-
-  wrongFilledLayers = 0;
-
-  clearInterval(rightAnsInterval);
-
-  clearInterval(tryAgainInterval);
-
-
-  flag_canvas.style.backgroundColor = "#fff";
-
-  flag_canvas.innerHTML = "";
-
-  if (que_count < paintFlags.length - 1) {
-    que_count++;
-
-    showQuetions(que_count); //passing index of array to showQestions for current question
-
-    flag_canvas.setAttribute("paintsarted", "false");
-
-    flag_canvas.classList.remove("canvasWarning");
-  } else if (que_count === paintFlags.length - 1) {
-    callResultScreen();
-  }
-}
-
-// call next Question
-
-function callSameQuestion() {
-  flag_canvas.setAttribute("shape", "false");
-
-  bgColor = "none";
-
-  rightFilledLayers = 0;
-
-  wrongFilledLayers = 0;
-
-
-  flag_canvas.style.backgroundColor = "#fff";
-
-  flag_canvas.innerHTML = "";
-
-  clearInterval(tryAgainInterval);
-
-  if (que_count > 0) {
-
-    que_count;
-
-    showQuetions(que_count); //passing index of array to showQestions for current question
-
-    flag_canvas.setAttribute("paintsarted", "false");
-
-    flag_canvas.setAttribute("shape", "false");
-
-    flag_canvas.classList.remove("canvasWarning");
-  }
-}
-
-//Closing message dialog
-
-function closeDialog() {
-  flag_canvas.innerHTML = "";
-
-  callNextQuestion();
-}
-
-//function to call try again dialog
-
-function callTryAgainDialog() {
-  flag_canvas.innerHTML =
-    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img class="mb-3" src="images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button onclick="callSameQuestion()" class="btn_try_again">Try Again</button></div></div>';
-
-  flag_canvas.setAttribute("paintsarted", "false");
-
-  tryAgainTime(0, 05);
-}
-
-//function to call try again dialog
-
-function callRightAnsDialog() {
-  flag_canvas.innerHTML =
-    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img src="images/checkmark.png" style="height:50px; margin: 0px auto;"><img src="' +
-    paintFlags[que_count].image +
-    '" style="margin: 0px auto;"><div id="nextQueSeconds" class="try_again_time">--</div><button onclick="callNextQuestion()" class="btn_try_again" id="btnNextQue">Next Question</button></div></div>';
-
-  flag_canvas.setAttribute("paintsarted", "false");
-
-  rightAnsTime(0, 05);
-
-  if (que_count === paintFlags.length - 1) {
-    document.getElementById("btnNextQue").classList.add("d-none");
-  }
-}
-
-//timer
-
+//timer 
 disMinutes.innerHTML = "00";
 
 disSeconds.innerHTML = "00";
-
-function textCorrection(element, value) {
-  element.innerHTML = value < 10 ? "0" + value : value;
-}
 
 window.loadd = totalTestTime(0, 300);
 
@@ -637,182 +360,136 @@ function totalTestTime(min, sec) {
   return totalTime;
 }
 
-//function to show timer for trying again
 
-function tryAgainTime(min, sec) {
-  var totalTime = min * 60 + sec * 1;
+// questions_box.classList.add("d-none");
 
+// result_box.classList.remove("d-none");
 
-  if (min != "" || sec != "") {
-    tryAgainInterval = setInterval(() => {
-      const seconds = totalTime % 60;
+// result_btn.classList.add("d-none");
 
-      document.getElementById("tryAgainSeconds").style.animation =
-        "popup 800ms infinite ease-in-out";
+// time_up.classList.add("d-none");
 
-      document.getElementById("tryAgainSeconds").style.animationPlayState =
-        "running";
-
-      textCorrection(document.getElementById("tryAgainSeconds"), seconds);
-
-      if (totalTime > 0) {
-        totalTime--;
-      } else {
-
-        closeDialog();
-
-        clearInterval(tryAgainInterval);
-      }
-    }, 1000);
-  } else {
-    document.getElementById("tryAgainSeconds").innerHTML = "00";
-  }
-
-  return totalTime;
-}
-
-//function to show timer when user draws flag correctly
-
-function rightAnsTime(min, sec) {
-  var totalTime = min * 60 + sec * 1;
-
-
-  if (min != "" || sec != "") {
-    rightAnsInterval = setInterval(() => {
-      const seconds = totalTime % 60;
-
-      document.getElementById("nextQueSeconds").style.animation =
-        "popup 800ms infinite ease-in-out";
-
-      document.getElementById("nextQueSeconds").style.animationPlayState =
-        "running";
-
-      textCorrection(document.getElementById("nextQueSeconds"), seconds);
-
-      if (totalTime > 0) {
-        totalTime--;
-      } else {
-
-        closeDialog();
-
-        clearInterval(rightAnsInterval);
-      }
-    }, 1000);
-  } else {
-    document.getElementById("nextQueSeconds").innerHTML = "00";
-  }
-
-  return totalTime;
-}
-
-  questions_box.classList.add("d-none");
-
-result_box.classList.remove("d-none");
-
-result_btn.classList.add("d-none");
-
-time_up.classList.add("d-none");
-
-document.querySelector("#testDuration").classList.add("d-none");
+// document.querySelector("#testDuration").classList.add("d-none");
 
 //Post Api  
 
 
-var valRight = (userScore / questions.length) * 360;
+// var valRight = (userScore / questions.length) * 360;
 
-var valWrong = 360 - valRight;
+// var valWrong = 360 - valRight;
 
 
-var xValues = ["Right", "Wrong"];
+// var xValues = ["Right", "Wrong"];
 
-var yValues = [valRight, valWrong];
+// var yValues = [valRight, valWrong];
 
-var barColors = ["#1DCF71", "#EA4A4A"];
+// var barColors = ["#1DCF71", "#EA4A4A"];
 
-new Chart("DrawMyChart", {
-  type: "pie",
+// new Chart("DrawMyChart", {
+//   type: "pie",
 
-  data: {
-    labels: xValues,
+//   data: {
+//     labels: xValues,
 
-    datasets: [
-      {
-        backgroundColor: barColors,
+//     datasets: [
+//       {
+//         backgroundColor: barColors,
 
-        data: yValues,
-      },
-    ],
-  },
+//         data: yValues,
+//       },
+//     ],
+//   },
 
-  options: {
-    title: {
-      display: true,
+//   options: {
+//     title: {
+//       display: true,
 
-      text: "You got " + userScore + " out of " + questions.length,
-    },
-  },
-});
-
-function callResultScreen() {
-  que_heading.classList.add("d-none");
-
-  document.getElementById("arrangementWrapper").classList.add("d-none");
-
-  document.getElementById("canvasWrapper").classList.add("d-none");
-
-  document.getElementById("arrowsRow").classList.add("d-none");
-
-  btnDontKnow.classList.add("d-none");
-
-  document.getElementById("scoreWrapper").style.width = "20%";
+//       text: "You got " + userScore + " out of " + questions.length,
+//     },
+//   },
+// });
 }
 
-function animateStepOne() {
-  document.getElementById("emptyArrow1").classList.add("buzzAnimation3Empty");
 
-  document
-    .getElementById("emptyArrow1")
-    .classList.add("buzzAnimationBefore3Empty");
+//allow user to select flag arrangement
+function choseFlagArrangemnet(x) {  
+  var paintingSarted = document
+    .getElementById("flagCanvas")
+    .getAttribute("paintSarted");
 
-  document.getElementById("emptyArrow1").classList.remove("inactiveEmptyArrow");
+  var defaultArrangment = flag_canvas.getAttribute("arrangement");
 
-  document.getElementById("step1").classList.add("buzzAnimation3");
+  if (paintingSarted === "false") {
 
-  document.getElementById("step1").classList.add("buzzAnimationBefore3");
+    if (x === defaultArrangment) {
+      if (defaultArrangment === "threeStripesVert") {
+        document.getElementById("flagCanvas").innerHTML =
+          '<div id="threeSV1" onclick="fillBgColor(\'threeSV1\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV2" onclick="fillBgColor(\'threeSV2\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV3" onclick="fillBgColor(\'threeSV3\')" style="width: 100%;height: 100px;border: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div>';
 
-  document.getElementById("step1").classList.remove("inactiveArrow");
+        flag_canvas.style.display = "block";
+      } else if (defaultArrangment === "twoStripesVert") {
+        document.getElementById("flagCanvas").innerHTML =
+          '<div id="twoSV1" onclick="fillBgColor(\'twoSV1\')" style="width: 100%;height: 150px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSV2" onclick="fillBgColor(\'twoSV2\')" style="width: 100%;height: 150px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
 
-  document.getElementById("emptyArrow2").classList.add("inactiveEmptyArrow");
+        flag_canvas.style.display = "block";
+      } else if (defaultArrangment === "threeStripesHoriz") {
+        document.getElementById("flagCanvas").innerHTML =
+          '<div id="threeSH1" onclick="fillBgColor(\'threeSH1\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH2" onclick="fillBgColor(\'threeSH2\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH3" onclick="fillBgColor(\'threeSH3\')" style="width: 33.3333%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
 
-  document
-    .getElementById("emptyArrow2")
-    .classList.remove("buzzAnimation3Empty");
+        flag_canvas.style.display = "flex";
+      } else if (defaultArrangment === "twoStripesHoriz") {
+        document.getElementById("flagCanvas").innerHTML =
+          '<div id="twoSH1" onclick="fillBgColor(\'twoSH1\')" style="width: 50%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSH2" onclick="fillBgColor(\'twoSH2\')" style="width: 50%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
 
-  document
-    .getElementById("emptyArrow2")
-    .classList.remove("buzzAnimationBefore3Empty");
+        flag_canvas.style.display = "flex";
+      }
 
-  document.getElementById("step2").classList.add("inactiveArrow");
+      document.getElementById("flagCanvas").style.backgroundColor = "#ffffff";
 
-  document.getElementById("step2").classList.remove("buzzAnimation3");
+      setColorAttributeToCanvasChilds(paintFlags[que_count].allowedColors);
 
-  document.getElementById("step2").classList.remove("buzzAnimationBefore3");
+      //animate arrow's step two
 
-  document.getElementById("emptyArrow3").classList.add("inactiveEmptyArrow");
+      animateStepTwo();
 
-  document
-    .getElementById("emptyArrow3")
-    .classList.remove("buzzAnimation3Empty");
+      flag_canvas.setAttribute("shape", true);
+    } else {
+      document.getElementById(x).classList.add("shakeIt");
 
-  document
-    .getElementById("emptyArrow3")
-    .classList.remove("buzzAnimationBefore3Empty");
+      wrongClickAudio.play();
 
-  document.getElementById("step3").classList.add("inactiveArrow");
+      // document.getElementById("txtWrongArrangment").style.display = "block";
 
-  document.getElementById("step3").classList.remove("buzzAnimation3");
+      setTimeout(function () {
+        document.getElementById(x).classList.remove("shakeIt");
+      }, 500);
 
-  document.getElementById("step3").classList.remove("buzzAnimationBefore3");
+      setTimeout(function () {
+        // document.getElementById("txtWrongArrangment").style.display = "none";
+      }, 1000);
+    }
+  } else if (paintingSarted === "true") {
+    paintSartedAudio.play();
+
+    document.getElementById("txtWarnArrangment").style.display = "block";
+
+    setTimeout(function () {
+      document.getElementById("txtWarnArrangment").style.display = "none";
+    }, 1000);
+  }
+}
+
+//setting allowed color attribute to each flag layer
+
+function setColorAttributeToCanvasChilds(colors) {
+  const flagLayers = flag_canvas.children.length;
+
+  var getArrangement;
+
+  for (var i = 0; i < flagLayers; i++) {
+
+    flag_canvas.children[i].setAttribute("allowedColor", colors[i]);
+  }
 }
 
 function animateStepTwo() {
@@ -863,6 +540,77 @@ function animateStepTwo() {
   document.getElementById("step3").classList.remove("buzzAnimationBefore3");
 }
 
+
+function getColor(color) {
+  if (flag_canvas.getAttribute("shape") === "true") {
+    bgColor = color;
+
+
+    //animate arrow's step three
+
+    animateStepThree();
+  } else if (flag_canvas.getAttribute("shape") === "false") {
+
+    //animate arrow's step one
+
+    animateStepOne();
+
+    document.getElementById("txtpickShape").classList.add("shakeIt");
+
+    setTimeout(function () {
+      document.getElementById("txtpickShape").classList.remove("shakeIt");
+    }, 500);
+  }
+}
+
+function animateStepOne() {
+  document.getElementById("emptyArrow1").classList.add("buzzAnimation3Empty");
+
+  document
+    .getElementById("emptyArrow1")
+    .classList.add("buzzAnimationBefore3Empty");
+
+  document.getElementById("emptyArrow1").classList.remove("inactiveEmptyArrow");
+
+  document.getElementById("step1").classList.add("buzzAnimation3");
+
+  document.getElementById("step1").classList.add("buzzAnimationBefore3");
+
+  document.getElementById("step1").classList.remove("inactiveArrow");
+
+  document.getElementById("emptyArrow2").classList.add("inactiveEmptyArrow");
+
+  document
+    .getElementById("emptyArrow2")
+    .classList.remove("buzzAnimation3Empty");
+
+  document
+    .getElementById("emptyArrow2")
+    .classList.remove("buzzAnimationBefore3Empty");
+
+  document.getElementById("step2").classList.add("inactiveArrow");
+
+  document.getElementById("step2").classList.remove("buzzAnimation3");
+
+  document.getElementById("step2").classList.remove("buzzAnimationBefore3");
+
+  document.getElementById("emptyArrow3").classList.add("inactiveEmptyArrow");
+
+  document
+    .getElementById("emptyArrow3")
+    .classList.remove("buzzAnimation3Empty");
+
+  document
+    .getElementById("emptyArrow3")
+    .classList.remove("buzzAnimationBefore3Empty");
+
+  document.getElementById("step3").classList.add("inactiveArrow");
+
+  document.getElementById("step3").classList.remove("buzzAnimation3");
+
+  document.getElementById("step3").classList.remove("buzzAnimationBefore3");
+}
+
 function animateStepThree() {
   document
     .getElementById("emptyArrow2")
@@ -893,4 +641,324 @@ function animateStepThree() {
   document.getElementById("step3").classList.add("buzzAnimation3");
 
   document.getElementById("step3").classList.add("buzzAnimationBefore3");
+}
+
+
+function fillBgColor(x) {
+  flag_canvas.setAttribute("paintSarted", "true");
+
+  var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
+
+
+  paintAudio.play();
+
+  document.getElementById(x).style.backgroundColor = bgColor;
+
+  animateStepTwo();
+
+  if (bgColor === "none") {
+    document.getElementById("txtSelectColor").classList.add("shakeIt");
+
+    setTimeout(function () {
+      document.getElementById("txtSelectColor").classList.remove("shakeIt");
+    }, 500);
+  } else if (bgColor === allowedColor) {
+    document.getElementById(x).setAttribute("filled", "true");
+
+    checkIfFlagPaintingIsComplete(x);
+  } else if (allowedColor === "yellow" && bgColor === "orange") {
+    document.getElementById(x).setAttribute("filled", "true");
+
+    checkIfFlagPaintingIsComplete(x);
+  } else if (allowedColor === "orange" && bgColor === "yellow") {
+    document.getElementById(x).setAttribute("filled", "true");
+
+    checkIfFlagPaintingIsComplete(x);
+  } else {
+    document.getElementById("flagCanvas").classList.add("shakeIt");
+
+    wrongClickAudio.play();
+
+    setTimeout(function () {
+      document.getElementById("flagCanvas").classList.remove("shakeIt");
+    }, 500);
+
+    document.getElementById(x).setAttribute("filled", "false");
+
+    checkIfFlagPaintingIsComplete(x);
+  }
+}
+
+function checkIfFlagPaintingIsComplete(x) { 
+  const flagLayersLength = flag_canvas.children.length;
+
+  var boolFilled = document.getElementById(x).getAttribute("filled");
+
+
+  var layerCounted = document.getElementById(x).getAttribute("counted");
+
+
+  if (boolFilled === "true" && layerCounted != "true") {
+    rightFilledLayers += 1;
+
+    document.getElementById(x).setAttribute("counted", "true");
+
+
+  } else if (boolFilled === "false" && layerCounted != "true") {
+    wrongFilledLayers += 1;
+
+    document.getElementById(x).setAttribute("counted", "true");
+
+
+  }
+
+  if (rightFilledLayers === flagLayersLength) {
+    userScore += 1; //upgrading score value with 1
+
+    draw_total_correct.innerHTML = userScore;
+
+
+    callRightAnsDialog();
+
+    animateStepOne();
+  }
+
+  var totalFilledLayers = rightFilledLayers + wrongFilledLayers;
+
+
+  if (wrongFilledLayers != 0 && totalFilledLayers === flagLayersLength) {
+    callTryAgainDialog();
+
+
+    animateStepOne();
+  }
+}
+
+//function to call try again dialog 
+function callTryAgainDialog() {
+  flag_canvas.innerHTML =
+    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img class="mb-3" src="images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button onclick="callSameQuestion()" class="btn_try_again">Try Again</button></div></div>';
+
+  flag_canvas.setAttribute("paintsarted", "false");
+
+  tryAgainTime(0, 05);
+}
+
+
+//function to show timer for trying again
+
+function tryAgainTime(min, sec) {
+  var totalTime = min * 60 + sec * 1;
+
+
+  if (min != "" || sec != "") {
+    tryAgainInterval = setInterval(() => {
+      const seconds = totalTime % 60;
+
+      document.getElementById("tryAgainSeconds").style.animation =
+        "popup 800ms infinite ease-in-out";
+
+      document.getElementById("tryAgainSeconds").style.animationPlayState =
+        "running";
+
+      textCorrection(document.getElementById("tryAgainSeconds"), seconds);
+
+      if (totalTime > 0) {
+        totalTime--;
+      } else {
+
+        closeDialog();
+
+        clearInterval(tryAgainInterval);
+      }
+    }, 1000);
+  } else {
+    document.getElementById("tryAgainSeconds").innerHTML = "00";
+  }
+
+  return totalTime;
+}
+
+function textCorrection(element, value) {
+  element.innerHTML = value < 10 ? "0" + value : value;
+}
+
+// call next Question
+
+function callSameQuestion() {
+  flag_canvas.setAttribute("shape", "false");
+
+  bgColor = "none";
+
+  rightFilledLayers = 0;
+
+  wrongFilledLayers = 0;
+
+
+  flag_canvas.style.backgroundColor = "#fff";
+
+  flag_canvas.innerHTML = "";
+
+  clearInterval(tryAgainInterval);
+
+  if (que_count > 0) {
+
+    que_count;
+
+    showQuetions(que_count); //passing index of array to showQestions for current question
+
+    flag_canvas.setAttribute("paintsarted", "false");
+
+    flag_canvas.setAttribute("shape", "false");
+
+    flag_canvas.classList.remove("canvasWarning");
+  }
+}
+
+//Closing message dialog
+
+function closeDialog() {
+  flag_canvas.innerHTML = "";
+
+  callNextQuestion();
+}
+
+// call next Question 
+function callNextQuestion() {
+  flag_canvas.setAttribute("shape", "false");
+
+  bgColor = "none";
+
+  rightFilledLayers = 0;
+
+  wrongFilledLayers = 0;
+
+  clearInterval(rightAnsInterval);
+
+  clearInterval(tryAgainInterval);
+
+
+  flag_canvas.style.backgroundColor = "#fff";
+
+  flag_canvas.innerHTML = "";
+
+  if (que_count < paintFlags.length - 1) {
+    que_count++;
+
+    showQuetions(que_count); //passing index of array to showQestions for current question
+
+    flag_canvas.setAttribute("paintsarted", "false");
+
+    flag_canvas.classList.remove("canvasWarning");
+  } else if (que_count === paintFlags.length - 1) {
+    callResultScreen();
+  }
+}
+ 
+//function to call try again dialog
+function callRightAnsDialog() {
+  flag_canvas.innerHTML =
+    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img src="images/checkmark.png" style="height:50px; margin: 0px auto;"><img src="' +
+    paintFlags[que_count].image +
+    '" style="margin: 0px auto;"><div id="nextQueSeconds" class="try_again_time">--</div><button onclick="callNextQuestion()" class="btn_try_again" id="btnNextQue">Next Question</button></div></div>';
+
+  flag_canvas.setAttribute("paintsarted", "false");
+
+  rightAnsTime(0, 05);
+
+  if (que_count === paintFlags.length - 1) {
+    document.getElementById("btnNextQue").classList.add("d-none");
+  }
+}
+
+
+//function to show timer when user draws flag correctly
+function rightAnsTime(min, sec) {
+  var totalTime = min * 60 + sec * 1;
+
+
+  if (min != "" || sec != "") {
+    rightAnsInterval = setInterval(() => {
+      const seconds = totalTime % 60;
+
+      document.getElementById("nextQueSeconds").style.animation =
+        "popup 800ms infinite ease-in-out";
+
+      document.getElementById("nextQueSeconds").style.animationPlayState =
+        "running";
+
+      textCorrection(document.getElementById("nextQueSeconds"), seconds);
+
+      if (totalTime > 0) {
+        totalTime--;
+      } else {
+
+        closeDialog();
+
+        clearInterval(rightAnsInterval);
+      }
+    }, 1000);
+  } else {
+    document.getElementById("nextQueSeconds").innerHTML = "00";
+  }
+
+  return totalTime;
+}
+
+function showQuetions(index) {
+  //set attribute in flag canvas
+
+  flag_canvas.setAttribute("flagOf", paintFlags[index].question);
+
+  flag_canvas.setAttribute("arrangement", paintFlags[index].arrangement);
+
+  queNumber = index+1
+
+  let questionHeadingHtml =
+    "<h2>" +
+    "<span>Can you paint flag of " +
+    paintFlags[index].question +
+    "?</span></h2>";
+
+  score_board.innerHTML =
+    '<span class="total_que" style="font-weight: bold">' +
+    queNumber +
+    '<span style="font-size: 15px;">/' +
+    paintFlags.length +
+    " </span></span>";
+
+  que_heading.innerHTML = questionHeadingHtml;
+
+  let colorPaletteHtml = "";
+
+  for (var i = 0; i < paintFlags[index].colorPalette.length; i++) {
+    colorPaletteHtml +=
+      '<li class="cpli" onclick="getColor(\'' +
+      paintFlags[index].colorPalette[i] +
+      '\')" style="background: ' +
+      paintFlags[index].colorPalette[i] +
+      ';"></li>';
+  }
+
+  color_palette.innerHTML = colorPaletteHtml;
+}
+
+function callResultScreen() {
+  que_heading.classList.add("d-none");
+
+  document.getElementById("arrangementWrapper").classList.add("d-none");
+
+  document.getElementById("canvasWrapper").classList.add("d-none");
+
+  document.getElementById("arrowsRow").classList.add("d-none");
+
+  btnDontKnow.classList.add("d-none");
+
+  // document.getElementById("scoreWrapper").style.width = "20%";
+}
+ 
+
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
 }

@@ -114,9 +114,8 @@ app.use(QuizRoutes);
 app.use(DrawNewFlagRoutes);
 app.use(DrawFlagGameRoutes);
 
-app.use((req, res, next) => {
-    // res.status(404).send(`<h2 style="text-align: center; margin-top: 30px"><u>Page Not Found</u></h2>`);
-    res.status(404).send("404 Page Not Found");
+app.all('*', (req, res, next) => {
+    res.status(404).send("Page Not Found");
 }); 
 
 // Tell Express to Listen request

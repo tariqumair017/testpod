@@ -123,7 +123,14 @@
                         </div>
                         <div class="col-md-6 position-relative mt-3"> 
                             <label for="arrangementID" class="form-label">Enter Arrangement</label>
-                            <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="arrangementID" required>
+                            <!-- <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="arrangementID" required> -->
+                            <select name="arrangement" class="form-select" id="arrangementID" required> 
+                              <option hidden>Please Select Arrangements</option>                     
+                              <option value="twoStripesVert">Two Stripes Vertical</option>                    
+                              <option value="twoStripesHoriz">Two Stripes Horizontal</option>                    
+                              <option value="threeStripesVert">Three Stripes Vertical</option>                    
+                              <option value="threeStripesHoriz">Three Stripes Horizontal</option> 
+                            </select>
                             <div class="invalid-tooltip">
                               Please provide Arrangement.
                             </div>  
@@ -211,7 +218,14 @@
                   </div>
                   <div class="col-md-6 position-relative mt-3"> 
                       <label for="arrangementID" class="form-label">Enter Arrangement</label>
-                      <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="editArrangementID" required>
+                      <!-- <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="editArrangementID" required> -->
+                      <select name="arrangement" class="form-select" id="editArrangementID" required> 
+                        <option hidden>Please Select Arrangements</option>                     
+                        <option value="twoStripesVert">Two Stripes Vertical</option>                    
+                        <option value="twoStripesHoriz">Two Stripes Horizontal</option>                    
+                        <option value="threeStripesVert">Three Stripes Vertical</option>                    
+                        <option value="threeStripesHoriz">Three Stripes Horizontal</option> 
+                      </select>
                       <div class="invalid-tooltip">
                         Please provide Arrangement.
                       </div>  

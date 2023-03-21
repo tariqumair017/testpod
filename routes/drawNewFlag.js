@@ -6,6 +6,7 @@ import asyncHandler from "express-async-handler";
 import connectEnsureLogin from "connect-ensure-login";
 import { Console } from "console";
  
+router.use(connectEnsureLogin.ensureLoggedIn("/login"));
  
 //Admin: Draw-New-Flags Page
 router.get("/game-management/draw-new-flags", asyncHandler(async (req, res) => { 

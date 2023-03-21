@@ -2,6 +2,7 @@ import express, { Router } from "express";
 const router = Router(); 
 import QuizModel from "../models/quizs.js";
 import CountryFlagGame from "../models/selectCountryFlagGame.js"; 
+import DrawFlagGameModel from "../models/drawFlagGame.js";
 import asyncHandler from "express-async-handler";  
 // import connectEnsureLogin from "connect-ensure-login";
  
@@ -32,6 +33,12 @@ router.get("/guess-flags", asyncHandler(async (req, res) => {
 //Client Learn-About-Flags
 router.get("/learn-about-flags", asyncHandler(async (req, res) => { 
     res.render("Client/Learn-About-Flags");
+}));
+
+//Client fetch All Flages for Draw-Flag
+router.get("/draw-flags/all", asyncHandler(async (req, res) => {  
+    const data = await DrawFlagGameModel.find({});
+    res.send(data);
 }));
 
 //Client Draw Flag
