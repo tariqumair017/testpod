@@ -1,16 +1,29 @@
 var paintFlags;
-var colors = ["red", "green", "yellow", "black", "orange", "blue", "pink", "white", "grey"];
 fetch(`/draw-flags/all`)
   .then(res => res.json())
   .then((data) => {  
     paintFlags = data[1].questions.map((val, i) => {
-      // var colorOptions = [];  
-      // colorOptions = val.correctColors;  
-      // var index = Math.floor(Math.random()*colors.length);
-      // console.log(val.correctColors,"colorOptions[index]")
-      // // debugger; 
-      // colorOptions.push(colors[index]); 
-      // colors.splice(index, 1);
+      var colors = ["red", "green", "yellow", "black", "orange", "blue", "pink", "white", "grey"];
+      var colorOptions = JSON.parse(JSON.stringify(val.correctColors));  
+      var random = 6 - val.correctColors.length;  
+      for (let j = 0; j < random; j++) {
+        var index = Math.floor(Math.random()*colors.length);
+        var status = false;
+        colorOptions.forEach(element => {
+          if(colors[index] == element)
+          {
+            status = true;
+            j--;
+          }
+        });
+        if(status == false)
+        {
+          colorOptions.push(colors[index]);  
+        }
+      }
+      
+      shuffle(colorOptions);
+      
       return {
         numb: i,
   
@@ -24,11 +37,10 @@ fetch(`/draw-flags/all`)
   
         allowedColors: val.correctColors,
   
-        colorPalette: val.correctColors,
+        colorPalette: colorOptions,
       }
   });
 
-    console.log(paintFlags);
     runDraw(paintFlags);
   });  
  
@@ -224,6 +236,10 @@ let completeTestInterval;
 
 let userScore = 0;
 
+let userWrongScore = 0;
+
+let previousScore = 0;
+
 let incorrect = 0;
 
 let tryAgainInterval;
@@ -247,15 +263,14 @@ var wrongFilledLayers = 0;
 function runDraw(paintFlags)
 {
   var shapeOptions = '';
-
   const correctShapeOptions = [{"shapeImg": `/upload-images/${paintFlags[0].shapeImg}`,"arrangement": paintFlags[0].arrangement}];
   correctShapeOptions.push(...randomShapeOptions);
   shuffle(correctShapeOptions);
 
-  console.log(correctShapeOptions);
   
   correctShapeOptions.forEach(element => { 
     shapeOptions += `<img id="${element.arrangement}" onclick="choseFlagArrangemnet('${element.arrangement}')" src="${element.shapeImg}" class="img-fluid" style="cursor: pointer"/>`;
+
   }); 
   arrangementWrapper.innerHTML = shapeOptions;
  
@@ -418,26 +433,28 @@ function choseFlagArrangemnet(x) {
     .getAttribute("paintSarted");
 
   var defaultArrangment = flag_canvas.getAttribute("arrangement");
-
+  
   if (paintingSarted === "false") {
-
+    
     if (x === defaultArrangment) {
-      if (defaultArrangment === "threeStripesVert") {
+
+      if (defaultArrangment == "threeStripesHoriz") {
         document.getElementById("flagCanvas").innerHTML =
           '<div id="threeSV1" onclick="fillBgColor(\'threeSV1\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV2" onclick="fillBgColor(\'threeSV2\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV3" onclick="fillBgColor(\'threeSV3\')" style="width: 100%;height: 100px;border: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div>';
 
         flag_canvas.style.display = "block";
-      } else if (defaultArrangment === "twoStripesVert") {
+      } else if (defaultArrangment == "twoStripesHoriz") {
         document.getElementById("flagCanvas").innerHTML =
           '<div id="twoSV1" onclick="fillBgColor(\'twoSV1\')" style="width: 100%;height: 150px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSV2" onclick="fillBgColor(\'twoSV2\')" style="width: 100%;height: 150px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
-
+          
         flag_canvas.style.display = "block";
-      } else if (defaultArrangment === "threeStripesHoriz") {
+      } else if (defaultArrangment == "threeStripesVert") {
         document.getElementById("flagCanvas").innerHTML =
           '<div id="threeSH1" onclick="fillBgColor(\'threeSH1\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH2" onclick="fillBgColor(\'threeSH2\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH3" onclick="fillBgColor(\'threeSH3\')" style="width: 33.3333%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
 
         flag_canvas.style.display = "flex";
-      } else if (defaultArrangment === "twoStripesHoriz") {
+        
+      } else if (defaultArrangment == "twoStripesVert") {
         document.getElementById("flagCanvas").innerHTML =
           '<div id="twoSH1" onclick="fillBgColor(\'twoSH1\')" style="width: 50%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSH2" onclick="fillBgColor(\'twoSH2\')" style="width: 50%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
 
@@ -445,7 +462,7 @@ function choseFlagArrangemnet(x) {
       }
 
       document.getElementById("flagCanvas").style.backgroundColor = "#ffffff";
-
+  
       setColorAttributeToCanvasChilds(paintFlags[que_count].allowedColors);
 
       //animate arrow's step two
@@ -469,7 +486,7 @@ function choseFlagArrangemnet(x) {
       }, 1000);
     }
   } else if (paintingSarted === "true") {
-    paintSartedAudio.play();
+    paintSartedAudio.play(); 
 
     document.getElementById("txtWarnArrangment").style.display = "block";
 
@@ -483,11 +500,10 @@ function choseFlagArrangemnet(x) {
 
 function setColorAttributeToCanvasChilds(colors) {
   const flagLayers = flag_canvas.children.length;
-
+  
   var getArrangement;
 
-  for (var i = 0; i < flagLayers; i++) {
-
+  for (var i = 0; i < flagLayers; i++) { 
     flag_canvas.children[i].setAttribute("allowedColor", colors[i]);
   }
 }
@@ -645,6 +661,7 @@ function animateStepThree() {
 
 
 function fillBgColor(x) {
+  
   flag_canvas.setAttribute("paintSarted", "true");
 
   var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
@@ -713,8 +730,8 @@ function checkIfFlagPaintingIsComplete(x) {
   }
 
   if (rightFilledLayers === flagLayersLength) {
+    previousScore = userScore;
     userScore += 1; //upgrading score value with 1
-
     draw_total_correct.innerHTML = userScore;
 
 
@@ -723,10 +740,12 @@ function checkIfFlagPaintingIsComplete(x) {
     animateStepOne();
   }
 
+
   var totalFilledLayers = rightFilledLayers + wrongFilledLayers;
 
-
+ 
   if (wrongFilledLayers != 0 && totalFilledLayers === flagLayersLength) {
+   
     callTryAgainDialog();
 
 
@@ -736,6 +755,10 @@ function checkIfFlagPaintingIsComplete(x) {
 
 //function to call try again dialog 
 function callTryAgainDialog() {
+  
+  userWrongScore += 1;
+  draw_total_in_correct.innerHTML = userWrongScore;
+
   flag_canvas.innerHTML =
     '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img class="mb-3" src="images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button onclick="callSameQuestion()" class="btn_try_again">Try Again</button></div></div>';
 
@@ -786,6 +809,10 @@ function textCorrection(element, value) {
 // call next Question
 
 function callSameQuestion() {
+
+  userWrongScore--;
+  draw_total_in_correct.innerHTML = userWrongScore;
+
   flag_canvas.setAttribute("shape", "false");
 
   bgColor = "none";
@@ -959,6 +986,6 @@ function callResultScreen() {
  
 
 
-function shuffle(array) {
+async function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }

@@ -20,11 +20,10 @@
 	.st14{fill:#079300;}
 	.st15{fill:none;stroke:#FFFFFF;stroke-width:9.8281;stroke-miterlimit:10;}
 	.st16{fill:none;stroke:#000000;stroke-width:9.8765;stroke-miterlimit:10;}
-	.st17{fill:none;stroke:#FFFFFF;stroke-width:9.8765;stroke-miterlimit:10;}
 </style>
 <g>
 	
-		<image style="overflow:visible;enable-background:new    ;" width="1358" height="625" xlink:href="689BF81C.jpeg"  transform="matrix(0.9709 0 0 0.9709 3912.166 334.1093)">
+		<image style="overflow:visible;enable-background:new    ;" width="1358" height="625" xlink:href="364406C7.jpeg"  transform="matrix(0.9709 0 0 0.9709 3912.166 334.1093)">
 	</image>
 </g>
 <g id="Layer_3">
@@ -173,15 +172,18 @@
 <path class="st14" d="M2943.4-17.7h-87.9c-6.6,0-12-5.4-12-12v-68.1c0-6.6,5.4-12,12-12h87.9c6.6,0,12,5.4,12,12v68.1
 	C2955.4-23.1,2950-17.7,2943.4-17.7z"/>
 <rect x="4.9" y="4.9" class="st15" width="400" height="224.2"/>
-<rect x="384.6" y="451.6" class="st16" width="400" height="226.5"/>
-<line class="st17" x1="4.9" y1="119.8" x2="404.9" y2="119.8"/>
+<line class="st15" x1="212.2" y1="8.5" x2="212.2" y2="225.7"/>
+<g>
+	<rect x="381.8" y="850" class="st16" width="400" height="226.5"/>
+	<line class="st16" x1="381.8" y1="966.1" x2="781.8" y2="966.1"/>
+</g>
 <g>
 	<rect x="-544.5" y="256.7" class="st16" width="400" height="226.5"/>
 	<line class="st16" x1="-406.4" y1="256.7" x2="-406.4" y2="483.2"/>
 	<line class="st16" x1="-273" y1="256.7" x2="-273" y2="483.2"/>
 </g>
 <g>
-	<rect x="-585.7" y="565.5" class="st16" width="400" height="226.5"/>
-	<line class="st16" x1="-378.5" y1="565.5" x2="-378.5" y2="791.9"/>
+	<rect x="4.9" y="267.2" class="st16" width="400" height="226.5"/>
+	<line class="st16" x1="212.2" y1="267.2" x2="212.2" y2="493.7"/>
 </g>
 </svg>

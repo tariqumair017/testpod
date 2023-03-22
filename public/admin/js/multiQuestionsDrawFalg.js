@@ -12,8 +12,8 @@ add_new_form.onclick = () => {
   clone.childNodes[1].childNodes[1].childNodes[1].setAttribute("id",`countryIDAdd${count}`)
   clone.childNodes[1].childNodes[3].childNodes[1].setAttribute("id",`flagUrlAdd${count}`)
   clone.childNodes[1].childNodes[5].childNodes[1].setAttribute("id",`flagDetailsAdd${count}`)
-  clone.childNodes[1].childNodes[7].childNodes[1].setAttribute("id",`shapeImgAdd${count}`)
-  clone.childNodes[1].childNodes[9].childNodes[1].setAttribute("id",`correctColorsAdd${count}`)
-  clone.childNodes[1].childNodes[11].childNodes[1].setAttribute("id",`arrangementAdd${count}`)
+  clone.childNodes[1].childNodes[7].childNodes[1].setAttribute("id",`correctColorsAdd${count}`)
+  clone.childNodes[1].childNodes[9].childNodes[1].setAttribute("id",`arrangementAdd${count}`)
+  clone.childNodes[1].childNodes[11].childNodes[1].setAttribute("id",`shapeImgAdd${count}`)
   set.appendChild(clone);
 }
