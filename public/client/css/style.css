@@ -7052,10 +7052,6 @@ label {
   justify-content: center;
 }
 
-.card-question-number{
-  display: flex;
-  justify-content: space-between;
-}
 
 
 .card-total-scorce{
@@ -7069,6 +7065,7 @@ label {
 .card-question{
   color: #808080;
   font-weight: 500;
+  margin-top: -7px;
 }
 
 .quiz-card-title{
@@ -8316,7 +8313,7 @@ label {
 
   cursor:url(images/brush.png), auto;
 
-  border: 2px solid #fff;
+  border: 2px solid #CCCCCC;
 
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -9444,8 +9441,10 @@ border-color: #EA4A4A;
 }
 .breadcrumb > .active {
   color: #A8171A;
-  font-weight: 500;
+  font-weight: 900;
+  /* animation: popup 1500ms infinite ease-in-out; */
 }
+
 
 /* game slider start */
 .game-slider-start{
@@ -9464,6 +9463,23 @@ border-color: #EA4A4A;
   align-items: center;
 }
 
+.game-slider-image{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+.accordion-item {
+   --bs-accordion-border-color: #FFE3DC;
+}
+
+.accordion {
+  --bs-accordion-active-bg: #FFE3DC;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem #FFE3DC;
+}
+
+
+
 
 
   
@@ -9474,6 +9490,14 @@ border-color: #EA4A4A;
     }
     .game-slider-container{
       width: 90%;
+      padding: 10px;
+    }
+    .game-image-slider{
+      flex-direction: column;
+      width: 100%;
+    }
+    .images-slider{
+      display: none;
     }
   }
 /* game slider end */
