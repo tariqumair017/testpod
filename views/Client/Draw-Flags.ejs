@@ -183,6 +183,19 @@
           </div>
         </div>
       </div>
+      <div class="result_box d-none">
+        <canvas
+          id="myChart"
+          style="
+            width: 100%;
+            display: block;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #ccc;
+            padding: 15px;
+          "
+        ></canvas>
+        </div>
       <div class="paint-game-color">
         <ul class="nav color_palette"></ul>
       </div>
@@ -207,25 +220,19 @@
       <div class="all-quiz-progress">
         <div class="draw-falgs-progress-card">
           <div class="score_board">
-            <!-- <div class="score_board_inner">
-              <div class="user_score">
-                <span class="obtained_marks">0</span
-                ><span
-                  class="outOf"
-                  style="font-weight: 600; font-size: 30px; color: #cccccc"
-                ></span>
-              </div>
-            </div> -->
           </div>
           <div class="timer">
             <div class="timer__background">
               <div class="timer__display">
                 <div class="display minute"></div>
-
                 <span class="display colon">:</span>
 
                 <div class="display seconds"></div>
               </div>
+                <span
+            class="time_up d-none"
+            style="font-size: 30px; font-weight: bold;color:#A8171A"
+          >Completed</span>
                 <circle class="st0" cx="260.59" cy="260.59" r="253.09" />
             </div>
           </div>

@@ -94,6 +94,7 @@ const all_quiz_allradio_option = document.querySelector(".questions-box");
 
 
 async function checkResult(id) {
+  
   const getData = await fetch(`/quiz-list/${id}`)
   .then((response) => response.json())
   .then((data) => data); 

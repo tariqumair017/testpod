@@ -228,6 +228,17 @@ const btnDontKnow = document.querySelector(".btn_I_dont_know");
 
 const arrangementWrapper = document.getElementById("arrangementWrapper");
 
+const result_box = document.querySelector(".result_box");
+
+const paint_game_color = document.querySelector(".paint-game-color")
+
+const timer__display = document.querySelector(".timer__display")
+
+const time_up = document.querySelector(".time_up")
+
+
+
+
 //required variable
 
 let que_count = 0;
@@ -238,9 +249,6 @@ let userScore = 0;
 
 let userWrongScore = 0;
 
-let previousScore = 0;
-
-let incorrect = 0;
 
 let tryAgainInterval;
 
@@ -303,6 +311,8 @@ console.log("hello")
 
 btnDontKnow.onclick = () => {
   callNextQuestion();
+  userWrongScore++;
+  draw_total_in_correct.innerHTML = userWrongScore;
 
   animateStepOne();
 };
@@ -313,12 +323,14 @@ disMinutes.innerHTML = "00";
 
 disSeconds.innerHTML = "00";
 
-window.loadd = totalTestTime(0, 300);
+window.loadd = totalTestTime(paintFlags.length, 30);
 
 function totalTestTime(min, sec) {
   //totalTime = inpMinutes.value * 60 + inpSeconds.value * 1;
 
-  var totalTime = min * 60 + sec * 1;
+  var totalTime = min * sec
+
+  console.log(totalTime,"totalTime")
 
 
   circleSvg.style.animation = `Loop ${totalTime}s linear 1s`;
@@ -328,6 +340,7 @@ function totalTestTime(min, sec) {
   if (min != "" || sec != "") {
     completeTestInterval = setInterval(() => {
       const minutes = Math.floor(totalTime / 60);
+      console.log(minutes,"minutes")
 
       const seconds = totalTime % 60;
 
@@ -348,7 +361,6 @@ function totalTestTime(min, sec) {
 
         disSeconds.style.animation = "none";
       }
-
       textCorrection(disMinutes, minutes);
 
       textCorrection(disSeconds, seconds);
@@ -374,55 +386,6 @@ function totalTestTime(min, sec) {
 
   return totalTime;
 }
-
-
-// questions_box.classList.add("d-none");
-
-// result_box.classList.remove("d-none");
-
-// result_btn.classList.add("d-none");
-
-// time_up.classList.add("d-none");
-
-// document.querySelector("#testDuration").classList.add("d-none");
-
-//Post Api  
-
-
-// var valRight = (userScore / questions.length) * 360;
-
-// var valWrong = 360 - valRight;
-
-
-// var xValues = ["Right", "Wrong"];
-
-// var yValues = [valRight, valWrong];
-
-// var barColors = ["#1DCF71", "#EA4A4A"];
-
-// new Chart("DrawMyChart", {
-//   type: "pie",
-
-//   data: {
-//     labels: xValues,
-
-//     datasets: [
-//       {
-//         backgroundColor: barColors,
-
-//         data: yValues,
-//       },
-//     ],
-//   },
-
-//   options: {
-//     title: {
-//       display: true,
-
-//       text: "You got " + userScore + " out of " + questions.length,
-//     },
-//   },
-// });
 }
 
 
@@ -730,7 +693,6 @@ function checkIfFlagPaintingIsComplete(x) {
   }
 
   if (rightFilledLayers === flagLayersLength) {
-    previousScore = userScore;
     userScore += 1; //upgrading score value with 1
     draw_total_correct.innerHTML = userScore;
 
@@ -755,9 +717,7 @@ function checkIfFlagPaintingIsComplete(x) {
 
 //function to call try again dialog 
 function callTryAgainDialog() {
-  
-  userWrongScore += 1;
-  draw_total_in_correct.innerHTML = userWrongScore;
+
 
   flag_canvas.innerHTML =
     '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img class="mb-3" src="images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button onclick="callSameQuestion()" class="btn_try_again">Try Again</button></div></div>';
@@ -777,7 +737,10 @@ function tryAgainTime(min, sec) {
   if (min != "" || sec != "") {
     tryAgainInterval = setInterval(() => {
       const seconds = totalTime % 60;
-
+      if(seconds <= 0){
+        userWrongScore += 1;
+        draw_total_in_correct.innerHTML = userWrongScore;
+      }
       document.getElementById("tryAgainSeconds").style.animation =
         "popup 800ms infinite ease-in-out";
 
@@ -948,9 +911,9 @@ function showQuetions(index) {
     "?</span></h2>";
 
   score_board.innerHTML =
-    '<span class="total_que" style="font-weight: bold">' +
+    '<span class="total_que" style="font-size: 30px; font-weight: bold">' +
     queNumber +
-    '<span style="font-size: 15px;">/' +
+    '<span style="font-size: 30px; font-weight: bold">/' +
     paintFlags.length +
     " </span></span>";
 
@@ -970,8 +933,12 @@ function showQuetions(index) {
   color_palette.innerHTML = colorPaletteHtml;
 }
 
+
+
 function callResultScreen() {
   que_heading.classList.add("d-none");
+
+  result_box.classList.remove("d-none");
 
   document.getElementById("arrangementWrapper").classList.add("d-none");
 
@@ -980,6 +947,52 @@ function callResultScreen() {
   document.getElementById("arrowsRow").classList.add("d-none");
 
   btnDontKnow.classList.add("d-none");
+
+  paint_game_color.classList.add("d-none")
+
+  time_up.classList.remove("d-none")
+
+  timer__display.classList.add("d-none")
+
+  score_board.classList.add("d-none")
+
+  // count result for result box;
+
+  
+  var valRight = (userScore / paintFlags.length) * 360;
+
+  var valWrong = 360 - valRight;
+
+
+  var xValues = ["Right", "Wrong"];
+
+  var yValues = [valRight, valWrong];
+
+  var barColors = ["#1DCF71", "#EA4A4A"];
+
+  new Chart("myChart", {
+    type: "pie",
+
+    data: {
+      labels: xValues,
+
+      datasets: [
+        {
+          backgroundColor: barColors,
+
+          data: yValues,
+        },
+      ],
+    },
+
+    options: {
+      title: {
+        display: true,
+
+        text: "You got " + userScore + " out of " + paintFlags.length,
+      },
+    },
+  });
 
   // document.getElementById("scoreWrapper").style.width = "20%";
 }

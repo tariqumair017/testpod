@@ -37,7 +37,7 @@
 <% var counting = 0; %>  
 <%counting = data.questions.length%> 
 <!-- All quizzes  Start-->
-<div class="all-quiz">
+<div id="firstQuizQuestion" class="all-quiz">
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
       <h6><%=data.stateName.toUpperCase()%></h6>
@@ -70,7 +70,7 @@
   </div>
   <div class="all-quizzes">
     <div class="all-quiz-left-part">
-      <div id="firstQuizQuestion" class="questions-box">
+      <div class="questions-box">
         <!-- Backend Data -->
         <% data.questions.forEach(item => { %> 
         <div class="questions-text">
@@ -124,7 +124,7 @@
         <!-- Backend Data -->
       </div>
       <div class="all-quiz-result">
-        <button onclick="checkResult('<%=data._id%>');'#firstQuizQuestion'">Grade This Section</button>
+        <button onclick="checkResult('<%=data._id%>'); location=' #firstQuizQuestion'">Grade This Section</button>
       </div>
     </div>
     <div class="all-quiz-right-part">
