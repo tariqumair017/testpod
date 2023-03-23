@@ -23,7 +23,7 @@
              </div>            
             <div class="header-avatar dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
                   <img class="header_img" src="/admin/img/icons/53537.jpg" alt=""/>
-              <p class="header-title" >currentUser.name</p>
+              <p class="header-title"><%=currentUser.name%></p>
           <ul class="dropdown-menu">
             <li onclick="location='/logout'"><a class="dropdown-item" >Sign Out</a></li>
           </ul>
@@ -42,5 +42,6 @@
     ></script>
     <script src="/admin/js/dashboard.js" ></script> 
     <script src="/admin/js/form-validation.js"></script>
+    <script src="/admin/js/preventDataLost.js"></script>
 </body>
 </html>

@@ -47,7 +47,7 @@
       </div>
       <div class="col-md-6 position-relative" style="margin-top: 20px;">
         <label for="validationTooltip03" class="form-label">Quiz Detail</label>
-        <input maxlength="200" name="quizDetail" placeholder="Please Enter Quiz Detail" type="text" class="form-control" id="validationTooltip03" required>
+        <input maxlength="200" name="quizDetail" placeholder="Please Enter Quiz Detail" type="text" class="form-control" id="quizDetail" required>
         <div class="invalid-tooltip">
           Please provide a Detail.
         </div>
@@ -62,7 +62,7 @@
             <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
           </div>
           <div class="col-md-6 position-relative">
-            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="question" required>
+            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="quizquestion" required>
             <div class="invalid-tooltip">
               Please provide a Question.
             </div>
@@ -70,25 +70,25 @@
           </div>
           <div class="row">
           <div class="col-md-3 position-relative">
-            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="optionA" required>
+            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="quizoptionA" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
           </div> 
           <div class="col-md-3 position-relative">
-            <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="optionB" required>
+            <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="quizoptionB" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
           </div> 
           <div class="col-md-3 position-relative">
-            <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="optionC" required>
+            <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="quizoptionC" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
           </div> 
           <div class="col-md-3 position-relative">
-            <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="optionD" required>
+            <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="quizoptionD" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
@@ -96,13 +96,13 @@
           </div> 
           <div class="row">
           <div class="col-md-6 position-relative">
-            <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="correct" required>
+            <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="quizcorrect" required>
             <div class="invalid-tooltip">
               Please provide a Answer.
             </div>
           </div>
           <div class="col-md-6 position-relative">
-            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="hint">
+            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="quizhint">
           </div>
           </div>
           <hr>
@@ -124,7 +124,7 @@
             <button onclick="clearImage()" class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
           </div>
           <div class="col-md-6 position-relative">
-            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="quizquestion" required>
             <div class="invalid-tooltip">
               Please provide a Question.
             </div>
@@ -132,7 +132,7 @@
         </div>
           <div class="row">
           <div class="col-md-3 position-relative">
-            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="quizoptionA" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
@@ -173,59 +173,6 @@
       </div> 
 </div>
 <!--Container Main end-->   
-<script> 
-if(window.location.href == "http://localhost:9898/add-test")
-{
-
-}
-else
-{
-  sessionStorage.clear();
-}
-
-  window.onbeforeunload = function() { 
-    sessionStorage.setItem("quizName", document.getElementById("quizName").value);
-    sessionStorage.setItem("quizDetail", document.getElementById("quizDetail").value);
-    sessionStorage.setItem("question", document.getElementById("question").value);
-    sessionStorage.setItem("optionA", document.getElementById("optionA").value);
-    sessionStorage.setItem("optionB", document.getElementById("optionB").value); 
-    sessionStorage.setItem("optionC", document.getElementById("optionC").value); 
-    sessionStorage.setItem("optionD", document.getElementById("optionD").value); 
-    sessionStorage.setItem("correct", document.getElementById("correct").value); 
-    sessionStorage.setItem("hint", document.getElementById("hint").value); 
-}
-
-window.onload = function() {
-  var quizName = sessionStorage.getItem("quizName");
-  if (quizName !== null) document.getElementById("quizName").value = quizName;
-
-  var quizDetail = sessionStorage.getItem("quizDetail");
-  if (quizDetail !== null) document.getElementById("quizDetail").value = quizDetail;
-
-  var question = sessionStorage.getItem("question");
-  if (question !== null) document.getElementById("question").value = question;
-
-  var optionA = sessionStorage.getItem("optionA");
-  if (optionA !== null) document.getElementById("optionA").value = optionA;
-
-  var optionB = sessionStorage.getItem("optionB");
-  if (optionB !== null) document.getElementById("optionB").value = optionB;
-
-  var optionC = sessionStorage.getItem("optionC");
-  if (optionC !== null) document.getElementById("optionC").value = optionC;
-
-  var optionD = sessionStorage.getItem("optionD");
-  if (optionD !== null) document.getElementById("optionD").value = optionD;
-
-  var correct = sessionStorage.getItem("correct");
-  if (correct !== null) document.getElementById("correct").value = correct;
-
-  var hint = sessionStorage.getItem("hint");
-  if (hint !== null) document.getElementById("hint").value = hint; 
-}
-
-
-</script>
 <script src="/admin/js/addQuiz.js" ></script>
-<script src="/admin/js/multiQuestionGuessFlag.js"></script>
+<script src="/admin/js/multiQuestionsQuiz.js"></script>
 
