@@ -282,7 +282,6 @@ function runDraw(paintFlags)
   }); 
   arrangementWrapper.innerHTML = shapeOptions;
  
-  // console.log(arrangementWrapper);
 
 window.load = startQuiz();
 
@@ -301,11 +300,6 @@ draw_total_questions.innerHTML = paintFlags.length
 
 var queNumber = 0;
 
-console.log(queNumber,"queNumberqueNumber")
-if(queNumber == paintFlags.length){
-console.log("hello")
-} 
-
 //copy selected color to be used
 
 
@@ -323,14 +317,12 @@ disMinutes.innerHTML = "00";
 
 disSeconds.innerHTML = "00";
 
-window.loadd = totalTestTime(paintFlags.length, 30);
+window.loadd = totalTestTime(paintFlags.length, 10);
 
 function totalTestTime(min, sec) {
   //totalTime = inpMinutes.value * 60 + inpSeconds.value * 1;
 
   var totalTime = min * sec
-
-  console.log(totalTime,"totalTime")
 
 
   circleSvg.style.animation = `Loop ${totalTime}s linear 1s`;
@@ -340,7 +332,6 @@ function totalTestTime(min, sec) {
   if (min != "" || sec != "") {
     completeTestInterval = setInterval(() => {
       const minutes = Math.floor(totalTime / 60);
-      console.log(minutes,"minutes")
 
       const seconds = totalTime % 60;
 
@@ -624,8 +615,9 @@ function animateStepThree() {
 
 
 function fillBgColor(x) {
+
   
-  flag_canvas.setAttribute("paintSarted", "true");
+  flag_canvas.setAttribute("paintSarted", " ");
 
   var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
 
@@ -772,9 +764,6 @@ function textCorrection(element, value) {
 // call next Question
 
 function callSameQuestion() {
-
-  userWrongScore--;
-  draw_total_in_correct.innerHTML = userWrongScore;
 
   flag_canvas.setAttribute("shape", "false");
 
@@ -955,6 +944,12 @@ function callResultScreen() {
   timer__display.classList.add("d-none")
 
   score_board.classList.add("d-none")
+
+
+
+  draw_total_in_correct.innerHTML =paintFlags.length- userScore;
+
+
 
   // count result for result box;
 
