@@ -85,6 +85,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
       document.getElementById("manage-draw-flags-games").classList.add("active")
+    } 
+    else if(pathname == "/game-management/create-guess-flag-game"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("create-guess-flag-game").classList.add("active")
+    }
+     else if(pathname == "/game-management/create-guess-flag-game"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("create-guess-flag-game").classList.add("active")
     }
     else if(pathname == "/add-test"){
       document.getElementById("quiz-management").classList.add("active")

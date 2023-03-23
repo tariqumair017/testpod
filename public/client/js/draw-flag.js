@@ -317,7 +317,7 @@ disMinutes.innerHTML = "00";
 
 disSeconds.innerHTML = "00";
 
-window.loadd = totalTestTime(paintFlags.length, 10);
+window.loadd = totalTestTime(paintFlags.length, 30);
 
 function totalTestTime(min, sec) {
   //totalTime = inpMinutes.value * 60 + inpSeconds.value * 1;
@@ -622,9 +622,11 @@ function fillBgColor(x) {
   var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
 
 
+
   paintAudio.play();
 
   document.getElementById(x).style.backgroundColor = bgColor;
+
 
   animateStepTwo();
 

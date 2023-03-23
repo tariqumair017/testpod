@@ -1,0 +1,213 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+    <h3 class="test-name">Guess New Flags</h3>
+  <%- include ('./partials/SuccessError'); -%>
+  <div style="overflow-x:auto;">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th class="table-hash-col">#</th>
+          <th style="width: 500px !important;">Country Name</th>
+          <th >Flag Url</th>
+          <th >Shape Img</th>
+          <th >Colors</th>
+          <th >Arrangement</th>
+          <th class="table-buttons">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <span class="table-buttons">
+              <button
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                class="btn btn-primary"
+              >
+                Edit
+              </button>
+              <form >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div>
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal1"
+        type="button"
+        class="btn btn-success mt-3"
+      >
+        Add New Flags
+      </button>
+    </div>
+
+    <!-- Add New Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add New Flag
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="add-quiz-form row needs-validation" action="/game-management/draw-new-flags" method="POST" enctype="multipart/form-data" novalidate>
+                 <div id="setNewForm">
+                    <div class="form-data">
+                        <div class="row">
+                            <div class="col-md-6 position-relative">
+                                <select class="form-select" name="country"  required> 
+                                    <option hidden>Please Select Counrty</option>                     
+                                    <option value="pakistan">Pakistan</option>  
+                                </select> 
+                                <div class="invalid-tooltip">
+                                    Please provide a Country Name.
+                                </div>
+                            </div>
+                            <div class="col-md-6 position-relative">
+                                <input readonly name="optionA" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                                <div class="invalid-tooltip">
+                                    Please provide a In Correct Country.
+                                </div>
+                            </div> 
+                            <div class="col-md-12 position-relative mt-3">
+                                <label for="validationTooltip03" class="form-label">Select Correct Images</label>
+                                <div class="add-quiz-state-image">
+                                    <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
+                                    <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </div> 
+                            <div class="col-md-12 position-relative mt-3">
+                                <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
+                                <div class="add-quiz-state-image">
+                                    <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
+                                    <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </div> 
+                            <div class="col-md-12 mt-4 position-relative">
+                                <input name="guessFlagLeavelDetail" placeholder="Please Enter Leavel Detail" type="text" class="form-control" required>
+                              </div>
+                        </div>
+                      </div>
+                      </div>
+                    <div class="col-12 mt-4">
+                        <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Submit</button>
+                    </div>
+                  </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add New Quiz -->
+
+    <!-- Edit Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Edit Flag
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              id="editFlagForm"
+              class="add-quiz-form row g-4 needs-validation"
+              novalidate
+              action=""
+              method="POST"
+              enctype="multipart/form-data"
+            >
+            <div id="setEditForm">
+              <div class="form-data">
+                <div class="row">
+                    <div class="col-md-6 position-relative">
+                        <select class="form-select" name="country"  required> 
+                            <option hidden>Please Select Counrty</option>                     
+                            <option value="pakistan">Pakistan</option>  
+                        </select> 
+                        <div class="invalid-tooltip">
+                            Please provide a Country Name.
+                        </div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                        <input readonly name="optionA" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                            Please provide a In Correct Country.
+                        </div>
+                    </div> 
+                    <div class="col-md-12 position-relative mt-3">
+                        <label for="validationTooltip03" class="form-label">Select Correct Images</label>
+                        <div class="add-quiz-state-image">
+                            <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
+                            <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 position-relative mt-3">
+                        <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
+                        <div class="add-quiz-state-image">
+                            <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
+                            <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 mt-4 position-relative">
+                        <input name="guessFlagLeavelDetail" placeholder="Please Enter Leavel Detail" type="text" class="form-control" required>
+                      </div>
+                </div>
+                </div>
+                </div>
+              <div class="col-12 mt-4">
+                  <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Edit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Quiz -->
+  </div>
+  <!--Container Main end-->
+
+  <script src="/admin/js/allQuiz.js"></script>
+  <script src="/admin/js/draw-new-flag.js" ></script>
+</div>
