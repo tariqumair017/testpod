@@ -416,6 +416,8 @@ function choseFlagArrangemnet(x) {
       }
 
       document.getElementById("flagCanvas").style.backgroundColor = "#ffffff";
+
+      console.log(paintFlags[que_count],"paintFlags[que_count].allowedColors")
   
       setColorAttributeToCanvasChilds(paintFlags[que_count].allowedColors);
 
@@ -616,7 +618,9 @@ function animateStepThree() {
 
 function fillBgColor(x) {
 
-  
+
+
+  console.log(document.getElementById(x),"document.getElementById(x)")
   flag_canvas.setAttribute("paintSarted", " ");
 
   var allowedColor = document.getElementById(x).getAttribute("allowedcolor");

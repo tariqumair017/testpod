@@ -24,7 +24,6 @@ if(!find)
     var shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
     const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
     req.files.shapeImg.mv(newPath);
-
    const newFlag = new DrawNewFlagModel({
         country: req.body.country,
         flagUrl: req.body.flagUrl,
