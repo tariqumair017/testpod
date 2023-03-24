@@ -1,7 +1,7 @@
-var paintFlags;
+var paintFlags; 
 fetch(`/draw-flags/all`)
   .then(res => res.json())
-  .then((data) => {  
+  .then((data) => {   
     paintFlags = data[1].questions.map((val, i) => {
       var colors = ["red", "green", "yellow", "black", "orange", "blue", "pink", "white", "grey"];
       var colorOptions = JSON.parse(JSON.stringify(val.correctColors));  
@@ -41,7 +41,7 @@ fetch(`/draw-flags/all`)
       }
   });
 
-    runDraw(paintFlags);
+    runDraw(paintFlags, data[1]._id); 
   });  
  
   
@@ -249,7 +249,6 @@ let userScore = 0;
 
 let userWrongScore = 0;
 
-
 let tryAgainInterval;
 
 let rightAnsInterval;
@@ -268,8 +267,8 @@ var rightFilledLayers = 0;
 
 var wrongFilledLayers = 0;
 
-function runDraw(paintFlags)
-{
+function runDraw(paintFlags, id)
+{ 
   var shapeOptions = '';
   const correctShapeOptions = [{"shapeImg": `/upload-images/${paintFlags[0].shapeImg}`,"arrangement": paintFlags[0].arrangement}];
   correctShapeOptions.push(...randomShapeOptions);
@@ -299,6 +298,10 @@ function startQuiz() {
 draw_total_questions.innerHTML = paintFlags.length
 
 var queNumber = 0;
+ 
+if(queNumber == paintFlags.length){
+console.log("hello")
+} 
 
 //copy selected color to be used
 
@@ -306,8 +309,7 @@ var queNumber = 0;
 btnDontKnow.onclick = () => {
   callNextQuestion();
   userWrongScore++;
-  draw_total_in_correct.innerHTML = userWrongScore;
-
+  draw_total_in_correct.innerHTML = userWrongScore; 
   animateStepOne();
 };
 
@@ -323,15 +325,14 @@ function totalTestTime(min, sec) {
   //totalTime = inpMinutes.value * 60 + inpSeconds.value * 1;
 
   var totalTime = min * sec
-
-
+  
   circleSvg.style.animation = `Loop ${totalTime}s linear 1s`;
 
   circleSvg.style.animationPlayState = "running";
 
   if (min != "" || sec != "") {
     completeTestInterval = setInterval(() => {
-      const minutes = Math.floor(totalTime / 60);
+      const minutes = Math.floor(totalTime / 60); 
 
       const seconds = totalTime % 60;
 
@@ -986,20 +987,30 @@ function callResultScreen() {
       ],
     },
 
-    options: {
       title: {
         display: true,
 
         text: "You got " + userScore + " out of " + paintFlags.length,
       },
-    },
   });
 
   // document.getElementById("scoreWrapper").style.width = "20%";
 }
- 
-
-
+  
 async function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
+ 
+
+// async function storeResultForDrawFlagGame() { 
+  // var obj = {correct: userScore, incorrect: userWrongScore, attempted: attempted};
+  // console.log(flagGameID); 
+  // const response = await fetch(`/drawflag-game-result/${flagGameID}`, {
+  //   method: 'POST',
+  //   body: JSON.stringify({objToStore: obj}),
+  //   headers: {
+  //     'Content-type': 'application/json; charset=UTF-8',
+  //   }
+  // }); 
+  // console.log(response);
+// }

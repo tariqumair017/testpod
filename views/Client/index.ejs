@@ -649,6 +649,7 @@
 
   <script>
     async function storeLog(id) {
+      console.log(id);
       const counter = 1;
       const response = await fetch(`/track-game/${id}`, {
         method: 'POST',

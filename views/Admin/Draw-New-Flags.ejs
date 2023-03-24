@@ -82,7 +82,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="draw-flag-form" class="add-quiz-form row needs-validation"  action="" method="" enctype="multipart/form-data" novalidate>
+            <form id="draw-flag-form" class="add-quiz-form row needs-validation" enctype="multipart/form-data" novalidate>
                  <div id="setNewForm">
                     <div class="form-data">
                       <div class="row">
@@ -259,44 +259,76 @@
       document.getElementById("editFlagForm").action = `/game-management/draw-new-flags/${id}?_method=PUT`;
     }
 
+  
+  let draw_flag_form = document.getElementById("draw-flag-form")
+  draw_flag_form.addEventListener("submit",getFormData) 
 
-    const draw_flag_form = document.getElementById("draw-flag-form")
-    draw_flag_form.addEventListener("submit",getFormData) 
-    var country = "";
-    var flagUrl = "";
-    var flagDetails = "";
-    var shapeImg = "";
-    var correctColors;
-    var arrangement = "";
-
-  async function getFormData(e){
-     var array = [];
-     for (var i = 0; i < e.target[4].length; i++) {  
-     if (e.target[4][i].selected) {
-       array.push({colors :e.target[4][i].value});
-     }
+  async function getFormData(e){ 
+  const dataToSave = {};
+  var formData = new FormData(draw_flag_form).forEach((val, key) => dataToSave[key] = val)
+  var selectedColors = [];
+  for (var i = 0; i < e.target[4].length; i++) {  
+  if (e.target[4][i].selected) {
+      selectedColors.push({colors :e.target[4][i].value});
     }
+  } 
 
-    var dataToSave = {
-      country: e.target[0].value,
-      flagUrl: e.target[1].value,
-      flagDetails: e.target[2].value,
-      shapeImg: e.target[3].value,
-      correctColors: array,
-      arrangement: e.target[6].value
-    }  
+  dataToSave.correctColors = selectedColors;   
+  dataToSave.shapeImg =  dataToSave.shapeImg.name; 
 
-    const response = await fetch(`/game-management/draw-new-flags`, {
-        method: 'POST',
-        body: JSON.stringify(dataToSave),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        }
-      }); 
-      console.log(response);
+  fetch(`/game-management/draw-new-flags`, {
+    method: "POST",
+    body: JSON.stringify(dataToSave),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    }
+  })
+    .then((res) => res.text())
+    .then((data) => {
+      var json = JSON.parse(data);
+      console.log(json);
+    })
+    .catch(console.log);
+  }
 
 
-   }
+  //   const draw_flag_form = document.getElementById("draw-flag-form")
+  //   draw_flag_form.addEventListener("submit",getFormData) 
+  //   var country = "";
+  //   var flagUrl = "";
+  //   var flagDetails = "";
+  //   var shapeImg = "";
+  //   var correctColors;
+  //   var arrangement = "";
+
+  // async function getFormData(e){
+  //    var array = [];
+  //    for (var i = 0; i < e.target[4].length; i++) {  
+  //    if (e.target[4][i].selected) {
+  //      array.push({colors :e.target[4][i].value});
+  //    }
+  //   }
+
+  //   var dataToSave = {
+  //     country: e.target[0].value,
+  //     flagUrl: e.target[1].value,
+  //     flagDetails: e.target[2].value,
+  //     shapeImg: e.target[3].value,
+  //     correctColors: array,
+  //     arrangement: e.target[6].value
+  //   }  
+
+  //   const response = await fetch(`/game-management/draw-new-flags`, {
+  //       method: 'POST',
+  //       body: JSON.stringify(dataToSave),
+  //       headers: {
+  //         'Content-type': 'application/json; charset=UTF-8',
+  //       }
+  //     }); 
+  //     console.log(response);
+
+
+  //  }
   </script>
   <script src="/admin/js/allQuiz.js"></script>
   <script src="/admin/js/draw-new-flag.js" ></script>

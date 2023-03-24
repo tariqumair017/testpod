@@ -76,7 +76,6 @@ let questions = [
     incorrectFlag: "flag-icon-background flag-icon-bd",
     detail: "testing",
   },
-
   {
     numb: 2,
     correctName: "japan",
@@ -268,7 +267,7 @@ function startTimer(duration, display) {
 
 // runInterval();
 // function runInterval() {
-var interval = 0.5 * 60,
+var interval = 0.25 * 60,
   display = document.querySelector("#testDuration");
 
 startTimer(interval, display);

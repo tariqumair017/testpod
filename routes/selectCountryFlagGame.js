@@ -17,7 +17,7 @@ router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn
   //Admin: Add Flag Game Handel
   router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
   
-    const find = await CountryFlagGame.findOne({gameName: req.body.gameName});
+    const find = await CountryFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
    
     if(!find)
     {  

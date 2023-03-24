@@ -27,7 +27,7 @@ router.get("/game-management/draw-flags-games", connectEnsureLogin.ensureLoggedI
 //Admin: Add Draw Flag Game Handel
 router.post("/game-management/draw-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
 
-  const find = await DrawFlagGameModel.findOne({gameName: req.body.gameName});
+  const find = await DrawFlagGameModel.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
 
   if(!find)
   {  
@@ -131,33 +131,6 @@ router.post('/game-management/manage-draw-flag-games/:id/new', connectEnsureLogi
     }
 }));
   
-// Admin: Edit Question of a Game
-// router.get('/game-management/manage-draw-flag-games/:id/edit', asyncHandler(async (req, res) => { 
-//   const data = await DrawFlagGameModel.findById(req.params.id);
-//   res.send(data);  
-// }));
-  
-  //Admin: Update Question of a Game
-  // router.put("/game-management/manage-draw-flag-games/:cid/:pid", asyncHandler(async (req, res) => {   
-  //   var question;
-  //   if(req.files)
-  //   {
-  //     const flagFileName = Date.now() + '-' + req.files.flag.name;
-  //     const newPath  = path.join(process.cwd(), '/public/upload-images', flagFileName);
-  //     req.files.flag.mv(newPath);
-  //     question = {flag: flagFileName, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
-  //     await CountryFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
-  //   }
-  //   else
-  //   {
-  //     await CountryFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.optionA": req.body.optionA, "questions.$.optionB": req.body.optionB, "questions.$.optionC": req.body.optionC, "questions.$.optionD": req.body.optionD, "questions.$.correct": req.body.correct, "questions.$.hint": req.body.hint}});
-  //   }
-   
-  //   console.log("Question Updated");
-  //   req.flash("success", "Question Updated Successfully");
-  //   res.redirect(`/game-management/manage-flags-games/${req.params.pid}/all-questions`);
-  // }));
-  
 //Admin: Delete Question of a Game
 router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {  
   await DrawFlagGameModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
@@ -172,30 +145,29 @@ router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsure
 // Client Side Routes 
 //=====================================
 
-  
 
 
 //=====================================
-// User Activity For Country Flag Game 
+// User Activity For Draw Flag Game 
 //=====================================
  
-// router.post("/track-game/:id", asyncHandler(async (req, res) => {  
-//     const { views } = req.body; 
-//      //find the Game Using ID
-//      const findGame = await CountryFlagGame.findById(req.params.id); 
-//      if(findGame.logs)
-//      { 
-//         const data = await LogModel.updateOne({_id: findGame.logs}, { $inc: { views: 1 }});
-//         res.send("Done"); 
-//      }
-//      else
-//      {
-//         const newLog = new LogModel({views:views});
-//         await newLog.save(); 
-//         findGame.logs = newLog._id;
-//         await findGame.save();
-//         res.send("Done"); 
-//      }
+// router.post("/track-drawflag-game/:id", asyncHandler(async (req, res) => {  
+//   const { views } = req.body; 
+//    //find the Game Using ID
+//    const findGame = await CountryFlagGame.findById(req.params.id); 
+//    if(findGame.logs)
+//    { 
+//       const data = await LogModel.updateOne({_id: findGame.logs}, { $inc: { views: 1 }});
+//       res.send("Done"); 
+//    }
+//    else
+//    {
+//       const newLog = new LogModel({views:views});
+//       await newLog.save(); 
+//       findGame.logs = newLog._id;
+//       await findGame.save();
+//       res.send("Done"); 
+//    }
 // }));
  
 
@@ -203,38 +175,38 @@ router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsure
 // Game Result
 //======================
  
-// router.post("/game-result/:id", asyncHandler(async (req, res) => {  
-//     const { objToStore } = req.body;  
-//      //find the Game Using ID
-//      const findGame = await CountryFlagGame.findById(req.params.id); 
-//     if(objToStore.attempted == findGame.questions.length)
-//     {
-//         objToStore.status = "complete";
-//     }
-//     else
-//     {
-//         objToStore.status = "Incomplete";
-//     }
+router.post("/drawflag-game-result/:id", asyncHandler(async (req, res) => {  
+  const { objToStore } = req.body;  
+   //find the Game Using ID
+   const findGame = await CountryFlagGame.findById(req.params.id); 
+  if(objToStore.attempted == findGame.questions.length)
+  {
+      objToStore.status = "complete";
+  }
+  else
+  {
+      objToStore.status = "Incomplete";
+  }
 
 
-//     const ResultExist = await ResultModel.findById(req.session.newResultIDForGame);
+  const ResultExist = await ResultModel.findById(req.session.newResultIDForGame);
 
-//     if(!ResultExist)
-//     {
-//         const newResult = new ResultModel(objToStore);
-//         await newResult.save();
-//         req.session.newResultIDForGame = newResult._id;
-//         //Push newResult to results field in Game
-//         await findGame.results.push(newResult);
-//         await findGame.save();
-//         res.send("Done"); 
-//     } 
-//     else
-//     {
-//       await ResultModel.replaceOne({_id: ResultExist._id}, objToStore);
-//       res.send("Done"); 
-//     }
-// }));
+  if(!ResultExist)
+  {
+      const newResult = new ResultModel(objToStore);
+      await newResult.save();
+      req.session.newResultIDForGame = newResult._id;
+      //Push newResult to results field in Game
+      await findGame.results.push(newResult);
+      await findGame.save();
+      res.send("Done"); 
+  } 
+  else
+  {
+    await ResultModel.replaceOne({_id: ResultExist._id}, objToStore);
+    res.send("Done"); 
+  }
+}));
 
 
 

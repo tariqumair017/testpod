@@ -17,13 +17,13 @@ const data = await DrawNewFlagModel.find({});
 //Admin: Draw-New-Flags Page Handel
 router.post("/game-management/draw-new-flags", asyncHandler(async (req, res) => { 
 
-const find = await DrawNewFlagModel.findOne({country: req.body.country});
+const find = await DrawNewFlagModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }});
 
 if(!find)
 {    
-    var shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
+    var shapeFileName = Date.now() + '-' + req.body.shapeImg.name;
     const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
-    req.files.shapeImg.mv(newPath);
+    req.body.shapeImg.mv(newPath);
    const newFlag = new DrawNewFlagModel({
         country: req.body.country,
         flagUrl: req.body.flagUrl,

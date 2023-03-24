@@ -24,7 +24,7 @@ router.get("/add-test", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandle
   //Admin: Add Questions
   router.post("/add-test", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
      
-    const find = await QuizModel.findOne({country: req.body.country, stateName: req.body.stateName, quizName: req.body.quizName});
+    const find = await QuizModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }, stateName: {$regex : req.body.stateName.toString(), "$options": "i" }, quizName: {$regex : req.body.quizName.toString(), "$options": "i" }});
    
     if(!find)
     { 

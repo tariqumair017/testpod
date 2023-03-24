@@ -17,7 +17,6 @@ const app = express();
 const { urlencoded } = bodyParser;
 const port = process.env.PORT || 9898;  
  
- 
 //Requring Routes
 import AdminRoutes from "./routes/admin.js"; 
 import ClientRoutes from "./routes/client.js"; 

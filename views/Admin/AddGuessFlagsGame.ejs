@@ -3,19 +3,19 @@
 
 <!--Container Main start-->
  <div class="application bg-light">
-    <h4>Add Find Country Game</h4>
+    <h4>Add Guess Flag Game</h4>
     <%- include ('./partials/SuccessError'); -%>
-    <form class="add-quiz-form row needs-validation" action="/game-management/add-flags-games" method="POST" enctype="multipart/form-data" novalidate>
+    <form class="add-quiz-form row needs-validation" action="/game-management/create-guess-flag-game" method="POST" enctype="multipart/form-data" novalidate>
     <div class="row" >
         <div class="col-md-6 position-relative mt-3">
-            <input name="guessFlagLeavelDetail" placeholder="Please Enter Game Name" type="text" class="form-control" required>
+            <input name="gameName" placeholder="Please Enter Game Name" type="text" class="form-control" required>
             <div class="invalid-tooltip">
                 Please provide a Game Name.
             </div>
           </div>
       <div class="col-md-6 position-relative mt-3">
-        <select class="form-select" name="country" required> 
-              <option hidden>Please Select Leavel</option>                     
+        <select class="form-select" name="level" required> 
+              <option hidden>Please Select Level</option>                     
               <option value="low">Low</option>  
               <option value="medium">Medium</option>  
               <option value="high">High</option>  
@@ -23,7 +23,7 @@
           </select> 
       </div>
       <div class="col-md-6 position-relative mt-3">
-        <input name="guessFlagLeavelDetail" placeholder="Please Enter Leavel Detail" type="text" class="form-control" required>
+        <input name="gameDetail" placeholder="Please Enter Game Detail" type="text" class="form-control" required>
         <div class="invalid-tooltip">
             Please provide a Guess Flags Details.
         </div>
@@ -34,36 +34,33 @@
         <div class="form-data">
             <div class="row">
             <div class="col-md-6 position-relative">
-                <select class="form-select" name="country"  required> 
-                    <option hidden>Please Select Counrty</option>                     
-                    <option value="pakistan">Pakistan</option>  
+                <select class="form-select" name="country" id="allCountries0" onchange="selectedCountry(this)" required> 
+                    <option hidden>Please Select Counrty</option> 
                 </select> 
                 <div class="invalid-tooltip">
                     Please provide a Country Name.
                 </div>
             </div>
             <div class="col-md-6 position-relative">
-                <input readonly name="optionA" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                <input readonly name="Icountry" id="Icountry0" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
                 <div class="invalid-tooltip">
                     Please provide a In Correct Country.
                 </div>
             </div> 
             <div class="col-md-6 position-relative mt-3">
-                <label for="validationTooltip03" class="form-label">Select Correct Images</label>
+                <label for="validationTooltip03" class="form-label">Select Correct Flag</label>
                 <div class="add-quiz-state-image">
-                    <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
-                    <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                    <input class="add-quiz-image formFile form-control" type="file" name="correctImg" onchange="preview()" required> 
                 </div>
             </div> 
             <div class="col-md-6 position-relative mt-3">
-                <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
+                <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
                 <div class="add-quiz-state-image">
-                    <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
-                    <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
+                    <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()" required> 
                 </div>
             </div> 
             <div class="col-md-6 mt-4 position-relative">
-                <input name="guessFlagLeavelDetail" placeholder="Please Enter Leavel Detail" type="text" class="form-control" required>
+                <input name="questionDetail" placeholder="Please Enter Question Detail" type="text" class="form-control" required>
               </div>
         </div>
             <hr>
@@ -79,43 +76,41 @@
       <div style="display: none;" >
         <div id="addNewForm" class="form-data">
                   <div class="row mt-4">
-            <div class="col-md-6 position-relative">
-                <select class="form-select" name="country" id="countryIDAdd0"  required> 
-                    <option hidden>Please Select Counrty</option>                     
-                    <option value="pakistan">Pakistan</option>  
-                </select> 
-                <div class="invalid-tooltip">
-                    Please provide a Country Name.
+                    <div class="col-md-6 position-relative">
+                        <select class="form-select" name="country" id="allCountries" required> 
+                            <option hidden>Please Select Counrty</option> 
+                        </select> 
+                        <div class="invalid-tooltip">
+                            Please provide a Country Name.
+                        </div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                        <input readonly name="Icountry" id="Icountry" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                        <div class="invalid-tooltip">
+                            Please provide a In Correct Country.
+                        </div>
+                    </div> 
+                    <div class="col-md-6 position-relative mt-3">
+                        <label for="validationTooltip03" class="form-label">Select Correct Flag</label>
+                        <div class="add-quiz-state-image">
+                            <input class="add-quiz-image formFile form-control" type="file" name="correctImg" onchange="preview()" required> 
+                        </div>
+                    </div> 
+                    <div class="col-md-6 position-relative mt-3">
+                        <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
+                        <div class="add-quiz-state-image">
+                            <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()" required> 
+                        </div>
+                    </div> 
+                    <div class="col-md-6 mt-4 position-relative">
+                        <input name="questionDetail" placeholder="Please Enter Question Detail" type="text" class="form-control" required>
+                      </div>
                 </div>
-            </div>
-            <div class="col-md-6 position-relative">
-                <input readonly name="optionA" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
-                <div class="invalid-tooltip">
-                    Please provide a In Correct Country.
-                </div>
-            </div> 
-            <div class="col-md-6 position-relative mt-3">
-                <label for="validationTooltip03" class="form-label">Select Correct Images</label>
-                <div class="add-quiz-state-image">
-                    <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
-                    <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div> 
-            <div class="col-md-6 position-relative mt-3">
-                <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
-                <div class="add-quiz-state-image">
-                    <input class="add-quiz-image formFile form-control" type="file" name="questionImg0" onchange="preview()" required>
-                    <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div> 
-            <div class="col-md-6 mt-4 position-relative">
-                <input name="guessFlagLeavelDetail" placeholder="Please Enter Leavel Detail" type="text" class="form-control" required>
-              </div>
+        <hr>
         </div>
-            <hr>
-                </div>
-                </div>
+        </div>
       </div> 
 </div>
 <!--Container Main end-->   
 <script src="/admin/js/multiQuestionGuessFlag.js"></script>
+
