@@ -25,7 +25,7 @@
           <td><%=val.country%></td>
           <td><%=val.flagUrl%></td>
           <td><%=val.shapeImg%></td>
-          <td><%=val.correctColors%></td>
+          <td><%=val.correctColors.map(val => val.colors)%></td>
           <td><%=val.arrangement%></td>
           <td>
             <span class="table-buttons">
@@ -110,7 +110,7 @@
                           <div class="col-md-6 position-relative mt-3">
                             <label class="form-label">Select Shape</label>
                             <div class="add-quiz-state-image">
-                              <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" onchange="preview()" required> 
+                              <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" id="newshapeImg" onchange="preview()" required> 
                             </div> 
                           </div>
                         <div class="col-md-6 position-relative mt-3">
@@ -185,12 +185,13 @@
                   <div class="col-md-6 position-relative mt-4">
                     <label for="editCountry" class="form-label">Country</label>
                     <input name="country" placeholder="Enter Country Name" type="text" class="form-control" id="editCountry" required>
+                    <input hidden name="hideID" type="text" id="hideID">
                     <div class="invalid-tooltip">
                       Please provide Country Name.
                     </div>
                 </div>
                 <div class="col-md-6 position-relative mt-4">
-                  <label for="newFlagUrl" class="form-label">Flag Url</label>
+                  <label for="editFlagUrl" class="form-label">Flag Url</label>
                   <input name="flagUrl" placeholder="Flag Url" type="text" class="form-control" id="editFlagUrl" required>
                   <div class="invalid-tooltip">
                     Please provide a Flag Url.
@@ -247,88 +248,70 @@
   <!--Container Main end-->
 
   <script>
-    async function editFlag(id) { 
+  
+  //Add New Flag
+  let draw_flag_form = document.getElementById("draw-flag-form");
+  draw_flag_form.addEventListener("submit",getFormData)  
+  function getFormData(e){ 
+    e.preventDefault();
+    var formData = new FormData(draw_flag_form); //.forEach((val, key) => dataToSave[key] = val)
+   
+    var selectedColors = [];
+    for (var i = 0; i < e.target[4].length; i++) {  
+    if (e.target[4][i].selected) {
+        selectedColors.push({colors :e.target[4][i].value});
+      }
+    } 
+
+    formData.append("selectedColors", JSON.stringify(selectedColors)); 
+ 
+    fetch(`/game-management/draw-new-flags`, {
+      method: "POST",
+      body: formData, 
+    }).then((response) => response.json())
+      .then((data) => {   
+        window.location.href = data.url;
+      })
+      .catch(console.log);
+  }
+
+  //Edit New Flag
+  async function editFlag(id) { 
       const response = await fetch(`/game-management/draw-new-flags/${id}/edit`);
       const data = await response.json();
   
       document.getElementById("editCountry").value = data.country; 
       document.getElementById("editFlagUrl").value = data.flagUrl;
       document.getElementById("editFlagDetails").value = data.flagDetails; 
-      document.getElementById("editArrangementID").value = data.arrangement;
-     
-      document.getElementById("editFlagForm").action = `/game-management/draw-new-flags/${id}?_method=PUT`;
+      document.getElementById("editArrangementID").value = data.arrangement; 
+      document.getElementById("hideID").value = id;
     }
-
-  
-  let draw_flag_form = document.getElementById("draw-flag-form")
-  draw_flag_form.addEventListener("submit",getFormData) 
-
-  async function getFormData(e){ 
-  const dataToSave = {};
-  var formData = new FormData(draw_flag_form).forEach((val, key) => dataToSave[key] = val)
-  var selectedColors = [];
-  for (var i = 0; i < e.target[4].length; i++) {  
-  if (e.target[4][i].selected) {
-      selectedColors.push({colors :e.target[4][i].value});
-    }
-  } 
-
-  dataToSave.correctColors = selectedColors;   
-  dataToSave.shapeImg =  dataToSave.shapeImg.name; 
-
-  fetch(`/game-management/draw-new-flags`, {
-    method: "POST",
-    body: JSON.stringify(dataToSave),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    }
-  })
-    .then((res) => res.text())
-    .then((data) => {
-      var json = JSON.parse(data);
-      console.log(json);
-    })
-    .catch(console.log);
+  //Update New Flag
+  let edit_Flag_Form = document.getElementById("editFlagForm");
+  edit_Flag_Form.addEventListener("submit",updateFormData)  
+  function updateFormData(e){ 
+    e.preventDefault();
+    var formData = new FormData(edit_Flag_Form); //.forEach((val, key) => dataToSave[key] = val)
+   
+    var selectedColors = [];
+    for (var i = 0; i < e.target[5].length; i++) {  
+    if (e.target[5][i].selected) {
+        selectedColors.push({colors :e.target[5][i].value});
+      }
+    }  
+ 
+    formData.append("selectedColors", JSON.stringify(selectedColors)); 
+ 
+    fetch(`/game-management/draw-new-flags/${hideID.value}`, {
+      method: "PUT",
+      body: formData, 
+    }).then((response) => response.json())
+      .then((data) => {   
+        window.location.href = data.url;
+      })
+      .catch(console.log);
   }
 
-
-  //   const draw_flag_form = document.getElementById("draw-flag-form")
-  //   draw_flag_form.addEventListener("submit",getFormData) 
-  //   var country = "";
-  //   var flagUrl = "";
-  //   var flagDetails = "";
-  //   var shapeImg = "";
-  //   var correctColors;
-  //   var arrangement = "";
-
-  // async function getFormData(e){
-  //    var array = [];
-  //    for (var i = 0; i < e.target[4].length; i++) {  
-  //    if (e.target[4][i].selected) {
-  //      array.push({colors :e.target[4][i].value});
-  //    }
-  //   }
-
-  //   var dataToSave = {
-  //     country: e.target[0].value,
-  //     flagUrl: e.target[1].value,
-  //     flagDetails: e.target[2].value,
-  //     shapeImg: e.target[3].value,
-  //     correctColors: array,
-  //     arrangement: e.target[6].value
-  //   }  
-
-  //   const response = await fetch(`/game-management/draw-new-flags`, {
-  //       method: 'POST',
-  //       body: JSON.stringify(dataToSave),
-  //       headers: {
-  //         'Content-type': 'application/json; charset=UTF-8',
-  //       }
-  //     }); 
-  //     console.log(response);
-
-
-  //  }
   </script>
   <script src="/admin/js/allQuiz.js"></script>
   <script src="/admin/js/draw-new-flag.js" ></script>

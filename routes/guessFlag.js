@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 const router = Router();  
+import GuessFlagGame from "../models/guessFlag.js";
 import connectEnsureLogin from "connect-ensure-login";
 import asyncHandler from "express-async-handler";  
 
@@ -28,52 +29,62 @@ router.get("/game-management/create-guess-flag-game", asyncHandler(async (req, r
 //Admin: Create-Guess-Flag Handel
 router.post("/game-management/create-guess-flag-game", asyncHandler(async (req, res) => { 
 
-    const find = await DrawFlagGameModel.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
+    const find = await GuessFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
   
     if(!find)
     {  
-        var countryFileName = Date.now() + '-' + req.files.countryImg.name;
-        const newPath1  = path.join(process.cwd(), '/public/upload-images', countryFileName);
-        req.files.countryImg.mv(newPath1);
+        var correctFileName = Date.now() + '-' + req.files.correctImg.name;
+        const newPath1  = path.join(process.cwd(), '/public/upload-images', correctFileName);
+        req.files.correctImg.mv(newPath1);
+
+        var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg.name;
+        const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
+        req.files.IcorrectImg.mv(newPath2);
   
         if(typeof(req.body.country) == "string")
-        { 
-          const selectedColors = req.body.correctColors.split(",");
-          var question = {country: req.body.country, flagUrl: req.body.flagUrl, flagDetails: req.body.flagDetails, shapeImg: req.body.shapeImg, correctColors: selectedColors, arrangement: req.body.arrangement}; 
-          const singleGame = new DrawFlagGameModel({
+        {  
+          var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, questionDetail: req.body.questionDetail}; 
+          const singleGame = new GuessFlagGame({
               gameName: req.body.gameName,
-              gameDetail: req.body.gameDetail,
-              countryImg: countryFileName, 
+              level: req.body.level,
+              gameDetail: req.body.gameDetail, 
               questions: question
           });
           await singleGame.save();
-          console.log("DrawFlagGame Added Successfully"); 
-          res.redirect("/game-management/manage-draw-flag-games");
+          console.log("GuessFlagGame Added Successfully"); 
+          res.redirect("/game-management/manage-guess-flag-game");
         }
         else if(typeof(req.body.country) == "object")
         {
           const newQuestions = [];
-          for (let i = 0; i < req.body.country.length; i++) {   
-              const selectedColors = req.body.correctColors[i].split(",");
+          for (let i = 0; i < req.body.country.length; i++) {  
+
+            var correctFileName = Date.now() + '-' + req.files.correctImg[i].name;
+            const newPath1  = path.join(process.cwd(), '/public/upload-images', correctFileName);
+            req.files.correctImg[i].mv(newPath1);
+
+            var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg[i].name;
+            const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
+            req.files.IcorrectImg[i].mv(newPath2);  
+
               const newQuestion = {
-                country: req.body.country[i],
-                flagUrl: req.body.flagUrl[i], 
-                flagDetails: req.body.flagDetails[i], 
-                shapeImg: req.body.shapeImg[i], 
-                correctColors: selectedColors, 
-                arrangement: req.body.arrangement[i]
-                }; 
+                country: req.body.country, 
+                Icountry: req.body.Icountry, 
+                correctImg: correctFileName, 
+                IcorrectImg: IcorrectFileName, 
+                questionDetail: req.body.questionDetail
+            }; 
   
               newQuestions.push(newQuestion);
           }
-          const newGame = new DrawFlagGameModel({
+          const newGame = new GuessFlagGame({
             gameName: req.body.gameName,
-            gameDetail: req.body.gameDetail,
-            countryImg: countryFileName, 
+            level: req.body.level,
+            gameDetail: req.body.gameDetail, 
             questions: newQuestions
         });
           await newGame.save(); 
-          console.log("Multiple DrawFlagGame Added Successfully"); 
+          console.log("Multiple GuessFlagGame Added Successfully"); 
           res.redirect("/game-management/manage-guess-flag-game");
         }  
     }

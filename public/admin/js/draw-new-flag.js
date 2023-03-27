@@ -446,7 +446,7 @@ function getOptions(select) {
         }
     });
 
-    autocomplete_options.sort();
+    autocomplete_options;
 
     return {
         options_selected,

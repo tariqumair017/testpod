@@ -10,38 +10,39 @@ router.use(connectEnsureLogin.ensureLoggedIn("/login"));
  
 //Admin: Draw-New-Flags Page
 router.get("/game-management/draw-new-flags", asyncHandler(async (req, res) => { 
-const data = await DrawNewFlagModel.find({});
+    const data = await DrawNewFlagModel.find({});
     res.render("Admin/Draw-New-Flags", { data });
 }));
    
 //Admin: Draw-New-Flags Page Handel
 router.post("/game-management/draw-new-flags", asyncHandler(async (req, res) => { 
+        
+    const find = await DrawNewFlagModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }});
 
-const find = await DrawNewFlagModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }});
-
-if(!find)
-{    
-    var shapeFileName = Date.now() + '-' + req.body.shapeImg.name;
-    const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
-    req.body.shapeImg.mv(newPath);
-   const newFlag = new DrawNewFlagModel({
-        country: req.body.country,
-        flagUrl: req.body.flagUrl,
-        flagDetails: req.body.flagDetails, 
-        shapeImg: shapeFileName,
-        correctColors: req.body.correctColors,
-        arrangement: req.body.arrangement
-    });
-    await newFlag.save();
-    console.log("New Flag Added Successfully"); 
-    req.flash("success", `New Flag Added Successfully`);
-    res.redirect("/game-management/draw-new-flags");
-}
-else
-{   
-    req.flash("error", `${find.country} is already exist`);
-    res.redirect("/game-management/draw-new-flags"); 
-}
+    if(!find)
+    {    
+        var shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
+        const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
+        req.files.shapeImg.mv(newPath);
+        const newFlag = new DrawNewFlagModel({
+            country: req.body.country,
+            flagUrl: req.body.flagUrl,
+            flagDetails: req.body.flagDetails, 
+            shapeImg: shapeFileName,
+            correctColors: JSON.parse(req.body.selectedColors),
+            arrangement: req.body.arrangement
+        });
+        await newFlag.save();
+        console.log("New Flag Added Successfully"); 
+        req.flash("success", `New Flag Added Successfully`);
+        res.send({url: "/game-management/draw-new-flags"}); 
+    }
+    else
+    {   
+        console.log(`${find.country} is already exist`); 
+        req.flash("error", `${find.country} is already exist`);
+        res.send({url: "/game-management/draw-new-flags"}); 
+    }
 }));  
 
 // Admin: Edit Flag
@@ -63,11 +64,11 @@ router.put("/game-management/draw-new-flags/:id", asyncHandler(async (req, res) 
             flagUrl: req.body.flagUrl,
             flagDetails: req.body.flagDetails, 
             shapeImg: shapeFileName,
-            correctColors: req.body.correctColors,
+            correctColors: JSON.parse(req.body.selectedColors),
             arrangement: req.body.arrangement
         });
         req.flash("success", `Flag Updated Successfully`);
-        res.redirect("/game-management/draw-new-flags");
+        res.send({url: "/game-management/draw-new-flags"}); 
     }
     else
     {
@@ -75,11 +76,11 @@ router.put("/game-management/draw-new-flags/:id", asyncHandler(async (req, res) 
             country: req.body.country,
             flagUrl: req.body.flagUrl,
             flagDetails: req.body.flagDetails,  
-            correctColors: req.body.correctColors,
+            correctColors: JSON.parse(req.body.selectedColors),
             arrangement: req.body.arrangement
         });
         req.flash("success", `Flag Updated Successfully`);
-        res.redirect("/game-management/draw-new-flags");
+        res.send({url: "/game-management/draw-new-flags"}); 
     }
 }));
  
