@@ -2,6 +2,7 @@ import express, { Router } from "express";
 const router = Router();
 import passport from "passport"; 
 import asyncHandler from "express-async-handler";  
+import Admin from "../models/admin.js";
 import QuizModel from "../models/quizs.js";  
 import CountryFlagGame from "../models/selectCountryFlagGame.js"; 
 import connectEnsureLogin from "connect-ensure-login"; 
@@ -12,13 +13,15 @@ import connectEnsureLogin from "connect-ensure-login";
 // }));
 
 //Handel Sign Up Logic
-// router.post('/sign-up', asyncHandler(async function(req, res, next) {  
-//     const newAdmin = new Admin({username: req.body.username, password: req.body.password, name: req.body.name})
-//     const salt = await bcryptjs.genSalt(10);
-//     const hash = await bcryptjs.hash(newAdmin.password, salt); 
-//     newAdmin.password = hash;
-//     await newAdmin.save();
-//     res.redirect("/login");
+// router.post('/sign-up', asyncHandler(async (req, res) => {  
+//     try {
+//       const newAdmin = new Admin({username: req.body.username, email: req.body.email});
+//       const registeredAdmin = await Admin.register(newAdmin, req.body.password); 
+//       res.redirect("/login");
+//     } catch (error) { 
+//       req.flash("error", error.message);
+//       return res.redirect("/sign-up");
+//     }
 // }));
 
 // Login Page 
@@ -27,10 +30,10 @@ router.get("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), asyncHand
 }));
 
 //Handel Login Logic
-router.post("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), passport.authenticate("Admin", {
-  failureRedirect: "/login",
+router.post("/login", connectEnsureLogin.ensureLoggedOut("/dashboard"), passport.authenticate("admin", {
   failureFlash: true,
-}),(req, res) => {   
+  failureRedirect: "/login"
+}), (req, res) => {   
   res.redirect("/dashboard"); 
 });
 
@@ -74,7 +77,7 @@ router.get("/user-management", connectEnsureLogin.ensureLoggedIn("/login"), asyn
 
 //Logout
 router.get('/logout', connectEnsureLogin.ensureLoggedIn("/"), function(req, res, next) { 
-  req.logout(function(err) {
+  req.logout(function (err){
     if (err) { return next(err); }
     res.redirect('/');
   });

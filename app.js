@@ -54,42 +54,46 @@ app.use(session({
 }));
 
 //For Admin
-passport.use('Admin', new LocalStrategy(async function verify(username, password, done) {   
+// passport.use('Admin', new LocalStrategy(async function verify(username, password, done) {   
       
-    const user = await Admin.findOne({username: username}); 
+//     const user = await Admin.findOne({username: username}); 
 
-    if(user)
-    {   
-         //------------ Password Matching ------------//
-      bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (err) {console.log(err)};
-        if (isMatch) {
-            return done(null, user);
-        } else {
-            console.log("Password incorrect! Please try again"); 
-            return done(null, false, {message: "Password incorrect! Please try again"});
-        }
-      });
-    }
-    else
-    {
-        console.log("This User is Not Regictered"); 
-        return done(null, false, {message: "This User is Not Regictered"});
-    } 
-}));
-passport.serializeUser(function(Admin, done) {
-    process.nextTick(function() {
-        done(null, Admin);
-    });
-});  
-passport.deserializeUser(function(Admin, done) {
-    process.nextTick(function() {
-      return done(null, Admin);
-    });
-});
+//     if(user)
+//     {   
+//          //------------ Password Matching ------------//
+//       bcrypt.compare(password, user.password, (err, isMatch) => {
+//         if (err) {console.log(err)};
+//         if (isMatch) {
+//             return done(null, user);
+//         } else {
+//             console.log("Password incorrect! Please try again"); 
+//             return done(null, false, {message: "Password incorrect! Please try again"});
+//         }
+//       });
+//     }
+//     else
+//     {
+//         console.log("This User is Not Regictered"); 
+//         return done(null, false, {message: "This User is Not Regictered"});
+//     } 
+// }));
+// passport.serializeUser(function(Admin, done) {
+//     process.nextTick(function() {
+//         done(null, Admin);
+//     });
+// });  
+// passport.deserializeUser(function(Admin, done) {
+//     process.nextTick(function() {
+//       return done(null, Admin);
+//     });
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use("admin", new LocalStrategy(Admin.authenticate()));
+passport.serializeUser(Admin.serializeUser());
+passport.deserializeUser(Admin.deserializeUser());
+
 
 // Server cache clear
 app.use(function(req, res, next) {

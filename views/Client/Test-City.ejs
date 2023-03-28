@@ -19,7 +19,10 @@
                       <a href="/">Home</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Quiz
+                      States
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      <%=data[0]?.stateName%>
                     </li>
                   </ol>
                 </nav>
@@ -46,7 +49,7 @@
     </p>
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
-      <a onclick="storeLog('<%=value._id%>')" href="/quiz-citys/Quiz/<%=value._id%>" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
+      <a onclick="storeLog('<%=value._id%>')" href="/test/states/<%=value.stateName%>/<%=value._id%>" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
         <img src="/upload-images/<%=value.stateImg%>" class="card-img-top card-img" alt="..." />
         <div class="card-body">
           <h5 class="card-title quiz-card-title"><%=value.quizName.toUpperCase()%></h5>

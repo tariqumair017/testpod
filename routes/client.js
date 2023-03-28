@@ -73,10 +73,17 @@ router.get("/game/:name/:id", asyncHandler(async (req, res) => {
     res.render("Client/"+req.params.name, { data });
 }));
    
-//Client Quiz-Citys page
-router.get("/quiz-citys", asyncHandler(async (req, res) => { 
-    const data = await QuizModel.find({});   
-    res.render("Client/Quiz-Citys", { data }); 
+//Client: All States Page
+router.get("/test/states", asyncHandler(async (req, res) => { 
+    const data = await QuizModel.distinct("stateName");  
+    res.render("Client/States", { data }); 
+}));
+
+
+//Client Specific State Page
+router.get("/test/states/:stateName", asyncHandler(async (req, res) => { 
+    const data = await QuizModel.find({stateName: req.params.stateName});   
+    res.render("Client/Test-City", { data }); 
 }));
 
 //Quizes by state id all-quizes.js (client) 
@@ -84,18 +91,18 @@ router.get("/quiz-list/:id", asyncHandler(async (req, res) => {
     const data = await QuizModel.findById(req.params.id);     
     res.send(data);
 })); 
-
-
+ 
 //Client all-quiz js file 
 router.get("/quiz-citys/all-quiz/:id", asyncHandler(async (req, res) => {  
     const data = await QuizModel.findById(req.params.id);   
     res.send( data);
 }));
+
 //Client Quiz page
-router.get("/quiz-citys/:name/:id", asyncHandler(async (req, res) => {  
+router.get("/test/states/:stateName/:id", asyncHandler(async (req, res) => {  
     req.session.newResultIDForQuiz = undefined;
     const data = await QuizModel.findById(req.params.id);   
-    res.render("Client/"+req.params.name, { data });
+    res.render("Client/Test", { data });
 }));
  
 //Client About page
