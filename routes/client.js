@@ -4,8 +4,7 @@ import QuizModel from "../models/quizs.js";
 import CountryFlagGame from "../models/selectCountryFlagGame.js"; 
 import DrawFlagGameModel from "../models/drawFlagGame.js";
 import GuessFlagGame from "../models/guessFlag.js";
-import asyncHandler from "express-async-handler";  
-// import connectEnsureLogin from "connect-ensure-login";
+import asyncHandler from "express-async-handler";   
  
 //Client Index page
 router.get("/", asyncHandler(async (req, res) => { 

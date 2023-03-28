@@ -12,89 +12,88 @@ import { Console } from "console";
 //Admin: Add Flag Game Page
 router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     res.render("Admin/AddFlagGame");
-  }));
+}));
   
-  //Admin: Add Flag Game Handel
-  router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  
-    const find = await CountryFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
-   
-    if(!find)
-    {  
-      var testFileName = Date.now() + '-' + req.files.testImg.name;
-      const newPath1  = path.join(process.cwd(), '/public/upload-images', testFileName);
-      req.files.testImg.mv(newPath1);
+//Admin: Add Flag Game Handel
+router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
 
-      if(typeof(req.body.correct) == "string")
-      { 
-        var flagFileName = Date.now() + '-' + req.files.flag.name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', flagFileName);
-        req.files.flag.mv(newPath);
-        const question = {flag: flagFileName, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
-        const singleQuiz = new CountryFlagGame({
-          gameName: req.body.gameName,
-          gameDetail: req.body.gameDetail, 
-          testImg: testFileName,
-          questions: question
-        });
-        await singleQuiz.save();
-        console.log("Single Quiz Added Successfully"); 
-        res.redirect("/game-management/manage-flags-games");
+  const find = await CountryFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
+
+  if(!find)
+  {  
+    var testFileName = Date.now() + '-' + req.files.testImg.name;
+    const newPath1  = path.join(process.cwd(), '/public/upload-images', testFileName);
+    req.files.testImg.mv(newPath1);
+
+    if(typeof(req.body.correct) == "string")
+    { 
+      var flagFileName = Date.now() + '-' + req.files.flag.name;
+      const newPath  = path.join(process.cwd(), '/public/upload-images', flagFileName);
+      req.files.flag.mv(newPath);
+      const question = {flag: flagFileName, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
+      const singleQuiz = new CountryFlagGame({
+        gameName: req.body.gameName,
+        gameDetail: req.body.gameDetail, 
+        testImg: testFileName,
+        questions: question
+      });
+      await singleQuiz.save();
+      console.log("Single Quiz Added Successfully"); 
+      res.redirect("/game-management/manage-flags-games");
+    }
+    else if(typeof(req.body.correct) == "object")
+    {
+      const newQuestions = [];
+      for (let i = 0; i < req.files.flag.length; i++) {  
+
+        var questionFileName = Date.now() + '-' + req.files.flag[i].name;
+        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
+        req.files.flag[i].mv(newPath); 
+        
+          const newQuestion = {
+            flag: questionFileName, 
+            optionA: req.body.optionA[i],
+            optionB: req.body.optionB[i],
+            optionC: req.body.optionC[i],
+            optionD: req.body.optionD[i],
+            correct: req.body.correct[i],
+            hint: req.body.hint[i]
+          }
+  
+        newQuestions.push(newQuestion);
       }
-      else if(typeof(req.body.correct) == "object")
-      {
-        const newQuestions = [];
-        for (let i = 0; i < req.files.flag.length; i++) {  
+      const newQuiz = new CountryFlagGame({
+        gameName: req.body.gameName,
+        gameDetail: req.body.gameDetail, 
+        testImg: testFileName,
+        questions: newQuestions
+      });
+      await newQuiz.save(); 
+      console.log("Multiple Quiz Added Successfully"); 
+      res.redirect("/game-management/manage-flags-games");
+    }  
+  }
+  else
+  {   
+    req.flash("error", `${find.gameName} is already exist`);
+    res.redirect("/game-management/add-flags-games"); 
+  }
+}));
   
-          var questionFileName = Date.now() + '-' + req.files.flag[i].name;
-          const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-          req.files.flag[i].mv(newPath); 
-          
-            const newQuestion = {
-              flag: questionFileName, 
-              optionA: req.body.optionA[i],
-              optionB: req.body.optionB[i],
-              optionC: req.body.optionC[i],
-              optionD: req.body.optionD[i],
-              correct: req.body.correct[i],
-              hint: req.body.hint[i]
-            }
-    
-          newQuestions.push(newQuestion);
-        }
-        const newQuiz = new CountryFlagGame({
-          gameName: req.body.gameName,
-          gameDetail: req.body.gameDetail, 
-          testImg: testFileName,
-          questions: newQuestions
-        });
-        await newQuiz.save(); 
-        console.log("Multiple Quiz Added Successfully"); 
-        res.redirect("/game-management/manage-flags-games");
-      }  
-    }
-    else
-    {   
-      req.flash("error", `${find.gameName} is already exist`);
-      res.redirect("/game-management/add-flags-games"); 
-    }
-  }));
-  
-
-
+ 
 //Admin: Manage Flag Page
 router.get("/game-management/manage-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     const data = await CountryFlagGame.find({});
     res.render("Admin/ManageFlagGames", { data });
   }));
   
-  //Admin - Delete Whole Flag Game
-  router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-    const { id } = req.params;
-    await CountryFlagGame.findByIdAndDelete(id);
-    console.log("Whole Flag Game Deleted Successfully"); 
-    res.send({url: "/game-management/manage-flags-games"}); 
-  }));
+//Admin - Delete Whole Flag Game
+router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  const { id } = req.params;
+  await CountryFlagGame.findByIdAndDelete(id);
+  console.log("Whole Flag Game Deleted Successfully"); 
+  res.send({url: "/game-management/manage-flags-games"}); 
+}));
   
   //Admin: Show All Questions of Game Edit Icon
   router.get("/game-management/manage-flags-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
@@ -228,8 +227,7 @@ router.post("/game-result/:id", asyncHandler(async (req, res) => {
       await ResultModel.replaceOne({_id: ResultExist._id}, objToStore);
       res.send("Done"); 
     }
-}));
-
+})); 
 
 
 export default router;

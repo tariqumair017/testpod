@@ -5,17 +5,15 @@ import DrawNewFlagModel from "../models/drawNewFlag.js";
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login";
 import { Console } from "console";
- 
-router.use(connectEnsureLogin.ensureLoggedIn("/login"));
- 
+  
 //Admin: Draw-New-Flags Page
-router.get("/game-management/new-flag/draw-new-flags", asyncHandler(async (req, res) => { 
+router.get("/game-management/new-flag/draw-new-flags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     const data = await DrawNewFlagModel.find({});
     res.render("Admin/Draw-New-Flags", { data });
 }));
    
 //Admin: Draw-New-Flags Page Handel
-router.post("/game-management/new-flag/draw-new-flags", asyncHandler(async (req, res) => { 
+router.post("/game-management/new-flag/draw-new-flags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
         
     const find = await DrawNewFlagModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }});
 
@@ -46,13 +44,13 @@ router.post("/game-management/new-flag/draw-new-flags", asyncHandler(async (req,
 }));  
 
 // Admin: Edit Flag
-router.get('/game-management/new-flag/draw-new-flags/:id/edit', asyncHandler(async (req, res) => { 
+router.get('/game-management/new-flag/draw-new-flags/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     const data = await DrawNewFlagModel.findById(req.params.id);
     res.send(data);  
 }));
   
 //Admin - Edit Game Name
-router.put("/game-management/new-flag/draw-new-flags/:id", asyncHandler(async (req, res) => { 
+router.put("/game-management/new-flag/draw-new-flags/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     if(req.files)
     {
         const shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
@@ -86,7 +84,7 @@ router.put("/game-management/new-flag/draw-new-flags/:id", asyncHandler(async (r
  
 
 //Admin - Delete Flag 
-router.delete("/game-management/new-flag/draw-new-flags/:id", asyncHandler(async (req, res) => { 
+router.delete("/game-management/new-flag/draw-new-flags/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
     const { id } = req.params;
     await DrawNewFlagModel.findByIdAndDelete(id);
     console.log("Flag Deleted Successfully"); 

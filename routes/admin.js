@@ -4,8 +4,7 @@ import passport from "passport";
 import asyncHandler from "express-async-handler";  
 import QuizModel from "../models/quizs.js";  
 import CountryFlagGame from "../models/selectCountryFlagGame.js"; 
-import connectEnsureLogin from "connect-ensure-login";
-import { Console } from "console";
+import connectEnsureLogin from "connect-ensure-login"; 
 
 // Sign Up 
 // router.get("/sign-up", asyncHandler(async (req, res) => { 

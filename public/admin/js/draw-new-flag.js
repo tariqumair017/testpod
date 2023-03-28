@@ -536,7 +536,7 @@ function getFormData(e) {
   }
   formData.append("selectedColors", JSON.stringify(selectedColors));
 
-  fetch(`/game-management/draw-new-flags`, {
+  fetch(`/game-management/new-flag/draw-new-flags`, {
     method: "POST",
     body: formData,
   })
@@ -549,7 +549,7 @@ function getFormData(e) {
 
 //Edit New Flag
 async function editFlag(id) {
-  const response = await fetch(`/game-management/draw-new-flags/${id}/edit`);
+  const response = await fetch(`/game-management/new-flag/draw-new-flags/${id}/edit`);
   const data = await response.json();
 
   document.getElementById("editCountry").value = data.country;
@@ -570,7 +570,7 @@ function updateFormData(e) {
   }
   formData.append("selectedColors", JSON.stringify(selectedColors));
 
-  fetch(`/game-management/draw-new-flags/${hideID.value}`, {
+  fetch(`/game-management/new-flag/draw-new-flags/${hideID.value}`, {
     method: "PUT",
     body: formData,
   })
@@ -581,8 +581,7 @@ function updateFormData(e) {
     .catch(console.log);
 }
 
-// add hint images
-
+// add hint images 
 const new_arrangement = document.querySelector(".new-arrangement");
 const hint_images = document.querySelector(".hint-images");
 
