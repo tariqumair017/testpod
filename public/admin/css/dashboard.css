@@ -747,6 +747,11 @@ justify-content: end;
     color: white;
   }
 
+  .hint-images{
+    background-color: #CCCCCC;
+    padding: 20px;
+  }
+
 
 
 

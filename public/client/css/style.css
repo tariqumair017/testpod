@@ -8312,7 +8312,7 @@ label {
 
   height: 70px;
 
-  cursor:url(images/brush.png), auto;
+  cursor:url(/client/img/images/brush.png), auto;
 
   border: 2px solid #CCCCCC;
 
@@ -8324,7 +8324,6 @@ label {
 
   .color_palette li:hover{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    cursor: pointer;
   }
 
   .color_palette .cpli:active:after {

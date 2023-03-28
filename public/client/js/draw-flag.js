@@ -2,7 +2,7 @@ var paintFlags;
 fetch(`/draw-flags/all`)
   .then(res => res.json())
   .then((data) => {   
-    paintFlags = data[1].questions.map((val, i) => {
+    paintFlags = data[0].questions.map((val, i) => {
       var colors = ["red", "green", "yellow", "black", "orange", "blue", "pink", "white", "grey"];
       var colorOptions = JSON.parse(JSON.stringify(val.correctColors));  
       var random = 6 - val.correctColors.length;  
@@ -41,153 +41,10 @@ fetch(`/draw-flags/all`)
       }
   });
 
-    runDraw(paintFlags, data[1]._id); 
+    runDraw(paintFlags, data[0]._id); 
   });  
  
   
-  // let paintFlags = [
-  //   {
-  //     numb: 1,
-
-  //     question: "Germany",
-
-  //     image: "https://flagpedia.net/data/flags/h80/de.webp",
-
-  //     arrangement: "threeStripesVert",
-
-  //     allowedColors: ["black", "red", "orange"],
-
-  //     colorPalette: ["red", "green", "yellow", "black", "orange", "blue"],
-  //   },
-
-  //   {
-  //     numb: 2,
-
-  //     question: "Ukraine",
-
-  //     image: "https://flagpedia.net/data/flags/h80/ua.webp",
-
-  //     arrangement: "twoStripesVert",
-
-  //     allowedColors: ["blue", "yellow"],
-
-  //     colorPalette: ["blue", "green", "yellow", "black", "orange", "pink"],
-  //   },
-
-  //   {
-  //     numb: 3,
-
-  //     question: "Netherlands",
-
-  //     image: "https://flagpedia.net/data/flags/h80/nl.webp",
-
-  //     arrangement: "threeStripesVert",
-
-  //     allowedColors: ["red", "white", "blue"],
-
-  //     colorPalette: ["red", "green", "white", "pink", "orange", "blue"],
-  //   },
-
-  //   {
-  //     numb: 4,
-
-  //     question: "Austria",
-
-  //     image: "https://flagpedia.net/data/flags/h80/at.webp",
-
-  //     arrangement: "threeStripesVert",
-
-  //     allowedColors: ["red", "white", "red"],
-
-  //     colorPalette: ["red", "green", "white", "yellow", "grey", "blue"],
-  //   },
-
-  //   {
-  //     numb: 5,
-
-  //     question: "Indonasia",
-
-  //     image: "https://flagpedia.net/data/flags/h80/id.webp",
-
-  //     arrangement: "twoStripesVert",
-
-  //     allowedColors: ["red", "white"],
-
-  //     colorPalette: ["red", "green", "white", "yellow", "pink", "blue"],
-  //   },
-
-  //   {
-  //     numb: 6,
-
-  //     question: "Romania",
-
-  //     image: "https://flagpedia.net/data/flags/h80/ro.webp",
-
-  //     arrangement: "threeStripesHoriz",
-
-  //     allowedColors: ["blue", "yellow", "red"],
-
-  //     colorPalette: ["red", "green", "black", "yellow", "pink", "blue"],
-  //   },
-
-  //   {
-  //     numb: 7,
-
-  //     question: "Hungary",
-
-  //     image: "https://flagpedia.net/data/flags/h80/hu.webp",
-
-  //     arrangement: "threeStripesVert",
-
-  //     allowedColors: ["#CD2A3E", "white", "#436F4D"],
-
-  //     colorPalette: ["#CD2A3E", "grey", "black", "yellow", "#436F4D", "white"],
-  //   },
-
-  //   {
-  //     numb: 8,
-
-  //     question: "Colombia",
-
-  //     image: "https://flagpedia.net/data/flags/h80/co.webp",
-
-  //     arrangement: "threeStripesVert",
-
-  //     allowedColors: ["yellow", "blue", "red"],
-
-  //     colorPalette: ["red", "grey", "black", "yellow", "green", "blue"],
-  //   },
-
-  //   {
-  //     numb: 9,
-
-  //     question: "France",
-
-  //     image: "https://flagpedia.net/data/flags/h80/fr.webp",
-
-  //     arrangement: "threeStripesHoriz",
-
-  //     allowedColors: ["blue", "white", "red"],
-
-  //     colorPalette: ["red", "pink", "black", "yellow", "white", "blue"],
-  //   },
-
-  //   {
-  //     numb: 10,
-
-  //     question: "Italy",
-
-  //     image: "https://flagpedia.net/data/flags/h80/it.webp",
-
-  //     arrangement: "threeStripesHoriz",
-
-  //     allowedColors: ["green", "white", "red"],
-
-  //     colorPalette: ["red", "pink", "green", "yellow", "white", "black"],
-  //   },
-  // ];
-
-//audios 
 
 
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
@@ -287,9 +144,6 @@ window.load = startQuiz();
 function startQuiz() {  
   showQuetions(0);
 
-  // outOf.innerHTML =
-  //   '<span style="font-family: cursive;font-size: 30px;color:#CCCCCC"> / </span>' +
-  //   paintFlags.length;
 }
 
 
@@ -395,23 +249,23 @@ function choseFlagArrangemnet(x) {
 
       if (defaultArrangment == "threeStripesHoriz") {
         document.getElementById("flagCanvas").innerHTML =
-          '<div id="threeSV1" onclick="fillBgColor(\'threeSV1\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV2" onclick="fillBgColor(\'threeSV2\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div><div filled="false" id="threeSV3" onclick="fillBgColor(\'threeSV3\')" style="width: 100%;height: 100px;border: 1px solid #4D535A;cursor:url(images/brush.png), auto;"></div>';
+          '<div id="threeSV1" onclick="fillBgColor(\'threeSV1\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(/client/img/images/brush.png), auto;"></div><div filled="false" id="threeSV2" onclick="fillBgColor(\'threeSV2\')" style="width: 100%;height: 100px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor:url(/client/img/images/brush.png), auto;"></div><div filled="false" id="threeSV3" onclick="fillBgColor(\'threeSV3\')" style="width: 100%;height: 100px;border: 1px solid #4D535A;cursor:url(/client/img/images/brush.png), auto;"></div>';
 
         flag_canvas.style.display = "block";
       } else if (defaultArrangment == "twoStripesHoriz") {
         document.getElementById("flagCanvas").innerHTML =
-          '<div id="twoSV1" onclick="fillBgColor(\'twoSV1\')" style="width: 100%;height: 150px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSV2" onclick="fillBgColor(\'twoSV2\')" style="width: 100%;height: 150px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
+          '<div id="twoSV1" onclick="fillBgColor(\'twoSV1\')" style="width: 100%;height: 150px;border-top: 1px solid #4D535A;border-right: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div><div id="twoSV2" onclick="fillBgColor(\'twoSV2\')" style="width: 100%;height: 150px;border: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div>';
           
         flag_canvas.style.display = "block";
       } else if (defaultArrangment == "threeStripesVert") {
         document.getElementById("flagCanvas").innerHTML =
-          '<div id="threeSH1" onclick="fillBgColor(\'threeSH1\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH2" onclick="fillBgColor(\'threeSH2\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="threeSH3" onclick="fillBgColor(\'threeSH3\')" style="width: 33.3333%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
+          '<div id="threeSH1" onclick="fillBgColor(\'threeSH1\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div><div id="threeSH2" onclick="fillBgColor(\'threeSH2\')" style="width: 33.3333%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div><div id="threeSH3" onclick="fillBgColor(\'threeSH3\')" style="width: 33.3333%;height: 300px;border: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div>';
 
         flag_canvas.style.display = "flex";
         
       } else if (defaultArrangment == "twoStripesVert") {
         document.getElementById("flagCanvas").innerHTML =
-          '<div id="twoSH1" onclick="fillBgColor(\'twoSH1\')" style="width: 50%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div><div id="twoSH2" onclick="fillBgColor(\'twoSH2\')" style="width: 50%;height: 300px;border: 1px solid #4D535A;cursor: url(images/brush.png), auto;"></div>';
+          '<div id="twoSH1" onclick="fillBgColor(\'twoSH1\')" style="width: 50%;height: 300px;border-top: 1px solid #4D535A;border-bottom: 1px solid #4D535A;border-left: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div><div id="twoSH2" onclick="fillBgColor(\'twoSH2\')" style="width: 50%;height: 300px;border: 1px solid #4D535A;cursor: url(/client/img/images/brush.png), auto;"></div>';
 
         flag_canvas.style.display = "flex";
       }

@@ -25,7 +25,7 @@
           <td><%=val.country%></td>
           <td><%=val.flagUrl%></td>
           <td><%=val.shapeImg%></td>
-          <td><%=val.correctColors.map(val => val.colors)%></td>
+          <td><%=val.correctColors%></td>
           <td><%=val.arrangement%></td>
           <td>
             <span class="table-buttons">
@@ -113,18 +113,9 @@
                               <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" id="newshapeImg" onchange="preview()" required> 
                             </div> 
                           </div>
-                        <div class="col-md-6 position-relative mt-3">
-                            <div class="container" style="padding: 0%;">
-                                <label class="form-label">Select Colors</label>
-                                <select multiple data-multi-select-plugin name="correctColors" id="colorsID" required>
-                                  <option  hidden>Please Select Colors</option>                     
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-3"> 
+                          <div class="col-md-6 position-relative mt-3"> 
                             <label for="arrangementID" class="form-label">Enter Arrangement</label>
-                            <!-- <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="arrangementID" required> -->
-                            <select name="arrangement" class="form-select" id="arrangementID" required> 
+                            <select name="arrangement" class="form-select new-arrangement" onchange="getNewArrangemwnts(this)" id="arrangementID" required> 
                               <option hidden>Please Select Arrangements</option>                     
                               <option value="twoStripesVert">Two Stripes Vertical</option>                    
                               <option value="twoStripesHoriz">Two Stripes Horizontal</option>                    
@@ -134,6 +125,17 @@
                             <div class="invalid-tooltip">
                               Please provide Arrangement.
                             </div>  
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <div class="container" style="padding: 0%;">
+                                <label class="form-label">Select Colors</label>
+                                <select multiple data-multi-select-plugin name="correctColors" id="colorsID" required>
+                                  <option  hidden>Please Select Colors</option>                     
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 position-relative mt-3 d-none hint-images">
+                          
                         </div>
                       </div>
                       </div>
@@ -210,16 +212,8 @@
                         <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" onchange="preview()"> 
                       </div> 
                     </div>
-                  <div class="col-md-6 position-relative mt-3">
-                      <div class="container" style="padding: 0%;">
-                          <label class="form-label">Select Colors</label>
-                          <select multiple data-multi-select-plugin name="correctColors" id="editColorsID">  
-                          </select>
-                      </div>
-                  </div>
-                  <div class="col-md-6 position-relative mt-3"> 
+                    <div class="col-md-6 position-relative mt-3"> 
                       <label for="editArrangementID" class="form-label">Enter Arrangement</label>
-                      <!-- <input name="arrangement" placeholder="Enter Arrangement" type="text" class="form-control" id="editArrangementID" required> -->
                       <select name="arrangement" class="form-select" id="editArrangementID" required> 
                         <option hidden>Please Select Arrangements</option>                     
                         <option value="twoStripesVert">Two Stripes Vertical</option>                    
@@ -230,6 +224,13 @@
                       <div class="invalid-tooltip">
                         Please provide Arrangement.
                       </div>  
+                  </div>
+                  <div class="col-md-6 position-relative mt-3">
+                      <div class="container" style="padding: 0%;">
+                          <label class="form-label">Select Colors</label>
+                          <select multiple data-multi-select-plugin name="correctColors" id="editColorsID">  
+                          </select>
+                      </div>
                   </div>
                 </div>
                 </div>
@@ -245,74 +246,6 @@
 
     <!-- Edit Quiz -->
   </div>
-  <!--Container Main end-->
-
-  <script>
-  
-  //Add New Flag
-  let draw_flag_form = document.getElementById("draw-flag-form");
-  draw_flag_form.addEventListener("submit",getFormData)  
-  function getFormData(e){ 
-    e.preventDefault();
-    var formData = new FormData(draw_flag_form); //.forEach((val, key) => dataToSave[key] = val)
-   
-    var selectedColors = [];
-    for (var i = 0; i < e.target[4].length; i++) {  
-    if (e.target[4][i].selected) {
-        selectedColors.push({colors :e.target[4][i].value});
-      }
-    } 
-
-    formData.append("selectedColors", JSON.stringify(selectedColors)); 
- 
-    fetch(`/game-management/new-flag/draw-new-flags`, {
-      method: "POST",
-      body: formData, 
-    }).then((response) => response.json())
-      .then((data) => {   
-        window.location.href = data.url;
-      })
-      .catch(console.log);
-  }
-
-  //Edit New Flag
-  async function editFlag(id) { 
-      const response = await fetch(`/game-management/new-flag/draw-new-flags/${id}/edit`);
-      const data = await response.json();
-  
-      document.getElementById("editCountry").value = data.country; 
-      document.getElementById("editFlagUrl").value = data.flagUrl;
-      document.getElementById("editFlagDetails").value = data.flagDetails; 
-      document.getElementById("editArrangementID").value = data.arrangement; 
-      document.getElementById("hideID").value = id;
-    }
-  //Update New Flag
-  let edit_Flag_Form = document.getElementById("editFlagForm");
-  edit_Flag_Form.addEventListener("submit",updateFormData)  
-  function updateFormData(e){ 
-    e.preventDefault();
-    var formData = new FormData(edit_Flag_Form); //.forEach((val, key) => dataToSave[key] = val)
-   
-    var selectedColors = [];
-    for (var i = 0; i < e.target[5].length; i++) {  
-    if (e.target[5][i].selected) {
-        selectedColors.push({colors :e.target[5][i].value});
-      }
-    }  
- 
-    formData.append("selectedColors", JSON.stringify(selectedColors)); 
- 
-    fetch(`/game-management/new-flag/draw-new-flags/${hideID.value}`, {
-      method: "PUT",
-      body: formData, 
-    }).then((response) => response.json())
-      .then((data) => {   
-        window.location.href = data.url;
-      })
-      .catch(console.log);
-  }
-
-  </script>
   <script src="/admin/js/allQuiz.js"></script>
   <script src="/admin/js/draw-new-flag.js" ></script>
 </div>

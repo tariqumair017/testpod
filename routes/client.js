@@ -51,7 +51,8 @@ router.get("/draw-flags/all", asyncHandler(async (req, res) => {
 
 //Client Draw Flag
 router.get("/draw-flags", asyncHandler(async (req, res) => { 
-    res.render("Client/Draw-Flags");
+    const data = await DrawFlagGameModel.find({})
+    res.render("Client/Draw-Flags",{data});
 }));
 
 //Client Select Country
