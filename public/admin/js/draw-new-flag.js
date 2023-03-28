@@ -542,9 +542,11 @@ function getFormData(e) {
   })
     .then((response) => response.json())
     .then((data) => {
+      sessionStorage.clear();
       window.location.href = data.url;
     })
     .catch(console.log);
+
 }
 
 //Edit New Flag

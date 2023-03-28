@@ -95,7 +95,7 @@ router.get("/quiz-list/:id", asyncHandler(async (req, res) => {
 //Client all-quiz js file 
 router.get("/quiz-citys/all-quiz/:id", asyncHandler(async (req, res) => {  
     const data = await QuizModel.findById(req.params.id);   
-    res.send( data);
+    res.send(data);
 }));
 
 //Client Quiz page
