@@ -81,7 +81,7 @@ else if(window.location.href == "http://localhost:9898/game-management/add-flags
     if (findCountryGameHint !== null) document.getElementById("findCountryGameHint").value = findCountryGameHint;
     }
 }
-else if(window.location.href == "http://localhost:9898/game-management/draw-new-flags")
+else if(window.location.href == "http://localhost:9898/game-management/new-flag/draw-new-flags")
 {   
     window.onbeforeunload = function() { 
         sessionStorage.setItem("newFlagCountry", document.getElementById("newFlagCountry").value);

@@ -1,5 +1,4 @@
-//array of questions
-
+//array of questions 
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 
 //define required constants
@@ -66,57 +65,83 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
-let questions = [
-  {
-    numb: 1,
-    correctName: "japan",
-    inCorrectName: "Bangladesh",
-    title: "Can you guess flag of Japan?",
-    correctFlag: "flag-icon-background flag-icon-jp",
-    incorrectFlag: "flag-icon-background flag-icon-bd",
-    detail: "testing",
-  },
-  {
-    numb: 2,
-    correctName: "japan",
-    inCorrectName: "Bangladesh",
-    title: "Can you guess flag of Japan",
-    correctFlag: "flag-icon-background flag-icon-jp",
-    incorrectFlag: "flag-icon-background flag-icon-bd",
-    detail: "testing",
-  },
+// let questions = [
+//   {
+//     numb: 1,
+//     correctName: "japan",
+//     inCorrectName: "Bangladesh",
+//     title: "Can you guess flag of Japan?",
+//     correctFlag: "flag-icon-background flag-icon-jp",
+//     incorrectFlag: "flag-icon-background flag-icon-bd",
+//     detail: "testing"
+//   },
+//   {
+//     numb: 2,
+//     correctName: "japan",
+//     inCorrectName: "Bangladesh",
+//     title: "Can you guess flag of Japan",
+//     correctFlag: "flag-icon-background flag-icon-jp",
+//     incorrectFlag: "flag-icon-background flag-icon-bd",
+//     detail: "testing",
+//   },
 
-  {
-    numb: 3,
-    correctName: "japan",
-    inCorrectName: "Bangladesh",
-    title: "Can you guess flag of Japan?",
-    correctFlag: "flag-icon-background flag-icon-jp",
-    incorrectFlag: "flag-icon-background flag-icon-bd",
-    detail: "testing",
-  },
+//   {
+//     numb: 3,
+//     correctName: "japan",
+//     inCorrectName: "Bangladesh",
+//     title: "Can you guess flag of Japan?",
+//     correctFlag: "flag-icon-background flag-icon-jp",
+//     incorrectFlag: "flag-icon-background flag-icon-bd",
+//     detail: "testing",
+//   },
 
-  {
-    numb: 4,
-    correctName: "japan",
-    inCorrectName: "Bangladesh",
-    title: "Can you guess flag of Japan?",
-    correctFlag: "flag-icon-background flag-icon-jp",
-    incorrectFlag: "flag-icon-background flag-icon-bd",
-    detail: "testing",
-  },
+//   {
+//     numb: 4,
+//     correctName: "japan",
+//     inCorrectName: "Bangladesh",
+//     title: "Can you guess flag of Japan?",
+//     correctFlag: "flag-icon-background flag-icon-jp",
+//     incorrectFlag: "flag-icon-background flag-icon-bd",
+//     detail: "testing",
+//   },
 
-  {
-    numb: 5,
-    correctName: "japan",
-    inCorrectName: "Bangladesh",
-    title: "Can you guess flag of Japan?",
-    correctFlag: "flag-icon-background flag-icon-jp",
-    incorrectFlag: "flag-icon-background flag-icon-bd",
-    detail: "testing",
-  },
-];
+//   {
+//     numb: 5,
+//     correctName: "japan",
+//     inCorrectName: "Bangladesh",
+//     title: "Can you guess flag of Japan?",
+//     correctFlag: "flag-icon-background flag-icon-jp",
+//     incorrectFlag: "flag-icon-background flag-icon-bd",
+//     detail: "testing",
+//   },
+// ];
 
+var questions;
+
+//Api All Guess Flag Data
+fetch(`/game-management/guess-flags/all`)
+  .then(res => res.json())
+  .then((data) => {    
+    questions = data[0].questions.map((val, i) => ( 
+      {
+        numb: i,
+        correctName: val.country,
+        inCorrectName: val.Icountry,
+        title: `Can you guess flag of ${val.country}?`,
+        correctFlag: val.correctImg,
+        incorrectFlag: val.IcorrectImg,
+        detail: val.questionDetail,
+      }
+      
+    ));
+     
+    runGuessFlagGame(questions, data[0]._id); 
+  });  
+
+
+function runGuessFlagGame(questions, id)
+{  
+  
 window.load = startQuiz();
 
 function startQuiz() {
@@ -125,32 +150,39 @@ function startQuiz() {
 
 guess_total_questions.innerHTML = questions.length;
 
-function nextQuestions(index) {
+function nextQuestions(index) { 
   let question_tag =
     '<span style="font-size: 30px;font-weight: bold;color: #a8171a;">' +
     questions[index].title +
     "</span>";
 
-  option_left.innerHTML =
-    '<input class="customRadio" ans="correct" type="radio" name=q' +
-    questions[index].numb +
-    " id=" +
-    questions[index].correctName +
-    '><label class=" ' +
-    questions[index].correctFlag +
-    ' customLableWimage" for=' +
-    questions[index].correctName +
-    "></label>";
-  option_right.innerHTML =
-    '<input class="customRadio" ans="incorrect" type="radio" name=q' +
-    questions[index].numb +
-    " id=" +
-    questions[index].inCorrectName +
-    '><label class=" ' +
-    questions[index].incorrectFlag +
-    ' customLableWimage" for=' +
-    questions[index].inCorrectName +
-    "></label>";
+  var leftSide = '<input class="customRadio" ans="correct" type="radio" name=q' +
+  questions[index].numb +
+  " id=" +
+  questions[index].correctName +
+  '><label class="customLableWimage" for=' +
+  questions[index].correctName +
+  '><img src=/upload-images/'+questions[index].correctFlag.replace(/\s/g, '')+' alt="" ></label>';
+
+  var RightSide = '<input class="customRadio" ans="incorrect" type="radio" name=q' +
+  questions[index].numb +
+  " id=" +
+  questions[index].inCorrectName +
+  '><label class="customLableWimage" for=' +
+  questions[index].inCorrectName +
+  '><img src=/upload-images/'+questions[index].incorrectFlag.replace(/\s/g, '')+' alt="" ></label>';
+
+  var FlagOptions = [];
+   FlagOptions.push(RightSide)
+   FlagOptions.push(leftSide)
+  
+  let shuffledFlagOptions = FlagOptions.sort(function () {
+    return Math.random() - 0.5;
+  });
+  
+  option_left.innerHTML = shuffledFlagOptions[0];
+  option_right.innerHTML = shuffledFlagOptions[1];
+ 
 
   your_guess_progress_detail.innerHTML = questions[index].detail;
 
@@ -390,4 +422,6 @@ function disableOptions() {
   for (i = 0; i < allOptions1; i++) {
     option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
   }
+}
+
 }

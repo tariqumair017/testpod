@@ -4,7 +4,7 @@
  <div class="application bg-light">
   <div class="mb-5" style="display: flex;justify-content: space-between" >
     <h4>Add Draw Flag Game</h4>
-    <button onclick="location='/game-management/draw-new-flags'" type="button" class="btn btn-success">Draw New Flags</button>
+    <button onclick="location='/game-management/new-flag/draw-new-flags'" type="button" class="btn btn-success">Draw New Flags</button>
   </div>
     <%- include ('./partials/SuccessError'); -%>
     <form class="add-quiz-form row needs-validation" action="/game-management/draw-flags-games" method="POST" enctype="multipart/form-data" novalidate>

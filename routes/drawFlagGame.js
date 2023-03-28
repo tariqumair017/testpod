@@ -97,7 +97,7 @@ router.delete("/game-management/manage-draw-flag-games/:id", connectEnsureLogin.
   res.send({url: "/game-management/manage-draw-flag-games"}); 
 }));
 
-//Admin: Show All Questions of Game Edit Icon
+//Admin: Show All Questions of Game 
 router.get("/game-management/manage-draw-flag-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
   const data = await DrawFlagGameModel.findById(req.params.id);
   const allFlags = await DrawNewFlagModel.find({}); 
