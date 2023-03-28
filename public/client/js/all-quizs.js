@@ -1,43 +1,3 @@
-// function checkValue() {
-//   var data = document.getElementsByName("exampleRadios");
-//   let userAns = "";
-//   for (let i = 0; i < data.length; i++) {
-//     if (data[i].checked) {
-//       userAns += data[i].value;
-//     }
-//   }
-// }
-
-// function showQuestionsText() {
-//   const question_text = document.querySelector(".all-quiz-left-part");
-//   const question_options_text = document.querySelector(".ooooo");
-//   let question_tag = "";
-//   let question_options = "";
-//   for (let i = 0; i < allQuestipons.length; i++) {
-//     question_tag +=
-//       '<div class="questions-text"><h5> ' +
-//       allQuestipons[i].numer +
-//       ". " +
-//       allQuestipons[i].question +
-//       "</h5></div>";
-//       question_options += '<div class="form-check" ><input type="radio" name="answer" id="a" class="answer"> <label for="a" id="a_text">'+ allQuestipons[i].question +'</label></div';
-//     for (let j = 0; j < allQuestipons[i].options.length; j++) {
-//       question_options += allQuestipons[i].options[j].name + "br";
-//       '<div> <div><input class="form-check-input" type="radio" name="exampleRadios" id=exampleRadios'
-//       " value=option"
-//       '/><label class="form-check-label" style="margin-left: 20px" for=exampleRadios'
-//       ">" +
-//       allQuestipons[i].options[j] +
-//       "</label></div></div>";
-//     }
-//   }
-
-//   question_text.innerHTML = question_tag;
-//   question_options_text.innerHTML = question_options;
-// }
-// showQuestionsText();
-
-
 var option_text = [];
 var wrong = 0;
 var correct = 0;
@@ -129,6 +89,7 @@ async function checkResult(id) {
       document.getElementById("total-in-correct").innerHTML = wrong;
     }
     all_quiz_allradio_option.classList.add("disable");
+    location='#firstQuizQuestion'
   }
 }
 

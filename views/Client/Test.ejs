@@ -50,22 +50,6 @@
            <%=data.quizDetail%>
         </p>
       </div>
-      <div class="all-quiz-upper-section-part-right">
-        <div class="all-quiz-upper-section-scorus-card">
-          <p>Questions</p>
-          <h5 id="total-questions">
-             <%=counting%>
-          </h5>
-        </div>
-        <div class="all-quiz-upper-section-scorus-card">
-          <p>Correct</p>
-          <h5 id="total-correct">--</h5>
-        </div>
-        <div class="all-quiz-upper-section-scorus-card">
-          <p>In-Correct</p>
-          <h5 id="total-in-correct">--</h5>
-        </div>
-      </div>
     </div>
   </div>
   <div class="all-quizzes">
@@ -124,17 +108,54 @@
         <!-- Backend Data -->
       </div>
       <div class="all-quiz-result">
-        <button onclick="checkResult('<%=data._id%>'); location=' #firstQuizQuestion'">Grade This Section</button>
+        <button onclick="checkResult('<%=data._id%>')">Grade This Section</button>
       </div>
     </div>
     <div class="all-quiz-right-part">
       <div class="all-quiz-progress">
         <h5>Your Progress</h5>
+        <div class="all-quiz-upper-section-part-right">
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Questions</p>
+            <h5 id="total-questions">
+               <%=counting%>
+            </h5>
+          </div>
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>Correct</p>
+            <h5 id="total-correct">--</h5>
+          </div>
+          <div class="all-quiz-upper-section-scorus-card">
+            <p>In-Correct</p>
+            <h5 id="total-in-correct">--</h5>
+          </div>
+        </div>
         <p class="your-quiz-progress-detail" >
           The New Jersey DMV Parking Practical Test is designed to evaluate a driver's ability to properly and safely park a vehicle. This test is commonly required for individuals seeking a driver's license in New Jersey, as parallel parking and other parking maneuvers are an essential part of driving on busy city streets. During the test, drivers must demonstrate their ability to perform various parking maneuvers, including parallel parking, angle parking, and parking on hills.
         </p>
       </div>
     </div>
+  </div>
+  <div class="row test-related-cards">
+    <%for (let i = 0; i < 4; i++)  {%> 
+    <a href="/quiz-citys/Quiz/<%=allTests[i]._id%>" class="card quiz-card-item col-md-3" style="width: 16rem; padding: 0%">
+      <img src="/upload-images/<%=allTests[i].stateImg%>" class="card-img-top card-img" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title quiz-card-title"><%=allTests[i].quizName.toUpperCase()%></h5>
+        <!-- <p class="card-text">
+          <%=allTests[i].quizDetail%>
+        </p> -->
+        <div class="card-question-number">
+          <div>
+            <p class="card-total-scorce"><%=allTests[i].questions.length%></p>
+            <p class="card-question" >questions</p>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <%}%>
   </div>
 </div>
 <!-- All quizzes Ens -->

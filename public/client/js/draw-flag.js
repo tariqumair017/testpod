@@ -475,7 +475,6 @@ function fillBgColor(x) {
 
 
 
-  console.log(document.getElementById(x),"document.getElementById(x)")
   flag_canvas.setAttribute("paintSarted", " ");
 
   var allowedColor = document.getElementById(x).getAttribute("allowedcolor");
@@ -491,6 +490,8 @@ function fillBgColor(x) {
 
   if (bgColor === "none") {
     document.getElementById("txtSelectColor").classList.add("shakeIt");
+
+    
 
     setTimeout(function () {
       document.getElementById("txtSelectColor").classList.remove("shakeIt");
@@ -841,11 +842,13 @@ function callResultScreen() {
       ],
     },
 
+    options: {
       title: {
         display: true,
 
         text: "You got " + userScore + " out of " + paintFlags.length,
       },
+    },
   });
 
   // document.getElementById("scoreWrapper").style.width = "20%";

@@ -86,6 +86,8 @@ router.get("/test/states/:stateName", asyncHandler(async (req, res) => {
     res.render("Client/Test-City", { data }); 
 }));
 
+
+
 //Quizes by state id all-quizes.js (client) 
 router.get("/quiz-list/:id", asyncHandler(async (req, res) => {  
     const data = await QuizModel.findById(req.params.id);     
@@ -98,11 +100,13 @@ router.get("/quiz-citys/all-quiz/:id", asyncHandler(async (req, res) => {
     res.send(data);
 }));
 
+
 //Client Quiz page
 router.get("/test/states/:stateName/:id", asyncHandler(async (req, res) => {  
     req.session.newResultIDForQuiz = undefined;
     const data = await QuizModel.findById(req.params.id);   
-    res.render("Client/Test", { data });
+    const allTests = await QuizModel.find({});   
+    res.render("Client/Test", { data: data, allTests: allTests });
 }));
  
 //Client About page

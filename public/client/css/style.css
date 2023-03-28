@@ -7159,6 +7159,16 @@ label {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .test-related-cards{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin-top: 100px;
+    justify-content: center;
   }
 
   .customRadio{display: none;}
@@ -8326,41 +8336,10 @@ label {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
 
-  .color_palette .cpli:active:after {
 
-  left: auto;
 
-  right: 0;
 
-  width: 100%;
 
-  }
-
-  .color_palette .cpli:after  {
-
-  position: absolute;
-
-  content: "";
-
-  width: 0;
-
-  height: 100%;
-
-  top: 0;
-
-  left: 0;
-
-  direction: rtl;
-
-  z-index: 2;
-
-  box-shadow: -7px -7px 20px 0px #ffffff38, -4px -4px 5px 0px #fff0, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
-
-  transition: all 0.3s ease;
-
-  border-radius: 50%;
-
-  }
 
   .score_board {
 
@@ -10083,10 +10062,9 @@ footer .next-btn:hover {
 
 
 .all-quiz-upper-section-part-left{
-  width: 60%;
+  width: 100%;
 }
 .all-quiz-upper-section-part-right{
-  width: 40%;
   border-radius: 10px;
   display: flex;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -10094,6 +10072,7 @@ footer .next-btn:hover {
   justify-content: center;
   gap: 20px;
   flex-flow: wrap;
+  padding: 15px;
   
 }
 
@@ -10189,7 +10168,6 @@ footer .next-btn:hover {
 
 
 .all-quiz-progress{
-  padding: 10px;
   position: sticky;
   top: 0px;
 }
@@ -10203,6 +10181,7 @@ footer .next-btn:hover {
   font-weight: 500;
   border-radius: 10px;
   border: 1px solid lightgray;
+  margin-top: 20px;
 }
 
 

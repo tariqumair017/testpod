@@ -228,7 +228,7 @@ next_btn.onclick = () => {
 
     clearInterval(completeTestDuration);
 
-    var interval = 0.5 * 60,
+    var interval = 0.25 * 60,
       display = document.querySelector("#testDuration");
     startTimer(interval, display);
     console.log(que_numb,questions.length)
@@ -236,7 +236,6 @@ next_btn.onclick = () => {
     for (let i = 0; i < customRadio.length; i++) {
       customRadio[i].addEventListener("click", (e) => {
         if(que_numb == questions.length){
-            console.log("......")
             next_btn.classList.add("d-none");
             result_btn.classList.remove("d-none")
         }
@@ -277,7 +276,6 @@ function startTimer(duration, display) {
   completeTestDuration = setInterval(testTimer, 1000);
 
   function testTimer() {
-    minutes = parseInt(timer / 60, 10);
 
     seconds = parseInt(timer % 60, 10);
 
