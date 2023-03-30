@@ -1,0 +1,53 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+  <h3>Manage Draw Flag Games</h3>
+  <div class="cards row">
+    <% data?.forEach(single => { %> 
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card dashboard-card border-bottom-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col mr-2">
+              <div class="card-title text-xs font-weight-bold text-uppercase">
+                <li><%=single.gameName%></li> 
+                <li class="manage-state-name" ><b>Asia</b></li> 
+              </div>
+              <div class="manage-action-btn" >
+              <div class="dashboard-total-rating"><%=single.questions.length%></div>
+              <span>
+                <a style="margin-right: 10px;" href="/game-management/manage-draw-flag-games/<%=single._id%>/all-questions"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
+                <a onclick="deleteItem('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <%})%>
+  </div>
+</div>
+<!--Container Main end-->
+
+<script>
+  async function deleteItem(id) {    
+    if(confirm("Sure you want to delete this Game..?"))
+    {
+      await fetch(`/game-management/manage-draw-flag-games/${id}`, {
+        method: "DELETE", 
+        headers: {
+          "Content-Type": "application/json",
+        }
+      }).then((response) => response.json())
+        .then((data) => {  
+          window.location.href = data.url;
+        })
+        .catch((error) => {
+          console.log("Error:");
+          console.log(error);
+        });
+    } 
+  }  
+</script>

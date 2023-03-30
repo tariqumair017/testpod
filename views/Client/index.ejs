@@ -70,13 +70,18 @@
         <swiper-container class="mySwiper" pagination="false" slides-per-view="1" autoplay free-mode="true">
           <swiper-slide>
             <div class="game-slider-inner-container">
-              <div>
-                <h2>Guess Country</h2> 
-                <h5 style="color: #a8171a">
-                  Can You Match Flag With Its Country?
-                </h5>
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim.png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Guess Countrys</h2> 
+                  <h5 style="color: #a8171a">
+                    Can You Match Flag With Its Country?
+                  </h5>
+                </div>
               </div>
-              <div>
+              <div style="margin-right: 20px;">
                 <a href="/guess-country"><button class="btn ss-btn">Play
                     Game</button></a>
               </div>
@@ -84,32 +89,61 @@
           </swiper-slide>
           <swiper-slide>
             <div class="game-slider-inner-container">
-              <div>
-                <h2>Draw Country</h2> 
-                <h5 style="color: #a8171a">
-                  Can You Match Flag With Its Country?
-                </h5>
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim (2).png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Draw Flags</h2> 
+                  <h5 style="color: #a8171a">
+                    Can You Draw Flag With Its Country?
+                  </h5>
+                </div>
               </div>
-              <div>
-                <a href="/guess-country"><button class="btn ss-btn">Play
+              <div style="margin-right: 20px;">
+                <a href="/draw-flags"><button class="btn ss-btn">Play
                     Game</button></a>
               </div>
             </div>
           </swiper-slide>
-          <!-- <swiper-slide>
+          <swiper-slide>
             <div class="game-slider-inner-container">
-              <div>
-                <h2>Select Country Name</h2>
-                <h5 style="color: #a8171a">
-                  Can You Match Flag With Its Country?
-                </h5>
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim (3).png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Guess Flags</h2> 
+                  <h5 style="color: #a8171a">
+                    Can You Match COuntry With Its Flags?
+                  </h5>
+                </div>
               </div>
-              <div>
-                <a onclick="storeLog()" href="/select-countryFlag-game"><button class="btn ss-btn">Play
+              <div style="margin-right: 20px;">
+                <a href="/guess-flags"><button class="btn ss-btn">Play
                     Game</button></a>
               </div>
             </div>
-          </swiper-slide> -->
+          </swiper-slide>
+          <swiper-slide>
+            <div class="game-slider-inner-container">
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim (1).png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Learn About Flags</h2> 
+                  <h5 style="color: #a8171a">
+                    Click On Flags To Learn About Them?
+                  </h5>
+                </div>
+              </div>
+              <div style="margin-right: 20px;">
+                <a href="/learn-about-flags"><button class="btn ss-btn">Play
+                    Game</button></a>
+              </div>
+            </div>
+          </swiper-slide>
         </swiper-container>
       </div>
     </div>
@@ -156,13 +190,10 @@
                   <div class="col-md-12">
                     <ul class="green">
                       <li>
-                        Nulla pellentesque posuere metus, sed hendrerit purus
-                        venenatis in. Sed at vestibulum magna.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                       </li>
                       <li>
-                        Etiam quis lacinia ipsum. Aliquam blandit, mauris nec
-                        molestie interdum, quam massa finibus turpis, ut
-                        eleifend tellus massa eget nunc.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                       </li>
                     </ul>
                   </div>
@@ -223,7 +254,7 @@
           </footer>
         </div>
         <div class="slider-btn mt-10" style="display: flex;justify-content: center;margin-top: 50px;">
-          <a href="/quiz-citys" class="btn ss-btn" data-animation="fadeInRight" data-delay=".8s">Explore Test Per
+          <a href="/test/states" class="btn ss-btn" data-animation="fadeInRight" data-delay=".8s">Explore Test Per
             State</a>
         </div>
       </div>
@@ -250,7 +281,7 @@
             </div>
 
             <div class="slider-btn mt-10">
-              <a href="/quiz-citys/640877e7396185813dda9b21/quiz" class="btn ss-btn" data-animation="fadeInRight"
+              <a href="/test/states/new-jersey/6411b29577f58e38d4238ec8" class="btn ss-btn" data-animation="fadeInRight"
                 data-delay=".8s">Free Practice Test</a>
             </div>
           </div>
@@ -356,64 +387,55 @@
         autoplay>
         <swiper-slide>
           <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/imgpsh_fullsize_anim.jpeg" alt="courses-img1" /></a>
+            <a href="guess-country"><img src="/client/img/bg/imgpsh_fullsize_anim.jpeg" alt="courses-img1" /></a>
             <div class="text">
-              <h5>10 Days</h5>
-              <h3><a href="#">Driving Courses</a></h3>
+              <h5></h5>
+              <h3><a href="#">Guess Country</a></h3>
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/01.jpg" alt="courses-img1" /></a>
+            <a href="/draw-flags"><img src="/client/img/bg/04.jpg" alt="courses-img1" /></a>
             <div class="text">
-              <h5>20 Days</h5>
-              <h3><a href="#">Learn About Flag</a></h3>
+              <h5></h5>
+              <h3><a href="#">Draw Flags</a></h3>
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/02.jpg" alt="courses-img1" /></a>
+            <a href="/guess-flags"><img src="/client/img/bg/05.jpg" alt="courses-img1" /></a>
             <div class="text">
-              <h5>3 Years</h5>
-              <h3><a href="#">Falg Matching</a></h3>
+              <h5></h5>
+              <h3><a href="#">Guess Falgs</a></h3>
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/03.jpg" alt="courses-img1" /></a>
+            <a href="/learn-about-flags"><img src="/client/img/bg/03.jpg" alt="courses-img1" /></a>
             <div class="text">
-              <h5>15 Days</h5>
-              <h3><a href="#">Falg Paint</a></h3>
+              <h5></h5>
+              <h3><a href="#">Learn About Flags</a></h3>
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/02.jpg" alt="courses-img1" /></a>
+            <a href="/quiz-citys"><img src="/client/img/bg/02.jpg" alt="courses-img1" /></a>
             <div class="text">
-              <h5>3 Years</h5>
+              <h5></h5>
               <h3><a href="#">Parking Section</a></h3>
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/05.jpg" alt="courses-img1" /></a>
+            <a href="/quiz-citys"><img src="/client/img/bg/01.jpg" alt="courses-img1" /></a>
             <div class="text">
-              <h5>3 Years</h5>
-              <h3><a href="#">Falg Game</a></h3>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="box-courses">
-            <a href="#"><img src="/client/img/bg/imgpsh_fullsize_anim.jpeg" alt="courses-img1" /></a>
-            <div class="text">
-              <h5>3 Years</h5>
-              <h3><a href="">Falg Game</a></h3>
+              <h5></h5>
+              <h3><a href="#">DMV Practice Test</a></h3>
             </div>
           </div>
         </swiper-slide>
@@ -539,7 +561,7 @@
                   <div class="row">
                     <div class="col-lg-12 col-md-12">
                       <div class="date-b">
-                        <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2023
                       </div>
                     </div>
                   </div>
@@ -569,7 +591,7 @@
                   <div class="row">
                     <div class="col-lg-12 col-md-12">
                       <div class="date-b">
-                        <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2023
                       </div>
                     </div>
                   </div>
@@ -598,7 +620,7 @@
                   <div class="row">
                     <div class="col-lg-12 col-md-12">
                       <div class="date-b">
-                        <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2023
                       </div>
                     </div>
                   </div>
@@ -627,6 +649,7 @@
 
   <script>
     async function storeLog(id) {
+      console.log(id);
       const counter = 1;
       const response = await fetch(`/track-game/${id}`, {
         method: 'POST',

@@ -30,6 +30,7 @@ const result_box = document.querySelector(".result_box");
 const time_up = document.querySelector(".time_up");
 
 
+
 //required variable 
 let que_count = 0;
 
@@ -70,111 +71,6 @@ fetch(`/game/all/${_id}`)
     ));
 
 
-// let questions = [
-//   {
-//     numb: 1,
-
-//     question: "flag-icon-jp",
-
-//     answer: "Japan",
-
-//     options: ["Japan", "Argentina", "Bangladesh", "Cameroon"],
-//   },
-
-//   {
-//     numb: 2,
-
-//     question: "flag-icon-ad",
-
-//     answer: "Andorra",
-
-//     options: ["Afghanistan", "Andorra", "Barbados", "Canada"],
-//   },
-
-//   {
-//     numb: 3,
-
-//     question: "flag-icon-au",
-
-//     answer: "Australia",
-
-//     options: ["Bermuda", "Cook Islands", "Australia", "Falkland Islands"],
-//   },
-
-//   {
-//     numb: 4,
-
-//     question: "flag-icon-at",
-
-//     answer: "Austria",
-
-//     options: ["Bulgaria", "Belgium", "Austria", "Canada"],
-//   },
-
-//   {
-//     numb: 5,
-
-//     question: "flag-icon-de",
-
-//     answer: "Germany",
-
-//     options: ["Germany", "Colombia", "Cameroon", "Belgium"],
-//   },
-
-//   {
-//     numb: 6,
-
-//     question: "flag-icon-ar",
-
-//     answer: "Argentina",
-
-//     options: ["Botswana", "Antarctica", "Argentina", "Guatemala"],
-//   },
-
-//   {
-//     numb: 7,
-
-//     question: "flag-icon-vn",
-
-//     answer: "Vietnam",
-
-//     options: ["Turkey", "Vietnam", "Somalia", "Senegal"],
-//   },
-
-//   {
-//     numb: 8,
-
-//     question: "flag-icon-ru",
-
-//     answer: "Russia",
-
-//     options: ["Réunion", "Russia", "Romania", "Slovenia"],
-//   },
-
-//   {
-//     numb: 9,
-
-//     question: "flag-icon-my",
-
-//     answer: "Malaysia",
-
-//     options: ["Niue", "Malaysia", "New Zealand", "Pitcairn"],
-//   },
-
-//   {
-//     numb: 10,
-
-//     question: "flag-icon-fi",
-
-//     answer: "Finland",
-
-//     options: ["Faroe Islands", "Georgia", "Iceland", "Finland"],
-//   },
-// ];
-
-//audios 
-
-
 window.load = startQuiz();
 
 function startQuiz() {
@@ -194,7 +90,7 @@ function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
 
   let que_tag =
-    `<span class="flag-icon-background" style="border-radius:7px;width:100%;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
+    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
 
   let detail = '<p class="your-quiz-progress-detail" >'+ questions[index].hint +'<p>'
 
@@ -232,15 +128,14 @@ function showQuetions(index) {
 next_btn.onclick = () => {
   if (que_count < questions.length - 1) {
     que_count++; //increment index of array
-
+    
     que_numb++; //increment question number
-
+    
     showQuetions(que_count); //passing index of array to showQestions for current question
-
+    
     queCounter(que_numb); //passing question number to queCounter
-
     next_btn.classList.add("d-none");
-
+    
     startTimerLine(0);
   }
 };
@@ -274,21 +169,23 @@ function startTimerLine(time) {
     }
   }
 }
- 
+
  
 
 //show result box-shadow
 
 result_btn.onclick = async () => {
-    questions_box.classList.add("d-none");
+  location='#hello'
+  questions_box.classList.add("d-none");
 
   result_box.classList.remove("d-none");
 
   result_btn.classList.add("d-none");
 
-  time_up.classList.add("d-none");
+  time_up.classList.remove("d-none");
 
-  document.querySelector("#testDuration").classList.add("d-none");
+  ques_counter.classList.add("d-none")
+  document.querySelector("#testDuration").classList.add("d-none")
  
   //Post Api  
   
@@ -361,6 +258,11 @@ function startTimer(duration, display) {
       clearInterval(completeTestDuration);
 
       clearInterval(counterLine);
+
+      document.querySelector("#testDuration").classList.add("d-none")
+
+      
+      ques_counter.classList.add("d-none")
     }
   }
 }
@@ -479,7 +381,6 @@ function disableOptions() {
 
 async function storeResultForGame() { 
   var obj = {correct: userScore, incorrect: incorrect, attempted: que_numb};
-  // console.log(obj); 
   const response = await fetch(`/game-result/${_id}`, {
     method: 'POST',
     body: JSON.stringify({objToStore: obj}),
@@ -489,5 +390,4 @@ async function storeResultForGame() {
   });
 
   // const finalData = await response.json();
-  console.log(response);
 }

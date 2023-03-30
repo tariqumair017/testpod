@@ -5,53 +5,53 @@ import DrawNewFlagModel from "../models/drawNewFlag.js";
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login";
 import { Console } from "console";
- 
- 
+  
 //Admin: Draw-New-Flags Page
-router.get("/game-management/draw-new-flags", asyncHandler(async (req, res) => { 
-const data = await DrawNewFlagModel.find({});
+router.get("/game-management/new-flag/draw-new-flags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+    const data = await DrawNewFlagModel.find({});
     res.render("Admin/Draw-New-Flags", { data });
 }));
    
 //Admin: Draw-New-Flags Page Handel
-router.post("/game-management/draw-new-flags", asyncHandler(async (req, res) => { 
+router.post("/game-management/new-flag/draw-new-flags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+        
+    const find = await DrawNewFlagModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }});
 
-const find = await DrawNewFlagModel.findOne({country: req.body.country});
+    if(!find)
+    {     
+        var shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
+        const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
+        req.files.shapeImg.mv(newPath);
 
-if(!find)
-{    
-    var shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
-    const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
-    req.files.shapeImg.mv(newPath);
-
-   const newFlag = new DrawNewFlagModel({
-        country: req.body.country,
-        flagUrl: req.body.flagUrl,
-        flagDetails: req.body.flagDetails, 
-        shapeImg: shapeFileName,
-        correctColors: req.body.correctColors,
-        arrangement: req.body.arrangement
-    });
-    await newFlag.save();
-    console.log("New Flag Added Successfully"); 
-    req.flash("success", `New Flag Added Successfully`);
-    res.redirect("/game-management/draw-new-flags");
-}
-else
-{   
-    req.flash("error", `${find.country} is already exist`);
-    res.redirect("/game-management/draw-new-flags"); 
-}
+        const newFlag = new DrawNewFlagModel({
+            country: req.body.country,
+            flagUrl: req.body.flagUrl,
+            flagDetails: req.body.flagDetails, 
+            shapeImg: shapeFileName,
+            correctColors: JSON.parse(req.body.selectedColors),
+            arrangement: req.body.arrangement
+        });
+        await newFlag.save();
+        console.log("New Flag Added Successfully"); 
+        req.flash("success", `New Flag Added Successfully`);
+        res.send({url: "/game-management/new-flag/draw-new-flags"}); 
+    }
+    else
+    {   
+        console.log(`${find.country} is already exist`); 
+        req.flash("error", `${find.country} is already exist`);
+        res.send({url: "/game-management/new-flag/draw-new-flags"}); 
+    }
 }));  
 
 // Admin: Edit Flag
-router.get('/game-management/draw-new-flags/:id/edit', asyncHandler(async (req, res) => { 
+router.get('/game-management/new-flag/draw-new-flags/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await DrawNewFlagModel.findById(req.params.id);
     res.send(data);  
 }));
   
 //Admin - Edit Game Name
-router.put("/game-management/draw-new-flags/:id", asyncHandler(async (req, res) => { 
+router.put("/game-management/new-flag/draw-new-flags/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     if(req.files)
     {
         const shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
@@ -63,11 +63,11 @@ router.put("/game-management/draw-new-flags/:id", asyncHandler(async (req, res) 
             flagUrl: req.body.flagUrl,
             flagDetails: req.body.flagDetails, 
             shapeImg: shapeFileName,
-            correctColors: req.body.correctColors,
+            correctColors: JSON.parse(req.body.selectedColors),
             arrangement: req.body.arrangement
         });
         req.flash("success", `Flag Updated Successfully`);
-        res.redirect("/game-management/draw-new-flags");
+        res.send({url: "/game-management/new-flag/draw-new-flags"}); 
     }
     else
     {
@@ -75,22 +75,22 @@ router.put("/game-management/draw-new-flags/:id", asyncHandler(async (req, res) 
             country: req.body.country,
             flagUrl: req.body.flagUrl,
             flagDetails: req.body.flagDetails,  
-            correctColors: req.body.correctColors,
+            correctColors: JSON.parse(req.body.selectedColors),
             arrangement: req.body.arrangement
         });
         req.flash("success", `Flag Updated Successfully`);
-        res.redirect("/game-management/draw-new-flags");
+        res.send({url: "/game-management/new-flag/draw-new-flags"}); 
     }
 }));
  
 
 //Admin - Delete Flag 
-router.delete("/game-management/draw-new-flags/:id", asyncHandler(async (req, res) => { 
+router.delete("/game-management/new-flag/draw-new-flags/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const { id } = req.params;
     await DrawNewFlagModel.findByIdAndDelete(id);
     console.log("Flag Deleted Successfully"); 
     req.flash("success", `Flag Deleted Successfully`);
-    res.redirect("/game-management/draw-new-flags");  
+    res.redirect("/game-management/new-flag/draw-new-flags");  
 }));
   
 

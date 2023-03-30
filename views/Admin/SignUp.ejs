@@ -44,24 +44,10 @@
             <div>
                 <p style="margin: 0%;"  class="login-sign-text text-center" >SIGN UP</p>
             </div>
-          <form class="login-form needs-validation" action="#" method="post" novalidate>
-            <!-- Email input -->
+          <form class="login-form needs-validation" action="/sign-up" method="post" novalidate>
             <div class="form-outline mb-4">
-              <label for="validationCustom01" class="form-label"
-                >Name</label
-              >
-              <input
-                placeholder="Please Enter Name"
-                type="text"
-                name="name"
-                class="form-control"
-                id="validationCustom01" 
-              />
-              <div class="invalid-feedback">
-                Please provide a valid Name.
-              </div>
+              <%- include ('./partials/SuccessError'); -%>
             </div>
-
             <div class="form-outline mb-4">
                 <label for="validationCustom01" class="form-label"
                   >Email</label
@@ -69,7 +55,7 @@
                 <input
                   placeholder="Please Enter Email"
                   type="email"
-                  name="username"
+                  name="email"
                   class="form-control"
                   id="validationCustom01"
                   required
@@ -78,6 +64,22 @@
                   Please provide a valid Email.
                 </div>
               </div>
+ 
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label"
+                >Name</label>
+              <input
+                placeholder="Please Enter Username"
+                type="text"
+                name="username"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid Username.
+              </div>
+            </div>
 
               <div style="position: relative;" class="form-outline mb-3">
                 <label for="validationCustom02" class="form-label"

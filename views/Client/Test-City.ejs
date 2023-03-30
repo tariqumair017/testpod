@@ -1,0 +1,91 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+<main>
+  <!-- breadcrumb-area -->
+  <section
+    class="breadcrumb-area d-flex align-items-center"
+    style="background-image: url(/client/img/testimonial/test-bg.png)"
+  >
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-12 col-lg-12">
+          <div class="breadcrumb-wrap text-left">
+            <div class="breadcrumb-title">
+              <h2>MVC Practice Tests</h2>
+              <div class="breadcrumb-wrap">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      States
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      <%=data[0]?.stateName%>
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+</main>
+
+<section
+  id="about"
+  class="about-area about-p pt-120 pb-120 p-relative"
+  style="
+    background: url(/client/img/features/about-bg-aliments.png) no-repeat;
+    background-position: center center;
+  ">
+  <div class="quiz-citys">
+    <h2 class="font-weight-bold mb-2"><%=data[0]?.stateName.toUpperCase()%></h2>
+    <p class="font-italic text-muted mb-4 text-center">
+      
+    </p>
+    <div class="row quiz-card">
+      <%data.forEach(value => {%> 
+      <a onclick="storeLog('<%=value._id%>')" href="/test/states/<%=value.stateName%>/<%=value._id%>" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
+        <img src="/upload-images/<%=value.stateImg%>" class="card-img-top card-img" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title quiz-card-title"><%=value.quizName.toUpperCase()%></h5>
+          <!-- <p class="card-text">
+            <%=value.quizDetail%>
+          </p> -->
+          <div class="card-question-number">
+            <div>
+              <p class="card-total-scorce"><%=value.questions.length%></p>
+              <p class="card-question" >questions</p>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <%})%>
+    </div>
+  </div>
+</section>
+
+
+<SCript>
+  async function storeLog(id) {
+      const counter = 1;
+      const response = await fetch(`/track-quiz/${id}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          views:counter
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        }
+      }); 
+      console.log(response);
+    }
+</SCript>
+
+<script src="/client/js/about.js"></script>

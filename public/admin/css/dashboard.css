@@ -111,6 +111,8 @@ a {
 
 .header-logo{
   width: 120px;
+  transition: all 0.3s;
+  margin-left: 10px;
 }
 
 .header-logo.active{
@@ -745,6 +747,10 @@ justify-content: end;
     color: white;
   }
 
+  .hint-images{
+    background-color: #CCCCCC;
+    padding: 20px;
+  }
 
 
 

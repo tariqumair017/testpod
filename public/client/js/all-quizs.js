@@ -1,44 +1,3 @@
-// function checkValue() {
-//   var data = document.getElementsByName("exampleRadios");
-//   let userAns = "";
-//   for (let i = 0; i < data.length; i++) {
-//     if (data[i].checked) {
-//       userAns += data[i].value;
-//     }
-//   }
-//   console.log(userAns, "userAns");
-// }
-
-// function showQuestionsText() {
-//   const question_text = document.querySelector(".all-quiz-left-part");
-//   const question_options_text = document.querySelector(".ooooo");
-//   console.log(question_options_text, "question_options_text");
-//   let question_tag = "";
-//   let question_options = "";
-//   for (let i = 0; i < allQuestipons.length; i++) {
-//     question_tag +=
-//       '<div class="questions-text"><h5> ' +
-//       allQuestipons[i].numer +
-//       ". " +
-//       allQuestipons[i].question +
-//       "</h5></div>";
-//       question_options += '<div class="form-check" ><input type="radio" name="answer" id="a" class="answer"> <label for="a" id="a_text">'+ allQuestipons[i].question +'</label></div';
-//     for (let j = 0; j < allQuestipons[i].options.length; j++) {
-//       question_options += allQuestipons[i].options[j].name + "br";
-//       '<div> <div><input class="form-check-input" type="radio" name="exampleRadios" id=exampleRadios'
-//       " value=option"
-//       '/><label class="form-check-label" style="margin-left: 20px" for=exampleRadios'
-//       ">" +
-//       allQuestipons[i].options[j] +
-//       "</label></div></div>";
-//     }
-//   }
-
-//   question_text.innerHTML = question_tag;
-//   question_options_text.innerHTML = question_options;
-// }
-// showQuestionsText();
-
 var option_text = [];
 var wrong = 0;
 var correct = 0;
@@ -64,10 +23,10 @@ async function showAns(numer, selectedOptions, id) {
 
   labels = document.getElementById(id1).childNodes;
 
-  labels[1].style.backgroundColor = "white";
-  labels[3].style.backgroundColor = "white";
-  labels[5].style.backgroundColor = "white";
-  labels[7].style.backgroundColor = "white";
+  labels[1].children[0].children[0].style.backgroundColor = "white";
+  labels[1].children[0].children[1].style.backgroundColor = "white";
+  labels[1].children[0].children[2].style.backgroundColor = "white";
+  labels[1].children[0].children[3].style.backgroundColor = "white";
 
   selectedOptions.parentNode.style.backgroundColor = "#EBEFF5"; 
 
@@ -91,9 +50,15 @@ async function showAns(numer, selectedOptions, id) {
 
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
- 
+
+const option_list = document.querySelectorAll(".option-list")
+
+console.log(option_list[0].children[0].querySelector("input"),"option_list")
+
+
 
 async function checkResult(id) {
+  
   const getData = await fetch(`/quiz-list/${id}`)
   .then((response) => response.json())
   .then((data) => data); 
@@ -111,12 +76,19 @@ async function checkResult(id) {
         wrong++;
         filtered[j].parentNode.querySelector("h6").classList.add("incorrect-quiz");
         filtered[j].parentNode.querySelector("input").classList.add("option-incorrent");
-  
+        for (let i = 0; i < option_list[j].children.length; i++) {
+          if(option_list[j].children[i].textContent.toLocaleLowerCase().replaceAll(/\s/g, "") == getData.questions[j].correct.toLowerCase().replaceAll(/\s/g, "")){
+            option_list[j].children[i].querySelector("input").classList.add("option-corrent")
+            option_list[j].children[i].querySelector("h6").classList.add("correct-quiz")
+          }
+          
+        }
       }
      
       showDiscription[j] && showDiscription[j].classList.add("all-quiz-show-discription");
       
     }   
+
     if (correct < 10) {
       document.getElementById("total-correct").innerHTML = "0" + correct;
     } else {
@@ -128,13 +100,14 @@ async function checkResult(id) {
       document.getElementById("total-in-correct").innerHTML = wrong;
     }
     all_quiz_allradio_option.classList.add("disable");
+    location='#firstQuizQuestion'
   }
 }
 
 
+
 async function storeResultForQuiz(id) {    
   var obj = {correct: optionSeletCorrect, incorrect: optionSeletWrong, attempted: attempetedQuestions};
-  console.log(obj); 
   const response = await fetch(`/quiz-result/${id}`, {
     method: 'POST',
     body: JSON.stringify({objToStore: obj}),
@@ -142,5 +115,4 @@ async function storeResultForQuiz(id) {
       'Content-type': 'application/json; charset=UTF-8',
     }
   }); 
-  console.log(response);
 }

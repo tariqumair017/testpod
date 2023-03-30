@@ -3,12 +3,11 @@
 
 <!--Container Main start-->
  <div class="application bg-light">
-    <h4>Add Test</h4>
+    <h4 class="mb-5" >Craete Quiz</h4>
     <%- include ('./partials/SuccessError'); -%>
     <form class="add-quiz-form row needs-validation mb-20" action="/add-test" method="POST" enctype="multipart/form-data" novalidate>
       <div class="col-md-12 position-relative">
-        <label for="validationTooltip03" class="form-label">Quiz Name</label>
-        <input name="quizName" placeholder="Please Enter Quiz Name" type="text" class="form-control" id="validationTooltip03" required>
+        <input name="quizName" placeholder="Please Enter Quiz Name" type="text" class="form-control" id="quizName" required>
         <div class="invalid-tooltip">
           Please provide a Name.
         </div>
@@ -26,10 +25,11 @@
             <select class="form-select" id="stateID" name="stateName">
               <!-- <option hidden >Please Select State</option>   -->
               <option selected value="new-jersey">New Jersey</option>
+              <option selected value="new-york">New York</option>
             </select>
             </div>
             <div class="col-md-6 " style="margin-top: 20px;"> 
-            <label for="validationTooltip03" class="form-label">State Image</label>
+            <label for="validationTooltip03" class="form-label">Test Image</label>
             <div class="add-quiz-state-image">
               <input class="add-quiz-image-input formFile form-control" type="file" name="stateImg" onchange="preview()" required>
               <button onclick="clearImage()"  style="width: 40px;background-color: #a8171a;color: white;" class="btn" type="button" ><i class="fa-solid fa-xmark"></i></button>
@@ -40,14 +40,13 @@
       <label for="validationTooltip03" class="form-label">Category</label>
       <select class="form-select" name="category">
         <!-- <option hidden >Please Select Category</option> -->
-        <option selected value="drivering-quiz">Drivering Quiz</option>
+        <option selected value="driving-quiz">Driving Quiz</option>
         <!-- <option value="flag-game">Flag Game Quiz</option>
         <option value="find-state-quiz">Find State Quiz</option> -->
       </select>
       </div>
       <div class="col-md-6 position-relative" style="margin-top: 20px;">
-        <label for="validationTooltip03" class="form-label">Quiz Detail</label>
-        <input name="quizDetail" placeholder="Please Enter Quiz Detail" type="text" class="form-control" id="validationTooltip03" required>
+        <input maxlength="200" name="quizDetail" placeholder="Please Enter Quiz Detail" type="text" class="form-control" id="quizDetail" required>
         <div class="invalid-tooltip">
           Please provide a Detail.
         </div>
@@ -62,7 +61,7 @@
             <button onclick="clearImage()"  class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
           </div>
           <div class="col-md-6 position-relative">
-            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="quizquestion" required>
             <div class="invalid-tooltip">
               Please provide a Question.
             </div>
@@ -70,25 +69,25 @@
           </div>
           <div class="row">
           <div class="col-md-3 position-relative">
-            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="quizoptionA" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
           </div> 
           <div class="col-md-3 position-relative">
-            <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="quizoptionB" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
           </div> 
           <div class="col-md-3 position-relative">
-            <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="quizoptionC" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
           </div> 
           <div class="col-md-3 position-relative">
-            <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="quizoptionD" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
@@ -96,13 +95,13 @@
           </div> 
           <div class="row">
           <div class="col-md-6 position-relative">
-            <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="correct" placeholder="Please Enter Answer" type="text" class="form-control" id="quizcorrect" required>
             <div class="invalid-tooltip">
               Please provide a Answer.
             </div>
           </div>
           <div class="col-md-6 position-relative">
-            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="validationTooltip03">
+            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="quizhint">
           </div>
           </div>
           <hr>
@@ -124,7 +123,7 @@
             <button onclick="clearImage()" class="btn" style="background-color: #a8171a;color: white;" type="button" ><i class="fa-solid fa-xmark"></i></button>
           </div>
           <div class="col-md-6 position-relative">
-            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="question" placeholder="Please Enter Question" type="text" class="form-control" id="quizquestion" required>
             <div class="invalid-tooltip">
               Please provide a Question.
             </div>
@@ -132,7 +131,7 @@
         </div>
           <div class="row">
           <div class="col-md-3 position-relative">
-            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="validationTooltip03" required>
+            <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="quizoptionA" required>
             <div class="invalid-tooltip">
               Please provide a Option.
             </div>
@@ -174,3 +173,5 @@
 </div>
 <!--Container Main end-->   
 <script src="/admin/js/addQuiz.js" ></script>
+<script src="/admin/js/multiQuestionsQuiz.js"></script>
+

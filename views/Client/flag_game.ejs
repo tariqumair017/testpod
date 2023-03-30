@@ -1,31 +1,6 @@
 <% layout('Client/layouts/boilerPlate') -%>
 
 <main>
-  <!-- search-popup -->
-  <div
-    class="modal fade bs-example-modal-lg search-bg popup1"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content search-popup">
-        <div class="text-center">
-          <a href="#" class="close2" data-dismiss="modal" aria-label="Close"
-            >× close</a
-          >
-        </div>
-        <div class="row search-outer">
-          <div class="col-md-11">
-            <input type="text" placeholder="Search for products..." />
-          </div>
-          <div class="col-md-1 text-right">
-            <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /search-popup -->
   <!-- breadcrumb-area -->
   <section
     class="breadcrumb-area d-flex align-items-center"
@@ -36,11 +11,11 @@
         <div class="col-xl-12 col-lg-12">
           <div class="breadcrumb-wrap text-left">
             <div class="breadcrumb-title">
-              <h2>Select Country Name</h2>
+              <h2>Guess Country Name</h2>
               <div class="breadcrumb-wrap">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/guess-country">Guess Countries</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
                       Can You Match Flag With Its Country?
                     </li>
@@ -57,39 +32,21 @@
   <section class="all-quiz">
     <div class="all-quiz-upper-section">
       <div class="all-quiz-upper-section-header">
-        <h6>New jersey Flags Examination</h6>
-        <h6>DMV Permit Test #1</h6>
+        <h6>Asia Flags Examination</h6>
+        <h6>Test #1</h6>
       </div>
       <div class="all-quiz-upper-section-inner">
         <div class="all-quiz-upper-section-part-left">
-          <h4>FREE New Jersey DMV Practical Test</h4>
-          <p>
-            Anyone operating a motor vehicle or motor-driven bike on New
-            Jersey's public streets or highways must have a valid driver's
-            licence or learner's permit. New Jersey's DMV practise examinations
-            include questions based on the New Jersey Driver Handbook's most
-            essential traffic signals and..
+          <h4><%=data.gameName%></h4>
+          <p class="guess-country-flags-details">
+            <%=data.gameDetail%>
           </p>
-        </div>
-        <div class="all-quiz-upper-section-part-right">
-          <div class="all-quiz-upper-section-scorus-card">
-            <p>Question</p> 
-            <h5 _id="<%=data._id%>" id="total-questions">05</h5>
-          </div>
-          <div class="all-quiz-upper-section-scorus-card">
-            <p>Correct</p>
-            <h5 id="total-correct">--</h5>
-          </div>
-          <div class="all-quiz-upper-section-scorus-card">
-            <p>In-Correct</p>
-            <h5 id="total-in-correct">--</h5>
-          </div>
         </div>
       </div>
     </div>
 
-    <div class="all-quizzes">
-      <div class="all-quiz-left-part">
+    <div id="hello" class="all-quizzes">
+      <div  class="all-quiz-left-part">
         <div class="questions-box">
           <div class="align-items-center">
             <div class="quiz-image">
@@ -121,8 +78,8 @@
               </button>
 
               <button
-                class="btn btn-danger result_btn d-none"
-                style="width: 200px; margin-top: 10px"
+              class="btn btn-danger result_btn d-none"
+              style="width: 200px; margin-top: 10px"
               >
                 Show Result
               </button>
@@ -141,63 +98,52 @@
               padding: 15px;
             "
           ></canvas>
+          <div style="display: flex;justify-content: space-between;margin-top: 20px;">
+            <a href="/guess-country/flag_game/641989135e6acf1e951e4ee3" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+            <button class="btn ss-btn" >Next Level</button>
+          </div>
         </div>
       </div>
       <div class="all-quiz-right-part">
         <div class="all-quiz-progress">
           <div class="progress-timer">
+            
             <span
               class="total_que"
               style="font-size: 30px; font-weight: bold"
             ></span>
             <h2
               id="testDuration"
-              style="font-size: 30px; font-weight: bold; color: #eb2d00"
+              style="font-size: 30px; font-weight: bold; color: #A8171A"
             >
               --
             </h2>
+            
+              <span
+            class="time_up d-none"
+            style="font-size: 30px; font-weight: bold;color:#A8171A"
+          >Completed</span>
           </div>
-          <div
-            class="row justify-content-center align-items-center mt-3 time_up d-none">
-            <div class="col-md-6 text-center py-5">
-              <h2 style="font-size: 40px; font-weight: bold; color: #eb2d00">
-                Time Up
-              </h2>
+          <div class="all-quiz-upper-section-part-right">
+            <div class="all-quiz-upper-section-scorus-card">
+              <p>Question</p> 
+              <h5 _id="<%=data._id%>" id="total-questions">05</h5>
+            </div>
+            <div class="all-quiz-upper-section-scorus-card">
+              <p>Correct</p>
+              <h5 id="total-correct">--</h5>
+            </div>
+            <div class="all-quiz-upper-section-scorus-card">
+              <p>In-Correct</p>
+              <h5 id="total-in-correct">--</h5>
             </div>
           </div>
-          <h5>Your Progress</h5>
+          <h5 style="margin-top: 20px;margin-bottom: -3%;">Hint</h5>
           <div class="your-progress">
         </div>
         </div>
       </div>
     </div>
-
-    <!-- <div class="container-fluid px-5 pt-5"> 
-
-      <div class="ques_wrapper">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-2 text-end mb-3">
-            <span
-              class="total_que"
-              style="font-size: 50px; font-weight: bold; color: #ccc"
-            ></span>
-          </div>
-
-          <div class="col-md-3 mb-3">
-            <div class="que_text"></div>
-          </div>
-
-          <div class="col-md-4 mb-3">
-            <div class="option_list"></div>
-          </div>
-        </div>
-
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-4"></div>
-        </div>
-      </div>
- 
-    </div> -->
   </section>
 </main>
 

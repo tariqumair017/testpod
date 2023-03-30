@@ -109,7 +109,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form
+            <form 
               id="newQuestion"
               class="add-quiz-form row g-4 needs-validation"
               action="/manage-quiz/<%=data._id%>/new"
@@ -247,8 +247,7 @@
                       placeholder="Please Enter Hint"
                       type="text"
                       class="form-control"
-                      id="validationTooltip03"
-                      required
+                      id="validationTooltip03" 
                     />
                     <div class="invalid-tooltip">Please provide a Hint.</div>
                   </div>
@@ -385,8 +384,7 @@
                   name="Question[hint]"
                   id="hintID"
                   type="text"
-                  class="form-control"
-                  required
+                  class="form-control" 
                 />
                 <div class="invalid-tooltip">Please provide Hint.</div>
               </div>
@@ -435,6 +433,7 @@
         "updateForm"
       ).action = `/all-quiz/${data._id}/${Pid}?_method=PUT`;
     }
+
   </script>
   <script src="/admin/js/allQuiz.js"></script>
 </div>

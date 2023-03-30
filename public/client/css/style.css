@@ -16,6 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -6643,6 +6644,7 @@ padding: 50px 40px;
     -webkit-tap-highlight-color: transparent;
 }
 
+
 .slick-list
 {
     position: relative;
@@ -6982,7 +6984,6 @@ label {
   transition: all 0.3s ease 0s;
   vertical-align: middle;
   white-space: nowrap;
-  position: relative;
   z-index: 999;
   border-radius: 10;
 }
@@ -7053,10 +7054,6 @@ label {
   justify-content: center;
 }
 
-.card-question-number{
-  display: flex;
-  justify-content: space-between;
-}
 
 
 .card-total-scorce{
@@ -7070,6 +7067,7 @@ label {
 .card-question{
   color: #808080;
   font-weight: 500;
+  margin-top: -7px;
 }
 
 .quiz-card-title{
@@ -7162,7 +7160,48 @@ label {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
   }
+
+  .show-more-quiz{
+    margin-top: 100px;
+    text-align: center;
+
+  }
+
+  .test-related-cards{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .with-image-quiz{
+    display: flex;
+  }
+
+  .quiz-image-optional{
+    width: 170px;
+  }
+
+  @media screen and (max-width:700px){
+    .with-image-quiz{
+      display: flex;
+      flex-direction: column;
+    }
+    .quiz-image-optional{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .show-more-quiz{
+      margin-top: 50px;
+
+      
+    }
+  }
+  
 
   .customRadio{display: none;}
 
@@ -7834,6 +7873,11 @@ label {
 .header-three .main-menu ul li a {
   color: #201e1a;
 }
+.game-image-slider{
+  display: flex;
+  align-items: center;
+  margin-bottom: -1px;
+}
 .slider-three .slider-img {
   margin-left: -25px;
   margin-top: 50px;
@@ -8310,9 +8354,9 @@ label {
 
   height: 70px;
 
-  cursor:url(images/brush.png), auto;
+  cursor:url(/client/img/images/brush.png), auto;
 
-  border: 2px solid #fff;
+  border: 2px solid #CCCCCC;
 
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -8322,44 +8366,12 @@ label {
 
   .color_palette li:hover{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    cursor: pointer;
   }
 
-  .color_palette .cpli:active:after {
 
-  left: auto;
 
-  right: 0;
 
-  width: 100%;
 
-  }
-
-  .color_palette .cpli:after  {
-
-  position: absolute;
-
-  content: "";
-
-  width: 0;
-
-  height: 100%;
-
-  top: 0;
-
-  left: 0;
-
-  direction: rtl;
-
-  z-index: 2;
-
-  box-shadow: -7px -7px 20px 0px #ffffff38, -4px -4px 5px 0px #fff0, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
-
-  transition: all 0.3s ease;
-
-  border-radius: 50%;
-
-  }
 
   .score_board {
 
@@ -8430,7 +8442,7 @@ label {
 
   font-weight: bold;
 
-  margin: 10px 0px;
+  margin-bottom: 20px
 
   }
 
@@ -9440,8 +9452,10 @@ border-color: #EA4A4A;
 }
 .breadcrumb > .active {
   color: #A8171A;
-  font-weight: 500;
+  font-weight: 900;
+  /* animation: popup 1500ms infinite ease-in-out; */
 }
+
 
 /* game slider start */
 .game-slider-start{
@@ -9458,8 +9472,24 @@ border-color: #EA4A4A;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
 }
+
+.game-slider-image{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+.accordion-item {
+   --bs-accordion-border-color: #FFE3DC;
+}
+
+.accordion {
+  --bs-accordion-active-bg: #FFE3DC;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem #FFE3DC;
+}
+
+
 
 
 
@@ -9471,6 +9501,14 @@ border-color: #EA4A4A;
     }
     .game-slider-container{
       width: 90%;
+      padding: 10px;
+    }
+    .game-image-slider{
+      flex-direction: column;
+      width: 100%;
+    }
+    .images-slider{
+      display: none;
     }
   }
 /* game slider end */
@@ -9629,7 +9667,7 @@ input[type='radio'] {
   border: 2px solid #747474;
   border-radius: 50%;
   outline: none;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 input[type='radio']:hover:before {
@@ -9648,21 +9686,14 @@ input[type='radio']:before {
   transition: 0.3s;
 }
 
-#option-incorrent{
-  accent-color: red;
-}
-
-#option-corrent{
-accent-color: green;
-}
 
 .option-incorrent{
   accent-color: red;
 }
 
 .option-corrent{
-accent-color: green;
-/* content: url(../img/icon/icons8-done-50.png); */
+/* accent-color: green; */
+content: url(../img/icons8-filled-circle-50.png);
 }
 
 .video-play-button{
@@ -10056,10 +10087,9 @@ footer .next-btn:hover {
 
 
 .all-quiz-upper-section-part-left{
-  width: 60%;
+  width: 100%;
 }
 .all-quiz-upper-section-part-right{
-  width: 40%;
   border-radius: 10px;
   display: flex;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -10067,6 +10097,7 @@ footer .next-btn:hover {
   justify-content: center;
   gap: 20px;
   flex-flow: wrap;
+  padding: 15px;
   
 }
 
@@ -10162,7 +10193,6 @@ footer .next-btn:hover {
 
 
 .all-quiz-progress{
-  padding: 10px;
   position: sticky;
   top: 0px;
 }
@@ -10176,6 +10206,7 @@ footer .next-btn:hover {
   font-weight: 500;
   border-radius: 10px;
   border: 1px solid lightgray;
+  margin-top: 20px;
 }
 
 
