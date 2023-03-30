@@ -23,6 +23,7 @@ import QuizRoutes from "./routes/quiz.js";
 import DrawNewFlagRoutes from "./routes/drawNewFlag.js"; 
 import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
 import GuessFlagGameRoutes from './routes/guessFlag.js'
+import FlagDetectiveRoutes from './routes/flagDetective.js'
  
 //mongoDB Connection with mongoose
 mongoose.set("strictQuery", false);
@@ -85,6 +86,7 @@ app.use(QuizRoutes);
 app.use(DrawNewFlagRoutes);
 app.use(DrawFlagGameRoutes);
 app.use(GuessFlagGameRoutes);
+app.use(FlagDetectiveRoutes);
 
 app.all('*', (req, res, next) => {
     res.status(404).send("Page Not Found");

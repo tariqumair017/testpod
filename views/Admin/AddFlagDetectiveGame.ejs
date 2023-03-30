@@ -1,0 +1,178 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+  <h4 class="mb-5">Create Flag Detective Game</h4>
+  <%- include ('./partials/SuccessError'); -%>
+  <form
+    class="add-quiz-form row needs-validation"
+    action="/game-management/add-flags-games"
+    method="POST"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <div class="row">
+      <div class="col-md-6 position-relative">
+        <input
+          name="gameName"
+          placeholder="Please Enter Game Name"
+          type="text"
+          class="form-control"
+          id="findCountryGameName"
+          required
+        />
+      </div>
+      <div class="col-md-6 position-relative">
+        <select class="form-select" name="level" required>
+          <option hidden>Please Select Regions</option>
+          <option value="western europe">Western Europe</option>
+          <option value="central and eastern europe">
+            Central and Eastern Europe
+          </option>
+          <option value="asia">Asia</option>
+          <option value="africa">Africa</option>
+          <option value="mediterranean & middle east">
+            Mediterranean & Middle East
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6 position-relative mt-3">
+        <select class="form-select" name="level" required>
+          <option hidden>Please Select Test Level</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="extreme">Extreme</option>
+        </select>
+      </div>
+      <div class="col-md-6 position-relative mt-3">
+        <input
+          maxlength="200"
+          name="gameDetail"
+          placeholder="Please Enter Test Detail"
+          type="text"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="col-md-6" style="margin-top: 20px">
+        <label for="validationTooltip03" class="form-label">Region Image</label>
+        <div class="add-quiz-state-image">
+          <input
+            class="add-quiz-image-input formFile form-control"
+            type="file"
+            name="testImg"
+            onchange="preview()"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div id="setNewForm">
+      <div class="form-data">
+        <div class="row">
+          <div class="col-md-6 position-relative mt-3">
+            <input
+              maxlength="200"
+              name="flagName"
+              placeholder="Please Enter Flag Name"
+              type="text"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col-md-6 position-relative mt-3">
+            <input
+              maxlength="200"
+              name="flagDetail"
+              placeholder="Please Enter Flag Hint"
+              type="text"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col-md-6" style="margin-top: 20px">
+            <label for="validationTooltip03" class="form-label"
+              >Flag Image</label
+            >
+            <div class="add-quiz-state-image">
+              <input
+                class="add-quiz-image-input formFile form-control"
+                type="file"
+                name="testImg"
+                onchange="preview()"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="col-12 mt-2">
+      <button
+        class="btn"
+        style="background-color: #a8171a; color: white"
+        type="submit"
+      >
+        Submit
+      </button>
+      <button
+        style="
+          float: right;
+          border-radius: 50%;
+          background-color: #a8171a;
+          color: white;
+        "
+        class="show-form btn"
+        type="button"
+      >
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </form>
+
+  <!-- Add Multiple Questions -->
+  <div style="display: none">
+    <div id="addNewForm" class="form-data">
+      <div class="row">
+        <div class="col-md-6 position-relative mt-3">
+          <input
+            maxlength="200"
+            name="flagName"
+            placeholder="Please Enter Flag Name"
+            type="text"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-6 position-relative mt-3">
+          <input
+            maxlength="200"
+            name="flagDetail"
+            placeholder="Please Enter Flag Hint"
+            type="text"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-6" style="margin-top: 20px">
+          <label for="validationTooltip03" class="form-label">Flag Image</label>
+          <div class="add-quiz-state-image">
+            <input
+              class="add-quiz-image-input formFile form-control"
+              type="file"
+              name="testImg"
+              onchange="preview()"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+</div>
+<!--Container Main end-->
+<script src="/admin/js/multiQuestionFlagDetective.js"></script>

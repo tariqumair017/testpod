@@ -1,0 +1,222 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+    <span style="display: flex;">
+        <h3 class="test-name" >
+          Testing
+        </h3> 
+      <form class="edit-test" method="POST">
+        <div style="display: flex;">
+          <input class="add-quiz-image-input form-control" value="Testing" name="gameName" id="formFile">
+          <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
+        </div>
+      </form>
+      <i style="margin-left: 20px; margin-top: 5px;cursor: pointer;" class="test-edit fa-solid fa-pen"></i>
+      </span> 
+  <%- include ('./partials/SuccessError'); -%>
+  <div style="overflow-x:auto;">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th class="table-hash-col">#</th>
+          <th>Flag Image</th>
+          <th>Flag Name</th>
+          <th >Flag Hint</th>
+          <th class="table-buttons">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%var count = 1%>
+        <tr>
+          <th scope="row">1</th>
+          <td>Flag image</td>
+          <td>Flag</td>
+          <td>Flag</td>
+          <td>
+            <span class="table-buttons">
+              <button
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                class="btn btn-primary"
+              >
+                Edit
+              </button>
+              <form  method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </span>
+          </td>
+        </tr>
+        <%count++%>
+      </tbody>
+    </table>
+    </div>
+
+    <div>
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal1"
+        type="button"
+        class="btn btn-success mt-3"
+      >
+        Add New Flags
+      </button>
+    </div>
+
+    <!-- Add New Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add New Flag
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="draw-flag-form" class="add-quiz-form row needs-validation" enctype="multipart/form-data" novalidate>
+                <div id="setNewForm">
+                    <div class="form-data">
+                        <div class="row">
+                            <div class="col-md-6 position-relative mt-3">
+                              <input
+                                maxlength="200"
+                                name="flagName"
+                                placeholder="Please Enter Flag Name"
+                                type="text"
+                                class="form-control"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-6 position-relative mt-3">
+                              <input
+                                maxlength="200"
+                                name="flagDetail"
+                                placeholder="Please Enter Flag Hint"
+                                type="text"
+                                class="form-control"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-12" style="margin-top: 20px">
+                              <label for="validationTooltip03" class="form-label"
+                                >Flag Image</label
+                              >
+                              <div class="add-quiz-state-image">
+                                <input
+                                  class="add-quiz-image-input formFile form-control"
+                                  type="file"
+                                  name="testImg"
+                                  onchange="preview()"
+                                  required
+                                />
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Submit</button>
+                </div>
+            </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add New Quiz -->
+
+    <!-- Edit Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Edit Flag
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              id="editFlagForm"
+              class="add-quiz-form row g-4 needs-validation"
+              novalidate
+              action=""
+              method="POST"
+              enctype="multipart/form-data"
+            >
+                <div id="setEditForm">
+                    <div class="form-data">
+                        <div class="row">
+                            <div class="col-md-6 position-relative mt-3">
+                              <input
+                                maxlength="200"
+                                name="flagName"
+                                placeholder="Please Enter Flag Name"
+                                type="text"
+                                class="form-control"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-6 position-relative mt-3">
+                              <input
+                                maxlength="200"
+                                name="flagDetail"
+                                placeholder="Please Enter Flag Hint"
+                                type="text"
+                                class="form-control"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-12" style="margin-top: 20px">
+                              <label for="validationTooltip03" class="form-label"
+                                >Flag Image</label
+                              >
+                              <div class="add-quiz-state-image">
+                                <input
+                                  class="add-quiz-image-input formFile form-control"
+                                  type="file"
+                                  name="testImg"
+                                  onchange="preview()"
+                                  required
+                                />
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+              <div class="col-12 mt-4">
+                  <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Edit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Quiz -->
+  </div>
+  <script src="/admin/js/allQuiz.js"></script>
+</div>

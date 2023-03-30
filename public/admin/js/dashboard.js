@@ -91,10 +91,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("collapseOne").classList.add("show")
       document.getElementById("create-guess-flag-game").classList.add("active")
     }
-     else if(pathname == "/game-management/create-guess-flag-game"){
+     else if(pathname == "/game-management/manage-guess-flag-game"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("create-guess-flag-game").classList.add("active")
+      document.getElementById("manage-guess-flag-game").classList.add("active")
+    }
+    else if(pathname == "/game-management/create-flag-detective-game"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("create-flag-detective-game").classList.add("active")
+    }
+    else if(pathname == "/game-management/manage-flag-detective-game"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("manage-flag-detective-game").classList.add("active")
     }
     else if(pathname == "/add-test"){
       document.getElementById("quiz-management").classList.add("active")
