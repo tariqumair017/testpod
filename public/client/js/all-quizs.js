@@ -23,10 +23,10 @@ async function showAns(numer, selectedOptions, id) {
 
   labels = document.getElementById(id1).childNodes;
 
-  labels[1].style.backgroundColor = "white";
-  labels[3].style.backgroundColor = "white";
-  labels[5].style.backgroundColor = "white";
-  labels[7].style.backgroundColor = "white";
+  labels[1].children[0].children[0].style.backgroundColor = "white";
+  labels[1].children[0].children[1].style.backgroundColor = "white";
+  labels[1].children[0].children[2].style.backgroundColor = "white";
+  labels[1].children[0].children[3].style.backgroundColor = "white";
 
   selectedOptions.parentNode.style.backgroundColor = "#EBEFF5"; 
 
@@ -50,7 +50,11 @@ async function showAns(numer, selectedOptions, id) {
 
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
- 
+
+const option_list = document.querySelectorAll(".option-list")
+
+console.log(option_list[0].children[0].querySelector("input"),"option_list")
+
 
 
 async function checkResult(id) {
@@ -72,6 +76,13 @@ async function checkResult(id) {
         wrong++;
         filtered[j].parentNode.querySelector("h6").classList.add("incorrect-quiz");
         filtered[j].parentNode.querySelector("input").classList.add("option-incorrent");
+        for (let i = 0; i < option_list[j].children.length; i++) {
+          if(option_list[j].children[i].textContent.toLocaleLowerCase().replaceAll(/\s/g, "") == getData.questions[j].correct.toLowerCase().replaceAll(/\s/g, "")){
+            option_list[j].children[i].querySelector("input").classList.add("option-corrent")
+            option_list[j].children[i].querySelector("h6").classList.add("correct-quiz")
+          }
+          
+        }
       }
      
       showDiscription[j] && showDiscription[j].classList.add("all-quiz-show-discription");

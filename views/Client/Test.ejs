@@ -33,9 +33,8 @@
   </section>
 </main>
 <!-- main-area-end -->
-<% var count = 1; %>
-<% var counting = 0; %>  
-<%counting = data.questions.length%> 
+<% var count = 1; %> <% var counting = 0; %> <%counting =
+data.questions.length%>
 <!-- All quizzes  Start-->
 <div id="firstQuizQuestion" class="all-quiz">
   <div class="all-quiz-upper-section">
@@ -46,9 +45,7 @@
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
         <h4><%=data.quizName%></h4>
-        <p>
-           <%=data.quizDetail%>
-        </p>
+        <p><%=data.quizDetail%></p>
       </div>
     </div>
   </div>
@@ -56,59 +53,67 @@
     <div class="all-quiz-left-part">
       <div class="questions-box">
         <!-- Backend Data -->
-        <% data.questions.forEach(item => { %> 
+        <% data.questions.forEach(item => { %>
         <div class="questions-text">
           <h5><%=count%>. <%=item.question%></h5>
         </div>
         <div id="p<%=count%>" class="all-quiz-allradio-option">
-          <label>
-            <input
-              type="radio"
-              value="<%=item.optionA%>"
-              name="p<%=count%>"
-              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
-            />
-            <h6 style="margin: 0%; font-weight: 500"><%=item.optionA%></h6>
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="<%=item.optionB%>"
-              name="p<%=count%>"
-              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
-            />
-            <h6 style="margin: 0%; font-weight: 500"><%=item.optionB%></h6>
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="<%=item.optionC%>"
-              name="p<%=count%>"
-              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
-            />
-            <h6 style="margin: 0%; font-weight: 500"><%=item.optionC%></h6>
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="<%=item.optionD%>"
-              name="p<%=count%>"
-              onclick="showAns('<%=count%>',this, '<%=data._id%>')"
-            />
-            <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
-          </label>
+          <div class="with-image-quiz">
+            <%if(item.questionImg){%>
+              <img class="quiz-image-optional" src="/upload-images/<%=item.questionImg%>" />
+              <%}%>
+            <div class="option-list" style="width: 100%;">
+              <label>
+                <input
+                  type="radio"
+                  value="<%=item.optionA%>"
+                  name="p<%=count%>"
+                  onclick="showAns('<%=count%>',this, '<%=data._id%>')"
+                />
+                <h6 style="margin: 0%; font-weight: 500"><%=item.optionA%></h6>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="<%=item.optionB%>"
+                  name="p<%=count%>"
+                  onclick="showAns('<%=count%>',this, '<%=data._id%>')"
+                />
+                <h6 style="margin: 0%; font-weight: 500"><%=item.optionB%></h6>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="<%=item.optionC%>"
+                  name="p<%=count%>"
+                  onclick="showAns('<%=count%>',this, '<%=data._id%>')"
+                />
+                <h6 style="margin: 0%; font-weight: 500"><%=item.optionC%></h6>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="<%=item.optionD%>"
+                  name="p<%=count%>"
+                  onclick="showAns('<%=count%>',this, '<%=data._id%>')"
+                />
+                <h6 style="margin: 0%; font-weight: 500"><%=item.optionD%></h6>
+              </label>
+            </div>
+          </div>
           <%if(item.hint){%>
           <div id="all-quiz-discription">
             <p><%=item.hint%></p>
           </div>
           <%}%>
-        </div> 
-          <%count++%>  
-        <%})%>
+        </div>
+        <%count++%> <%})%>
         <!-- Backend Data -->
       </div>
       <div class="all-quiz-result">
-        <button onclick="checkResult('<%=data._id%>')">Grade This Section</button>
+        <button onclick="checkResult('<%=data._id%>')">
+          Grade This Section
+        </button>
       </div>
     </div>
     <div class="all-quiz-right-part">
@@ -117,9 +122,7 @@
         <div class="all-quiz-upper-section-part-right">
           <div class="all-quiz-upper-section-scorus-card">
             <p>Questions</p>
-            <h5 id="total-questions">
-               <%=counting%>
-            </h5>
+            <h5 id="total-questions"><%=counting%></h5>
           </div>
           <div class="all-quiz-upper-section-scorus-card">
             <p>Correct</p>
@@ -130,26 +133,41 @@
             <h5 id="total-in-correct">--</h5>
           </div>
         </div>
-        <p class="your-quiz-progress-detail" >
-          The New Jersey DMV Parking Practical Test is designed to evaluate a driver's ability to properly and safely park a vehicle. This test is commonly required for individuals seeking a driver's license in New Jersey, as parallel parking and other parking maneuvers are an essential part of driving on busy city streets. During the test, drivers must demonstrate their ability to perform various parking maneuvers, including parallel parking, angle parking, and parking on hills.
+        <p class="your-quiz-progress-detail">
+          The New Jersey DMV Parking Practical Test is designed to evaluate a
+          driver's ability to properly and safely park a vehicle. This test is
+          commonly required for individuals seeking a driver's license in New
+          Jersey, as parallel parking and other parking maneuvers are an
+          essential part of driving on busy city streets. During the test,
+          drivers must demonstrate their ability to perform various parking
+          maneuvers, including parallel parking, angle parking, and parking on
+          hills.
         </p>
       </div>
     </div>
   </div>
-  <div class="row test-related-cards">
-    <%for (let i = 0; i < 4; i++)  {%> 
-    <a href="/quiz-citys/Quiz/<%=allTests[i]._id%>" class="card quiz-card-item col-md-3" style="width: 16rem; padding: 0%">
-      <img src="/upload-images/<%=allTests[i].stateImg%>" class="card-img-top card-img" alt="..." />
+ 
+<h3 class="show-more-quiz">Explore More DMV Practice Tests</h3>
+  <div class="test-related-cards">
+    <%for (let i = 0; i < 4; i++) {%>
+    <a
+      href="/quiz-citys/Quiz/<%=allTests[i]._id%>"
+      class="card quiz-card-item col-md-3"
+      style="width: 16rem; padding: 0%"
+    >
+      <img
+        src="/upload-images/<%=allTests[i].stateImg%>"
+        class="card-img-top card-img"
+        alt="..."
+      />
       <div class="card-body">
         <h5 class="card-title quiz-card-title"><%=allTests[i].quizName.toUpperCase()%></h5>
-      
         <div class="card-question-number">
           <div>
             <p class="card-total-scorce"><%=allTests[i].questions.length%></p>
-            <p class="card-question" >questions</p>
+            <p class="card-question">questions</p>
           </div>
-          <div>
-          </div>
+          <div></div>
         </div>
       </div>
     </a>

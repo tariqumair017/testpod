@@ -3,20 +3,20 @@
 <!--Container Main start-->
  <div class="application bg-light">
   <div class="mb-5" style="display: flex;justify-content: space-between" >
-    <h4>Add Draw Flag Game</h4>
+    <h4>Create Draw Flag Game</h4>
     <button onclick="location='/game-management/new-flag/draw-new-flags'" type="button" class="btn btn-success">Draw New Flags</button>
   </div>
     <%- include ('./partials/SuccessError'); -%>
     <form class="add-quiz-form row needs-validation" action="/game-management/draw-flags-games" method="POST" enctype="multipart/form-data" novalidate>
     <div class="row" >
       <div class="col-md-6">
-        <input name="gameName" placeholder="Please Enter Game Name" type="text" class="form-control" id="drawFlagGameName" required>
+        <input name="gameName" placeholder="Please Enter Test Name" type="text" class="form-control" id="drawFlagGameName" required>
       </div>
       <div class="col-md-6">
-        <input maxlength="200" name="gameDetail" placeholder="Please Enter Game Detail" type="text" class="form-control" id="drawFlagGameDetail" required>
+        <input maxlength="200" name="gameDetail" placeholder="Please Enter Test Detail" type="text" class="form-control" id="drawFlagGameDetail" required>
       </div>
       <div class="col-md-6 mt-3">
-        <label for="countryImg" class="form-label">Country Image</label>
+        <label for="countryImg" class="form-label">Test Image</label>
         <div class="add-quiz-state-image">
             <input class="add-quiz-image-input formFile form-control" type="file" id="countryImg" name="countryImg" required>
         </div>

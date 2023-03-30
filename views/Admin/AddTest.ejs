@@ -3,11 +3,10 @@
 
 <!--Container Main start-->
  <div class="application bg-light">
-    <h4>Add Test</h4>
+    <h4 class="mb-5" >Craete Quiz</h4>
     <%- include ('./partials/SuccessError'); -%>
     <form class="add-quiz-form row needs-validation mb-20" action="/add-test" method="POST" enctype="multipart/form-data" novalidate>
       <div class="col-md-12 position-relative">
-        <label for="quizName" class="form-label">Quiz Name</label>
         <input name="quizName" placeholder="Please Enter Quiz Name" type="text" class="form-control" id="quizName" required>
         <div class="invalid-tooltip">
           Please provide a Name.
@@ -47,7 +46,6 @@
       </select>
       </div>
       <div class="col-md-6 position-relative" style="margin-top: 20px;">
-        <label for="validationTooltip03" class="form-label">Quiz Detail</label>
         <input maxlength="200" name="quizDetail" placeholder="Please Enter Quiz Detail" type="text" class="form-control" id="quizDetail" required>
         <div class="invalid-tooltip">
           Please provide a Detail.

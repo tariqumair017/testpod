@@ -3,19 +3,19 @@
 
 <!--Container Main start-->
  <div class="application bg-light">
-    <h4>Add Guess Flag Game</h4>
+    <h4 class="mb-5">Craete Guess Flag Game</h4>
     <%- include ('./partials/SuccessError'); -%>
     <form class="add-quiz-form row needs-validation" action="/game-management/create-guess-flag-game" method="POST" enctype="multipart/form-data" novalidate>
     <div class="row" >
-        <div class="col-md-6 position-relative mt-3">
-            <input name="gameName" placeholder="Please Enter Game Name" type="text" class="form-control" required>
+        <div class="col-md-6 position-relative">
+            <input name="gameName" placeholder="Please Enter Test Name" type="text" class="form-control" required>
             <div class="invalid-tooltip">
-                Please provide a Game Name.
+                Please provide a Test Name.
             </div>
           </div>
-      <div class="col-md-6 position-relative mt-3">
+      <div class="col-md-6 position-relative">
         <select class="form-select" name="level" required> 
-              <option hidden>Please Select Level</option>                     
+              <option hidden>Please Select Test Level</option>                     
               <option value="low">Low</option>  
               <option value="medium">Medium</option>  
               <option value="high">High</option>  
@@ -23,9 +23,9 @@
           </select> 
       </div>
       <div class="col-md-6 position-relative mt-3">
-        <input maxlength="200" name="gameDetail" placeholder="Please Enter Game Detail" type="text" class="form-control" required>
+        <input maxlength="200" name="gameDetail" placeholder="Please Enter Test Detail" type="text" class="form-control" required>
         <div class="invalid-tooltip">
-            Please provide a Guess Flags Details.
+            Please provide a Test Details.
         </div>
       </div>
       </div>

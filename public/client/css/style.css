@@ -16,6 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -7162,14 +7163,45 @@ label {
     margin-bottom: 10px;
   }
 
+  .show-more-quiz{
+    margin-top: 100px;
+    text-align: center;
+
+  }
+
   .test-related-cards{
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     padding: 10px;
-    margin-top: 100px;
     justify-content: center;
   }
+
+  .with-image-quiz{
+    display: flex;
+  }
+
+  .quiz-image-optional{
+    width: 170px;
+  }
+
+  @media screen and (max-width:700px){
+    .with-image-quiz{
+      display: flex;
+      flex-direction: column;
+    }
+    .quiz-image-optional{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .show-more-quiz{
+      margin-top: 50px;
+
+      
+    }
+  }
+  
 
   .customRadio{display: none;}
 
@@ -8410,7 +8442,7 @@ label {
 
   font-weight: bold;
 
-  margin: 10px 0px;
+  margin-bottom: 20px
 
   }
 
@@ -9635,7 +9667,7 @@ input[type='radio'] {
   border: 2px solid #747474;
   border-radius: 50%;
   outline: none;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 input[type='radio']:hover:before {
@@ -9654,21 +9686,14 @@ input[type='radio']:before {
   transition: 0.3s;
 }
 
-#option-incorrent{
-  accent-color: red;
-}
-
-#option-corrent{
-accent-color: green;
-}
 
 .option-incorrent{
   accent-color: red;
 }
 
 .option-corrent{
-accent-color: green;
-/* content: url(../img/icon/icons8-done-50.png); */
+/* accent-color: green; */
+content: url(../img/icons8-filled-circle-50.png);
 }
 
 .video-play-button{

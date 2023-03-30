@@ -3,18 +3,18 @@
 
 <!--Container Main start-->
  <div class="application bg-light">
-    <h4>Add Find Country Game</h4>
+    <h4 class="mb-5">Create Guess Country Game</h4>
     <%- include ('./partials/SuccessError'); -%>
     <form class="add-quiz-form row needs-validation" action="/game-management/add-flags-games" method="POST" enctype="multipart/form-data" novalidate>
     <div class="row" >
       <div class="col-md-6">
-        <input name="gameName" placeholder="Please Enter Game Name" type="text" class="form-control" id="findCountryGameName" required>
+        <input name="gameName" placeholder="Please Enter Test Name" type="text" class="form-control" id="findCountryGameName" required>
       </div>
       <div class="col-md-6">
-        <input maxlength="200" name="gameDetail" placeholder="Please Enter Game Detail" type="text" class="form-control" id="findCountryGameDetail" required>
+        <input maxlength="200" name="gameDetail" placeholder="Please Enter Test Detail" type="text" class="form-control" id="findCountryGameDetail" required>
       </div>
       <div class="col-md-6" style="margin-top: 20px;">
-        <label for="validationTooltip03" class="form-label">Country Image</label>
+        <label for="validationTooltip03" class="form-label">Test Image</label>
         <div class="add-quiz-state-image">
           <input class="add-quiz-image-input formFile form-control" type="file" name="testImg" onchange="preview()" required>
           <button onclick="clearImage()"  style="width: 40px;background-color: #a8171a;color: white;" class="btn" type="button" ><i class="fa-solid fa-xmark"></i></button>
