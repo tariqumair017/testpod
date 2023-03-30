@@ -13,16 +13,6 @@
   >
     <div class="row">
       <div class="col-md-6 position-relative">
-        <input
-          name="gameName"
-          placeholder="Please Enter Game Name"
-          type="text"
-          class="form-control"
-          id="findCountryGameName"
-          required
-        />
-      </div>
-      <div class="col-md-6 position-relative">
         <select class="form-select" name="level" required>
           <option hidden>Please Select Regions</option>
           <option value="western europe">Western Europe</option>
@@ -36,7 +26,7 @@
           </option>
         </select>
       </div>
-      <div class="col-md-6 position-relative mt-3">
+      <div class="col-md-6 position-relative">
         <select class="form-select" name="level" required>
           <option hidden>Please Select Test Level</option>
           <option value="low">Low</option>
@@ -45,7 +35,7 @@
           <option value="extreme">Extreme</option>
         </select>
       </div>
-      <div class="col-md-6 position-relative mt-3">
+      <div class="col-md-6 position-relative " style="display: flex;align-items: end;">
         <input
           maxlength="200"
           name="gameDetail"

@@ -1,14 +1,24 @@
 <% layout('Admin/layouts/boilerPlate') -%>
-
 <!--Container Main start-->
 <div class="application bg-light">
     <span style="display: flex;">
         <h3 class="test-name" >
-          Testing
-        </h3> 
+            Asia
+          </h3> 
       <form class="edit-test" method="POST">
         <div style="display: flex;">
-          <input class="add-quiz-image-input form-control" value="Testing" name="gameName" id="formFile">
+            <select id="formFile" class="form-select" name="level" required>
+                <option selected hidden>Asia</option>
+                <option value="western europe">Western Europe</option>
+                <option value="central and eastern europe">
+                  Central and Eastern Europe
+                </option>
+                <option value="asia">Asia</option>
+                <option value="africa">Africa</option>
+                <option value="mediterranean & middle east">
+                  Mediterranean & Middle East
+                </option>
+              </select>
           <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
         </div>
       </form>
