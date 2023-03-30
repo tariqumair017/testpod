@@ -13,27 +13,31 @@ import { Console } from "console";
 //=====================================
 
 //Admin: Get document of selected country
-router.get("/game-management/draw-flags-games/countryName/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/game-management/draw-flags-games/countryName/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const data = await DrawNewFlagModel.findOne({country: req.params.country});
   res.send(data);
 })); 
 
 //Admin: Add Draw Flag Game Page
-router.get("/game-management/draw-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-  const data = await DrawNewFlagModel.find({});
-    res.render("Admin/AddDrawFlagGame", { data });
+router.get("/game-management/draw-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  var data = await DrawNewFlagModel.find({});
+  res.render("Admin/AddDrawFlagGame", { data });
 }));
   
 //Admin: Add Draw Flag Game Handel
-router.post("/game-management/draw-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.post("/game-management/draw-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
   const find = await DrawFlagGameModel.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
 
   if(!find)
   {  
-      var countryFileName = Date.now() + '-' + req.files.countryImg.name;
-      const newPath1  = path.join(process.cwd(), '/public/upload-images', countryFileName);
-      req.files.countryImg.mv(newPath1);
+      var countryFileName = '';
+      if(req.files)
+      {
+        countryFileName = Date.now() + '-' + req.files.countryImg.name;
+        const newPath1  = path.join(process.cwd(), '/public/upload-images', countryFileName);
+        req.files.countryImg.mv(newPath1);
+      }
 
       if(typeof(req.body.country) == "string")
       { 
@@ -84,13 +88,13 @@ router.post("/game-management/draw-flags-games", connectEnsureLogin.ensureLogged
 }));
   
 //Admin: Manage Flag Page
-router.get("/game-management/manage-draw-flag-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
-    const data = await DrawFlagGameModel.find({});
+router.get("/game-management/manage-draw-flag-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+    const data = await DrawFlagGameModel.find({}); 
     res.render("Admin/ManageDrawFlagGame", { data });
 }));
  
 //Admin - Delete Whole Flag Game
-router.delete("/game-management/manage-draw-flag-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.delete("/game-management/manage-draw-flag-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const { id } = req.params;
   await DrawFlagGameModel.findByIdAndDelete(id);
   console.log("DrawFlagGame Deleted Successfully");  
@@ -98,20 +102,25 @@ router.delete("/game-management/manage-draw-flag-games/:id", connectEnsureLogin.
 }));
 
 //Admin: Show All Questions of Game 
-router.get("/game-management/manage-draw-flag-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
+router.get("/game-management/manage-draw-flag-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
   const data = await DrawFlagGameModel.findById(req.params.id);
-  const allFlags = await DrawNewFlagModel.find({}); 
+  var allFlags = await DrawNewFlagModel.find({}); 
+  if(!data)
+  {
+    req.flash("error", "Cannot find this Game!");
+    return res.redirect("/game-management/manage-draw-flag-games");
+  } 
   res.render("Admin/AllDrawFlagsGames", {data: data, allFlags: allFlags});
 }));
   
 //Admin - Edit Game Name
-router.put("/game-management/manage-draw-flag-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.put("/game-management/manage-draw-flag-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   await DrawFlagGameModel.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
   res.redirect(`/game-management/manage-draw-flag-games/${req.params.id}/all-questions`); 
 }));
   
 // Admin: Add new Question in Game
-router.post('/game-management/manage-draw-flag-games/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.post('/game-management/manage-draw-flag-games/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   
   var find = await DrawFlagGameModel.findById(req.params.id);
 
@@ -132,7 +141,7 @@ router.post('/game-management/manage-draw-flag-games/:id/new', connectEnsureLogi
 }));
   
 //Admin: Delete Question of a Game
-router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {  
+router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
   await DrawFlagGameModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
   console.log("Question Deleted Successfully");
   req.flash("success", "Question Deleted Successfully");
@@ -151,7 +160,7 @@ router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsure
 // User Activity For Draw Flag Game 
 //=====================================
  
-// router.post("/track-drawflag-game/:id", asyncHandler(async (req, res) => {  
+// router.post("/track-drawflag-game/:id", asyncHandler(async (req, res, next) => {  
 //   const { views } = req.body; 
 //    //find the Game Using ID
 //    const findGame = await CountryFlagGame.findById(req.params.id); 
@@ -175,7 +184,7 @@ router.delete("/game-management/manage-draw-flag-games/:pid/:cid", connectEnsure
 // Game Result
 //======================
  
-router.post("/drawflag-game-result/:id", asyncHandler(async (req, res) => {  
+router.post("/drawflag-game-result/:id", asyncHandler(async (req, res, next) => {  
   const { objToStore } = req.body;  
    //find the Game Using ID
    const findGame = await CountryFlagGame.findById(req.params.id); 

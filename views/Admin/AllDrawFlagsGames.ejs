@@ -72,7 +72,7 @@
                           <div class="row">
                               <div class="col-md-6 position-relative mt-3">
                                 <select class="form-select" name="country" id="countryIDAdd" onchange="selectedCountry(this)" required> 
-                                  <%allFlags.forEach(item => {%>  
+                                  <%allFlags?.forEach(item => {%>  
                                     <option hidden>Please Select Country</option>                     
                                     <option value="<%=item.country%>"><%=item.country%></option>  
                                   <%})%>
@@ -146,7 +146,7 @@
                    <div class="row">
                        <div class="col-md-6 position-relative mt-3">
                          <select class="form-select" name="country" id="countryIDAddEdit" onchange="selectedCountry(this)" required> 
-                           <%allFlags.forEach(item => {%>  
+                           <%allFlags?.forEach(item => {%>  
                              <option hidden>Please Select Country</option>                     
                              <option value="<%=item.country%>"><%=item.country%></option>  
                            <%})%>

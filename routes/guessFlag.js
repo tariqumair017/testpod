@@ -11,7 +11,7 @@ import asyncHandler from "express-async-handler";
 //=====================================
 
 //Admin: Fetch all countries Api
-router.get("/game-management/create-guess-flag-game/allCountries", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler( async(req, res) => {
+router.get("/game-management/create-guess-flag-game/allCountries", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler( async(req, res, next) => {
      const options = {
         method: 'GET',
         headers: {
@@ -27,12 +27,12 @@ router.get("/game-management/create-guess-flag-game/allCountries", connectEnsure
 }));
 
 //Admin Create-Guess-Flag page
-router.get("/game-management/create-guess-flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/game-management/create-guess-flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     res.render("Admin/AddGuessFlagsGame");
 }));
 
 //Admin: Create-Guess-Flag Handel
-router.post("/game-management/create-guess-flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.post("/game-management/create-guess-flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
     const find = await GuessFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
   
@@ -102,13 +102,13 @@ router.post("/game-management/create-guess-flag-game", connectEnsureLogin.ensure
     
 
 //Admin Manage-Guess-Flag page
-router.get("/game-management/manage-guess-flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/game-management/manage-guess-flag-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await GuessFlagGame.find({});
     res.render("Admin/ManageGuessFlagGame", { data });
 }));
 
 //Admin - Delete Whole Guess Flag Game
-router.delete("/game-management/manage-guess-flag-game/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.delete("/game-management/manage-guess-flag-game/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const { id } = req.params;
     await GuessFlagGame.findByIdAndDelete(id);
     console.log("GuessFlagGame Deleted Successfully");  
@@ -117,19 +117,24 @@ router.delete("/game-management/manage-guess-flag-game/:id", connectEnsureLogin.
 }));
 
 //Admin: Show All Questions of Guess Flag Game
-router.get("/game-management/manage-guess-flag-game/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/game-management/manage-guess-flag-game/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await GuessFlagGame.findById(req.params.id); 
+    if(!data)
+    {
+      req.flash("error", "Game not found");
+      return res.redirect("/game-management/manage-guess-flag-game");
+    }
     res.render("Admin/AllGuessFlagsGames", { data }); 
 }));
 
 //Admin - Edit Game Name
-router.put("/game-management/manage-guess-flag-game/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.put("/game-management/manage-guess-flag-game/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     await GuessFlagGame.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
     res.redirect(`/game-management/manage-guess-flag-game/${req.params.id}/all-questions`); 
 }));
 
 // Admin: Add new Question in Game
-router.post('/game-management/manage-guess-flag-game/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.post('/game-management/manage-guess-flag-game/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   
     var find = await GuessFlagGame.findById(req.params.id);
   
@@ -159,13 +164,13 @@ router.post('/game-management/manage-guess-flag-game/:id/new', connectEnsureLogi
 
 
  // Admin: Edit Question of a Guess Flag Game
- router.get('/game-management/manage-guess-flag-game/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+ router.get('/game-management/manage-guess-flag-game/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await GuessFlagGame.findById(req.params.id);
     res.send(data);  
 }));
   
 //Admin: Update Question of a Game
-router.put("/game-management/manage-guess-flag-game/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {   
+router.put("/game-management/manage-guess-flag-game/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
     var question;
     if(req.files)
     {
@@ -192,7 +197,7 @@ router.put("/game-management/manage-guess-flag-game/:cid/:pid", connectEnsureLog
 
 
 //Admin: Delete Question of Game
-router.delete("/game-management/manage-guess-flag-game/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {  
+router.delete("/game-management/manage-guess-flag-game/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
     await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");
     req.flash("success", "Question Deleted Successfully");

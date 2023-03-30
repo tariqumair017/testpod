@@ -10,12 +10,12 @@ import { Console } from "console";
  
  
 //Admin: Add Flag Game Page
-router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     res.render("Admin/AddFlagGame");
 }));
   
 //Admin: Add Flag Game Handel
-router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
   const find = await CountryFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
 
@@ -82,13 +82,13 @@ router.post("/game-management/add-flags-games", connectEnsureLogin.ensureLoggedI
   
  
 //Admin: Manage Flag Page
-router.get("/game-management/manage-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.get("/game-management/manage-flags-games", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await CountryFlagGame.find({});
     res.render("Admin/ManageFlagGames", { data });
   }));
   
 //Admin - Delete Whole Flag Game
-router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const { id } = req.params;
   await CountryFlagGame.findByIdAndDelete(id);
   console.log("Whole Flag Game Deleted Successfully"); 
@@ -96,19 +96,24 @@ router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensu
 }));
   
   //Admin: Show All Questions of Game Edit Icon
-  router.get("/game-management/manage-flags-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {
+  router.get("/game-management/manage-flags-games/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
     const data = await CountryFlagGame.findById(req.params.id);
+    if(!data)
+    {
+      req.flash("error", "Game not Found");
+      return res.redirect(`/game-management/manage-flags-games`);
+    }
     res.render("Admin/AllFlagsGames", { data });
   }));
   
   //Admin - Edit Game Name
-  router.put("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  router.put("/game-management/manage-flags-games/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     await CountryFlagGame.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
     res.redirect(`/game-management/manage-flags-games/${req.params.id}/all-questions`); 
   }));
   
   // Admin: Add new Question in Game
-  router.post('/game-management/manage-flags-games/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  router.post('/game-management/manage-flags-games/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     
     var find = await CountryFlagGame.findById(req.params.id);
   
@@ -132,13 +137,13 @@ router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensu
   }));
   
   // Admin: Edit Question of a Game
-  router.get('/game-management/manage-flags-games/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => { 
+  router.get('/game-management/manage-flags-games/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await CountryFlagGame.findById(req.params.id);
     res.send(data);  
   }));
   
   //Admin: Update Question of a Game
-  router.put("/game-management/manage-flags-games/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {   
+  router.put("/game-management/manage-flags-games/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
     var question;
     if(req.files)
     {
@@ -159,7 +164,7 @@ router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensu
   }));
   
   //Admin: Delete Question of a Game
-  router.delete("/game-management/manage-flags-games/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res) => {  
+  router.delete("/game-management/manage-flags-games/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
     await CountryFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");
     req.flash("success", "Question Deleted Successfully");
@@ -172,7 +177,7 @@ router.delete("/game-management/manage-flags-games/:id", connectEnsureLogin.ensu
 // User Activity For Country Flag Game 
 //=====================================
  
-router.post("/track-game/:id", asyncHandler(async (req, res) => {  
+router.post("/track-game/:id", asyncHandler(async (req, res, next) => {  
     const { views } = req.body; 
      //find the Game Using ID
      const findGame = await CountryFlagGame.findById(req.params.id); 
@@ -196,7 +201,7 @@ router.post("/track-game/:id", asyncHandler(async (req, res) => {
 // Game Result
 //======================
  
-router.post("/game-result/:id", asyncHandler(async (req, res) => {  
+router.post("/game-result/:id", asyncHandler(async (req, res, next) => {  
     const { objToStore } = req.body;  
      //find the Game Using ID
      const findGame = await CountryFlagGame.findById(req.params.id); 

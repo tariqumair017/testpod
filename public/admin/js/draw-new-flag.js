@@ -541,7 +541,7 @@ function getFormData(e) {
     body: formData,
   })
     .then((response) => response.json())
-    .then((data) => {
+    .then((data) => { 
       sessionStorage.clear();
       window.location.href = data.url;
     })
