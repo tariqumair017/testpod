@@ -22,8 +22,8 @@ import SelectCountryFlagGameRoutes from "./routes/selectCountryFlagGame.js";
 import QuizRoutes from "./routes/quiz.js"; 
 import DrawNewFlagRoutes from "./routes/drawNewFlag.js"; 
 import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
-import GuessFlagGameRoutes from './routes/guessFlag.js'
-import FlagDetectiveRoutes from './routes/flagDetective.js'
+import GuessFlagGameRoutes from './routes/guessFlag.js';
+import FlagDetectiveRoutes from './routes/flagDetective.js';
  
 //mongoDB Connection with mongoose
 mongoose.set("strictQuery", false);

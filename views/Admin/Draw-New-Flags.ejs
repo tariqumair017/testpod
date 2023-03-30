@@ -82,7 +82,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="draw-flag-form" class="add-quiz-form row needs-validation" enctype="multipart/form-data" novalidate>
+            <form id="drawFlagForm" class="add-quiz-form row needs-validation" enctype="multipart/form-data" novalidate>
                  <div id="setNewForm">
                     <div class="form-data">
                       <div class="row">
@@ -110,13 +110,12 @@
                           <div class="col-md-6 position-relative mt-3">
                             <label class="form-label">Select Shape</label>
                             <div class="add-quiz-state-image">
-                              <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" id="newshapeImg" onchange="preview()" required> 
+                              <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" id="newshapeImg" required> 
                             </div> 
                           </div>
                           <div class="col-md-6 position-relative mt-3"> 
                             <label for="arrangementID" class="form-label">Enter Arrangement</label>
-                            <select name="arrangement" class="form-select new-arrangement" onchange="getNewArrangemwnts(this)" id="arrangementID" required> 
-                              <option hidden>Please Select Arrangements</option>                     
+                            <select name="arrangement" class="form-select new-arrangement" onchange="getNewArrangemwnts(this)" id="arrangementID" required>                    
                               <option value="twoStripesVert">Two Stripes Vertical</option>                    
                               <option value="twoStripesHoriz">Two Stripes Horizontal</option>                    
                               <option value="threeStripesVert">Three Stripes Vertical</option>                    
@@ -132,6 +131,9 @@
                                 <select multiple data-multi-select-plugin name="correctColors" id="colorsID" required>
                                   <option  hidden>Please Select Colors</option>                     
                                 </select>
+                                <div class="invalid-tooltip">
+                                  Please provide Colors.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 position-relative mt-3 d-none hint-images">
@@ -185,9 +187,9 @@
               <div class="form-data">
                 <div class="row">
                   <div class="col-md-6 position-relative mt-4">
+                    <input hidden name="hideID" type="text" id="hideID">
                     <label for="editCountry" class="form-label">Country</label>
                     <input name="country" placeholder="Enter Country Name" type="text" class="form-control" id="editCountry" required>
-                    <input hidden name="hideID" type="text" id="hideID">
                     <div class="invalid-tooltip">
                       Please provide Country Name.
                     </div>
@@ -209,7 +211,7 @@
                     <div class="col-md-6 position-relative mt-3">
                       <label class="form-label">Select Shape</label>
                       <div class="add-quiz-state-image">
-                        <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" onchange="preview()"> 
+                        <input class="add-quiz-image-input formFile form-control" type="file" name="shapeImg" required> 
                       </div> 
                     </div>
                     <div class="col-md-6 position-relative mt-3"> 
@@ -236,7 +238,7 @@
                 </div>
                 </div>
               <div class="col-12 mt-4">
-                  <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Edit</button>
+                  <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Update</button>
               </div>
             </form>
           </div>

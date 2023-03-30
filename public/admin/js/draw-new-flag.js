@@ -524,10 +524,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //Add New Flag
-let draw_flag_form = document.getElementById("draw-flag-form");
+let draw_flag_form = document.getElementById("drawFlagForm");
 draw_flag_form.addEventListener("submit", getFormData);
 function getFormData(e) {
   e.preventDefault();
+ 
+  for (let i = 0; i < 6; i++) { 
+    let id = document.forms.drawFlagForm[i].value; 
+    if(id === ""){
+      // document.forms.drawFlagForm.submit.disabled = true;
+      return;
+    } 
+  }
+
   var formData = new FormData(draw_flag_form); //.forEach((val, key) => dataToSave[key] = val)
 
   var selectedColors = [];
@@ -565,6 +574,15 @@ let edit_Flag_Form = document.getElementById("editFlagForm");
 edit_Flag_Form.addEventListener("submit", updateFormData);
 function updateFormData(e) {
   e.preventDefault();
+
+  for (let i = 1; i < 7; i++) { 
+    let id = document.forms.editFlagForm[i].value; 
+    if(id === ""){
+      // document.forms.editFlagForm.submit.disabled = true;
+      return;
+    } 
+  }
+
   var formData = new FormData(edit_Flag_Form); //.forEach((val, key) => dataToSave[key] = val)
   var selectedColors = [];
   for (let i = 0; i < selected_options.length; i++) {
