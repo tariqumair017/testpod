@@ -30,7 +30,7 @@ mongoose.set("strictQuery", false);
 mongoose.connect(process.env.Mongo_Url, { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
     console.log("Connected to MongoDB");
 });
-
+ 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); 
 app.engine('ejs', ejsMate);
