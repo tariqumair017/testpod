@@ -65,4 +65,4 @@ SelectCountryFlagGameSchema.post("findOneAndDelete", async function(doc){
   }
 })
 
-export default mongoose.model("SelectCountryOfFlag", SelectCountryFlagGameSchema);
+export default mongoose.model("Select-Country-Of-Flag", SelectCountryFlagGameSchema);

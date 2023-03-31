@@ -6,6 +6,7 @@ import DrawFlagGameModel from "../models/drawFlagGame.js";
 import GuessFlagGame from "../models/guessFlag.js";
 import asyncHandler from "express-async-handler";   
  
+
 //Client Index page
 router.get("/", asyncHandler(async (req, res, next) => { 
     const data = await CountryFlagGame.find({}); 

@@ -57,4 +57,4 @@ guessFlagGameSchema.post("findOneAndDelete", async function(doc){
   }
 })
 
-export default mongoose.model("GuessFlagGame", guessFlagGameSchema);
+export default mongoose.model("Guess-Flag-Game", guessFlagGameSchema);

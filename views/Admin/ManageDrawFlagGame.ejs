@@ -18,7 +18,7 @@
               <div class="dashboard-total-rating"><%=single.questions.length%></div>
               <span>
                 <a style="margin-right: 10px;" href="/game-management/manage-draw-flag-games/<%=single._id%>/all-questions"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
-                <a onclick="deleteItem('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
+                <a onclick="deleteDrawFlagGame('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
               </span>
               </div>
             </div>
@@ -32,7 +32,7 @@
 <!--Container Main end-->
 
 <script>
-  async function deleteItem(id) {    
+  async function deleteDrawFlagGame(id) {    
     if(confirm("Sure you want to delete this Game..?"))
     {
       await fetch(`/game-management/manage-draw-flag-games/${id}`, {

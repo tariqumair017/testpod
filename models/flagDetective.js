@@ -2,38 +2,33 @@ import mongoose from "mongoose";
 import Log from "./logs.js";
 import Result from "./result.js";
 
-const drawFlagGameSchema = new mongoose.Schema({
-  gameName: {
+const flagDetectiveGameSchema = new mongoose.Schema({
+  continent: {
     type: String,
     required: true
     }, 
+  level: {
+    type: String,
+    required: true
+    },
   gameDetail: {
     type: String,
     required: true
-    },
-  countryImg: {
+   },
+  regionImg: {
     type: String,
     required: true
-  },
+    },
   questions: [{
-    country: {
+    flagName: {
       type: String,
       required: true
       }, 
-    flagUrl: {
+    hint: {
       type: String,
       required: true
       },
-    flagDetails: {
-      type: String,
-      required: true
-    },
-    shapeImg: {
-      type: String,
-      required: true
-    },
-    correctColors: [],
-    arrangement: {
+    flagImg: {
       type: String,
       required: true
     }
@@ -50,7 +45,7 @@ const drawFlagGameSchema = new mongoose.Schema({
   ]
 });
 
-drawFlagGameSchema.post("findOneAndDelete", async function(doc){
+flagDetectiveGameSchema.post("findOneAndDelete", async function(doc){
   if(doc)
   {
     await Log.deleteMany({_id: {$in: doc.logs}});
@@ -58,4 +53,4 @@ drawFlagGameSchema.post("findOneAndDelete", async function(doc){
   }
 })
 
-export default mongoose.model("Draw-Flag-Game", drawFlagGameSchema);
+export default mongoose.model("Flag-Detective-Game", flagDetectiveGameSchema);

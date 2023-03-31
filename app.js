@@ -25,12 +25,15 @@ import DrawFlagGameRoutes from "./routes/drawFlagGame.js";
 import GuessFlagGameRoutes from './routes/guessFlag.js';
 import FlagDetectiveRoutes from './routes/flagDetective.js';
  
-//mongoDB Connection with mongoose
+//mongoDB Connection
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://nadir:salt-water-toffee@dev154.bigfoot.com", { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
+// mongoose.connect("mongodb://nadir:salt-water-toffee@dev154.bigfoot.com", { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
+//     console.log("Connected to MongoDB");
+// });
+mongoose.connect(process.env.Mongo_Url, { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
     console.log("Connected to MongoDB");
 });
- 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); 
 app.engine('ejs', ejsMate);

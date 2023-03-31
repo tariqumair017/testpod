@@ -3,22 +3,20 @@
 <div class="application bg-light">
     <span style="display: flex;">
         <h3 class="test-name" >
-            Asia
+          <%=data.continent.toUpperCase()%>
           </h3> 
-      <form class="edit-test" method="POST">
+      <form class="edit-test" action="/game-management/manage-flag-detective-game/<%=data._id%>?_method=PUT" method="POST">
         <div style="display: flex;">
-            <select id="formFile" class="form-select" name="level" required>
-                <option selected hidden>Asia</option>
-                <option value="western europe">Western Europe</option>
-                <option value="central and eastern europe">
-                  Central and Eastern Europe
-                </option>
+            <select class="form-select" name="continent" required>
+                <option selected hidden><%=data.continent.toUpperCase()%></option>
+                <option value="australia">Australia</option>
+                <option value="europe">Europe</option>
+                <option value="antarctica">Antarctica</option>
+                <option value="south america">South America</option>
+                <option value="north america">North America</option>
+                <option value="african">African</option>
                 <option value="asia">Asia</option>
-                <option value="africa">Africa</option>
-                <option value="mediterranean & middle east">
-                  Mediterranean & Middle East
-                </option>
-              </select>
+            </select>
           <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
         </div>
       </form>
@@ -30,35 +28,33 @@
       <thead>
         <tr>
           <th class="table-hash-col">#</th>
-          <th>Flag Image</th>
           <th>Flag Name</th>
-          <th >Flag Hint</th>
+          <th>Flag Hint</th>
+          <th>Flag Image</th>
           <th class="table-buttons">Actions</th>
         </tr>
       </thead>
       <tbody>
         <%var count = 1%>
+        <% data.questions.forEach(item => { %> 
         <tr>
-          <th scope="row">1</th>
-          <td>Flag image</td>
-          <td>Flag</td>
-          <td>Flag</td>
+          <th scope="row"><%=count%></th>
+          <td><%=item.flagName.toUpperCase()%></td>
+          <td><%=item.hint%></td>
+          <td><%=item.flagImg%></td>
           <td>
             <span class="table-buttons">
-              <button
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                class="btn btn-primary"
-              >
+              <button onclick="editFlagDetectiveGameQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
                 Edit
               </button>
-              <form  method="POST">
+              <form action="/game-management/manage-flag-detective-game/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST">
                 <button type="submit" class="btn btn-danger">Delete</button>
               </form>
             </span>
           </td>
         </tr>
         <%count++%>
+        <%})%> 
       </tbody>
     </table>
     </div>
@@ -86,7 +82,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Add New Flag
+              Add New Question
             </h1>
             <button
               type="button"
@@ -96,45 +92,43 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="draw-flag-form" class="add-quiz-form row needs-validation" enctype="multipart/form-data" novalidate>
+            <form class="add-quiz-form row needs-validation" action="/game-management/manage-flag-detective-game/<%=data._id%>/new" method="POST" enctype="multipart/form-data" novalidate>
                 <div id="setNewForm">
                     <div class="form-data">
-                        <div class="row">
-                            <div class="col-md-6 position-relative mt-3">
-                              <input
-                                maxlength="200"
-                                name="flagName"
-                                placeholder="Please Enter Flag Name"
-                                type="text"
-                                class="form-control"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-6 position-relative mt-3">
-                              <input
-                                maxlength="200"
-                                name="flagDetail"
-                                placeholder="Please Enter Flag Hint"
-                                type="text"
-                                class="form-control"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-12" style="margin-top: 20px">
-                              <label for="validationTooltip03" class="form-label"
-                                >Flag Image</label
-                              >
-                              <div class="add-quiz-state-image">
-                                <input
-                                  class="add-quiz-image-input formFile form-control"
-                                  type="file"
-                                  name="testImg"
-                                  onchange="preview()"
-                                  required
-                                />
-                              </div>
-                            </div>
+                      <div class="row">
+                        <div class="col-md-6 position-relative"> 
+                          <label for="flagName0" class="form-label">Select Counrty</label>
+                          <select class="form-select" name="flagName" id="newFlagName" required> 
+                              <option></option> 
+                          </select> 
+                          <div class="invalid-tooltip">
+                              Please provide a Country Name.
                           </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                          <label for="flagName0" class="form-label">Enter Flag Hint</label>
+                          <input
+                            maxlength="200"
+                            name="hint" 
+                            type="text"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6" style="margin-top: 20px">
+                          <label for="validationTooltip03" class="form-label"
+                            >Flag Image</label
+                          >
+                          <div class="add-quiz-state-image">
+                            <input
+                              class="add-quiz-image-input formFile form-control"
+                              type="file"
+                              name="flagImg" 
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 </div>
                 <div class="col-12 mt-4">
@@ -159,7 +153,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Flag
+              Edit Question
             </h1>
             <button
               type="button"
@@ -170,7 +164,7 @@
           </div>
           <div class="modal-body">
             <form
-              id="editFlagForm"
+              id="editFlagDetectiveForm"
               class="add-quiz-form row g-4 needs-validation"
               novalidate
               action=""
@@ -179,42 +173,40 @@
             >
                 <div id="setEditForm">
                     <div class="form-data">
-                        <div class="row">
-                            <div class="col-md-6 position-relative mt-3">
-                              <input
-                                maxlength="200"
-                                name="flagName"
-                                placeholder="Please Enter Flag Name"
-                                type="text"
-                                class="form-control"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-6 position-relative mt-3">
-                              <input
-                                maxlength="200"
-                                name="flagDetail"
-                                placeholder="Please Enter Flag Hint"
-                                type="text"
-                                class="form-control"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-12" style="margin-top: 20px">
-                              <label for="validationTooltip03" class="form-label"
-                                >Flag Image</label
-                              >
-                              <div class="add-quiz-state-image">
-                                <input
-                                  class="add-quiz-image-input formFile form-control"
-                                  type="file"
-                                  name="testImg"
-                                  onchange="preview()"
-                                  required
-                                />
-                              </div>
-                            </div>
+                      <div class="row">
+                        <div class="col-md-6 position-relative"> 
+                          <label for="flagName0" class="form-label">Select Counrty</label>
+                          <select class="form-select" name="flagName" id="editFlagName" required> 
+                              <option hidden>Please Select Counrty</option> 
+                          </select> 
+                          <div class="invalid-tooltip">
+                              Please provide a Country Name.
                           </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                          <label for="flagName0" class="form-label">Enter Flag Hint</label>
+                          <input
+                            maxlength="200"
+                            name="hint" 
+                            id="edithint"
+                            type="text"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6" style="margin-top: 20px">
+                          <label for="validationTooltip03" class="form-label"
+                            >Flag Image</label
+                          >
+                          <div class="add-quiz-state-image">
+                            <input
+                              class="add-quiz-image-input formFile form-control"
+                              type="file"
+                              name="flagImg"  
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 </div>
               <div class="col-12 mt-4">
@@ -228,5 +220,36 @@
 
     <!-- Edit Quiz -->
   </div>
-  <script src="/admin/js/allQuiz.js"></script>
-</div>
+
+<script>
+  fetch('/game-management/create-flag-detective-game/allCountries/detectiveGame')
+        .then(res => res.json())
+        .then((json) => {
+            var _html = '';
+            for (const key in json) { 
+                _html += `<option value="${json[key].country.toLowerCase()}">${json[key].country}</option>`; 
+            }
+            document.getElementById("newFlagName").innerHTML += _html;
+            document.getElementById("editFlagName").innerHTML += _html;
+        })
+        .catch(err => console.error('error:' + err));
+
+  
+  async function editFlagDetectiveGameQuestion(Pid, Cid) {   
+    const response = await fetch(`/game-management/manage-flag-detective-game/${Pid}/edit`);
+    const finalData = await response.json(); 
+    var data;
+    finalData.questions.forEach(element => {
+      if(element._id == Cid)
+      {
+        data = element;
+      }
+    }); 
+    
+    document.getElementById("editFlagName").innerHTML += `<option selected value="${data.flagName.toLowerCase()}">${data.flagName.charAt(0).toUpperCase()}${data.flagName.slice(1)}</option>`;
+    document.getElementById("edithint").value = data.hint; 
+    document.getElementById("editFlagDetectiveForm").action = `/game-management/manage-flag-detective-game/${data._id}/${Pid}?_method=PUT`;
+}      
+
+</script>
+<script src="/admin/js/allQuiz.js"></script>
