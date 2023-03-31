@@ -26,10 +26,7 @@ import GuessFlagGameRoutes from './routes/guessFlag.js';
 import FlagDetectiveRoutes from './routes/flagDetective.js';
  
 //mongoDB Connection
-mongoose.set("strictQuery", false);
-// mongoose.connect("mongodb://nadir:salt-water-toffee@dev154.bigfoot.com", { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
-//     console.log("Connected to MongoDB");
-// });
+mongoose.set("strictQuery", false); 
 mongoose.connect(process.env.Mongo_Url, { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
     console.log("Connected to MongoDB");
 });

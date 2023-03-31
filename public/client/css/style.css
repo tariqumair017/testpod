@@ -7079,7 +7079,7 @@ label {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  height: 170px;
+  height: auto;
 }
 
 .quiz-card-item{
@@ -8427,8 +8427,38 @@ label {
   background-color: #CCCCCC;
   height: 300px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+/* flag detective */
+.siblings-input input {
+  height: 3rem;
+  width: 8%;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1.125rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.siblings-input input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.siblings-input input::-webkit-inner-spin-button,
+.siblings-input input::-webkit-outer-spin-button {
+  display: none;
+}
+
+.siblings-input{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
 
 
+/* flag detective end */
+
+
+  .card-text{
+    margin: 0%;
   }
 
   .arrangement_wrapper img{
@@ -9691,10 +9721,27 @@ input[type='radio']:before {
   accent-color: red;
 }
 
+#option-incorrent{
+  accent-color: red;
+}
+
 .option-corrent{
 /* accent-color: green; */
 content: url(../img/icons8-filled-circle-50.png);
 }
+
+#option-corrent{
+  accent-color: green;
+}
+
+#main-lable{
+  color: green;
+}
+
+#main-incorrect-lable{
+  color: red;
+}
+
 
 .video-play-button{
     background-color: grey;

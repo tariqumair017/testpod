@@ -96,6 +96,14 @@ router.post("/game-management/create-flag-detective-game", connectEnsureLogin.en
   }
 }));
 
+//Admin: Create Flag Detective Game Page
+router.get(
+  "/game-management/create-flag-detective-game",
+  connectEnsureLogin.ensureLoggedIn("/login"),
+  asyncHandler(async (req, res, next) => {
+    res.render("Admin/AddFlagDetectiveGame");
+  })
+);
 
 //Admin: Manage Flag Detective Game Page
 router.get("/game-management/manage-flag-detective-game", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
@@ -195,10 +203,86 @@ router.delete("/game-management/manage-flag-detective-game/:pid/:cid", connectEn
 //=====================================
 
 
+router.get(
+  "/game-management/manage-flag-detective-game",
+  connectEnsureLogin.ensureLoggedIn("/login"),
+  asyncHandler(async (req, res, next) => {
+    res.render("Admin/ManageFlagDetectiveGame");
+  })
+);
+
+//Admin: All Flag Detective Game Page
+router.get(
+  "/game-management/all-flag-detective-game",
+  connectEnsureLogin.ensureLoggedIn("/login"),
+  asyncHandler(async (req, res, next) => {
+    res.render("Admin/AllFlagDetectiveGame");
+  })
+);
+
+//=====================================
+// Client Side Routes
+//=====================================
+
+//Client: Flag Detective Regions  Page
+
+router.get(
+  "/flag-detective-regions",
+  asyncHandler(async (req, res, next) => {
+    const flagDetective = [
+      {
+        continent: "Austrailia",
+        level: "Low",
+        continentImage: "austrailia-01.svg",
+      },
+      {
+        continent: "Asia",
+        level: "Low",
+        continentImage: "southamerica.svg",
+      },
+      {
+        continent: "Antarctica",
+        level: "Low",
+        continentImage: "antarctica_map-01-01.svg",
+      },
+      {
+        continent: "Africa",
+        level: "Low",
+        continentImage: "africa-map.svg",
+      },
+      {
+        continent: "Europe",
+        level: "Low",
+        continentImage: "europe.svg",
+      },
+      {
+        continent: "North america",
+        level: "Low",
+        continentImage: "northamerica.svg",
+      },
+      {
+        continent: "South America",
+        level: "Low",
+        continentImage: "southamerica.svg",
+      },
+    ];
+
+    res.render("Client/FlagDetectiveRegions", { data: flagDetective });
+  })
+);
+
+//Client: Flag Detective Regions  Page
+
+router.get(
+  "/flag-detective-game",
+  asyncHandler(async (req, res) => {
+    res.render("Client/FlagDetectiveGame");
+  })
+);
+
 
 //=====================================
 // User Activity For Draw Flag Game 
 //=====================================
-
 
 export default router;

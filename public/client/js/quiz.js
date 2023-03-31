@@ -118,21 +118,26 @@ function optionSelected(answer) {
   let userAns = answer.textContent;
   let currentAns = questions[que_count].answer;
 
+  console.log(answer,"answer")
+
   let allOptions = option_list.children.length;
   if (userAns.trim() == currentAns.trim()) {
     // answer.classList.add("correct");
     answer.firstElementChild.setAttribute("checked","checked")
     answer.firstElementChild.setAttribute("id","option-corrent")
+    answer.setAttribute("id","main-lable")
 
   } else {
     // answer.classList.add("incorrect");
     answer.firstElementChild.setAttribute("checked","checked")
     answer.firstElementChild.setAttribute("id","option-incorrent")
+    answer.setAttribute("id","main-incorrect-lable")
 
     for (let i = 0; i < allOptions; i++) {
       if (option_list.children[i].textContent.trim() == currentAns) {
         option_list.children[i].firstElementChild.setAttribute("id","option-corrent")
         option_list.children[i].firstElementChild.setAttribute("checked","checked")
+        option_list.children[i].setAttribute("id","main-lable")
         // option_list.children[i].setAttribute("class", "options correct");
       }
     }

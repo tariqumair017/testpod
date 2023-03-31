@@ -781,6 +781,7 @@ justify-content: end;
     left: 0;
     padding: 1rem 1rem 0 0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* overflow: scroll; */
   }
   .toggle-show {
     width: calc(var(--nav-width) + 200px);
