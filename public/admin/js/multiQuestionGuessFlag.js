@@ -13,7 +13,7 @@ add_new_form.onclick = async () => {
   clone.childNodes[1].childNodes[3].childNodes[1].setAttribute('id', `Icountry${imgCounter}`)
   set.appendChild(clone);
 
-  const allCountries = await fetch('/game-management/create-guess-flag-game/allCountries');
+  const allCountries = await fetch('/admin/guess-flag-game/game-management/create-guess-flag-game/allCountries');
   const data = await allCountries.json();
       var _html = '';
       for (const key in data) { 
@@ -25,7 +25,7 @@ add_new_form.onclick = async () => {
 }
 
 
-fetch('/game-management/create-guess-flag-game/allCountries')
+fetch('/admin/guess-flag-game/game-management/create-guess-flag-game/allCountries')
         .then(res => res.json())
         .then((json) => {
             var _html = '';

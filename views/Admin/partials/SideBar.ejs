@@ -1,15 +1,15 @@
 <div style="z-index: -1px" class="toggle-show l-navbar bg-white" id="nav-bar">
   <nav class="nav">
     <div style="overflow-y: scroll;">
-      <a href="/dashboard" class="nav_logo"
+      <a href="/admin/dashboard" class="nav_logo"
         ><img class="header-logo" src="/admin/img/logo/logo1.svg"
       /></a>
       <div class="nav_list">
-        <a id="dashboard" href="/dashboard" class="nav_link">
+        <a id="dashboard" href="/admin/dashboard" class="nav_link">
           <i class="fa-solid fa-gauge"></i>
           <span class="nav_name">Dashboard</span></a
         >
-        <a id="user-management" href="/user-management" class="nav_link">
+        <a id="user-management" href="/admin/user-management" class="nav_link">
           <i class="fa-solid fa-people-roof"></i>
           <span class="nav_name">User Management</span></a
         >
@@ -28,7 +28,7 @@
             <div id="collapseThree" class="collapse">
               <ul>
                 <li
-                  onclick="location='/web-analytics/quizzes'"
+                  onclick="location='/admin/web-analytics/quizzes'"
                   id="quizze"
                   class="collapse-option nav_link"
                 >
@@ -36,12 +36,12 @@
                   <span>Quizzes</span>
                 </li>
                 <li
-                  onclick="location='/web-analytics/flag-game'"
+                  onclick="location='/admin/web-analytics/guess-flag-game'"
                   id="flag-game"
                   class="nav_link collapse-option"
                 >
                   <i class="fa-brands fa-font-awesome"></i>
-                  <span>Flag Games</span>
+                  <span>Guess Flag Game</span>
                 </li>
               </ul>
             </div>
@@ -63,7 +63,7 @@
             <div id="collapseOne" class="collapse">
               <ul>
                 <li
-                  onclick="location='/game-management/add-flags-games'"
+                  onclick="location='/admin/guess-country-game/add'"
                   id="add-flags-games"
                   class="collapse-option nav_link"
                 >
@@ -71,7 +71,7 @@
                   <span>Guess Country</span>
                 </li>
                 <li
-                  onclick="location='/game-management/manage-flags-games'"
+                  onclick="location='/admin/guess-country-game/manage'"
                   id="manage-flags-games"
                   class="nav_link collapse-option"
                 >
@@ -79,7 +79,7 @@
                   <span>Manage Country</span>
                 </li>
                 <li
-                  onclick="location='/game-management/draw-flags-games'"
+                  onclick="location='/admin/draw-flag-game/add'"
                   id="draw-flags-games"
                   class="collapse-option nav_link"
                 >
@@ -87,7 +87,7 @@
                   <span>Draw Flag</span>
                 </li>
                 <li
-                  onclick="location='/game-management/manage-draw-flag-games'"
+                  onclick="location='/admin/draw-flag-game/manage'"
                   id="manage-draw-flags-games"
                   class="nav_link collapse-option"
                 >
@@ -95,7 +95,7 @@
                   <span>Manage Draw Flag</span>
                 </li>
                 <li
-                onclick="location='/game-management/create-guess-flag-game'"
+                onclick="location='/admin/guess-flag-game/add'"
                 id="create-guess-flag-game"
                 class="collapse-option nav_link"
               >
@@ -103,7 +103,7 @@
                 <span>Guess Flag</span>
               </li>
               <li
-                onclick="location='/game-management/manage-guess-flag-game'"
+                onclick="location='/admin/guess-flag-game/manage'"
                 id="manage-guess-flag-game"
                 class="nav_link collapse-option"
               >
@@ -111,7 +111,7 @@
                 <span>Manage Guess Flag </span>
               </li>
               <li
-                onclick="location='/game-management/create-flag-detective-game'"
+                onclick="location='/admin/flag-detective-game/add'"
                 id="create-flag-detective-game"
                 class="collapse-option nav_link"
               >
@@ -119,7 +119,7 @@
                 <span>Flag Detective</span>
               </li>
               <li
-                onclick="location='/game-management/manage-flag-detective-game'"
+                onclick="location='/admin/flag-detective-game/manage'"
                 id="manage-flag-detective-game"
                 class="nav_link collapse-option"
               >
@@ -140,12 +140,12 @@
               style="display: flex; align-items: center; gap: 15px"
             >
               <i class="fa-solid fa-list-check"></i>
-              <span class="nav_name"> Quiz Management </span>
+              <span class="nav_name"> Test Management </span>
             </div>
             <div id="collapseTwo" class="collapse">
               <ul>
                 <li
-                  onclick="location='/add-test'"
+                  onclick="location='/admin/test/add'"
                   id="add-test"
                   class="collapse-option nav_link"
                 >
@@ -153,7 +153,7 @@
                   <span>Add Test</span>
                 </li>
                 <li
-                  onclick="location='/manage-quiz'"
+                  onclick="location='/admin/test/manage'"
                   id="manage-quiz"
                   class="nav_link collapse-option"
                 >
@@ -164,19 +164,19 @@
             </div>
           </div>
         </a>
-        <a id="result-management" href="/result-management" class="nav_link">
+        <a id="result-management" href="/admin/result-management" class="nav_link">
           <i class="fa-solid fa-note-sticky"></i>
           <span class="nav_name">Result Management</span></a
         >
-        <a id="content-management" href="/content-management" class="nav_link">
+        <a id="content-management" href="/admin/content-management" class="nav_link">
           <i class="fa-brands fa-contao"></i>
           <span class="nav_name">Content Management</span>
         </a>
-        <a id="blogs-management" href="/add-draw-flages" class="nav_link">
+        <a id="blogs-management" href="javascript:(0)" class="nav_link">
           <i class="fa-solid fa-blog"></i>
           <span class="nav_name">Blogs Management</span></a
         >
-        <a id="analytics" href="/analytics" class="nav_link">
+        <a id="analytics" href="/admin/analytics" class="nav_link">
           <i class="fa-solid fa-book-tanakh"></i>
           <span class="nav_name">Analytics</span>
         </a>

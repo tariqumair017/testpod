@@ -11,7 +11,7 @@ add_new_form.onclick = async () => {
   clone.childNodes[1].childNodes[1].childNodes[3].setAttribute('id', `flagName${imgCounter}`) 
   set.appendChild(clone);
 
-  const allCountries = await fetch('/game-management/create-flag-detective-game/allCountries/detectiveGame');
+  const allCountries = await fetch('/admin/flag-detective-game/game-management/create-flag-detective-game/allCountries/detectiveGame');
   const data = await allCountries.json();
       var _html = '';
       for (const key in data) { 
@@ -24,7 +24,7 @@ add_new_form.onclick = async () => {
 
 
 
-fetch('/game-management/create-flag-detective-game/allCountries/detectiveGame')
+fetch('/admin/flag-detective-game/game-management/create-flag-detective-game/allCountries/detectiveGame')
         .then(res => res.json())
         .then((json) => {
             var _html = '';
