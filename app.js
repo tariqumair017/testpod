@@ -33,6 +33,7 @@ import ClientDrawFlagGameRoutes from "./routes/client/drawFlagGame.js";
 import ClientGuessFlagGameRoutes from './routes/client/guessFlagGame.js';
 import ClientFlagDetectiveGameRoutes from './routes/client/flagDetectiveGame.js';
 import ClientLearnFlagGameRoutes from './routes/client/learnFlagGame.js';
+import ClientFlagPuzzleGameRoutes from './routes/client/flagPuzzleGame.js'
 
 
 //mongoDB Connection
@@ -107,6 +108,7 @@ app.use(ClientDrawFlagGameRoutes);
 app.use(ClientGuessFlagGameRoutes);
 app.use(ClientFlagDetectiveGameRoutes);
 app.use(ClientLearnFlagGameRoutes);
+app.use(ClientFlagPuzzleGameRoutes);
 
 
 app.all('*', (req, res, next) => {

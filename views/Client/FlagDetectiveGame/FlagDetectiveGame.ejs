@@ -1,9 +1,6 @@
 <% layout('Client/layouts/boilerPlate') -%>
 
-<section
-  class="breadcrumb-area d-flex align-items-center"
-  style="background-image: url(/client/img/testimonial/test-bg.png)"
->
+<section class="breadcrumb-area d-flex align-items-center" style="background-image: url(/client/img/testimonial/test-bg.png)">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-xl-12 col-lg-12">
@@ -52,55 +49,42 @@
       </div>
     </div>
   </div>
-
   <div class="all-quizzes">
     <div class="all-quiz-left-part">
-        <div class="questions-box">
-          <div class="text-center que_heading slide-right">
-            <h2 style="margin: 0%;">
-              <span>What a Country it is </span>
-            </h2>
-          </div>
-            <div class="detective-image">
-
-            </div>
-            <div class="siblings-input" >
-                <!-- <input maxlength="1"  />
-                <input maxlength="1" disabled />
-                <input maxlength="1" disabled />
-                <input maxlength="1" disabled /> -->
-            </div>
-            <div class="result_box d-none">
-              <canvas
-                id="myChart"
-                style="
-                  width: 100%;
-                  display: block;
-                  border: 2px solid #ccc;
-                  border-radius: 5px;
-                  box-shadow: 2px 2px 5px #ccc;
-                  padding: 15px;
-                "
-              ></canvas>
-              <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-                <a href="/draw-flags" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-                <button class="btn ss-btn" >Next Level</button>
-              </div>
-            </div>
-            <div class="row justify-content-center align-items-center">
-              <div class="col-md-6 text-center">  
-                <button
-                class="btn btn-danger result_btn d-none"
-                style="width: 200px; margin-top: 10px"
-                >
-                  Show Result
-                </button>
-              </div>
-            </div>
-            <button class="btn ss-btn btn_I_dont_know" type="button">
-              I don't know
-            </button>
+      <div class="questions-box">
+        <div class="text-center que_heading slide-right">
+          <h2 style="margin: 0%;">
+            <span>What a Country it is </span>
+          </h2>
         </div>
+        <div class="detective-image"></div>
+        <div class="siblings-input" ></div>
+        <div style="display: flex;justify-content:space-evenly">
+          <button class="btn ss-btn btn_I_dont_know" type="button">
+            I don't know
+          </button>
+          <button class="btn btn-success submit d-none" type="button">
+            Submit
+          </button>
+      </div>
+      </div>
+      <div class="result_box d-none">
+        <canvas
+          id="myChart"
+          style="
+            width: 100%;
+            display: block;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #ccc;
+            padding: 15px;
+          "
+        ></canvas>
+        <div style="display: flex;justify-content: space-between;margin-top: 20px;">
+          <a href="/flag-detective-game" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <button class="btn ss-btn" >Next Level</button>
+        </div>
+      </div>
     </div>
     <div class="all-quiz-right-part">
       <div class="all-quiz-progress">

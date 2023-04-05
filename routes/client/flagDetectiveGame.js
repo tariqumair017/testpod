@@ -7,43 +7,38 @@ import asyncHandler from "express-async-handler";
 
 //Client: Flag Detective Regions  Page 
 router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
-    const flagDetective = [
-      {
-        continent: "Austrailia",
-        level: "Low",
-        continentImage: "austrailia-01.svg",
-      },
-      {
-        continent: "Asia",
-        level: "Low",
-        continentImage: "southamerica.svg",
-      },
-      {
-        continent: "Antarctica",
-        level: "Low",
-        continentImage: "antarctica_map-01-01.svg",
-      },
-      {
-        continent: "Africa",
-        level: "Low",
-        continentImage: "africa-map.svg",
-      },
-      {
-        continent: "Europe",
-        level: "Low",
-        continentImage: "europe.svg",
-      },
-      {
-        continent: "North america",
-        level: "Low",
-        continentImage: "northamerica.svg",
-      },
-      {
-        continent: "South America",
-        level: "Low",
-        continentImage: "southamerica.svg",
-      },
-    ]; 
+  const flagDetective = [
+    {
+      continent: "Asia",
+      level: "Low",
+      continentImage: "Asia.svg",
+    },
+    {
+      continent: "Antarctica",
+      level: "Low",
+      continentImage: "antarctica.svg",
+    },
+    {
+      continent: "Africa",
+      level: "Low",
+      continentImage: "africa.svg",
+    },
+    {
+      continent: "Europe",
+      level: "Low",
+      continentImage: "europe.svg",
+    },
+    {
+      continent: "North america",
+      level: "Low",
+      continentImage: "northamerica.svg",
+    },
+    {
+      continent: "South America",
+      level: "Low",
+      continentImage: "southamerica.svg",
+    },
+  ];
     res.render("Client/FlagDetectiveGame/FlagDetectiveRegions", { data: flagDetective });
 }));
 

@@ -6968,7 +6968,6 @@ label {
 
 .btn {
   -moz-user-select: none;
-  background: #A8171A;
   border: none;
   color: #fff;
   display: inline-block;
@@ -6984,8 +6983,7 @@ label {
   transition: all 0.3s ease 0s;
   vertical-align: middle;
   white-space: nowrap;
-  z-index: 999;
-  border-radius: 10;
+    border-radius: 10;
 }
 
 .btn:hover {
@@ -7723,6 +7721,27 @@ label {
 .second-header-btn .btn::before {
   content: none;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 #offcanvas-menu {
   position: fixed;
   left: 0;
@@ -7734,6 +7753,7 @@ label {
   padding: 30px;
   transition: 0.5s;
   transform: translateX(-100%);
+  overflow: auto;
 }
 #offcanvas-menu.active {
   transform: translateX(0);
@@ -9441,7 +9461,7 @@ border-color: #EA4A4A;
   background-position: 0 center;
   background-size: cover;
   position: relative;
-  min-height: 250px;
+  min-height:  125px;
   margin-top: 100px;
 }
 .breadcrumb {
@@ -9471,9 +9491,10 @@ border-color: #EA4A4A;
 }
 .breadcrumb-title h2 {
   font-size: 60px;
-  margin-bottom: 25px;
+  margin-bottom: 12px;
   line-height: 1;
   color: #fff;
+
 }
 .breadcrumb-title p {
   margin-bottom: 0;
@@ -9486,6 +9507,81 @@ border-color: #EA4A4A;
   /* animation: popup 1500ms infinite ease-in-out; */
 }
 
+
+/* puzzle area */
+
+.puzzle{
+  display: flex;
+  gap: 30px;
+  margin-top: 100px;
+  width: 100%;
+  height: 100vh;
+  /* background-image: url(/client/img/bg/puzzle.png); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+
+.puzzle-manage{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 15%;
+  justify-content: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.puzzle-column{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33.33vh;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  /* border: 2px solid gray; */
+}
+
+.puzzle-timer{
+  width: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  background-color: red;
+  border-radius: 20px;
+  padding: 5px;
+  color: white;
+
+}
+
+.puzzle-retake{
+  /* color: #ffffff; */
+  font-size: 26px;
+
+}
+
+.puzzle-next-level{
+  /* color: white; */
+  font-size: 22px;
+
+}
+
+
+.puzzle-area{
+  width: 85%;
+}
+
+.puzzle-image{
+  height: 66.66vh
+}
+
+.puzzle-options{
+  height: 33.33vh;
+  /* border: 2px solid gray; */
+  overflow-y: auto;
+}
+
+
+/* puzzle area end */
 
 /* game slider start */
 .game-slider-start{
@@ -11726,6 +11822,7 @@ section:hover .section-title h2::before {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  height: auto;
 }
 .video-img img {
   width: 100%;
@@ -12351,7 +12448,7 @@ section:hover .section-title h2::before {
   -webkit-animation-delay: 1s;
 }
 .video-img {
-  height: 588px;
+  height: auto;
 }
 .cta-bg .social {
   text-align: center;

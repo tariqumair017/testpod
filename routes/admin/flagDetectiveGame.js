@@ -184,7 +184,6 @@ router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), 
   res.redirect(`/admin/flag-detective-game/manage/${req.params.pid}/all-questions`);
 }));
 
-
 //=====================================
 // User Activity For Draw Flag Game 
 //=====================================

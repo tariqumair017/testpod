@@ -43,6 +43,13 @@ menu_close.onclick=()=>{
   document.body.classList.remove("stop-scrolling");
 }
 
+// window.onclick = function ustad() {
+//   const notActive= document.getElementById("offcanvas-menu").classList.toggle("ustad")
+//   if (notActive == false) {
+//     document.getElementById("offcanvas-menu").classList.remove("active")
+//     }
+// }
+
 hint_btn.onclick = () => {
   const list = document.getElementById("showHint").classList;
   list.add("activeShowHint");
