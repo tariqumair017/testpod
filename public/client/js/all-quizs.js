@@ -10,7 +10,7 @@ var previousAttempte;
 // document.getElementById("total-questions").innerHTML = "0" + correct.length;
 // document.getElementById("total-score").innerHTML = "00";
 
-async function showAns(numer, selectedOptions, id) {   
+async function showAns(numer, selectedOptions, id) {
   if(previousAttempte != numer)
   {
     attempetedQuestions++;
@@ -50,10 +50,9 @@ async function showAns(numer, selectedOptions, id) {
 
 const showDiscription = document.querySelectorAll("#all-quiz-discription");
 const all_quiz_allradio_option = document.querySelector(".questions-box");
-
 const option_list = document.querySelectorAll(".option-list")
 
-console.log(option_list[0].children[0].querySelector("input"),"option_list")
+const focus_question = document.querySelector(".focus-input");
 
 
 

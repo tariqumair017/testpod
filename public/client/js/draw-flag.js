@@ -93,6 +93,9 @@ const timer__display = document.querySelector(".timer__display")
 
 const time_up = document.querySelector(".time_up")
 
+const focus_question = document.querySelector(".focus-input")
+
+
 
 
 
@@ -143,6 +146,8 @@ window.load = startQuiz();
 
 function startQuiz() {  
   showQuetions(0);
+  window.addEventListener("load", focus_question.focus())
+  focus_question.classList.add("d-none")
 
 }
 

@@ -52,6 +52,7 @@
             <div class="quiz-image">
               <div class="que_text"></div>
             </div>
+            <input class="focus-input" style="width: 0.1px;height: 0.1px;"/>
 
             <div style="margin-top: 10px">
               <div class="option_list"></div>
@@ -99,7 +100,7 @@
             "
           ></canvas>
           <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-            <a href="/guess-country/flag_game/641989135e6acf1e951e4ee3" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+            <a href="/guess-country/flag_game/<%=data._id%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
             <button class="btn ss-btn" >Next Level</button>
           </div>
         </div>
@@ -107,27 +108,25 @@
       <div class="all-quiz-right-part">
         <div class="all-quiz-progress">
           <div class="progress-timer">
-            
             <span
               class="total_que"
               style="font-size: 30px; font-weight: bold"
             ></span>
+            <span
+              class="time_up d-none"
+              style="font-size: 30px; font-weight: bold;color:#A8171A"
+            >Completed</span>
             <h2
               id="testDuration"
               style="font-size: 30px; font-weight: bold; color: #A8171A"
             >
               --
             </h2>
-            
-              <span
-            class="time_up d-none"
-            style="font-size: 30px; font-weight: bold;color:#A8171A"
-          >Completed</span>
           </div>
           <div class="all-quiz-upper-section-part-right">
             <div class="all-quiz-upper-section-scorus-card">
               <p>Question</p> 
-              <h5 _id="<%=data._id%>" id="total-questions">05</h5>
+              <h5 _id="<%=data._id%>" id="total-questions"></h5>
             </div>
             <div class="all-quiz-upper-section-scorus-card">
               <p>Correct</p>
