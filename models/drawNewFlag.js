@@ -25,4 +25,4 @@ const drawNewFlagSchema = new mongoose.Schema({
 });
 
 
-export default mongoose.model("DrawNewFlag", drawNewFlagSchema);
+export default mongoose.model("Draw-New-Flag", drawNewFlagSchema);

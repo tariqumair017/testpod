@@ -58,4 +58,4 @@ drawFlagGameSchema.post("findOneAndDelete", async function(doc){
   }
 })
 
-export default mongoose.model("DrawFlagGame", drawFlagGameSchema);
+export default mongoose.model("Draw-Flag-Game", drawFlagGameSchema);

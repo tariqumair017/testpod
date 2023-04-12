@@ -17,7 +17,14 @@ menu_close.onclick=()=>{
     document.getElementById("offcanvas-menu").classList.remove("active")
       document.body.classList.remove("stop-scrolling");
 
-  }
+}
+
+// window.onclick = function ustad() {
+//   const notActive= document.getElementById("offcanvas-menu").classList.toggle("ustad")
+//   if (notActive == false) {
+//     document.getElementById("offcanvas-menu").classList.remove("active")
+//     }
+// }
 
  
 

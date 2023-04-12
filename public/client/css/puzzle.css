@@ -1,0 +1,64 @@
+#app {
+    /* border: 2px solid gray; */
+    width: 100%;
+    height: 100vh;
+  }
+
+
+  #app canvas {
+    position: relative;
+    background: white;
+    touch-action: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: 100vh;
+
+
+  }
+  #controls {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  #controls :last-child {
+    margin-right: 0;
+  }
+  select {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0 5px 0 0;
+    padding: 10px;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 3px;
+  }
+  select option {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 5px 0;
+    padding: 5px 10px;
+    font-size: 18px;
+  }
+  button {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0 5px 0 0;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: #000;
+    font-size: 20px;
+    background: #ebebeb;
+    transition: background-color ease-in 0.3s;
+  }
+  button:hover {
+    background: lightgreen;
+    transition: background-color ease-out 0.3s;
+  }
+  

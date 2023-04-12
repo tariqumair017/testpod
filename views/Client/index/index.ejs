@@ -1,0 +1,665 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+  <!-- main-area -->
+  <main>
+    <!-- search-popup -->
+    <div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content search-popup">
+          <div class="text-center">
+            <a href="#" class="close2" data-dismiss="modal" aria-label="Close">× close</a>
+          </div>
+          <div class="row search-outer">
+            <div class="col-md-11">
+              <input type="text" placeholder="Search for products..." />
+            </div>
+            <div class="col-md-1 text-right">
+              <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /search-popup -->
+    <!-- slider-area -->
+    <section id="home" class="slider-area slider-four fix p-relative">
+      <div class="slider-active">
+        <div class="single-slider slider-bg d-flex align-items-center" style="
+            background: url(/client/img/slider/slider_img_bg.png) no-repeat;
+            background-position: center center;
+          ">
+          <div class="container">
+            <div class="row justify-content-center spacing pb-50">
+              <div class="col-lg-7">
+                <div class="slider-content s-slider-content mt-100">
+                  <h2 data-animation="fadeInUp" data-delay=".4s">
+                    Capture the knowledge!
+                  </h2>
+                  <p data-animation="fadeInUp" data-delay=".6s">
+                    Educational games are a great way to make learning fun and engaging. By using games, learners can
+                    capture knowledge in a more interactive and memorable way. Some examples of educational games that
+                    can help capture knowledge include Flags Games, Driving Test, Educations Test, and Geography game.
+                    These games challenge players to think critically, problem-solve, and retain information in a way
+                    that is both entertaining and effective.
+                  <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
+                    <form action="news-mail.php" method="post" class="contact-form">
+                      <label><i class="icon fa-regular fa-envelope"></i> Email
+                        Address</label>
+                      <input type="text" id="email2" name="email2" class="header-input"
+                        placeholder="Your Email Address..." required />
+                      <button class="btn header-btn">Subscribe Now</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="slider-img" data-animation="fadeInUp" data-delay=".4s">
+                  <img src="/client/img/slider/heroImage.svg" alt="slider_img05" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- slider-area-end -->
+
+    <!-- <div class="game-slider" > -->
+    <div class="game-slider-start spacing">
+      <div class="game-slider-container">
+        <swiper-container class="mySwiper" pagination="false" slides-per-view="1" autoplay free-mode="true">
+          <swiper-slide>
+            <div class="game-slider-inner-container">
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim.png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Guess Countrys</h2> 
+                  <h5 style="color: #a8171a">
+                    Can You Match Flag With Its Country?
+                  </h5>
+                </div>
+              </div>
+              <div style="margin-right: 20px;">
+                <a href="/guess-country"><button class="btn ss-btn">Play
+                    Game</button></a>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="game-slider-inner-container">
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim (2).png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Draw Flags</h2> 
+                  <h5 style="color: #a8171a">
+                    Can You Draw Flag With Its Country?
+                  </h5>
+                </div>
+              </div>
+              <div style="margin-right: 20px;">
+                <a href="/draw-flags"><button class="btn ss-btn">Play
+                    Game</button></a>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="game-slider-inner-container">
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim (3).png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Guess Flags</h2> 
+                  <h5 style="color: #a8171a">
+                    Can You Match COuntry With Its Flags?
+                  </h5>
+                </div>
+              </div>
+              <div style="margin-right: 20px;">
+                <a href="/guess-flags"><button class="btn ss-btn">Play
+                    Game</button></a>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="game-slider-inner-container">
+              <div class="game-image-slider">
+                <div class="images-slider">
+                  <img class="game-slider-image" src="/client/img/slider/imgpsh_fullsize_anim (1).png" />
+                </div>
+                <div style="margin-left: 20px;">
+                  <h2>Learn About Flags</h2> 
+                  <h5 style="color: #a8171a">
+                    Click On Flags To Learn About Them?
+                  </h5>
+                </div>
+              </div>
+              <div style="margin-right: 20px;">
+                <a href="/learn-about-flags"><button class="btn ss-btn">Play
+                    Game</button></a>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+
+
+
+    <!-- Game Slider End -->
+
+    <!-- about-area -->
+    <section id="about" class="about-area about-p spacing p-relative" style="
+        background: url(/client/img/features/about-bg-aliments.png) no-repeat;
+        background-position: center center;
+      ">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+            <div class="s-about-img p-relative wow fadeInLeft animated" data-animation="fadeInLeft" data-delay=".4s">
+              <img src="/client/img/features/about_img.svg" alt="img" />
+              <div class="about-text second-about">
+                <div class="all-text">
+                  <h5>Lorem ipsum</h5>
+                  <span class="about-experience"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="about-content s-about-content wow fadeInRight animated" data-animation="fadeInRight"
+              data-delay=".4s">
+              <div class="about-title second-atitle pb-25">
+                <h5>About</h5>
+                <h2>Welcome To Testpod.</h2>
+              </div>
+
+              <p>
+                We are dedicated to providing engaging and educational content for individuals looking to improve their knowledge and skills. Our goal is to offer a fun and interactive learning experience through our DMV practice tests and flag game.
+              </p>
+
+              <div class="about-content3">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="green">
+                      <li>
+                        DMV Practice Tests: Our DMV practice tests are designed to help users prepare for their driver's license exams. We offer a wide range of practice tests covering various topics such as traffic signs, road rules, and safety regulations.</li>
+                      <li>
+                        Flag Game: Our flag game is a fun and interactive way for users to test their knowledge of world flags. Users can challenge themselves and learn about different countries and their flags through an engaging quiz-style game.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slider-btn mt-10">
+                <a href="/about" class="btn ss-btn" data-animation="fadeInRight" data-delay=".8s">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about-area-end -->
+    <!-- vedio-area -->
+    <section id="vedio" class="vedio-area spacing pt-90 fix" style="background-image: url(/client/img/video/vedio-bg.png);
+        background-repeat: no-repeat;
+      ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title center-align text-center">
+              <!-- <h5>Test Your Knowledge</h5> -->
+              <h2>Test Your DMV Exams Knowledge</h2>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="video-align"> -->
+        <div class="quiz-box">
+          <div class="quiz-section">
+            <div class="left-part">
+              <img class="images" src="/client/img/bg/warningsign.svg" />
+            </div>
+            <div class="right-part">
+              <div class="que-text">
+              </div>
+
+              <div class="option-list">
+                </input>
+              </div>
+              <button id="hint-icon">
+                <img src="/client/img/icon/hint.svg" /> Hint
+              </button>
+            </div>
+          </div>
+          <!-- quiz box footer -->
+          <footer>
+            <div class="total-que">
+              <span>
+                <p>2</p>
+                of
+                <p>5</p>
+                Questions
+              </span>
+            </div>
+            <button class="next-btn">Next Question</button>
+          </footer>
+        </div>
+        <div class="slider-btn mt-10" style="display: flex;justify-content: center;margin-top: 50px;">
+          <a href="/test/states" class="btn ss-btn" data-animation="fadeInRight" data-delay=".8s">Explore Test Per
+            State</a>
+        </div>
+      </div>
+    </section>
+    <!-- vedio-area-end -->
+
+    <!-- services-area -->
+    <section id="services" class="services-area fix" style="
+        background-image: url(/client/img/bg/services-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-position: center;
+      ">
+      <div class="container spacing">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-12">
+            <div class="about-title second-atitle pb-20">
+              <h5>DMV Practice Test</h5>
+              <h2>Take “Fail” <br> Out of Your Vocabulary</h2>
+              <p>
+                we strive to assist our users in successfully passing their DMV written test on their first try. With
+                this goal in mind, we have designed comprehensive practice driver's tests that closely resemble the
+                actual exam in all 50 states. Whether you're pursuing any type of driver's license, we provide you with
+                the necessary tools to prepare and excel. </p>
+            </div>
+
+            <div class="slider-btn mt-10">
+              <a href="/test/states/new-jersey/6411b29577f58e38d4238ec8" class="btn ss-btn" data-animation="fadeInRight"
+                data-delay=".8s">Free Practice Test</a>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12 mt-20">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 mb-20">
+                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+                  <div class="services-icon">
+                    <img src="/client/img/icon/pv-icon1.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5>
+                      <a>You’ll Pass</a>
+                    </h5>
+                    <p>
+                      our clients boast an impressive 99.2% success rate in passing their DMV written test.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-20">
+                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+                  <div class="services-icon">
+                    <img src="/client/img/icon/pv-icon2.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5>
+                      <a>We Cover It All</a>
+                    </h5>
+                    <p>
+                      Our tests use real DMV questions for all licenses, so you can avoid surprises on exam day.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-20">
+                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+                  <div class="services-icon">
+                    <img src="/client/img/icon/pv-icon3.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a>Fast & Easy</a></h5>
+                    <p>
+                      Get immediate feedback as you begin a test, with the ability to start within seconds.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-20">
+                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+                  <div class="services-icon">
+                    <img src="/client/img/icon/pv-icon4.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a>Always FREE</a></h5>
+                    <p>
+                      Absolutely free with no strings attached, including no hidden fees or subscriptions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-20">
+                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+                  <div class="services-icon">
+                    <img src="/client/img/icon/pv-icon5.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a>State-specific</a></h5>
+                    <p>
+                      Our test questions are tailored to individual U.S. states, with the majority being unique to each
+                      state.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-20">
+                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+                  <div class="services-icon">
+                    <img src="/client/img/icon/pv-icon6.png" alt="icon01" />
+                  </div>
+                  <div class="services-content2">
+                    <h5><a>Vast Question Bank</a></h5>
+                    <p>
+                      Prepare using accurate, up-to-date questions based on your state's official handbook and traffic
+                      laws.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="best-game-slider spacing">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h5>GAMIFICATION</h5>
+          <h2>Learn while having fun</h2>
+        </div>
+      </div>
+      <swiper-container class="mYSwiper" pagination="false" slides-per-view="3.3" space-between="30" free-mode="true"
+        autoplay>
+        <swiper-slide>
+          <div class="box-courses">
+            <a href="guess-country"><img src="/client/img/bg/imgpsh_fullsize_anim.jpeg" alt="courses-img1" /></a>
+            <div class="text">
+              <h5></h5>
+              <h3><a href="#">Guess Country</a></h3>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="box-courses">
+            <a href="/draw-flags"><img src="/client/img/bg/04.jpg" alt="courses-img1" /></a>
+            <div class="text">
+              <h5></h5>
+              <h3><a href="#">Draw Flags</a></h3>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="box-courses">
+            <a href="/guess-flags"><img src="/client/img/bg/05.jpg" alt="courses-img1" /></a>
+            <div class="text">
+              <h5></h5>
+              <h3><a href="#">Guess Falgs</a></h3>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="box-courses">
+            <a href="/learn-about-flags"><img src="/client/img/bg/03.jpg" alt="courses-img1" /></a>
+            <div class="text">
+              <h5></h5>
+              <h3><a href="#">Learn About Flags</a></h3>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="box-courses">
+            <a href="/quiz-citys"><img src="/client/img/bg/02.jpg" alt="courses-img1" /></a>
+            <div class="text">
+              <h5></h5>
+              <h3><a href="#">Parking Section</a></h3>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="box-courses">
+            <a href="/quiz-citys"><img src="/client/img/bg/01.jpg" alt="courses-img1" /></a>
+            <div class="text">
+              <h5></h5>
+              <h3><a href="#">DMV Practice Test</a></h3>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </section>
+
+    <!-- testimonial-area -->
+    <section class="testimonial-area spacing pt-90 pb-90" style="
+        background-image: url(/client/img/testimonial/test-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #fff7f5;
+      ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="about-title second-atitle pt-15">
+              <h5>Testimonial</h5>
+              <h2>What our users are saying</h2>
+              <p class="pt-15">
+                dev.testpod.com has become a popular platform for over 130,000 aspiring American users who use it daily
+                to test and develop their skills in coding, data analysis, and digital marketing. The platform offers a
+                user-friendly interface, personalized learning paths, real-time feedback, and detailed analytics, making
+                it an indispensable tool for those who want to excel in their respective fields. </p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="testimonial-active">
+              <swiper-container pagination-clickable="true" class="mySwiper" pagination="true" slides-per-view="1"
+                free-mode="true">
+                <swiper-slide>
+                  <div class="single-testimonial">
+                    <div class="testi-author">
+                      <img style="width: 100px;border-radius: 50%;"
+                        src="/client/DALL·E 2023-03-07 16.19.23 - create avatar cute girl .png" alt="img" />
+                      <div class="ta-info">
+                        <h6>Ted Kay</h6>
+                        <span>Student</span>
+                      </div>
+                    </div>
+                    <div class="qt-img">
+                      <img src="/client/img/testimonial/qt-icon.png" alt="img" />
+                    </div>
+                    <p>
+                      This site definitely works. I practiced their questions for 24 hours. Went through each practice
+                      test then jumped into a bus to Santa Monica, California DMV. I passed the drivers test the first
+                      time; while the majority walked out with their faces down.
+                  </div>
+                </swiper-slide>
+                <swiper-slide>
+                  <div class="single-testimonial">
+                    <div class="testi-author">
+                      <img style="width: 100px;border-radius: 50%;"
+                        src="/client/DALL·E 2023-03-07 16.59.30 - create avatar cute girl .png" alt="img" />
+                      <div class="ta-info">
+                        <h6>Stacey Finegan Whittle</h6>
+                        <span>Student</span>
+                      </div>
+                    </div>
+                    <div class="qt-img">
+                      <img src="/client/img/testimonial/qt-icon.png" alt="img" />
+                    </div>
+                    <p>
+                      I failed the DMV written test the first time I tried, but after studying the tests on this AWESOME
+                      site, I passed it with only 3 questions wrong, on my 22nd birthday. This tool ROCKED. Thanks so
+                      much!
+                  </div>
+                </swiper-slide>
+                <swiper-slide>
+                  <div class="single-testimonial">
+                    <div class="testi-author">
+                      <img style="width: 100px;border-radius: 50%;"
+                        src="/client/DALL·E 2023-03-07 16.19.23 - create avatar cute girl .png" alt="img" />
+                      <div class="ta-info">
+                        <h6>Elizabeth Heaney</h6>
+                        <span>Student</span>
+                      </div>
+                    </div>
+                    <div class="qt-img">
+                      <img src="/client/img/testimonial/qt-icon.png" alt="img" />
+                    </div>
+                    <p>
+                      I took the test today and passed, I literally knew every single question on that test, I looked
+                      around thinking to myself, Are they serious?! lol, If you want to pass, these practice tests will
+                      help for sure!
+                  </div>
+                </swiper-slide>
+              </swiper-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- testimonial-area-end -->
+
+    <!-- blog-area -->
+    <section id="blog" class="blog-area p-relative spacing fix" style="
+        background-image: url(/client/img/bg/blog-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-position: center;
+      ">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="col-lg-12">
+              <div class="section-title center-align text-center mb-50">
+                <h5>Blogs</h5>
+                <h2>Latest Blogs
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-12">
+            <div class="single-post2 mb-30 wow fadeInDown animated">
+              <div class="blog-thumb2">
+                <a href="#"><img src="/client/img/blog/03.svg" alt="img" /></a>
+              </div>
+              <div class="blog-content2 text-center">
+                <div class="b-meta">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="date-b">
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2023
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <a href="#">Test Your Geography Knowledge With This Fun Quiz</a>
+                    </h4>
+                    <div class="blog-btn">
+                      <a href="#"><i class="fal fa-chevron-circle-right"></i> Read
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="single-post2 mb-30 wow fadeInUp animated">
+              <div class="blog-thumb2">
+                <a href="#"><img src="/client/img/blog/02.svg" alt="img" /></a>
+              </div>
+              <div class="blog-content2 text-center">
+                <div class="b-meta">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="date-b">
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2023
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <a href="#">Test Your Preparations With Flag Game</a>
+                    </h4>
+                    <div class="blog-btn">
+                      <a href="#"><i class="fal fa-chevron-circle-right"></i> Read
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="single-post2 mb-30 wow fadeInDown animated">
+              <div class="blog-thumb2">
+                <a href="#"><img src="/client/img/blog/01.svg" alt="img" /></a>
+              </div>
+              <div class="blog-content2 text-center">
+                <div class="b-meta">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="date-b">
+                        <i class="fal fa-calendar-alt"></i> 7 March, 2023
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <a href="#">Test Your Driving Knowledge With This Fun Game</a>
+                    </h4>
+                    <div class="blog-btn">
+                      <a href="#"><i class="fal fa-chevron-circle-right"></i> Read
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- blog-area-end -->
+  </main>
+  <!-- main-area-end -->
+
+
+  <script>
+    async function storeLog(id) {
+      console.log(id);
+      const counter = 1;
+      const response = await fetch(`/track-game/${id}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          views:counter
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        }
+      });
+ 
+      console.log(response);
+    }
+  </script>
+
+  <script src="/client/js/questions.js"></script>
+  <script src="/client/js/quiz.js"></script>

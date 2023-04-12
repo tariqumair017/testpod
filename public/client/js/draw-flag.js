@@ -93,6 +93,9 @@ const timer__display = document.querySelector(".timer__display")
 
 const time_up = document.querySelector(".time_up")
 
+const focus_question = document.querySelector(".focus-input")
+
+
 
 
 
@@ -143,6 +146,8 @@ window.load = startQuiz();
 
 function startQuiz() {  
   showQuetions(0);
+  window.addEventListener("load", focus_question.focus())
+  focus_question.classList.add("d-none")
 
 }
 
@@ -574,7 +579,7 @@ function callTryAgainDialog() {
 
 
   flag_canvas.innerHTML =
-    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img class="mb-3" src="images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button onclick="callSameQuestion()" class="btn_try_again">Try Again</button></div></div>';
+    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img class="mb-3" src="/client/img/images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button onclick="callSameQuestion()" class="btn_try_again">Try Again</button></div></div>';
 
   flag_canvas.setAttribute("paintsarted", "false");
 
@@ -699,7 +704,7 @@ function callNextQuestion() {
 //function to call try again dialog
 function callRightAnsDialog() {
   flag_canvas.innerHTML =
-    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img src="images/checkmark.png" style="height:50px; margin: 0px auto;"><img src="' +
+    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img src="/client/img/images/answer.right.png" style="height:50px; margin: 0px auto;"><img src="' +
     paintFlags[que_count].image +
     '" style="margin: 0px auto;"><div id="nextQueSeconds" class="try_again_time">--</div><button onclick="callNextQuestion()" class="btn_try_again" id="btnNextQue">Next Question</button></div></div>';
 

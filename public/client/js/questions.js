@@ -1,4 +1,10 @@
 
+
+// fetch("https://restcountries.com/v3.1/all")
+// .then(all => all.json())
+// .then(data => console.log(data)); 
+
+
 var questions = [
 	{
         numer:1,

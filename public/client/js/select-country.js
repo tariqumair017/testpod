@@ -29,6 +29,9 @@ const result_box = document.querySelector(".result_box");
 
 const time_up = document.querySelector(".time_up");
 
+const focus_question = document.querySelector(".focus-input")
+
+
 
 
 //required variable 
@@ -55,7 +58,7 @@ var _id = total_questions.getAttribute("_id");
 
 fetch(`/game/all/${_id}`)
   .then(res => res.json())
-  .then(data => { 
+  .then(data => {  
     questions = data.questions.map((val, i) => (
       {
         numb: i,
@@ -75,12 +78,15 @@ window.load = startQuiz();
 
 function startQuiz() {
   showQuetions(0); //calling showQestions function
-
+  
   queCounter(1); //passing 1 parameter to queCounter
-
+  
   startTimerLine(0);
 
+
 }
+
+window.load = 
 
 total_questions.innerHTML = questions.length
 
@@ -88,9 +94,9 @@ total_questions.innerHTML = questions.length
 
 function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
-
+  
   let que_tag =
-    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
+    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="${questions[index].question}" alt="img"></span>`;
 
   let detail = '<p class="your-quiz-progress-detail" >'+ questions[index].hint +'<p>'
 
@@ -111,9 +117,11 @@ function showQuetions(index) {
   que_text.innerHTML = que_tag; //adding new span tag inside que_tag
   
   option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-
   
+  window.addEventListener("load", focus_question.focus())
+  focus_question.classList.add("d-none")
   const option = option_list.querySelectorAll(".customLable");
+
   
   your_progress.innerHTML = detail //adding new p tag inside your-progress
   // set onclick attribute to all available options
@@ -186,6 +194,10 @@ result_btn.onclick = async () => {
 
   ques_counter.classList.add("d-none")
   document.querySelector("#testDuration").classList.add("d-none")
+
+  total_in_correct.innerHTML = questions.length - userScore 
+
+
  
   //Post Api  
   
@@ -263,13 +275,15 @@ function startTimer(duration, display) {
 
       
       ques_counter.classList.add("d-none")
+
+      disableOptions()
     }
   }
 }
 
 // runInterval();
 // function runInterval() {  
-  var interval = 2.5 * 60,
+  var interval = questions.length * 30,
     display = document.querySelector("#testDuration");
   
   startTimer(interval, display);

@@ -15,18 +15,30 @@ import Admin from "./models/admin.js";
 const app = express(); 
 const port = process.env.PORT || 9898;  
 
-//Requring Routes
-import AdminRoutes from "./routes/admin.js"; 
-import ClientRoutes from "./routes/client.js"; 
-import SelectCountryFlagGameRoutes from "./routes/selectCountryFlagGame.js"; 
-import QuizRoutes from "./routes/quiz.js"; 
-import DrawNewFlagRoutes from "./routes/drawNewFlag.js"; 
-import DrawFlagGameRoutes from "./routes/drawFlagGame.js"; 
-import GuessFlagGameRoutes from './routes/guessFlag.js'
+//Requring Admin Routes
+import AdminIndexRoutes from "./routes/admin/index.js"; 
+import AdminGuessCountryGameRoutes from "./routes/admin/guessCountryGame.js"; 
+import AdminTestRoutes from "./routes/admin/test.js"; 
+import AdminDrawFlagGameRoutes from "./routes/admin/drawFlagGame.js"; 
+import AdminNewFlagRoutes from "./routes/admin/newFlag.js"; 
+import AdminGuessFlagGameRoutes from './routes/admin/guessFlagGame.js';
+import AdminFlagDetectiveGameRoutes from './routes/admin/flagDetectiveGame.js';
+import AdminWebAnalyticsRoutes from './routes/admin/webAnalytics.js';
  
-//mongoDB Connection with mongoose
-mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://nadir:salt-water-toffee@dev154.bigfoot.com", { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
+//Requring Client Routes
+import ClientIndexRoutes from "./routes/client/index.js"; 
+import ClientGuessCountryGameRoutes from "./routes/client/guessCountryGame.js"; 
+import ClientTestRoutes from "./routes/client/test.js"; 
+import ClientDrawFlagGameRoutes from "./routes/client/drawFlagGame.js"; 
+import ClientGuessFlagGameRoutes from './routes/client/guessFlagGame.js';
+import ClientFlagDetectiveGameRoutes from './routes/client/flagDetectiveGame.js';
+import ClientLearnFlagGameRoutes from './routes/client/learnFlagGame.js';
+import ClientFlagPuzzleGameRoutes from './routes/client/flagPuzzleGame.js'
+
+
+//mongoDB Connection
+mongoose.set("strictQuery", false); 
+mongoose.connect(process.env.Mongo_Url, { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
     console.log("Connected to MongoDB");
 });
  
@@ -78,13 +90,26 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(AdminRoutes); 
-app.use(ClientRoutes);
-app.use(SelectCountryFlagGameRoutes);
-app.use(QuizRoutes);
-app.use(DrawNewFlagRoutes);
-app.use(DrawFlagGameRoutes);
-app.use(GuessFlagGameRoutes);
+//Using Admin Routes
+app.use(AdminIndexRoutes); 
+app.use("/admin/guess-country-game", AdminGuessCountryGameRoutes);
+app.use("/admin/test", AdminTestRoutes);
+app.use("/admin/draw-flag-game", AdminDrawFlagGameRoutes);
+app.use("/admin/draw-flag-game/add-new-flag", AdminNewFlagRoutes);
+app.use("/admin/guess-flag-game", AdminGuessFlagGameRoutes);
+app.use("/admin/flag-detective-game", AdminFlagDetectiveGameRoutes);
+app.use("/admin/web-analytics", AdminWebAnalyticsRoutes);
+
+//Requring Client Routes
+app.use(ClientIndexRoutes);
+app.use(ClientGuessCountryGameRoutes);
+app.use(ClientTestRoutes);
+app.use(ClientDrawFlagGameRoutes);
+app.use(ClientGuessFlagGameRoutes);
+app.use(ClientFlagDetectiveGameRoutes);
+app.use(ClientLearnFlagGameRoutes);
+app.use(ClientFlagPuzzleGameRoutes);
+
 
 app.all('*', (req, res, next) => {
     res.status(404).send("Page Not Found");
@@ -92,5 +117,5 @@ app.all('*', (req, res, next) => {
 
 // Tell Express to Listen request
 app.listen(port, () => {
-    console.log(`Server has started at http://localhost:${port}`);
+    console.log(`Server has started at http://127.0.0.1:${port}`);
 });
