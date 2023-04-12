@@ -3,19 +3,19 @@ import Log from "./logs.js";
 import Result from "./result.js";
 
 const SelectCountryFlagGameSchema = new mongoose.Schema({
-  gameName: {
+  region: {
     type: String,
     required: true
     }, 
-  gameDetail: {
+  level: {
     type: String,
     required: true
-    },
-  testImg: {
-    type: String,
-    required: true
-    },  
+    }, 
   questions: [{
+    country: {
+      type: String,
+      required: true
+    },
     flag: {
     type: String,
     required: true

@@ -117,5 +117,5 @@ app.all('*', (req, res, next) => {
 
 // Tell Express to Listen request
 app.listen(port, () => {
-    console.log(`Server has started at http://localhost:${port}`);
+    console.log(`Server has started at http://127.0.0.1:${port}`);
 });

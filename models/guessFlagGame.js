@@ -3,18 +3,14 @@ import Log from "./logs.js";
 import Result from "./result.js";
 
 const guessFlagGameSchema = new mongoose.Schema({
-  gameName: {
+  region: {
     type: String,
     required: true
     }, 
   level: {
         type: String,
         required: true
-      },
-  gameDetail: {
-    type: String,
-    required: true
-    },
+      }, 
   questions: [{
     country: {
       type: String,
@@ -32,7 +28,7 @@ const guessFlagGameSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    questionDetail: {
+    hint: {
       type: String,
       required: true
     }

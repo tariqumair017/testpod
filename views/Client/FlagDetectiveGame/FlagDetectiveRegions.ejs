@@ -29,26 +29,19 @@
   </div>
 </section>
 
-<section
-  id="about"
-  class="about-area about-p pt-120 pb-120 p-relative"
-  style="
-    background: url(/client/img/features/about-bg-aliments.png) no-repeat;
-    background-position: center center;
-  "
->
+<section id="about" class="about-area about-p pt-120 pb-120 p-relative" style="background: url(/client/img/features/about-bg-aliments.png) no-repeat; background-position: center center;">
   <div class="quiz-citys">
     <h2 class="font-weight-bold mb-2">Continents</h2>
     <p class="font-italic text-muted mb-4 text-center"></p>
     <div class="row quiz-card">
       <%data.forEach(item => {%>
       <a
-      href="/flag-detective-game"
+      href="/flag-detective-regions/<%=item.continent%>/game"
         class="card quiz-card-item col-md-3"
         style="width: 18rem; padding: 0%;height: auto;",
       >
         <img
-          src="/client/img/continents/<%=item.continentImage%>"
+          src="/upload-images/<%=item.regionImg%>"
           class="card-img-top card-img"
           alt="..."
         />
@@ -56,10 +49,9 @@
           <h5 class="card-title quiz-card-title">
             <%=item.continent.toUpperCase()%>
           </h5>
-          <div class="card-question-number">
-            <p class="card-total-scorce"><%=data.length%></p>
-            <p class="card-question">questions</p>
-          </div>
+          <!-- <div class="card-question-number">
+            <p class="card-total-scorce">=item.level</p> 
+          </div> -->
         </div>
       </a>
       <%})%>
@@ -67,4 +59,11 @@
   </div>
 </section>
 
+
+<script>
+    var ip = '<%=ip%>';
+    var ipify = '<%=ipify%>';
+    console.log(ip);
+    console.log(ipify);
+</script>
 <script src="/client/js/about.js"></script>

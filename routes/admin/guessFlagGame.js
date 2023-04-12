@@ -1,25 +1,22 @@
 import express, { Router } from "express";
 const router = Router();  
 import path from "path";  
+import AllFlagsData from "../../models/allFlagsData.js";
 import GuessFlagGame from "../../models/guessFlagGame.js";
 import connectEnsureLogin from "connect-ensure-login";
 import asyncHandler from "express-async-handler";  
 
 
-//Admin: Fetch all countries Api
-router.get("/game-management/create-guess-flag-game/allCountries", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler( async(req, res, next) => {
-     const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
-            'X-RapidAPI-Host': 'ajayakv-rest-countries-v1.p.rapidapi.com'
-        }
-    };
+//Admin: Distinct Region form All Flags Data
+router.get("/all-flags-data", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  const data = await AllFlagsData.distinct("region"); 
+  res.send(data);
+}));
 
-    fetch('https://api.first.org/data/v1/countries', options)
-    .then(res => res.json())
-    .then(json => res.send(json.data))
-    .catch(err => console.error('error:' + err));
+//Admin: Find All Countries of Selected Region from All Flags Data
+router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  const data = await AllFlagsData.find({region: req.params.region});
+  res.send(data);
 }));
 
 //Admin Create-Guess-Flag page
@@ -30,7 +27,7 @@ router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
 //Admin: Create-Guess-Flag Handel
 router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
-    const find = await GuessFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
+    const find = await GuessFlagGame.findOne({region: req.body.region, level: req.body.level});
   
     if(!find)
     {  
@@ -44,11 +41,10 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
             const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
             req.files.IcorrectImg.mv(newPath2);
 
-          var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, questionDetail: req.body.questionDetail}; 
+          var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
           const singleGame = new GuessFlagGame({
-              gameName: req.body.gameName,
-              level: req.body.level,
-              gameDetail: req.body.gameDetail, 
+              region: req.body.region,
+              level: req.body.level, 
               questions: question
           });
           await singleGame.save();
@@ -73,15 +69,14 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
                 Icountry: req.body.Icountry[i], 
                 correctImg: correctFileName, 
                 IcorrectImg: IcorrectFileName, 
-                questionDetail: req.body.questionDetail[i]
+                hint: req.body.hint[i]
             }; 
   
               newQuestions.push(newQuestion);
           }
           const newGame = new GuessFlagGame({
-            gameName: req.body.gameName,
-            level: req.body.level,
-            gameDetail: req.body.gameDetail, 
+            region: req.body.region,
+            level: req.body.level, 
             questions: newQuestions
         });
           await newGame.save(); 
@@ -91,7 +86,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     }
     else
     {   
-        req.flash("error", `${find.gameName} is already exist`);
+        req.flash("error", `${find.region.toUpperCase()} with ${find.level} level is already exist`);
         res.redirect("/admin/guess-flag-game/add"); 
     }
 }));
@@ -124,10 +119,10 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
 }));
 
 //Admin - Edit Game Name
-router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    await GuessFlagGame.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
-    res.redirect(`/admin/guess-flag-game/manage/${req.params.id}/all-questions`); 
-}));
+// router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+//     await GuessFlagGame.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
+//     res.redirect(`/admin/guess-flag-game/manage/${req.params.id}/all-questions`); 
+// }));
 
 // Admin: Add new Question in Game
 router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
@@ -144,7 +139,7 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
         const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
         req.files.IcorrectImg.mv(newPath2);
 
-        var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, questionDetail: req.body.questionDetail}; 
+        var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
           
         await GuessFlagGame.updateOne({_id: find._id}, {$push:{questions: question}});
         console.log("New Question Added"); 
@@ -178,12 +173,12 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
         const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
         req.files.IcorrectImg.mv(newPath2);
 
-        question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, questionDetail: req.body.questionDetail}; 
+        question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
         await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
     }
     else
     {
-      await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.questionDetail": req.body.questionDetail}});
+      await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.hint": req.body.hint}});
     }
    
     console.log("Question Updated");

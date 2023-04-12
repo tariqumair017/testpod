@@ -130,7 +130,7 @@ fetch(`/game-management/guess-flags/all`)
         title: `Can you guess flag of ${val.country}?`,
         correctFlag: val.correctImg,
         incorrectFlag: val.IcorrectImg,
-        detail: val.questionDetail,
+        detail: val.hint,
       }
       
     ));

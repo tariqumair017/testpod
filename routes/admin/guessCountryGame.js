@@ -1,12 +1,31 @@
 import express, { Router } from "express";
 const router = Router(); 
 import path from "path";  
-import CountryFlagGame from "../../models/guessCountryGame.js";
+import GuessCountryGame from "../../models/guessCountryGame.js";
+import AllFlagsData from "../../models/allFlagsData.js"; 
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login"; 
  
+
+//Admin: Distinct Region form All Flags Data
+router.get("/all-flags-data", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  const data = await AllFlagsData.distinct("region");
+  res.send(data);
+}));
+
+//Admin: Find All Countries of Selected Region from All Flags Data
+router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  const data = await AllFlagsData.find({region: req.params.region});
+  res.send(data);
+}));
+
+//Admin: Find Flag of selected Country from All Flags Data
+router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  const data = await AllFlagsData.findOne({country: req.params.country});
+  res.send(data);
+}));
  
 //Admin: Add Flag Game Page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
@@ -16,55 +35,43 @@ router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
 //Admin: Add Flag Game Handel
 router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
-  const find = await CountryFlagGame.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
+  const find = await GuessCountryGame.findOne({region: req.body.region, level: req.body.level});
 
   if(!find)
-  {  
-    var testFileName = Date.now() + '-' + req.files.testImg.name;
-    const newPath1  = path.join(process.cwd(), '/public/upload-images', testFileName);
-    req.files.testImg.mv(newPath1);
-
-    if(typeof(req.body.correct) == "string")
+  {    
+    if(typeof(req.body.country) == "string")
     { 
-      var flagFileName = Date.now() + '-' + req.files.flag.name;
-      const newPath  = path.join(process.cwd(), '/public/upload-images', flagFileName);
-      req.files.flag.mv(newPath);
-      const question = {flag: flagFileName, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
-      const singleQuiz = new CountryFlagGame({
-        gameName: req.body.gameName,
-        gameDetail: req.body.gameDetail, 
-        testImg: testFileName,
+      const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
+      const singleQuiz = new GuessCountryGame({
+        region: req.body.region,
+        level: req.body.level,  
         questions: question
       });
       await singleQuiz.save();
       console.log("Single Quiz Added Successfully"); 
       res.redirect("/admin/guess-country-game/manage");
     }
-    else if(typeof(req.body.correct) == "object")
+    else if(typeof(req.body.country) == "object")
     {
       const newQuestions = [];
-      for (let i = 0; i < req.files.flag.length; i++) {  
-
-        var questionFileName = Date.now() + '-' + req.files.flag[i].name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-        req.files.flag[i].mv(newPath); 
+      for (let i = 0; i < req.body.country.length; i++) {   
         
           const newQuestion = {
-            flag: questionFileName, 
-            optionA: req.body.optionA[i],
-            optionB: req.body.optionB[i],
-            optionC: req.body.optionC[i],
-            optionD: req.body.optionD[i],
-            correct: req.body.correct[i],
+            country: req.body.country[i], 
+            flag: req.body.flag[i], 
+            optionA: req.body.optionA[i], 
+            optionB: req.body.optionB[i], 
+            optionC: req.body.optionC[i], 
+            optionD: req.body.optionD[i], 
+            correct: req.body.correct[i], 
             hint: req.body.hint[i]
           }
   
         newQuestions.push(newQuestion);
       }
-      const newQuiz = new CountryFlagGame({
-        gameName: req.body.gameName,
-        gameDetail: req.body.gameDetail, 
-        testImg: testFileName,
+      const newQuiz = new GuessCountryGame({
+        region: req.body.region,
+        level: req.body.level,   
         questions: newQuestions
       });
       await newQuiz.save(); 
@@ -74,7 +81,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
   }
   else
   {   
-    req.flash("error", `${find.gameName} is already exist`);
+    req.flash("error", `${find.region.toUpperCase()} with ${find.level} level is already exist`);
     res.redirect("/admin/guess-country-game/add"); 
   }
 }));
@@ -82,21 +89,21 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
  
 //Admin: Manage Flag Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    const data = await CountryFlagGame.find({});
+    const data = await GuessCountryGame.find({});
     res.render("Admin/GuessCountryGame/ManageFlagGames", { data });
   }));
   
 //Admin - Delete Whole Flag Game
 router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const { id } = req.params;
-  await CountryFlagGame.findByIdAndDelete(id);
+  await GuessCountryGame.findByIdAndDelete(id);
   console.log("Whole Flag Game Deleted Successfully"); 
   res.send({url: "/admin/guess-country-game/manage"}); 
 }));
   
   //Admin: Show All Questions of Game Edit Icon
   router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
-    const data = await CountryFlagGame.findById(req.params.id);
+    const data = await GuessCountryGame.findById(req.params.id);
     if(!data)
     {
       req.flash("error", "Game not Found");
@@ -106,24 +113,20 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
   }));
   
   //Admin - Edit Game Name
-  router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    await CountryFlagGame.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
-    res.redirect(`/admin/guess-country-game/manage/${req.params.id}/all-questions`); 
-  }));
+  // router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  //   await GuessCountryGame.updateOne({_id: req.params.id}, {$set:{"region": req.body.region}});
+  //   res.redirect(`/admin/guess-country-game/manage/${req.params.id}/all-questions`); 
+  // }));
   
   // Admin: Add new Question in Game
   router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     
-    var find = await CountryFlagGame.findById(req.params.id);
+    var find = await GuessCountryGame.findById(req.params.id);
   
       if(find)
-      { 
-        var questionFileName = Date.now() + '-' + req.files.flag.name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-        req.files.flag.mv(newPath);
-  
-        const question = {flag: questionFileName, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
-        await CountryFlagGame.updateOne({_id: find._id}, {$push:{questions: question}});
+      {  
+        const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
+        await GuessCountryGame.updateOne({_id: find._id}, {$push:{questions: question}});
         console.log("New Question Added"); 
         req.flash("success", "New Question Added");
         res.redirect(`/admin/guess-country-game/manage/${req.params.id}/all-questions`);
@@ -137,26 +140,15 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
   
   // Admin: Edit Question of a Game
   router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    const data = await CountryFlagGame.findById(req.params.id);
+    const data = await GuessCountryGame.findById(req.params.id);
     res.send(data);  
   }));
   
   //Admin: Update Question of a Game
   router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
-    var question;
-    if(req.files)
-    {
-      const flagFileName = Date.now() + '-' + req.files.flag.name;
-      const newPath  = path.join(process.cwd(), '/public/upload-images', flagFileName);
-      req.files.flag.mv(newPath);
-      question = {flag: flagFileName, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
-      await CountryFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
-    }
-    else
-    {
-      await CountryFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.optionA": req.body.optionA, "questions.$.optionB": req.body.optionB, "questions.$.optionC": req.body.optionC, "questions.$.optionD": req.body.optionD, "questions.$.correct": req.body.correct, "questions.$.hint": req.body.hint}});
-    }
-   
+    const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
+    await GuessCountryGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
+  
     console.log("Question Updated");
     req.flash("success", "Question Updated Successfully");
     res.redirect(`/admin/guess-country-game/manage/${req.params.pid}/all-questions`);
@@ -164,7 +156,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
   
   //Admin: Delete Question of a Game
   router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
-    await CountryFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
+    await GuessCountryGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");
     req.flash("success", "Question Deleted Successfully");
     res.redirect(`/admin/guess-country-game/manage/${req.params.pid}/all-questions`);
@@ -179,7 +171,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
 router.post("/track-game/:id", asyncHandler(async (req, res, next) => {  
     const { views } = req.body; 
      //find the Game Using ID
-     const findGame = await CountryFlagGame.findById(req.params.id); 
+     const findGame = await GuessCountryGame.findById(req.params.id); 
      if(findGame.logs)
      { 
         const data = await LogModel.updateOne({_id: findGame.logs}, { $inc: { views: 1 }});
@@ -203,7 +195,7 @@ router.post("/track-game/:id", asyncHandler(async (req, res, next) => {
 router.post("/game-result/:id", asyncHandler(async (req, res, next) => {  
     const { objToStore } = req.body;  
      //find the Game Using ID
-     const findGame = await CountryFlagGame.findById(req.params.id); 
+     const findGame = await GuessCountryGame.findById(req.params.id); 
     if(objToStore.attempted == findGame.questions.length)
     {
         objToStore.status = "complete";

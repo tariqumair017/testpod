@@ -14,7 +14,7 @@
                     <a href="/">Home</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Asia
+                    <%= data.continent %>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
                     Flag Detective
@@ -32,19 +32,15 @@
 <section class="all-quiz">
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
-      <h6>Asia Flags Examination</h6>
-      <h6>Test #1</h6>
+      <h6><%= data.continent %> Flags Examination</h6>
+      <h6 hidden id="currentContinent"><%=data.continent%></h6>
+      <h6>Game</h6>
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
         <h4>Flag Detective</h4>
         <p class="guess-country">
-          Playing a guessing game with flags can be a fun way to test your
-          knowledge of countries around the world. Flags can represent a
-          country's history, culture, and values, making them unique and
-          identifiable. Some flags may be easy to recognize, such as the United
-          States' flag with its distinctive stripes and stars, or the United
-          Kingdom's flag with its Union Jack design.
+          <%= data.gameDetail %>
         </p>
       </div>
     </div>
@@ -81,8 +77,8 @@
           "
         ></canvas>
         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-          <a href="/flag-detective-game" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-          <button class="btn ss-btn" >Next Level</button>
+          <a href="/flag-detective-regions/<%= data.continent %>/game" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <button id="nextLevel" class="btn ss-btn" >Next Level</button>
         </div>
       </div>
     </div>

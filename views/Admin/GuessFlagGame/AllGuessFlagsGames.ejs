@@ -4,15 +4,18 @@
 <div class="application bg-light">
   <span style="display: flex;">
     <h3 class="test-name" >
-      <%=data.gameName.toUpperCase()%>
+      <%=data.region.toUpperCase()%>
     </h3> 
-  <form class="edit-test" action="/admin/guess-flag-game/manage/<%=data._id%>?_method=PUT" method="POST">
+    <h6 class="test-name" >
+      <%=data.level%>
+    </h6>
+  <!-- <form class="edit-test" action="/admin/guess-flag-game/manage/<%=data._id%>?_method=PUT" method="POST">
     <div style="display: flex;">
-      <input class="add-quiz-image-input form-control" value="<%=data.gameName.toUpperCase()%>" name="gameName" id="formFile">
+      <input class="add-quiz-image-input form-control" value="<%=data.region.toUpperCase()%>" name="gameName" id="formFile">
       <button class="edit-test-btn" type="submit" ><i class="fa-solid fa-check"></i></button>
     </div>
   </form>
-  <i style="margin-left: 20px; margin-top: 5px;cursor: pointer;" class="test-edit fa-solid fa-pen"></i>
+  <i style="margin-left: 20px; margin-top: 5px;cursor: pointer;" class="test-edit fa-solid fa-pen"></i> -->
   </span> 
   <%- include ('../partials/SuccessError'); -%>
   <div style="overflow-x:auto;">
@@ -24,7 +27,7 @@
           <th >Incorrect Country</th>
           <th >Correct Img</th>
           <th >Incorrect Img</th>
-          <th >Question Detail</th>
+          <th >Hint</th>
           <th class="table-buttons">Actions</th>
         </tr>
       </thead>
@@ -37,7 +40,7 @@
             <td><%=item.Icountry%></td>
             <td><%=item.correctImg%></td>
             <td><%=item.IcorrectImg%></td> 
-            <td><%=item.questionDetail%></td> 
+            <td><%=item.hint%></td> 
             <td>
               <span class="table-buttons">
                 <button onclick="editGuessFlagGameQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
@@ -76,7 +79,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Add New Game
+              Add New Question
             </h1>
             <button
               type="button"
@@ -99,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 position-relative">
-                                <input readonly name="Icountry" id="newICountry" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                                <input readonly name="Icountry" id="newICountry" placeholder="In Correct Country" type="text" class="form-control" required>
                                 <div class="invalid-tooltip">
                                     Please provide a In Correct Country.
                                 </div>
@@ -117,8 +120,8 @@
                                 </div>
                             </div> 
                             <div class="col-md-12 mt-4 position-relative">
-                                <input name="questionDetail" placeholder="Please Enter Detail" type="text" class="form-control" required>
-                              </div>
+                                <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" required>
+                            </div>
                         </div>
                       </div>
                       </div>
@@ -145,7 +148,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Game
+              Edit Question
             </h1>
             <button
               type="button"
@@ -186,7 +189,7 @@
                              </div>
                          </div> 
                          <div class="col-md-12 mt-4 position-relative">
-                             <input name="questionDetail" id="editQuestionDetail" placeholder="Please Enter Detail" type="text" class="form-control" required>
+                             <input name="hint" id="editHint" placeholder="Please Enter Detail" type="text" class="form-control" required>
                            </div>
                      </div>
                    </div>
@@ -205,21 +208,25 @@
   <!--Container Main end-->
 
 <script>    
-  fetch('/admin/guess-flag-game/game-management/create-guess-flag-game/allCountries')
-        .then(res => res.json())
-        .then((json) => {
-            var _html = '';
-            for (const key in json) { 
-                _html += `<option hidden>Please Select Counrty</option><option value="${json[key].country.toLowerCase()}">${json[key].country}</option>`; 
-            }
-            document.getElementById("newCountry").innerHTML = _html;
-            document.getElementById("editCountry").innerHTML = _html;
-        })
-        .catch(err => console.error('error:' + err));
+
+const region = `<%-data.region%>`;  
+  fetch(`/admin/guess-flag-game/all-flags-data/country/${region}`)
+      .then(response => response.json())
+      .then((data) => { 
+          var _html = '';
+          document.getElementById("newCountry").innerHTML = `<option hidden>Please Select Country</option>`;
+          data.forEach(element => {
+            _html += `<option value="${element.country}">${element.country}</option>`;
+          });     
+          document.getElementById("newCountry").innerHTML += _html; 
+          document.getElementById("editCountry").innerHTML = _html;
+      })
+      .catch(err => console.error('error:' + err)); 
+
 
     function newSelectedCountry(e)
     { 
-      const id = e.getAttribute("id")
+      const id = e.getAttribute("id"); 
       const shuffledCountry = shuffleStr(document.getElementById(id).value);  
       document.getElementById(`newICountry`).value = shuffledCountry;
     }
@@ -254,9 +261,9 @@
       }
     }); 
     
-    document.getElementById("editCountry").innerHTML += `<option selected value="${data.country.toLowerCase()}">${data.country}</option>`;
+    document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
     document.getElementById("editICountry").value = data.Icountry;
-    document.getElementById("editQuestionDetail").value = data.questionDetail; 
+    document.getElementById("editHint").value = data.hint; 
     document.getElementById("guessFlagEditForm").action = `/admin/guess-flag-game/manage/${data._id}/${Pid}?_method=PUT`;
 }
 

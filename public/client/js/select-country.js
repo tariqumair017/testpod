@@ -55,7 +55,7 @@ var _id = total_questions.getAttribute("_id");
 
 fetch(`/game/all/${_id}`)
   .then(res => res.json())
-  .then(data => { 
+  .then(data => {  
     questions = data.questions.map((val, i) => (
       {
         numb: i,
@@ -90,7 +90,7 @@ function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
 
   let que_tag =
-    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="/upload-images/${questions[index].question}" alt="img"></span>`;
+    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="${questions[index].question}" alt="img"></span>`;
 
   let detail = '<p class="your-quiz-progress-detail" >'+ questions[index].hint +'<p>'
 
