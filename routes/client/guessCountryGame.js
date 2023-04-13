@@ -1,8 +1,7 @@
 import express, { Router } from "express";
 const router = Router(); 
 import path from "path";  
-import CountryFlagGame from "../../models/guessCountryGame.js";
-import ipify from "ipify";
+import CountryFlagGame from "../../models/guessCountryGame.js"; 
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
 import asyncHandler from "express-async-handler";  
@@ -23,9 +22,15 @@ router.get("/game/all/:id", asyncHandler(async (req, res, next) => {
 //Client Guess-Country page
 router.get("/guess-country", asyncHandler(async (req, res, next) => {  
 
-    const ClientIP = await ipify({useIPv6: false});
-     console.log(ClientIP);
-    const response = await fetch(`http://ipwho.is/${ClientIP}`);
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    if (ip.substr(0, 7) == "::ffff:") {
+     ip = ip.substr(7)
+   }
+  
+    // const ClientIP = await ipify({useIPv6: false});
+    // console.log(ClientIP);
+
+    const response = await fetch(`http://ipwho.is/${ip}`);
     const location = await response.json();   
     
     const data = await CountryFlagGame.find({});  

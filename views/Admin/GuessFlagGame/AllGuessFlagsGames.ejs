@@ -261,6 +261,15 @@ const region = `<%-data.region%>`;
       }
     }); 
     
+    // var editCountryy = document.getElementById("editCountry");
+
+    // for (let i = 0; i < editCountryy.options.length; i++) { 
+    //   if(editCountryy.options[i].value.toLowerCase() == data.country.toLowerCase())
+    //   { 
+    //     debugger;
+    //     editCountryy.options[i].setAttribute("selected", true);
+    //   }
+    // }
     document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
     document.getElementById("editICountry").value = data.Icountry;
     document.getElementById("editHint").value = data.hint; 

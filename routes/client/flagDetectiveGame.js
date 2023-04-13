@@ -1,7 +1,6 @@
 import express, { Router } from "express";
 const router = Router(); 
-import FlagDetectiveGame from "../../models/flagDetectiveGame.js";
-import ipify from "ipify";  
+import FlagDetectiveGame from "../../models/flagDetectiveGame.js"; 
 import connectEnsureLogin from "connect-ensure-login"; 
 import asyncHandler from "express-async-handler"; 
 
@@ -12,12 +11,13 @@ router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
    if (ip.substr(0, 7) == "::ffff:") {
     ip = ip.substr(7)
   }
-  const ClientIP = await ipify({useIPv6: false});
-    console.log(ClientIP);
-  const response = await fetch(`http://ipwho.is/${ClientIP}`);
-  const location = await response.json();  
-  
 
+  // const ClientIP = await ipify({useIPv6: false});
+  // console.log(ClientIP);
+  
+  const response = await fetch(`http://ipwho.is/${ip}`);
+  const location = await response.json();  
+   
   const DBcontinent = await FlagDetectiveGame.distinct("continent"); 
   
   var final = [];
@@ -27,7 +27,7 @@ router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
   
   const releventData = final.filter(x => location.continent.includes(x.continent));
   
-  res.render("Client/FlagDetectiveGame/FlagDetectiveRegions", { data: releventData, ip:ip, ipify: ClientIP });
+  res.render("Client/FlagDetectiveGame/FlagDetectiveRegions", { data: releventData });
 }));
 
 //Client: Flag Detective Game Data Api
