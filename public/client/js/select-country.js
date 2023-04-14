@@ -54,9 +54,7 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 var questions;
 
-var _id = total_questions.getAttribute("_id");
-
-fetch(`/game/all/${_id}`)
+fetch(`/game/all/${region}/${currenLevel}`)
   .then(res => res.json())
   .then(data => {  
     questions = data.questions.map((val, i) => (
@@ -182,8 +180,7 @@ function startTimerLine(time) {
 
 //show result box-shadow
 
-result_btn.onclick = async () => {
-  location='#hello'
+result_btn.onclick = async () => { 
   questions_box.classList.add("d-none");
 
   result_box.classList.remove("d-none");

@@ -7,48 +7,75 @@ import ResultModel from "../../models/result.js";
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login"; 
 
-//Client fetch All Games for Select-CountryFlag-Game
-router.get("/game/all/:id", asyncHandler(async (req, res, next) => {  
-    const data = await CountryFlagGame.findById(req.params.id);
-    if(!data)
-    {
-        req.flash("error", "Cannot find that Game!");
-        return res.redirect("/guess-country");
+//Client Guess-Country page
+router.get("/guess-country", asyncHandler(async (req, res, next) => {  
+//=== IP Address (Can get only When Site is deployed) ====//  
+    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    // if (ip.substr(0, 7) == "::ffff:") {
+    // ip = ip.substr(7)
+    // }
+//=== This is a Package to detect IP Address ====//  
+    // const ClientIP = await ipify({useIPv6: false});
+    // console.log(ClientIP);
+//=== Fetch Location through IP Address ====//
+    // const response = await fetch(`http://ipwho.is/${ip}`);
+    // const location = await response.json();   
+    
+
+    const DBcontinent = await CountryFlagGame.distinct("region");  
+
+    var final = [];
+    for (let i = 0; i < DBcontinent.length; i++) { 
+       final.push(await CountryFlagGame.findOne({region: DBcontinent[i]}));
     }
+
+    res.render("Client/GuessCountryGame/Guess-Country", { data: final });
+     
+}));
+
+//Client fetch All Games for Select-CountryFlag-Game
+router.get("/game/all/:region/:level", asyncHandler(async (req, res, next) => {  
+    const data = await CountryFlagGame.findOne({region: req.params.region, level: req.params.level});
     res.send(data);
 }));
 
-
-//Client Guess-Country page
-router.get("/guess-country", asyncHandler(async (req, res, next) => {  
-
-    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
-    if (ip.substr(0, 7) == "::ffff:") {
-     ip = ip.substr(7)
-   }
-  
-    // const ClientIP = await ipify({useIPv6: false});
-    // console.log(ClientIP);
-
-    const response = await fetch(`http://ipwho.is/${ip}`);
-    const location = await response.json();   
-    
-    const data = await CountryFlagGame.find({});  
-    const releventData = data.filter(x => location.continent.includes(x.region))
-    
-    res.render("Client/GuessCountryGame/Guess-Country", {data: releventData});
-}));
-
 //Client Guess-Country by id page
-router.get("/guess-country/:name/:id", asyncHandler(async (req, res, next) => { 
-    req.session.newResultIDForGame = undefined;
-    const data = await CountryFlagGame.findById(req.params.id); 
-    if(!data)
-    {
-        req.flash("error", "Cannot find that Game!");
-        return res.redirect("/guess-country");
+router.get("/guess-country/:name/:region/game", asyncHandler(async (req, res, next) => { 
+    req.session.newResultIDForGame = undefined; 
+
+    const EasyLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Easy"});
+  if(EasyLevel)
+  { 
+    res.render("Client/GuessCountryGame/"+req.params.name, {data: EasyLevel});
+  }
+  else
+  {
+    const normalLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Normal"});
+    if(normalLevel)
+    { 
+      res.render("Client/GuessCountryGame/"+req.params.name, {data: normalLevel});
     }
-    res.render("Client/GuessCountryGame/"+req.params.name, { data });
+    else
+    {
+      const HardLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Hard"});
+      if(HardLevel)
+      { 
+        res.render("Client/GuessCountryGame/"+req.params.name, {data: HardLevel});
+      }
+      else
+      {
+        const extremeLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Extreme"});
+        if(extremeLevel)
+        {
+          res.render("Client/GuessCountryGame/"+req.params.name, {data: extremeLevel});
+        }
+        else
+        {
+          res.redirect("/guess-country");
+        }
+      }
+    }
+  }
 }));
 
 

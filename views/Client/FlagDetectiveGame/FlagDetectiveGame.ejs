@@ -13,8 +13,8 @@
                   <li class="breadcrumb-item">
                     <a href="/">Home</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <%= data.continent %>
+                  <li class="breadcrumb-item">
+                    <a href="javascript:(0)"><%= data.continent %></a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
                     Flag Detective
@@ -32,13 +32,12 @@
 <section class="all-quiz">
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
-      <h6><%= data.continent %> Flags Examination</h6>
-      <h6 hidden id="currentContinent"><%=data.continent%></h6>
+      <h6><%= data.continent %> Flags Game</h6> 
       <h6>Game</h6>
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
-        <h4>Flag Detective</h4>
+        <h4>Flag Detective</h4> 
         <p class="guess-country">
           <%= data.gameDetail %>
         </p>
@@ -128,6 +127,10 @@
     </div>
   </div>
 </section>
-
+ 
+<script>
+    var currentContinent = '<%=data.continent%>'; 
+    var currenLevel = '<%=data.level%>'; 
+</script>
 <script src="/client/js/about.js"></script>
 <script src="/client/js/flagDetective.js" defer></script>

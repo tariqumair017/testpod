@@ -48,16 +48,14 @@ let question_counter = 0;
 
 let userWrongScore = 0;
 
-let total_inputs = [];
+let total_inputs = []; 
 
-var currentContinent = document.getElementById("currentContinent").innerHTML; 
-var currenLevel = "low"; 
 var flagDetective;
 
 // document.getElementById("nextLevel").addEventListener("click", function(e) {
 //   e.preventDefault();
 
-//   currenLevel = "medium";
+//   currenLevel = "Normal";
 
 //     //Api All Guess Flag Data
 //     fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
