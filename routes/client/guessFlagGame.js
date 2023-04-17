@@ -17,4 +17,17 @@ router.get("/game-management/guess-flags/all", asyncHandler(async (req, res, nex
     res.send(data);
 }));
 
+
+//Client: Guess Flag Regions  Page
+
+router.get("/guess-flag-regions", asyncHandler(async (req, res, next) => {
+      const DBcontinent = await GuessFlagGame.distinct("region"); 
+      var final = [];
+      for (let i = 0; i < DBcontinent.length; i++) { 
+         final.push(await GuessFlagGame.findOne({region: DBcontinent[i]}));
+      }
+    
+      res.render("Client/GuessFlagGame/GuessFlagRegions", { data: final });
+    }));
+
 export default router;

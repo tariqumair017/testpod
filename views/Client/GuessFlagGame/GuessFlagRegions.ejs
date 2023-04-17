@@ -9,7 +9,7 @@
       <div class="col-xl-12 col-lg-12">
         <div class="breadcrumb-wrap text-left">
           <div class="breadcrumb-title">
-            <h2>Flags Detective</h2>
+            <h2>Guess Flag</h2>
             <div class="breadcrumb-wrap">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -17,7 +17,7 @@
                     <a href="/">Home</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Flags Detective
+                    Guess Flag
                   </li>
                 </ol>
               </nav>
@@ -36,24 +36,24 @@
     <div class="row quiz-card">
       <%data.forEach(item => {%>
       <a
-      href="/flag-detective-regions/<%=item.continent%>/game"
+      href="/flag-detective-regions/<%=item.region%>/game"
         class="card quiz-card-item col-md-3"
         style="width: 18rem; padding: 0%;height: auto;",
       >
-      <%if(item.continent.toLowerCase() == "africa"){ %>
+      <%if(item.region.toLowerCase() == "africa"){ %>
         <img src="/client/img/continents/africa.svg" class="card-img-top card-img" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "america"){%>
+        <%} else if(item.region.toLowerCase() == "america"){%>
         <img src="/client/img/continents/southamerica.svg" class="card-img-top card-img" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "asia"){%>
+        <%} else if(item.region.toLowerCase() == "asia"){%>
           <img src="/client/img/continents/Asia.svg" class="card-img-top card-img" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "europe"){%>
+        <%} else if(item.region.toLowerCase() == "europe"){%>
           <img src="/client/img/continents/europe.svg" class="card-img-top card-img" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "oceania" || "antarctic"){%>
+        <%} else if(item.region.toLowerCase() == "oceania" || "antarctic"){%>
             <img src="/client/img/continents/antarctica.svg" class="card-img-top card-img" alt="..." />
         <% } %>
         <div class="card-body">
           <h5 class="card-title quiz-card-title">
-            <%=item.continent.toUpperCase()%>
+            <%=item.region.toUpperCase()%>
           </h5>
           <!-- <div class="card-question-number">
             <p class="card-total-scorce">=item.level</p> 

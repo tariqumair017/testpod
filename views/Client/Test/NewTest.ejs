@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testpod</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/client/css/style.css" />
+
+</head>
+<body>
+    
+    <div class="second-demo">
+        <div class="second-demo-img">
+            <div class="demo-header-img">
+                <img src="/client/img/logo/logo1.svg" width="50%" alt=""/>
+                <div class="search-top2 demo-header-logo" style="padding: 20px;display: flex;justify-content: end;">
+                  <ul>
+                    <li style="background-color: #A8171A; border-radius: 5px">
+                      <a
+                        href="javascript:(0)"
+                        class="menu-tigger"
+                        ><img src="/client/img/icon/menu.png" alt="logo"
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            <div class="second-demo-container-left">
+              <div class="state-and-test">
+                <!-- <h5 style="margin: 0px;font-size: large;font-weight: 900;color: #ffffff;"><%=data.quizName.toUpperCase() %></h5> -->
+                <h5 style="margin: 0px;font-size: small;letter-spacing: 5px;color: #ffffff;margin-top: 5px;font-weight: 400;"><%=data.stateName.toUpperCase()%></h5>
+
+              </div>
+                <div class="second-demo-right-part">
+                    <div class="all-quiz-progress">
+                        <div class="demo-all-quiz-upper-section-part-right">
+                            <h4>Your Progress</h4>
+                            <div class="demo-result-box">
+                                <div class="demo-all-quiz-upper-section-scorus-card">
+                                    <h6 style="margin: 0px; font-size:large" id="demo-total-correct">--</h6>
+                                    <span class="badge" style="background-color: #1DCF71;border-radius: 5px;font-size:large">Correct</span>
+                                </div>
+                                <!-- <div>
+                                    <span class="demo-passing-score" >(08 Allowed To Pass)</span>
+                                </div> -->
+                                <div class="demo-all-quiz-upper-section-scorus-card">
+                                    <h6 style="margin: 0px;font-size:large" id="demo-total-in-correct">--</h6>
+                                    <span class="badge" style="background-color: #A8171A;border-radius: 5px;font-size:large">Incorrect</span>
+                                </div>
+                            </div>
+                            <div>
+                              <h5>Questions</h5>
+                                <div class="number-questions" ></div>
+                            </div>
+                      </div>
+                      <div class="demo-hint d-none">
+                      <h5  style="margin: 0px;padding:0px">Details</h5>
+                      <img class="soundDetailbtn" src="/client/img/bg/volume_up_white_24dp.svg" />
+                      <img class="soundDetailbtn cancelDetail d-none" src="/client/img/bg/volume_off_white_24dp.svg" />
+                    </div>
+                      <p class="demo-your-quiz-progress-detail d-none"></p>
+                    </div>
+                    </div>
+                    </div>
+        </div>
+        <div class="second-demo-quiz">
+            <div class="second-demo-container">
+              <div class="second-header-logo">
+                <ul>
+                  <li style="background-color: #A8171A; border-radius: 5px">
+                    <a
+                      href="javascript:(0)"
+                      class="menu-tigger"
+                      ><img src="/client/img/icon/menu.png" alt="logo"
+                    /></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="demo-question-box">
+              <div class="que_text mb-3 second-demo-question"></div>
+                <div  class="second-demo-left-part">
+                    <div class="second-demo-questions-box">
+                  <div class="align-items-center">
+                    <div class="quiz-image">
+                    </div>
+                    <div style="margin-top: 10px">
+                      <div class="second-demo-option-list"></div>
+                    </div>
+                    <input class="focus-input" style="width: 0.1px;height: 0.1px;"/>
+                  </div>
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-md-6 text-center">
+                      <button
+                        class="btn btn ss-btn next_btn d-none"
+                        style="width: 200px;margin-top: 15px;"
+                        >
+                        Next Question ➜
+                      </button>
+                    </div>
+                  </div>
+                  <div class="extra" ></div>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- script tags -->
+
+
+
+                    <!-- Menu Slide bar -->
+
+
+                <!-- offcanvas-area -->
+<div id="offcanvas-menu">
+  <span id="menu-close" ><i class="fas fa-times"></i></span>
+  <form
+    role="search"
+    method="get"
+    id="searchform"
+    class="searchform"
+    action="http://wordpress.zcube.in/xconsulta/"
+  >
+    <input type="text" name="s" id="search" value="" placeholder="Search" />
+    <button><i class="fa fa-search"></i></button>
+  </form>
+
+  <div id="cssmenu3" class="menu-one-page-menu-container">
+    <ul id="menu-one-page-menu-2" class="menu">
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/">Home</a>
+      </li>
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/about">About Us</a>
+      </li>
+      <li><a href="/guess-country">Guess Country</a></li>
+      <li><a href="/draw-flags">Draw Flags</a></li>
+      <li><a href="/guess-flags">Guess Flags</a></li>
+      <li><a href="/flag-detective-regions">Flags Detective</a></li>
+      <!-- <li><a href="/flag-puzzle">Flags Puzzle</a></li> -->
+      <li><a href="/test/states">DMV Test</a></li>
+      <li><a href="/learn-about-flags">Learn About Flags</a></li>
+      <!-- <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/services">Services</a>
+      </li>
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/pricing">Pricing </a>
+      </li>
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/team">Team </a>
+      </li>
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/blog">Blog</a>
+      </li> -->
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="/contact">Contact</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="cssmenu2" class="menu-one-page-menu-container">
+    <ul id="menu-one-page-menu-1" class="menu">
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="#home"><span>+0 00 000000</span></a>
+      </li>
+      <li class="menu-item menu-item-type-custom menu-item-object-custom">
+        <a href="#howitwork"><span>Loremipsum@.com</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="offcanvas-overly"></div>
+<!-- offcanvas-end -->
+
+
+                <!-- Menu Slide bar -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <script src="/client/js/secondDemo.js"></script>
+
+</body>
+</html>

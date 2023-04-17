@@ -47,8 +47,18 @@
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
       <a href="/guess-country/flag_game/<%=value.region%>/game" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
-        <img src="https://images.twinkl.co.uk/tw1n/image/private/t_630/u/ux/au-g-25486904-map-of-asia-with-names_ver_6.jpg" class="card-img-top card-img" alt="..." />
-        <div class="card-body">
+        <%if(value.region.toLowerCase() == "africa"){ %>
+        <img src="/client/img/continents/africa.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "america"){%>
+        <img src="/client/img/continents/southamerica.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "asia"){%>
+          <img src="/client/img/continents/Asia.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "europe"){%>
+          <img src="/client/img/continents/europe.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "oceania" || "antarctic"){%>
+            <img src="/client/img/continents/antarctica.svg" class="card-img-top card-img" alt="..." />
+        <% } %>
+            <div class="card-body">
           <!-- <div class="d-flex justify-content-between">  -->
             <h5 class="card-title quiz-card-title text-center"><%=value.region.toUpperCase()%></h5> 
           <!-- </div>  -->

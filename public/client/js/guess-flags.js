@@ -234,7 +234,6 @@ function runGuessFlagGame(questions, id) {
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
       display.textContent = "00 :" + seconds;
-
       if (--timer < 0) {
         display.textContent = "00:00";
         if (customRadio[0].getAttribute("ans") == "correct") {
@@ -244,7 +243,11 @@ function runGuessFlagGame(questions, id) {
         }
         guess_check.classList.add("active");
         time_up.classList.remove("d-none");
+        if(que_numb == questions.length){
+          result_btn.classList.remove("d-none")
+        }else{
         next_btn.classList.remove("d-none");
+        }
         document.querySelector("#testDuration").classList.add("d-none");
         clearInterval(completeTestDuration);
         incorrect++;
@@ -253,7 +256,6 @@ function runGuessFlagGame(questions, id) {
       }
     }
   }
-  console.log(customRadio[0], "console");
 
   // runInterval();
   // function runInterval() {

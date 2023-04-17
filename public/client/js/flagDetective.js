@@ -89,32 +89,9 @@ fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
     runGuessDetectiveGame(flagDetective, data._id); 
   });  
 
-// const flagDetective = [
-//   {
-//     flagName: "rwanda",
-//     hint: "Rwanda testing",
-//     flagImage: "1680001540762-Rwanda.png",
-//   },
-//   {
-//     flagName: "Moldavia",
-//     hint: "Moldavia testing",
-//     flagImage: "1680001540764-Moldavia.png",
-//   },
-//   {
-//     flagName: "Mexico",
-//     hint: "Mexico testing",
-//     flagImage: "1680082648905-Mexico.png",
-//   },
-//   {
-//     flagName: "Rome",
-//     hint: "Rome testing",
-//     flagImage: "1680070106930-640px-Flag_of_Rome.svg.png",
-//   },
-// ];
 
 function runGuessDetectiveGame(flagDetective, id)
 {
-console.log(flagDetective)
 
 detective_total_questions.innerHTML =
   flagDetective.length < 10 ? "0" + flagDetective.length : flagDetective.length;
@@ -123,11 +100,14 @@ function startFlagDetectiveGame() {
   showFlagDetectiveGame(question_counter);
 }
 
+window.load = startFlagDetectiveGame();
+
+
 function showFlagDetectiveGame(index) {
   if (que_count <= flagDetective.length) {
   siblings_input.innerHTML = "";
   let detect_flag_image =
-    '<span style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src=/upload-images/' +
+    '<span style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img class="border" src=/upload-images/' +
     flagDetective[index].flagImage +
     ' alt="img"></span>';
   for (let i = 0; i < flagDetective[index].flagName.split("").length; i++) {
@@ -138,6 +118,7 @@ function showFlagDetectiveGame(index) {
   detective_image.innerHTML = detect_flag_image;
   const inputs = document.querySelectorAll(".current-input");
   total_inputs = inputs;
+  console.log(total_inputs,"total_inputs")
   score_board.innerHTML =
     '<span class="total_que" style="font-size: 30px; font-weight: bold">' +
     que_count +
@@ -146,6 +127,8 @@ function showFlagDetectiveGame(index) {
     " </span></span>";
   //focus the first input which index is 0 on window load
   window.addEventListener("load", () => total_inputs[0].focus());
+  console.log(total_inputs[0].focus())
+
   submit.classList.add("d-none")
 
   your_quiz_progress_detail.innerHTML = flagDetective[index].hint;
@@ -158,8 +141,6 @@ var baba = "";
 function correctInput(params) {
   baba += params;
 }
-
-window.load = startFlagDetectiveGame();
 
 
 // iterate over all inputs
@@ -192,6 +173,9 @@ function showNextInputs() {
       }
       if (baba.length == total_inputs.length) {
         submit.classList.remove("d-none")
+        for (let i = 0; i < total_inputs.length; i++) {
+          total_inputs[i].classList.add("disabled")
+        }
       }
     });
   });

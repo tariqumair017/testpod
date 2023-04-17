@@ -9273,6 +9273,67 @@ label {
     transform:translateX(-100%);
   }
 
+  .slide-left{
+    width: 100%;
+
+    animation: 1s slide-right 1s forwards;
+
+    animation-delay: 0.1s;
+
+
+    transform:translateX(-13%);
+  }
+
+  .slide-bottom1{
+    width: 100%;
+
+    overflow: hidden;
+    animation: 1.5s slide-right 1.5s forwards;
+
+    transform:translateY(100%);
+
+    animation-delay: 0.1s;
+
+    transition: all .3s;
+  }
+
+  .slide-bottom2{
+    width: 100%;
+
+    overflow: hidden;
+    animation: 1.5s slide-right 1.5s forwards;
+
+    transform:translateY(100%);
+
+    animation-delay: 0.2s;
+
+    transition: all .3s;
+  }
+  .slide-bottom3{
+    width: 100%;
+
+    overflow: hidden;
+    animation: 1.5s slide-right 1.5s forwards;
+
+    transform:translateY(100%);
+
+    animation-delay: 0.3s;
+
+    transition: all .3s;
+  }
+  .slide-bottom4{
+    width: 100%;
+
+    overflow: hidden;
+    animation: 1.5s slide-right 1.5s forwards;
+
+    transform:translateY(100%);
+
+    animation-delay: 0.4s;
+
+    transition: all .3s;
+  }
+
 
 
   .slide-right h2 {
@@ -9516,12 +9577,7 @@ margin-right: 10px;
 
 
 
-.demoQuestion{
-  font-size: 26px;
-  font-weight:800;
-  margin-bottom: 20px;
 
-}
 
 .second-demo-all-quiz-upper-section-part-right{
   border-radius: 10px;
@@ -9560,8 +9616,11 @@ margin-right: 10px;
   font-weight: 500;
   border-radius: 7px;
   border: 1px solid lightgray;
-  margin-top: 20px;
+  margin-top: 10px;
+  line-height: 17px;
 }
+
+
 
 
 
@@ -9602,7 +9661,7 @@ margin-right: 10px;
 
 .demoCustomLable{
 
-  background: #f3f3f3;
+  background: #ffffff;
 
   display: flex;
 
@@ -9617,6 +9676,7 @@ margin-right: 10px;
 
 
 
+
   }
 
   .option-content{
@@ -9625,6 +9685,7 @@ margin-right: 10px;
     font-size: 18px;
     font-weight: 400;
     margin-right: 45px;
+    line-height: 20px;
   }
 
   .option-content-active{
@@ -9633,7 +9694,8 @@ margin-right: 10px;
 
   .option-number{
     margin: 0px;
-    padding: 15px 20px;
+    /* height: demoCustomLable; */
+    padding: 20px 22px;
     background-color: #A8171A;
     /* margin-left: 5px; */
     color: #ffffff;
@@ -9645,8 +9707,7 @@ margin-right: 10px;
 
   .demoCustomLable:hover{
 
-  box-shadow: 0 0 2px 0 gray;
-
+  box-shadow: 0 0 3px 0 gray;
 
   }
 
@@ -12991,24 +13052,69 @@ section:hover .section-title h2::before {
   display: flex;
 }
 
+.soundbtn{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 30px;
+  width: 30px;
+  background-color: #A8171A;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.soundbtn:hover{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 35px;
+  width: 35px;
+  background-color: #A8171A;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.soundDetailbtn{
+  height: 25px;
+  width: 25px;
+  background-color: #A8171A;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.soundDetailbtn:hover{
+  height: 25px;
+  width: 25px;
+  background-color: #A8171A;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+
 .second-demo-quiz{
   width: 70%;
   height: auto;
-  background-image:url(/client/img/testimonial/Artboard.jpg);
+  background-image:url(/client/img/bg/Artboard.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  max-height: auto;
 }
 
 .second-demo-question{
   border-bottom: 1px solid gray;
   width: 80%;
+  margin: 20px;
   padding-bottom: 20px;
+  position: relative;
 }
 
 .second-demo-left-part{
   width: 80%;
   border-radius: 10px;
+  margin: 20px;
+  margin-top: 0px;
   height: fit-content;
 }
 
@@ -13017,27 +13123,136 @@ section:hover .section-title h2::before {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 20px;
+  margin: 20px;
   height: auto;
-  /* margin-bottom: 40px; */
+  margin-top: 0px;
 }
 
 .second-demo-img{
   width: 30%;
   height:auto;
-  background-image: url(/client/img/testimonial/side_image.png);
+  background-image: url(/client/img/bg/side_image.png);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: auto;
 
 }
 
 .second-demo-container{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 100%;
-  justify-content: center;
 }
+
+.second-demo-container-left{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.state-and-test{
+  flex-wrap: wrap;
+  margin-left: 22px;
+  margin-right: 20px;
+  margin-top: 43px;
+}
+
+.demoQuestion{
+  font-size: 30px;
+  font-weight:800;
+  width: 90%;
+  line-height: 40px;
+  letter-spacing: normal;
+}
+
+.demo-header-img{
+  display: flex;
+  justify-content: space-between;
+}
+.demo-header-logo{
+display: none !important;
+}
+
+.demo-hint{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.extra{
+  margin-top: 50px;
+}
+.demo-question-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+.second-header-logo{
+  display: flex;
+  justify-content: end;
+  padding: 20px;
+  float: right;
+}
+
+.second-header-logo li {
+  margin-left: 20px;
+  float: left;
+  border-radius: 10px;
+
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+}
+.second-header-logo li:nth-child(2) {
+  background-color: rgb(254, 131, 102);
+  box-shadow: 2.5px 4.33px 15px 0px rgba(250, 162, 146, 0.4);
+}
+.second-header-logo li a {
+  float: none !important;
+}
+.second-header-logo li .fas.fa-search {
+  color: #36383a;
+}
+
+
+
+@media screen and (max-width:700px) {
+    .second-demo{
+        flex-direction: column;
+      }
+      .second-demo-quiz{
+        width: 100% !important;
+        height: auto !important;
+      }
+      .second-demo-img{
+        width: 100% !important;
+        height: auto !important;
+      }
+      .second-demo-left-part{
+        width: 90%;
+      }
+      .second-demo-question{
+        width: 90%;
+      }
+      .demoQuestion{
+        font-size: 25px;
+        line-height: 30px;
+      }
+      .second-header-logo{
+        display: none !important;
+      }
+      .demo-header-logo{
+        display: contents !important;
+        }
+      .demo-header-logo ul{
+        padding: 20px;
+      }
+      .demo-question-box{
+        margin-top: 50px;
+      }
+}
+
 
 .testimonial-active2 .slick-next {
   left: inherit;
