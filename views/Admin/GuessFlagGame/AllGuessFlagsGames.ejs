@@ -23,8 +23,7 @@
       <thead>
         <tr>
           <th class="table-hash-col">#</th>
-          <th >Country</th>
-          <th >Incorrect Country</th>
+          <th >Country</th> 
           <th >Correct Img</th>
           <th >Incorrect Img</th>
           <th >Hint</th>
@@ -36,10 +35,9 @@
         <% data.questions.forEach(item => { %> 
           <tr>
             <th scope="row"><%=count%></th>
-            <td><%=item.country%></td>
-            <td><%=item.Icountry%></td>
-            <td><%=item.correctImg%></td>
-            <td><%=item.IcorrectImg%></td> 
+            <td><%=item.country%></td> 
+            <td><img class="border" width="50" src="<%=item.correctImg%>" alt="..img"></td>
+            <td><img class="border" width="50" src="/upload-images/<%=item.IcorrectImg%>" alt="..img"></td> 
             <td><%=item.hint%></td> 
             <td>
               <span class="table-buttons">
@@ -94,6 +92,7 @@
                     <div class="form-data">
                         <div class="row">
                             <div class="col-md-6 position-relative">
+                                <label for="validationTooltip03" class="form-label">Select Country</label>
                                 <select class="form-select" name="country" id="newCountry" onchange="newSelectedCountry(this)" required> 
                                   <option hidden>Please Select Counrty</option>  
                                 </select> 
@@ -102,15 +101,15 @@
                                 </div>
                             </div>
                             <div class="col-md-6 position-relative">
-                                <input readonly name="Icountry" id="newICountry" placeholder="In Correct Country" type="text" class="form-control" required>
+                                <input hidden name="Icountry" id="newICountry" placeholder="In Correct Country" type="text" class="form-control" required>
                                 <div class="invalid-tooltip">
                                     Please provide a In Correct Country.
                                 </div>
                             </div> 
                             <div class="col-md-12 position-relative mt-3">
-                                <label for="validationTooltip03" class="form-label">Select Correct Images</label>
+                                <label for="validationTooltip03" class="form-label">Correct Images</label>
                                 <div class="add-quiz-state-image">
-                                    <input class="add-quiz-image formFile form-control" type="file" name="correctImg" onchange="preview()" required> 
+                                    <input readonly class="add-quiz-image formFile form-control" type="text" id="newFlagUrl" name="correctImg" required> 
                                 </div>
                             </div> 
                             <div class="col-md-12 position-relative mt-3">
@@ -120,6 +119,7 @@
                                 </div>
                             </div> 
                             <div class="col-md-12 mt-4 position-relative">
+                              <label for="validationTooltip03" class="form-label">Hint</label>
                                 <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" required>
                             </div>
                         </div>
@@ -163,6 +163,7 @@
                  <div class="form-data">
                      <div class="row">
                          <div class="col-md-6 position-relative">
+                             <label for="validationTooltip03" class="form-label">Country</label>
                              <select class="form-select" name="country" id="editCountry" onchange="editSelectedCountry(this)" required> 
                                <option hidden>Please Select Counrty</option>  
                              </select> 
@@ -171,16 +172,16 @@
                              </div>
                          </div>
                          <div class="col-md-6 position-relative">
-                             <input readonly name="Icountry" id="editICountry" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                             <input hidden name="Icountry" id="editICountry" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
                              <div class="invalid-tooltip">
                                  Please provide a In Correct Country.
                              </div>
                          </div> 
-                         <div class="col-md-12 position-relative mt-3">
-                             <label for="validationTooltip03" class="form-label">Select Correct Images</label>
-                             <div class="add-quiz-state-image">
-                                 <input class="add-quiz-image formFile form-control" type="file" name="correctImg" onchange="preview()"> 
-                             </div>
+                         <div class="col-md-12 position-relative mt-3">  
+                              <label for="validationTooltip03" class="form-label">Correct Images</label>
+                              <div class="add-quiz-state-image">
+                                  <input readonly class="add-quiz-image formFile form-control" type="text" id="editFlagUrl" name="correctImg"> 
+                              </div> 
                          </div> 
                          <div class="col-md-12 position-relative mt-3">
                              <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
@@ -189,6 +190,7 @@
                              </div>
                          </div> 
                          <div class="col-md-12 mt-4 position-relative">
+                             <label for="validationTooltip03" class="form-label">Hint</label>
                              <input name="hint" id="editHint" placeholder="Please Enter Detail" type="text" class="form-control" required>
                            </div>
                      </div>
@@ -224,18 +226,29 @@ const region = `<%-data.region%>`;
       .catch(err => console.error('error:' + err)); 
 
 
-    function newSelectedCountry(e)
+ async function newSelectedCountry(e)
     { 
       const id = e.getAttribute("id"); 
-      const shuffledCountry = shuffleStr(document.getElementById(id).value);  
+      const countryName = document.getElementById(id).value;
+      const shuffledCountry = shuffleStr(countryName);  
       document.getElementById(`newICountry`).value = shuffledCountry;
+
+      
+      const response = await fetch(`/admin/guess-flag-game/all-flags-data/country-for-flag/${countryName}`);
+      const data = await response.json();
+      document.getElementById("newFlagUrl").value = data.flag;
     }
 
-    function editSelectedCountry(e)
+async function editSelectedCountry(e)
     {
       const id = e.getAttribute("id")
-      const shuffledCountry = shuffleStr(document.getElementById(id).value);  
+      const countryName = document.getElementById(id).value;
+      const shuffledCountry = shuffleStr(countryName);  
       document.getElementById(`editICountry`).value = shuffledCountry;
+
+      const response = await fetch(`/admin/guess-flag-game/all-flags-data/country-for-flag/${countryName}`);
+      const data = await response.json();
+      document.getElementById("editFlagUrl").value = data.flag;
     }
  
     //Shuffle String Character Function
@@ -272,6 +285,7 @@ const region = `<%-data.region%>`;
     // }
     document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
     document.getElementById("editICountry").value = data.Icountry;
+    document.getElementById("editFlagUrl").value = data.correctImg;
     document.getElementById("editHint").value = data.hint; 
     document.getElementById("guessFlagEditForm").action = `/admin/guess-flag-game/manage/${data._id}/${Pid}?_method=PUT`;
 }

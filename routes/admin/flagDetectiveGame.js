@@ -87,7 +87,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
   }
   else
   {   
-    req.flash("error", `${find.continent.toUpperCase()} with ${find.level.toUpperCase()} level is already exist`);
+    req.flash("error", `${find.continent.toUpperCase()} with Selected level is already exist`);
     res.redirect("/admin/flag-detective-game/add"); 
   }
 }));

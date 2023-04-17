@@ -8,7 +8,7 @@ const flagDetectiveGameSchema = new mongoose.Schema({
     required: true
     }, 
   level: {
-    type: String,
+    type: Number,
     required: true
     },
   gameDetail: {

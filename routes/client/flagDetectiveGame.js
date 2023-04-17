@@ -23,7 +23,8 @@ router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
   
   var final = [];
   for (let i = 0; i < DBcontinent.length; i++) { 
-     final.push(await FlagDetectiveGame.findOne({continent: DBcontinent[i]}));
+     const data = await FlagDetectiveGame.findOne({continent: DBcontinent[i]});
+     final.push(data);
   }
 
   res.render("Client/FlagDetectiveGame/FlagDetectiveRegions", { data: final });
@@ -37,40 +38,20 @@ router.get("/flag-detective-game/:continent/:level", asyncHandler(async (req, re
 }));
 
 //Client: Flag Detective Regions Page 
-router.get("/flag-detective-regions/:continent/game",  asyncHandler(async (req, res) => { 
-  const lowLevel = await FlagDetectiveGame.findOne({continent: req.params.continent, level: "Easy"});
-  if(lowLevel)
+router.get("/flag-detective-regions/:continent/game/:level",  asyncHandler(async (req, res) => { 
+  var currentLevel = Number(req.params.level);
+  const data = await FlagDetectiveGame.findOne({continent: req.params.continent, level: currentLevel});
+
+  if(!data)
   { 
-    res.render("Client/FlagDetectiveGame/FlagDetectiveGame", {data: lowLevel});
-  }
-  else
-  {
-    const mediumLevel = await FlagDetectiveGame.findOne({continent: req.params.continent, level: "Normal"});
-    if(mediumLevel)
-    { 
-      res.render("Client/FlagDetectiveGame/FlagDetectiveGame", {data: mediumLevel});
-    }
-    else
+    if(currentLevel > 3)
     {
-      const highLevel = await FlagDetectiveGame.findOne({continent: req.params.continent, level: "Hard"});
-      if(highLevel)
-      { 
-        res.render("Client/FlagDetectiveGame/FlagDetectiveGame", {data: highLevel});
-      }
-      else
-      {
-        const extremeLevel = await FlagDetectiveGame.findOne({continent: req.params.continent, level: "Extreme"});
-        if(extremeLevel)
-        {
-          res.render("Client/FlagDetectiveGame/FlagDetectiveGame", {data: extremeLevel});
-        }
-        else
-        {
-          res.redirect("/flag-detective-regions");
-        }
-      }
+      return res.redirect("/flag-detective-regions");
     }
+    return res.redirect(`/flag-detective-regions/${req.params.continent}/game/${currentLevel + 1}`);
   }
+  
+  res.render("Client/FlagDetectiveGame/FlagDetectiveGame", { data });
 }));
 
 

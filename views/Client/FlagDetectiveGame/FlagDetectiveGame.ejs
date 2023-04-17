@@ -33,7 +33,7 @@
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
       <h6><%= data.continent %> Flags Game</h6> 
-      <h6>Game</h6>
+      <h6><%= data.level %>  Game</h6>
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
@@ -130,7 +130,7 @@
  
 <script>
     var currentContinent = '<%=data.continent%>'; 
-    var currenLevel = '<%=data.level%>'; 
+    var currenLevel = '<%=data.level%>';  
 </script>
 <script src="/client/js/about.js"></script>
 <script src="/client/js/flagDetective.js" defer></script>

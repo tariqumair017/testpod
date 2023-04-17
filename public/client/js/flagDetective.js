@@ -52,28 +52,25 @@ let total_inputs = [];
 
 var flagDetective;
 
-// document.getElementById("nextLevel").addEventListener("click", function(e) {
-//   e.preventDefault();
+// var levels = ["Easy", "Normal", "Hard", "Extreme"];
+ 
+document.getElementById("nextLevel").addEventListener("click", function(e) {
+  e.preventDefault();
+    
 
-//   currenLevel = "Normal";
+  // for (let i = 0; i < levels.length; i++) {
+  //   if(levels[i] == currenLevel)
+  //   {
+  //     currenLevel = levels[i + 1]
+  //     break;
+  //   }
+  // }
+  debugger;
+  currenLevel++;
+  window.location.href = `/flag-detective-regions/${currentContinent}/game/${currenLevel}`;
 
-//     //Api All Guess Flag Data
-//     fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
-//     .then(res => res.json())
-//     .then((data) => {     
-//       flagDetective = data.questions.map((val, i) => ( 
-//         {
-//           flagName: val.flagName,
-//           hint: val.hint,
-//           flagImage: val.flagImg,
-//         }
-//       ));
-
-//       runGuessDetectiveGame(flagDetective, data._id); 
-//     }); 
-
-// });
-
+});
+debugger;
 //Api All Guess Flag Data
 fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
   .then(res => res.json())
@@ -92,7 +89,6 @@ fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
 
 function runGuessDetectiveGame(flagDetective, id)
 {
-
 detective_total_questions.innerHTML =
   flagDetective.length < 10 ? "0" + flagDetective.length : flagDetective.length;
 
@@ -290,6 +286,7 @@ function totalTestTime(min, sec) {
 function textCorrection(element, value) {
   element.innerHTML = value < 10 ? "0" + value : value;
 }
+
 if (que_count == flagDetective.length) { 
   result_btn.classList.remove("d-none");
   time_up.classList.remove("d-none");

@@ -8,24 +8,30 @@ import asyncHandler from "express-async-handler";
 
 
 //Admin: Distinct Region form All Flags Data
-router.get("/all-flags-data", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/all-flags-data", asyncHandler(async (req, res, next) => { 
   const data = await AllFlagsData.distinct("region"); 
   res.send(data);
 }));
 
 //Admin: Find All Countries of Selected Region from All Flags Data
-router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.get("/all-flags-data/country/:region", asyncHandler(async (req, res, next) => {  
   const data = await AllFlagsData.find({region: req.params.region});
   res.send(data);
 }));
 
+//Admin: Find Flag of selected Country from All Flags Data
+router.get("/all-flags-data/country-for-flag/:country", asyncHandler(async (req, res, next) => {  
+  const data = await AllFlagsData.findOne({country: req.params.country});
+  res.send(data);
+}));
+
 //Admin Create-Guess-Flag page
-router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/add", asyncHandler(async (req, res, next) => { 
     res.render("Admin/GuessFlagGame/AddGuessFlagsGame");
 }));
 
 //Admin: Create-Guess-Flag Handel
-router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post("/add", asyncHandler(async (req, res, next) => { 
 
     const find = await GuessFlagGame.findOne({region: req.body.region, level: req.body.level});
   
@@ -33,15 +39,11 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     {  
         if(typeof(req.body.country) == "string")
         {  
-            var correctFileName = Date.now() + '-' + req.files.correctImg.name;
-            const newPath1  = path.join(process.cwd(), '/public/upload-images', correctFileName);
-            req.files.correctImg.mv(newPath1);
-    
-            var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg.name;
-            const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
-            req.files.IcorrectImg.mv(newPath2);
+          var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg.name;
+          const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
+          req.files.IcorrectImg.mv(newPath2);
 
-          var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
+          var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: req.body.correctImg, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
           const singleGame = new GuessFlagGame({
               region: req.body.region,
               level: req.body.level, 
@@ -56,10 +58,6 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
           const newQuestions = [];
           for (let i = 0; i < req.body.country.length; i++) {  
 
-            var correctFileName = Date.now() + '-' + req.files.correctImg[i].name;
-            const newPath1  = path.join(process.cwd(), '/public/upload-images', correctFileName);
-            req.files.correctImg[i].mv(newPath1);
-
             var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg[i].name;
             const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
             req.files.IcorrectImg[i].mv(newPath2);  
@@ -67,7 +65,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
               const newQuestion = {
                 country: req.body.country[i], 
                 Icountry: req.body.Icountry[i], 
-                correctImg: correctFileName, 
+                correctImg: req.body.correctImg[i], 
                 IcorrectImg: IcorrectFileName, 
                 hint: req.body.hint[i]
             }; 
@@ -93,13 +91,13 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     
 
 //Admin Manage-Guess-Flag page
-router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/manage", asyncHandler(async (req, res, next) => { 
     const data = await GuessFlagGame.find({});
     res.render("Admin/GuessFlagGame/ManageGuessFlagGame", { data });
 }));
 
 //Admin - Delete Whole Guess Flag Game
-router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.delete("/manage/:id", asyncHandler(async (req, res, next) => { 
     const { id } = req.params;
     await GuessFlagGame.findByIdAndDelete(id);
     console.log("GuessFlagGame Deleted Successfully");  
@@ -108,7 +106,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
 }));
 
 //Admin: Show All Questions of Guess Flag Game
-router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/manage/:id/all-questions", asyncHandler(async (req, res, next) => { 
     const data = await GuessFlagGame.findById(req.params.id); 
     if(!data)
     {
@@ -125,21 +123,17 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
 // }));
 
 // Admin: Add new Question in Game
-router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post('/manage/:id/new', asyncHandler(async (req, res, next) => { 
   
     var find = await GuessFlagGame.findById(req.params.id);
   
       if(find)
       { 
-        var correctFileName = Date.now() + '-' + req.files.correctImg.name;
-        const newPath1  = path.join(process.cwd(), '/public/upload-images', correctFileName);
-        req.files.correctImg.mv(newPath1);
-
         var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg.name;
         const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
         req.files.IcorrectImg.mv(newPath2);
 
-        var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
+        var question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: req.body.correctImg, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
           
         await GuessFlagGame.updateOne({_id: find._id}, {$push:{questions: question}});
         console.log("New Question Added"); 
@@ -155,30 +149,26 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 
 
  // Admin: Edit Question of a Guess Flag Game
- router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+ router.get('/manage/:id/edit', asyncHandler(async (req, res, next) => { 
     const data = await GuessFlagGame.findById(req.params.id);
     res.send(data);  
 }));
   
 //Admin: Update Question of a Game
-router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
+router.put("/manage/:cid/:pid", asyncHandler(async (req, res, next) => {   
     var question;
     if(req.files)
     {
-        var correctFileName = Date.now() + '-' + req.files.correctImg.name;
-        const newPath1  = path.join(process.cwd(), '/public/upload-images', correctFileName);
-        req.files.correctImg.mv(newPath1);
-
         var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg.name;
         const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
         req.files.IcorrectImg.mv(newPath2);
 
-        question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: correctFileName, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
+        question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: req.body.correctImg, IcorrectImg: IcorrectFileName, hint: req.body.hint}; 
         await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
     }
     else
     {
-      await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.hint": req.body.hint}});
+      await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}});
     }
    
     console.log("Question Updated");
@@ -188,7 +178,7 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
 
 
 //Admin: Delete Question of Game
-router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.delete("/manage/:pid/:cid", asyncHandler(async (req, res, next) => {  
     await GuessFlagGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");
     req.flash("success", "Question Deleted Successfully");
