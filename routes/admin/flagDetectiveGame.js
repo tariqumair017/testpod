@@ -8,30 +8,30 @@ import asyncHandler from "express-async-handler";
 
 
 //Admin: Distinct Region form All Flags Data
-router.get("/data-of-allFlags", asyncHandler(async (req, res, next) => { 
+router.get("/data-of-allFlags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const data = await AllFlagsData.distinct("region"); 
   res.send(data);
 }));
 
 //Admin: Find All Countries of Selected Region from All Flags Data
-router.get("/all-flags-data/country/:region", asyncHandler(async (req, res, next) => {  
+router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
   const data = await AllFlagsData.find({region: req.params.region});
   res.send(data);
 }));
 
 //Admin: Find Flag of selected Country from All Flags Data
-router.get("/all-flags-data/country-for-flag/:country", asyncHandler(async (req, res, next) => {  
+router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
   const data = await AllFlagsData.findOne({country: req.params.country});
   res.send(data);
 }));
 
 //Admin: Create Flag Detective Game Page
-router.get("/add", asyncHandler(async (req, res, next) => { 
+router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     res.render("Admin/FlagDetectiveGame/AddFlagDetectiveGame");
 }));
 
 //Admin: Create Flag Detective Game Handel
-router.post("/add", asyncHandler(async (req, res, next) => { 
+router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
   const find = await FlagDetectiveGame.findOne({continent: req.body.continent, level: req.body.level});
 
@@ -80,7 +80,7 @@ router.post("/add", asyncHandler(async (req, res, next) => {
 }));
 
 //Admin: Manage Flag Detective Game Page
-router.get("/manage", asyncHandler(async (req, res, next) => { 
+router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await FlagDetectiveGame.find({});
     res.render("Admin/FlagDetectiveGame/ManageFlagDetectiveGame", { data });
 }));
@@ -111,7 +111,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
 // }));
 
 // Admin: Add new Question in Game
-router.post('/manage/:id/new', asyncHandler(async (req, res, next) => { 
+router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   
   var find = await FlagDetectiveGame.findById(req.params.id);
 
@@ -133,13 +133,13 @@ router.post('/manage/:id/new', asyncHandler(async (req, res, next) => {
 
 
 // Admin: Edit Question of Flag Detective Game
-router.get('/manage/:id/edit', asyncHandler(async (req, res, next) => { 
+router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const data = await FlagDetectiveGame.findById(req.params.id);
   res.send(data);  
 }));
 
 //Admin: Update Question of Flag Detective Game
-router.put("/manage/:cid/:pid", asyncHandler(async (req, res, next) => {   
+router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
    
   var question = {country: req.body.country, flagUrl: req.body.flagUrl, hint: req.body.hint}; 
   await FlagDetectiveGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
@@ -153,7 +153,7 @@ router.put("/manage/:cid/:pid", asyncHandler(async (req, res, next) => {
 
 
 //Admin: Delete Question of a Game
-router.delete("/manage/:pid/:cid", asyncHandler(async (req, res, next) => {  
+router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
   await FlagDetectiveGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
   console.log("Question Deleted Successfully");
   req.flash("success", "Question Deleted Successfully");

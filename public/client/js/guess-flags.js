@@ -64,7 +64,7 @@ let completeTestDuration;
 var questions;
 
 //Api All Guess Flag Data
-fetch(`/game-management/guess-flags/all`)
+fetch(`/guess-flag-game/${region}/${currentLevel}`)
   .then(res => res.json())
   .then((data) => {    
     questions = data[0].questions.map((val, i) => ( 

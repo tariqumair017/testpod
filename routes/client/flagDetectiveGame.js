@@ -1,7 +1,6 @@
 import express, { Router } from "express";
 const router = Router(); 
-import FlagDetectiveGame from "../../models/flagDetectiveGame.js"; 
-import connectEnsureLogin from "connect-ensure-login"; 
+import FlagDetectiveGame from "../../models/flagDetectiveGame.js";  
 import asyncHandler from "express-async-handler"; 
 
 //Client: Flag Detective Regions  Page 

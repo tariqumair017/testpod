@@ -4,10 +4,8 @@ import path from "path";
 import QuizModel from "../../models/test.js";  
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login"; 
+import asyncHandler from "express-async-handler";   
  
-
 
 
 //Client: All States Page
