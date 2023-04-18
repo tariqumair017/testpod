@@ -17,10 +17,10 @@
         <label for="level" class="form-label">Select Level</label>
         <select class="form-select" id="level" name="level" required> 
           <option hidden>Please Select Game Level</option>                     
-          <option value="Easy">Easy</option>  
-          <option value="Normal">Normal</option>  
-          <option value="Hard">Hard</option>  
-          <option value="Extreme">Extreme</option>  
+          <option value="0">Easy</option>  
+          <option value="1">Normal</option>  
+          <option value="2">Hard</option>  
+          <option value="3">Extreme</option>  
         </select>
       </div> 
       </div>
@@ -157,7 +157,6 @@
 
 <script>
   document.getElementById("guessCountryAdd").addEventListener("submit", function(e){
-    debugger;
     e.preventDefault();
     this.submit();
   });

@@ -33,8 +33,7 @@
   <section class="all-quiz">
     <div class="all-quiz-upper-section">
       <div class="all-quiz-upper-section-header">
-        <h6><%=data.region%> Flags Game</h6>
-        <h6>Game</h6>
+        <h6><%=data.region%> Flags Game</h6> 
       </div>
       <div class="all-quiz-upper-section-inner">
         <div class="all-quiz-upper-section-part-left">
@@ -101,8 +100,8 @@
             "
           ></canvas>
           <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-            <a href="/guess-country/flag_game/<%=data.region%>/game" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-            <button class="btn ss-btn" >Next Level</button>
+            <a href="/guess-country/flag_game/<%=data.region%>/game/<%=data.level%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+            <button id="nextLevel" class="btn ss-btn" >Next Level</button>
           </div>
         </div>
       </div>

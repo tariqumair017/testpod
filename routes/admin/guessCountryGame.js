@@ -35,16 +35,12 @@ router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
 //Admin: Add Flag Game Handel
 router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
-
-
   const find = await GuessCountryGame.findOne({region: req.body.region, level: req.body.level});
 
   if(!find)
   {    
     if(typeof(req.body.country) == "string")
     {  
-      if(req.body.correct == req.body.optionA || req.body.correct == req.body.optionB || req.body.correct == req.body.optionC || req.body.correct == req.body.optionD)
-      {
         const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
         const singleQuiz = new GuessCountryGame({
           region: req.body.region,
@@ -54,19 +50,11 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
         await singleQuiz.save();
         console.log("Single Quiz Added Successfully"); 
         res.redirect("/admin/guess-country-game/manage");
-      }
-      else
-      {
-        req.flash("error", `Correct and Option must equal`);
-        res.redirect("/admin/guess-country-game/add"); 
-      }
     }
     else if(typeof(req.body.country) == "object")
     {
       const newQuestions = [];
       for (let i = 0; i < req.body.country.length; i++) {   
-        if(req.body.correct[i] == req.body.optionA[i] || req.body.correct[i] == req.body.optionB[i] || req.body.correct[i] == req.body.optionC[i] || req.body.correct[i] == req.body.optionD[i])
-        {
             const newQuestion = {
               country: req.body.country[i], 
               flag: req.body.flag[i], 
@@ -79,12 +67,6 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
             }
     
             newQuestions.push(newQuestion);
-        }
-        else
-        {
-          req.flash("error", `Options must equal Correct Answer`);
-          res.redirect("/admin/guess-country-game/add"); 
-        }
       }
       const newQuiz = new GuessCountryGame({
         region: req.body.region,
@@ -98,7 +80,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
   }
   else
   {   
-    req.flash("error", `${find.region.toUpperCase()} with ${find.level} level is already exist`);
+    req.flash("error", `${find.region.toUpperCase()} with Selected level is already exist`);
     res.redirect("/admin/guess-country-game/add"); 
   }
 }));

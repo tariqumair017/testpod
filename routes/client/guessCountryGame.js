@@ -4,8 +4,7 @@ import path from "path";
 import CountryFlagGame from "../../models/guessCountryGame.js"; 
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login"; 
+import asyncHandler from "express-async-handler";   
 
 //Client Guess-Country page
 router.get("/guess-country", asyncHandler(async (req, res, next) => {  
@@ -35,47 +34,28 @@ router.get("/guess-country", asyncHandler(async (req, res, next) => {
 
 //Client fetch All Games for Select-CountryFlag-Game
 router.get("/game/all/:region/:level", asyncHandler(async (req, res, next) => {  
-    const data = await CountryFlagGame.findOne({region: req.params.region, level: req.params.level});
-    res.send(data);
+  const currentLevel = Number(req.params.level);
+  const data = await CountryFlagGame.findOne({region: req.params.region, level: currentLevel});
+  res.send(data);
 }));
 
 //Client Guess-Country by id page
-router.get("/guess-country/:name/:region/game", asyncHandler(async (req, res, next) => { 
+router.get("/guess-country/:name/:region/game/:level", asyncHandler(async (req, res, next) => { 
     req.session.newResultIDForGame = undefined; 
+    var currentLevel = Number(req.params.level);
 
-    const EasyLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Easy"});
-  if(EasyLevel)
+  const data = await CountryFlagGame.findOne({region: req.params.region, level: currentLevel});
+  if(!data)
   { 
-    res.render("Client/GuessCountryGame/"+req.params.name, {data: EasyLevel});
-  }
-  else
-  {
-    const normalLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Normal"});
-    if(normalLevel)
-    { 
-      res.render("Client/GuessCountryGame/"+req.params.name, {data: normalLevel});
-    }
-    else
+    if(currentLevel > 3)
     {
-      const HardLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Hard"});
-      if(HardLevel)
-      { 
-        res.render("Client/GuessCountryGame/"+req.params.name, {data: HardLevel});
-      }
-      else
-      {
-        const extremeLevel = await CountryFlagGame.findOne({region: req.params.region, level: "Extreme"});
-        if(extremeLevel)
-        {
-          res.render("Client/GuessCountryGame/"+req.params.name, {data: extremeLevel});
-        }
-        else
-        {
-          res.redirect("/guess-country");
-        }
-      }
+      return res.redirect("/guess-country");
     }
+    return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/${currentLevel + 1}`);
   }
+
+  res.render("Client/GuessCountryGame/"+req.params.name, { data });
+
 }));
 
 

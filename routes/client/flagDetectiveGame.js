@@ -33,7 +33,8 @@ router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
 
 //Client: Flag Detective Game Data Api
 router.get("/flag-detective-game/:continent/:level", asyncHandler(async (req, res, next) => {
-  const data = await FlagDetectiveGame.findOne({continent: req.params.continent, level: req.params.level});
+  const currentLevel = Number(req.params.level);
+  const data = await FlagDetectiveGame.findOne({continent: req.params.continent, level: currentLevel});
   res.send(data);
 }));
 

@@ -6,9 +6,17 @@
     <h3 class="test-name" >
       <%=data.region.toUpperCase()%>
     </h3> 
-    <h6 class="test-name" >
-      <%=data.level%>
-    </h6>
+
+    <% if(data.level == 0) {%>
+      <h6 class="test-name">Easy</h6>
+    <% }else if(data.level == 1){ %>
+      <h6 class="test-name">Normal</h6>
+    <% }else if(data.level == 2){ %>
+      <h6 class="test-name">Hard</h6>
+    <% }else if(data.level == 3){ %>
+      <h6 class="test-name">Extreme</h6>
+    <% } %>
+    
   <!-- <form class="edit-test" action="/admin/guess-flag-game/manage/<%=data._id%>?_method=PUT" method="POST">
     <div style="display: flex;">
       <input class="add-quiz-image-input form-control" value="<%=data.region.toUpperCase()%>" name="gameName" id="formFile">

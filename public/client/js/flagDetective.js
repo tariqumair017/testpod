@@ -51,35 +51,25 @@ let userWrongScore = 0;
 let total_inputs = []; 
 
 var flagDetective;
-
-// var levels = ["Easy", "Normal", "Hard", "Extreme"];
+ 
  
 document.getElementById("nextLevel").addEventListener("click", function(e) {
   e.preventDefault();
     
-
-  // for (let i = 0; i < levels.length; i++) {
-  //   if(levels[i] == currenLevel)
-  //   {
-  //     currenLevel = levels[i + 1]
-  //     break;
-  //   }
-  // }
-  debugger;
   currenLevel++;
   window.location.href = `/flag-detective-regions/${currentContinent}/game/${currenLevel}`;
 
 });
-debugger;
+
 //Api All Guess Flag Data
 fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
   .then(res => res.json())
   .then((data) => {     
     flagDetective = data.questions.map((val, i) => ( 
       {
-        flagName: val.flagName,
+        flagName: val.country,
+        flagImage: val.flagUrl,
         hint: val.hint,
-        flagImage: val.flagImg,
       }
     ));
  
@@ -103,7 +93,7 @@ function showFlagDetectiveGame(index) {
   if (que_count <= flagDetective.length) {
   siblings_input.innerHTML = "";
   let detect_flag_image =
-    '<span style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img class="border" src=/upload-images/' +
+    '<span style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img class="border" src=' +
     flagDetective[index].flagImage +
     ' alt="img"></span>';
   for (let i = 0; i < flagDetective[index].flagName.split("").length; i++) {

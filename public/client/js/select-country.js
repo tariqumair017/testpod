@@ -54,6 +54,16 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 var questions;
 
+
+document.getElementById("nextLevel").addEventListener("click", function(e) {
+  e.preventDefault();
+    
+  currenLevel++;
+  window.location.href = `/guess-country/flag_game/${region}/game/${currenLevel}`;
+
+});
+
+
 fetch(`/game/all/${region}/${currenLevel}`)
   .then(res => res.json())
   .then(data => {  

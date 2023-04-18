@@ -8,7 +8,7 @@ const guessFlagGameSchema = new mongoose.Schema({
     required: true
     }, 
   level: {
-        type: String,
+        type: Number,
         required: true
       }, 
   questions: [{

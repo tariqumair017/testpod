@@ -84,7 +84,7 @@ router.post("/add", asyncHandler(async (req, res, next) => {
     }
     else
     {   
-        req.flash("error", `${find.region.toUpperCase()} with ${find.level} level is already exist`);
+        req.flash("error", `${find.region.toUpperCase()} with Selected level is already exist`);
         res.redirect("/admin/guess-flag-game/add"); 
     }
 }));

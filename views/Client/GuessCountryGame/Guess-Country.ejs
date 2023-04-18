@@ -46,7 +46,7 @@
     </p>
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
-      <a href="/guess-country/flag_game/<%=value.region%>/game" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
+      <a href="/guess-country/flag_game/<%=value.region%>/game/0" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
         <%if(value.region.toLowerCase() == "africa"){ %>
         <img src="/client/img/continents/africa.svg" class="card-img-top card-img" alt="..." />
         <%} else if(value.region.toLowerCase() == "america"){%>

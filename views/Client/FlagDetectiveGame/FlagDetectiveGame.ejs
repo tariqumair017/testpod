@@ -32,14 +32,13 @@
 <section class="all-quiz">
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
-      <h6><%= data.continent %> Flags Game</h6> 
-      <h6><%= data.level %>  Game</h6>
+      <h6><%= data.continent %> Flags Game</h6>  
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
         <h4>Flag Detective</h4> 
         <p class="guess-country">
-          <%= data.gameDetail %>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat at ex incidunt perferendis quidem excepturi nam provident neque nulla consectetur? Quis beatae natus doloribus iste unde harum porro officiis molestiae.
         </p>
       </div>
     </div>
@@ -76,7 +75,7 @@
           "
         ></canvas>
         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-          <a href="/flag-detective-regions/<%= data.continent %>/game" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <a href="/flag-detective-regions/<%=data.continent%>/game/<%=data.level%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
           <button id="nextLevel" class="btn ss-btn" >Next Level</button>
         </div>
       </div>
