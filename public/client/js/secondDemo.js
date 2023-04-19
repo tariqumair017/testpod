@@ -468,7 +468,7 @@ function convertText2Speech(x) {
   speech.pitch = 1;
   speech.volume = 1;
   speech.lang = "en-US";
-  speech.rate = 0.6;
+  speech.rate = 0.5;
   speechSynthesis.speak(speech);
 }
 
