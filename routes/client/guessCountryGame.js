@@ -42,12 +42,16 @@ router.get("/game/all/:region/:level", asyncHandler(async (req, res, next) => {
 //Client Guess-Country by id page
 router.get("/guess-country/:name/:region/game/:level", asyncHandler(async (req, res, next) => { 
     req.session.newResultIDForGame = undefined; 
-    var currentLevel = Number(req.params.level);
+    var currentLevel = Number(req.params.level); 
+
+    if (isNaN(currentLevel)) {
+      return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/0`);
+    } 
 
   const data = await CountryFlagGame.findOne({region: req.params.region, level: currentLevel});
   if(!data)
   { 
-    if(currentLevel > 3)
+    if(currentLevel > 3 || currentLevel < 0)
     {
       return res.redirect("/guess-country");
     }

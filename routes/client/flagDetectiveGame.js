@@ -40,11 +40,16 @@ router.get("/flag-detective-game/:continent/:level", asyncHandler(async (req, re
 //Client: Flag Detective Regions Page 
 router.get("/flag-detective-regions/:continent/game/:level",  asyncHandler(async (req, res) => { 
   var currentLevel = Number(req.params.level);
+
+  if (isNaN(currentLevel)) {
+    return res.redirect(`/flag-detective-regions/${req.params.continent}/game/0`);
+  } 
+
   const data = await FlagDetectiveGame.findOne({continent: req.params.continent, level: currentLevel});
 
   if(!data)
   { 
-    if(currentLevel > 3)
+    if(currentLevel > 3 || currentLevel < 0)
     {
       return res.redirect("/flag-detective-regions");
     }

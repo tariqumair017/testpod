@@ -27,11 +27,16 @@ router.get("/guess-flag-game/:region/:level", asyncHandler(async (req, res, next
 //Client GuessFlags
 router.get("/guess-flag-regions/:region/game/:level", asyncHandler(async (req, res, next) => { 
   var currentLevel = Number(req.params.level);
+
+  if (isNaN(currentLevel)) {
+    return res.redirect(`/guess-flag-regions/${req.params.region}/game/0`);
+  } 
+
   const data = await GuessFlagGame.findOne({region: req.params.region, level: currentLevel});
 
   if(!data)
   { 
-    if(currentLevel > 3)
+    if(currentLevel > 3 || currentLevel < 0)
     {
       return res.redirect("/guess-flag-regions");
     }
