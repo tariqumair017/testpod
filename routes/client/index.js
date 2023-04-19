@@ -2,6 +2,7 @@ import express, { Router } from "express";
 const router = Router(); 
 import QuizModel from "../../models/test.js";
 import guessCountryGame from "../../models/guessCountryGame.js";  
+import GuessFlagGame from "../../models/guessFlagGame.js";
 import AllFlagsData from "../../models/allFlagsData.js";
 import ipify from "ipify";
 import asyncHandler from "express-async-handler";   
@@ -46,6 +47,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
         //=== This is a Package to detect IP Address ====//  
         // const ClientIP = await ipify({useIPv6: false});
         // console.log(ClientIP);
+        
         //=== Fetch Location through IP Address ====//
         const response = await fetch(`http://ipwho.is/${ip}`);
         var location = await response.json();
@@ -53,7 +55,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
         for (let i = 0; i < data.length; i++) { 
             if(location.continent.includes(data[i]))
             {
-                return res.redirect(`/guess-country/flag_game/${data[i]}/game`); 
+                return res.redirect(`/guess-country/flag_game/${data[i]}/game/0`); 
             }
         }
     }   
@@ -63,7 +65,25 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
     } 
     else if(req.params.game == 'guessFlag')
     { 
-        return res.redirect("/guess-flags");
+        //=== IP Address (Can get only When Site is deployed) ====//  
+        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+        if (ip.substr(0, 7) == "::ffff:") {
+        ip = ip.substr(7)
+        }
+        //=== This is a Package to detect IP Address ====//  
+        // const ClientIP = await ipify({useIPv6: false});
+        // console.log(ClientIP);
+        
+        //=== Fetch Location through IP Address ====//
+        const response = await fetch(`http://ipwho.is/${ip}`);
+        var location = await response.json();
+        const data = await GuessFlagGame.distinct("region");
+        for (let i = 0; i < data.length; i++) { 
+            if(location.continent.includes(data[i]))
+            {
+                return res.redirect(`/guess-flag-regions/${data[i]}/game/0`); 
+            }
+        }
     }
     else if(req.params.game == 'learnAboutFlag')
     { 
@@ -71,7 +91,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
     }
     else
     {
-        res.redirect("/");
+        return res.redirect("/");
     }
 }));
 

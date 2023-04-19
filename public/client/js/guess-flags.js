@@ -63,6 +63,15 @@ let completeTestDuration;
 
 var questions;
 
+document.getElementById("nextLevel").addEventListener("click", function(e) {
+  e.preventDefault();
+    
+  currentLevel++;
+  window.location.href = `/guess-flag-regions/${region}/game/${currentLevel}`;
+
+});
+
+
 //Api All Guess Flag Data
 fetch(`/guess-flag-game/${region}/${currentLevel}`)
   .then(res => res.json())
@@ -106,8 +115,8 @@ function runGuessFlagGame(questions, id) {
       questions[index].correctName +
       '><label class="customLableWimage" for=' +
       questions[index].correctName +
-      "><img src=/upload-images/" +
-      questions[index].correctFlag.replace(/\s/g, "") +
+      "><img src=" +
+      questions[index].correctFlag +
       ' alt="" ></label>';
 
     var RightSide =

@@ -17,6 +17,9 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
                 <li class="breadcrumb-item">
                   <a href="/">Home</a>
                 </li>
+                <li class="breadcrumb-item">
+                  <a href="javascript:(0)"><%=data.region%></a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">
                   Guess Flags
                 </li>
@@ -33,8 +36,7 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
 <section class="all-quiz">
   <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
-      <h6>Asia Flags Examination</h6>
-      <h6>Test #1</h6>
+      <h6><%=data.region%> Flags Examination</h6> 
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
@@ -74,8 +76,8 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
           "
         ></canvas>
         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-          <a href="/guess-flags" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-          <button class="btn ss-btn" >Next Level</button>
+          <a href="/guess-flag-regions/<%=data.region%>/game/<%=data.level%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <button id="nextLevel" class="btn ss-btn" >Next Level</button>
         </div>
       </div>
 
@@ -144,5 +146,9 @@ style="background-image: url(/client/img/testimonial/test-bg.png)"
   </div>
 </section>
 
+<script>
+  var region = '<%=data.region%>'; 
+  var currentLevel = '<%=data.level%>';  
+</script>
 <script src="/client/js/about.js"></script>
 <script src="/client/js/guess-flags.js" ></script>
