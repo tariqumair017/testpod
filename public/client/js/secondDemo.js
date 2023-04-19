@@ -51,6 +51,10 @@ const menu_close = document.getElementById("menu-close")
 
 
 
+
+const _id = location.pathname.replace("/test/states/new-jersey/","")
+
+
 menu_tigger[0].onclick=()=>{
   document.getElementById("offcanvas-menu").classList.toggle("active")
 }
@@ -79,14 +83,29 @@ let completeTestDuration;
 //creating required html divs
 
 
-const _id = location.pathname.replace("/test/states/new-jersey/","")
 
-var questions;
+// var questions;
 
-fetch(`/quiz-list/${_id}`)
-  .then(res => res.json())
-  .then(data => {  
-    questions = data.questions.map((val, i) => (
+// fetch(`/quiz-list/${_id}`)
+//   .then(res => res.json())
+//   .then(data => {  
+//     questions = data.questions.map((val, i) => (
+//       {
+//         numb: i,
+    
+//         question: val.question,
+    
+//         answer: val.correct,
+    
+//         options: [val.optionA, val.optionB, val.optionC, val.optionD],
+
+//         hint : val.hint
+//       }
+//     ));
+
+//     })
+
+    let questions = data.questions.map((val, i) => (
       {
         numb: i,
     
@@ -99,7 +118,6 @@ fetch(`/quiz-list/${_id}`)
         hint : val.hint
       }
     ));
-
 
 
 
@@ -189,6 +207,8 @@ function startQuiz() {
   cancelSpeech();
   cancelDetailSpeech();
 }
+
+
 
 function numberOfQuestions() {
   for (let i = 1; i <= questions.length; i++) {
@@ -320,9 +340,11 @@ function callNextQuestion() {
 
 //disable all option
 
-  })
 
-  let tickIconTag =
+
+
+
+let tickIconTag =
   '<div class="icon demotick"><i class="fas fa-check"></i></div>';
 
 let crossIconTag =
@@ -330,12 +352,8 @@ let crossIconTag =
 
 
 
-  
-  
-  
-  async function optionSelected(answer) {
+  function optionSelected(answer) {
     const number_of_questions = document.querySelectorAll(".number-of-questions")
-    console.log(number_of_questions,"number_of_questions")
     answer.classList.add("correct");
   
     let userAns = answer.textContent; //getting user selected option
@@ -399,6 +417,11 @@ let crossIconTag =
     cancelSpeech()
     
   }
+
+  
+  
+  
+
   
   //auto call correct option
   function callCorrectOption() {

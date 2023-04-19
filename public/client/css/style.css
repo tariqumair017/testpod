@@ -9376,6 +9376,27 @@ label {
 
   }
 
+  .fleg-detective-user_messages{
+    width: 100%;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  align-items: center;
+
+  height: inherit;
+
+  background: #00000061;
+
+  position: relative;
+
+  padding: 20px;
+
+  }
+
   .btn_try_again{
 
   width: fit-content;
@@ -10482,6 +10503,103 @@ footer .next-btn:hover {
 }
 
 /* quizs */
+
+
+
+/* flag detective game */
+
+.fleg-detective-game{
+  background-image: url(/client/img/bg/flagbg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.flag-detective-game-complete{
+  display: flex;
+  gap: 30px;
+}
+
+.flag-detective-game-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid lightgray;
+}
+
+.header-image{
+  width: 14%;
+}
+
+.flag-detective-game-left-part{
+  width: 85%;
+  display: flex;
+  justify-content: center;
+}
+.flag-detective-game-inner{
+  width: 70%;
+  background-color: #ffffff;
+  margin-top: 50px;
+  padding: 20px;
+  height: fit-content;
+  
+}
+
+.flag-detective-game-right-part{
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.flag-detective-game-scorus-card{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid lightgray;
+}
+
+.flag-detective-game-card{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgrey;
+  border-radius: 50%;
+  margin: 10px;
+}
+.mobile-side-view{
+  width: 15%;
+}
+
+@media screen and (max-width:700px) {
+  .header-image{
+    width: 35%;
+  }
+  .flag-detective-game-complete{
+    flex-direction: column;
+  }
+  .flag-detective-game-right-part{
+    width: 90%;
+  }
+  .flag-detective-game-left-part{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .flag-detective-game-inner{
+    width: 90%;
+  }
+  .mobile-side-view{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* flag detective game end */
+
 
 /* all quiz  */
 
@@ -13167,6 +13285,7 @@ section:hover .section-title h2::before {
 .demo-header-img{
   display: flex;
   justify-content: space-between;
+  padding: 20px;
 }
 .demo-header-logo{
 display: none !important;
@@ -13180,7 +13299,7 @@ display: none !important;
 }
 
 .extra{
-  margin-top: 50px;
+  margin-top: 30.5px;
 }
 .demo-question-box{
   display: flex;
@@ -13245,9 +13364,6 @@ display: none !important;
       .demo-header-logo{
         display: contents !important;
         }
-      .demo-header-logo ul{
-        padding: 20px;
-      }
       .demo-question-box{
         margin-top: 50px;
       }
