@@ -95,7 +95,7 @@
     <div class="flag-detective-game-left-part">
       <div class="flag-detective-game-inner">
       <div class="questions-box">
-        <div class="text-center que_heading slide-right">
+        <div class="text-center que_heading">
           <h2 style="margin: 0%;">
             <span style="display: flex;justify-content: center;gap: 10px;">
               <div class="flag-detective-game-score_board">
@@ -119,6 +119,7 @@
           id="myChart"
           style="
             width: 100%;
+            height: 250px;
             display: block;
             border: 2px solid #ccc;
             border-radius: 5px;
@@ -142,9 +143,9 @@
           <div class="flag-detective-game-timer">
             <div class="timer__background">
               <div class="timer__display">
-                <div class="display minute"></div>
+                <!-- <div class="display minute"></div>
                 <span class="display colon">:</span>
-                <div class="display seconds"></div>
+                <div class="display seconds"></div> -->
               </div>
               <span
               class="time_up d-none"
@@ -156,7 +157,7 @@
         </div>
         <!-- <h5>Your Progress</h5> -->
           <div class="flag-detective-game-scorus-card">
-            <p>Question</p>
+            <p>Flags</p>
             <h5 class="detective-total-questions">05</h5>
           </div>
           <div class="flag-detective-game-scorus-card">
@@ -167,18 +168,16 @@
             <p>In-Correct</p>
             <h5 class="detective-total-in-correct">--</h5>
           </div>
-        <h5 style="margin: 0px">Hint</h5>
+        <h5 class="flag-detective-hint" style="margin: 0px;text-align: center;border-top: 1px solid lightgray;padding-top: 20px;">Hint</h5>
         <div class="your-quiz-progress-detail">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
         </div>
       </div>
     </div>
     </div>
   </div>
 </section>
+
+<section id="clock-timer" ></section>
 
 
 
@@ -240,3 +239,10 @@
 </script>
 <script src="/client/js/about.js"></script>
 <script src="/client/js/flagDetective.js" defer></script>
+
+
+
+
+
+
+

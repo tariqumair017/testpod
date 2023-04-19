@@ -115,7 +115,7 @@ function runGuessFlagGame(questions, id) {
       questions[index].correctName +
       '><label class="customLableWimage" for=' +
       questions[index].correctName +
-      "><img src=" +
+      "><img class=guess-flag-image src=" +
       questions[index].correctFlag +
       ' alt="" ></label>';
 
@@ -126,7 +126,7 @@ function runGuessFlagGame(questions, id) {
       questions[index].inCorrectName +
       '><label class="customLableWimage" for=' +
       questions[index].inCorrectName +
-      "><img src=/upload-images/" +
+      "><img class=guess-flag-image src=/upload-images/" +
       questions[index].incorrectFlag.replace(/\s/g, "") +
       ' alt="" ></label>';
 
