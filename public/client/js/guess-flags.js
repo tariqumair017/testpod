@@ -63,8 +63,17 @@ let completeTestDuration;
 
 var questions;
 
+document.getElementById("nextLevel").addEventListener("click", function(e) {
+  e.preventDefault();
+    
+  currentLevel++;
+  window.location.href = `/guess-flag-regions/${region}/game/${currentLevel}`;
+
+});
+
+
 //Api All Guess Flag Data
-fetch(`/game-management/guess-flags/all`)
+fetch(`/guess-flag-game/${region}/${currentLevel}`)
   .then(res => res.json())
   .then((data) => {    
     questions = data[0].questions.map((val, i) => ( 
@@ -106,8 +115,8 @@ function runGuessFlagGame(questions, id) {
       questions[index].correctName +
       '><label class="customLableWimage" for=' +
       questions[index].correctName +
-      "><img src=/upload-images/" +
-      questions[index].correctFlag.replace(/\s/g, "") +
+      "><img class=guess-flag-image src=" +
+      questions[index].correctFlag +
       ' alt="" ></label>';
 
     var RightSide =
@@ -117,7 +126,7 @@ function runGuessFlagGame(questions, id) {
       questions[index].inCorrectName +
       '><label class="customLableWimage" for=' +
       questions[index].inCorrectName +
-      "><img src=/upload-images/" +
+      "><img class=guess-flag-image src=/upload-images/" +
       questions[index].incorrectFlag.replace(/\s/g, "") +
       ' alt="" ></label>';
 
@@ -234,7 +243,6 @@ function runGuessFlagGame(questions, id) {
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
       display.textContent = "00 :" + seconds;
-
       if (--timer < 0) {
         display.textContent = "00:00";
         if (customRadio[0].getAttribute("ans") == "correct") {
@@ -244,7 +252,11 @@ function runGuessFlagGame(questions, id) {
         }
         guess_check.classList.add("active");
         time_up.classList.remove("d-none");
+        if(que_numb == questions.length){
+          result_btn.classList.remove("d-none")
+        }else{
         next_btn.classList.remove("d-none");
+        }
         document.querySelector("#testDuration").classList.add("d-none");
         clearInterval(completeTestDuration);
         incorrect++;
@@ -253,7 +265,6 @@ function runGuessFlagGame(questions, id) {
       }
     }
   }
-  console.log(customRadio[0], "console");
 
   // runInterval();
   // function runInterval() {

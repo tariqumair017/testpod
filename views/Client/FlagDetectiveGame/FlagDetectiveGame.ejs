@@ -1,56 +1,106 @@
-<% layout('Client/layouts/boilerPlate') -%>
+<% layout('Client/layouts/gameBoilerPlate') -%>
 
-<section class="breadcrumb-area d-flex align-items-center" style="background-image: url(/client/img/testimonial/test-bg.png)">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-xl-12 col-lg-12">
-        <div class="breadcrumb-wrap text-left">
-          <div class="breadcrumb-title">
-            <h2>Flag Detective</h2>
-            <div class="breadcrumb-wrap">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="/">Home</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <%= data.continent %>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Flag Detective
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="all-quiz">
-  <div class="all-quiz-upper-section">
+<section class="fleg-detective-game">
+  <!-- <div class="all-quiz-upper-section">
     <div class="all-quiz-upper-section-header">
-      <h6><%= data.continent %> Flags Examination</h6>
-      <h6 hidden id="currentContinent"><%=data.continent%></h6>
-      <h6>Game</h6>
+      <h6>Flags Game</h6>  
     </div>
     <div class="all-quiz-upper-section-inner">
       <div class="all-quiz-upper-section-part-left">
-        <h4>Flag Detective</h4>
+        <h4>Flag Detective</h4> 
         <p class="guess-country">
-          <%= data.gameDetail %>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat at ex incidunt perferendis quidem excepturi nam provident neque nulla consectetur? Quis beatae natus doloribus iste unde harum porro officiis molestiae.
         </p>
       </div>
     </div>
+  </div> -->
+  <div class="flag-detective-game-header">
+    <span class="header-image">
+    <img style="cursor: pointer;" src="/client/img/logo/logo1.svg" width="100%" height="100%" alt=""/>
+  </span>
+  <div class="col-xl-8 col-lg-8">
+    <div id="mobile-main-menu" class="main-menu text-right text-xl-right">
+      <nav id="mobile-menu" style="display: block">
+        <ul>
+          <li class="sub">
+            <a href="/">Home</a>
+          </li>
+          <li class="sub" ><a href="/about">About Us</a></li>
+          <li class="sub">
+            <a href="javascript:(0)" >Flags Game</a>
+            <ul>
+              <li><a href="/guess-country">Guess Country</a></li>
+              <li><a href="/draw-flags">Draw Flags</a></li>
+              <li><a href="/guess-flag-regions">Guess Flags</a></li>
+              <li><a href="/flag-detective-regions">Flags Detective</a></li>
+              <!-- <li><a href="/flag-puzzle">Flags Puzzle</a></li> -->
+              <li><a href="/learn-about-flags">Learn About Flags</a></li>
+              
+            </ul>
+          </li>
+          <li class="sub">
+            <a href="javascript:(0)" >Practice Test</a>
+            <ul>
+              <li><a href="/test/states">DMV Test</a></li>
+            </ul>
+          </li>
+          <!-- <li class="sub">
+            <a href="/courses">Courses</a>
+            <ul>
+              <li><a href="/courses">Courses</a></li>
+              <li>
+                <a href="/courses-details">Courses Details</a>
+              </li>
+            </ul>
+          </li> -->
+         
+
+          <!-- <li class="sub">
+            <a href="javascript:(0)">Pages</a>
+            <ul>
+              <li><a href="/pricing">Pricing</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/faq">Faq</a></li>
+              <li><a href="/shop">Shop</a></li>
+              <li><a href="/shop-details">Shop Details</a></li>
+            </ul>
+          </li> -->
+
+          <!-- <li class="sub">
+            <a href="javascript:(0)">News</a>
+            <ul>
+              <li><a href="/blog">News</a></li>
+              <li><a href="/blog-details">News Details</a></li>
+            </ul>
+          </li> -->
+
+          <li class="sub" ><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
-  <div class="all-quizzes">
-    <div class="all-quiz-left-part">
+    <div class="search-top2">
+      <ul>
+        <li style="background-color: #A8171A; border-radius: 5px">
+          <a
+            href="javascript:(0)"
+            class="menu-tigger"
+            ><img src="/client/img/icon/menu.png" alt="logo"
+          /></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="flag-detective-game-complete">
+    <div class="flag-detective-game-left-part">
+      <div class="flag-detective-game-inner">
       <div class="questions-box">
-        <div class="text-center que_heading slide-right">
+        <div class="text-center que_heading">
           <h2 style="margin: 0%;">
-            <span>What a Country it is </span>
+            <span style="display: flex;justify-content: center;gap: 10px;">
+              <div class="flag-detective-game-score_board">
+              </div>
+              What a Country it is ?</span>
           </h2>
         </div>
         <div class="detective-image"></div>
@@ -69,6 +119,7 @@
           id="myChart"
           style="
             width: 100%;
+            height: 250px;
             display: block;
             border: 2px solid #ccc;
             border-radius: 5px;
@@ -77,57 +128,121 @@
           "
         ></canvas>
         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-          <a href="/flag-detective-regions/<%= data.continent %>/game" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <a href="/flag-detective-regions/<%=data.continent%>/game/<%=data.level%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <% if(data.level < 3){ %>
           <button id="nextLevel" class="btn ss-btn" >Next Level</button>
+          <% } %>
         </div>
       </div>
+      </div>
     </div>
-    <div class="all-quiz-right-part">
+    <div class="mobile-side-view">
+    <div class="flag-detective-game-right-part">
       <div class="all-quiz-progress">
-         <div class="draw-falgs-progress-card">
-          <div class="score_board">
-          </div>
-          <div class="timer">
+         <div class="flag-detective-game-card">
+          <div class="flag-detective-game-timer">
             <div class="timer__background">
               <div class="timer__display">
-                <div class="display minute"></div>
+                <!-- <div class="display minute"></div>
                 <span class="display colon">:</span>
-                <div class="display seconds"></div>
+                <div class="display seconds"></div> -->
               </div>
               <span
               class="time_up d-none"
-              style="font-size: 30px; font-weight: bold;color:#A8171A"
+              style="font-size: 15px; font-weight: bold;color:#A8171A"
               >Completed</span>
                 <circle class="st0" cx="260.59" cy="260.59" r="253.09" />
             </div>
           </div>
         </div>
-        <h5>Your Progress</h5>
-        <div class="all-quiz-upper-section-part-right">
-          <div class="all-quiz-upper-section-scorus-card">
-            <p>Question</p>
+        <!-- <h5>Your Progress</h5> -->
+          <div class="flag-detective-game-scorus-card">
+            <p>Flags</p>
             <h5 class="detective-total-questions">05</h5>
           </div>
-          <div class="all-quiz-upper-section-scorus-card">
+          <div class="flag-detective-game-scorus-card">
             <p>Correct</p>
             <h5 class="detective-total-correct">--</h5>
           </div>
-          <div class="all-quiz-upper-section-scorus-card">
+          <div class="flag-detective-game-scorus-card">
             <p>In-Correct</p>
             <h5 class="detective-total-in-correct">--</h5>
           </div>
-        </div>
-        <h5 style="margin-top: 20px;margin-bottom: -3%;">Hint</h5>
+        <h5 class="flag-detective-hint" style="margin: 0px;text-align: center;border-top: 1px solid lightgray;padding-top: 20px;">Hint</h5>
         <div class="your-quiz-progress-detail">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
 
+<section id="clock-timer" ></section>
+
+
+
+<!-- Menu Slide bar -->
+
+<!-- offcanvas-area -->
+<div id="offcanvas-menu">
+  <span id="menu-close" ><i class="fas fa-times"></i></span>
+    <form
+      role="search"
+      method="get"
+      id="searchform"
+      class="searchform"
+      action="http://wordpress.zcube.in/xconsulta/"
+    >
+      <input type="text" name="s" id="search" value="" placeholder="Search" />
+      <button><i class="fa fa-search"></i></button>
+    </form>
+                
+    <div id="cssmenu3" class="menu-one-page-menu-container">
+      <ul id="menu-one-page-menu-2" class="menu">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/">Home</a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/about">About Us</a>
+        </li>
+        <li><a href="/guess-country">Guess Country</a></li>
+        <li><a href="/draw-flags">Draw Flags</a></li>
+        <li><a href="/guess-flags">Guess Flags</a></li>
+        <li><a href="/flag-detective-regions">Flags Detective</a></li>
+        <!-- <li><a href="/flag-puzzle">Flags Puzzle</a></li> -->
+        <li><a href="/test/states">DMV Test</a></li>
+        <li><a href="/learn-about-flags">Learn About Flags</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+                
+    <div id="cssmenu2" class="menu-one-page-menu-container">
+      <ul id="menu-one-page-menu-1" class="menu">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="#home"><span>+0 00 000000</span></a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="#howitwork"><span>Loremipsum@.com</span></a>
+        </li>
+      </ul>
+    </div>
+</div>
+<div class="offcanvas-overly"></div>
+<!-- offcanvas-end -->
+<!-- Menu Slide bar -->
+ 
+<script>
+    var currentContinent = '<%=data.continent%>'; 
+    var currenLevel = '<%=data.level%>';  
+</script>
 <script src="/client/js/about.js"></script>
 <script src="/client/js/flagDetective.js" defer></script>
+
+
+
+
+
+
+

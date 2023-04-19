@@ -40,34 +40,33 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
   if(!find)
   {    
     if(typeof(req.body.country) == "string")
-    { 
-      const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
-      const singleQuiz = new GuessCountryGame({
-        region: req.body.region,
-        level: req.body.level,  
-        questions: question
-      });
-      await singleQuiz.save();
-      console.log("Single Quiz Added Successfully"); 
-      res.redirect("/admin/guess-country-game/manage");
+    {  
+        const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 
+        const singleQuiz = new GuessCountryGame({
+          region: req.body.region,
+          level: req.body.level,  
+          questions: question
+        });
+        await singleQuiz.save();
+        console.log("Single Quiz Added Successfully"); 
+        res.redirect("/admin/guess-country-game/manage");
     }
     else if(typeof(req.body.country) == "object")
     {
       const newQuestions = [];
       for (let i = 0; i < req.body.country.length; i++) {   
-        
-          const newQuestion = {
-            country: req.body.country[i], 
-            flag: req.body.flag[i], 
-            optionA: req.body.optionA[i], 
-            optionB: req.body.optionB[i], 
-            optionC: req.body.optionC[i], 
-            optionD: req.body.optionD[i], 
-            correct: req.body.correct[i], 
-            hint: req.body.hint[i]
-          }
-  
-        newQuestions.push(newQuestion);
+            const newQuestion = {
+              country: req.body.country[i], 
+              flag: req.body.flag[i], 
+              optionA: req.body.optionA[i], 
+              optionB: req.body.optionB[i], 
+              optionC: req.body.optionC[i], 
+              optionD: req.body.optionD[i], 
+              correct: req.body.correct[i], 
+              hint: req.body.hint[i]
+            }
+    
+            newQuestions.push(newQuestion);
       }
       const newQuiz = new GuessCountryGame({
         region: req.body.region,
@@ -81,7 +80,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
   }
   else
   {   
-    req.flash("error", `${find.region.toUpperCase()} with ${find.level} level is already exist`);
+    req.flash("error", `${find.region.toUpperCase()} with Selected level is already exist`);
     res.redirect("/admin/guess-country-game/add"); 
   }
 }));

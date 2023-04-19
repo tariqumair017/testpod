@@ -3,8 +3,7 @@ const router = Router();
 import path from "path";  
 import DrawFlagGameModel from "../../models/drawFlagGame.js";
 import DrawNewFlagModel from "../../models/drawNewFlag.js";
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login"; 
+import asyncHandler from "express-async-handler";   
   
 
 

@@ -15,7 +15,8 @@
               <div class="breadcrumb-wrap">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/guess-country">Guess Countries</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:(0)"><%=data.region%></a></li> 
                     <li class="breadcrumb-item active" aria-current="page">
                       Can You Match Flag With Its Country?
                     </li>
@@ -32,14 +33,13 @@
   <section class="all-quiz">
     <div class="all-quiz-upper-section">
       <div class="all-quiz-upper-section-header">
-        <h6><%=data.region%> Flags Examination</h6>
-        <h6>Test #1</h6>
+        <h6><%=data.region%> Flags Game</h6> 
       </div>
       <div class="all-quiz-upper-section-inner">
         <div class="all-quiz-upper-section-part-left">
           <h4><%=data.region%></h4>
           <p class="guess-country-flags-details">
-            <%=data.level%>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum laudantium facere exercitationem fugiat nam labore necessitatibus, deleniti sunt, dolor consequuntur ea ullam? Dicta aliquid, aperiam enim veritatis necessitatibus expedita ipsa.
           </p>
         </div>
       </div>
@@ -100,8 +100,8 @@
             "
           ></canvas>
           <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-            <a href="/guess-country/flag_game/<%=data._id%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-            <button class="btn ss-btn" >Next Level</button>
+            <a href="/guess-country/flag_game/<%=data.region%>/game/<%=data.level%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+            <button id="nextLevel" class="btn ss-btn" >Next Level</button>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
           <div class="all-quiz-upper-section-part-right">
             <div class="all-quiz-upper-section-scorus-card">
               <p>Question</p> 
-              <h5 _id="<%=data._id%>" id="total-questions"></h5>
+              <h5 id="total-questions"></h5>
             </div>
             <div class="all-quiz-upper-section-scorus-card">
               <p>Correct</p>
@@ -146,6 +146,11 @@
   </section>
 </main>
 
+<script>
+    var region = '<%=data.region%>';
+    var currenLevel = '<%=data.level%>';
+    var _id = '<%=data._id%>';
+</script>
 <script src="/client/js/select-country.js"></script>
 <script src="/client/js/about.js"></script>
 
