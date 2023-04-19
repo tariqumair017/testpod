@@ -54,9 +54,17 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 var questions;
 
-var _id = total_questions.getAttribute("_id");
 
-fetch(`/game/all/${_id}`)
+document.getElementById("nextLevel").addEventListener("click", function(e) {
+  e.preventDefault();
+    
+  currenLevel++;
+  window.location.href = `/guess-country/flag_game/${region}/game/${currenLevel}`;
+
+});
+
+
+fetch(`/game/all/${region}/${currenLevel}`)
   .then(res => res.json())
   .then(data => {  
     questions = data.questions.map((val, i) => (
@@ -96,7 +104,7 @@ function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
   
   let que_tag =
-    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src="${questions[index].question}" alt="img"></span>`;
+    `<span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${questions[index].question}" alt="img"></span>`;
 
   let detail = '<p class="your-quiz-progress-detail" >'+ questions[index].hint +'<p>'
 
@@ -182,8 +190,7 @@ function startTimerLine(time) {
 
 //show result box-shadow
 
-result_btn.onclick = async () => {
-  location='#hello'
+result_btn.onclick = async () => { 
   questions_box.classList.add("d-none");
 
   result_box.classList.remove("d-none");

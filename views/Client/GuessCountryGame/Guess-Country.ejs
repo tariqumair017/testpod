@@ -17,7 +17,7 @@
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                       <a href="/">Home</a>
-                    </li>
+                    </li> 
                     <li class="breadcrumb-item active" aria-current="page">
                         Guess Countries
                     </li>
@@ -40,23 +40,28 @@
     background-position: center center;
   ">
   <div class="quiz-citys">
-    <h2 class="font-weight-bold mb-2">Asia Countries</h2>
+    <h2 class="font-weight-bold mb-2">Continents</h2>
     <p class="font-italic text-muted mb-4 text-center">
       
     </p>
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
-      <a href="/guess-country/flag_game/<%=value._id%>" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
-        <img src="https://images.twinkl.co.uk/tw1n/image/private/t_630/u/ux/au-g-25486904-map-of-asia-with-names_ver_6.jpg" class="card-img-top card-img" alt="..." />
-        <div class="card-body">
-          <div class="d-flex justify-content-between"> 
-            <h5 class="card-title quiz-card-title"><%=value.region.toUpperCase()%></h5>
-            <p class="card-title quiz-card-title"><%=value.level%></p>
-          </div>
-          <div class="card-question-number">
-              <p class="card-total-scorce"><%=value.questions.length%></p>
-              <p class="card-question" >questions</p>
-          </div>
+      <a href="/guess-country/flag_game/<%=value.region%>/game/0" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
+        <%if(value.region.toLowerCase() == "africa"){ %>
+        <img src="/client/img/continents/africa.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "america"){%>
+        <img src="/client/img/continents/southamerica.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "asia"){%>
+          <img src="/client/img/continents/Asia.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "europe"){%>
+          <img src="/client/img/continents/europe.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(value.region.toLowerCase() == "oceania" || "antarctic"){%>
+            <img src="/client/img/continents/antarctica.svg" class="card-img-top card-img" alt="..." />
+        <% } %>
+            <div class="card-body">
+          <!-- <div class="d-flex justify-content-between">  -->
+            <h5 class="card-title quiz-card-title text-center"><%=value.region.toUpperCase()%></h5> 
+          <!-- </div>  -->
         </div>
       </a>
       <%})%>

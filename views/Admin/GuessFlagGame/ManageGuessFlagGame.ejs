@@ -13,7 +13,17 @@
             <div class="col mr-2">
               <div class="card-title text-xs font-weight-bold text-uppercase">
                 <li><%=single.region%></li> 
-                <li class="manage-state-name" ><%=single.level%></li> 
+                <li class="manage-state-name">
+                  <% if(single.level == 0) {%>
+                    <b>Easy</b>
+                  <% }else if(single.level == 1){ %>
+                    <b>Normal</b>
+                  <% }else if(single.level == 2){ %>
+                    <b>Hard</b>
+                  <% }else if(single.level == 3){ %>
+                    <b>Extreme</b>
+                  <% } %> 
+                </li> 
               </div>
               <div class="manage-action-btn" >
               <div class="dashboard-total-rating"><%=single.questions.length%></div>

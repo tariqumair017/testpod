@@ -34,11 +34,17 @@ const your_quiz_progress_detail = document.querySelector(
 
 const timer__display = document.querySelector(".timer__display");
 
-const score_board = document.querySelector(".score_board");
+const score_board = document.querySelector(".flag-detective-game-score_board");
 
 const submit = document.querySelector(".submit")
 
+const flag_detective_hint = document.querySelector(".flag-detective-hint")
+
+const flag_detective_game_card = document.querySelector(".flag-detective-game-card")
+
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
+
+
 
 let que_count = 1;
 
@@ -48,76 +54,71 @@ let question_counter = 0;
 
 let userWrongScore = 0;
 
-let total_inputs = [];
+let total_inputs = []; 
 
-var currentContinent = document.getElementById("currentContinent").innerHTML; 
-var currenLevel = "low"; 
+
+
+
+
+
 var flagDetective;
 
-// document.getElementById("nextLevel").addEventListener("click", function(e) {
-//   e.preventDefault();
+ if(currenLevel < 3){
+document.getElementById("nextLevel").addEventListener("click", function(e) {
+  e.preventDefault();
+  
+  currenLevel++;
+  window.location.href = `/flag-detective-regions/${currentContinent}/game/${currenLevel}`;
 
-//   currenLevel = "medium";
-
-//     //Api All Guess Flag Data
-//     fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
-//     .then(res => res.json())
-//     .then((data) => {     
-//       flagDetective = data.questions.map((val, i) => ( 
-//         {
-//           flagName: val.flagName,
-//           hint: val.hint,
-//           flagImage: val.flagImg,
-//         }
-//       ));
-
-//       runGuessDetectiveGame(flagDetective, data._id); 
-//     }); 
-
-// });
-
+});
+ }
 //Api All Guess Flag Data
 fetch(`/flag-detective-game/${currentContinent}/${currenLevel}`)
   .then(res => res.json())
   .then((data) => {     
     flagDetective = data.questions.map((val, i) => ( 
       {
-        flagName: val.flagName,
+        flagName: val.country,
+        flagImage: val.flagUrl,
+        gameLevel:data.level,
         hint: val.hint,
-        flagImage: val.flagImg,
       }
     ));
  
     runGuessDetectiveGame(flagDetective, data._id); 
   });  
 
-// const flagDetective = [
-//   {
-//     flagName: "rwanda",
-//     hint: "Rwanda testing",
-//     flagImage: "1680001540762-Rwanda.png",
-//   },
-//   {
-//     flagName: "Moldavia",
-//     hint: "Moldavia testing",
-//     flagImage: "1680001540764-Moldavia.png",
-//   },
-//   {
-//     flagName: "Mexico",
-//     hint: "Mexico testing",
-//     flagImage: "1680082648905-Mexico.png",
-//   },
-//   {
-//     flagName: "Rome",
-//     hint: "Rome testing",
-//     flagImage: "1680070106930-640px-Flag_of_Rome.svg.png",
-//   },
-// ];
 
-function runGuessDetectiveGame(flagDetective, id)
-{
-console.log(flagDetective)
+  
+  
+  
+  
+  function runGuessDetectiveGame(flagDetective, id)
+  {
 
+    const FULL_DASH_ARRAY = 283;
+const WARNING_THRESHOLD = flagDetective.length * 30 / 2;
+const ALERT_THRESHOLD = flagDetective.length * 30 / 4;
+
+const COLOR_CODES = {
+  info: {
+    color: "green"
+  },
+  warning: {
+    color: "orange",
+    threshold: WARNING_THRESHOLD
+  },
+  alert: {
+    color: "red",
+    threshold: ALERT_THRESHOLD
+  }
+};
+
+  const TIME_LIMIT = flagDetective.length * 30;
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+  let timerInterval = null;
+  let remainingPathColor = COLOR_CODES.info.color;
 detective_total_questions.innerHTML =
   flagDetective.length < 10 ? "0" + flagDetective.length : flagDetective.length;
 
@@ -125,11 +126,14 @@ function startFlagDetectiveGame() {
   showFlagDetectiveGame(question_counter);
 }
 
+window.load = startFlagDetectiveGame();
+
+
 function showFlagDetectiveGame(index) {
   if (que_count <= flagDetective.length) {
   siblings_input.innerHTML = "";
   let detect_flag_image =
-    '<span style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;"><img src=/upload-images/' +
+    '<span style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=' +
     flagDetective[index].flagImage +
     ' alt="img"></span>';
   for (let i = 0; i < flagDetective[index].flagName.split("").length; i++) {
@@ -140,29 +144,55 @@ function showFlagDetectiveGame(index) {
   detective_image.innerHTML = detect_flag_image;
   const inputs = document.querySelectorAll(".current-input");
   total_inputs = inputs;
+  que_heading.classList.add("slide-left")
+
+
+
+
+  // set Default Values start
+
+  const correcAns = flagDetective[index].flagName.split("")
+
+  if(flagDetective[index].gameLevel == "0"){
+    if(correcAns.length >= 4){
+    total_inputs[0].value = correcAns[0]  
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+    total_inputs[total_inputs.length-1].value = correcAns.at(-1)
+    }else{
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+    total_inputs[total_inputs.length-1].value = correcAns.at(-1)
+    }
+  }
+  else if(flagDetective[index].gameLevel == "1"){
+    total_inputs[0].value = correcAns[0]
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+  }
+  else if(flagDetective[index].gameLevel == "2"){
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+  }
+  total_inputs[1].focus()
+
+
+  // set Default Values end
+
   score_board.innerHTML =
     '<span class="total_que" style="font-size: 30px; font-weight: bold">' +
     que_count +
     '<span style="font-size: 30px; font-weight: bold">/' +
-    flagDetective.length +
+    flagDetective.length + "."
     " </span></span>";
   //focus the first input which index is 0 on window load
-  window.addEventListener("load", () => total_inputs[0].focus());
+  
   submit.classList.add("d-none")
-
+  
   your_quiz_progress_detail.innerHTML = flagDetective[index].hint;
 
+  
   showNextInputs();
 }
 }
 
-var baba = "";
-function correctInput(params) {
-  baba += params;
-}
-
-window.load = startFlagDetectiveGame();
-
+let baba =""
 
 // iterate over all inputs
 function showNextInputs() {
@@ -189,19 +219,26 @@ function showNextInputs() {
 
       // if the backspace key is pressed
 
-      if (baba.length <= total_inputs.length) {
-        correctInput(currentInput.value);
+      var _finalKey = "";
+
+      for (let { value } of total_inputs) {
+        _finalKey += value;
       }
-      if (baba.length == total_inputs.length) {
+
+      if (_finalKey.length == total_inputs.length) {
         submit.classList.remove("d-none")
+        baba = _finalKey
+        for (let i = 0; i < total_inputs.length; i++) {
+          total_inputs[i].classList.add("disabled")
+        }
       }
     });
   });
 }
 
 submit.onclick=()=>{
-  console.log(que_count,flagDetective.length)
   if (que_count == flagDetective.length) {
+    submit.classList.add("d-none")
     btnDontKnow.classList.add("d-none");
     questions_box.classList.add("d-none");
     
@@ -216,6 +253,8 @@ submit.onclick=()=>{
     callResultScreen()
   }else{
     showAnswer();
+    submit.classList.add("d-none")
+
   }
 }
 
@@ -223,108 +262,313 @@ function showAnswer() {
   if (
     flagDetective[question_counter].flagName.toLowerCase() == baba.toLowerCase()
   ) {
-    userScore++;
-    detective_total_correct.innerHTML = userScore < 10 ? "0" + userScore : userScore;
-    question_counter++;
-    que_count++
-    showFlagDetectiveGame(question_counter);
-    baba = "";
+    callRightAnsDialog()
   } else {
     wrongClickAudio.play();
-    userWrongScore++;
-    detective_total_in_correct.innerHTML = userWrongScore < 10 ? "0" + userWrongScore : userWrongScore;
-    question_counter++;
-    que_count++
-    showFlagDetectiveGame(question_counter);
-    baba = "";
+    callTryAgainDialog()
   }
   total_inputs[0].focus()
 }
 
-//timer
-disMinutes.innerHTML = "00";
+function callRightAnsDialog() {
+  detective_image.innerHTML =
+    '<div class="fleg-detective-user_messages"><div class="w-100" style="display:grid;gap:10px"><img src="/client/img/images/answer.right.png" style="height:50px; margin: 0px auto;"><div id="nextQueSeconds" class="try_again_time">--</div><button  class="btn_try_again" id="btnNextQue">Next Question</button></div></div>';
 
-disSeconds.innerHTML = "00";
+  rightAnsTime(0, 05);
+  btnDontKnow.classList.add("d-none")
+  
+  if (que_count === flagDetective.length) {
+    document.getElementById("btnNextQue").classList.add("d-none");
+  }
+  document.getElementById("btnNextQue").onclick=()=>{
+    callNextQuestion()
+    btnDontKnow.classList.remove("d-none")
+    clearInterval(rightAnsInterval);
+  }
+}
 
-window.load = totalTestTime(flagDetective.length, 30);
+function rightAnsTime(min, sec) {
+  var totalTime = min * 60 + sec * 1;
 
-function totalTestTime(min, sec) {
-  //totalTime = inpMinutes.value * 60 + inpSeconds.value * 1;
-
-  var totalTime = min * sec;
-
-  circleSvg.style.animation = `Loop ${totalTime}s linear 1s`;
-
-  circleSvg.style.animationPlayState = "running";
 
   if (min != "" || sec != "") {
-    completeTestInterval = setInterval(() => {
-      const minutes = Math.floor(totalTime / 60);
-
+    rightAnsInterval = setInterval(() => {
       const seconds = totalTime % 60;
 
-      if (totalTime <= 10) {
-        circleSvg.style.stroke = "var(--clr-primary)";
+      document.getElementById("nextQueSeconds").style.animation =
+        "popup 800ms infinite ease-in-out";
 
-        disMinutes.style.animation = "popup 800ms infinite ease-in-out";
+      document.getElementById("nextQueSeconds").style.animationPlayState =
+        "running";
 
-        disMinutes.style.animationPlayState = "running";
-
-        disSeconds.style.animation = "popup 800ms infinite ease-in-out";
-
-        disSeconds.style.animationPlayState = "running";
-      } else {
-        circleSvg.style.stroke = "var(--clr-remaining)";
-
-        disMinutes.style.animation = "none";
-
-        disSeconds.style.animation = "none";
-      }
-      textCorrection(disMinutes, minutes);
-
-      textCorrection(disSeconds, seconds);
+      console.log("")
+      textCorrection(document.getElementById("nextQueSeconds"), seconds);
 
       if (totalTime > 0) {
         totalTime--;
       } else {
-        //bell.play();
-
-        circleSvg.style.animation = "none";
-
-        clearInterval(completeTestInterval);
-
-        callResultScreen();
+        clearInterval(rightAnsInterval);
+        callNextQuestion()
+        btnDontKnow.classList.remove("d-none")
       }
     }, 1000);
   } else {
-    disMinutes.innerHTML = "00";
-
-    disSeconds.innerHTML = "00";
+    document.getElementById("nextQueSeconds").innerHTML = "00";
   }
 
   return totalTime;
 }
 
+
+function callSameQuestion() {
+
+  detective_image.innerHTML = "";
+
+  clearInterval(tryAgainInterval);
+
+  if (que_count > 0) {
+
+    showFlagDetectiveGame(question_counter); //passing index of array to showQestions for current question
+  }
+}
+
+
+function callTryAgainDialog() {
+
+
+  detective_image.innerHTML =
+    '<div class="fleg-detective-user_messages"><div class="w-100" style="display:grid;gap:10px"><img class="mb-3" src="/client/img/images/answer.wrong.png" style="height:100px; margin: 0px auto;"><div id="tryAgainSeconds" class="try_again_time">--</div><button id="callSame" class="btn_try_again">Try Again</button></div></div>';
+
+  document.getElementById("callSame").addEventListener("click",callSameQuestion)
+
+
+  tryAgainTime(0, 05);
+
+}
+
+function tryAgainTime(min, sec) {
+  var totalTime = min * 60 + sec * 1;
+
+
+  if (min != "" || sec != "") {
+    tryAgainInterval = setInterval(() => {
+      const seconds = totalTime % 60;
+      if(seconds <= 0){
+        userWrongScore += 1;
+        detective_total_in_correct.innerHTML = userWrongScore < 10 ? "0" + userWrongScore :userWrongScore;
+      }
+      document.getElementById("tryAgainSeconds").style.animation =
+        "popup 800ms infinite ease-in-out";
+
+      document.getElementById("tryAgainSeconds").style.animationPlayState =
+        "running";
+
+      textCorrection(document.getElementById("tryAgainSeconds"), seconds);
+
+      if (totalTime > 0) {
+        totalTime--;
+      } else {
+
+        closeDialog();
+
+        clearInterval(tryAgainInterval);
+      }
+    }, 1000);
+  } else {
+    document.getElementById("tryAgainSeconds").innerHTML = "00";
+  }
+
+  return totalTime;
+}
+
+function closeDialog() {
+  que_count++;
+  clearInterval(tryAgainInterval)
+  question_counter++;
+  showFlagDetectiveGame(question_counter);
+}
+
+
+// Clock Timer
+
+
+flag_detective_game_card.innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">${formatTime(
+    timeLeft
+  )}</span>
+</div>
+`;
+
+const base_timer__label = document.querySelector(".base-timer__label")
+
+function onTimesUp() {
+  clearInterval(timerInterval);
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    document.getElementById("base-timer-label").innerHTML = formatTime(
+      timeLeft
+    );
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
+
+    if (timeLeft === 0) {
+      onTimesUp();
+      callResultScreen();
+    }
+  }, 1000);
+}
+startTimer()
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  return `${minutes}:${seconds}`;
+}
+
+function setRemainingPathColor(timeLeft) {
+  const { alert, warning, info } = COLOR_CODES;
+  if (timeLeft <= alert.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(warning.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(alert.color);
+  } else if (timeLeft <= warning.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(info.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(warning.color);
+    base_timer__label.style.animation = "popup 800ms infinite ease-in-out"
+  }
+}
+
+function calculateTimeFraction() {
+  const rawTimeFraction = timeLeft / TIME_LIMIT;
+  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray() {
+  const circleDasharray = `${(
+    calculateTimeFraction() * FULL_DASH_ARRAY
+  ).toFixed(0)} 283`;
+  document
+    .getElementById("base-timer-path-remaining")
+    .setAttribute("stroke-dasharray", circleDasharray);
+}
+
+
+
+
+// Clock Timer End
+
+
+
+//timer
+// disMinutes.innerHTML = "00";
+
+// disSeconds.innerHTML = "00";
+
+// window.load = totalTestTime(flagDetective.length, 30);
+
+// function totalTestTime(min, sec) {
+
+//   var totalTime = min * sec;
+
+//   circleSvg.style.animation = `Loop ${totalTime}s linear 1s`;
+
+//   circleSvg.style.animationPlayState = "running";
+
+//   if (min != "" || sec != "") {
+//     completeTestInterval = setInterval(() => {
+//       const minutes = Math.floor(totalTime / 60);
+
+//       const seconds = totalTime % 60;
+
+//       if (totalTime <= 10) {
+//         circleSvg.style.stroke = "var(--clr-primary)";
+
+//         disMinutes.style.animation = "popup 800ms infinite ease-in-out";
+
+//         disMinutes.style.animationPlayState = "running";
+
+//         disSeconds.style.animation = "popup 800ms infinite ease-in-out";
+
+//         disSeconds.style.animationPlayState = "running";
+//       } else {
+//         circleSvg.style.stroke = "var(--clr-remaining)";
+
+//         disMinutes.style.animation = "none";
+
+//         disSeconds.style.animation = "none";
+//       }
+//       textCorrection(disMinutes, minutes);
+
+//       textCorrection(disSeconds, seconds);
+
+//       if (totalTime > 0) {
+//         totalTime--;
+//       } else {
+//         //bell.play();
+
+//         circleSvg.style.animation = "none";
+
+//         clearInterval(completeTestInterval);
+
+//         callResultScreen();
+//       }
+//     }, 1000);
+//   } else {
+//     disMinutes.innerHTML = "00";
+
+//     disSeconds.innerHTML = "00";
+//   }
+
+//   return totalTime;
+// }
+
 function textCorrection(element, value) {
   element.innerHTML = value < 10 ? "0" + value : value;
 }
+
+
 if (que_count == flagDetective.length) { 
-  result_btn.classList.remove("d-none");
   time_up.classList.remove("d-none");
   timer__display.classList.add("d-none");
   btnDontKnow.classList.add("d-none");
-  callResultScreen();
+  // callResultScreen();
 }
 
 btnDontKnow.onclick = () => {
-  que_count++;
-  callNextQuestion();
-  userWrongScore++;
-  detective_total_in_correct.innerHTML = userWrongScore < 10 ? "0" + userWrongScore : userWrongScore;
-  baba=""
-  submit.classList.add("d-none")
-  total_inputs[0].focus()
-  if (que_count > flagDetective.length) {
+  if (que_count >= flagDetective.length) {
   btnDontKnow.classList.add("d-none");
   questions_box.classList.add("d-none");
 
@@ -336,21 +580,38 @@ btnDontKnow.onclick = () => {
 
   score_board.classList.add("d-none");
   callResultScreen()
-
 }
-  //focus the first input which index is 0 on window load
-  window.addEventListener("load", () => total_inputs[question_counter].focus());
+else{
+  que_count++;
+  userWrongScore++;
+  detective_total_in_correct.innerHTML = userWrongScore < 10 ? "0" + userWrongScore : userWrongScore;
+  question_counter++;
+  showFlagDetectiveGame(question_counter);
+  baba=""
+  submit.classList.add("d-none")
+  total_inputs[0].focus()
+}
 };
 
 // call next Question
 function callNextQuestion() {
   if (que_count <= flagDetective.length) {
+    que_count++
+    userScore++
+  detective_total_correct.innerHTML = userScore < 10 ? "0" + userScore : userScore;
+  clearInterval(rightAnsInterval)
     question_counter++;
     showFlagDetectiveGame(question_counter); //passing index of array to showQestions for current question
+    
   }
 }
 
 function callResultScreen() {
+
+  flag_detective_hint.classList.add("d-none")
+
+  your_quiz_progress_detail.classList.add("d-none")
+
   questions_box.classList.add("d-none");
 
   result_box.classList.remove("d-none");
@@ -361,7 +622,7 @@ function callResultScreen() {
 
   score_board.classList.add("d-none");
 
-  detective_total_in_correct.innerHTML = flagDetective.length - userScore;
+  detective_total_in_correct.innerHTML = flagDetective.length - userScore < 10 ? "0" + flagDetective.length - userScore : flagDetective.length - userScore;
 
   var valRight = (userScore / flagDetective.length) * 360;
 

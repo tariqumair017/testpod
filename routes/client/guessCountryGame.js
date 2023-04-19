@@ -1,49 +1,65 @@
 import express, { Router } from "express";
 const router = Router(); 
 import path from "path";  
-import CountryFlagGame from "../../models/guessCountryGame.js";
-import ipify from "ipify";
+import CountryFlagGame from "../../models/guessCountryGame.js"; 
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login"; 
-
-//Client fetch All Games for Select-CountryFlag-Game
-router.get("/game/all/:id", asyncHandler(async (req, res, next) => {  
-    const data = await CountryFlagGame.findById(req.params.id);
-    if(!data)
-    {
-        req.flash("error", "Cannot find that Game!");
-        return res.redirect("/guess-country");
-    }
-    res.send(data);
-}));
-
+import asyncHandler from "express-async-handler";   
 
 //Client Guess-Country page
 router.get("/guess-country", asyncHandler(async (req, res, next) => {  
+//=== IP Address (Can get only When Site is deployed) ====//  
+    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    // if (ip.substr(0, 7) == "::ffff:") {
+    // ip = ip.substr(7)
+    // }
+//=== This is a Package to detect IP Address ====//  
+    // const ClientIP = await ipify({useIPv6: false});
+    // console.log(ClientIP);
+//=== Fetch Location through IP Address ====//
+    // const response = await fetch(`http://ipwho.is/${ip}`);
+    // const location = await response.json();   
+    
 
-    const ClientIP = await ipify({useIPv6: false});
-     console.log(ClientIP);
-    const response = await fetch(`http://ipwho.is/${ClientIP}`);
-    const location = await response.json();   
-    
-    const data = await CountryFlagGame.find({});  
-    const releventData = data.filter(x => location.continent.includes(x.region))
-    
-    res.render("Client/GuessCountryGame/Guess-Country", {data: releventData});
+    const DBcontinent = await CountryFlagGame.distinct("region");  
+
+    var final = [];
+    for (let i = 0; i < DBcontinent.length; i++) { 
+       final.push(await CountryFlagGame.findOne({region: DBcontinent[i]}));
+    }
+
+    res.render("Client/GuessCountryGame/Guess-Country", { data: final });
+     
+}));
+
+//Client fetch All Games for Select-CountryFlag-Game
+router.get("/game/all/:region/:level", asyncHandler(async (req, res, next) => {  
+  const currentLevel = Number(req.params.level);
+  const data = await CountryFlagGame.findOne({region: req.params.region, level: currentLevel});
+  res.send(data);
 }));
 
 //Client Guess-Country by id page
-router.get("/guess-country/:name/:id", asyncHandler(async (req, res, next) => { 
-    req.session.newResultIDForGame = undefined;
-    const data = await CountryFlagGame.findById(req.params.id); 
-    if(!data)
+router.get("/guess-country/:name/:region/game/:level", asyncHandler(async (req, res, next) => { 
+    req.session.newResultIDForGame = undefined; 
+    var currentLevel = Number(req.params.level); 
+
+    if (isNaN(currentLevel)) {
+      return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/0`);
+    } 
+
+  const data = await CountryFlagGame.findOne({region: req.params.region, level: currentLevel});
+  if(!data)
+  { 
+    if(currentLevel > 3 || currentLevel < 0)
     {
-        req.flash("error", "Cannot find that Game!");
-        return res.redirect("/guess-country");
+      return res.redirect("/guess-country");
     }
-    res.render("Client/GuessCountryGame/"+req.params.name, { data });
+    return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/${currentLevel + 1}`);
+  }
+
+  res.render("Client/GuessCountryGame/"+req.params.name, { data });
+
 }));
 
 

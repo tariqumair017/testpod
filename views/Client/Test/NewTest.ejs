@@ -1,0 +1,161 @@
+<% layout('Client/layouts/gameBoilerPlate') -%>
+
+    <div class="second-demo">
+        <div class="second-demo-img">
+            <div onclick="location='/'" class="demo-header-img">
+                <img style="cursor: pointer;" src="/client/img/logo/logo1.svg" width="50%" alt=""/>
+                <div class="search-top2 demo-header-logo" style="padding: 20px;display: flex;justify-content: end;">
+                  <ul>
+                    <li style="background-color: #A8171A; border-radius: 5px">
+                      <a
+                        href="javascript:(0)"
+                        class="menu-tigger"
+                        ><img src="/client/img/icon/menu.png" alt="logo"
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            <div class="second-demo-container-left">
+              <div class="state-and-test">
+                <!-- <h5 style="margin: 0px;font-size: large;font-weight: 900;color: #ffffff;"><%=data.quizName.toUpperCase() %></h5> -->
+                <h5 style="margin: 0px;font-size: small;letter-spacing: 5px;color: #ffffff;margin-top: 5px;font-weight: 400;"><%=data.stateName.toUpperCase()%></h5>
+
+              </div>
+                <div class="second-demo-right-part">
+                    <div class="all-quiz-progress">
+                        <div class="demo-all-quiz-upper-section-part-right">
+                            <h4>Your Progress</h4>
+                            <div class="demo-result-box">
+                                <div class="demo-all-quiz-upper-section-scorus-card">
+                                    <h6 style="margin: 0px; font-size:large" id="demo-total-correct">--</h6>
+                                    <span class="badge" style="background-color: #1DCF71;border-radius: 5px;font-size:large">Correct</span>
+                                </div>
+                                <!-- <div>
+                                    <span class="demo-passing-score" >(08 Allowed To Pass)</span>
+                                </div> -->
+                                <div class="demo-all-quiz-upper-section-scorus-card">
+                                    <h6 style="margin: 0px;font-size:large" id="demo-total-in-correct">--</h6>
+                                    <span class="badge" style="background-color: #A8171A;border-radius: 5px;font-size:large">Incorrect</span>
+                                </div>
+                            </div>
+                            <div>
+                              <h5>Questions</h5>
+                                <div class="number-questions" ></div>
+                            </div>
+                      </div>
+                      <div class="demo-hint d-none">
+                      <h5  style="margin: 0px;padding:0px">Details</h5>
+                      <img class="soundDetailbtn" src="/client/img/bg/volume_up_white_24dp.svg" />
+                      <img class="soundDetailbtn cancelDetail d-none" src="/client/img/bg/volume_off_white_24dp.svg" />
+                    </div>
+                      <p class="demo-your-quiz-progress-detail d-none"></p>
+                    </div>
+                    </div>
+                    </div>
+        </div>
+        <div class="second-demo-quiz">
+            <div class="second-demo-container">
+              <div class="second-header-logo">
+                <ul>
+                  <li style="background-color: #A8171A; border-radius: 5px">
+                    <a
+                      href="javascript:(0)"
+                      class="menu-tigger"
+                      ><img src="/client/img/icon/menu.png" alt="logo"
+                    /></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="demo-question-box">
+              <div class="que_text mb-3 second-demo-question"></div>
+                <div  class="second-demo-left-part">
+                    <div class="second-demo-questions-box">
+                  <div class="align-items-center">
+                    <div class="quiz-image">
+                    </div>
+                    <div style="margin-top: 10px">
+                      <div class="second-demo-option-list"></div>
+                    </div>
+                    <input class="focus-input" style="width: 0.1px;height: 0.1px;"/>
+                  </div>
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-md-6 text-center">
+                      <button
+                        class="btn btn ss-btn next_btn d-none"
+                        style="width: 200px;margin-top: 15px;"
+                        >
+                        Next Question ➜
+                      </button>
+                    </div>
+                  </div>
+                  <div class="extra" ></div>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+        </div>
+        <!-- <input id="data-question"  style="display: none;" /> -->
+    </div>
+    <!-- script tags -->
+
+    <!-- Menu Slide bar -->
+
+<!-- offcanvas-area -->
+<div id="offcanvas-menu">
+  <span id="menu-close" ><i class="fas fa-times"></i></span>
+    <form
+      role="search"
+      method="get"
+      id="searchform"
+      class="searchform"
+      action="http://wordpress.zcube.in/xconsulta/"
+    >
+      <input type="text" name="s" id="search" value="" placeholder="Search" />
+      <button><i class="fa fa-search"></i></button>
+    </form>
+                
+    <div id="cssmenu3" class="menu-one-page-menu-container">
+      <ul id="menu-one-page-menu-2" class="menu">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/">Home</a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/about">About Us</a>
+        </li>
+        <li><a href="/guess-country">Guess Country</a></li>
+        <li><a href="/draw-flags">Draw Flags</a></li>
+        <li><a href="/guess-flags">Guess Flags</a></li>
+        <li><a href="/flag-detective-regions">Flags Detective</a></li>
+        <!-- <li><a href="/flag-puzzle">Flags Puzzle</a></li> -->
+        <li><a href="/test/states">DMV Test</a></li>
+        <li><a href="/learn-about-flags">Learn About Flags</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+                
+    <div id="cssmenu2" class="menu-one-page-menu-container">
+      <ul id="menu-one-page-menu-1" class="menu">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="#home"><span>+0 00 000000</span></a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="#howitwork"><span>Loremipsum@.com</span></a>
+        </li>
+      </ul>
+    </div>
+</div>
+<div class="offcanvas-overly"></div>
+<!-- offcanvas-end -->
+<!-- Menu Slide bar -->
+
+
+
+    <!-- Script -->
+    <script>
+      var data = <%-JSON.stringify(data)%>;
+    </script>
+    <script src="/client/js/secondDemo.js"></script>

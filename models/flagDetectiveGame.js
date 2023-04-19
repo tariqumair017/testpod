@@ -8,30 +8,22 @@ const flagDetectiveGameSchema = new mongoose.Schema({
     required: true
     }, 
   level: {
-    type: String,
+    type: Number,
     required: true
-    },
-  gameDetail: {
-    type: String,
-    required: true
-   },
-  regionImg: {
-    type: String,
-    required: true
-    },
+    }, 
   questions: [{
-    flagName: {
+    country: {
       type: String,
       required: true
       }, 
+      flagUrl: {
+        type: String,
+        required: true
+      },
     hint: {
       type: String,
       required: true
-      },
-    flagImg: {
-      type: String,
-      required: true
-    }
+      }
   }],
   logs: { 
     type: mongoose.Schema.Types.ObjectId,

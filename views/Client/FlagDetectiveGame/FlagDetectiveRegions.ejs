@@ -36,15 +36,21 @@
     <div class="row quiz-card">
       <%data.forEach(item => {%>
       <a
-      href="/flag-detective-regions/<%=item.continent%>/game"
+      href="/flag-detective-regions/<%=item.continent%>/game/0"
         class="card quiz-card-item col-md-3"
         style="width: 18rem; padding: 0%;height: auto;",
       >
-        <img
-          src="/upload-images/<%=item.regionImg%>"
-          class="card-img-top card-img"
-          alt="..."
-        />
+      <%if(item.continent.toLowerCase() == "africa"){ %>
+        <img src="/client/img/continents/flag_detective_continuents/Africa.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(item.continent.toLowerCase() == "america"){%>
+        <img src="/client/img/continents/flag_detective_continuents/SouthAmerica.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(item.continent.toLowerCase() == "asia"){%>
+          <img src="/client/img/continents/flag_detective_continuents/Asia.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(item.continent.toLowerCase() == "europe"){%>
+          <img src="/client/img/continents/flag_detective_continuents/Europe.svg" class="card-img-top card-img" alt="..." />
+        <%} else if(item.continent.toLowerCase() == "oceania" || "antarctic"){%>
+            <img src="/client/img/continents/flag_detective_continuents/Antarctica.svg" class="card-img-top card-img" alt="..." />
+        <% } %>
         <div class="card-body">
           <h5 class="card-title quiz-card-title">
             <%=item.continent.toUpperCase()%>
@@ -60,10 +66,4 @@
 </section>
 
 
-<script>
-    var ip = '<%=ip%>';
-    var ipify = '<%=ipify%>';
-    console.log(ip);
-    console.log(ipify);
-</script>
 <script src="/client/js/about.js"></script>

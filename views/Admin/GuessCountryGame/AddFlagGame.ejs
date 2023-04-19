@@ -5,7 +5,7 @@
  <div class="application bg-light">
     <h4 class="mb-5">Create Guess Country Game</h4>
     <%- include ('../partials/SuccessError'); -%>
-    <form class="add-quiz-form row needs-validation" action="/admin/guess-country-game/add" method="POST" novalidate>
+    <form id="guessCountryAdd" class="add-quiz-form row needs-validation" action="/admin/guess-country-game/add" method="POST" novalidate>
     <div class="row" >
       <div class="col-md-6"> 
         <label for="region" class="form-label">Select Region</label>
@@ -17,10 +17,10 @@
         <label for="level" class="form-label">Select Level</label>
         <select class="form-select" id="level" name="level" required> 
           <option hidden>Please Select Game Level</option>                     
-          <option value="Easy">Easy</option>  
-          <option value="Normal">Normal</option>  
-          <option value="Hard">Hard</option>  
-          <option value="Extreme">Extreme</option>  
+          <option value="0">Easy</option>  
+          <option value="1">Normal</option>  
+          <option value="2">Hard</option>  
+          <option value="3">Extreme</option>  
         </select>
       </div> 
       </div>
@@ -154,5 +154,11 @@
             </div>
       </div> 
 </div>
-<!--Container Main end-->   
+
+<script>
+  document.getElementById("guessCountryAdd").addEventListener("submit", function(e){
+    e.preventDefault();
+    this.submit();
+  });
+</script>
 <script src="/admin/js/multiQuestionGuessCountry.js"></script>

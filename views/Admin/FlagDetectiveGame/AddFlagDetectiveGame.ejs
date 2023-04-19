@@ -4,55 +4,27 @@
 <div class="application bg-light">
   <h4 class="mb-5">Create Flag Detective Game</h4>
   <%- include ('../partials/SuccessError'); -%>
-  <form
-    class="add-quiz-form row needs-validation"
+  <form class="add-quiz-form row needs-validation"
     action="/admin/flag-detective-game/add"
     method="POST"
-    enctype="multipart/form-data"
     novalidate
   >
     <div class="row">
       <div class="col-md-6 position-relative">
-        <select class="form-select" name="continent" required>
-          <option hidden>Please Select Continent</option>
-          <option value="australia">Australia</option>
-          <option value="europe">Europe</option>
-          <option value="antarctica">Antarctica</option>
-          <option value="south america">South America</option>
-          <option value="north america">North America</option>
-          <option value="african">African</option>
-          <option value="asia">Asia</option>
+        <label for="flagDetectiveID" class="form-label">Select Continent</label>
+        <select class="form-select" id="flagDetectiveID" name="continent" required>
+          <option hidden>Please Select Continent</option> 
         </select>
       </div>
       <div class="col-md-6 position-relative">
-        <select class="form-select" name="level" required>
-          <option hidden>Please Select Test Level</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-          <option value="extreme">Extreme</option>
+        <label for="level" class="form-label">Select Level</label>
+        <select class="form-select" id="level" name="level" required>
+          <option hidden>Please Select Level</option>
+          <option value="0">Easy</option>  
+          <option value="1">Normal</option>  
+          <option value="2">Hard</option>  
+          <option value="3">Extreme</option> 
         </select>
-      </div>
-      <div class="col-md-6 position-relative " style="display: flex;align-items: end;">
-        <input
-          maxlength="200"
-          name="gameDetail"
-          placeholder="Please Enter Game Detail"
-          type="text"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="col-md-6" style="margin-top: 20px">
-        <label for="validationTooltip03" class="form-label">Region Image</label>
-        <div class="add-quiz-state-image">
-          <input
-            class="add-quiz-image-input formFile form-control"
-            type="file"
-            name="regionImg" 
-            required
-          />
-        </div>
       </div>
     </div>
     <hr />
@@ -61,15 +33,28 @@
         <div class="row">
           <div class="col-md-6 position-relative"> 
             <label for="flagName0" class="form-label">Select Counrty</label>
-            <select class="form-select" name="flagName" id="flagName0" required> 
+            <select class="form-select" name="country" id="allCountries" required> 
                 <option hidden>Please Select Counrty</option> 
             </select> 
             <div class="invalid-tooltip">
                 Please provide a Country Name.
             </div>
           </div>
-          <div class="col-md-6 position-relative">
-            <label for="hint" class="form-label">Enter Flag Hint</label>
+          <div class="col-md-6">
+            <label for="validationTooltip03" class="form-label"
+              >Flag Url</label
+            >
+            <div class="add-quiz-state-image">
+              <input readonly class="add-quiz-image-input formFile form-control"
+                type="text"
+                name="flagUrl" 
+                id="flagUrl"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-md-6 mt-2 position-relative">
+            <label for="hint" class="form-label">Enter Hint</label>
             <input
               maxlength="200"
               name="hint" 
@@ -77,19 +62,6 @@
               class="form-control"
               required
             />
-          </div>
-          <div class="col-md-6" style="margin-top: 20px">
-            <label for="validationTooltip03" class="form-label"
-              >Flag Image</label
-            >
-            <div class="add-quiz-state-image">
-              <input
-                class="add-quiz-image-input formFile form-control"
-                type="file"
-                name="flagImg" 
-                required
-              />
-            </div>
           </div>
         </div>
         <hr />
@@ -124,15 +96,28 @@
       <div class="row">
         <div class="col-md-6 position-relative"> 
           <label for="flagName0" class="form-label">Select Counrty</label>
-          <select class="form-select" name="flagName" id="flagName" required> 
+          <select class="form-select" name="country" onchange="flagDetectiveSelectedCountry(this)" required> 
               <option hidden>Please Select Counrty</option> 
           </select> 
           <div class="invalid-tooltip">
               Please provide a Country Name.
           </div>
         </div>
-        <div class="col-md-6 position-relative">
-          <label for="hint" class="form-label">Enter Flag Hint</label>
+        <div class="col-md-6">
+          <label for="validationTooltip03" class="form-label"
+            >Flag Url</label
+          >
+          <div class="add-quiz-state-image">
+            <input readonly
+              class="add-quiz-image-input formFile form-control"
+              type="text"
+              name="flagUrl" 
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 position-relative mt-2">
+          <label for="hint" class="form-label">Enter Hint</label>
           <input
             maxlength="200"
             name="hint" 
@@ -140,20 +125,6 @@
             class="form-control"
             required
           />
-        </div>
-        <div class="col-md-6" style="margin-top: 20px">
-          <label for="validationTooltip03" class="form-label"
-            >Flag Image</label
-          >
-          <div class="add-quiz-state-image">
-            <input
-              class="add-quiz-image-input formFile form-control"
-              type="file"
-              name="flagImg"
-              onchange="preview()"
-              required
-            />
-          </div>
         </div>
       </div>
       <hr />
