@@ -7151,6 +7151,7 @@ label {
 
   .quiz-image{
     border-radius: 10px;
+    margin: auto;
   }
 
   .progress-timer{
@@ -7180,6 +7181,7 @@ label {
 
   .quiz-image-optional{
     width: 170px;
+    padding-right: 20px;
   }
 
   @media screen and (max-width:700px){
@@ -7191,6 +7193,7 @@ label {
       width: 100%;
       display: flex;
       justify-content: center;
+      padding-right: 0px;
     }
     .show-more-quiz{
       margin-top: 50px;
