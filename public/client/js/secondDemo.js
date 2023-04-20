@@ -258,8 +258,8 @@ function callNextQuestion() {
 
     showQuetions(que_count); //passing index of array to showQestions for current question
 
-    demo_hint.classList.add("d-none");
     your_quiz_progress_detail.classList.add("d-none");
+    demo_hint.classList.add("d-none")
     next_btn.classList.add("d-none");
     cancelSpeech();
     cancelDetailSpeech();
@@ -292,8 +292,14 @@ let crossIconTag =
     userAns = userAns.substring(1);
   
     let correcAns = questions[que_count].answer; //getting correct answer from array
-    demo_hint.classList.remove("d-none");
-    your_quiz_progress_detail.classList.remove("d-none");
+    if(questions[que_count].hint != ""){
+      demo_hint.classList.remove("d-none")
+      your_quiz_progress_detail.classList.remove("d-none");
+    }else{
+      demo_hint.classList.add("d-none")
+      your_quiz_progress_detail.classList.add("d-none");
+
+    }
     if (que_numb === questions.length) {
       disableOptions();
     }
@@ -343,6 +349,7 @@ let crossIconTag =
     }
   
     //disable all options
+  
   
     disableOptions();
     cancelSpeech()
