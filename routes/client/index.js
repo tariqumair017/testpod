@@ -89,6 +89,10 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
     { 
         return res.redirect("/learn-about-flags");
     }
+    else if(req.params.game == 'test')
+    {
+        return res.redirect("/test/states");
+    }
     else
     {
         return res.redirect("/");

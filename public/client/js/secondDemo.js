@@ -8,7 +8,7 @@ let speech = new SpeechSynthesisUtterance();
 
 let detailSpeech = new SpeechSynthesisUtterance();
 
-var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
+  var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 
 //define required constants
 const time_line = document.querySelector(".time_line");
@@ -155,7 +155,6 @@ function showQuetions(index) {
 
   let detail = questions[index].hint;
 
-  console.log(questions[index].questionImg)
   if(questions[index].questionImg){
   let option_images = `<img class="quiz-image-optional" src="/upload-images/${questions[index].questionImg}"}" />`
     quiz_image.innerHTML = option_images
@@ -290,7 +289,14 @@ let crossIconTag =
     let userAns = answer.textContent; //getting user selected option
   
     userAns = userAns.substring(1);
-  
+
+    const sound_on = document.querySelector(".soundbtn");
+    const cancel = document.querySelector(".cancel");
+
+    sound_on.classList.add("d-none")
+    cancel.classList.add("d-none")
+
+    
     let correcAns = questions[que_count].answer; //getting correct answer from array
     if(questions[que_count].hint != ""){
       demo_hint.classList.remove("d-none")

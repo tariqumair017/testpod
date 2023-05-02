@@ -7065,6 +7065,7 @@ label {
   color: #808080;
   font-weight: 500;
   margin-top: -7px;
+  margin-bottom: 0px;
 }
 
 .quiz-card-title{
@@ -7076,7 +7077,16 @@ label {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  height: auto;
+  height: 150px;
+  width: 17rem;
+}
+
+.card-img-guess-country{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height:auto;
 }
 
 .quiz-card-item{
@@ -7089,6 +7099,7 @@ label {
 
 .quiz-card-item:hover{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: -1px;
 }
 
 .card-mistakes{
@@ -9281,6 +9292,35 @@ label {
     transform:translateX(-100%);
   }
 
+  .score-text-slide-left{
+    animation: 1s slide-right 1s forwards;
+
+    animation-delay: 0.1s;
+
+
+    transform:translateX(-50%);
+  }
+
+  .score-text-slide-top{
+    animation: 1s slide-top 1s forwards;
+
+    animation-delay: 0.1s;
+
+
+    transform:translateY(-50%);
+  }
+
+  .score-text-slide-right{
+    animation: 1s slide-right 1s forwards;
+
+    animation-delay: 0.1s;
+
+
+    transform:translateX(50%);
+  }
+
+  
+
   .slide-left{
     width: 100%;
 
@@ -9363,6 +9403,17 @@ label {
   }
 
   }
+
+  
+  @keyframes slide-top {
+
+    to {
+  
+    transform:translateY(0);
+  
+    }
+  
+    }
 
   .user_messages{
 
@@ -9835,6 +9886,13 @@ border-color: #EA4A4A;
   color: #fff;
 
 }
+
+@media screen and (max-width:700px) {
+  .breadcrumb-title h2 {
+    font-size: 45px;
+  }
+}
+
 .breadcrumb-title p {
   margin-bottom: 0;
   color: #777;
@@ -10539,7 +10597,7 @@ footer .next-btn:hover {
   overflow: hidden;
   animation: 1.5s slide-right 1.5s forwards;
 
-  transform:translateY(100%);
+  transform:translateY(40%);
 
   animation-delay: 0.1s;
 
@@ -10575,14 +10633,47 @@ footer .next-btn:hover {
   width: 85%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .flag-detective-game-inner{
   width: 70%;
   background-color: #ffffff;
-  margin-top: 50px;
   padding: 20px;
   height: fit-content;
   
+}
+
+.screen-size{
+  height: 82.8vh;
+}
+.flag-detective-score-card{
+  background: #A8171A;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 15px;
+  text-transform: uppercase;
+}
+
+.flag-detective-score-card-two{
+  background: #A8171A;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 15px;
+  text-transform: uppercase;
+}
+
+.flag-detective-sound{
+  background: #A8171A;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 15px;
+  text-transform: uppercase;
+}
+
+.flag-detective-game-card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flag-detective-game-right-part{
@@ -10670,6 +10761,7 @@ footer .next-btn:hover {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   .flag-detective-game-inner{
     width: 90%;
@@ -13319,7 +13411,7 @@ section:hover .section-title h2::before {
 .second-demo-quiz{
   width: 70%;
   height: auto;
-  background-image:url(/client/img/bg/Artboard.jpg);
+  background-image:url(/client/img/bg/convertedimage02.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   max-height: auto;
@@ -13354,7 +13446,7 @@ section:hover .section-title h2::before {
 .second-demo-img{
   width: 30%;
   height:auto;
-  background-image: url(/client/img/bg/side_image.png);
+  background-image: url(/client/img/bg/convertedimage01.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   height: auto;
@@ -13548,6 +13640,7 @@ display: none !important;
   overflow: hidden;
   margin-top: 20px;
 }
+
 .testimonial-active2 .single-testimonial p {
   width: 80%;
   margin: auto;
@@ -13617,6 +13710,7 @@ display: none !important;
   flex: unset;
   padding: 25px 30px;
   padding-top: 0;
+  position: relative;
 }
 .faq-wrap .card-header h2 {
   font-size: unset;

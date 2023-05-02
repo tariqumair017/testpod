@@ -156,6 +156,7 @@ function runGuessFlagGame(questions, id) {
     customRadio[i].addEventListener("click", (e) => {
       next_btn.classList.remove("d-none");
       guess_check.classList.add("active");
+      clearInterval(completeTestDuration)
       if (e.target.getAttribute("ans") == "correct") {
         userScore++;
         guess_total_correct.innerHTML =
@@ -202,6 +203,7 @@ function runGuessFlagGame(questions, id) {
           } else {
             next_btn.classList.remove("d-none");
           }
+          clearInterval(completeTestDuration)
           guess_check.classList.add("active");
           if (e.target.getAttribute("ans") == "correct") {
             userScore++;

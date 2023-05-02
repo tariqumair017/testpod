@@ -3,9 +3,6 @@ const siblings_input = document.querySelector(".siblings-input");
 const detective_total_questions = document.querySelector(
   ".detective-total-questions"
 );
-const detective_total_correct = document.querySelector(
-  ".detective-total-correct"
-);
 const detective_total_in_correct = document.querySelector(
   ".detective-total-in-correct"
 );
@@ -34,15 +31,24 @@ const your_quiz_progress_detail = document.querySelector(
 
 const timer__display = document.querySelector(".timer__display");
 
-const score_board = document.querySelector(".flag-detective-game-score_board");
-
 const submit = document.querySelector(".submit")
+
+const flag_detective_score_card = document.querySelector(".flag-detective-score-card")
 
 const flag_detective_hint = document.querySelector(".flag-detective-hint")
 
 const flag_detective_game_card = document.querySelector(".flag-detective-game-card")
 
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
+
+var music = new Audio("/client/sounds/Lobby-Time.mp3")
+
+const flag_detective_game_right_part = document.querySelector(".flag-detective-game-right-part")
+
+const flag_detective_score_card_Two = document.querySelector(".flag-detective-score-card-two")
+
+const flag_detective_music_on = document.querySelector(".flag-detective-music-on")
+const flag_detective_music_off = document.querySelector(".flag-detective-music-off")
 
 
 
@@ -144,7 +150,7 @@ function showFlagDetectiveGame(index) {
   detective_image.innerHTML = detect_flag_image;
   const inputs = document.querySelectorAll(".current-input");
   total_inputs = inputs;
-  que_heading.classList.add("slide-left")
+  // que_heading.classList.add("slide-left")
 
 
 
@@ -170,20 +176,22 @@ function showFlagDetectiveGame(index) {
   else if(flagDetective[index].gameLevel == "2"){
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
   }
-  total_inputs[1].focus()
+  total_inputs[0].focus()
 
 
   // set Default Values end
 
-  score_board.innerHTML =
-    '<span class="total_que" style="font-size: 30px; font-weight: bold">' +
+  detective_total_questions.innerHTML =
+    '<span class="total_que">' +
     que_count +
-    '<span style="font-size: 30px; font-weight: bold">/' +
-    flagDetective.length + "."
+    '<span>/' +
+    flagDetective.length
     " </span></span>";
   //focus the first input which index is 0 on window load
   
   submit.classList.add("d-none")
+  flag_detective_score_card.innerHTML = userScore < 10 ? "Score : 0" + userScore : "Score :" + userScore;
+
   
   your_quiz_progress_detail.innerHTML = flagDetective[index].hint;
 
@@ -248,12 +256,14 @@ submit.onclick=()=>{
     
     timer__display.classList.add("d-none");
     
-    score_board.classList.add("d-none");
     showAnswer();
     callResultScreen()
   }else{
     showAnswer();
     submit.classList.add("d-none")
+    for (let i = 0; i < total_inputs.length; i++) {
+      total_inputs[i].blur()      
+    }
 
   }
 }
@@ -578,7 +588,6 @@ btnDontKnow.onclick = () => {
 
   timer__display.classList.add("d-none");
 
-  score_board.classList.add("d-none");
   callResultScreen()
 }
 else{
@@ -598,7 +607,7 @@ function callNextQuestion() {
   if (que_count <= flagDetective.length) {
     que_count++
     userScore++
-  detective_total_correct.innerHTML = userScore < 10 ? "0" + userScore : userScore;
+    flag_detective_score_card.innerHTML = userScore < 10 ? "Score : 0" + userScore : "Score :" + userScore;
   clearInterval(rightAnsInterval)
     question_counter++;
     showFlagDetectiveGame(question_counter); //passing index of array to showQestions for current question
@@ -620,9 +629,17 @@ function callResultScreen() {
 
   timer__display.classList.add("d-none");
 
-  score_board.classList.add("d-none");
+  flag_detective_score_card_Two.innerHTML = userScore < 10 ? "Score : 0" + userScore : "Score :" + userScore;
 
   detective_total_in_correct.innerHTML = flagDetective.length - userScore < 10 ? "0" + flagDetective.length - userScore : flagDetective.length - userScore;
+
+  timeLeft ="00"
+
+  flag_detective_game_right_part.classList.add("screen-size")
+
+
+
+  clearInterval(timerInterval)
 
   var valRight = (userScore / flagDetective.length) * 360;
 
@@ -660,3 +677,19 @@ function callResultScreen() {
 }
 
 }
+
+
+
+flag_detective_music_on.onclick=()=>{
+  flag_detective_music_on.classList.add("d-none")
+  flag_detective_music_off.classList.remove("d-none")
+  music.play()
+  music.loop ="true"
+}
+
+flag_detective_music_off.onclick=()=>{
+  flag_detective_music_on.classList.remove("d-none")
+  flag_detective_music_off.classList.add("d-none")
+  music.pause()
+}
+

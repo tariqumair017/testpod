@@ -3,7 +3,7 @@ import path from "path";
 import ejsMate from "ejs-mate";
 import fileUpload from "express-fileupload";
 import flash from "connect-flash";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 dotenv.config();
 import session from "express-session";
 import passport from "passport";
