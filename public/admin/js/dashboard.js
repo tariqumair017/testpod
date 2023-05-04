@@ -103,6 +103,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("collapseOne").classList.add("show")
       document.getElementById("manage-flag-detective-game").classList.add("active")
     }
+    else if(pathname == "/admin/flag-puzzle-game/add"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("create-flag-puzzle-game").classList.add("active")
+    }
+    else if(pathname == "/admin/flag-puzzle-game/manage"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("manage-flag-puzzle-game").classList.add("active")
+    }
     else if(pathname == "/admin/test/add"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseTwo").classList.add("show")

@@ -9889,7 +9889,7 @@ border-color: #EA4A4A;
 
 @media screen and (max-width:700px) {
   .breadcrumb-title h2 {
-    font-size: 45px;
+    font-size: 35px;
   }
 }
 
@@ -9909,23 +9909,24 @@ border-color: #EA4A4A;
 
 .puzzle{
   display: flex;
-  gap: 30px;
-  margin-top: 100px;
   width: 100%;
   height: 100vh;
-  /* background-image: url(/client/img/bg/puzzle.png); */
-  /* background-repeat: no-repeat;
-  background-size: cover; */
 }
 
 
 .puzzle-manage{
   display: flex;
   flex-direction: column;
-  gap: 30px;
   width: 15%;
   justify-content: center;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.puzzle-function{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid lightgray;
 }
 
 .puzzle-column{
@@ -9934,8 +9935,21 @@ border-color: #EA4A4A;
   justify-content: center;
   height: 33.33vh;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
 
-  /* border: 2px solid gray; */
+.retake{
+  transition: all .3s;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.next-flag{
+  margin-left: 10px;
+}
+
+.retake:hover{
+  transform: rotate(90deg);
+  transition: all .3s;
 }
 
 .puzzle-timer{
@@ -10652,6 +10666,7 @@ footer .next-btn:hover {
   color: #fff;
   padding: 10px 15px;
   text-transform: uppercase;
+  border: none;
 }
 
 .flag-detective-score-card-two{
@@ -10660,6 +10675,8 @@ footer .next-btn:hover {
   color: #fff;
   padding: 10px 15px;
   text-transform: uppercase;
+  border: none;
+
 }
 
 .flag-detective-sound{
@@ -10677,8 +10694,7 @@ footer .next-btn:hover {
 }
 
 .flag-detective-game-right-part{
-  background-color: #ffffff;
-  padding: 20px;
+  padding: 0px 10px;
 }
 
 .flag-detective-game-scorus-card{
@@ -10694,6 +10710,9 @@ footer .next-btn:hover {
 }
 .mobile-side-view{
   width: 15%;
+  background-image: url(/client/img/bg/Artboard.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .base-timer {

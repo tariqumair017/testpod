@@ -20,13 +20,194 @@
  * @author Denis Khakimov <denisdude@gmail.com>
  */
 
+var music = new Audio("/client/sounds/Lobby-Time.mp3")
+
+const flag_detective_music_on = document.querySelector(".flag-detective-music-on")
+const flag_detective_music_off = document.querySelector(".flag-detective-music-off")
+
+const flag_detective_game_card = document.querySelector(".flag-detective-game-card")
+const flag_detective_score_card = document.querySelector(".flag-detective-score-card")
+
+const focus_input = document.querySelector(".focus")
+
+const detective_total_questions = document.querySelector(
+  ".detective-total-questions"
+);
+
+
+focus_input.focus()
+focus_input.classList.add("d-none")
+
+// Music
+
+
+flag_detective_music_on.onclick=()=>{
+  flag_detective_music_on.classList.add("d-none")
+  flag_detective_music_off.classList.remove("d-none")
+  music.play()
+  music.loop ="true"
+}
+
+flag_detective_music_off.onclick=()=>{
+  flag_detective_music_on.classList.remove("d-none")
+  flag_detective_music_off.classList.add("d-none")
+  music.pause()
+}
+
+// Total Questions
+
+detective_total_questions.innerHTML =
+  '<span class="total_que">' +
+  1 +
+  '<span>/' +
+  5
+" </span></span>";
+
+
+
+// Timer
+
+
+const FULL_DASH_ARRAY = 283;
+const WARNING_THRESHOLD = 30 / 2;
+const ALERT_THRESHOLD = 30 / 4;
+
+const COLOR_CODES = {
+  info: {
+    color: "green"
+  },
+  warning: {
+    color: "orange",
+    threshold: WARNING_THRESHOLD
+  },
+  alert: {
+    color: "red",
+    threshold: ALERT_THRESHOLD
+  }
+};
+
+const TIME_LIMIT = 30;
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+let timerInterval = null;
+let remainingPathColor = COLOR_CODES.info.color;
+
+
+// Clock Timer
+
+
+flag_detective_game_card.innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">${formatTime(
+  timeLeft
+)}</span>
+</div>
+`;
+
+const base_timer__label = document.querySelector(".base-timer__label")
+
+function onTimesUp() {
+  clearInterval(timerInterval);
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    document.getElementById("base-timer-label").innerHTML = formatTime(
+      timeLeft
+    );
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
+
+    if (timeLeft === 0) {
+      onTimesUp();
+      callResultScreen();
+    }
+  }, 1000);
+}
+startTimer()
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  return `${minutes}:${seconds}`;
+}
+
+function setRemainingPathColor(timeLeft) {
+  const { alert, warning, info } = COLOR_CODES;
+  if (timeLeft <= alert.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(warning.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(alert.color);
+  } else if (timeLeft <= warning.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(info.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(warning.color);
+    base_timer__label.style.animation = "popup 800ms infinite ease-in-out"
+  }
+}
+
+function calculateTimeFraction() {
+  const rawTimeFraction = timeLeft / TIME_LIMIT;
+  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray() {
+  const circleDasharray = `${(
+    calculateTimeFraction() * FULL_DASH_ARRAY
+  ).toFixed(0)} 283`;
+  document
+    .getElementById("base-timer-path-remaining")
+    .setAttribute("stroke-dasharray", circleDasharray);
+}
+
+
+// Score Card
+
+flag_detective_score_card.innerHTML = 1 < 10 ? "Score : 0" + 1 : "Score :" + 1;
+
+
+// Score End
+
+// Clock Timer End
+
+
+
 const FPS = 30;
-const pickimage = document.querySelector('select[name=pickimage]');
-let IMAGE = pickimage.value;
+// const pickimage = document.querySelector('select[name=pickimage]');
+// let IMAGE = pickimage.value;
 let image = null;
 let ROWS = 3;
 let COLS = 2;
-let RADIUS = 30;
+let RADIUS = 100;
 let OFFSET = 20;
 let board = null;
 let piece = null;
@@ -82,60 +263,61 @@ canvas.addEventListener('pointerup', e => {
     let localPiece = piece;
     let piecePos = { x: localPiece.x, y: localPiece.y };
     let tween = new TWEEN.Tween(piecePos).
-    to({ x: 0, y: 0 }, 250).
-    easing(TWEEN.Easing.Quartic.In).
-    onUpdate(() => {
-      localPiece.z = 10;
-      localPiece.x = piecePos.x;
-      localPiece.y = piecePos.y;
-    }).
-    onComplete(() => {
-      localPiece.z = 0;
-      if (board.check()) {
-        alert('You have successfully completed this puzzle!');
-        board.pieces = [];
-      }
-    }).
-    start();
+      to({ x: 0, y: 0 }, 250).
+      easing(TWEEN.Easing.Quartic.In).
+      onUpdate(() => {
+        localPiece.z = 10;
+        localPiece.x = piecePos.x;
+        localPiece.y = piecePos.y;
+      }).
+      onComplete(() => {
+        localPiece.z = 0;
+        if (board.check()) {
+          alert('You have successfully completed this puzzle!');
+          board.pieces = [];
+        }
+      }).
+      start();
   }
   piece = null;
 });
 
-pickimage.addEventListener('change', e => {
-  IMAGE = e.target.value;
-  reset();
-});
+// pickimage.addEventListener('change', e => {
+//   IMAGE = e.target.value;
+//   reset();
+// });
 
-const boardconfig = document.querySelector('select[name=boardconfig]');
+const boardconfig = document.querySelector('.boardconfig');
 boardconfig.addEventListener('change', e => {
   const dims = e.target.value.split('x');
   ROWS = dims[0];
   COLS = dims[1];
   if (COLS * ROWS > 15) {
-    RADIUS = 15;
+    RADIUS ;
   } else if (COLS * ROWS > 12) {
-    RADIUS = 20;
+    RADIUS;
   } else if (COLS * ROWS > 8) {
-    RADIUS = 25;
+    RADIUS;
   } else {
-    RADIUS = 30;
+    RADIUS;
   }
   reset();
 });
 
-const resetpuzzle = document.querySelector('button[name=resetpuzzle]');
+const resetpuzzle = document.querySelector('.resetpuzzle');
 resetpuzzle.addEventListener('click', e => {
   reset();
 });
 
-const shufflepuzzle = document.querySelector('button[name=shufflepuzzle]');
+const shufflepuzzle = document.querySelector('.shufflepuzzle');
+
+window.onload =function(){ shufflepuzzle.click()}
+
 shufflepuzzle.addEventListener('click', e => {
   const localPadding = 40;
   const localLeft = 500;
-  const localRight = canvas.width ;
-  console.log(localRight,"localRight")
+  const localRight = canvas.width;
   const localTop = localPadding;
-  console.log(localTop,"localTop")
   const localBottom = canvas.height;
 
   let randomPosition = [];
@@ -146,25 +328,26 @@ shufflepuzzle.addEventListener('click', e => {
     let localX = piecePos.x * board.pw;
     let localY = piecePos.y * board.ph;
     randomPosition.push({
-      x: localLeft - localX + Math.random() * (localRight - localLeft - board.pw),
-      y: localTop - localY + Math.random() * (localBottom - localTop - board.ph) });
+      x: localLeft - localX + Math.random() * (-100+localRight - localLeft - board.pw),
+      y: localTop - localY + Math.random() * (-150+localBottom - (localTop) - board.ph)
+    });
 
     currentPosition.push({ x: 0, y: 0 });
   }
   for (let i = 0; i < board.pieces.length; i++) {
     let piece = board.pieces[i];
     new TWEEN.Tween(currentPosition[i]).
-    to(randomPosition[i], 1000).
-    easing(TWEEN.Easing.Quadratic.Out).
-    onUpdate(() => {
-      piece.x = currentPosition[i].x;
-      piece.y = currentPosition[i].y;
-      piece.z = i + 10;
-    }).
-    onComplete(() => {
-      piece.z = 0;
-    }).
-    start();
+      to(randomPosition[i], 1000).
+      easing(TWEEN.Easing.Quadratic.Out).
+      onUpdate(() => {
+        piece.x = currentPosition[i].x;
+        piece.y = currentPosition[i].y;
+        piece.z = i + 10;
+      }).
+      onComplete(() => {
+        piece.z = 0;
+      }).
+      start();
   }
 });
 // UI -- end
@@ -187,13 +370,14 @@ const render = time => {
   requestAnimationFrame(render);
 };
 
+
 // init -- begin
 const reset = () => {
   image = new Image();
-  image.src = IMAGE;
+  image.src = "/client/img/Flags/01-correct.svg";
   image.addEventListener('load', e => {
     let ratio = image.width / image.height;
-    let width = image.width;
+    let width = 600
     let height = image.height;
 
     if (image.width > image.height) {
@@ -209,7 +393,7 @@ const reset = () => {
     canvas.width = app.clientWidth;
     canvas.height = app.clientHeight;
 
-    board = new Board(ROWS, COLS, image, OFFSET, OFFSET, RADIUS);
+    board = new Board(ROWS, COLS, image, OFFSET, RADIUS);
   });
 };
 const init = event => {
@@ -255,13 +439,13 @@ class Piece {
     const distance = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
 
     if (distance < 50)
-    return true;
+      return true;
 
     return false;
   }
-  getMask() {return this.mask(this.x, this.y);}
-  set image(v) {this.img = v;}
-  get image() {return this.img;}
+  getMask() { return this.mask(this.x, this.y); }
+  set image(v) { this.img = v; }
+  get image() { return this.img; }
   hover() {
     this.isHover = true;
     this.z = 10;
@@ -281,9 +465,9 @@ class Piece {
     ctx.clip(mask, 'evenodd');
 
     ctx.drawImage(this.image,
-    this.x + this.bx,
-    this.y + this.by,
-    this.image.width, this.image.height);
+      this.x + this.bx,
+      this.y + this.by,
+      this.image.width, this.image.height);
 
     if (this.isHover) {
       ctx.fillStyle = 'rgba(255, 230, 0, .25)';
@@ -291,7 +475,8 @@ class Piece {
     }
 
     ctx.restore();
-  }}
+  }
+}
 
 //
 class Board {
@@ -316,18 +501,19 @@ class Board {
       }
     }
   }
-  get piecesByZAsc() {return [...this.pieces].sort((a, b) => a.z - b.z);}
-  get piecesByZDesc() {return [...this.pieces].sort((a, b) => b.z - a.z);}
-  get radius() {return this.rad;}
+  get piecesByZAsc() { return [...this.pieces].sort((a, b) => a.z - b.z); }
+  get piecesByZDesc() { return [...this.pieces].sort((a, b) => b.z - a.z); }
+  get radius() { return this.rad; }
   set radius(v) {
     this.rad = v;
     this.updateMasks();
   }
-  index(x, y) {return x + y * this.c;}
+  index(x, y) { return x + y * this.c; }
   posByIndex(index) {
     return {
       x: index % this.c,
-      y: Math.floor(index / this.c) };
+      y: Math.floor(index / this.c)
+    };
 
   }
   check() {
@@ -335,8 +521,8 @@ class Board {
 
     for (let i = 0; i < this.pieces.length; i++) {
       if (this.pieces[i].index != counter ||
-      this.pieces[i].x != 0 ||
-      this.pieces[i].y != 0) return false;
+        this.pieces[i].x != 0 ||
+        this.pieces[i].y != 0) return false;
       counter++;
     }
 
@@ -351,14 +537,14 @@ class Board {
   }
   unhoverPieces() {
     for (let i = 0; i < this.pieces.length; i++)
-    this.pieces[i].unhover();
+      this.pieces[i].unhover();
   }
   pieceByPos(ctx, x, y) {
     const pieces = this.piecesByZDesc;
 
     for (let i = 0; i < pieces.length; i++)
-    if (ctx.isPointInPath(pieces[i].getMask(), x, y, 'nonzero'))
-    return pieces[i];
+      if (ctx.isPointInPath(pieces[i].getMask(), x, y, 'nonzero'))
+        return pieces[i];
 
     return null;
   }
@@ -373,7 +559,7 @@ class Board {
       ctx.fill();
 
       for (let i = 0; i < pieces.length; i++)
-      pieces[i].render(ctx);
+        pieces[i].render(ctx);
     } else {
       ctx.drawImage(this.image, this.x, this.y, this.image.width, this.image.height);
     }
@@ -420,6 +606,7 @@ class Board {
 
       return m;
     };
-  }}
+  }
+}
 
 // classes -- end

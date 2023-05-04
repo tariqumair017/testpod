@@ -113,9 +113,9 @@ let completeTestDuration;
     
         question: val.question,
     
-        answer: val.correct,
+        answer: val.correct.replace(/\s/g, '').toLowerCase(),
     
-        options: [val.optionA, val.optionB, val.optionC, val.optionD],
+        options: [val.optionA.replace(/\s/g, '').toLowerCase(), val.optionB.replace(/\s/g, '').toLowerCase(), val.optionC.replace(/\s/g, '').toLowerCase(), val.optionD.replace(/\s/g, '').toLowerCase()],
 
         hint : val.hint,
 

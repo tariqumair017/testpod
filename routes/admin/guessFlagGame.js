@@ -105,7 +105,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     }
     else
     {   
-        req.flash("error", `${find.region.toUpperCase()} with Selected level is already exist`);
+        req.flash("error", `${find.region.toFUpperCase()} with Selected level is already exist`);
         res.redirect("/admin/guess-flag-game/add"); 
     }
 }));

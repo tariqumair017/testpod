@@ -73,9 +73,9 @@ fetch(`/game/all/${region}/${currenLevel}`)
     
         question: val.flag,
     
-        answer: val.correct,
+        answer: val.correct.replace(/\s/g, '').toLowerCase(),
     
-        options: [val.optionA, val.optionB, val.optionC, val.optionD],
+        options: [val.optionA.replace(/\s/g, '').toLowerCase(), val.optionB.replace(/\s/g, '').toLowerCase(), val.optionC.replace(/\s/g, '').toLowerCase(), val.optionD.replace(/\s/g, '').toLowerCase()],
 
         hint : val.hint
       }
@@ -315,7 +315,7 @@ async function optionSelected(answer) {
   }
 
 
-  if (userAns === correcAns) { 
+  if (userAns.replace(/\s/g, '').toLowerCase() === correcAns.replace(/\s/g, '').toLowerCase()) { 
     userScore += 1; //upgrading score value with 1
 
     total_correct.innerHTML = userScore;

@@ -24,6 +24,7 @@ import AdminNewFlagRoutes from "./routes/admin/newFlag.js";
 import AdminGuessFlagGameRoutes from './routes/admin/guessFlagGame.js';
 import AdminFlagDetectiveGameRoutes from './routes/admin/flagDetectiveGame.js';
 import AdminWebAnalyticsRoutes from './routes/admin/webAnalytics.js';
+import AdminFlagPuzzleGameRoutes from './routes/admin/flagPuzzleGame.js';
  
 //Requring Client Routes
 import ClientIndexRoutes from "./routes/client/index.js"; 
@@ -99,6 +100,7 @@ app.use("/admin/draw-flag-game/add-new-flag", AdminNewFlagRoutes);
 app.use("/admin/guess-flag-game", AdminGuessFlagGameRoutes);
 app.use("/admin/flag-detective-game", AdminFlagDetectiveGameRoutes);
 app.use("/admin/web-analytics", AdminWebAnalyticsRoutes);
+app.use("/admin/flag-puzzle-game", AdminFlagPuzzleGameRoutes);
 
 //Requring Client Routes
 app.use(ClientIndexRoutes);
