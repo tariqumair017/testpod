@@ -100,6 +100,12 @@ router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(
   const data = await PuzzleFlagGame.find({});
   res.render("Admin/FlagPuzzleGame/ManagePuzzleFlagGame", { data });
 }));
+
+
+//Admin Manage-Puzzle-Flag page
+router.get("/edit", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  res.render("Admin/FlagPuzzleGame/AllPuzzleFlagGame");
+}));
   
 
 
