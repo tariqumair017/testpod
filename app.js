@@ -59,11 +59,11 @@ app.use(session({
     secret: "This is My UXH First project with the name testpod",
     resave: false,
     saveUninitialized: true,
-    cookie: { 
-        httpOnly: true,
-        expires: Date.now() + 60 * 60 * 1000,
-        maxAge: 60 * 60 * 1000 
-    }
+    // cookie: { 
+    //     httpOnly: true,
+    //     expires: Date.now() + 60 * 60 * 1000,
+    //     maxAge: 60 * 60 * 1000 
+    // }
 }));
 
 //For Admin
