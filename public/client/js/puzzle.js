@@ -207,7 +207,7 @@ const FPS = 30;
 let image = null;
 let ROWS = 3;
 let COLS = 2;
-let RADIUS = 100;
+let RADIUS = 150;
 let OFFSET = 20;
 let board = null;
 let piece = null;
@@ -329,7 +329,7 @@ shufflepuzzle.addEventListener('click', e => {
     let localY = piecePos.y * board.ph;
     randomPosition.push({
       x: localLeft - localX + Math.random() * (-100+localRight - localLeft - board.pw),
-      y: localTop - localY + Math.random() * (-150+localBottom - (localTop) - board.ph)
+      y: localTop - localY + Math.random() * (-200+localBottom - (localTop) - board.ph)
     });
 
     currentPosition.push({ x: 0, y: 0 });

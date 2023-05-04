@@ -56,72 +56,72 @@ document.addEventListener("DOMContentLoaded", function (event) {
     else if(pathname == "/admin/web-analytics/quizzes"){
       document.getElementById("web-analytics").classList.add("active")
       document.getElementById("collapseThree").classList.add("show")
-      document.getElementById("quizze").classList.add("active")
+      document.getElementById("quizze").classList.add("active-nav")
     }
     else if(pathname == "/admin/web-analytics/guess-flag-game"){
       document.getElementById("web-analytics").classList.add("active")
       document.getElementById("collapseThree").classList.add("show")
-      document.getElementById("flag-game").classList.add("active")
+      document.getElementById("flag-game").classList.add("active-nav")
     }
     else if(pathname == "/admin/guess-country-game/add"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("add-flags-games").classList.add("active")
+      document.getElementById("add-flags-games").classList.add("active-nav")
     }
     else if(pathname == "/admin/guess-country-game/manage"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("manage-flags-games").classList.add("active")
+      document.getElementById("manage-flags-games").classList.add("active-nav")
     } 
     else if(pathname == "/admin/draw-flag-game/add"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("draw-flags-games").classList.add("active")
+      document.getElementById("draw-flags-games").classList.add("active-nav")
     }
     else if(pathname == "/admin/draw-flag-game/manage"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("manage-draw-flags-games").classList.add("active")
+      document.getElementById("manage-draw-flags-games").classList.add("active-nav")
     } 
     else if(pathname == "/admin/guess-flag-game/add"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("create-guess-flag-game").classList.add("active")
+      document.getElementById("create-guess-flag-game").classList.add("active-nav")
     }
      else if(pathname == "/admin/guess-flag-game/manage"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("manage-guess-flag-game").classList.add("active")
+      document.getElementById("manage-guess-flag-game").classList.add("active-nav")
     }
     else if(pathname == "/admin/flag-detective-game/add"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("create-flag-detective-game").classList.add("active")
+      document.getElementById("create-flag-detective-game").classList.add("active-nav")
     }
     else if(pathname == "/admin/flag-detective-game/manage"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("manage-flag-detective-game").classList.add("active")
+      document.getElementById("manage-flag-detective-game").classList.add("active-nav")
     }
     else if(pathname == "/admin/flag-puzzle-game/add"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("create-flag-puzzle-game").classList.add("active")
+      document.getElementById("create-flag-puzzle-game").classList.add("active-nav")
     }
     else if(pathname == "/admin/flag-puzzle-game/manage"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")
-      document.getElementById("manage-flag-puzzle-game").classList.add("active")
+      document.getElementById("manage-flag-puzzle-game").classList.add("active-nav")
     }
     else if(pathname == "/admin/test/add"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseTwo").classList.add("show")
-      document.getElementById("add-test").classList.add("active")
+      document.getElementById("add-test").classList.add("active-nav")
     }
     else if(pathname == "/admin/test/manage"){
       document.getElementById("quiz-management").classList.add("active")
       document.getElementById("collapseTwo").classList.add("show")
-      document.getElementById("manage-quiz").classList.add("active")
+      document.getElementById("manage-quiz").classList.add("active-nav")
     }
     else if(pathname == "/admin/result-management"){
       document.getElementById("result-management").classList.add("active")

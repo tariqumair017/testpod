@@ -10710,7 +10710,8 @@ footer .next-btn:hover {
 }
 .mobile-side-view{
   width: 15%;
-  background-image: url(/client/img/bg/Artboard.jpg);
+  /* background-image: url(/client/img/bg/Artboard.jpg); */
+  background-color: #ffffff;
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -1,7 +1,5 @@
 <% layout('Client/layouts/gameBoilerPlate') -%>
 
-  <link href="/client/css/puzzle.css" rel="stylesheet" />
-
   <div class="flag-detective-game-header">
     <span class="header-image">
       <img style="cursor: pointer;" src="/client/img/logo/logo1.svg" width="100%" height="100%" alt="" />
@@ -21,7 +19,7 @@
                 <li><a href="/draw-flags">Draw Flags</a></li>
                 <li><a href="/guess-flag-regions">Guess Flags</a></li>
                 <li><a href="/flag-detective-regions">Flags Detective</a></li>
-                <!-- <li><a href="/flag-puzzle">Flags Puzzle</a></li> -->
+                <li><a href="/flag-puzzle">Flags Puzzle</a></li>
                 <li><a href="/learn-about-flags">Learn About Flags</a></li>
 
               </ul>
@@ -32,36 +30,6 @@
                 <li><a href="/test/states">DMV Test</a></li>
               </ul>
             </li>
-            <!-- <li class="sub">
-        <a href="/courses">Courses</a>
-        <ul>
-          <li><a href="/courses">Courses</a></li>
-          <li>
-            <a href="/courses-details">Courses Details</a>
-          </li>
-        </ul>
-      </li> -->
-
-
-            <!-- <li class="sub">
-        <a href="javascript:(0)">Pages</a>
-        <ul>
-          <li><a href="/pricing">Pricing</a></li>
-          <li><a href="/team">Team</a></li>
-          <li><a href="/faq">Faq</a></li>
-          <li><a href="/shop">Shop</a></li>
-          <li><a href="/shop-details">Shop Details</a></li>
-        </ul>
-      </li> -->
-
-            <!-- <li class="sub">
-        <a href="javascript:(0)">News</a>
-        <ul>
-          <li><a href="/blog">News</a></li>
-          <li><a href="/blog-details">News Details</a></li>
-        </ul>
-      </li> -->
-
             <li class="sub"><a href="/contact">Contact</a></li>
           </ul>
         </nav>
@@ -100,10 +68,10 @@
       </select>
     </div>
     <div class="score-text-slide-right" style="display: flex;gap: 5px;flex-wrap: wrap;">
-      <span class="flag-detective-music-on flag-detective-sound">
+      <span class="flag-detective-music-on flag-detective-sound" title="Music On">
         <img src="/client/img/bg/volume_up_white_24dp.svg" />
       </span>
-      <span class="flag-detective-music-off flag-detective-sound d-none">
+      <span class="flag-detective-music-off flag-detective-sound d-none" title="Music Off">
         <img src="/client/img/bg/volume_off_white_24dp.svg" />
       </span>
       <a href="/flag-detective-regions" class="flag-detective-score-card">
@@ -154,7 +122,7 @@
             <i class="fa-solid fa-shuffle shufflepuzzle" style="font-size: larger;cursor: pointer;"></i>
           </div>
           <div class="flag-detective-game-scorus-card">
-            <button class="btn ss-btn">Next<i class="fa-solid fa-arrow-right next-flag"></i></button>
+            <button class="btn ss-btn" >Next<i class="fa-solid fa-arrow-right next-flag"></i></button>
             <input class="focus" width=".1px"></input>
           </div>
         </div>
@@ -164,4 +132,4 @@
 
 
   <script src="/client/js/puzzle.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>

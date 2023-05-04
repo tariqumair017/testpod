@@ -5,21 +5,21 @@ var region_input = '';
 var Counter = 0;
 
 
-fetch('/admin/guess-flag-game/all-flags-data')
+fetch('/admin/flag-puzzle-game/all-flags-data')
         .then(res => res.json())
         .then((json) => {   
             var _html = '';
             json.forEach(element => {
               _html += `<option value="${element}">${element}</option>`;
             });     
-          document.getElementById("guessFlagRegionID").innerHTML += _html;
+          document.getElementById("puzzleflagRegionID").innerHTML += _html;
         })
         .catch(err => console.error('error:' + err));
 
 
-  document.getElementById("guessFlagRegionID").addEventListener("change", async (event) => {
+  document.getElementById("puzzleflagRegionID").addEventListener("change", async (event) => {
       region_input = event.target.value;
-      const response = await fetch(`/admin/guess-flag-game/all-flags-data/country/${event.target.value}`);
+      const response = await fetch(`/admin/flag-puzzle-game/all-flags-data/country/${event.target.value}`);
       const data = await response.json(); 
         var _html = '';
         document.getElementById("allCountries").innerHTML = `<option hidden>Please Select Country</option>`;
@@ -37,13 +37,14 @@ fetch('/admin/guess-flag-game/all-flags-data')
 add_new_form.onclick = async () => { 
   Counter++;
   const clone = get.cloneNode(true) 
-  clone.childNodes[1].childNodes[1].childNodes[3].setAttribute('id', `allCountries${Counter}`); 
-  clone.childNodes[1].childNodes[5].childNodes[3].childNodes[1].setAttribute('id', `flagUrl${Counter}`);
+  clone.childNodes[1].childNodes[1].childNodes[3].setAttribute('id', `allCountries${Counter}`);
+  console.log(clone.childNodes[1].childNodes[3].childNodes[3])
+  clone.childNodes[1].childNodes[3].childNodes[3].childNodes[1].setAttribute('id', `flagUrl${Counter}`);
   set.appendChild(clone);
   
   if(region_input != '')
   {
-    const allCountries = await fetch(`/admin/guess-flag-game/all-flags-data/country/${region_input}`);
+    const allCountries = await fetch(`/admin/flag-puzzle-game/all-flags-data/country/${region_input}`);
     const data = await allCountries.json(); 
     var _html = '';
     document.getElementById(`allCountries${Counter}`).innerHTML = `<option hidden>Please Select Country</option>`;
@@ -56,12 +57,10 @@ add_new_form.onclick = async () => {
 
 
   document.getElementById("allCountries").addEventListener("change", async (event) => {   
-  const response = await fetch(`/admin/guess-flag-game/all-flags-data/country-for-flag/${event.target.value}`);
+  const response = await fetch(`/admin/flag-puzzle-game/all-flags-data/country-for-flag/${event.target.value}`);
   const data = await response.json(); 
   document.getElementById("flagUrl").value = data.flag;   
 
-  const shuffledCountry = shuffleStr(event.target.value); 
-  document.getElementById(`Icountry`).value = shuffledCountry; 
 });
 
 
@@ -69,23 +68,9 @@ async function selectedCountry(e)
     { 
       const id = e.getAttribute("id");
       const countryName = document.getElementById(id).value;
-      const shuffledCountry = shuffleStr(countryName); 
       const num = id.match(/(\d+)/)[0];
-      document.getElementById(`Icountry${num}`).value = shuffledCountry; 
     
-      const response = await fetch(`/admin/guess-flag-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-puzzle-game/all-flags-data/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById(`flagUrl${num}`).value = data.flag;   
     }
-
-
-    //Shuffle String Character Function
-    function shuffleStr(s) { 
-    let arr = s.split(''), arr_len = arr.length; 
-    while (arr_len) {
-      let rnd = Math.floor(Math.random() * arr_len--);
-      [arr[arr_len], arr[rnd]] = [arr[rnd] , arr[arr_len]];
-    } 
-    let str = arr.join('');
-    return str;
-  }
