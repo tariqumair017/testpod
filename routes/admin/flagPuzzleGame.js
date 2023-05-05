@@ -1,23 +1,17 @@
 import express, { Router } from "express";
 const router = Router();
 import AllFlagsData from "../../models/allFlagsData.js";
-import PuzzleFlagGame from "../../models/puzzleFlagGame.js";
+import FlagPuzzleGame from "../../models/flagPuzzleGame.js";
 import connectEnsureLogin from "connect-ensure-login"; 
 import asyncHandler from "express-async-handler";
 
-
-//Admin: Distinct Region form All Flags Data
-router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    res.render("Admin/FlagPuzzleGame/AddPuzzleGame");
-  }));
 
 //Admin: Distinct Region form All Flags Data
 router.get("/all-flags-data", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const data = await AllFlagsData.distinct("region"); 
   res.send(data);
 }));
-
-
+ 
 //Admin: Find All Countries of Selected Region from All Flags Data
 router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
   const data = await AllFlagsData.find({region: req.params.region});
@@ -30,60 +24,47 @@ router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensur
   res.send(data);
 }));
 
+//Admin: Create Flag Puzzle Game Page
+router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  res.render("Admin/FlagPuzzleGame/AddPuzzleGame");
+}));
+
+//Admin: Create Flag Puzzle Game Handel
 router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 
-  const find = await PuzzleFlagGame.findOne({region: req.body.region, level: req.body.level});
-
+  const find = await FlagPuzzleGame.findOne({region: req.body.region, level: req.body.level});
 
   if(!find)
   {  
       if(typeof(req.body.country) == "string")
-      {  
-        try {
-          await s3.upload({
-            Bucket: process.env.AWS_BUCKET_NAME,
-            ACL: 'public-read'
-          }).promise().then( async (data) => {
-            var question = {country: req.body.country, correctImg: req.body.correctImg}; 
-              const singleGame = new PuzzleFlagGame({
-                  region: req.body.region,
-                  level: req.body.level, 
-                  questions: question
-              });
-              await singleGame.save();
-              console.log("PuzzleFlagGame Added Successfully"); 
-              res.redirect("/admin/flag-puzzle-game/manage");
+      { 
+        var question = {country: req.body.country, flag: req.body.flag}; 
+          const singleGame = new FlagPuzzleGame({
+              region: req.body.region,
+              level: req.body.level, 
+              questions: question
           });
-        } catch (error) {
-          console.log(error);
-        }
+          await singleGame.save();
+          console.log("Single FlagPuzzleGame Added Successfully"); 
+          res.redirect("/admin/flag-puzzle-game/manage"); 
       }
       else if(typeof(req.body.country) == "object")
       {
-        const newGame = new PuzzleFlagGame({
+        const newGame = new FlagPuzzleGame({
           region: req.body.region,
           level: req.body.level
         });  
 
-        for (let i = 0; i < req.body.country.length; i++) {
-          try {
-            await s3.upload({
-                Bucket: process.env.AWS_BUCKET_NAME,
-                ACL: 'public-read'
-              }).promise().then((data) => { 
-                const newQuestion = {
-                  country: req.body.country[i], 
-                  correctImg: req.body.correctImg[i], 
-                }; 
-                newGame.questions.push(newQuestion); 
-              }); 
-          } catch (err) {
-            console.log(err)
-          }
+        for (let i = 0; i < req.body.country.length; i++) { 
+            const newQuestion = {
+              country: req.body.country[i], 
+              flag: req.body.flag[i], 
+            }; 
+            newGame.questions.push(newQuestion);  
         }        
 
         await newGame.save();
-        console.log("Multiple PuzzleFlagGame Added Successfully"); 
+        console.log("Multiple FlagPuzzleGame Added Successfully"); 
         res.redirect("/admin/flag-puzzle-game/manage");
       }  
   }
@@ -93,22 +74,79 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
       res.redirect("/admin/flag-puzzle-game/add"); 
   }
 }));
-
-
-//Admin Manage-Puzzle-Flag page
+ 
+//Admin: Manage Flag Puzzle Game Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  const data = await PuzzleFlagGame.find({});
+  const data = await FlagPuzzleGame.find({});
   res.render("Admin/FlagPuzzleGame/ManagePuzzleFlagGame", { data });
 }));
 
+//Admin - Delete Flag Puzzle Game
+router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  const { id } = req.params;
+  await FlagPuzzleGame.findByIdAndDelete(id);
+  console.log("FlagPuzzleGame Deleted Successfully");  
+  req.flash("success", `Game Deleted Successfully`);
+  res.send({url: "/admin/flag-puzzle-game/manage"}); 
+}));
 
-//Admin Manage-Puzzle-Flag page
-router.get("/edit", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/FlagPuzzleGame/AllPuzzleFlagGame");
+//Admin: Show All Questions of Flag Puzzle Game 
+router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
+  const data = await FlagPuzzleGame.findById(req.params.id); 
+  if(!data)
+  {
+    req.flash("error", "Cannot find this Game!");
+    return res.redirect("/admin/flag-puzzle-game/manage");
+  } 
+  res.render("Admin/FlagPuzzleGame/AllPuzzleFlagGame", { data });
 }));
   
+ 
+// Admin: Add new Question in Game
+router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  
+  var find = await FlagPuzzleGame.findById(req.params.id);
 
+    if(find)
+    {  
+      const question = {country: req.body.country, flag: req.body.flag}; 
 
+      await FlagPuzzleGame.updateOne({_id: find._id}, {$push:{questions: question}});
+      console.log("New Question Added"); 
+      req.flash("success", "New Question Added");
+      res.redirect(`/admin/flag-puzzle-game/manage/${req.params.id}/all-questions`); 
+    }
+    else
+    {
+      req.flash("error", "Game not found");
+      res.redirect(`/admin/flag-puzzle-game/manage/${req.params.id}/all-questions`); 
+    }
+}));
+
+// Admin: Edit Question of Flag Puzzle Game
+router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  const data = await FlagPuzzleGame.findById(req.params.id);
+  res.send(data);  
+}));
+
+//Admin: Update Question of Flag Puzzle Game
+router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
+   
+  var question = {country: req.body.country, flag: req.body.flag}; 
+  await FlagPuzzleGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
+  
+  console.log("Question Updated");
+  req.flash("success", "Question Updated Successfully");
+  res.redirect(`/admin/flag-puzzle-game/manage/${req.params.pid}/all-questions`); 
+}));
+
+//Admin: Delete Question of a Game
+router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  await FlagPuzzleGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
+  console.log("Question Deleted Successfully");
+  req.flash("success", "Question Deleted Successfully");
+  res.redirect(`/admin/flag-puzzle-game/manage/${req.params.pid}/all-questions`);
+}));
 
 
 export default router;

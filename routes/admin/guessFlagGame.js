@@ -149,11 +149,7 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
     var find = await GuessFlagGame.findById(req.params.id);
   
       if(find)
-      { 
-        // var IcorrectFileName = Date.now() + '-' + req.files.IcorrectImg.name;
-        // const newPath2  = path.join(process.cwd(), '/public/upload-images', IcorrectFileName);
-        // req.files.IcorrectImg.mv(newPath2);
-
+      {   
         try {
           await s3.upload({
             Bucket: process.env.AWS_BUCKET_NAME,
@@ -192,7 +188,15 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
     var question;
     if(req.files)
     { 
-        try {
+      let key_name = req.body.IcorrectImgDelete.split('/'); 
+      
+        try { 
+          var params = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: key_name[key_name.length-1],
+          }; 
+          await s3.deleteObject(params).promise();
+    
           await s3.upload({
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: req.files.IcorrectImg.name,

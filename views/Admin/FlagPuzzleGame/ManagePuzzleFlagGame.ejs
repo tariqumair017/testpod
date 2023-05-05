@@ -29,8 +29,8 @@
                 <div class="manage-action-btn" >
                 <div class="dashboard-total-rating"><%=single.questions.length%></div>
                 <span>
-                  <a href="/admin/guess-flag-game/manage/<%=single._id%>/all-questions" style="margin-right: 10px;"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
-                  <a onclick="deleteGuessFlagGame('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
+                  <a href="/admin/flag-puzzle-game/manage/<%=single._id%>/all-questions" style="margin-right: 10px;"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
+                  <a onclick="deleteFlagPuzzleGame('<%=single._id%>')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>
                 </span>
                 </div>
               </div>
@@ -44,10 +44,10 @@
   <!--Container Main end-->
   
   <script>
-    async function deleteGuessFlagGame(id) {    
+    async function deleteFlagPuzzleGame(id) {    
       if(confirm("Sure you want to delete this Game..?"))
       {
-        await fetch(`/admin/guess-flag-game/manage/${id}`, {
+        await fetch(`/admin/flag-puzzle-game/manage/${id}`, {
           method: "DELETE", 
           headers: {
             "Content-Type": "application/json",

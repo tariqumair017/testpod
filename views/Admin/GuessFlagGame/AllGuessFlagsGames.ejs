@@ -194,7 +194,8 @@
                          <div class="col-md-12 position-relative mt-3">
                              <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
                              <div class="add-quiz-state-image">
-                                 <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
+                                <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete" type="text" class="form-control" required>
                              </div>
                          </div> 
                          <div class="col-md-12 mt-4 position-relative">
@@ -294,6 +295,7 @@ async function editSelectedCountry(e)
     document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
     document.getElementById("editICountry").value = data.Icountry;
     document.getElementById("editFlagUrl").value = data.correctImg;
+    document.getElementById("IcorrectImgDelete").value = data.IcorrectImg;
     document.getElementById("editHint").value = data.hint; 
     document.getElementById("guessFlagEditForm").action = `/admin/guess-flag-game/manage/${data._id}/${Pid}?_method=PUT`;
 }
