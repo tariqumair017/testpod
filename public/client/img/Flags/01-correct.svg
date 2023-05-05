@@ -3,18 +3,14 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1000 700" style="enable-background:new 0 0 1000 700;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FFFFFF;}
-	.st1{fill:#FCD116;}
-	.st2{fill:#0072C6;}
-	.st3{fill:#CE1126;}
+	.st0{fill:#00732F;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#FF0000;}
 </style>
-<title>Flag of Antigua and Barbuda</title>
 <g>
 	<path class="st0" d="M0,0h1000v700H0V0z"/>
-	<path d="M0,0h1000l-65.2,350H65.2L0,0z"/>
-	<path class="st1" d="M500,350l-217.4-76.1l110.8-22.3l-94.2-65.1l110.5,23.9l-63.3-98l93.3,66.5L416.8,63l62,98.9L500,45.7
-		L521.2,162l62-98.9l-22.8,116l93.3-66.5l-63.3,98l110.5-23.9l-94.2,65.1l110.8,22.3L500,350z"/>
-	<path class="st2" d="M65.2,273.9h869.6v152.2H65.2V273.9z"/>
-	<path class="st3" d="M0,0l500,700L1000,0v700H0V0z"/>
+	<path class="st1" d="M0,233.3h1000V700H0V233.3z"/>
+	<path d="M0,466.7h1000V700H0V466.7z"/>
+	<path class="st2" d="M0,0h250v700H0V0z"/>
 </g>
 </svg>

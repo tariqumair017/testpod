@@ -10667,6 +10667,8 @@ footer .next-btn:hover {
   padding: 10px 15px;
   text-transform: uppercase;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 .flag-detective-score-card-two{

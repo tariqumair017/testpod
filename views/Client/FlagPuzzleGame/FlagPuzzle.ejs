@@ -1,63 +1,67 @@
 <% layout('Client/layouts/gameBoilerPlate') -%>
 
-  <div class="flag-detective-game-header">
-    <span class="header-image">
-      <img style="cursor: pointer;" src="/client/img/logo/logo1.svg" width="100%" height="100%" alt="" />
-    </span>
-    <div class="col-xl-8 col-lg-8">
-      <div id="mobile-main-menu" class="main-menu text-right text-xl-right">
-        <nav id="mobile-menu" style="display: block">
-          <ul>
-            <li class="sub">
-              <a href="/">Home</a>
-            </li>
-            <li class="sub"><a href="/about">About Us</a></li>
-            <li class="sub">
-              <a href="javascript:(0)">Flags Game</a>
-              <ul>
-                <li><a href="/guess-country">Guess Country</a></li>
-                <li><a href="/draw-flags">Draw Flags</a></li>
-                <li><a href="/guess-flag-regions">Guess Flags</a></li>
-                <li><a href="/flag-detective-regions">Flags Detective</a></li>
-                <li><a href="/flag-puzzle">Flags Puzzle</a></li>
-                <li><a href="/learn-about-flags">Learn About Flags</a></li>
-
-              </ul>
-            </li>
-            <li class="sub">
-              <a href="javascript:(0)">Practice Test</a>
-              <ul>
-                <li><a href="/test/states">DMV Test</a></li>
-              </ul>
-            </li>
-            <li class="sub"><a href="/contact">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="search-top2">
-      <ul>
-        <li style="background-color: #A8171A; border-radius: 5px">
-          <a href="javascript:(0)" class="menu-tigger"><img src="/client/img/icon/menu.png" alt="logo" /></a>
-        </li>
-      </ul>
+<div class="flag-detective-game-header">
+  <span class="header-image">
+    <img
+      style="cursor: pointer"
+      src="/client/img/logo/logo1.svg"
+      width="100%"
+      height="100%"
+      alt=""
+    />
+  </span>
+  <div class="col-xl-8 col-lg-8">
+    <div id="mobile-main-menu" class="main-menu text-right text-xl-right">
+      <nav id="mobile-menu" style="display: block">
+        <ul>
+          <li class="sub">
+            <a href="/">Home</a>
+          </li>
+          <li class="sub"><a href="/about">About Us</a></li>
+          <li class="sub">
+            <a href="javascript:(0)">Flags Game</a>
+            <ul>
+              <li><a href="/guess-country">Guess Country</a></li>
+              <li><a href="/draw-flags">Draw Flags</a></li>
+              <li><a href="/guess-flag-regions">Guess Flags</a></li>
+              <li><a href="/flag-detective-regions">Flags Detective</a></li>
+              <li><a href="/flag-puzzle-regions">Flags Puzzle</a></li>
+              <li><a href="/learn-about-flags">Learn About Flags</a></li>
+            </ul>
+          </li>
+          <li class="sub">
+            <a href="javascript:(0)">Practice Test</a>
+            <ul>
+              <li><a href="/test/states">DMV Test</a></li>
+            </ul>
+          </li>
+          <li class="sub"><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
+  <div class="search-top2">
+    <ul>
+      <li style="background-color: #a8171a; border-radius: 5px">
+        <a href="javascript:(0)" class="menu-tigger"
+          ><img src="/client/img/icon/menu.png" alt="logo"
+        /></a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-  <!-- header end -->
+<!-- header end -->
 
+<!-- game start -->
 
-  <!-- game start -->
-
-
-  <div id="controls">
-    <!-- <select name="pickimage">
+<div id="controls">
+  <!-- <select name="pickimage">
       <option value="//account.plus-7.com/images/happy-shiba.jpg" selected="selected">Happy Shiba Inu</option>
     </select> -->
-    <div style="display: flex;gap: 5px;" class=" score-text-slide-left">
-      <span class="flag-detective-score-card" style="font-size: larger;">
-      </span>
-      <select class="boardconfig flag-detective-score-card" style="font-size: larger;">
+  <div style="display: flex; gap: 5px" class="score-text-slide-left">
+    <span class="flag-detective-score-card" style="font-size: larger"> </span>
+    <!-- <select class="boardconfig flag-detective-score-card" style="font-size: larger;">
         <option value="3x2" selected="selected">3 x 2</option>
         <option value="2x3">2 x 3</option>
         <option value="3x3">3 x 3</option>
@@ -65,71 +69,170 @@
         <option value="3x4">3 x 4</option>
         <option value="5x7">5 x 7</option>
         <option value="7x5">7 x 5</option>
-      </select>
-    </div>
-    <div class="score-text-slide-right" style="display: flex;gap: 5px;flex-wrap: wrap;">
-      <span class="flag-detective-music-on flag-detective-sound" title="Music On">
-        <img src="/client/img/bg/volume_up_white_24dp.svg" />
-      </span>
-      <span class="flag-detective-music-off flag-detective-sound d-none" title="Music Off">
-        <img src="/client/img/bg/volume_off_white_24dp.svg" />
-      </span>
-      <a href="/flag-detective-regions" class="flag-detective-score-card">
-        <i class="fa-solid fa-xmark" style="color: #ffffff;font-size: larger;"></i>
-      </a>
-    </div>
-
+      </select> -->
   </div>
+  <div
+    class="score-text-slide-right"
+    style="display: flex; gap: 5px; flex-wrap: wrap"
+  >
+    <span class="flag-detective-music-on flag-detective-sound" title="Music On">
+      <img src="/client/img/bg/volume_up_white_24dp.svg" />
+    </span>
+    <span
+      class="flag-detective-music-off flag-detective-sound d-none"
+      title="Music Off"
+    >
+      <img src="/client/img/bg/volume_off_white_24dp.svg" />
+    </span>
+    <a href="/flag-puzzle-regions" class="flag-detective-score-card">
+      <i
+        class="fa-solid fa-xmark"
+        style="color: #ffffff; font-size: larger"
+      ></i>
+    </a>
+  </div>
+</div>
 
-  <div class="puzzle">
-    <div class="puzzle-area">
-      <div class="puzzle-image">
-        <div id="app"></div>
-      </div>
-    </div>
-    <div class="mobile-side-view">
-      <div class="flag-detective-game-right-part">
-        <div class="all-quiz-progress">
-          <div class="flag-detective-game-card">
-            <div class="flag-detective-game-timer">
-              <div class="timer__background">
-                <div class="timer__display">
-                  <!-- <div class="display minute"></div>
-              <span class="display colon">:</span>
-              <div class="display seconds"></div> -->
-                </div>
-                <span class="time_up d-none" style="font-size: 15px; font-weight: bold;color:#A8171A">Completed</span>
-                <circle class="st0" cx="260.59" cy="260.59" r="253.09" />
-              </div>
-            </div>
+<div class="puzzle">
+  <div class="puzzle-area">
+    <div class="puzzle-image">
+      <div id="app"></div>
+      <div class="result_box d-none">
+        <div class="que_heading flag-detective-game-card-header" style="margin-bottom: 10px;">
+          <span class="flag-detective-score-card-two score-text-slide-left" style="font-size: larger;">
+          </span>
+          <div class="score-text-slide-right" style="display: flex;gap: 5px;flex-wrap: wrap;">
+            <a href="/flag-puzzle-regions" class="flag-detective-score-card">
+              <i class="fa-solid fa-xmark" style="color: #ffffff;font-size: larger;"></i>
+            </a>
           </div>
-          <!-- <h5>Your Progress</h5> -->
-          <div class="flag-detective-game-scorus-card">
-            <p>Flags</p>
-            <h5 class="detective-total-questions">05</h5>
-          </div>
-          <!-- <div class="flag-detective-game-scorus-card">
-          <p>Correct</p>
-          <h5 class="detective-total-correct">--</h5>
-        </div> -->
-          <div class="flag-detective-game-scorus-card">
-            <p>In-Correct</p>
-            <h5 class="detective-total-in-correct">--</h5>
-          </div>
-          <div class="puzzle-function">
-            <i class="fa-solid fa-arrows-rotate retake resetpuzzle"></i>
-            <p style="margin: 0%;font-size:xx-large;">|</p>
-            <i class="fa-solid fa-shuffle shufflepuzzle" style="font-size: larger;cursor: pointer;"></i>
-          </div>
-          <div class="flag-detective-game-scorus-card">
-            <button class="btn ss-btn" >Next<i class="fa-solid fa-arrow-right next-flag"></i></button>
-            <input class="focus" width=".1px"></input>
-          </div>
+        </div>
+        <canvas id="myChart" style="
+          width: 100%;
+          height: 250px;
+          display: block;
+          border: 2px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 2px 2px 5px #ccc;
+          padding: 15px;
+        "></canvas>
+        <div style="display: flex;justify-content: space-between;margin-top: 20px;">
+          <a href="/flag-puzzle-regions/<%=data.continent%>/game/<%=data.level%>" target="_self"><button
+              class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                style="margin-right: 10px;"></i>ReTake</button></a>
         </div>
       </div>
     </div>
   </div>
+  <div class="mobile-side-view">
+    <div class="flag-detective-game-right-part">
+      <div class="all-quiz-progress">
+        <div class="flag-detective-game-card">
+          <div class="flag-detective-game-timer">
+            <div class="timer__background">
+              <div class="timer__display">
+                <!-- <div class="display minute"></div>
+              <span class="display colon">:</span>
+              <div class="display seconds"></div> -->
+              </div>
+              <span
+                class="time_up d-none"
+                style="font-size: 15px; font-weight: bold; color: #a8171a"
+                >Completed</span
+              >
+              <circle class="st0" cx="260.59" cy="260.59" r="253.09" />
+            </div>
+          </div>
+        </div>
+        <!-- <h5>Your Progress</h5> -->
+        <div class="flag-detective-game-scorus-card">
+          <p>Flags</p>
+          <h5 class="detective-total-questions">05</h5>
+        </div>
+        <!-- <div class="flag-detective-game-scorus-card">
+          <p>Correct</p>
+          <h5 class="detective-total-correct">--</h5>
+        </div> -->
+        <div class="flag-detective-game-scorus-card">
+          <p>In-Correct</p>
+          <h5 class="detective-total-in-correct">--</h5>
+        </div>
+        <div class="puzzle-function">
+          <i
+            class="fa-solid fa-eye"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            style="cursor: pointer;font-size: larger;"
+            title="Hint"
+          ></i>
+          <p style="margin: 0%; font-size: xx-large">|</p>
+          <i
+            class="fa-solid fa-shuffle shufflepuzzle"
+            style="font-size:larger; cursor: pointer"
+            title="Shuffle"
+          ></i>
+        </div>
+        <div class="flag-detective-game-scorus-card">
+          <button class="btn ss-btn next-btn">
+            Next<i class="fa-solid fa-arrow-right next-flag"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
 
 
-  <script src="/client/js/puzzle.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+<!-- offcanvas-area -->
+<div id="offcanvas-menu">
+  <span id="menu-close" ><i class="fas fa-times"></i></span>     
+    <div id="cssmenu3" class="menu-one-page-menu-container">
+      <ul id="menu-one-page-menu-2" class="menu">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/">Home</a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/about">About Us</a>
+        </li>
+        <li><a href="/guess-country">Guess Country</a></li>
+        <li><a href="/draw-flags">Draw Flags</a></li>
+        <li><a href="/guess-flags">Guess Flags</a></li>
+        <li><a href="/flag-detective-regions">Flags Detective</a></li>
+        <li><a href="/flag-puzzle-regions">Flags Puzzle</a></li>
+        <li><a href="/test/states">DMV Test</a></li>
+        <li><a href="/learn-about-flags">Learn About Flags</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+</div>
+<div class="offcanvas-overly"></div>
+<!-- offcanvas-end -->
+<!-- Menu Slide bar -->
+
+
+
+<script>
+  var data = <%-JSON.stringify(data)%>;
+</script>
+<script src="/client/js/puzzle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>

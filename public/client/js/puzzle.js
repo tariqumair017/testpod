@@ -1,13 +1,13 @@
 /**
  * Simple Jigsaw Puzzle.
  *
- * Another simple implementation of jigsaw puzzle. 
- * I tried to make it as simply and as fast as possible, 
+ * Another simple implementation of jigsaw puzzle.
+ * I tried to make it as simply and as fast as possible,
  * so the resulting code is absolutely not optimized.
- * The pictures used are not mine, I found them 
+ * The pictures used are not mine, I found them
  * on the Internet (God bless the Internet!).
  *
- * I had to add the word 'game' to this description, 
+ * I had to add the word 'game' to this description,
  * because people like to search for that word.
  *
  * - added picture selection;
@@ -20,81 +20,107 @@
  * @author Denis Khakimov <denisdude@gmail.com>
  */
 
-var music = new Audio("/client/sounds/Lobby-Time.mp3")
+var music = new Audio("/client/sounds/Lobby-Time.mp3");
 
-const flag_detective_music_on = document.querySelector(".flag-detective-music-on")
-const flag_detective_music_off = document.querySelector(".flag-detective-music-off")
+const flag_detective_music_on = document.querySelector(
+  ".flag-detective-music-on"
+);
+const flag_detective_music_off = document.querySelector(
+  ".flag-detective-music-off"
+);
 
-const flag_detective_game_card = document.querySelector(".flag-detective-game-card")
-const flag_detective_score_card = document.querySelector(".flag-detective-score-card")
+const flag_detective_game_card = document.querySelector(
+  ".flag-detective-game-card"
+);
+const flag_detective_score_card = document.querySelector(
+  ".flag-detective-score-card"
+);
 
-const focus_input = document.querySelector(".focus")
+const next_btn = document.querySelector(".next-btn");
+
+const result_box = document.querySelector(".result_box");
+
+const focus_input = document.querySelector(".focus");
 
 const detective_total_questions = document.querySelector(
   ".detective-total-questions"
 );
 
+const detective_total_in_correct = document.querySelector(
+  ".detective-total-in-correct"
+);
 
-focus_input.focus()
-focus_input.classList.add("d-none")
+const puzzle_total_in_correct = document.querySelector(
+  ".detective-total-in-correct"
+);
+
+const modal_body = document.querySelector(".modal-body");
+
+var que_count = 0;
+
+var userScore = 0;
+
+var userWrongScore = 0;
+
+var current_Question = 1;
 
 // Music
 
+flag_detective_music_on.onclick = () => {
+  flag_detective_music_on.classList.add("d-none");
+  flag_detective_music_off.classList.remove("d-none");
+  music.play();
+  music.loop = "true";
+};
 
-flag_detective_music_on.onclick=()=>{
-  flag_detective_music_on.classList.add("d-none")
-  flag_detective_music_off.classList.remove("d-none")
-  music.play()
-  music.loop ="true"
-}
-
-flag_detective_music_off.onclick=()=>{
-  flag_detective_music_on.classList.remove("d-none")
-  flag_detective_music_off.classList.add("d-none")
-  music.pause()
-}
+flag_detective_music_off.onclick = () => {
+  flag_detective_music_on.classList.remove("d-none");
+  flag_detective_music_off.classList.add("d-none");
+  music.pause();
+};
 
 // Total Questions
 
 detective_total_questions.innerHTML =
   '<span class="total_que">' +
-  1 +
-  '<span>/' +
-  5
-" </span></span>";
-
-
+  current_Question +
+  "<span>/" +
+  data.questions.length;
+("</span></span>");
 
 // Timer
 
-
 const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 30 / 2;
-const ALERT_THRESHOLD = 30 / 4;
+const WARNING_THRESHOLD = (data?.questions?.length * 30) / 2;
+const ALERT_THRESHOLD = (data?.questions?.length * 30) / 4;
 
 const COLOR_CODES = {
   info: {
-    color: "green"
+    color: "green",
   },
   warning: {
     color: "orange",
-    threshold: WARNING_THRESHOLD
+    threshold: WARNING_THRESHOLD,
   },
   alert: {
     color: "red",
-    threshold: ALERT_THRESHOLD
-  }
+    threshold: ALERT_THRESHOLD,
+  },
 };
 
-const TIME_LIMIT = 30;
+// Hint Image
+
+modal_body.innerHTML = `<img width:"100%" height:"100%" src=${data.questions[que_count].flag} />`;
+
+// Hint Image End
+
+const TIME_LIMIT = data?.questions?.length * 30;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
-
 // Clock Timer
-
 
 flag_detective_game_card.innerHTML = `
 <div class="base-timer">
@@ -115,12 +141,12 @@ flag_detective_game_card.innerHTML = `
     </g>
   </svg>
   <span id="base-timer-label" class="base-timer__label">${formatTime(
-  timeLeft
-)}</span>
+    timeLeft
+  )}</span>
 </div>
 `;
 
-const base_timer__label = document.querySelector(".base-timer__label")
+const base_timer__label = document.querySelector(".base-timer__label");
 
 function onTimesUp() {
   clearInterval(timerInterval);
@@ -130,19 +156,18 @@ function startTimer() {
   timerInterval = setInterval(() => {
     timePassed = timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
-    document.getElementById("base-timer-label").innerHTML = formatTime(
-      timeLeft
-    );
+    document.getElementById("base-timer-label").innerHTML =
+      formatTime(timeLeft);
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
 
     if (timeLeft === 0) {
       onTimesUp();
-      callResultScreen();
+      // callResultScreen();
     }
   }, 1000);
 }
-startTimer()
+startTimer();
 
 function formatTime(time) {
   const minutes = Math.floor(time / 60);
@@ -171,7 +196,7 @@ function setRemainingPathColor(timeLeft) {
     document
       .getElementById("base-timer-path-remaining")
       .classList.add(warning.color);
-    base_timer__label.style.animation = "popup 800ms infinite ease-in-out"
+    base_timer__label.style.animation = "popup 800ms infinite ease-in-out";
   }
 }
 
@@ -189,17 +214,16 @@ function setCircleDasharray() {
     .setAttribute("stroke-dasharray", circleDasharray);
 }
 
-
 // Score Card
 
-flag_detective_score_card.innerHTML = 1 < 10 ? "Score : 0" + 1 : "Score :" + 1;
-
+flag_detective_score_card.innerHTML =
+  userScore < data?.questions?.length
+    ? "Score : 0" + userScore
+    : "Score :" + userScore;
 
 // Score End
 
 // Clock Timer End
-
-
 
 const FPS = 30;
 // const pickimage = document.querySelector('select[name=pickimage]');
@@ -214,70 +238,75 @@ let piece = null;
 const MAX_WIDTH = 500;
 const MAX_HEIGHT = 500;
 
-const app = document.querySelector('#app');
-const canvas = document.createElement('canvas');
+const app = document.querySelector("#app");
+const canvas = document.createElement("canvas");
 app.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext("2d");
 
 // UI -- begin
 let isMouseInside = false;
 let isPieceMoving = false;
 let mousePos = { x: 0, y: 0 };
 
-canvas.addEventListener('pointerenter', e => {
+canvas.addEventListener("pointerenter", (e) => {
   isMouseInside = true;
 });
-canvas.addEventListener('pointerleave', e => {
+canvas.addEventListener("pointerleave", (e) => {
   isMouseInside = false;
   isPieceMoving = false;
   piece = null;
 });
-canvas.addEventListener('pointermove', e => {
-  if (e.pointerType == 'mouse' && !isPieceMoving && isMouseInside && board) {
+canvas.addEventListener("pointermove", (e) => {
+  if (e.pointerType == "mouse" && !isPieceMoving && isMouseInside && board) {
     piece = board.pieceByPos(ctx, e.offsetX, e.offsetY);
     board.unhoverPieces();
     if (piece) piece.hover();
   }
-  if (e.pointerType == 'touch' && isPieceMoving && piece) {
+  if (e.pointerType == "touch" && isPieceMoving && piece) {
     piece.x += e.movementX;
     piece.y += e.movementY;
-  } else if (isPieceMoving && piece) {// e.pointerType == 'mouse'
+  } else if (isPieceMoving && piece) {
+    // e.pointerType == 'mouse'
     piece.x += e.offsetX - mousePos.x;
     piece.y += e.offsetY - mousePos.y;
   }
   mousePos.x = e.offsetX;
   mousePos.y = e.offsetY;
 });
-canvas.addEventListener('pointerdown', e => {
-  if (e.pointerType == 'touch' && !isPieceMoving && isMouseInside && board) {
+canvas.addEventListener("pointerdown", (e) => {
+  if (e.pointerType == "touch" && !isPieceMoving && isMouseInside && board) {
     piece = board.pieceByPos(ctx, e.offsetX, e.offsetY);
     board.unhoverPieces();
     if (piece) piece.hover();
   }
   if (piece) isPieceMoving = true;
 });
-canvas.addEventListener('pointerup', e => {
+canvas.addEventListener("pointerup", (e) => {
   isPieceMoving = false;
   // is the piece near its place?
   if (piece && piece.isNearToPlace()) {
     let localPiece = piece;
     let piecePos = { x: localPiece.x, y: localPiece.y };
-    let tween = new TWEEN.Tween(piecePos).
-      to({ x: 0, y: 0 }, 250).
-      easing(TWEEN.Easing.Quartic.In).
-      onUpdate(() => {
+    let tween = new TWEEN.Tween(piecePos)
+      .to({ x: 0, y: 0 }, 250)
+      .easing(TWEEN.Easing.Quartic.In)
+      .onUpdate(() => {
         localPiece.z = 10;
         localPiece.x = piecePos.x;
         localPiece.y = piecePos.y;
-      }).
-      onComplete(() => {
+      })
+      .onComplete(() => {
         localPiece.z = 0;
         if (board.check()) {
-          alert('You have successfully completed this puzzle!');
           board.pieces = [];
+          userScore++;
+          flag_detective_score_card.innerHTML =
+            userScore < data?.questions?.length
+              ? "Score : 0" + userScore
+              : "Score :" + userScore;
         }
-      }).
-      start();
+      })
+      .start();
   }
   piece = null;
 });
@@ -287,33 +316,35 @@ canvas.addEventListener('pointerup', e => {
 //   reset();
 // });
 
-const boardconfig = document.querySelector('.boardconfig');
-boardconfig.addEventListener('change', e => {
-  const dims = e.target.value.split('x');
-  ROWS = dims[0];
-  COLS = dims[1];
-  if (COLS * ROWS > 15) {
-    RADIUS ;
-  } else if (COLS * ROWS > 12) {
-    RADIUS;
-  } else if (COLS * ROWS > 8) {
-    RADIUS;
-  } else {
-    RADIUS;
-  }
-  reset();
-});
+// const boardconfig = document.querySelector('.boardconfig');
+// boardconfig.addEventListener('change', e => {
+//   const dims = e.target.value.split('x');
+//   ROWS = dims[0];
+//   COLS = dims[1];
+//   if (COLS * ROWS > 15) {
+//     RADIUS ;
+//   } else if (COLS * ROWS > 12) {
+//     RADIUS;
+//   } else if (COLS * ROWS > 8) {
+//     RADIUS;
+//   } else {
+//     RADIUS;
+//   }
+//   reset();
+// });
 
-const resetpuzzle = document.querySelector('.resetpuzzle');
-resetpuzzle.addEventListener('click', e => {
-  reset();
-});
+// const resetpuzzle = document.querySelector('.resetpuzzle');
+// resetpuzzle.addEventListener('click', e => {
+//   reset();
+// });
 
-const shufflepuzzle = document.querySelector('.shufflepuzzle');
+const shufflepuzzle = document.querySelector(".shufflepuzzle");
 
-window.onload =function(){ shufflepuzzle.click()}
+window.onload = function () {
+  shufflepuzzle.click();
+};
 
-shufflepuzzle.addEventListener('click', e => {
+shufflepuzzle.addEventListener("click", (e) => {
   const localPadding = 40;
   const localLeft = 500;
   const localRight = canvas.width;
@@ -328,26 +359,32 @@ shufflepuzzle.addEventListener('click', e => {
     let localX = piecePos.x * board.pw;
     let localY = piecePos.y * board.ph;
     randomPosition.push({
-      x: localLeft - localX + Math.random() * (-100+localRight - localLeft - board.pw),
-      y: localTop - localY + Math.random() * (-200+localBottom - (localTop) - board.ph)
+      x:
+        localLeft -
+        localX +
+        Math.random() * (-100 + localRight - localLeft - board.pw),
+      y:
+        localTop -
+        localY +
+        Math.random() * (-150 + localBottom - (150 + localTop) - board.ph),
     });
 
     currentPosition.push({ x: 0, y: 0 });
   }
   for (let i = 0; i < board.pieces.length; i++) {
     let piece = board.pieces[i];
-    new TWEEN.Tween(currentPosition[i]).
-      to(randomPosition[i], 1000).
-      easing(TWEEN.Easing.Quadratic.Out).
-      onUpdate(() => {
+    new TWEEN.Tween(currentPosition[i])
+      .to(randomPosition[i], 1000)
+      .easing(TWEEN.Easing.Quadratic.Out)
+      .onUpdate(() => {
         piece.x = currentPosition[i].x;
         piece.y = currentPosition[i].y;
         piece.z = i + 10;
-      }).
-      onComplete(() => {
+      })
+      .onComplete(() => {
         piece.z = 0;
-      }).
-      start();
+      })
+      .start();
   }
 });
 // UI -- end
@@ -355,7 +392,7 @@ shufflepuzzle.addEventListener('click', e => {
 let deltaTime = 0;
 let fpsDeltaTime = 0;
 let fpsDeltaLimit = 1000 / FPS;
-const render = time => {
+const render = (time) => {
   deltaTime = time - deltaTime;
   fpsDeltaTime += deltaTime;
 
@@ -370,14 +407,13 @@ const render = time => {
   requestAnimationFrame(render);
 };
 
-
 // init -- begin
 const reset = () => {
   image = new Image();
-  image.src = "/client/img/Flags/01-correct.svg";
-  image.addEventListener('load', e => {
+  image.src = data?.questions?.[que_count]?.flag;
+  image.addEventListener("load", (e) => {
     let ratio = image.width / image.height;
-    let width = 600
+    let width = 600;
     let height = image.height;
 
     if (image.width > image.height) {
@@ -394,30 +430,58 @@ const reset = () => {
     canvas.height = app.clientHeight;
 
     board = new Board(ROWS, COLS, image, OFFSET, RADIUS);
+    // setTimeout(()=>{
+    shufflepuzzle.click();
+    // },1000)
   });
 };
-const init = event => {
+const init = (event) => {
   reset();
   render(0);
 };
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("DOMContentLoaded", init);
 // init -- end
 
 // window resize -- begin
-const resize = event => {
+const resize = (event) => {
   canvas.width = app.clientWidth;
   canvas.height = app.clientHeight;
 };
 
 // delay processing of window resize
 let resizeTimeout = null;
-window.addEventListener('resize', e => {
+window.addEventListener("resize", (e) => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
     resize(e);
   }, 100);
 });
 // window resize -- end
+
+// Next Stage
+
+next_btn.onclick = () => {
+  que_count++;
+  current_Question++;
+  userWrongScore++;
+  detective_total_questions.innerHTML =
+    '<span class="total_que">' +
+    current_Question +
+    "<span>/" +
+    data.questions.length;
+  ("</span></span>");
+  reset();
+  detective_total_in_correct.innerHTML =
+    userWrongScore < 10
+      ? "0" + "0" + userWrongScore - userScore
+      : userWrongScore - userScore;
+  modal_body.innerHTML = `<img width:"100%" height:"100%" src=${data.questions[que_count].flag} alt="" />`;
+  if (current_Question == data.questions.length) {
+    next_btn.classList.add("d-none");
+  }
+};
+
+// Next Stage End
 
 // classes -- begin
 //
@@ -438,14 +502,19 @@ class Piece {
   isNearToPlace() {
     const distance = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
 
-    if (distance < 50)
-      return true;
+    if (distance < 50) return true;
 
     return false;
   }
-  getMask() { return this.mask(this.x, this.y); }
-  set image(v) { this.img = v; }
-  get image() { return this.img; }
+  getMask() {
+    return this.mask(this.x, this.y);
+  }
+  set image(v) {
+    this.img = v;
+  }
+  get image() {
+    return this.img;
+  }
   hover() {
     this.isHover = true;
     this.z = 10;
@@ -458,19 +527,22 @@ class Piece {
     ctx.save();
 
     let mask = this.getMask();
-    ctx.strokeStyle = 'gold';
+    ctx.strokeStyle = "gold";
     ctx.lineWidth = 5;
-    ctx.lineCap = 'round';
+    ctx.lineCap = "round";
     ctx.stroke(mask);
-    ctx.clip(mask, 'evenodd');
+    ctx.clip(mask, "evenodd");
 
-    ctx.drawImage(this.image,
+    ctx.drawImage(
+      this.image,
       this.x + this.bx,
       this.y + this.by,
-      this.image.width, this.image.height);
+      this.image.width,
+      this.image.height
+    );
 
     if (this.isHover) {
-      ctx.fillStyle = 'rgba(255, 230, 0, .25)';
+      ctx.fillStyle = "rgba(255, 230, 0, .25)";
       ctx.fill(mask);
     }
 
@@ -501,28 +573,38 @@ class Board {
       }
     }
   }
-  get piecesByZAsc() { return [...this.pieces].sort((a, b) => a.z - b.z); }
-  get piecesByZDesc() { return [...this.pieces].sort((a, b) => b.z - a.z); }
-  get radius() { return this.rad; }
+  get piecesByZAsc() {
+    return [...this.pieces].sort((a, b) => a.z - b.z);
+  }
+  get piecesByZDesc() {
+    return [...this.pieces].sort((a, b) => b.z - a.z);
+  }
+  get radius() {
+    return this.rad;
+  }
   set radius(v) {
     this.rad = v;
     this.updateMasks();
   }
-  index(x, y) { return x + y * this.c; }
+  index(x, y) {
+    return x + y * this.c;
+  }
   posByIndex(index) {
     return {
       x: index % this.c,
-      y: Math.floor(index / this.c)
+      y: Math.floor(index / this.c),
     };
-
   }
   check() {
     let counter = 0;
 
     for (let i = 0; i < this.pieces.length; i++) {
-      if (this.pieces[i].index != counter ||
+      if (
+        this.pieces[i].index != counter ||
         this.pieces[i].x != 0 ||
-        this.pieces[i].y != 0) return false;
+        this.pieces[i].y != 0
+      )
+        return false;
       counter++;
     }
 
@@ -536,14 +618,13 @@ class Board {
     }
   }
   unhoverPieces() {
-    for (let i = 0; i < this.pieces.length; i++)
-      this.pieces[i].unhover();
+    for (let i = 0; i < this.pieces.length; i++) this.pieces[i].unhover();
   }
   pieceByPos(ctx, x, y) {
     const pieces = this.piecesByZDesc;
 
     for (let i = 0; i < pieces.length; i++)
-      if (ctx.isPointInPath(pieces[i].getMask(), x, y, 'nonzero'))
+      if (ctx.isPointInPath(pieces[i].getMask(), x, y, "nonzero"))
         return pieces[i];
 
     return null;
@@ -554,14 +635,19 @@ class Board {
 
     const pieces = this.piecesByZAsc;
     if (pieces.length > 0) {
-      ctx.fillStyle = 'rgb(221, 250, 182)';
+      ctx.fillStyle = "rgb(221, 250, 182)";
       ctx.rect(this.x, this.y, this.image.width, this.image.height);
       ctx.fill();
 
-      for (let i = 0; i < pieces.length; i++)
-        pieces[i].render(ctx);
+      for (let i = 0; i < pieces.length; i++) pieces[i].render(ctx);
     } else {
-      ctx.drawImage(this.image, this.x, this.y, this.image.width, this.image.height);
+      ctx.drawImage(
+        this.image,
+        this.x,
+        this.y,
+        this.image.width,
+        this.image.height
+      );
     }
 
     ctx.restore();
@@ -575,32 +661,78 @@ class Board {
       if (y == 0) {
         m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + y * this.ph);
       } else {
-        m.lineTo(px + this.x + (x + .5) * this.pw - radius, py + this.y + y * this.ph);
-        m.arc(px + this.x + (x + .5) * this.pw, py + this.y + y * this.ph, radius, Math.PI, 0, true);
+        m.lineTo(
+          px + this.x + (x + 0.5) * this.pw - radius,
+          py + this.y + y * this.ph
+        );
+        m.arc(
+          px + this.x + (x + 0.5) * this.pw,
+          py + this.y + y * this.ph,
+          radius,
+          Math.PI,
+          0,
+          true
+        );
         m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + y * this.ph);
       }
       // right
       if (x == this.c - 1) {
-        m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + (y + 1) * this.ph);
+        m.lineTo(
+          px + this.x + (x + 1) * this.pw,
+          py + this.y + (y + 1) * this.ph
+        );
       } else {
-        m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + (y + .5) * this.ph - radius);
-        m.arc(px + this.x + (x + 1) * this.pw, py + this.y + (y + .5) * this.ph, radius, -Math.PI / 2, Math.PI / 2, false);
-        m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + (y + 1) * this.ph);
+        m.lineTo(
+          px + this.x + (x + 1) * this.pw,
+          py + this.y + (y + 0.5) * this.ph - radius
+        );
+        m.arc(
+          px + this.x + (x + 1) * this.pw,
+          py + this.y + (y + 0.5) * this.ph,
+          radius,
+          -Math.PI / 2,
+          Math.PI / 2,
+          false
+        );
+        m.lineTo(
+          px + this.x + (x + 1) * this.pw,
+          py + this.y + (y + 1) * this.ph
+        );
       }
       // bottom
       if (y == this.r - 1) {
         m.lineTo(px + this.x + x * this.pw, py + this.y + (y + 1) * this.ph);
       } else {
-        m.lineTo(px + this.x + (x + .5) * this.pw + radius, py + this.y + (y + 1) * this.ph);
-        m.arc(px + this.x + (x + .5) * this.pw, py + this.y + (y + 1) * this.ph, radius, 0, Math.PI, false);
+        m.lineTo(
+          px + this.x + (x + 0.5) * this.pw + radius,
+          py + this.y + (y + 1) * this.ph
+        );
+        m.arc(
+          px + this.x + (x + 0.5) * this.pw,
+          py + this.y + (y + 1) * this.ph,
+          radius,
+          0,
+          Math.PI,
+          false
+        );
         m.lineTo(px + this.x + x * this.pw, py + this.y + (y + 1) * this.ph);
       }
       // left
       if (x == 0) {
         m.lineTo(px + this.x + x * this.pw, py + this.y + y * this.ph);
       } else {
-        m.lineTo(px + this.x + x * this.pw, py + this.y + (y + .5) * this.ph + radius);
-        m.arc(px + this.x + x * this.pw, py + this.y + (y + .5) * this.ph, radius, Math.PI / 2, -Math.PI / 2, true);
+        m.lineTo(
+          px + this.x + x * this.pw,
+          py + this.y + (y + 0.5) * this.ph + radius
+        );
+        m.arc(
+          px + this.x + x * this.pw,
+          py + this.y + (y + 0.5) * this.ph,
+          radius,
+          Math.PI / 2,
+          -Math.PI / 2,
+          true
+        );
         m.lineTo(px + this.x + x * this.pw, py + this.y + y * this.ph);
       }
 
@@ -610,3 +742,69 @@ class Board {
 }
 
 // classes -- end
+
+// Result Screen
+
+function callResultScreen() {
+  result_box.classList.remove("d-none");
+
+  questions_box.classList.add("d-none");
+
+  document.getElementById("app").classList.add("d-none");
+
+  time_up.classList.remove("d-none");
+
+  timer__display.classList.add("d-none");
+
+  puzzle_total_in_correct.innerHTML =
+    data.questions.length - userScore < 10
+      ? "0" + data.questions.length - userScore
+      : data.questions.length - userScore;
+
+  detective_total_in_correct.innerHTML =
+    userWrongScore < 10
+      ? "0" + "0" + userWrongScore - userScore
+      : userWrongScore - userScore;
+
+  timeLeft = "00";
+
+  // flag_detective_game_right_part.classList.add("screen-size")
+
+  clearInterval(timerInterval);
+
+  var valRight = (userScore / data.questions.length) * 360;
+
+  var valWrong = 360 - valRight;
+
+  var xValues = ["Right", "Wrong"];
+
+  var yValues = [valRight, valWrong];
+
+  var barColors = ["#1DCF71", "#EA4A4A"];
+
+  new Chart("myChart", {
+    type: "pie",
+
+    data: {
+      labels: xValues,
+
+      datasets: [
+        {
+          backgroundColor: barColors,
+
+          data: yValues,
+        },
+      ],
+    },
+
+    options: {
+      title: {
+        display: true,
+
+        text: "You got " + userScore + " out of " + data.questions.length,
+      },
+    },
+  });
+}
+
+// Result Screen End
