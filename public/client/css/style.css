@@ -8220,6 +8220,14 @@ label {
     pointer-events: none;
   }
 
+  .flag-quest-image{
+    width: 95%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+
+
   .guess-flag-image{
     width: 100%;
     height: 190px;
@@ -8232,6 +8240,75 @@ label {
   border-color: #EA4A4A;
 
   }
+
+
+
+
+  .customLableWimageQuest {
+
+    width: 100%;
+  
+    /* height: 220px; */
+  
+    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    
+    border: 2px solid #f9f9f9;
+  
+    cursor: pointer;
+  
+
+
+  
+    }
+  
+    .customLableWimageQuest:hover{
+  
+    box-shadow: 0 0 2px 0 #9f1619;
+  
+    }
+  
+    .customLableWimageQuest strong{
+  
+    background: #ccc;
+  
+    padding: 0px 10px;
+  
+    font-weight: 500;
+  
+    margin-right: 10px;
+  
+    }
+  
+    .customRadio[ans="correct"]:checked + .customLableWimageQuest{
+  
+    box-shadow: 0 0 2px 0 #1dcf71;
+  
+    border-color: #1DCF71;
+  
+    }
+  
+    .guess-check.active{
+      pointer-events: none;
+    }
+  
+    .guess-flag-image{
+      width: 100%;
+      height: 190px;
+    }
+  
+    .customRadio[ans="incorrect"]:checked + .customLableWimageQuest{
+  
+    box-shadow: 0 0 2px 0 #EA4A4A;
+  
+    border-color: #EA4A4A;
+  
+    }
+
+
 
   .btn-danger {
 
@@ -10588,6 +10665,219 @@ footer .next-btn:hover {
 /* quizs */
 
 
+/* flag-quest */
+
+.flag-quest{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.flag-quest-region-box{
+  width: 80%;
+  background-image: url(/client/img/bg/flag-quest-region.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px;
+}
+.flag-quest-box-left{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.manage-card{
+  width: 80%;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 5px;
+}
+
+.flag-quest-flags{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 80px;
+  padding: 20px;
+  position: relative;
+}
+
+
+.flag-quest-game{
+  width: 80%;
+  background-image: url(/client/img/bg/bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #ffffff;
+  height: fit-content;
+}
+
+.flag-quest-game-header{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flag-quest-box-left-name{
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 42px;
+  text-align: center;
+  color: #8C0000;
+}
+
+.flag-quest-box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 150vh;
+  background-image: url(/client/img/bg/Start.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.result_screen{
+  background-image: url(/client/img/bg/Start.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 120vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result_screen_flag_name{
+  margin: 0px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+}
+.result_box_flag_box{
+  /* width: 0px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  gap: 10px;
+}
+.result_screen_flag{
+  width: 80%;
+  background-image: url(/client/img/bg/result-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #ffffff;
+  height: fit-content;
+}
+
+.quest_flags{
+  padding: 20px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.flag-quest-box-right{
+  width: 20%;
+  background-image: url(/client/img/maps/Group1.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.question-icon{
+  background-color: #8C0000;
+  padding: 10px 20px;
+  width: fit-content;
+  border-radius: 5px;
+  
+}
+
+.result_box_bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.question-name{
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 35px;
+  color: #8C0000;
+  text-align: center;
+  margin: 0px;
+
+}
+
+.question-number{
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 25px;
+  text-align: center;
+  color: #8C0000;
+  margin: 0px;
+
+}
+
+.question-hint{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+  color: black;
+  margin: 0px;
+}
+
+.flag-quest-region-card{
+  width: 167px;
+  padding: 20px;
+  background-image: linear-gradient(#FF8888, #FCF370);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.flag-quest-region-card:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.flag-quest-region-card-location{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #A8171A;
+  width: 38px;
+  border-radius: 5px;
+}
+.flag-quest-region-card-name{
+  font-size: 40px;
+  color: #ffffff;
+  text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4); 
+  margin: 0px;
+
+}
+
+/* flag-quest end */
 
 /* flag detective game */
 
@@ -10669,6 +10959,32 @@ footer .next-btn:hover {
   border: none;
   display: flex;
   align-items: center;
+  margin: 0px;
+}
+
+.result_box_score_box{
+  display: flex;
+  background-color: #A8171A;
+  width: fit-content;
+  border-radius: 5px;
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.result_box_score{
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 46px;
+  margin: 0px;
+}
+
+.result_box_retake{
+  padding: 10px 20px;
+  background-color: #A8171A;
+  border-radius: 5px;
 }
 
 .flag-detective-score-card-two{
@@ -10693,6 +11009,12 @@ footer .next-btn:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.flag-quest-timer{
+  position: absolute;
+  left: 47%;
+  top: 47%;
 }
 
 .flag-detective-game-right-part{

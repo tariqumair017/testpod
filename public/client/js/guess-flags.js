@@ -63,31 +63,26 @@ let completeTestDuration;
 
 var questions;
 
-document.getElementById("nextLevel").addEventListener("click", function(e) {
+document.getElementById("nextLevel").addEventListener("click", function (e) {
   e.preventDefault();
-    
+
   currentLevel++;
   window.location.href = `/guess-flag-regions/${region}/game/${currentLevel}`;
-
 });
-
 
 //Api All Guess Flag Data
 fetch(`/guess-flag-game/${region}/${currentLevel}`)
-  .then(res => res.json())
-  .then((data) => {    
-    questions = data[0].questions.map((val, i) => ( 
-      {
-        numb: i,
-        correctName: val.country,
-        inCorrectName: val.Icountry,
-        title: `Can you guess flag of ${val.country}?`,
-        correctFlag: val.correctImg,
-        incorrectFlag: val.IcorrectImg,
-        detail: val.hint,
-    }
-    
-    ));
+  .then((res) => res.json())
+  .then((data) => {
+    questions = data[0].questions.map((val, i) => ({
+      numb: i,
+      correctName: val.country,
+      inCorrectName: val.Icountry,
+      title: `Can you guess flag of ${val.country}?`,
+      correctFlag: val.correctImg,
+      incorrectFlag: val.IcorrectImg,
+      detail: val.hint,
+    }));
 
     runGuessFlagGame(questions, data[0]._id);
   });
@@ -156,7 +151,7 @@ function runGuessFlagGame(questions, id) {
     customRadio[i].addEventListener("click", (e) => {
       next_btn.classList.remove("d-none");
       guess_check.classList.add("active");
-      clearInterval(completeTestDuration)
+      clearInterval(completeTestDuration);
       if (e.target.getAttribute("ans") == "correct") {
         userScore++;
         guess_total_correct.innerHTML =
@@ -203,7 +198,7 @@ function runGuessFlagGame(questions, id) {
           } else {
             next_btn.classList.remove("d-none");
           }
-          clearInterval(completeTestDuration)
+          clearInterval(completeTestDuration);
           guess_check.classList.add("active");
           if (e.target.getAttribute("ans") == "correct") {
             userScore++;
@@ -254,10 +249,10 @@ function runGuessFlagGame(questions, id) {
         }
         guess_check.classList.add("active");
         time_up.classList.remove("d-none");
-        if(que_numb == questions.length){
-          result_btn.classList.remove("d-none")
-        }else{
-        next_btn.classList.remove("d-none");
+        if (que_numb == questions.length) {
+          result_btn.classList.remove("d-none");
+        } else {
+          next_btn.classList.remove("d-none");
         }
         document.querySelector("#testDuration").classList.add("d-none");
         clearInterval(completeTestDuration);
