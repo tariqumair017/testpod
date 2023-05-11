@@ -49,7 +49,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
           try {
             await s3.upload({
               Bucket: process.env.AWS_BUCKET_NAME,
-              Key: req.files.IcorrectImg.name,
+              Key: `games/${req.files.IcorrectImg.name}`,
               Body: req.files.IcorrectImg.data,
               ContentType: req.files.IcorrectImg.mimetype,
               ACL: 'public-read'
@@ -79,7 +79,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
             try {
               await s3.upload({
                   Bucket: process.env.AWS_BUCKET_NAME,
-                  Key: req.files.IcorrectImg[i].name,
+                  Key: `games/${req.files.IcorrectImg[i].name}`,
                   Body: req.files.IcorrectImg[i].data,
                   ContentType: req.files.IcorrectImg[i].mimetype,
                   ACL: 'public-read'
@@ -153,7 +153,7 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
         try {
           await s3.upload({
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: req.files.IcorrectImg.name,
+            Key: `games/${req.files.IcorrectImg.name}`,
             Body: req.files.IcorrectImg.data,
             ContentType: req.files.IcorrectImg.mimetype,
             ACL: 'public-read'
@@ -193,13 +193,13 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
         try { 
           var params = {
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: key_name[key_name.length-1],
+            Key: `games/${key_name[key_name.length-1]}`,
           }; 
           await s3.deleteObject(params).promise();
     
           await s3.upload({
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: req.files.IcorrectImg.name,
+            Key: `games/${req.files.IcorrectImg.name}`,
             Body: req.files.IcorrectImg.data,
             ContentType: req.files.IcorrectImg.mimetype,
             ACL: 'public-read'

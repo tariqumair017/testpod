@@ -4,7 +4,7 @@
   <!-- breadcrumb-area -->
   <section
     class="breadcrumb-area d-flex align-items-center"
-    style="background-image: url(/client/img/testimonial/test-bg.png)"
+    style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png)"
   >
     <div class="container">
       <div class="row align-items-center">
@@ -36,7 +36,7 @@
   id="about"
   class="about-area about-p pt-120 pb-120 p-relative"
   style="
-    background: url(/client/img/features/about-bg-aliments.png) no-repeat;
+    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png) no-repeat;
     background-position: center center;
   ">
   <div class="quiz-citys">
@@ -48,9 +48,9 @@
       <%data.forEach(value => {%> 
       <a href="/test/states/<%=value%>" class="card quiz-card-item col-md-3" style="width: 17rem; padding: 0%">
           <% if(value == "new-york") {%>
-            <img src="/client/img/test-stateImage/new-york-city.png" class="card-img-top card-img" alt="..." />
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-york-city.png" class="card-img-top card-img" alt="..." />
           <% } else if(value == "new-jersey") {%>
-            <img src="/client/img/test-stateImage/new-jersey-city.png" class="card-img-top card-img" alt="..." />
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-jersey-city.png" class="card-img-top card-img" alt="..." />
           <% } else {%>
             <img src="https://a.cdn-hotels.com/gdcs/production49/d785/da360e83-6abc-4783-957f-72d1d64d0751.jpg?impolicy=fcrop&w=800&h=533&q=medium" class="card-img-top card-img" alt="..." />
           <% } %>

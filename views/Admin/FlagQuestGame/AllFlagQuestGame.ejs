@@ -1,0 +1,331 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+  <span style="display: flex;">
+    <h3 class="test-name" >
+      <%=data.region.toUpperCase()%>
+    </h3> 
+
+    <% if(data.level == 0) {%>
+      <h6 class="test-name">Easy</h6>
+    <% }else if(data.level == 1){ %>
+      <h6 class="test-name">Normal</h6>
+    <% }else if(data.level == 2){ %>
+      <h6 class="test-name">Hard</h6>
+    <% }else if(data.level == 3){ %>
+      <h6 class="test-name">Extreme</h6>
+    <% } %>
+
+  </span> 
+  <%- include ('../partials/SuccessError'); -%>
+  <div style="overflow-x:auto;">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th class="table-hash-col">#</th>
+          <th >Country</th> 
+          <th >Correct Img</th>
+          <th >Incorrect Img 1</th>
+          <th >Incorrect Img 2</th>
+          <th >Incorrect Img 3</th>
+          <th >Hint</th>
+          <th class="table-buttons">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%var count = 1%>
+        <% data.questions.forEach(item => { %> 
+          <tr>
+            <th scope="row"><%=count%></th>
+            <td><%=item.country%></td> 
+            <td><img class="border" width="50" src="<%=item.correctImg%>" alt="..img"></td>
+            <td><img class="border" width="50" src="<%=item.IcorrectImg1%>" alt="..img"></td> 
+            <td><img class="border" width="50" src="<%=item.IcorrectImg2%>" alt="..img"></td> 
+            <td><img class="border" width="50" src="<%=item.IcorrectImg3%>" alt="..img"></td> 
+            <td><%=item.hint%></td> 
+            <td>
+              <span class="table-buttons">
+                <button onclick="editFlagQuestGameQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
+                <form action="/admin/flag-quest-game/manage/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
+                  <button type="submit" class="btn btn-danger">Delete</button> 
+                </form>
+              </span>
+            </td>
+          </tr>
+          <%++count%> 
+        <%})%> 
+      </tbody>
+    </table>
+    </div>
+
+    <div>
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal1"
+        type="button"
+        class="btn btn-success mt-3"
+      >
+        Add New Flags
+      </button>
+    </div>
+
+    <!-- Add New Game -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add New Question
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="add-quiz-form row needs-validation" action="/admin/flag-quest-game/manage/<%=data._id%>/new" method="POST" enctype="multipart/form-data" novalidate>
+                 <div id="setNewForm">
+                    <div class="form-data">
+                        <div class="row">
+                            <div class="col-md-6 position-relative">
+                                <label for="validationTooltip03" class="form-label">Select Country</label>
+                                <select class="form-select" name="country" id="newCountry" onchange="newSelectedCountry(this)" required> 
+                                  <option hidden>Please Select Counrty</option>  
+                                </select> 
+                                <div class="invalid-tooltip">
+                                    Please provide a Country Name.
+                                </div>
+                            </div>
+                            <div class="col-md-6 position-relative">
+                                <input hidden name="Icountry" id="newICountry" placeholder="In Correct Country" type="text" class="form-control" required>
+                                <div class="invalid-tooltip">
+                                    Please provide a In Correct Country.
+                                </div>
+                            </div> 
+                            <div class="col-md-12 position-relative mt-3">
+                                <label for="validationTooltip03" class="form-label">Correct Images</label>
+                                <div class="add-quiz-state-image">
+                                    <input readonly class="add-quiz-image formFile form-control" type="text" id="newFlagUrl" name="correctImg" required> 
+                                </div>
+                            </div> 
+                            <div class="col-md-12 position-relative mt-3">
+                                <label for="validationTooltip03" class="form-label">Select In-Correct Image 1</label>
+                                <div class="add-quiz-state-image">
+                                    <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12 position-relative mt-3">
+                              <label for="validationTooltip03" class="form-label">Select In-Correct Image 2</label>
+                              <div class="add-quiz-state-image">
+                                  <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()" required>
+                              </div>
+                          </div>  
+                          <div class="col-md-12 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Image 3</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()" required>
+                            </div>
+                          </div> 
+                            <div class="col-md-12 mt-4 position-relative">
+                              <label for="validationTooltip03" class="form-label">Hint</label>
+                                <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                    <div class="col-12 mt-4">
+                        <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Submit</button>
+                    </div>
+                  </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add New Quiz -->
+
+    <!-- Edit Quiz -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Edit Question
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="guessFlagEditForm" class="add-quiz-form row needs-validation" action="" method="POST" enctype="multipart/form-data" novalidate>
+              <div id="setNewForm">
+                 <div class="form-data">
+                     <div class="row">
+                         <div class="col-md-6 position-relative">
+                             <label for="validationTooltip03" class="form-label">Country</label>
+                             <select class="form-select" name="country" id="editCountry" onchange="editSelectedCountry(this)" required> 
+                               <option hidden>Please Select Counrty</option>  
+                             </select> 
+                             <div class="invalid-tooltip">
+                                 Please provide a Country Name.
+                             </div>
+                         </div>
+                         <div class="col-md-6 position-relative">
+                             <input hidden name="Icountry" id="editICountry" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                             <div class="invalid-tooltip">
+                                 Please provide a In Correct Country.
+                             </div>
+                         </div> 
+                         <div class="col-md-12 position-relative mt-3">  
+                              <label for="validationTooltip03" class="form-label">Correct Images</label>
+                              <div class="add-quiz-state-image">
+                                  <input readonly class="add-quiz-image formFile form-control" type="text" id="editFlagUrl" name="correctImg"> 
+                              </div> 
+                         </div> 
+                         <div class="col-md-12 position-relative mt-3">
+                             <label for="validationTooltip03" class="form-label">Select In-Correct Image 1</label>
+                             <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
+                                <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete1" type="text" class="form-control" required>
+                             </div>
+                         </div> 
+                         <div class="col-md-12 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Image 2</label>
+                            <div class="add-quiz-state-image">
+                              <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
+                              <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete2" type="text" class="form-control" required>
+                            </div>
+                        </div> 
+                        <div class="col-md-12 position-relative mt-3">
+                          <label for="validationTooltip03" class="form-label">Select In-Correct Image 3</label>
+                          <div class="add-quiz-state-image">
+                             <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
+                             <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete3" type="text" class="form-control" required>
+                          </div>
+                        </div> 
+                         <div class="col-md-12 mt-4 position-relative">
+                             <label for="validationTooltip03" class="form-label">Hint</label>
+                             <input name="hint" id="editHint" placeholder="Please Enter Detail" type="text" class="form-control" required>
+                           </div>
+                     </div>
+                   </div>
+                   </div>
+                 <div class="col-12 mt-4">
+                     <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Submit</button>
+                 </div>
+               </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Quiz -->
+  </div>
+  <!--Container Main end-->
+
+<script>    
+
+const region = `<%-data.region%>`;  
+  fetch(`/admin/flag-quest-game/all-flags-data/country/${region}`)
+      .then(response => response.json())
+      .then((data) => { 
+          var _html = '';
+          document.getElementById("newCountry").innerHTML = `<option hidden>Please Select Country</option>`;
+          data.forEach(element => {
+            _html += `<option value="${element.country}">${element.country}</option>`;
+          });     
+          document.getElementById("newCountry").innerHTML += _html; 
+          document.getElementById("editCountry").innerHTML = _html;
+      })
+      .catch(err => console.error('error:' + err)); 
+
+
+ async function newSelectedCountry(e)
+    { 
+      const id = e.getAttribute("id"); 
+      const countryName = document.getElementById(id).value; 
+      const shuffledCountry = shuffleStr(countryName); 
+      document.getElementById(`newICountry`).value = shuffledCountry;
+
+      
+      const response = await fetch(`/admin/flag-quest-game/all-flags-data/country-for-flag/${countryName}`);
+      const data = await response.json();
+      document.getElementById("newFlagUrl").value = data.flag;
+    }
+
+async function editSelectedCountry(e)
+    {
+      const id = e.getAttribute("id")
+      const countryName = document.getElementById(id).value;
+      const shuffledCountry = shuffleStr(countryName);  
+      document.getElementById(`editICountry`).value = shuffledCountry;
+
+      const response = await fetch(`/admin/flag-quest-game/all-flags-data/country-for-flag/${countryName}`);
+      const data = await response.json();
+      document.getElementById("editFlagUrl").value = data.flag;
+    }
+ 
+    //Shuffle String Character Function
+    function shuffleStr(s) { 
+    let arr = s.split(''), arr_len = arr.length; 
+    while (arr_len) {
+      let rnd = Math.floor(Math.random() * arr_len--);
+      [arr[arr_len], arr[rnd]] = [arr[rnd] , arr[arr_len]];
+    } 
+    let str = arr.join('');
+    return str;
+  }
+
+
+  async function editFlagQuestGameQuestion(Pid, Cid) {   
+    const response = await fetch(`/admin/flag-quest-game/manage/${Pid}/edit`);
+    const finalData = await response.json(); 
+    var data;
+    finalData.questions.forEach(element => {
+      if(element._id == Cid)
+      {
+        data = element;
+      }
+    }); 
+    
+    // var editCountryy = document.getElementById("editCountry");
+
+    // for (let i = 0; i < editCountryy.options.length; i++) { 
+    //   if(editCountryy.options[i].value.toLowerCase() == data.country.toLowerCase())
+    //   { 
+    //     debugger;
+    //     editCountryy.options[i].setAttribute("selected", true);
+    //   }
+    // }
+    document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
+    document.getElementById("editICountry").value = data.Icountry;
+    document.getElementById("editFlagUrl").value = data.correctImg;
+    document.getElementById("IcorrectImgDelete1").value = data.IcorrectImg1;
+    document.getElementById("IcorrectImgDelete2").value = data.IcorrectImg2;
+    document.getElementById("IcorrectImgDelete3").value = data.IcorrectImg3;
+    document.getElementById("editHint").value = data.hint; 
+    document.getElementById("guessFlagEditForm").action = `/admin/flag-quest-game/manage/${data._id}/${Pid}?_method=PUT`;
+}
+
+</script>
+  <script src="/admin/js/allQuiz.js"></script>
+  <script src="/admin/js/draw-new-flag.js" ></script>
+</div>

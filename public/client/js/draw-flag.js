@@ -702,11 +702,11 @@ function callNextQuestion() {
 }
  
 //function to call try again dialog
-function callRightAnsDialog() {
+function callRightAnsDialog() { 
   flag_canvas.innerHTML =
-    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img src="/client/img/images/answer.right.png" style="height:50px; margin: 0px auto;"><img src="' +
+    '<div class="user_messages"><div class="btn_close_dialog" onclick="closeDialog()">✖</div><div class="w-100" style="display:grid;"><img src="/client/img/images/answer.right.png" style="height:50px; margin: 0px auto;"><img width="130" width="130" src="' +
     paintFlags[que_count].image +
-    '" style="margin: 0px auto;"><div id="nextQueSeconds" class="try_again_time">--</div><button onclick="callNextQuestion()" class="btn_try_again" id="btnNextQue">Next Question</button></div></div>';
+    '" style="margin: 0px auto; padding: 10px"><div id="nextQueSeconds" class="try_again_time">--</div><button onclick="callNextQuestion()" class="btn_try_again" id="btnNextQue">Next Question</button></div></div>';
 
   flag_canvas.setAttribute("paintsarted", "false");
 

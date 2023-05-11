@@ -2,7 +2,20 @@
 
 <!--Container Main start-->
 <div class="application bg-light">
-  <h3>Manage Flag Detective Games</h3>
+  <div class="d-flex justify-content-between">
+    <h3>Manage Flag Detective Games</h3>
+    <div class="col-md-6 position-relative"> 
+      <select class="form-select" id="search">
+        <option hidden>Search Region</option>
+        <option value="Africa">Africa</option>  
+        <option value="America">America</option>  
+        <option value="Antarctic">Antarctic</option>  
+        <option value="Asia">Asia</option> 
+        <option value="Europe">Europe</option> 
+        <option value="Oceania">Oceania</option> 
+      </select>
+    </div>
+  </div>
   <div class="cards row">
     <% data?.forEach(single => { %> 
     <div class="col-xl-4 col-md-6 mb-4">
@@ -37,7 +50,7 @@
       </div>
     </div> 
     <%})%>
-  </div>
+  </div> 
 </div>
 <!--Container Main end-->
 
@@ -60,4 +73,13 @@
         });
     } 
   }  
+
+ 
+  document.getElementById("search").addEventListener("change", async (event) => {
+    console.log(event.target.value);
+    const response = await fetch(`/admin/flag-detective-game/search/${event.target.value}`);
+    const data = await response.json(); 
+    console.log(data);
+    //   var _html = '';
+  }); 
 </script>

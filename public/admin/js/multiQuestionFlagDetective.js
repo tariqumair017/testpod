@@ -62,8 +62,6 @@ document.getElementById("allCountries").addEventListener("change", async (event)
     document.getElementById("flagUrl").value = data.flag;    
 });
 
-
-
 async function flagDetectiveSelectedCountry(e)
     { 
       const id = e.getAttribute("id");

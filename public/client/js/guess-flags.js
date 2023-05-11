@@ -121,7 +121,7 @@ function runGuessFlagGame(questions, id) {
       questions[index].inCorrectName +
       '><label class="customLableWimage" for=' +
       questions[index].inCorrectName +
-      "><img class=guess-flag-image src=/upload-images/" +
+      "><img class=guess-flag-image src=" +
       questions[index].incorrectFlag.replace(/\s/g, "") +
       ' alt="" ></label>';
 

@@ -25,6 +25,7 @@ import AdminGuessFlagGameRoutes from './routes/admin/guessFlagGame.js';
 import AdminFlagDetectiveGameRoutes from './routes/admin/flagDetectiveGame.js';
 import AdminWebAnalyticsRoutes from './routes/admin/webAnalytics.js';
 import AdminFlagPuzzleGameRoutes from './routes/admin/flagPuzzleGame.js';
+import AdminFlagQuestGameRoutes from './routes/admin/flagQuestGame.js';
  
 //Requring Client Routes
 import ClientIndexRoutes from "./routes/client/index.js"; 
@@ -102,8 +103,9 @@ app.use("/admin/guess-flag-game", AdminGuessFlagGameRoutes);
 app.use("/admin/flag-detective-game", AdminFlagDetectiveGameRoutes);
 app.use("/admin/web-analytics", AdminWebAnalyticsRoutes);
 app.use("/admin/flag-puzzle-game", AdminFlagPuzzleGameRoutes);
+app.use("/admin/flag-quest-game", AdminFlagQuestGameRoutes);
 
-//Requring Client Routes
+//Using Client Routes
 app.use(ClientIndexRoutes);
 app.use(ClientGuessCountryGameRoutes);
 app.use(ClientTestRoutes);

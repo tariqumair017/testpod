@@ -78,7 +78,13 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     res.redirect("/admin/flag-detective-game/add"); 
   }
 }));
-
+ 
+//Admin: Search Region Api for Manage Page
+router.get("/search/:continent", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  const data = await FlagDetectiveGame.find({continent: req.params.continent}); 
+  res.send(data);
+}));
+ 
 //Admin: Manage Flag Detective Game Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await FlagDetectiveGame.find({});
