@@ -15,6 +15,9 @@ const flag_quest_box = document.querySelector(".flag-quest-box")
 const flag_detective_music_on = document.querySelector(".flag-detective-music-on")
 const flag_detective_music_off = document.querySelector(".flag-detective-music-off")
 
+//////////////EJS DATA
+console.log(data);
+//////////////EJS DATA
 
 
 const questions = [

@@ -29,14 +29,15 @@
   </div>
 </section>
 
-<section class="flag-quest">
+<section class="flag-quest"> 
   <div class="flag-quest-region-box">
-    <a href="/flag-quest-game">
+    <%data.forEach(item => {%>
+    <a href="/flag-quest-regions/<%=item.region%>/game/0">
     <div class="flag-quest-region-card">
       <div class="flag-quest-region-card-location">
         <i class="fa-solid fa-location-dot" style="color: #ffffff"></i>
       </div>
-      <p class="flag-quest-region-card-name">Asia</p>
+      <p class="flag-quest-region-card-name"><%=item.region.toUpperCase()%></p>
       <div class="flag-quest-region-card-name">
         <img
           width="100%"
@@ -55,7 +56,8 @@
       </div>
     </div>
     </a>
-    <div class="flag-quest-region-card">
+    <%})%>
+    <!-- <div class="flag-quest-region-card">
       <div class="flag-quest-region-card-location">
         <i class="fa-solid fa-location-dot" style="color: #ffffff"></i>
       </div>
@@ -186,6 +188,6 @@
           alt=""
         />
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
