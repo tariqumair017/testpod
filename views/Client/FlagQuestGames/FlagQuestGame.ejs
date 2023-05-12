@@ -29,7 +29,7 @@
           </a>
         </div>
       </div>
-      <p class="flag-quest-box-left-name">Flag of Andorra</p>
+      <p class="flag-quest-box-left-name slide-right quest_question_name"></p>
       <div class="flag-quest-flags guess-check">
         <div class="option-one"></div>
         <div class="option-two"></div>
@@ -52,7 +52,7 @@
         <div class="col-md-12 ">
           <button class="btn ss-btn next_btn d-none" style="float: right;margin: 20px;" >Next Stage ➜</button>
           <button class="btn ss-btn result_btn d-none" style="float: right;margin: 20px;" >Show Result</button>
-          <button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button>
+          <a href="/flag-quest-regions/<%=data.region%>/game/<%=data.level%>"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
         </div>
       </div>
     </div>
@@ -101,15 +101,13 @@
         <i class="fa-solid fa-xmark fa-2xl" style="color: #ffffff;"></i>
       </a>
       <div class="result_box_score_box"><img width="100%" src="/client/img/icon/Group.svg" alt="" /><p class="result_box_score">350</p></div>
-      <a href="/flag-quest-regions" class="result_box_retake">
-        <!-- <i class="fa-solid fa-arrow-rotate-left fa-2xl" style="color: #ffffff;"></i> -->
-        <p class="flag-detective-score-card" style="font-size: x-large;font-weight: 600;padding: 0px 0px;" >Next Level</p>
-      </a>
+      <button id="nextLevel" class="btn ss-btn">Next Level</button>
     </div>
   </div>
 </section>
 
 <script>
   var data = <%-JSON.stringify(data)%>; 
+  var currentLevel = '<%=data.level%>';  
 </script>
 <script src="/client/js/flagQueastGame.js"></script>

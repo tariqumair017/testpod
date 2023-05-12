@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 import connectEnsureLogin from "connect-ensure-login"; 
 
 // Sign Up 
-// router.get("/admin/sign-up", asyncHandler(async (req, res, next) => { 
+// router.get("/admin/sign-up", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
 //   res.render("Admin/index/SignUp");
 // }));
 

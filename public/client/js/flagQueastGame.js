@@ -9,6 +9,13 @@ const circleSvg = document.querySelector("circle");
 const time_up = document.querySelector(".time_up");
 var music = new Audio("/client/sounds/Lobby-Time.mp3");
 
+document.getElementById("nextLevel").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  currentLevel++;
+  window.location.href = `/flag-quest-regions/${data.region}/game/${currentLevel}`;
+});
+
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 var rightClickAudio = new Audio("/client/sounds/notification-140376.mp3");
 
@@ -27,6 +34,8 @@ const next_btn = document.querySelector(".next_btn");
 const result_box_score = document.querySelector(".result_box_score");
 
 const quest_flags = document.querySelector(".quest_flags");
+
+const quest_question_name = document.querySelector(".quest_question_name")
 
 const question_wrong_or_right = document.querySelector(
   ".question_wrong_or_right"
@@ -50,8 +59,8 @@ const flag_detective_music_off = document.querySelector(
 );
 
 const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = (data?.questions?.length * 30) / 2;
-const ALERT_THRESHOLD = (data?.questions?.length * 30) / 4;
+const WARNING_THRESHOLD = (data?.questions?.length * 10) / 2;
+const ALERT_THRESHOLD = (data?.questions?.length * 10) / 4;
 
 const COLOR_CODES = {
   info: {
@@ -79,7 +88,7 @@ let result_screen_images = [];
 
 var flag_quest_image;
 
-const TIME_LIMIT = data?.questions?.length * 30;
+const TIME_LIMIT = data?.questions?.length * 10;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
@@ -105,6 +114,8 @@ function nextQuestions(question_counter) {
     (data?.level == "1" && "Normal") ||
     (data?.level == "2" && "Hard") ||
     (data?.level == "3" && "Extream");
+
+    quest_question_name.innerHTML = "Flag of " + questions[question_counter].country
 
   var option_1 =
     '<input class="customRadio" ans="correct" type="radio" name=q' +
@@ -189,7 +200,7 @@ for (let i = 0; i < customRadio.length; i++) {
     next_btn.classList.remove("d-none");
     guess_check.classList.add("active");
     flag_quest_timer.classList.add("d-none");
-    clearInterval(timerInterval);
+    // clearInterval(timerInterval);
     result_screen_images.push({
       image: flag_quest_image[i].getAttribute("src"),
       customRadio: e.target,
@@ -218,8 +229,8 @@ for (let i = 0; i < customRadio.length; i++) {
 // next stage
 
 next_btn.onclick = () => {
-  console.log(flag_quest_image, "flag_quest_image");
   if (current_question <= questions.length - 1) {
+    flag_quest_timer.classList.remove("d-none")
     question_counter++; //increment question number
     current_question++;
 
@@ -232,13 +243,14 @@ next_btn.onclick = () => {
 
     for (let i = 0; i < customRadio.length; i++) {
       customRadio[i].addEventListener("click", (e) => {
+        flag_quest_timer.classList.add("d-none");
         if (current_question == questions.length) {
           next_btn.classList.add("d-none");
           result_btn.classList.remove("d-none");
         } else {
           next_btn.classList.remove("d-none");
         }
-        clearInterval(timerInterval);
+        // clearInterval(timerInterval);
         guess_check.classList.add("active");
         result_screen_images.push({
           image: flag_quest_image[i].getAttribute("src"),
@@ -321,6 +333,7 @@ function startTimer() {
       try_again.classList.remove("d-none")
       next_btn.classList.add("d-none")
       result_btn.classList.add("d-none")
+      guess_check.classList.add("disabled")
     }
   }, 1000);
 }
