@@ -8221,9 +8221,15 @@ label {
   }
 
   .flag-quest-image{
-    width: 95%;
+    width: 250px;
+    height: 200px;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .question_wrong_or_right{
+    position:absolute;
+    top: 45%;
   }
 
 
@@ -8256,7 +8262,7 @@ label {
 
     align-items: center;
     
-    border: 2px solid #f9f9f9;
+    border: 2px solid #d6d6d6;
   
     cursor: pointer;
   
@@ -10772,7 +10778,41 @@ footer .next-btn:hover {
   align-items: center;
   height: fit-content;
   gap: 10px;
+  position: relative;
 }
+.result_quest_true_false{
+  color: white;
+  font-size:larger;
+  font-weight: 700;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+}
+
+.result_position_wrong{
+  background-color: rgb(252, 89, 89);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  }
+
+.result_position{
+background-color: lightgreen;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+left: -15px;
+top: -15px;
+}
+
 .result_screen_flag{
   width: 80%;
   background-image: url(/client/img/bg/result-bg.svg);
@@ -11013,9 +11053,10 @@ footer .next-btn:hover {
 
 .flag-quest-timer{
   position: absolute;
-  left: 47%;
-  top: 47%;
+  top: calc(50% - 4%);
+  left: calc(50% - 3%)
 }
+
 
 .flag-detective-game-right-part{
   padding: 0px 10px;
