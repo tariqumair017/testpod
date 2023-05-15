@@ -9,7 +9,7 @@ import asyncHandler from "express-async-handler";
 
 //Client Learn-About-Flags
 router.get("/learn-about-flags", asyncHandler(async (req, res, next) => { 
-    res.render("Client/LearnFlagGame/Learn-About-Flags");
+    res.render("Client/LearnFlagGame/Learn-About-Flags", {title: "Learn-About-Flags"});
 }));
 
 

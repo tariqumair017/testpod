@@ -17,7 +17,7 @@ router.get("/quiz-list/:id", asyncHandler(async (req, res, next) => {
 //Client: All States Page
 router.get("/test/states", asyncHandler(async (req, res, next) => { 
     const data = await QuizModel.distinct("stateName");  
-    res.render("Client/Test/States", { data }); 
+    res.render("Client/Test/States", { data, title: "Test-States"}); 
 }));
 
 
@@ -29,7 +29,7 @@ router.get("/test/states/:stateName", asyncHandler(async (req, res, next) => {
         req.flash("error", "Cannot find that State!");
         return res.redirect("/test/states");
     } 
-    res.render("Client/Test/Test-City", { data }); 
+    res.render("Client/Test/Test-City", { data, title: "State-Tests" }); 
 }));
  
 
@@ -57,7 +57,7 @@ router.get("/test/states/:stateName/:id", asyncHandler(async (req, res, next) =>
         req.flash("error", "Cannot find that Test!");
         return res.redirect("/test/states/"+req.params.stateName);
     } 
-    res.render("Client/Test/NewTest", { data });
+    res.render("Client/Test/NewTest", { data, title: "NewTest" });
 }));
 
 

@@ -32,7 +32,7 @@ router.get("/", asyncHandler(async (req, res, next) => {
     // });
 
  
-    res.render("Client/index/index");
+    res.render("Client/index/index", {title: "Testpod"});
 }));
 
 //Game Slider Control 
@@ -124,77 +124,77 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
 
 //Client About page
 router.get("/about", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/About");
+    res.render("Client/index/About", {title: "About"});
 }));
 
 //Client Blog-Details page
 router.get("/blog-details", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Blog-Details");
+    res.render("Client/index/Blog-Details", {title: "Blog-Details"});
 }));
  
 //Client Blog page
 router.get("/blog", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Blog");
+    res.render("Client/index/Blog", {title: "Blog"});
 }));
 
 //Client Contact page
 router.get("/contact", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Contact");
+    res.render("Client/index/Contact", {title: "Contact"});
 }));
 
 //Client Courses-Details page
 router.get("/courses-details", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Courses-Details");
+    res.render("Client/index/Courses-Details", {title: "Courses-Details"});
 }));
 
 //Client Courses page
 router.get("/courses", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Courses");
+    res.render("Client/index/Courses", {title: "Courses"});
 }));
 
 //Client FAQ page
 router.get("/faq", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/FAQ");
+    res.render("Client/index/FAQ", {title: "FAQ"});
 }));
 
 //Client Pricing page
 router.get("/pricing", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Pricing");
+    res.render("Client/index/Pricing", {title: "Pricing"});
 }));
 
 //Client Services-Details page
 router.get("/services-details", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Services-Details");
+    res.render("Client/index/Services-Details", {title: "Services-Details"});
 }));
 
 //Client Services page
 router.get("/services", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Services");
+    res.render("Client/index/Services", {title: "Services"});
 }));
 
 //Client Shop-Details page
 router.get("/shop-details", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Shop-Details");
+    res.render("Client/index/Shop-Details", {title: "Shop-Details"});
 }));
 
 //Client Shop page
 router.get("/shop", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Shop");
+    res.render("Client/index/Shop", {title: "Shop"});
 }));
 
 //Client Team-Details page
 router.get("/team-details", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Team-Details");
+    res.render("Client/index/Team-Details", {title: "Team-Details"});
 }));
 
 //Client Team page
 router.get("/team", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Team");
+    res.render("Client/index/Team", {title: "Team"});
 }));
 
 //Client Team page
 router.get("/thank-you", asyncHandler(async (req, res, next) => {  
-    res.render("Client/index/Thank-You");
+    res.render("Client/index/Thank-You", {title: "Thank-You"});
 }));
 
 
