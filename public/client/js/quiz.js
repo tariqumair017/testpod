@@ -1,3 +1,6 @@
+
+
+
 const start_btn = document.querySelector(".buttons .total-que");
 const option_list = document.querySelector(".option-list");
 const quiz_box = document.querySelector(".quiz-box");
@@ -9,6 +12,9 @@ const hint_btn = document.getElementById("hint-icon");
 const menu_tigger = document.querySelector(".menu-tigger")
 const menu_close = document.querySelector(".menu-close,i")
 const menu_button = document.querySelector("#menu") 
+
+
+
 
 
 

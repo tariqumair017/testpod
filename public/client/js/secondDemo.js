@@ -8,7 +8,7 @@ let speech = new SpeechSynthesisUtterance();
 
 let detailSpeech = new SpeechSynthesisUtterance();
 
-  var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
+var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");
 
 //define required constants
 const time_line = document.querySelector(".time_line");
@@ -45,29 +45,24 @@ const demo_hint = document.querySelector(".demo-hint");
 
 const next_btn = document.querySelector(".next_btn");
 
-const menu_tigger = document.querySelectorAll(".menu-tigger")
+const menu_tigger = document.querySelectorAll(".menu-tigger");
 
-const menu_close = document.getElementById("menu-close")
+const menu_close = document.getElementById("menu-close");
 
-const quiz_image = document.querySelector(".quiz-image")
+const quiz_image = document.querySelector(".quiz-image");
 
+const _id = location.pathname.replace("/test/states/new-jersey/", "");
 
-
-
-const _id = location.pathname.replace("/test/states/new-jersey/","")
-
-
-menu_tigger[0].onclick=()=>{
-  document.getElementById("offcanvas-menu").classList.toggle("active")
-}
-menu_tigger[1].onclick=()=>{
-  document.getElementById("offcanvas-menu").classList.toggle("active")
-}
-menu_close.onclick=()=>{
-  document.getElementById("offcanvas-menu").classList.remove("active")
+menu_tigger[0].onclick = () => {
+  document.getElementById("offcanvas-menu").classList.toggle("active");
+};
+menu_tigger[1].onclick = () => {
+  document.getElementById("offcanvas-menu").classList.toggle("active");
+};
+menu_close.onclick = () => {
+  document.getElementById("offcanvas-menu").classList.remove("active");
   document.body.classList.remove("stop-scrolling");
-  
-}
+};
 
 //required variable
 let que_count = 0;
@@ -84,21 +79,19 @@ let completeTestDuration;
 
 //creating required html divs
 
-
-
 // var questions;
 
 // fetch(`/quiz-list/${_id}`)
 //   .then(res => res.json())
-//   .then(data => {  
+//   .then(data => {
 //     questions = data.questions.map((val, i) => (
 //       {
 //         numb: i,
-    
+
 //         question: val.question,
-    
+
 //         answer: val.correct,
-    
+
 //         options: [val.optionA, val.optionB, val.optionC, val.optionD],
 
 //         hint : val.hint
@@ -107,22 +100,24 @@ let completeTestDuration;
 
 //     })
 
-    let questions = data.questions.map((val, i) => (
-      {
-        numb: i,
-    
-        question: val.question,
-    
-        answer: val.correct.replace(/\s/g, '').toLowerCase(),
-    
-        options: [val.optionA.replace(/\s/g, '').toLowerCase(), val.optionB.replace(/\s/g, '').toLowerCase(), val.optionC.replace(/\s/g, '').toLowerCase(), val.optionD.replace(/\s/g, '').toLowerCase()],
+let questions = data.questions.map((val, i) => ({
+  numb: i,
 
-        hint : val.hint,
+  question: val.question,
 
-        questionImg : val.questionImg
-      }
-    ));
+  answer: val.correct,
 
+  options: [
+    val.optionA,
+    val.optionB,
+    val.optionC,
+    val.optionD,
+  ],
+
+  hint: val.hint,
+
+  questionImg: val.questionImg,
+}));
 
 window.load = startQuiz();
 
@@ -132,8 +127,6 @@ function startQuiz() {
   cancelSpeech();
   cancelDetailSpeech();
 }
-
-
 
 function numberOfQuestions() {
   for (let i = 1; i <= questions.length; i++) {
@@ -146,18 +139,16 @@ function numberOfQuestions() {
 function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
   let que_tag = `<div><div class="demoQuestion slide-left">${
-    questions[index].numb < 11
-      ? "0" + que_numb
-      : que_numb
+    questions[index].numb < 11 ? "0" + que_numb : que_numb
   }.  ${questions[index].question}</div>
   <img class="soundbtn" src="/client/img/bg/volume_up_white_24dp.svg" /><img class="soundbtn cancel d-none" src="/client/img/bg/volume_off_white_24dp.svg" /></div>
   `;
 
   let detail = questions[index].hint;
 
-  if(questions[index].questionImg){
-  let option_images = `<img class="quiz-image-optional" src="/upload-images/${questions[index].questionImg}"}" />`
-    quiz_image.innerHTML = option_images
+  if (questions[index].questionImg) {
+    let option_images = `<img class="quiz-image-optional" src="/upload-images/${questions[index].questionImg}"}" />`;
+    quiz_image.innerHTML = option_images;
   }
 
   let option_tag =
@@ -244,7 +235,6 @@ function showQuetions(index) {
 
 //when user clicks on options
 
-
 next_btn.onclick = () => {
   callNextQuestion();
 };
@@ -258,21 +248,17 @@ function callNextQuestion() {
     showQuetions(que_count); //passing index of array to showQestions for current question
 
     your_quiz_progress_detail.classList.add("d-none");
-    demo_hint.classList.add("d-none")
+    demo_hint.classList.add("d-none");
     next_btn.classList.add("d-none");
     cancelSpeech();
     cancelDetailSpeech();
     const sound_on = document.querySelector(".soundbtn");
-  
-    sound_on.classList.remove("disabled")
+
+    sound_on.classList.remove("disabled");
   }
 }
 
 //disable all option
-
-
-
-
 
 let tickIconTag =
   '<div class="icon demotick"><i class="fas fa-check"></i></div>';
@@ -280,150 +266,140 @@ let tickIconTag =
 let crossIconTag =
   '<div class="icon democross"><i class="fas fa-times"></i></div>';
 
+function optionSelected(answer) {
+  const number_of_questions = document.querySelectorAll(".number-of-questions");
+  answer.classList.add("correct");
+
+  let userAns = answer.textContent; //getting user selected option
+
+  userAns = userAns.substring(1);
+
+  const sound_on = document.querySelector(".soundbtn");
+  const cancel = document.querySelector(".cancel");
+
+  sound_on.classList.add("d-none");
+  cancel.classList.add("d-none");
+
+  let correcAns = questions[que_count].answer; //getting correct answer from array
+  if (questions[que_count].hint != "") {
+    demo_hint.classList.remove("d-none");
+    your_quiz_progress_detail.classList.remove("d-none");
+  } else {
+    demo_hint.classList.add("d-none");
+    your_quiz_progress_detail.classList.add("d-none");
+  }
+  if (que_numb === questions.length) {
+    disableOptions();
+  }
 
 
-  function optionSelected(answer) {
-    const number_of_questions = document.querySelectorAll(".number-of-questions")
+  if (userAns.replace(/\s/g, '').toLowerCase() === correcAns.replace(/\s/g, '').toLowerCase()) {
+    userScore += 1; //upgrading score value with 1
+
+    total_correct.innerHTML = userScore < 10 ? "0" + userScore : userScore;
+    number_of_questions[que_count].classList.add(
+      "number-of-questions-correct-active"
+    );
     answer.classList.add("correct");
-  
-    let userAns = answer.textContent; //getting user selected option
-  
-    userAns = userAns.substring(1);
-
-    const sound_on = document.querySelector(".soundbtn");
-    const cancel = document.querySelector(".cancel");
-
-    sound_on.classList.add("d-none")
-    cancel.classList.add("d-none")
-
-    
-    let correcAns = questions[que_count].answer; //getting correct answer from array
-    if(questions[que_count].hint != ""){
-      demo_hint.classList.remove("d-none")
-      your_quiz_progress_detail.classList.remove("d-none");
-    }else{
-      demo_hint.classList.add("d-none")
-      your_quiz_progress_detail.classList.add("d-none");
-
+    answer.firstChild.classList.add("option-number-correct");
+    callCorrectOption();
+    answer.insertAdjacentHTML("beforeend", tickIconTag);
+    setTimeout(() => {
+      callNextQuestion();
+    }, 2000);
+  } else {
+    incorrect++;
+    total_in_correct.innerHTML = incorrect < 10 ? "0" + incorrect : incorrect;
+    answer.classList.add("incorrect");
+    answer.classList.add("option-content-active");
+    if (answer.classList[1] == "slide-bottom1") {
+      answer.classList.remove("slide-bottom1");
+    } else if (answer.classList[1] == "slide-bottom2") {
+      answer.classList.remove("slide-bottom2");
+    } else if (answer.classList[1] == "slide-bottom3") {
+      answer.classList.remove("slide-bottom3");
+    } else if (answer.classList[1] == "slide-bottom4") {
+      answer.classList.remove("slide-bottom3");
     }
-    if (que_numb === questions.length) {
-      disableOptions();
-    }
-  
-    if (userAns === correcAns) {
-      userScore += 1; //upgrading score value with 1
-  
-      total_correct.innerHTML = userScore < 10 ? "0" + userScore : userScore;
-      number_of_questions[que_count].classList.add(
-        "number-of-questions-correct-active"
-      );
-      answer.classList.add("correct");
-      answer.firstChild.classList.add("option-number-correct");
-      callCorrectOption();
-      answer.insertAdjacentHTML("beforeend", tickIconTag);
-      setTimeout(() => {
-        callNextQuestion();
-      }, 2000);
-    } else {
-      incorrect++;
-      total_in_correct.innerHTML = incorrect < 10 ? "0" + incorrect : incorrect;
-      answer.classList.add("incorrect");
-      answer.classList.add("option-content-active");
-      if (answer.classList[1] == "slide-bottom1") {
-        answer.classList.remove("slide-bottom1");
-      } else if (answer.classList[1] == "slide-bottom2") {
-        answer.classList.remove("slide-bottom2");
-      } else if (answer.classList[1] == "slide-bottom3") {
-        answer.classList.remove("slide-bottom3");
-      } else if (answer.classList[1] == "slide-bottom4") {
-        answer.classList.remove("slide-bottom3");
-      }
-      answer.classList.add("shakeIt");
-      wrongClickAudio.play();
-      setTimeout(function () {
-        answer.classList.remove("shakeIt");
-      }, 500);
-  
-      number_of_questions[que_count].classList.add(
-        "number-of-questions-incorrect-active"
-      );
-      answer.insertAdjacentHTML("beforeend", crossIconTag);
-      callCorrectOption();
-      next_btn.classList.remove("d-none");
-  
-      //auto select correct option
-    }
-  
-    //disable all options
-  
-  
-    disableOptions();
-    cancelSpeech()
-    
+    answer.classList.add("shakeIt");
+    wrongClickAudio.play();
+    setTimeout(function () {
+      answer.classList.remove("shakeIt");
+    }, 500);
+
+    number_of_questions[que_count].classList.add(
+      "number-of-questions-incorrect-active"
+    );
+    answer.insertAdjacentHTML("beforeend", crossIconTag);
+    callCorrectOption();
+    next_btn.classList.remove("d-none");
+
+    //auto select correct option
   }
 
-  
-  
-  
+  //disable all options
 
-  
-  //auto call correct option
-  function callCorrectOption() {
-    const allOptions = option_list.children.length;
-  
-    let correcAns1 = questions[que_count].answer; //getting correct answer from array
-  
-    for (i = 0; i < allOptions; i++) {
-      let optionAns = option_list.children[i].textContent;
-  
-      optionAns = optionAns.substring(1);
-  
-      if (optionAns == correcAns1) {
-        option_list.children[i].setAttribute(
-          "class",
-          "demoCustomLable correct disabled"
-        ); //adding green color to matched option
-        option_list.children[i].firstChild.classList.add("option-number-correct");
-        option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
-      }
-    }
-  
-    if (que_numb === questions.length) {
-      result_btn.classList.remove("d-none");
-    } else {
-    }
-    const sound_on = document.querySelector(".soundbtn");
-  
-    disableOptions();
-    sound_on.classList.add("disabled")
-  }
-
-  function disableOptions() {
-    const allOptions1 = option_list.children.length;
-  
-    for (i = 0; i < allOptions1; i++) {
-      option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
-    }
-  }
-
-  
-function convertText2Speech(x) {
-  speech.text = x;
-  speech.pitch = 1;
-  speech.volume = 1;
-  speech.lang = "en-US";
-  speech.rate = 0.5;
-  speechSynthesis.speak(speech);
+  disableOptions();
+  cancelSpeech();
 }
 
-function convertDetail2Speech(x) {
-  detailSpeech.text = x;
-  detailSpeech.pitch = 1;
-  detailSpeech.volume = 1;
-  detailSpeech.lang = "en-US";
-  detailSpeech.rate = 0.6;
-  speechSynthesis.speak(detailSpeech);
+//auto call correct option
+function callCorrectOption() {
+  const allOptions = option_list.children.length;
+
+  let correcAns1 = questions[que_count].answer; //getting correct answer from array
+
+  for (i = 0; i < allOptions; i++) {
+    let optionAns = option_list.children[i].textContent;
+
+    optionAns = optionAns.substring(1);
+
+    if (optionAns.replace(/\s/g, '').toLowerCase() == correcAns1.replace(/\s/g, '').toLowerCase()) {
+      option_list.children[i].setAttribute(
+        "class",
+        "demoCustomLable correct disabled"
+      ); //adding green color to matched option
+      option_list.children[i].firstChild.classList.add("option-number-correct");
+      option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+    }
+  }
+
+  if (que_numb === questions.length) {
+    result_btn.classList.remove("d-none");
+  } else {
+  }
+  const sound_on = document.querySelector(".soundbtn");
+
+  disableOptions();
+  sound_on.classList.add("disabled");
 }
+
+function disableOptions() {
+  const allOptions1 = option_list.children.length;
+
+  for (i = 0; i < allOptions1; i++) {
+    option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+  }
+}
+
+  function convertText2Speech(x) {
+    speech.text = x;
+    speech.pitch = 1;
+    speech.volume = 1;
+    speech.lang = "en-US";
+    speech.rate = 0.5;
+    speechSynthesis.speak(speech);
+  }
+
+  function convertDetail2Speech(x) {
+    detailSpeech.text = x;
+    detailSpeech.pitch = 1;
+    detailSpeech.volume = 1;
+    detailSpeech.lang = "en-US";
+    detailSpeech.rate = 0.6;
+    speechSynthesis.speak(detailSpeech);
+  }
+
 
 function cancelSpeech() {
   questionSpeech.cancel();
