@@ -12,7 +12,7 @@ router.get("/flag-quest-regions", asyncHandler(async (req, res, next) => {
     for (let i = 0; i < DBcontinent.length; i++) { 
        final.push(await FlagQuestGame.findOne({region: DBcontinent[i]}));
     } 
-    res.render("Client/FlagQuestGames/FlagQuestGameRegions", { data: final });
+    res.render("Client/FlagQuestGames/FlagQuestGameRegions", { data: final, title: "Regions" });
 }));
 
 //Client:  fetch All Guess Flage Data for Guess-Flag
@@ -41,7 +41,7 @@ router.get("/flag-quest-regions/:region/game/:level", asyncHandler(async (req, r
     return res.redirect(`/flag-quest-regions/${req.params.region}/game/${currentLevel + 1}`);
   }
     
-    res.render("Client/FlagQuestGames/FlagQuestGame", { data });
+    res.render("Client/FlagQuestGames/FlagQuestGame", { data, title: "Flag-Quest-Game" });
 }));
 
 

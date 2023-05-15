@@ -14,7 +14,7 @@ router.get("/guess-flag-regions", asyncHandler(async (req, res, next) => {
        final.push(await GuessFlagGame.findOne({region: DBcontinent[i]}));
     }
   
-    res.render("Client/GuessFlagGame/GuessFlagRegions", { data: final });
+    res.render("Client/GuessFlagGame/GuessFlagRegions", { data: final, title: "Regions" });
 }));
 
 //Client:  fetch All Guess Flage Data for Guess-Flag
@@ -44,7 +44,7 @@ router.get("/guess-flag-regions/:region/game/:level", asyncHandler(async (req, r
   }
    
     
-    res.render("Client/GuessFlagGame/GuessFlagGame", { data });
+    res.render("Client/GuessFlagGame/GuessFlagGame", { data, title: "Guess-Flag-Game" });
 }));
 
 

@@ -26,7 +26,7 @@ router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
      final.push(data);
   }
 
-  res.render("Client/FlagDetectiveGame/FlagDetectiveRegions", { data: final });
+  res.render("Client/FlagDetectiveGame/FlagDetectiveRegions", { data: final, title: "Regions" });
 
 }));
 
@@ -56,7 +56,7 @@ router.get("/flag-detective-regions/:continent/game/:level",  asyncHandler(async
     return res.redirect(`/flag-detective-regions/${req.params.continent}/game/${currentLevel + 1}`);
   }
   
-  res.render("Client/FlagDetectiveGame/FlagDetectiveGame", { data });
+  res.render("Client/FlagDetectiveGame/FlagDetectiveGame", { data, title: "Flag-Detective-Game" });
 }));
 
 

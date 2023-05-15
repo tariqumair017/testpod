@@ -28,7 +28,7 @@ router.get("/guess-country", asyncHandler(async (req, res, next) => {
        final.push(await CountryFlagGame.findOne({region: DBcontinent[i]}));
     }
 
-    res.render("Client/GuessCountryGame/Guess-Country", { data: final });
+    res.render("Client/GuessCountryGame/Guess-Country", { data: final, title: "Regions" });
      
 }));
 
@@ -58,7 +58,7 @@ router.get("/guess-country/:name/:region/game/:level", asyncHandler(async (req, 
     return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/${currentLevel + 1}`);
   }
 
-  res.render("Client/GuessCountryGame/"+req.params.name, { data });
+  res.render("Client/GuessCountryGame/"+req.params.name, { data, title: "Guess-Country-Game" });
 
 }));
 

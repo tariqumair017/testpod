@@ -15,7 +15,7 @@ router.get("/flag-puzzle-regions", asyncHandler(async (req, res, next) => {
        final.push(await FlagPuzzleGame.findOne({region: DBcontinent[i]}));
     }
   
-    res.render("Client/FlagPuzzleGame/PuzzleFlagRegions", { data: final });
+    res.render("Client/FlagPuzzleGame/PuzzleFlagRegions", { data: final, title: "Regions" });
 }));
 
 
@@ -46,7 +46,7 @@ router.get("/flag-puzzle-regions/:region/game/:level", asyncHandler(async (req, 
   }
    
     
-    res.render("Client/FlagPuzzleGame/FlagPuzzle", { data });
+    res.render("Client/FlagPuzzleGame/FlagPuzzle", { data, title: "Flag-Puzzle-Game" });
 }));
 
 
