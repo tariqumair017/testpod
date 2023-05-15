@@ -96,6 +96,7 @@ const time_up = document.querySelector(".time_up")
 const focus_question = document.querySelector(".focus-input")
 
 
+timer__display.classList.add("d-none")
 
 
 
