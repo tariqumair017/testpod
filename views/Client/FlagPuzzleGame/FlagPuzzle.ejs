@@ -32,7 +32,7 @@
     >
       <img src="https://testpod-bucket.s3.amazonaws.com/pages/volume_off_white_24dp.svg" />
     </span>
-    <a href="/flag-puzzle-regions" class="flag-detective-score-card">
+    <a href="/flag-puzzle/regions" class="flag-detective-score-card">
       <i
         class="fa-solid fa-xmark"
         style="color: #ffffff; font-size: larger"
@@ -59,7 +59,7 @@
             class="score-text-slide-right"
             style="display: flex; gap: 5px; flex-wrap: wrap"
           >
-            <a href="/flag-puzzle-regions" class="flag-detective-score-card">
+            <a href="/flag-puzzle/regions" class="flag-detective-score-card">
               <i
                 class="fa-solid fa-xmark"
                 style="color: #ffffff; font-size: larger"
@@ -86,14 +86,27 @@
             margin-top: 20px;
           "
         >
-          <a
-            href="/flag-puzzle-regions/<%=data.continent%>/game/<%=data.level%>"
-            target="_self"
-            ><button class="btn ss-btn">
-              <i class="fa-solid fa-rotate-right" style="margin-right: 10px"></i
-              >ReTake
-            </button></a
-          >
+        <% if (data.level == 0) { %>
+          <a href="/flag-puzzle/<%=data.region.toLowerCase()%>/easy" target="_self"><button class="btn ss-btn">
+            <i class="fa-solid fa-rotate-right" style="margin-right: 10px"></i
+            >ReTake
+          </button></a> 
+        <% } else if(data.level == 1) { %>
+          <a href="/flag-puzzle/<%=data.region.toLowerCase()%>/normal" target="_self"><button class="btn ss-btn">
+            <i class="fa-solid fa-rotate-right" style="margin-right: 10px"></i
+            >ReTake
+          </button></a>  
+        <% } else if(data.level == 2) { %>
+          <a href="/flag-puzzle/<%=data.region.toLowerCase()%>/hard" target="_self"><button class="btn ss-btn">
+            <i class="fa-solid fa-rotate-right" style="margin-right: 10px"></i
+            >ReTake
+          </button></a>  
+        <% } else if(data.level == 3) { %>
+          <a href="/flag-puzzle/<%=data.region.toLowerCase()%>/extreme" target="_self"><button class="btn ss-btn">
+            <i class="fa-solid fa-rotate-right" style="margin-right: 10px"></i
+            >ReTake
+          </button></a>  
+        <% } %>
         </div>
       </div>
     </div>

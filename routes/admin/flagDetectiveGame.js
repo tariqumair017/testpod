@@ -27,7 +27,7 @@ router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensur
 
 //Admin: Create Flag Detective Game Page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    res.render("Admin/FlagDetectiveGame/AddFlagDetectiveGame");
+    res.render("Admin/FlagDetectiveGame/AddFlagDetectiveGame", { title: "Create-FlagDetectiveGame" });
 }));
 
 //Admin: Create Flag Detective Game Handel
@@ -88,7 +88,7 @@ router.get("/search/:continent", connectEnsureLogin.ensureLoggedIn("/login"), as
 //Admin: Manage Flag Detective Game Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await FlagDetectiveGame.find({});
-    res.render("Admin/FlagDetectiveGame/ManageFlagDetectiveGame", { data });
+    res.render("Admin/FlagDetectiveGame/ManageFlagDetectiveGame", { data, title: "Manage-FlagDetectiveGame" });
 }));
 
 //Admin - Delete Flag Detective Game
@@ -107,7 +107,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
     req.flash("error", "Cannot find this Game!");
     return res.redirect("/admin/flag-detective-game/manage");
   } 
-  res.render("Admin/FlagDetectiveGame/AllFlagDetectiveGame", { data });
+  res.render("Admin/FlagDetectiveGame/AllFlagDetectiveGame", { data, title: "Manage-FlagDetectiveGame-Questions" });
 }));
 
 //Admin - Edit Game Name

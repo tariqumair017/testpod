@@ -10,7 +10,7 @@ import connectEnsureLogin from "connect-ensure-login";
  
 //Admin: Add Question page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
-    res.render("Admin/Test/AddTest");
+    res.render("Admin/Test/AddTest", {title: "Create-Test"});
 }));
   
 //Admin: Add Questions
@@ -99,7 +99,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 //Admin: Manage Quiz Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await QuizModel.find({}); 
-    res.render("Admin/Test/ManageTest", { data });
+    res.render("Admin/Test/ManageTest", { data, title: "Manage-Test" });
 }));
 
 //Admin - Destroy Whole Question
@@ -118,7 +118,7 @@ router.get("/manage/:id/all-quizzes", connectEnsureLogin.ensureLoggedIn("/login"
         req.flash("error", "Test Not Found");
         return res.redirect("/admin/test/manage");
     }
-    res.render("Admin/Test/AllQuiz", { data });
+    res.render("Admin/Test/AllQuiz", { data, title: "Manage-Test-Questions" });
 }));
 
 //Admin - Edit Test Name

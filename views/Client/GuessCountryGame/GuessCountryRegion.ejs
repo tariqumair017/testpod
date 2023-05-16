@@ -11,7 +11,7 @@
         <div class="col-xl-12 col-lg-12">
           <div class="breadcrumb-wrap text-left">
             <div class="breadcrumb-title">
-              <h2>Guess Countries</h2>
+              <h2>Guess Country</h2>
               <div class="breadcrumb-wrap">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -46,7 +46,7 @@
     </p>
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
-      <a href="/guess-country/flag_game/<%=value.region%>/game/0" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
+      <a href="/guess-country/<%=value.region.toLowerCase()%>/easy" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
         <%if(value.region.toLowerCase() == "africa"){ %>
         <img src="https://testpod-bucket.s3.amazonaws.com/pages/africa.svg" class="card-img-top card-img-guess-country" alt="..." />
         <%} else if(value.region.toLowerCase() == "america"){%>

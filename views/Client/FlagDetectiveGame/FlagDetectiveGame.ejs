@@ -20,7 +20,7 @@
               <span class="flag-detective-music-off flag-detective-sound d-none">
                 <img src="https://testpod-bucket.s3.amazonaws.com/pages/volume_off_white_24dp.svg" />
               </span>
-              <a href="/flag-detective-regions" class="flag-detective-score-card">
+              <a href="/flag-detective/regions" class="flag-detective-score-card">
                 <i class="fa-solid fa-xmark" style="color: #ffffff;font-size: larger;"></i>
               </a>
             </div>
@@ -41,7 +41,7 @@
             <span class="flag-detective-score-card-two score-text-slide-left" style="font-size: larger;">
             </span>
             <div class="score-text-slide-right" style="display: flex;gap: 5px;flex-wrap: wrap;">
-              <a href="/flag-detective-regions" class="flag-detective-score-card">
+              <a href="/flag-detective/regions" class="flag-detective-score-card">
                 <i class="fa-solid fa-xmark" style="color: #ffffff;font-size: larger;"></i>
               </a>
             </div>
@@ -56,9 +56,24 @@
             padding: 15px;
           "></canvas>
           <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-            <a href="/flag-detective-regions/<%=data.continent%>/game/<%=data.level%>" target="_self"><button
+            <% if (data.level == 0) { %>
+              <a href="/flag-detective/<%=data.continent.toLowerCase()%>/easy" target="_self"><button
                 class="btn ss-btn"><i class="fa-solid fa-rotate-right"
                   style="margin-right: 10px;"></i>ReTake</button></a>
+            <% } else if(data.level == 1) { %>
+              <a href="/flag-detective/<%=data.continent.toLowerCase()%>/normal" target="_self"><button
+                class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                  style="margin-right: 10px;"></i>ReTake</button></a>
+            <% } else if(data.level == 2) { %>
+              <a href="/flag-detective/<%=data.continent.toLowerCase()%>/hard" target="_self"><button
+                class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                  style="margin-right: 10px;"></i>ReTake</button></a>
+            <% } else if(data.level == 3) { %>
+              <a href="/flag-detective/<%=data.continent.toLowerCase()%>/extreme" target="_self"><button
+                class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                  style="margin-right: 10px;"></i>ReTake</button></a>
+            <% } %>
+            
             <% if(data.level < 3){ %>
               <button id="nextLevel" class="btn ss-btn">Next Level</button>
               <% } %>

@@ -7,7 +7,7 @@ import ResultModel from "../../models/result.js";
 import asyncHandler from "express-async-handler";   
 
 //Client Guess-Country page
-router.get("/guess-country", asyncHandler(async (req, res, next) => {  
+router.get("/guess-country/regions", asyncHandler(async (req, res, next) => {  
 //=== IP Address (Can get only When Site is deployed) ====//  
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
     // if (ip.substr(0, 7) == "::ffff:") {
@@ -28,7 +28,7 @@ router.get("/guess-country", asyncHandler(async (req, res, next) => {
        final.push(await CountryFlagGame.findOne({region: DBcontinent[i]}));
     }
 
-    res.render("Client/GuessCountryGame/Guess-Country", { data: final, title: "Regions" });
+    res.render("Client/GuessCountryGame/GuessCountryRegion", { data: final, title: "Regions" });
      
 }));
 
@@ -40,25 +40,42 @@ router.get("/game/all/:region/:level", asyncHandler(async (req, res, next) => {
 }));
 
 //Client Guess-Country by id page
-router.get("/guess-country/:name/:region/game/:level", asyncHandler(async (req, res, next) => { 
-    req.session.newResultIDForGame = undefined; 
-    var currentLevel = Number(req.params.level); 
+router.get("/guess-country/:region/:level", asyncHandler(async (req, res, next) => { 
+    req.session.newResultIDForGame = undefined;  
+    var currentLevel;
 
-    if (isNaN(currentLevel)) {
-      return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/0`);
-    } 
+    if(req.params.level == 'easy')
+    {currentLevel = 0}
+    else if(req.params.level == 'normal')
+    {currentLevel = 1}
+    else if(req.params.level == 'hard')
+    {currentLevel = 2}
+    else if(req.params.level == 'extreme')
+    {currentLevel = 3} 
+    else
+    {currentLevel = 4}
 
-  const data = await CountryFlagGame.findOne({region: req.params.region, level: currentLevel});
+  const currentRegion = req.params.region.charAt(0).toUpperCase() + req.params.region.slice(1);
+  const data = await CountryFlagGame.findOne({region: currentRegion, level: currentLevel});
   if(!data)
   { 
-    if(currentLevel > 3 || currentLevel < 0)
+    if(currentLevel > 3)
     {
-      return res.redirect("/guess-country");
+      return res.redirect("/guess-country/regions");
     }
-    return res.redirect(`/guess-country/${req.params.name}/${req.params.region}/game/${currentLevel + 1}`);
+
+    if (currentLevel == 0) {
+      return res.redirect(`/guess-country/${req.params.region}/normal`);
+    } else if(currentLevel == 1) {
+      return res.redirect(`/guess-country/${req.params.region}/hard`);
+    } else if(currentLevel == 2) {
+      return res.redirect(`/guess-country/${req.params.region}/extreme`);
+    } else if(currentLevel == 3) {
+      return res.redirect("/guess-country/regions");
+    } 
   }
 
-  res.render("Client/GuessCountryGame/"+req.params.name, { data, title: "Guess-Country-Game" });
+  res.render("Client/GuessCountryGame/GuessCountryGame", { data, title: "Guess-Country-Game" });
 
 }));
 

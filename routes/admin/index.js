@@ -37,27 +37,27 @@ router.post("/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), pa
 
 //Admin: Dashboard Page
 router.get("/admin/dashboard", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/Dashboard");
+  res.render("Admin/index/Dashboard", {title: "Admin-Dashboard"});
 }));
 
 //Admin: Content Management Page
 router.get("/admin/content-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/ContentManagement");
+  res.render("Admin/index/ContentManagement", {title: "Content-Management"});
 }));
  
 //Admin: Result Management Page
 router.get("/admin/result-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/ResultManagement");
+  res.render("Admin/index/ResultManagement", {title: "Result-Management"});
 }));
 
 //Admin: User Management Page
 router.get("/admin/user-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/UserManagement");
+  res.render("Admin/index/UserManagement", {title: "User-Management"});
 }));
 
 //Admin: Analytics Page
 router.get("/admin/analytics", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/Analytics");
+  res.render("Admin/index/Analytics", {title: "Analytics"});
 }));
 
 //Logout

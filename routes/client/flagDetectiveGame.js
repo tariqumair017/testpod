@@ -4,7 +4,7 @@ import FlagDetectiveGame from "../../models/flagDetectiveGame.js";
 import asyncHandler from "express-async-handler"; 
 
 //Client: Flag Detective Regions  Page 
-router.get("/flag-detective-regions", asyncHandler(async (req, res, next) => {
+router.get("/flag-detective/regions", asyncHandler(async (req, res, next) => {
 
 //=== IP Address (Can get only When Site is deployed) ====//  
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
@@ -38,22 +38,39 @@ router.get("/flag-detective-game/:continent/:level", asyncHandler(async (req, re
 }));
 
 //Client: Flag Detective Regions Page 
-router.get("/flag-detective-regions/:continent/game/:level",  asyncHandler(async (req, res) => { 
-  var currentLevel = Number(req.params.level);
+router.get("/flag-detective/:continent/:level",  asyncHandler(async (req, res) => { 
+  var currentLevel;
 
-  if (isNaN(currentLevel)) {
-    return res.redirect(`/flag-detective-regions/${req.params.continent}/game/0`);
-  } 
+  if(req.params.level == 'easy')
+  {currentLevel = 0}
+  else if(req.params.level == 'normal')
+  {currentLevel = 1}
+  else if(req.params.level == 'hard')
+  {currentLevel = 2}
+  else if(req.params.level == 'extreme')
+  {currentLevel = 3} 
+  else
+  {currentLevel = 4}
 
-  const data = await FlagDetectiveGame.findOne({continent: req.params.continent, level: currentLevel});
+  const currentRegion = req.params.continent.charAt(0).toUpperCase() + req.params.continent.slice(1);
+  const data = await FlagDetectiveGame.findOne({continent: currentRegion, level: currentLevel});
 
   if(!data)
   { 
-    if(currentLevel > 3 || currentLevel < 0)
+    if(currentLevel > 3)
     {
-      return res.redirect("/flag-detective-regions");
+      return res.redirect("/flag-detective/regions");
     }
-    return res.redirect(`/flag-detective-regions/${req.params.continent}/game/${currentLevel + 1}`);
+
+    if (currentLevel == 0) {
+      return res.redirect(`/flag-detective/${req.params.continent}/normal`); 
+    } else if(currentLevel == 1) {
+      return res.redirect(`/flag-detective/${req.params.continent}/hard`);  
+    } else if(currentLevel == 2) {
+      return res.redirect(`/flag-detective/${req.params.continent}/extreme`);  
+    } else if(currentLevel == 3) {
+      return res.redirect("/flag-detective/regions");
+    } 
   }
   
   res.render("Client/FlagDetectiveGame/FlagDetectiveGame", { data, title: "Flag-Detective-Game" });

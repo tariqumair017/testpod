@@ -15,7 +15,7 @@ router.get("/game-management/draw-flags-games/countryName/:country", connectEnsu
 //Admin: Add Draw Flag Game Page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   var data = await DrawNewFlagModel.find({});
-  res.render("Admin/DrawFlagGame/AddDrawFlagGame", { data });
+  res.render("Admin/DrawFlagGame/AddDrawFlagGame", { data, title: "Create-DrawFlagGame" });
 }));
   
 //Admin: Add Draw Flag Game Handel
@@ -84,7 +84,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 //Admin: Manage Flag Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await DrawFlagGameModel.find({}); 
-    res.render("Admin/DrawFlagGame/ManageDrawFlagGame", { data });
+    res.render("Admin/DrawFlagGame/ManageDrawFlagGame", { data, title: "Manage-DrawFlagGame" });
 }));
  
 //Admin - Delete Whole Flag Game
@@ -104,7 +104,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
     req.flash("error", "Cannot find this Game!");
     return res.redirect("/admin/draw-flag-game/manage");
   } 
-  res.render("Admin/DrawFlagGame/AllDrawFlagsGames", {data: data, allFlags: allFlags});
+  res.render("Admin/DrawFlagGame/AllDrawFlagsGames", {data: data, allFlags: allFlags, title: "Manage-DrawFlagGame-Questions"});
 }));
   
 //Admin - Edit Game Name

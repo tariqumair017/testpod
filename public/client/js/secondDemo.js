@@ -51,7 +51,7 @@ const menu_close = document.getElementById("menu-close");
 
 const quiz_image = document.querySelector(".quiz-image");
 
-const _id = location.pathname.replace("/test/states/new-jersey/", "");
+const _id = location.pathname.replace("/dmv-test/states/new-jersey/", "");
 
 menu_tigger[0].onclick = () => {
   document.getElementById("offcanvas-menu").classList.toggle("active");

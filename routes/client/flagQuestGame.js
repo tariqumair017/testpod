@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 
 
 //Client: Guess Flag Regions  Page 
-router.get("/flag-quest-regions", asyncHandler(async (req, res, next) => {
+router.get("/flag-quest/regions", asyncHandler(async (req, res, next) => {
 
     const DBcontinent = await FlagQuestGame.distinct("region"); 
     var final = [];
@@ -23,22 +23,39 @@ router.get("/flag-quest-regions", asyncHandler(async (req, res, next) => {
 // }));
 
 //Client GuessFlags
-router.get("/flag-quest-regions/:region/game/:level", asyncHandler(async (req, res, next) => { 
-  var currentLevel = Number(req.params.level);
+router.get("/flag-quest/:region/:level", asyncHandler(async (req, res, next) => { 
+  var currentLevel;
 
-  if (isNaN(currentLevel)) {
-    return res.redirect(`/flag-quest-regions/${req.params.region}/game/0`);
-  } 
+  if(req.params.level == 'easy')
+  {currentLevel = 0}
+  else if(req.params.level == 'normal')
+  {currentLevel = 1}
+  else if(req.params.level == 'hard')
+  {currentLevel = 2}
+  else if(req.params.level == 'extreme')
+  {currentLevel = 3} 
+  else
+  {currentLevel = 4}
 
-  const data = await FlagQuestGame.findOne({region: req.params.region, level: currentLevel});
+  const currentRegion = req.params.region.charAt(0).toUpperCase() + req.params.region.slice(1);
+  const data = await FlagQuestGame.findOne({region: currentRegion, level: currentLevel});
 
   if(!data)
   { 
-    if(currentLevel > 3 || currentLevel < 0)
+    if(currentLevel > 3)
     {
-      return res.redirect("/flag-quest-regions");
+      return res.redirect("/flag-quest/regions");
     }
-    return res.redirect(`/flag-quest-regions/${req.params.region}/game/${currentLevel + 1}`);
+
+    if (currentLevel == 0) {
+      return res.redirect(`/flag-quest/${req.params.region}/normal`); 
+    } else if(currentLevel == 1) {
+      return res.redirect(`/flag-quest/${req.params.region}/hard`);  
+    } else if(currentLevel == 2) {
+      return res.redirect(`/flag-quest/${req.params.region}/extreme`);   
+    } else if(currentLevel == 3) {
+      return res.redirect("/flag-quest/regions");
+    } 
   }
     
     res.render("Client/FlagQuestGames/FlagQuestGame", { data, title: "Flag-Quest-Game" });

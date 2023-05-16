@@ -21,7 +21,7 @@
           <span class="flag-detective-music-off flag-detective-sound d-none">
             <img src="/client/img/bg/volume_off_white_24dp.svg" />
           </span>
-          <a href="/flag-quest-regions" class="flag-detective-score-card">
+          <a href="/flag-quest/regions" class="flag-detective-score-card">
             <i
               class="fa-solid fa-xmark"
               style="color: #ffffff; font-size: larger"
@@ -52,7 +52,15 @@
         <div class="col-md-12 ">
           <button class="btn ss-btn next_btn d-none" style="float: right;margin: 20px;" >Next Stage ➜</button>
           <button class="btn ss-btn result_btn d-none" style="float: right;margin: 20px;" >Show Result</button>
-          <a href="/flag-quest-regions/<%=data.region%>/game/<%=data.level%>"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <% if (data.level == 0) { %>
+            <a href="/flag-quest/<%=data.region.toLowerCase()%>/easy"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <% } else if(data.level == 1) { %>
+            <a href="/flag-quest/<%=data.region.toLowerCase()%>/normal"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <% } else if(data.level == 2) { %>
+            <a href="/flag-quest/<%=data.region.toLowerCase()%>/hard"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <% } else if(data.level == 3) { %>
+            <a href="/flag-quest/<%=data.region.toLowerCase()%>/extreme"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <% } %> 
         </div>
       </div>
     </div>
@@ -97,7 +105,7 @@
       </div> -->
     </div>
     <div class="result_box_bottom">
-      <a href="/flag-quest-regions" class="result_box_retake">
+      <a href="/flag-quest/regions" class="result_box_retake">
         <i class="fa-solid fa-xmark fa-2xl" style="color: #ffffff;"></i>
       </a>
       <div class="result_box_score_box"><img width="100%" src="/client/img/icon/Group.svg" alt="" /><p class="result_box_score">350</p></div>

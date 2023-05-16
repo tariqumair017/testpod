@@ -13,7 +13,7 @@ document.getElementById("nextLevel").addEventListener("click", function (e) {
   e.preventDefault();
 
   currentLevel++;
-  window.location.href = `/flag-quest-regions/${data.region}/game/${currentLevel}`;
+  window.location.href = `/flag-quest/${data.region}/${currentLevel}`;
 });
 
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");

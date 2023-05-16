@@ -56,7 +56,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
         for (let i = 0; i < data.length; i++) { 
             if(location.continent.includes(data[i]))
             {
-                return res.redirect(`/guess-country/flag_game/${data[i]}/game/0`); 
+                return res.redirect(`/guess-country/${data[i].toLowerCase()}/easy`); 
             }
         }
     }   
@@ -82,7 +82,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
         for (let i = 0; i < data.length; i++) { 
             if(location.continent.includes(data[i]))
             {
-                return res.redirect(`/guess-flag-regions/${data[i]}/game/0`); 
+                return res.redirect(`/guess-flag/${data[i].toLowerCase()}/easy`); 
             }
         }
     }
@@ -104,7 +104,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
         for (let i = 0; i < data.length; i++) { 
             if(location.continent.includes(data[i]))
             {
-                return res.redirect(`/flag-puzzle-regions/${data[i]}/game/0`); 
+                return res.redirect(`/flag-puzzle/${data[i].toLowerCase()}/easy`); 
             }
         }
     }
@@ -114,7 +114,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
     }
     else if(req.params.game == 'test')
     {
-        return res.redirect("/test/states");
+        return res.redirect("/dmv-test/states");
     }
     else
     {
@@ -123,7 +123,7 @@ router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => {
 }));
 
 //Client About page
-router.get("/about", asyncHandler(async (req, res, next) => {  
+router.get("/about-us", asyncHandler(async (req, res, next) => {  
     res.render("Client/index/About", {title: "About"});
 }));
 
@@ -138,7 +138,7 @@ router.get("/blog", asyncHandler(async (req, res, next) => {
 }));
 
 //Client Contact page
-router.get("/contact", asyncHandler(async (req, res, next) => {  
+router.get("/contact-us", asyncHandler(async (req, res, next) => {  
     res.render("Client/index/Contact", {title: "Contact"});
 }));
 

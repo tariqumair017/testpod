@@ -67,7 +67,19 @@ document.getElementById("nextLevel").addEventListener("click", function (e) {
   e.preventDefault();
 
   currentLevel++;
-  window.location.href = `/guess-flag-regions/${region}/game/${currentLevel}`;
+
+  if (currentLevel == 0) {
+    window.location.href = `/guess-flag/${region.toLowerCase()}/easy`; 
+  } else if(currentLevel == 1) {
+    window.location.href = `/guess-flag/${region.toLowerCase()}/normal`; 
+  } else if(currentLevel == 2) {
+    window.location.href = `/guess-flag/${region.toLowerCase()}/hard`; 
+  } else if(currentLevel == 3) {
+    window.location.href = `/guess-flag/${region.toLowerCase()}/extreme`; 
+  } else if(currentLevel == 4) {
+    window.location.href = `/guess-flag/${region.toLowerCase()}/next`; 
+  } 
+
 });
 
 //Api All Guess Flag Data

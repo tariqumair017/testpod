@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import Log from "./logs.js";
 import Result from "./result.js";
 
-const TestSchema = new mongoose.Schema({
+const TestSchema = new mongoose.Schema({ 
   quizName: {
     type: String,
+    unique: true,
     required: true
     },
   country: {

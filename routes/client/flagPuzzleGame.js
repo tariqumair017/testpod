@@ -7,7 +7,7 @@ import asyncHandler from "express-async-handler";
 
 
 //Client: Flag Puzzle Regions  Page 
-router.get("/flag-puzzle-regions", asyncHandler(async (req, res, next) => {
+router.get("/flag-puzzle/regions", asyncHandler(async (req, res, next) => {
 
     const DBcontinent = await FlagPuzzleGame.distinct("region"); 
     var final = [];
@@ -27,25 +27,41 @@ router.get("/flag-puzzle-regions", asyncHandler(async (req, res, next) => {
 // }));
 
 //Client Puzzle Flag
-router.get("/flag-puzzle-regions/:region/game/:level", asyncHandler(async (req, res, next) => { 
-  var currentLevel = Number(req.params.level);
+router.get("/flag-puzzle/:region/:level", asyncHandler(async (req, res, next) => { 
+  var currentLevel;
 
-  if (isNaN(currentLevel)) {
-    return res.redirect(`/flag-puzzle-regions/${req.params.region}/game/0`);
-  } 
+  if(req.params.level == 'easy')
+  {currentLevel = 0}
+  else if(req.params.level == 'normal')
+  {currentLevel = 1}
+  else if(req.params.level == 'hard')
+  {currentLevel = 2}
+  else if(req.params.level == 'extreme')
+  {currentLevel = 3} 
+  else
+  {currentLevel = 4}
 
-  const data = await FlagPuzzleGame.findOne({region: req.params.region, level: currentLevel});
+  const currentRegion = req.params.region.charAt(0).toUpperCase() + req.params.region.slice(1);
+  const data = await FlagPuzzleGame.findOne({region: currentRegion, level: currentLevel});
 
   if(!data)
   { 
-    if(currentLevel > 3 || currentLevel < 0)
+    if(currentLevel > 3)
     {
-      return res.redirect("/flag-puzzle-regions");
+      return res.redirect("/flag-puzzle/regions");
     }
-    return res.redirect(`/flag-puzzle-regions/${req.params.region}/game/${currentLevel + 1}`);
-  }
-   
-    
+
+    if (currentLevel == 0) {
+      return res.redirect(`/flag-puzzle/${req.params.region}/normal`); 
+    } else if(currentLevel == 1) {
+      return res.redirect(`/flag-puzzle/${req.params.region}/hard`); 
+    } else if(currentLevel == 2) {
+      return res.redirect(`/flag-puzzle/${req.params.region}/extreme`);  
+    } else if(currentLevel == 3) {
+      return res.redirect("/flag-puzzle/regions");
+    } 
+  }  
+  
     res.render("Client/FlagPuzzleGame/FlagPuzzle", { data, title: "Flag-Puzzle-Game" });
 }));
 

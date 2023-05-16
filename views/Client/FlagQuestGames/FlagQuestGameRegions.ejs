@@ -9,7 +9,7 @@
       <div class="col-xl-12 col-lg-12">
         <div class="breadcrumb-wrap text-left">
           <div class="breadcrumb-title">
-            <h2>Guess Flag</h2>
+            <h2>Guess Quest</h2>
             <div class="breadcrumb-wrap">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -17,7 +17,7 @@
                     <a href="/">Home</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Guess Flag
+                    Flag Quest
                   </li>
                 </ol>
               </nav>
@@ -32,7 +32,7 @@
 <section class="flag-quest"> 
   <div class="flag-quest-region-box">
     <%data.forEach(item => {%>
-    <a href="/flag-quest-regions/<%=item.region%>/game/0">
+    <a href="/flag-quest/<%=item.region.toLowerCase()%>/easy">
     <div class="flag-quest-region-card">
       <div class="flag-quest-region-card-location">
         <i class="fa-solid fa-location-dot" style="color: #ffffff"></i>

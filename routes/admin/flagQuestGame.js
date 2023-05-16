@@ -34,7 +34,7 @@ router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensur
  
 //Admin Create-Guess-Flag page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    res.render("Admin/FlagQuestGame/AddFlagQuestGame");
+    res.render("Admin/FlagQuestGame/AddFlagQuestGame", {title: "Create-FlagQuestGame"});
 }));
  
 //Admin: Create-Guess-Flag Handel
@@ -121,7 +121,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 //Admin Manage-Guess-Flag page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await FlagQuestGame.find({});
-    res.render("Admin/FlagQuestGame/ManageFlagQuestGame", { data });
+    res.render("Admin/FlagQuestGame/ManageFlagQuestGame", { data, title: "Manage-FlagQuestGame" });
 }));
 
 //Admin - Delete Whole Guess Flag Game
@@ -141,7 +141,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
       req.flash("error", "Game not found");
       return res.redirect("/admin/flag-quest-game/manage");
     }
-    res.render("Admin/FlagQuestGame/AllFlagQuestGame", { data }); 
+    res.render("Admin/FlagQuestGame/AllFlagQuestGame", { data, title: "Manage-FlagQuestGame-Questions" }); 
 }));
 
 //Admin - Edit Game Name

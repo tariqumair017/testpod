@@ -29,7 +29,7 @@ router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensur
  
 //Admin: Add Flag Game Page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    res.render("Admin/GuessCountryGame/AddFlagGame");
+    res.render("Admin/GuessCountryGame/AddFlagGame", {title: "Create-GuessCountryGame"});
 }));
   
 //Admin: Add Flag Game Handel
@@ -89,7 +89,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 //Admin: Manage Flag Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await GuessCountryGame.find({});
-    res.render("Admin/GuessCountryGame/ManageFlagGames", { data });
+    res.render("Admin/GuessCountryGame/ManageFlagGames", { data, title: "Manage-GuessCountryGame" });
   }));
   
 //Admin - Delete Whole Flag Game
@@ -108,7 +108,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
       req.flash("error", "Game not Found");
       return res.redirect(`/admin/guess-country-game/manage`);
     }
-    res.render("Admin/GuessCountryGame/AllFlagsGames", { data });
+    res.render("Admin/GuessCountryGame/AllFlagsGames", { data, title: "Manage-GuessCountryGame-Questions" });
   }));
   
   //Admin - Edit Game Name

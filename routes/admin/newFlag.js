@@ -9,7 +9,7 @@ import connectEnsureLogin from "connect-ensure-login";
 //Admin: Draw-New-Flags Page
 router.get("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     const data = await DrawNewFlagModel.find({});
-    res.render("Admin/NewFlag/Draw-New-Flags", { data });
+    res.render("Admin/NewFlag/Draw-New-Flags", { data, title: "Create-NewFlag" });
 }));
    
 //Admin: Draw-New-Flags Page Handel

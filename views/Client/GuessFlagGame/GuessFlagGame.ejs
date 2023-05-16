@@ -76,7 +76,15 @@ style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-
           "
         ></canvas>
         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-          <a href="/guess-flag-regions/<%=data.region%>/game/<%=data.level%>" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
+          <% if (data.level == 0) { %>
+            <a href="/guess-flag/<%=data.region.toLowerCase()%>/easy" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a> 
+          <% } else if(data.level == 1) { %>
+            <a href="/guess-flag/<%=data.region.toLowerCase()%>/normal" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a> 
+          <% } else if(data.level == 2) { %>
+            <a href="/guess-flag/<%=data.region.toLowerCase()%>/hard" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a> 
+          <% } else if(data.level == 3) { %>
+            <a href="/guess-flag/<%=data.region.toLowerCase()%>/extreme" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a> 
+          <% } %>
           <button id="nextLevel" class="btn ss-btn" >Next Level</button>
         </div>
       </div>

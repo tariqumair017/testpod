@@ -49,7 +49,7 @@
     </p>
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
-      <a onclick="storeLog('<%=value._id%>')" href="/test/states/<%=value.stateName%>/<%=value._id%>" class="card quiz-card-item col-md-3" style="width: 17rem; padding: 0%">
+      <a onclick="storeLog('<%=value._id%>')" href="/dmv-test/<%=value.stateName%>/<%=value.quizName.toLowerCase().replace(/ /g,"-")%>" class="card quiz-card-item col-md-3" style="width: 17rem; padding: 0%">
         <!-- <img src="/upload-images/<%=value.stateImg%>" class="card-img-top card-img" alt="..." /> -->
         <div class="card-body">
           <h5 class="card-title quiz-card-title"><%=value.quizName%></h5>

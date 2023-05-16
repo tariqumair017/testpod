@@ -59,8 +59,17 @@ document.getElementById("nextLevel").addEventListener("click", function(e) {
   e.preventDefault();
     
   currenLevel++;
-  window.location.href = `/guess-country/flag_game/${region}/game/${currenLevel}`;
-
+  if (currenLevel == 0) {
+    window.location.href = `/guess-country/${region.toLowerCase()}/easy`;
+  } else if(currenLevel == 1) {
+    window.location.href = `/guess-country/${region.toLowerCase()}/normal`;
+  } else if(currenLevel == 2) {
+    window.location.href = `/guess-country/${region.toLowerCase()}/hard`;
+  } else if(currenLevel == 3) {
+    window.location.href = `/guess-country/${region.toLowerCase()}/extreme`;
+  } else if(currenLevel == 4) {
+    window.location.href = `/guess-country/${region.toLowerCase()}/next`;
+  } 
 });
 
 

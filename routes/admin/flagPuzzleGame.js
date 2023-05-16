@@ -26,7 +26,7 @@ router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensur
 
 //Admin: Create Flag Puzzle Game Page
 router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  res.render("Admin/FlagPuzzleGame/AddPuzzleGame");
+  res.render("Admin/FlagPuzzleGame/AddPuzzleGame", {title: "Create-PuzzleGame"});
 }));
 
 //Admin: Create Flag Puzzle Game Handel
@@ -78,7 +78,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 //Admin: Manage Flag Puzzle Game Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
   const data = await FlagPuzzleGame.find({});
-  res.render("Admin/FlagPuzzleGame/ManagePuzzleFlagGame", { data });
+  res.render("Admin/FlagPuzzleGame/ManagePuzzleFlagGame", { data, title: "Manage-PuzzleGame" });
 }));
 
 //Admin - Delete Flag Puzzle Game
@@ -98,7 +98,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
     req.flash("error", "Cannot find this Game!");
     return res.redirect("/admin/flag-puzzle-game/manage");
   } 
-  res.render("Admin/FlagPuzzleGame/AllPuzzleFlagGame", { data });
+  res.render("Admin/FlagPuzzleGame/AllPuzzleFlagGame", { data, title: "Manage-PuzzleGame-Questions" });
 }));
   
  

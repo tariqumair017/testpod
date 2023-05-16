@@ -15,49 +15,56 @@ router.get("/quiz-list/:id", asyncHandler(async (req, res, next) => {
 
 
 //Client: All States Page
-router.get("/test/states", asyncHandler(async (req, res, next) => { 
+router.get("/dmv-test/states", asyncHandler(async (req, res, next) => { 
     const data = await QuizModel.distinct("stateName");  
     res.render("Client/Test/States", { data, title: "Test-States"}); 
 }));
 
 
 //Client Specific State Page
-router.get("/test/states/:stateName", asyncHandler(async (req, res, next) => { 
+router.get("/dmv-test/:stateName", asyncHandler(async (req, res, next) => { 
     const data = await QuizModel.find({stateName: req.params.stateName});  
     if(!data)
     {
         req.flash("error", "Cannot find that State!");
-        return res.redirect("/test/states");
+        return res.redirect("/dmv-test/states");
     } 
     res.render("Client/Test/Test-City", { data, title: "State-Tests" }); 
 }));
  
 
 //Client Quiz page
-// router.get("/test/states/:stateName/:id", asyncHandler(async (req, res, next) => {  
+// router.get("/dmv-test/states/:stateName/:id", asyncHandler(async (req, res, next) => {  
 //     req.session.newResultIDForQuiz = undefined;
 //     const data = await QuizModel.findById(req.params.id);   
 //     var allTests = await QuizModel.find({});   
 //     if(!data)
 //     {
 //         req.flash("error", "Cannot find that Test!");
-//         return res.redirect("/test/states/"+req.params.stateName);
+//         return res.redirect("/dmv-test/states/"+req.params.stateName);
 //     } 
 //     res.render("Client/Test/Test", { data: data, allTests: allTests });
 // }));
 
 
 //Client new Quiz page 
-router.get("/test/states/:stateName/:id", asyncHandler(async (req, res, next) => {  
-    req.session.newResultIDForQuiz = undefined;
-    const data = await QuizModel.findById(req.params.id);   
-    // var allTests = await QuizModel.find({});   
-    if(!data)
-    {
-        req.flash("error", "Cannot find that Test!");
-        return res.redirect("/test/states/"+req.params.stateName);
-    } 
-    res.render("Client/Test/NewTest", { data, title: "NewTest" });
+router.get("/dmv-test/:stateName/:quizName", asyncHandler(async (req, res, next) => {  
+    try {
+        var nameOfQuiz = req.params.quizName.replace(/-/g," ");
+
+        req.session.newResultIDForQuiz = undefined;
+        const data = await QuizModel.findOne({quizName: {$regex : nameOfQuiz.toString(), "$options": "i" }});   
+        // var allTests = await QuizModel.find({});   
+        
+        if(!data)
+        {
+            req.flash("error", "Cannot find that Test!");
+            return res.redirect("/dmv-test/"+req.params.stateName);
+        } 
+        res.render("Client/Test/NewTest", { data, title: "State-Quiz" });
+    } catch (error) {
+        console.log(error.message);
+    }
 }));
 
 
