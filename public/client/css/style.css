@@ -16784,16 +16784,16 @@ pre cite {
   background: #010f2e;
   color: #ffffff;
 }
-.pagination-wrap .pagination {
+/* .pagination-wrap .pagination {
   display: block;
   border-radius: unset;
-}
-.pagination-wrap .pagination li {
+} */
+/* .pagination-wrap .pagination li {
   display: inline-block;
   margin-right: 6px;
   margin-left: 0;
   margin-bottom: 0;
-}
+} */
 .pagination-wrap .pagination li.active a {
   background: #A8171A;
   color: #ffffff;

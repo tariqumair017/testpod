@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Log from "./logs.js";
 import Result from "./result.js";
+import mongoosePaginate from "mongoose-paginate";
 
 const TestSchema = new mongoose.Schema({ 
   quizName: {
@@ -77,5 +78,7 @@ TestSchema.post("findOneAndDelete", async function(doc){
       await Result.deleteMany({_id: {$in: doc.results}});
   }
 })
+
+TestSchema.plugin(mongoosePaginate);
 
 export default mongoose.model("Test", TestSchema);

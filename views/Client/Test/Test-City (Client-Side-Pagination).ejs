@@ -1,0 +1,208 @@
+<% layout('Client/layouts/boilerPlate') -%>
+
+<main>
+  <!-- breadcrumb-area -->
+  <section
+    class="breadcrumb-area d-flex align-items-center"
+    style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png)"
+  >
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-12 col-lg-12">
+          <div class="breadcrumb-wrap text-left">
+            <div class="breadcrumb-title">
+              <h2>MVC Practice Tests</h2>
+              <div class="breadcrumb-wrap">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      States
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      <%=data[0]?.stateName%>
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+</main>
+
+<section
+  id="about"
+  class="about-area about-p pt-120 pb-120 p-relative"
+  style="
+    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png) no-repeat;
+    background-position: center center;
+  ">
+  <div class="quiz-citys">
+    <h2 class="font-weight-bold mb-2"><%=data[0]?.stateName.toUpperCase()%></h2>
+    <p class="font-italic text-muted mb-4 text-center">
+      
+    </p>
+    <div id="paginated-list" class="row quiz-card">
+      <%data.forEach(value => {%> 
+      <a onclick="storeLog('<%=value._id%>')" href="/dmv-test/<%=value.stateName%>/<%=value.quizName.toLowerCase().replace(/ /g,"-")%>" class="card quiz-card-item col-md-3" style="width: 17rem; padding: 0%">
+        <img src="/upload-images/<%=value.stateImg%>" class="card-img-top card-img" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title quiz-card-title" style="text-align: start;padding: 0px;"><%=value.quizName%></h5>
+          <!-- <p class="card-text">
+            <%=value.quizDetail%>
+          </p> -->
+          <div class="card-question-number">
+            <div style="display: flex;gap: 5px;align-items: center;flex-wrap: wrap;">
+              <p class="card-total-scorce"><%=value.questions.length%></p>
+              <p class="card-question" >questions</p>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <%})%>
+    </div>
+  </div>
+</section>
+
+<nav class="pagination-container">
+  <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+    &lt;
+  </button>
+
+  <div id="pagination-numbers">
+
+  </div>
+
+  <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+    &gt;
+  </button>
+</nav>
+
+
+<script>
+  async function storeLog(id) {
+      const counter = 1;
+      const response = await fetch(`/track-quiz/${id}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          views:counter
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        }
+      }); 
+      console.log(response);
+    }
+
+
+//Painations 
+const paginationNumbers = document.getElementById("pagination-numbers"); 
+const paginatedList = document.getElementById("paginated-list");
+const listItems = paginatedList.querySelectorAll("a");
+const nextButton = document.getElementById("next-button");
+const prevButton = document.getElementById("prev-button"); 
+const paginationLimit = 12;
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage = 1; 
+
+const disableButton = (button) => {
+  button.classList.add("disabled");
+  button.setAttribute("disabled", true);
+};
+
+const enableButton = (button) => {
+  button.classList.remove("disabled");
+  button.removeAttribute("disabled");
+};
+
+const handlePageButtonsStatus = () => {
+  if (currentPage === 1) {
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+
+  if (pageCount === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};
+
+const handleActivePageNumber = () => {
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    button.classList.remove("active");
+    const pageIndex = Number(button.getAttribute("page-index"));
+    if (pageIndex == currentPage) {
+      button.classList.add("active");
+    }
+  });
+};
+
+const appendPageNumber = (index) => {
+  const pageNumber = document.createElement("button");
+  pageNumber.className = "pagination-number";
+  pageNumber.innerHTML = index;
+  pageNumber.setAttribute("page-index", index);
+  pageNumber.setAttribute("aria-label", "Page " + index);
+
+  paginationNumbers.appendChild(pageNumber);
+};
+
+const getPaginationNumbers = () => {
+  for (let i = 1; i <= pageCount; i++) {
+    appendPageNumber(i);
+  }
+};
+
+const setCurrentPage = (pageNum) => {
+  currentPage = pageNum;
+
+  handleActivePageNumber();
+  handlePageButtonsStatus();
+  
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+
+  listItems.forEach((item, index) => {
+    item.classList.add("d-none");
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove("d-none");
+    }
+  });
+};
+
+window.addEventListener("load", () => {
+  getPaginationNumbers();
+  setCurrentPage(1);
+
+  prevButton.addEventListener("click", () => {
+    setCurrentPage(currentPage - 1);
+  });
+
+  nextButton.addEventListener("click", () => {
+    setCurrentPage(currentPage + 1);
+  });
+
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    const pageIndex = Number(button.getAttribute("page-index"));
+
+    if (pageIndex) {
+      button.addEventListener("click", () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+}); 
+
+</script>
+
+<script src="/client/js/about.js"></script>
+
