@@ -30,7 +30,7 @@ const flag_detective_music_off = document.querySelector(
 );
 
 const flag_detective_game_card = document.querySelector(
-  ".flag-detective-game-card"
+  ".flag-detective-game-timer"
 );
 const flag_detective_score_card = document.querySelector(
   ".flag-detective-score-card"
