@@ -2,22 +2,23 @@
 <%-include('../partials/gameHeader')%> 
 
 
-<section class="fleg-detective-game">
+<section class="flag-detective-game">
   <div class="flag-detective-game-complete">
     <div class="flag-detective-game-left-part">
       <div class="flag-detective-game-inner">
         <div class="questions-box">
           <div class="que_heading flag-detective-game-card-header">
             <span class="flag-detective-score-card score-text-slide-left" style="font-size: larger;">
+              Score : 00
             </span>
             <h2 class="score-text-slide-top" style="margin: 0%;">
               What a Country it is ?
             </h2>
             <div class="score-text-slide-right" style="display: flex;gap: 5px;flex-wrap: wrap;">
-              <span class="flag-detective-music-on flag-detective-sound">
+              <span class="flag-detective-music-on flag-detective-sound d-none">
                 <img src="https://testpod-bucket.s3.amazonaws.com/pages/volume_up_white_24dp.svg" />
               </span>
-              <span class="flag-detective-music-off flag-detective-sound d-none">
+              <span class="flag-detective-music-off flag-detective-sound ">
                 <img src="https://testpod-bucket.s3.amazonaws.com/pages/volume_off_white_24dp.svg" />
               </span>
               <a href="/flag-detective/regions" class="flag-detective-score-card">
@@ -25,8 +26,12 @@
               </a>
             </div>
           </div>
-          <div class="detective-image"></div>
-          <div class="siblings-input"></div>
+          <div class="detective-image">
+            <div class="loading-skeleton"></div>
+          </div>
+          <div class="siblings-input">
+            <div class="loading-skeleton-inputs"></div>
+          </div>
           <div style="display: flex;justify-content:space-evenly">
             <button class="btn ss-btn btn_I_dont_know" type="button">
               I don't know
@@ -48,7 +53,7 @@
           </div>
           <canvas id="myChart" style="
             width: 100%;
-            height: 250px;
+            height: 300px;
             display: block;
             border: 2px solid #ccc;
             border-radius: 5px;
@@ -83,19 +88,9 @@
     </div>
     <div class="mobile-side-view">
       <div class="flag-detective-game-right-part">
-        <div class="all-quiz-progress">
-          <div class="flag-detective-game-card">
-            <div class="flag-detective-game-timer">
-              <div class="timer__background">
-                <div class="timer__display">
-                  <!-- <div class="display minute"></div>
-                <span class="display colon">:</span>
-                <div class="display seconds"></div> -->
-                </div>
-                <span class="time_up d-none" style="font-size: 15px; font-weight: bold;color:#A8171A">Completed</span>
-                <circle class="st0" cx="260.59" cy="260.59" r="253.09" />
-              </div>
-            </div>
+        <div class="all-quiz-progress" style="width: 100%;position: static;">
+          <div class="flag-detective-game-timer">
+            <div class="loading-skeleton-timer" ></div>
           </div>
           <!-- <h5>Your Progress</h5> -->
           <div class="flag-detective-game-scorus-card">
@@ -110,15 +105,18 @@
             <p>In-Correct</p>
             <h5 class="detective-total-in-correct">--</h5>
           </div>
-          <h5 class="flag-detective-hint"
+          <h5 class="flag-detective-hint example-popover" role="button" tabindex="0"  title="Hint"
             style="margin: 0px;text-align: center;border-top: 1px solid lightgray;padding-top: 20px;">Hint</h5>
-          <div class="your-quiz-progress-detail mb-3">
-          </div>
+            <div hidden>
+              <p id="mypopover-content"></p>
+          </div>  
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
 
 <section id="clock-timer"></section>
 

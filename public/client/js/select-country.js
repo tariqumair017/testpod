@@ -82,9 +82,9 @@ fetch(`/game/all/${region}/${currenLevel}`)
     
         question: val.flag,
     
-        answer: val.correct.replace(/\s/g, '').toLowerCase(),
+        answer: val.correct,
     
-        options: [val.optionA.replace(/\s/g, '').toLowerCase(), val.optionB.replace(/\s/g, '').toLowerCase(), val.optionC.replace(/\s/g, '').toLowerCase(), val.optionD.replace(/\s/g, '').toLowerCase()],
+        options: [val.optionA, val.optionB, val.optionC, val.optionD],
 
         hint : val.hint
       }
@@ -380,7 +380,7 @@ function callCorrectOption() {
 
     optionAns = optionAns.substring(2);
 
-    if (optionAns == correcAns1) {
+    if (optionAns.replace(/\s/g, '').toLowerCase() == correcAns1.replace(/\s/g, '').toLowerCase()) {
       option_list.children[i].setAttribute(
         "class",
         "customLable correct disabled"

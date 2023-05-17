@@ -25,23 +25,21 @@
     <section id="home" class="slider-area slider-four fix p-relative">
       <div class="slider-active">
         <div class="single-slider slider-bg d-flex align-items-center" style="
-            background: url(https://testpod-bucket.s3.amazonaws.com/pages/slider_img_bg.png) no-repeat;
+            background: url(https://testpod-bucket.s3.amazonaws.com/pages/slider_img_bg.png);
             background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
           ">
           <div class="container">
             <div class="row justify-content-center spacing pb-50">
               <div class="col-lg-7">
-                <div class="slider-content s-slider-content mt-100">
+                <div class="slider-content s-slider-content home-text-animation-left mt-100">
                   <h2 data-animation="fadeInUp" data-delay=".4s">
                     Capture the knowledge!
                   </h2>
                   <p data-animation="fadeInUp" data-delay=".6s">
-                    Educational games are a great way to make learning fun and engaging. By using games, learners can
-                    capture knowledge in a more interactive and memorable way. Some examples of educational games that
-                    can help capture knowledge include Flags Games, Driving Test, Educations Test, and Geography game.
-                    These games challenge players to think critically, problem-solve, and retain information in a way
-                    that is both entertaining and effective.
-                  <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
+                    Educational games make learning fun and engaging by capturing knowledge interactively. Examples include Flags Games, Driving Test, Educations Test, and Geography game. These games challenge players to think critically, problem-solve, and retain information effectively.
+                  <!-- <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
                     <form action="" method="" class="contact-form">
                       <label><i class="icon fa-regular fa-envelope"></i> Email
                         Address</label>
@@ -49,10 +47,10 @@
                         placeholder="Your Email Address..." required />
                       <button class="btn header-btn">Subscribe Now</button>
                     </form>
-                  </div>
+                  </div> -->
                 </div>
               </div>
-              <div class="col-lg-5">
+              <div class="col-lg-5 home-text-animation-right">
                 <div class="slider-img" data-animation="fadeInUp" data-delay=".4s">
                   <img src="https://testpod-bucket.s3.amazonaws.com/pages/heroImage.svg" alt="slider_img05" />
                 </div>
@@ -173,12 +171,14 @@
 
     <!-- about-area -->
     <section id="about" class="about-area about-p spacing p-relative" style="
-        background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png) no-repeat;
+        background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png);
+        background-repeat: no-repeat;
+        background-size: cover;
         background-position: center center;
       ">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+          <div class="col-lg-6 col-md-12 col-sm-12 pr-30 home-text-animation-left">
             <div class="s-about-img p-relative wow fadeInLeft animated" data-animation="fadeInLeft" data-delay=".4s">
               <img src="https://testpod-bucket.s3.amazonaws.com/pages/about_img.svg" alt="img" />
               <div class="about-text second-about">
@@ -190,7 +190,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="col-lg-6 col-md-12 col-sm-12 home-text-animation-right">
             <div class="about-content s-about-content wow fadeInRight animated" data-animation="fadeInRight"
               data-delay=".4s">
               <div class="about-title second-atitle pb-25">
@@ -225,7 +225,7 @@
     </section>
     <!-- about-area-end -->
     <!-- vedio-area -->
-    <section id="vedio" class="vedio-area spacing pt-90 fix" style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/vedio-bg.png);
+    <section id="vedio" class="vedio-area spacing pt-90 fix realisatiehome" style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/vedio-bg.png);
         background-repeat: no-repeat;
       ">
       <div class="container">
@@ -238,7 +238,7 @@
           </div>
         </div>
         <!-- <div class="video-align"> -->
-        <div class="quiz-box">
+        <div class="quiz-box animate__animated wow animate__zoomIn" data-wow-delay="0.2s">
           <div class="quiz-section">
             <div class="left-part">
               <img class="images" src="https://testpod-bucket.s3.amazonaws.com/pages/warningsign.svg" />
@@ -266,6 +266,7 @@
               </span>
             </div>
             <button class="next-btn">Next Question</button>
+            <button onclick="location='/test/states'" class="more_test d-none">More Tests</button>
           </footer>
         </div>
         <div class="slider-btn mt-10" style="display: flex;justify-content: center;margin-top: 50px;">
@@ -284,7 +285,7 @@
       ">
       <div class="container spacing">
         <div class="row align-items-center">
-          <div class="col-lg-4 col-md-12">
+          <div class="col-lg-4 col-md-12 home-text-animation-left">
             <div class="about-title second-atitle pb-20">
               <h5>DMV Practice Test</h5>
               <h2>Take “Fail” <br> Out of Your Vocabulary</h2>
@@ -302,8 +303,9 @@
           </div>
           <div class="col-lg-8 col-md-12 mt-20">
             <div class="row">
-              <div class="col-lg-4 col-md-6 mb-20">
-                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+              <div class="col-lg-4 col-md-6 mb-20 wow fadeInLeft animated" data-animation="fadeInLeft"
+              data-delay="1s" >
+                <div class="services-box">
                   <div class="services-icon">
                     <img src="https://testpod-bucket.s3.amazonaws.com/pages/pv-icon1.png" alt="icon01" />
                   </div>
@@ -317,8 +319,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 mb-20">
-                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+              <div class="col-lg-4 col-md-6 mb-20 wow fadeInLeft animated" data-animation="fadeInLeft"
+              data-delay="2s">
+                <div class="services-box ">
                   <div class="services-icon">
                     <img src="https://testpod-bucket.s3.amazonaws.com/pages/pv-icon2.png" alt="icon01" />
                   </div>
@@ -332,8 +335,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 mb-20">
-                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+              <div class="col-lg-4 col-md-6 mb-20 wow fadeInLeft animated" data-animation="fadeInLeft"
+              data-delay="3s">
+                <div class="services-box">
                   <div class="services-icon">
                     <img src="https://testpod-bucket.s3.amazonaws.com/pages/pv-icon3.png" alt="icon01" />
                   </div>
@@ -345,8 +349,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 mb-20">
-                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+              <div class="col-lg-4 col-md-6 mb-20 wow fadeInLeft animated" data-animation="fadeInLeft"
+              data-delay="4s">
+                <div class="services-box">
                   <div class="services-icon">
                     <img src="https://testpod-bucket.s3.amazonaws.com/pages/pv-icon4.png" alt="icon01" />
                   </div>
@@ -358,8 +363,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 mb-20">
-                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+              <div class="col-lg-4 col-md-6 mb-20 wow fadeInLeft animated" data-animation="fadeInLeft"
+              data-delay="5s">
+                <div class="services-box">
                   <div class="services-icon">
                     <img src="https://testpod-bucket.s3.amazonaws.com/pages/pv-icon5.png" alt="icon01" />
                   </div>
@@ -372,8 +378,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 mb-20">
-                <div class="services-box wow fadeInDown animated" data-delay=".5s">
+              <div class="col-lg-4 col-md-6 mb-20 wow fadeInLeft animated" data-animation="fadeInLeft"
+              data-delay="6s">
+                <div class="services-box">
                   <div class="services-icon">
                     <img src="https://testpod-bucket.s3.amazonaws.com/pages/pv-icon6.png" alt="icon01" />
                   </div>
@@ -467,7 +474,7 @@
     </section>
 
     <!-- testimonial-area -->
-    <section class="testimonial-area spacing pt-90 pb-90" style="
+    <section class="testimonial-area spacing pt-90 pb-90 mb-80" style="
         background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg-aliments.png);
         background-repeat: no-repeat;
         background-position: center;
@@ -488,10 +495,11 @@
           </div>
 
           <div class="col-lg-6">
-            <div class="testimonial-active">
-              <swiper-container pagination-clickable="true" class="mySwiper" pagination="true" slides-per-view="1"
-                free-mode="true">
-                <swiper-slide>
+            <swiper-container autoplay class="mySwiper" pagination="false" effect="coverflow" grab-cursor="true" centered-slides="true"
+            slides-per-view="1.5" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+            coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+            <swiper-slide>
+                  <div class="testimonial-active ">
                   <div class="single-testimonial">
                     <div class="testi-author">
                       <img style="width: 100px;border-radius: 50%;"
@@ -509,9 +517,12 @@
                       test then jumped into a bus to Santa Monica, California DMV. I passed the drivers test the first
                       time; while the majority walked out with their faces down.
                   </div>
+            </div>
+
                 </swiper-slide>
                 <swiper-slide>
-                  <div class="single-testimonial">
+                  <div class="testimonial-active">
+                  <div class="single-testimonial ">
                     <div class="testi-author">
                       <img style="width: 100px;border-radius: 50%;"
                         src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.59.30+-+create+avatar+cute+girl+.png" alt="img" />
@@ -528,8 +539,11 @@
                       site, I passed it with only 3 questions wrong, on my 22nd birthday. This tool ROCKED. Thanks so
                       much!
                   </div>
+                  </div>
                 </swiper-slide>
                 <swiper-slide>
+                  <div class="testimonial-active">
+
                   <div class="single-testimonial">
                     <div class="testi-author">
                       <img style="width: 100px;border-radius: 50%;"
@@ -547,9 +561,15 @@
                       around thinking to myself, Are they serious?! lol, If you want to pass, these practice tests will
                       help for sure!
                   </div>
+                  </div>
                 </swiper-slide>
+                <div class="autoplay-progress" slot="container-end">
+                  <svg viewBox="0 0 48px 48px">
+                    <circle cx="24" cy="24" r="20"></circle>
+                  </svg>
+                  <span></span>
+                </div>
               </swiper-container>
-            </div>
           </div>
         </div>
       </div>
@@ -557,7 +577,7 @@
     <!-- testimonial-area-end -->
 
     <!-- blog-area -->
-    <section id="blog" class="blog-area p-relative spacing fix" style="
+    <!-- <section id="blog" class="blog-area p-relative spacing fix" style="
         background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/blog-bg-aliments.png);
         background-repeat: no-repeat;
         background-position: center;
@@ -665,7 +685,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- blog-area-end -->
   </main>
   <!-- main-area-end -->

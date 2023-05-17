@@ -4,7 +4,9 @@
   <!-- breadcrumb-area -->
   <section
     class="breadcrumb-area d-flex align-items-center"
-    style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png)"
+    style="
+      background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png);
+    "
   >
     <div class="container">
       <div class="row align-items-center">
@@ -17,9 +19,9 @@
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                       <a href="/">Home</a>
-                    </li> 
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        Guess Countries
+                      Guess Countries
                     </li>
                   </ol>
                 </nav>
@@ -27,7 +29,7 @@
             </div>
           </div>
         </div>
-      
+      </div>
     </div>
   </section>
 </main>
@@ -36,32 +38,32 @@
   id="about"
   class="about-area about-p pt-120 pb-120 p-relative"
   style="
-    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png) no-repeat;
+    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png)
+      no-repeat;
     background-position: center center;
-  ">
+  "
+>
   <div class="quiz-citys">
     <h2 class="font-weight-bold mb-2">Continents</h2>
-    <p class="font-italic text-muted mb-4 text-center">
-      
-    </p>
+    <p class="font-italic text-muted mb-4 text-center"></p>
     <div class="row quiz-card">
       <%data.forEach(value => {%> 
       <a href="/guess-country/<%=value.region.toLowerCase()%>/easy" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
         <%if(value.region.toLowerCase() == "africa"){ %>
-        <img src="https://testpod-bucket.s3.amazonaws.com/pages/africa.svg" class="card-img-top card-img-guess-country" alt="..." />
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/Africa.svg" class="card-img-top card-img-guess-country" alt="..." />
         <%} else if(value.region.toLowerCase() == "america"){%>
-        <img src="https://testpod-bucket.s3.amazonaws.com/pages/southamerica.svg" class="card-img-top card-img-guess-country" alt="..." />
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/SouthAmerica.svg" class="card-img-top card-img-guess-country" alt="..." />
         <%} else if(value.region.toLowerCase() == "asia"){%>
-          <img src="https://testpod-bucket.s3.amazonaws.com/pages/asia.svg" class="card-img-top card-img-guess-country" alt="..." />
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/Asia.svg" class="card-img-top card-img-guess-country" alt="..." />
         <%} else if(value.region.toLowerCase() == "europe"){%>
-          <img src="https://testpod-bucket.s3.amazonaws.com/pages/europe.svg" class="card-img-top card-img-guess-country" alt="..." />
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/Europe.svg" class="card-img-top card-img-guess-country" alt="..." />
         <%} else if(value.region.toLowerCase() == "oceania" || "antarctic"){%>
-            <img src="https://testpod-bucket.s3.amazonaws.com/pages/antarctica.svg" class="card-img-top card-img-guess-country" alt="..." />
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/Antarctica.svg" class="card-img-top card-img-guess-country" alt="..." />
         <% } %>
-            <div class="card-body">
-          <!-- <div class="d-flex justify-content-between">  -->
-            <h5 class="card-title quiz-card-title text-center"><%=value.region.toUpperCase()%></h5> 
-          <!-- </div>  -->
+        <div class="card-title-regions">
+          <h5 class="card-title quiz-card-title">
+            <%=value.region.toUpperCase()%>
+          </h5>
         </div>
       </a>
       <%})%>
@@ -69,21 +71,20 @@
   </div>
 </section>
 
-
-<SCript>
+<script>
   async function storeLog(id) {
-      const counter = 1;
-      const response = await fetch(`/track-quiz/${id}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          views:counter
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        }
-      }); 
-      console.log(response);
-    }
-</SCript>
+    const counter = 1;
+    const response = await fetch(`/track-quiz/${id}`, {
+      method: "POST",
+      body: JSON.stringify({
+        views: counter,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    console.log(response);
+  }
+</script>
 
 <script src="/client/js/about.js"></script>

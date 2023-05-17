@@ -48,15 +48,17 @@
       <%data.forEach(value => {%> 
       <a href="/dmv-test/<%=value%>" class="card quiz-card-item col-md-3" style="width: 17rem; padding: 0%">
           <% if(value == "new-york") {%>
-            <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-york-city.png" class="card-img-top card-img" alt="..." />
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-york-city.jpg" class="card-img-top card-img" alt="..." />
           <% } else if(value == "new-jersey") {%>
-            <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-jersey-city.png" class="card-img-top card-img" alt="..." />
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-jersey-city.jpg" class="card-img-top card-img" alt="..." />
           <% } else {%>
             <img src="https://a.cdn-hotels.com/gdcs/production49/d785/da360e83-6abc-4783-957f-72d1d64d0751.jpg?impolicy=fcrop&w=800&h=533&q=medium" class="card-img-top card-img" alt="..." />
           <% } %>
-        <div class="card-body">
-          <h5 class="card-title quiz-card-title m-0 p-0 text-center"><%=value.toUpperCase()%></h5>
-        </div>
+          <div class="card-title-regions">
+            <h5 class="card-title quiz-card-title">
+              <%= value.toUpperCase()%>
+            </h5>
+          </div>
       </a>
       <%})%>
     </div>

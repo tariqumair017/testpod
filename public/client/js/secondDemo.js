@@ -141,7 +141,7 @@ function showQuetions(index) {
   let que_tag = `<div><div class="demoQuestion slide-left">${
     questions[index].numb < 11 ? "0" + que_numb : que_numb
   }.  ${questions[index].question}</div>
-  <img class="soundbtn" src="/client/img/bg/volume_up_white_24dp.svg" /><img class="soundbtn cancel d-none" src="/client/img/bg/volume_off_white_24dp.svg" /></div>
+  <img class="cancelSoundBtn" src="/client/img/bg/volume_off_white_24dp.svg" /><img class="soundbtn d-none" src="/client/img/bg/volume_up_white_24dp.svg" /></div>
   `;
 
   let detail = questions[index].hint;
@@ -176,20 +176,20 @@ function showQuetions(index) {
     option[i].setAttribute("onclick", `optionSelected(this)`);
   }
   const sound_on = document.querySelector(".soundbtn");
-  const cancel = document.querySelector(".cancel");
+  const cancel = document.querySelector(".cancelSoundBtn");
   const soundDetailbtn = document.querySelector(".soundDetailbtn");
   const cancelDetail = document.querySelector(".cancelDetail");
 
   que_text.classList.add(".slide-left");
 
   // read Question And Options
-  sound_on.onclick = () => {
+  cancel.onclick = () => {
     convertText2Speech(
       questions[index].question +
         "  option A" +
         "  " +
         questions[index].options[0] +
-        "  option b" +
+        "  option b" +  
         "  " +
         questions[index].options[1] +
         "  option c" +
@@ -199,32 +199,32 @@ function showQuetions(index) {
         "  " +
         questions[index].options[3]
     );
-    cancel.classList.remove("d-none");
-    sound_on.classList.add("d-none");
+    cancel.classList.add("d-none");
+    sound_on.classList.remove("d-none");
     optionResumeSpeech();
   };
   // Cnacel Speech
-  cancel.onclick = () => {
+  sound_on.onclick = () => {
     optionPauseSpeech();
-    cancel.classList.add("d-none");
-    sound_on.classList.remove("d-none");
+    cancel.classList.remove("d-none");
+    sound_on.classList.add("d-none");
   };
 
   // read Deatail
 
-  soundDetailbtn.onclick = () => {
+  cancelDetail.onclick = () => {
     convertDetail2Speech(questions[index].hint);
     deatilResumeSpeech();
-    cancelDetail.classList.remove("d-none");
-    soundDetailbtn.classList.add("d-none");
+    cancelDetail.classList.add("d-none");
+    soundDetailbtn.classList.remove("d-none");
   };
 
   // cancel Detail
 
-  cancelDetail.onclick = () => {
+  soundDetailbtn.onclick = () => {
     deatilPauseSpeech();
-    cancelDetail.classList.add("d-none");
-    soundDetailbtn.classList.remove("d-none");
+    cancelDetail.classList.remove("d-none");
+    soundDetailbtn.classList.add("d-none");
   };
 
   window.addEventListener("load", focus_question.focus());
@@ -275,7 +275,7 @@ function optionSelected(answer) {
   userAns = userAns.substring(1);
 
   const sound_on = document.querySelector(".soundbtn");
-  const cancel = document.querySelector(".cancel");
+  const cancel = document.querySelector(".cancelSoundBtn");
 
   sound_on.classList.add("d-none");
   cancel.classList.add("d-none");
