@@ -81,6 +81,7 @@ next_btn.onclick = () => {
 };
 
 
+
 function showQuestions(index) {
   const que_text = document.querySelector(".que-text");
   const img = document.querySelector(".images");
@@ -88,7 +89,7 @@ function showQuestions(index) {
   img.src = questions[index].img;
 
   let que_tag =
-    "<div class=question-box-home ><span>" +
+    "<div class='question-box-home' ><span>" +
     questions[index].numer +
     ". " +
     questions[index].question +

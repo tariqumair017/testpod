@@ -47,8 +47,9 @@
     <h2 class="font-weight-bold mb-2">Continents</h2>
     <p class="font-italic text-muted mb-4 text-center"></p>
     <div class="row quiz-card">
-      <%data.forEach(value => {%> 
-      <a href="/guess-country/<%=value.region.toLowerCase()%>/easy" class="card quiz-card-item col-md-3" style="width: 18rem; padding: 0%">
+      <% let count = 0 %>
+      <%data.forEach(value => {count > 2 ? count=1 : count++%> 
+      <a href="/guess-country/<%=value.region.toLowerCase()%>/easy" class="card quiz-card-item col-md-3 wow animate__fadeInLeft" data-wow-delay="<%=count*.2%>s" style="width: 18rem; padding: 0%">
         <%if(value.region.toLowerCase() == "africa"){ %>
           <img src="https://testpod-bucket.s3.amazonaws.com/pages/Africa.svg" class="card-img-top card-img-guess-country" alt="..." />
         <%} else if(value.region.toLowerCase() == "america"){%>

@@ -6421,9 +6421,9 @@ margin-top: 14px;
 float: unset;
 margin-bottom: 15px;
 }
-.pagination-wrap .pagination {
+/* .pagination-wrap .pagination {
 text-align: center;
-}
+} */
 .widget__post-content h6 {
 font-size: 14px;
 padding-right: 0;
@@ -7076,8 +7076,73 @@ label {
   align-items: center;
 }
 
+.pagination-for-state{
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 50px;
+}
+
+.pagination{
+  width: fit-content;
+}
+
+.pagination ul{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 8px;
+  border-radius: 50px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.pagination ul li{
+  color: #A8171A;
+  list-style: none;
+  line-height: 45px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+.pagination ul li.numb{
+  list-style: none;
+  height: 45px;
+  width: 45px;
+  margin: 0 3px;
+  line-height: 45px;
+  border-radius: 50%;
+}
+.pagination ul li.numb.first{
+  margin: 0px 3px 0 -5px;
+}
+.pagination ul li.numb.last{
+  margin: 0px -5px 0 3px;
+}
+.pagination ul li.dots{
+  font-size: 22px;
+  cursor: default;
+}
+.pagination ul li.btn{
+  padding: 0 20px;
+  border-radius: 50px;
+}
+.pagination li.active,
+.pagination ul li.numb:hover,
+.pagination ul li:first-child:hover,
+.pagination ul li:last-child:hover{
+  color: #fff;
+  background: #A8171A;
+}
+
+
 @media screen and (max-width:700px) {
   .quiz-citys{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .pagination-for-state{
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -7133,14 +7198,19 @@ label {
 
 .quiz-card-item{
   cursor: pointer;
-  transition: all 0.3s;
   border-radius: 10px;
   border: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  overflow: hidden;
+  transition: all 1s ease;
 }
 
+
+
 .quiz-card-item:hover{
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 1s ease-in;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -5px;
 }
 
 .card-mistakes{
@@ -11195,6 +11265,48 @@ top: -15px;
 
 
 
+/* Card Animations */
+
+
+.deck {
+  display:flex;
+  flex-wrap:wrap;
+  list-style:none;
+  margin:0;
+  overflow:hidden;
+  padding:0;
+}
+
+.card-state {
+  background-color:#fff;
+  border-radius:.5em;
+  box-sizing:border-box;
+  margin:.5em;
+  opacity:.5;
+  padding:1em;
+  position:relative;
+  transform:translateX(100vw) translateY(100vh) rotate(15deg);
+  transition:all 1s ease-out;
+  width:8em;
+}
+
+.card-state .content {
+  opacity:0;
+  transition:all 2s ease-out;
+}
+
+.card-state.loaded {
+  opacity:1;
+  transform:translateX(0) translateY(0) rotate(0);
+}
+
+.card-state.loaded .content.loaded {
+  opacity:1;
+}
+
+
+
+/* Card Animations Ens */
 
 
 .loading-skeleton {
@@ -11230,7 +11342,7 @@ top: -15px;
   background-color: #eee;
   border-color: #eee;
   height: 70px;
-  width: 70px;
+  width: 350px;
 
   &::placeholder {
     color: transparent;
@@ -11307,6 +11419,44 @@ top: -15px;
   flex-direction: column;
   align-items: center;
   border-top: 1px solid lightgray;
+}
+
+.card-hint-flag {
+  background:lightgray;
+  padding:20px;
+  border-radius:10px;
+  position:absolute;
+  left: 0px;
+  clip-path:circle(10% at 50% 13%);
+  transition:all 500ms ease-in-out;
+  margin-top: 20px;
+  top: 0px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.info-btn {
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  text-align:center;
+  line-height:40px;
+  transition:all 5s ease-in-out;
+
+}
+.card-hint-flag:hover {
+  clip-path:circle(100%);
+}
+.card-hint-flag:hover .info-btn {
+  /* display: none; */
+  transition:all 5s ease-in-out;
+}
+
+.flag-detective-game-hint{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid lightgray;
+  position: relative;
 }
 
 .flag-detective-game-timer{
@@ -14014,6 +14164,7 @@ section:hover .section-title h2::before {
   background-color: #A8171A;
   border-radius: 50%;
   cursor: pointer;
+  padding: 3px;
 }
 
 .soundbtn:hover{
@@ -14037,6 +14188,8 @@ section:hover .section-title h2::before {
   background-color: #A8171A;
   border-radius: 50%;
   cursor: pointer;
+  padding: 3px;
+
 }
 
 .cancelSoundBtn:hover{
@@ -14058,6 +14211,7 @@ section:hover .section-title h2::before {
   background-color: #A8171A;
   border-radius: 50%;
   cursor: pointer;
+  padding: 2px;
 }
 
 .soundDetailbtn:hover{
@@ -14074,6 +14228,7 @@ section:hover .section-title h2::before {
   background-color: #A8171A;
   border-radius: 50%;
   cursor: pointer;
+  padding: 2px;
 }
 
 .cancelDetail:hover{
@@ -16741,12 +16896,12 @@ pre cite {
   font-size: 1.25em;
   font-weight: 500;
 }
-.woocommerce nav.woocommerce-pagination ul li {
+/* .woocommerce nav.woocommerce-pagination ul li {
   border-right: none;
 }
 .woocommerce nav.woocommerce-pagination ul {
   border: none;
-}
+} */
 .button.product_type_external {
   display: none !important;
 }
@@ -16794,12 +16949,12 @@ pre cite {
   margin-left: 0;
   margin-bottom: 0;
 } */
-.pagination-wrap .pagination li.active a {
+/* .pagination-wrap .pagination li.active a {
   background: #A8171A;
   color: #ffffff;
   box-shadow: 0px 8px 16px 0px rgba(26, 35, 126, 0.32);
-}
-.pagination-wrap .pagination li a {
+} */
+/* .pagination-wrap .pagination li a {
   border: none;
   height: 50px;
   width: 50px;
@@ -16815,7 +16970,7 @@ pre cite {
 .pagination-wrap .pagination li a:hover {
   color: #ffffff;
   background: #A8171A;
-}
+} */
 
 /* Here's the new CSS to add... */
 
@@ -20230,15 +20385,15 @@ blockquote footer {
   margin-right: 10px;
 }
 /* 16. pagination */
-.pagination {
+/* .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
   display: block;
   padding-left: 0;
   list-style: none;
   border-radius: 0;
-}
-.pagination .page-item {
+} */
+/* .pagination .page-item {
   display: inline-block;
   margin: 0 5px;
 }
@@ -20294,7 +20449,7 @@ blockquote footer {
 .pagination-wrap .pagination li a:hover {
   color: #ffffff;
   background: #A8171A;
-}
+} */
 /* 17. f-cta */
 .f-cta-area {
   background: #fff;

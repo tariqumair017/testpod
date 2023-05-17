@@ -25,8 +25,6 @@ const questions_box = document.querySelector(".questions-box");
 
 // const time_up = document.querySelector(".time_up");
 
-const mypopover_content = document.getElementById("mypopover-content")
-
 
 // const timer__display = document.querySelector(".timer__display");
 
@@ -60,13 +58,6 @@ let question_counter = 0;
 let userWrongScore = 0;
 
 let total_inputs = []; 
-
-
-var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
-  container: 'body',
-  html: true,
-  content: document.getElementById('mypopover-content'),
-})
 
 
 
@@ -176,22 +167,36 @@ function showFlagDetectiveGame(index) {
 
   if(flagDetective[index].gameLevel == "0"){
     if(correcAns.length >= 4){
-    total_inputs[0].value = correcAns[0]  
+    total_inputs[0].value = correcAns[0]
+    total_inputs[0].setAttribute("disabled","disabled")
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
     total_inputs[total_inputs.length-1].value = correcAns.at(-1)
+    total_inputs[total_inputs.length-1].setAttribute("disabled","disabled")
+    total_inputs[1].focus()
     }else{
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
     total_inputs[total_inputs.length-1].value = correcAns.at(-1)
+    total_inputs[total_inputs.length-1].setAttribute("disabled","disabled")
+    total_inputs[1].focus()
     }
   }
   else if(flagDetective[index].gameLevel == "1"){
     total_inputs[0].value = correcAns[0]
+    total_inputs[0].setAttribute("disabled","disabled")
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
+    total_inputs[1].focus()
   }
   else if(flagDetective[index].gameLevel == "2"){
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
   }
-  total_inputs[0].focus()
+  else{
+    total_inputs[0].focus()
+  }
+
 
 
   // set Default Values end
@@ -207,8 +212,6 @@ function showFlagDetectiveGame(index) {
   submit.classList.add("d-none")
   flag_detective_score_card.innerHTML = userScore < 10 ? "Score : 0" + userScore : "Score :" + userScore;
 
-  
-  mypopover_content.innerHTML = flagDetective[index].hint;
 
   
   showNextInputs();
@@ -634,8 +637,6 @@ function callNextQuestion() {
 function callResultScreen() {
 
   flag_detective_hint.classList.add("d-none")
-
-  mypopover_content.classList.add("d-none")
 
   questions_box.classList.add("d-none");
 

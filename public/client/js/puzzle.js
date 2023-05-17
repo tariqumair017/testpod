@@ -69,14 +69,14 @@ var current_Question = 1;
 flag_detective_music_on.onclick = () => {
   flag_detective_music_on.classList.add("d-none");
   flag_detective_music_off.classList.remove("d-none");
-  music.play();
-  music.loop = "true";
+  music.pause();
 };
 
 flag_detective_music_off.onclick = () => {
   flag_detective_music_on.classList.remove("d-none");
   flag_detective_music_off.classList.add("d-none");
-  music.pause();
+  music.play();
+  music.loop = "true";
 };
 
 // Total Questions

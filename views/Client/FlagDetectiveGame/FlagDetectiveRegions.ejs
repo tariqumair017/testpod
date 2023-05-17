@@ -34,30 +34,24 @@
     <h2 class="font-weight-bold mb-2">Continents</h2>
     <p class="font-italic text-muted mb-4 text-center"></p>
     <div class="row quiz-card">
-      <%data.forEach(item => {%>
-      <a
-      href="/flag-detective/<%=item.continent.toLowerCase()%>/easy"
-        class="card quiz-card-item col-md-3"
-        style="width: 18rem; padding: 0%;height: auto;",
-      >
-      <%if(item.continent.toLowerCase() == "africa"){ %>
-        <img src="https://testpod-bucket.s3.amazonaws.com/pages/Africa.svg" class="card-img-top card-img-guess-country" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "america"){%>
-        <img src="https://testpod-bucket.s3.amazonaws.com/pages/SouthAmerica.svg" class="card-img-top card-img-guess-country" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "asia"){%>
+      <% let count = 0 %>
+      <%data.forEach(value => {count > 2 ? count=1 : count++%> 
+      <a href="/flag-detective/<%=value.continent.toLowerCase()%>/easy" class="card quiz-card-item col-md-3 wow animate__fadeInLeft" data-wow-delay="<%=count*.2%>s" style="width: 18rem; padding: 0%">
+        <%if(value.continent.toLowerCase() == "africa"){ %>
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/Africa.svg" class="card-img-top card-img-guess-country" alt="..." />
+        <%} else if(value.continent.toLowerCase() == "america"){%>
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/SouthAmerica.svg" class="card-img-top card-img-guess-country" alt="..." />
+        <%} else if(value.continent.toLowerCase() == "asia"){%>
           <img src="https://testpod-bucket.s3.amazonaws.com/pages/Asia.svg" class="card-img-top card-img-guess-country" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "europe"){%>
+        <%} else if(value.continent.toLowerCase() == "europe"){%>
           <img src="https://testpod-bucket.s3.amazonaws.com/pages/Europe.svg" class="card-img-top card-img-guess-country" alt="..." />
-        <%} else if(item.continent.toLowerCase() == "oceania" || "antarctic"){%>
-            <img src="https://testpod-bucket.s3.amazonaws.com/pages/Antarctica.svg" class="card-img-top card-img-guess-country" alt="..." />
+        <%} else if(value.continent.toLowerCase() == "oceania" || "antarctic"){%>
+          <img src="https://testpod-bucket.s3.amazonaws.com/pages/Antarctica.svg" class="card-img-top card-img-guess-country" alt="..." />
         <% } %>
         <div class="card-title-regions">
           <h5 class="card-title quiz-card-title">
-            <%=item.continent.toUpperCase()%>
+            <%=value.continent.toUpperCase()%>
           </h5>
-          <!-- <div class="card-question-number">
-            <p class="card-total-scorce">=item.level</p> 
-          </div> -->
         </div>
       </a>
       <%})%>
