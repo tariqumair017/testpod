@@ -13,7 +13,18 @@ document.getElementById("nextLevel").addEventListener("click", function (e) {
   e.preventDefault();
 
   currentLevel++;
-  window.location.href = `/flag-quest/${data.region}/${currentLevel}`;
+  
+  if (currentLevel == 0) {
+    window.location.href = `/flag-quest/${data.region.toLowerCase()}/easy`;  
+  } else if(currentLevel == 1) {
+    window.location.href = `/flag-quest/${data.region.toLowerCase()}/normal`; 
+  } else if(currentLevel == 2) {
+    window.location.href = `/flag-quest/${data.region.toLowerCase()}/hard`; 
+  } else if(currentLevel == 3) {
+    window.location.href = `/flag-quest/${data.region.toLowerCase()}/extreme`; 
+  } else if(currentLevel == 4) {
+    window.location.href = `/flag-quest/${data.region.toLowerCase()}/next`; 
+  } 
 });
 
 var wrongClickAudio = new Audio("/client/sounds/wrong-click.mp3");

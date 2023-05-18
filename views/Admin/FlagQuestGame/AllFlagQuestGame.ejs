@@ -203,22 +203,19 @@
                          <div class="col-md-12 position-relative mt-3">
                              <label for="validationTooltip03" class="form-label">Select In-Correct Image 1</label>
                              <div class="add-quiz-state-image">
-                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
-                                <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete1" type="text" class="form-control" required>
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[1]"> 
                              </div>
                          </div> 
                          <div class="col-md-12 position-relative mt-3">
                             <label for="validationTooltip03" class="form-label">Select In-Correct Image 2</label>
                             <div class="add-quiz-state-image">
-                              <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
-                              <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete2" type="text" class="form-control" required>
+                              <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[2]"> 
                             </div>
                         </div> 
                         <div class="col-md-12 position-relative mt-3">
                           <label for="validationTooltip03" class="form-label">Select In-Correct Image 3</label>
                           <div class="add-quiz-state-image">
-                             <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
-                             <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete3" type="text" class="form-control" required>
+                             <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[3]"> 
                           </div>
                         </div> 
                          <div class="col-md-12 mt-4 position-relative">
@@ -317,10 +314,7 @@ async function editSelectedCountry(e)
     // }
     document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
     document.getElementById("editICountry").value = data.Icountry;
-    document.getElementById("editFlagUrl").value = data.correctImg;
-    document.getElementById("IcorrectImgDelete1").value = data.IcorrectImg1;
-    document.getElementById("IcorrectImgDelete2").value = data.IcorrectImg2;
-    document.getElementById("IcorrectImgDelete3").value = data.IcorrectImg3;
+    document.getElementById("editFlagUrl").value = data.correctImg; 
     document.getElementById("editHint").value = data.hint; 
     document.getElementById("guessFlagEditForm").action = `/admin/flag-quest-game/manage/${data._id}/${Pid}?_method=PUT`;
 }

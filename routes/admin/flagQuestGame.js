@@ -197,12 +197,29 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 }));
   
 //Admin: Update Question of a Game
-router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
-    var question;
+router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  const updatedGame = await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}}); 
+  
     if(req.files)
     { 
-      for (let i = 0; i < req.body.IcorrectImgDelete.length; i++) {
-        let key_name = req.body.IcorrectImgDelete[i].split('/');  
+      var updateQuestion;
+      for (let i = 0; i < updatedGame.questions.length; i++) {
+        if(req.params.cid == updatedGame.questions[i]._id){
+          updateQuestion = updatedGame.questions[i];
+        }
+      }
+
+      // req.files.IcorrectImg = !req.files.IcorrectImg.length ? [req.files.IcorrectImg] : req.files.IcorrectImg; 
+
+      for (let i = 1; i < 4; i++) { 
+        let key_name = [];  
+        if(req.files[`IcorrectImg[${i}]`] && updateQuestion[`IcorrectImg${i}`] != undefined)
+        {
+          key_name = updateQuestion[`IcorrectImg${i}`].split('/');
+        }
+        // if(i == 0 && updateQuestion['IcorrectImg1'] != undefined){key_name = updateQuestion['IcorrectImg1'].split('/');}
+        // if(i == 1 && updateQuestion['IcorrectImg2'] != undefined){key_name = updateQuestion['IcorrectImg2'].split('/');}
+        // if(i == 2 && updateQuestion['IcorrectImg3'] != undefined){key_name = updateQuestion['IcorrectImg3'].split('/');}
         try { 
           var params = {
             Bucket: process.env.AWS_BUCKET_NAME,
@@ -213,33 +230,29 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
           console.log(error);
         }
       }
-        
-      let incorrectFlagsUrl = [];
+         
 
-      for (let i = 0; i < req.files.IcorrectImg.length; i++) { 
+      for (let i = 1; i < 4; i++) {  
+        if(req.files[`IcorrectImg[${i}]`])
+        {
           try {
             await s3.upload({
                 Bucket: process.env.AWS_BUCKET_NAME,
-                Key: `flagQuestGame/${req.files.IcorrectImg[i]['name']}`,
-                Body: req.files.IcorrectImg[i]['data'],
-                ContentType: req.files.IcorrectImg[i]['mimetype'],
+                Key: `flagQuestGame/${req.files[`IcorrectImg[${i}]`]['name']}`,
+                Body: req.files[`IcorrectImg[${i}]`]['data'],
+                ContentType: req.files[`IcorrectImg[${i}]`]['mimetype'],
                 ACL: 'public-read'
-              }).promise().then((data) => { 
-                  incorrectFlagsUrl.push(data.Location);
+              }).promise().then( async (data) => {  
+                  if(i == 1){await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.IcorrectImg1": data.Location}});}
+                  if(i == 2){await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.IcorrectImg2": data.Location}});}
+                  if(i == 3){await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.IcorrectImg3": data.Location}});}
               }); 
           } catch (err) {
             console.log(err)
           }
-      }        
- 
-      question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: req.body.correctImg, IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint}; 
-      await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
-           
-    }
-    else
-    {
-      await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}});
-    }
+        }
+      }                   
+    } 
    
     console.log("Question Updated");
     req.flash("success", "Question Updated Successfully");
