@@ -128,6 +128,7 @@ function nextQuestions(question_counter) {
 
     quest_question_name.innerHTML = "Flag of " + questions[question_counter].country
 
+    debugger
   var option_1 =
     '<input class="customRadio" ans="correct" type="radio" name=q' +
     questions[question_counter].numb +
@@ -258,6 +259,7 @@ next_btn.onclick = () => {
         if (current_question == questions.length) {
           next_btn.classList.add("d-none");
           result_btn.classList.remove("d-none");
+          clearInterval(timerInterval);
         } else {
           next_btn.classList.remove("d-none");
         }

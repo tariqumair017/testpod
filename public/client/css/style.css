@@ -7201,16 +7201,20 @@ label {
   border-radius: 10px;
   border: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  overflow: hidden;
-  transition: all 1s ease;
+  transition: all .3s ease;
 }
 
-
+.question-color{
+  background-color: #E4E3E3;
+  /* width: fit-content; */
+  padding: 5px;
+  border-radius: 5px;
+}
 
 .quiz-card-item:hover{
-  transition: all 1s ease-in;
+  transition: all .3s ease-in;
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-  top: -5px;
+  transform: translate(0,-5px);
 }
 
 .card-mistakes{
@@ -10903,7 +10907,7 @@ footer .more_test:hover {
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  gap: 80px;
+  gap: 60px;
   padding: 20px;
   position: relative;
 }
@@ -10919,7 +10923,7 @@ footer .more_test:hover {
 }
 
 .flag-quest-game-header{
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10931,6 +10935,7 @@ footer .more_test:hover {
   line-height: 42px;
   text-align: center;
   color: #8C0000;
+  margin: 0px;
 }
 
 .flag-quest-box{
@@ -11028,7 +11033,7 @@ top: -15px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 20px;
 }
 
 .question-icon{
@@ -15457,8 +15462,8 @@ display: none !important;
   background: #55acef;
 }
 .footer-social a:hover {
-  background: #A8171A;
   color: #fff !important;
+  opacity: .8;
 }
 .f-widget-title h2 {
   font-size: 25px;

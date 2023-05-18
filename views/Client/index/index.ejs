@@ -33,11 +33,11 @@
           <div class="container">
             <div class="row justify-content-center spacing pb-50">
               <div class="col-lg-7">
-                <div class="slider-content s-slider-content home-text-animation-left mt-100">
-                  <h2 data-animation="fadeInUp" data-delay=".4s">
+                <div class="slider-content s-slider-content mt-100 wow animate__fadeInLeft" data-wow-delay="0.2s">
+                  <h2 >
                     Capture the knowledge!
                   </h2>
-                  <p data-animation="fadeInUp" data-delay=".6s">
+                  <p>
                     Educational games make learning fun and engaging by capturing knowledge interactively. Examples include Flags Games, Driving Test, Educations Test, and Geography game. These games challenge players to think critically, problem-solve, and retain information effectively.
                   <!-- <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
                     <form action="" method="" class="contact-form">
@@ -50,7 +50,7 @@
                   </div> -->
                 </div>
               </div>
-              <div class="col-lg-5 home-text-animation-right">
+              <div class="col-lg-5 wow animate__fadeInRight" data-wow-delay="0.2s">
                 <div class="slider-img" data-animation="fadeInUp" data-delay=".4s">
                   <img src="https://testpod-bucket.s3.amazonaws.com/pages/heroImage.svg" alt="slider_img05" />
                 </div>
@@ -266,7 +266,7 @@
               </span>
             </div>
             <button class="next-btn">Next Question</button>
-            <button onclick="location='/test/states'" class="more_test d-none">More Tests</button>
+            <button onclick="location='/dmv-test/states'" class="more_test d-none">More Tests</button>
           </footer>
         </div>
         <div class="slider-btn mt-10" style="display: flex;justify-content: center;margin-top: 50px;">
@@ -476,7 +476,7 @@
       ">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-6 wow animate__fadeInLeft" data-wow-delay="0.2s">
             <div class="about-title second-atitle pt-15">
               <h5>Testimonial</h5>
               <h2>What our users are saying</h2>
@@ -488,9 +488,9 @@
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <swiper-container autoplay class="mySwiper" pagination="false" effect="coverflow" grab-cursor="true" centered-slides="true"
-            slides-per-view="1.5" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+          <div class="col-lg-6" style="margin: auto;">
+            <swiper-container autoplay class="mySwiper" pagination="false" effect="cube" grab-cursor="true" centered-slides="true"
+            slides-per-view="1" coverflow-effect-rotate="100" coverflow-effect-stretch="0" coverflow-effect-depth="100"
             coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
             <swiper-slide>
                   <div class="testimonial-active ">
@@ -557,12 +557,6 @@
                   </div>
                   </div>
                 </swiper-slide>
-                <div class="autoplay-progress" slot="container-end">
-                  <svg viewBox="0 0 48px 48px">
-                    <circle cx="24" cy="24" r="20"></circle>
-                  </svg>
-                  <span></span>
-                </div>
               </swiper-container>
           </div>
         </div>

@@ -31,10 +31,18 @@
       </div>
       <p class="flag-quest-box-left-name slide-right quest_question_name"></p>
       <div class="flag-quest-flags guess-check">
-        <div class="option-one"></div>
-        <div class="option-two"></div>
-        <div class="option-three"></div>
-        <div class="option-four"></div>
+        <div class="option-one">
+          <div class="loading-skeleton"></div>
+        </div>
+        <div class="option-two">
+          <div class="loading-skeleton"></div>
+        </div>
+        <div class="option-three">
+          <div class="loading-skeleton"></div>
+        </div>
+        <div class="option-four">
+          <div class="loading-skeleton"></div>
+        </div>
         <div class="flag-quest-timer">
           <div class="flag-detective-game-timer">
             <div class="timer__background">
@@ -48,19 +56,57 @@
           <img class="question_wrong" src="/client/img/icon/wrong.svg" />
         </div>
       </div>
-      <div class="row ">
-        <div class="col-md-12 ">
-          <button class="btn ss-btn next_btn d-none" style="float: right;margin: 20px;" >Next Stage ➜</button>
-          <button class="btn ss-btn result_btn d-none" style="float: right;margin: 20px;" >Show Result</button>
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            class="btn ss-btn next_btn d-none"
+            style="float: right; margin: 10px"
+          >
+            Next Stage ➜
+          </button>
+          <button
+            class="btn ss-btn result_btn d-none"
+            style="float: right; margin: 10px"
+          >
+            Show Result
+          </button>
           <% if (data.level == 0) { %>
-            <a href="/flag-quest/<%=data.region.toLowerCase()%>/easy"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <a href="/flag-quest/<%=data.region.toLowerCase()%>/easy"
+            ><button
+              class="btn ss-btn try_again d-none"
+              style="float: right; margin: 10px"
+            >
+              Try Again
+            </button></a
+          >
           <% } else if(data.level == 1) { %>
-            <a href="/flag-quest/<%=data.region.toLowerCase()%>/normal"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <a href="/flag-quest/<%=data.region.toLowerCase()%>/normal"
+            ><button
+              class="btn ss-btn try_again d-none"
+              style="float: right; margin: 10px"
+            >
+              Try Again
+            </button></a
+          >
           <% } else if(data.level == 2) { %>
-            <a href="/flag-quest/<%=data.region.toLowerCase()%>/hard"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
+          <a href="/flag-quest/<%=data.region.toLowerCase()%>/hard"
+            ><button
+              class="btn ss-btn try_again d-none"
+              style="float: right; margin: 10px"
+            >
+              Try Again
+            </button></a
+          >
           <% } else if(data.level == 3) { %>
-            <a href="/flag-quest/<%=data.region.toLowerCase()%>/extreme"><button class="btn ss-btn try_again d-none" style="float: right;margin: 20px;" >Try Again</button></a>
-          <% } %> 
+          <a href="/flag-quest/<%=data.region.toLowerCase()%>/extreme"
+            ><button
+              class="btn ss-btn try_again d-none"
+              style="float: right; margin: 10px"
+            >
+              Try Again
+            </button></a
+          >
+          <% } %>
         </div>
       </div>
     </div>
@@ -106,16 +152,19 @@
     </div>
     <div class="result_box_bottom">
       <a href="/flag-quest/regions" class="result_box_retake">
-        <i class="fa-solid fa-xmark fa-2xl" style="color: #ffffff;"></i>
+        <i class="fa-solid fa-xmark fa-2xl" style="color: #ffffff"></i>
       </a>
-      <div class="result_box_score_box"><img width="100%" src="/client/img/icon/Group.svg" alt="" /><p class="result_box_score">350</p></div>
+      <div class="result_box_score_box">
+        <img width="100%" src="/client/img/icon/Group.svg" alt="" />
+        <p class="result_box_score">350</p>
+      </div>
       <button id="nextLevel" class="btn ss-btn">Next Level</button>
     </div>
   </div>
 </section>
 
 <script>
-  var data = <%-JSON.stringify(data)%>; 
-  var currentLevel = '<%=data.level%>';  
+  var data = <%-JSON.stringify(data)%>;
+  var currentLevel = '<%=data.level%>';
 </script>
 <script src="/client/js/flagQueastGame.js"></script>
