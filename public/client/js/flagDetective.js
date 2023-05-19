@@ -21,6 +21,8 @@ const result_btn = document.querySelector(".result_btn");
 
 const result_box = document.querySelector(".result_box");
 
+const flag_detective_game_hint = document.querySelector(".flag-detective-game-hint")
+
 const questions_box = document.querySelector(".questions-box");
 
 // const time_up = document.querySelector(".time_up");
@@ -393,6 +395,7 @@ function tryAgainTime(min, sec) {
         userWrongScore += 1;
         detective_total_in_correct.innerHTML = userWrongScore < 10 ? "0" + userWrongScore :userWrongScore;
       }
+      console.log("")
       document.getElementById("tryAgainSeconds").style.animation =
         "popup 800ms infinite ease-in-out";
 
@@ -626,6 +629,7 @@ else{
   baba=""
   submit.classList.add("d-none")
   total_inputs[0].focus()
+  clearInterval(tryAgainInterval)
 }
 };
 
@@ -644,7 +648,7 @@ function callNextQuestion() {
 
 function callResultScreen() {
 
-  flag_detective_hint.classList.add("d-none")
+  flag_detective_game_hint.classList.add("d-none")
 
   questions_box.classList.add("d-none");
 

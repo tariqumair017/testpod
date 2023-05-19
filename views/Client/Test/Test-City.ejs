@@ -51,17 +51,15 @@
       <% let count = 0 %>
       <%data.forEach((value) => { count > 3 ? count=1 : count++%> 
           <a onclick="storeLog('<%=value._id%>')" href="/dmv-test/<%=value.stateName%>/<%=value.quizName.toLowerCase().replace(/ /g,'-')%>" class="card quiz-card-item col-md-3 wow animate__fadeInLeft" data-wow-delay="<%=count*.2%>s" style="width: 17rem; padding: 0%">
-            <img src="/upload-images/<%=value.stateImg%>" class="card-img-top card-img" alt="..." />
+            <img src="/client/img/bg/optional-image.jpg" class="card-img-top card-img" alt="..." />
             <div class="card-body">
               <h5 class="card-title quiz-card-title" style="text-align: start;padding: 0px;"><%=value.quizName%></h5>
               <!-- <p class="card-text">
                 <%=value.quizDetail%>
               </p> -->
               <div class="card-question-number">
-                <div style="display: flex;gap: 5px;align-items: center;flex-wrap: wrap;">
                   <p class="card-total-scorce"><%=value.questions.length%></p> 
                   <p class="card-question" >questions</p>
-                </div>
                 <div>
                 </div>
               </div>
