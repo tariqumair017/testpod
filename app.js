@@ -3,17 +3,18 @@ import path from "path";
 import ejsMate from "ejs-mate";
 import fileUpload from "express-fileupload";
 import flash from "connect-flash";
+import connectdb from "./db.js";
 import dotenv from "dotenv";
 dotenv.config();
 import session from "express-session";
 import passport from "passport";
 import LocalStrategy from "passport-local";  
-import mongoose from "mongoose";
+import helmet from "helmet";
 import { fileURLToPath } from "url";  
 import methodOverride from "method-override";  
 import Admin from "./models/admin.js";
 const app = express(); 
-const port = process.env.PORT || 9898;  
+ 
 
 //Requring Admin Routes
 import AdminIndexRoutes from "./routes/admin/index.js"; 
@@ -39,14 +40,11 @@ import ClientFlagPuzzleGameRoutes from './routes/client/flagPuzzleGame.js'
 import ClientFlagQuestGameRoutes from './routes/client/flagQuestGame.js'
 
 
-//mongoDB Connection
-mongoose.set("strictQuery", false); 
-mongoose.connect(process.env.Mongo_Url, { useNewUrlParser: true , useUnifiedTopology: true, dbName: 'testpod'}, () => {
-    console.log("Connected to MongoDB");
-});
+//Database Connection
+connectdb();
  
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename); 
+const __filename = fileURLToPath(import.meta.url); 
+const __dirname = path.dirname(__filename);  
 app.engine('ejs', ejsMate);
 app.set("view engine", "ejs"); 
 app.use(methodOverride("_method")); 
@@ -55,7 +53,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
 app.use(flash());
-
+// app.use(helmet());
 
 // PASSPORT CONFIGURATION
 app.use(session({
@@ -69,7 +67,7 @@ app.use(session({
     // }
 }));
 
-//For Admin
+//Authentication For Admin 
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use("admin", new LocalStrategy(Admin.authenticate()));
@@ -121,7 +119,8 @@ app.all('*', (req, res, next) => {
     res.status(404).send("Page Not Found");
 }); 
 
-// Tell Express to Listen request
+//Listen request
+const port = process.env.PORT || 9898; 
 app.listen(port, () => {
     console.log(`Server has started at http://127.0.0.1:${port}`);
 });

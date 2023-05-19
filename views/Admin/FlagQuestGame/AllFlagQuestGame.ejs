@@ -46,7 +46,7 @@
             <td><%=item.hint%></td> 
             <td>
               <span class="table-buttons">
-                <button onclick="editFlagQuestGameQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
+                <button onclick="editFlagQuestGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
                 <form action="/admin/flag-quest-game/manage/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                   <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
@@ -292,16 +292,18 @@ async function editSelectedCountry(e)
   }
 
 
-  async function editFlagQuestGameQuestion(Pid, Cid) {   
-    const response = await fetch(`/admin/flag-quest-game/manage/${Pid}/edit`);
-    const finalData = await response.json(); 
-    var data;
-    finalData.questions.forEach(element => {
-      if(element._id == Cid)
-      {
-        data = element;
-      }
-    }); 
+  async function editFlagQuestGameQuestion(Pid, item) {    
+    item = JSON.parse(item);  
+    
+    // const response = await fetch(`/admin/flag-quest-game/manage/${Pid}/edit`);
+    // const finalData = await response.json(); 
+    // var data;
+    // finalData.questions.forEach(element => {
+    //   if(element._id == Cid)
+    //   {
+    //     data = element;
+    //   }
+    // }); 
     
     // var editCountryy = document.getElementById("editCountry");
 
@@ -312,11 +314,11 @@ async function editSelectedCountry(e)
     //     editCountryy.options[i].setAttribute("selected", true);
     //   }
     // }
-    document.getElementById("editCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
-    document.getElementById("editICountry").value = data.Icountry;
-    document.getElementById("editFlagUrl").value = data.correctImg; 
-    document.getElementById("editHint").value = data.hint; 
-    document.getElementById("guessFlagEditForm").action = `/admin/flag-quest-game/manage/${data._id}/${Pid}?_method=PUT`;
+    document.getElementById("editCountry").innerHTML += `<option selected value="${item.country}">${item.country}</option>`;
+    document.getElementById("editICountry").value = item.Icountry;
+    document.getElementById("editFlagUrl").value = item.correctImg; 
+    document.getElementById("editHint").value = item.hint; 
+    document.getElementById("guessFlagEditForm").action = `/admin/flag-quest-game/manage/${item._id}/${Pid}?_method=PUT`;
 }
 
 </script>

@@ -188,13 +188,6 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
         res.redirect(`/admin/flag-quest-game/manage/${req.params.id}/all-questions`); 
       }
 }));
-
-
- // Admin: Edit Question of a Guess Flag Game
- router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    const data = await FlagQuestGame.findById(req.params.id);
-    res.send(data);  
-}));
   
 //Admin: Update Question of a Game
 router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
@@ -209,17 +202,13 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
         }
       }
 
-      // req.files.IcorrectImg = !req.files.IcorrectImg.length ? [req.files.IcorrectImg] : req.files.IcorrectImg; 
-
       for (let i = 1; i < 4; i++) { 
         let key_name = [];  
         if(req.files[`IcorrectImg[${i}]`] && updateQuestion[`IcorrectImg${i}`] != undefined)
         {
           key_name = updateQuestion[`IcorrectImg${i}`].split('/');
-        }
-        // if(i == 0 && updateQuestion['IcorrectImg1'] != undefined){key_name = updateQuestion['IcorrectImg1'].split('/');}
-        // if(i == 1 && updateQuestion['IcorrectImg2'] != undefined){key_name = updateQuestion['IcorrectImg2'].split('/');}
-        // if(i == 2 && updateQuestion['IcorrectImg3'] != undefined){key_name = updateQuestion['IcorrectImg3'].split('/');}
+        } 
+        
         try { 
           var params = {
             Bucket: process.env.AWS_BUCKET_NAME,
