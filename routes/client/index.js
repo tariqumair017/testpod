@@ -35,6 +35,14 @@ router.get("/", asyncHandler(async (req, res, next) => {
     res.render("Client/index/index", {title: "Testpod"});
 }));
 
+
+
+
+//Client All GAme page
+router.get("/games", asyncHandler(async (req, res, next) => {  
+        res.render("Client/index/AllGames",{title: "Flags Games"});
+}));
+
 //Game Slider Control 
 router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => { 
 

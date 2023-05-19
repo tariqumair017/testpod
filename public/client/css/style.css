@@ -6819,6 +6819,7 @@ body {
   font-weight: 400;
   font-style: normal;
   line-height: 26px;
+  overflow-x: hidden;
 }
 .stop-scrolling {
 
@@ -12254,8 +12255,23 @@ top: -15px;
 .about-content li {
   display: flex;
   margin-bottom: 15px;
-  color: #010f2e;
-  font-weight: 600;
+  /* color: #010f2e; */
+  /* font-weight: 600; */
+}
+
+.contact-email{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #A8171A;
+  text-align: center;
+  display: inline-block;
+  padding: 15px;
+}
+
+.contact-email i{
+  font-size: x-large;
+  color: #A8171A;
 }
 
 .about-content li .icon i {
@@ -12545,8 +12561,8 @@ section:hover .section-title h2::before {
 .about-content3 li::before {
   content: url(/client/img/icon/bulletpoint.svg);
   margin-right: 10px;
-  color: #A8171A;
-  font-size: 10px;
+  /* color: #A8171A; */
+  font-size: 8px;
   margin-top: 5px;
 }
 

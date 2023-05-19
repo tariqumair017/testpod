@@ -168,30 +168,38 @@ function showFlagDetectiveGame(index) {
   if(flagDetective[index].gameLevel == "0"){
     if(correcAns.length >= 4){
     total_inputs[0].value = correcAns[0]
-    total_inputs[0].setAttribute("disabled","disabled")
+    total_inputs[0].setAttribute("readonly","readonly")
+    total_inputs[0].style.backgroundColor = "#dddddd"
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
-    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("readonly","readonly")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].style.backgroundColor = "#dddddd"
     total_inputs[total_inputs.length-1].value = correcAns.at(-1)
-    total_inputs[total_inputs.length-1].setAttribute("disabled","disabled")
+    total_inputs[total_inputs.length-1].setAttribute("readonly","readonly")
+    total_inputs[total_inputs.length-1].style.backgroundColor = "#dddddd"
     total_inputs[1].focus()
     }else{
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
-    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("readonly","readonly")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].style.backgroundColor = "#dddddd"
     total_inputs[total_inputs.length-1].value = correcAns.at(-1)
-    total_inputs[total_inputs.length-1].setAttribute("disabled","disabled")
+    total_inputs[total_inputs.length-1].setAttribute("readonly","readonly")
+    total_inputs[total_inputs.length-1].style.backgroundColor = "#dddddd"
     total_inputs[1].focus()
     }
   }
   else if(flagDetective[index].gameLevel == "1"){
     total_inputs[0].value = correcAns[0]
-    total_inputs[0].setAttribute("disabled","disabled")
+    total_inputs[0].setAttribute("readonly","readonly")
+    total_inputs[0].style.backgroundColor = "#dddddd"
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
-    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("readonly","readonly")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].style.backgroundColor = "#dddddd"
     total_inputs[1].focus()
   }
   else if(flagDetective[index].gameLevel == "2"){
     total_inputs[Math.round((total_inputs.length - 1) / 2)].value = correcAns[Math.round((total_inputs.length - 1) / 2)]
-    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("disabled","disabled")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].setAttribute("readonly","readonly")
+    total_inputs[Math.round((total_inputs.length - 1) / 2)].style.backgroundColor = "#dddddd"
   }
   else{
     total_inputs[0].focus()
