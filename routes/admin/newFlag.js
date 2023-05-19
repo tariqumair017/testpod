@@ -1,9 +1,16 @@
 import express, { Router } from "express";
 const router = Router(); 
 import path from "path";  
+import AWS from "aws-sdk";
 import DrawNewFlagModel from "../../models/drawNewFlag.js"; 
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login";
+
+
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
 
   
 //Admin: Draw-New-Flags Page
@@ -19,15 +26,27 @@ router.post("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async
 
     if(!find)
     {     
-        var shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
-        req.files.shapeImg.mv(newPath);
+        var shapeFile;
+
+        try {
+            await s3.upload({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: `newFlag/${req.files.shapeImg.name}`,
+                Body: req.files.shapeImg.data,
+                ContentType: req.files.shapeImg.mimetype,
+                ACL: 'public-read'
+              }).promise().then((data) => { 
+                shapeFile = data.Location;
+              }); 
+          } catch (err) {
+            console.log(err)
+          }
 
         const newFlag = new DrawNewFlagModel({
             country: req.body.country,
             flagUrl: req.body.flagUrl,
             flagDetails: req.body.flagDetails, 
-            shapeImg: shapeFileName,
+            shapeImg: shapeFile,
             correctColors: JSON.parse(req.body.selectedColors),
             arrangement: req.body.arrangement
         });
@@ -43,26 +62,32 @@ router.post("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async
         res.send({url: "/admin/draw-flag-game/add-new-flag"}); 
     }
 }));  
-
-// Admin: Edit Flag
-router.get('/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    const data = await DrawNewFlagModel.findById(req.params.id);
-    res.send(data);  
-}));
   
-//Admin - Edit Game Name
+//Admin - Update Game Name
 router.put("/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
     if(req.files)
     {
-        const shapeFileName = Date.now() + '-' + req.files.shapeImg.name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', shapeFileName);
-        req.files.shapeImg.mv(newPath);
+        var shapeFile;
+
+        try {
+            await s3.upload({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: `newFlag/${req.files.shapeImg.name}`,
+                Body: req.files.shapeImg.data,
+                ContentType: req.files.shapeImg.mimetype,
+                ACL: 'public-read'
+              }).promise().then((data) => { 
+                shapeFile = data.Location;
+              }); 
+          } catch (err) {
+            console.log(err)
+          }
 
         await DrawNewFlagModel.findByIdAndUpdate(req.params.id, {
             country: req.body.country,
             flagUrl: req.body.flagUrl,
             flagDetails: req.body.flagDetails, 
-            shapeImg: shapeFileName,
+            shapeImg: shapeFile,
             correctColors: JSON.parse(req.body.selectedColors),
             arrangement: req.body.arrangement
         });

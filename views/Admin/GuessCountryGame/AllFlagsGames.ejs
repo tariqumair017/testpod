@@ -53,7 +53,7 @@
                 <td><%=item.correct%></td>
                 <td>
                   <span class="table-buttons">
-                    <button onclick="editQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
+                    <button onclick="editQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
                     <form action="/admin/guess-country-game/manage/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                       <button type="submit" class="btn btn-danger">Delete</button> 
                     </form>
@@ -246,26 +246,18 @@ const region = `<%-data.region%>`;
   });    
 
 
-  async function editQuestion(Pid, Cid) {   
-    const response = await fetch(`/admin/guess-country-game/manage/${Pid}/edit`);
-    const finalData = await response.json(); 
-    var data;
-    finalData.questions.forEach(element => {
-      if(element._id == Cid)
-      {
-        data = element;
-      }
-    }); 
+  async function editQuestion(Pid, item) { 
+    item = JSON.parse(item);   
    
-    document.getElementById("editCountryID").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
-    document.getElementById("editFlagUrl").value = data.flag;
-    document.getElementById("optionAID").value = data.optionA;
-    document.getElementById("optionBID").value = data.optionB;
-    document.getElementById("optionCID").value = data.optionC;
-    document.getElementById("optionDID").value = data.optionD;
-    document.getElementById("correctID").value = data.correct; 
-    document.getElementById("hintID").value = data.hint; 
-    document.getElementById("updateForm").action = `/admin/guess-country-game/manage/${data._id}/${Pid}?_method=PUT`;
+    document.getElementById("editCountryID").innerHTML += `<option selected value="${item.country}">${item.country}</option>`;
+    document.getElementById("editFlagUrl").value = item.flag;
+    document.getElementById("optionAID").value = item.optionA;
+    document.getElementById("optionBID").value = item.optionB;
+    document.getElementById("optionCID").value = item.optionC;
+    document.getElementById("optionDID").value = item.optionD;
+    document.getElementById("correctID").value = item.correct; 
+    document.getElementById("hintID").value = item.hint; 
+    document.getElementById("updateForm").action = `/admin/guess-country-game/manage/${item._id}/${Pid}?_method=PUT`;
 }
 
   document.getElementById("editCountryID").addEventListener("change", async (event) => {   

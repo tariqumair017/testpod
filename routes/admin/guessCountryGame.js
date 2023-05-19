@@ -137,12 +137,6 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
       }
   }));
   
-  // Admin: Edit Question of a Game
-  router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    const data = await GuessCountryGame.findById(req.params.id);
-    res.send(data);  
-  }));
-  
   //Admin: Update Question of a Game
   router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
     const question = {country: req.body.country, flag: req.body.flag, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint}; 

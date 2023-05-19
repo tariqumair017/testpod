@@ -559,15 +559,14 @@ function getFormData(e) {
 }
 
 //Edit New Flag
-async function editFlag(id) {
-  const response = await fetch(`/admin/draw-flag-game/add-new-flag/${id}/edit`);
-  const data = await response.json();
+async function editNewFlag(item) {
+  item = JSON.parse(item);  
 
-  document.getElementById("editCountry").value = data.country;
-  document.getElementById("editFlagUrl").value = data.flagUrl;
-  document.getElementById("editFlagDetails").value = data.flagDetails;
-  document.getElementById("editArrangementID").value = data.arrangement;
-  document.getElementById("hideID").value = id;
+  document.getElementById("editCountry").value = item.country;
+  document.getElementById("editFlagUrl").value = item.flagUrl;
+  document.getElementById("editFlagDetails").value = item.flagDetails;
+  document.getElementById("editArrangementID").value = item.arrangement;
+  document.getElementById("hideID").value = item._id;
 }
 //Update New Flag
 let edit_Flag_Form = document.getElementById("editFlagForm");
@@ -589,7 +588,7 @@ function updateFormData(e) {
     selectedColors.push(selected_options[i].value);
   }
   formData.append("selectedColors", JSON.stringify(selectedColors));
-
+  debugger;
   fetch(`/admin/draw-flag-game/add-new-flag/${hideID.value}`, {
     method: "PUT",
     body: formData,

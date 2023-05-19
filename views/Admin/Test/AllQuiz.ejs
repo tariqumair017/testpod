@@ -55,7 +55,7 @@
           <td>
             <span class="table-buttons">
               <button
-                onclick="editQuestion(`<%=data._id%>`, `<%=item._id%>`)"
+                onclick="editTestQuestion(`<%=data._id%>`, `<%=item._id%>`)"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 class="btn btn-primary"
@@ -412,7 +412,7 @@
   <!--Container Main end-->
 
   <script>
-    async function editQuestion(Pid, Cid) {
+    async function editTestQuestion(Pid, Cid) {
       const response = await fetch(`/admin/test/manage/${Pid}/edit`);
       const finalData = await response.json();
       var data;

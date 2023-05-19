@@ -175,13 +175,6 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
         res.redirect(`/admin/guess-flag-game/manage/${req.params.id}/all-questions`); 
       }
 }));
-
-
- // Admin: Edit Question of a Guess Flag Game
- router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    const data = await GuessFlagGame.findById(req.params.id);
-    res.send(data);  
-}));
   
 //Admin: Update Question of a Game
 router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   

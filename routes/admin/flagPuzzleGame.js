@@ -123,12 +123,6 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
     }
 }));
 
-// Admin: Edit Question of Flag Puzzle Game
-router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  const data = await FlagPuzzleGame.findById(req.params.id);
-  res.send(data);  
-}));
-
 //Admin: Update Question of Flag Puzzle Game
 router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
    

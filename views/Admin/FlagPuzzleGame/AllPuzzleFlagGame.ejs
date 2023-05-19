@@ -38,7 +38,7 @@
             <td><img class="border" width="50" src="<%=item.flag%>" alt="..img"></td>
             <td>
               <span class="table-buttons">
-                <button onclick="editFlagPuzzleGameQuestion(`<%=data._id%>`, `<%=item._id%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
+                <button onclick="editFlagPuzzleGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
                 <form action="/admin/flag-puzzle-game/manage/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST"> 
                   <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
@@ -212,20 +212,12 @@ async function editSelectedCountryForPuzzle(e)
     }  
 
 
-  async function editFlagPuzzleGameQuestion(Pid, Cid) {   
-    const response = await fetch(`/admin/flag-puzzle-game/manage/${Pid}/edit`);
-    const finalData = await response.json(); 
-    var data;
-    finalData.questions.forEach(element => {
-      if(element._id == Cid)
-      {
-        data = element;
-      }
-    }); 
+  async function editFlagPuzzleGameQuestion(Pid, item) {  
+    item = JSON.parse(item); 
     
-    document.getElementById("editFlagPuzzleCountry").innerHTML += `<option selected value="${data.country}">${data.country}</option>`;
-    document.getElementById("editFlagPuzzleFlag").value = data.flag; 
-    document.getElementById("puzzleFlagEditForm").action = `/admin/flag-puzzle-game/manage/${data._id}/${Pid}?_method=PUT`;
+    document.getElementById("editFlagPuzzleCountry").innerHTML += `<option selected value="${item.country}">${item.country}</option>`;
+    document.getElementById("editFlagPuzzleFlag").value = item.flag; 
+    document.getElementById("puzzleFlagEditForm").action = `/admin/flag-puzzle-game/manage/${item._id}/${Pid}?_method=PUT`;
 }     
 </script>
   <script src="/admin/js/allQuiz.js"></script>

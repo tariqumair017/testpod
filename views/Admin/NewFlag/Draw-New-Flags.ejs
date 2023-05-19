@@ -22,15 +22,15 @@
         <%data.forEach(val => {%>
         <tr>
           <th scope="row"><%=count%></th>
-          <td><%=val.country%></td>
-          <td><%=val.flagUrl%></td>
-          <td><%=val.shapeImg%></td>
+          <td style="width: 20%;"><%=val.country%></td>
+          <td><img class="border" width="50" height="auto" src="<%=val.flagUrl%>" alt=""></td>
+          <td><img style="background-color: black;" class="p-1" width="50" height="auto" src="<%=val.shapeImg%>" alt=""></td>
           <td><%=val.correctColors%></td>
           <td><%=val.arrangement%></td>
           <td>
             <span class="table-buttons">
               <button
-              onclick="editFlag(`<%=val._id%>`)"
+              onclick="editNewFlag(`<%=JSON.stringify(val)%>`)"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 class="btn btn-primary"

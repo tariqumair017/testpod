@@ -138,12 +138,6 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 }));
 
 
-// Admin: Edit Question of Flag Detective Game
-router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  const data = await FlagDetectiveGame.findById(req.params.id);
-  res.send(data);  
-}));
-
 //Admin: Update Question of Flag Detective Game
 router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
    
