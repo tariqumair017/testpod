@@ -5,9 +5,9 @@ import asyncHandler from "express-async-handler";
 import connectEnsureLogin from "connect-ensure-login"; 
 
 // Sign Up 
-// router.get("/admin/sign-up", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-//   res.render("Admin/index/SignUp");
-// }));
+router.get("/admin/sign-up", asyncHandler(async (req, res, next) => { 
+  res.render("Admin/index/SignUp");
+}));
 
 //Handel Sign Up Logic
 // router.post('/admin/sign-up', asyncHandler(async (req, res, next) => {  
@@ -23,12 +23,12 @@ import connectEnsureLogin from "connect-ensure-login";
 
 
 // Login Page 
-router.get("/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/Login");
 }));
 
 //Handel Login Logic
-router.post("/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), passport.authenticate("admin", {
+router.post("/admin/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), passport.authenticate("admin", {
   failureFlash: true,
   failureRedirect: "/login"
 }), (req, res) => {  

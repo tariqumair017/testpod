@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User - Sign up</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://testpod-bucket.s3.amazonaws.com/pages/imgpsh_fullsize_anim.jpeg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/admin/css/dashboard.css" />
+  </head>
+  <body style="margin: 0px; padding: 0px">
+    <section>
+      <div class="login">
+        <div class="signup-container" >
+          <div class="text-center">
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/Words.svg" />
+          </div>
+          <div class="text-center">
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/vector image 1.svg" alt="Sample image" />
+          </div>
+          <div>
+            <p class="login-text-1 text-center">Welcome aboard my friend</p>
+            <p class=" login-text-2 text-center">just a couple of clicks and we start</p>
+          </div>
+        </div>
+        <div class="signup-right-part">
+            <div class="mobile-ligin-logo" >
+                <img class="mobile-logo" src="https://testpod-bucket.s3.amazonaws.com/pages/Words.svg" />
+            </div>
+            <div>
+                <p style="margin: 0%;"  class="login-sign-text text-center" >SIGN UP</p>
+            </div>
+          <form class="login-form needs-validation" autocomplete="off" action="/sign-up" method="post" novalidate>
+            <div class="form-outline mb-4">
+              <%- include ('../partials/error'); -%>
+            </div>
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label">Name</label>
+              <input
+                placeholder="Please Enter Your Name"
+                type="text"
+                name="name"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid name.
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+                <label for="validationCustom01" class="form-label"
+                  >Email</label
+                >
+                <input
+                  placeholder="Please Enter Email"
+                  type="email"  
+                  name="username"
+                  class="form-control"
+                  id="validationCustom01"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please provide a valid Email.
+                </div>
+              </div>
+ 
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label"
+                >Phone Number</label>
+              <input
+                placeholder="Please Enter Phone Number"
+                type="number"
+                name="phoneNum"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid pnone number.
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label">Country</label>
+              <input
+                placeholder="Please Enter Country"
+                type="text"
+                name="country"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid country.
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label">Gender</label>
+              <input
+                placeholder="Please Enter Gender"
+                type="text"
+                name="gender"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid gender.
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label">Date of Birth</label>
+              <input
+                placeholder="Please Enter Date of Birth"
+                type="date"
+                name="dob"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid date of birth.
+              </div>
+            </div> 
+            <div class="form-outline mb-4">
+              <label for="validationCustom01" class="form-label">Location</label>
+              <input
+                placeholder="Please Enter Your City and Country"
+                type="text"
+                name="location"
+                class="form-control"
+                id="validationCustom01" 
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid location.
+              </div>
+            </div>
+            <div style="position: relative;" class="form-outline mb-3">
+                <label for="validationCustom02" class="form-label"
+                  >Password</label
+                >
+                <input
+                  placeholder="Please Enter Password"
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  id="myInput"
+                  required
+                />
+                <span onclick="password_show_hide()">
+                    <i style="position: absolute;top:43px;right:10px" class="fa-sharp fa-solid fa-eye " id="show_eye"></i>
+                    <i style="position: absolute;top:43px;right:10px" class="fa-solid fa-eye-slash d-none" id="hide_eye"></i>
+                </span>
+                <div class="invalid-feedback">
+                  Please provide a valid Password.
+                </div>
+            </div>
+            <div style="position: relative;" class="form-outline mb-3">
+              <label for="validationCustom02" class="form-label"
+                >Confirm Password</label
+              >
+              <input
+                placeholder="Please Enter Confirm Password"
+                type="password"
+                name="confirmPassword"
+                class="form-control" 
+                required
+              />
+              <!-- <span onclick="password_show_hide()">
+                  <i style="position: absolute;top:43px;right:10px" class="fa-sharp fa-solid fa-eye " id="show_eye"></i>
+                  <i style="position: absolute;top:43px;right:10px" class="fa-solid fa-eye-slash d-none" id="hide_eye"></i>
+              </span> -->
+              <div class="invalid-feedback">
+                Please provide a valid Password.
+              </div>
+          </div>
+          <div class="form-outline mb-4">
+            <label for="validationCustom01" class="form-label">Learning Goal</label>
+            <select class="form-select" name="learningGoal" required> 
+              <option hidden>Please Select Your Learning Goal</option>                     
+              <option value="aboutFlags">Learn About Flags</option>  
+              <option value="aboutDriving">Learn About Driving</option>  
+              <option value="aboutTests">Learn About Tests</option>  
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid learning goal.
+            </div>
+          </div> 
+          <div class="form-outline mb-4">
+            <label for="aboutMe" class="form-label">About-Me</label>
+            <textarea name="aboutMe" id="aboutMe" cols="53" rows="3" required></textarea>
+            <div class="invalid-feedback">
+              Please provide a valid about-me.
+            </div>
+          </div>
+ 
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" class="login-button">Sign Up</button>
+          </div>
+          <div class="text-center text-lg-start mt-2 pt-2">
+            <p>Already A Remember? <a href="/login" >Log in</a></p>
+          </div>
+          </form>
+        </div>
+      </div>
+      <!-- <span style="position: absolute;bottom:10px;right:20px;display: flex;align-items: center;gap: 10px;">
+        <img src="https://testpod-bucket.s3.amazonaws.com/pages/Vector.svg" />
+        <p style="margin: 0px;" >Contact Support</p>
+      </span> -->
+    </section>
+
+    <script src="/client/js/form-validations.js"></script>
+    <script src="/admin/js/hide-password.js" ></script>
+  </body>
+</html>

@@ -5,7 +5,8 @@ import passportLocalMongoose from "passport-local-mongoose";
 let AdminSchema = new mongoose.Schema({ 
     email: {
         type:String, 
-        required:true
+        required:true,
+        unique:true
     }
 });
 

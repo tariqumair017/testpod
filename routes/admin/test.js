@@ -15,8 +15,8 @@ router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
   
 //Admin: Add Questions
 router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    
-  const find = await QuizModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }, stateName: {$regex : req.body.stateName.toString(), "$options": "i" }, quizName: {$regex : req.body.quizName.toString(), "$options": "i" }});
+  try {
+    const find = await QuizModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }, stateName: {$regex : req.body.stateName.toString(), "$options": "i" }, quizName: {$regex : req.body.quizName.toString(), "$options": "i" }});
   
   if(!find)
   { 
@@ -93,25 +93,36 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     req.flash("error", `${find.quizName} is already exist`);
     res.redirect("/admin/test/add"); 
   }
-  
+  } catch (error) {
+    return next(error.message);
+  }  
 })); 
   
 //Admin: Manage Quiz Page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  try {
     const data = await QuizModel.find({}); 
     res.render("Admin/Test/ManageTest", { data, title: "Manage-Test" });
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 //Admin - Destroy Whole Question
 router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  const { id } = req.params;
-  await QuizModel.findByIdAndDelete(id);
-  console.log("Whole Question Deleted Successfully"); 
-  res.send({url: "/admin/test/manage"}); 
+  try {
+    const { id } = req.params;
+    await QuizModel.findByIdAndDelete(id);
+    console.log("Whole Question Deleted Successfully"); 
+    res.send({url: "/admin/test/manage"}); 
+  } catch (error) {
+    return next(error.message);
+  }
 }));
   
 //Admin: show All Question
 router.get("/manage/:id/all-quizzes", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
+  try {
     const data = await QuizModel.findById(req.params.id);
     if(!data)
     {
@@ -119,17 +130,24 @@ router.get("/manage/:id/all-quizzes", connectEnsureLogin.ensureLoggedIn("/login"
         return res.redirect("/admin/test/manage");
     }
     res.render("Admin/Test/AllQuiz", { data, title: "Manage-Test-Questions" });
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 //Admin - Edit Test Name
 router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  await QuizModel.updateOne({_id: req.params.id}, {$set:{"quizName": req.body.testName}});
-  res.redirect(`/admin/test/manage/${req.params.id}/all-quizzes`); 
+  try {
+    await QuizModel.updateOne({_id: req.params.id}, {$set:{"quizName": req.body.testName}});
+    res.redirect(`/admin/test/manage/${req.params.id}/all-quizzes`);
+  } catch (error) {
+    return next(error.message);
+  } 
 }));
 
   // Admin: Add new Question in Test
 router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-    
+  try {
     var find = await QuizModel.findById(req.params.id);
   
       if(find)
@@ -153,29 +171,44 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
         req.flash("error", "Test not found");
         res.redirect(`/admin/test/manage/${req.params.id}/all-quizzes`);
       }
+  } catch (error) {
+    return next(error.message);
+  }
 }));
   
 // Admin: Edit Question
 router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  const data = await QuizModel.findById(req.params.id);
-  res.send(data);  
+  try {
+    const data = await QuizModel.findById(req.params.id);
+    res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }  
 }));
   
 //Admin: Update Question
 router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {    
-  await QuizModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
-  console.log("Quiz Updated");
-  req.flash("success", "Quiz Updated Successfully");
-  res.redirect(`/admin/test/manage/${req.params.pid}/all-quizzes`); 
+  try {
+    await QuizModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
+    console.log("Quiz Updated");
+    req.flash("success", "Quiz Updated Successfully");
+    res.redirect(`/admin/test/manage/${req.params.pid}/all-quizzes`);
+  } catch (error) {
+    return next(error.message);
+  } 
 }));
   
-  //Admin: Delete Question
-  router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+//Admin: Delete Question
+router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  try {
     await QuizModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Quiz Deleted Successfully");
     req.flash("success", "Quiz Deleted Successfully");
-    res.redirect(`/admin/test/manage/${req.params.pid}/all-quizzes`);  
-  }));
+    res.redirect(`/admin/test/manage/${req.params.pid}/all-quizzes`);
+  } catch (error) {
+    return next(error.message);
+  }  
+}));
 
 
 
@@ -184,6 +217,7 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
 //========================
  
 router.post("/track-quiz/:id", asyncHandler(async (req, res, next) => {  
+  try {
     const { views } = req.body; 
      //find the Game Using ID  
      const findQuiz = await QuizModel.findById(req.params.id); 
@@ -200,6 +234,9 @@ router.post("/track-quiz/:id", asyncHandler(async (req, res, next) => {
         await findQuiz.save();
         res.send("Done"); 
      }
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 
@@ -208,6 +245,7 @@ router.post("/track-quiz/:id", asyncHandler(async (req, res, next) => {
 //======================
  
 router.post("/quiz-result/:id", asyncHandler(async (req, res, next) => {  
+  try {
     const { objToStore } = req.body;  
      //find the Game Using ID
      const findQuiz = await QuizModel.findById(req.params.id); 
@@ -238,6 +276,9 @@ router.post("/quiz-result/:id", asyncHandler(async (req, res, next) => {
       await ResultModel.replaceOne({_id: ResultExist._id}, objToStore);
       res.send("Done"); 
     }
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 export default router;

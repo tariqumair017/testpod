@@ -1,6 +1,7 @@
 import express from "express"; 
 import path from "path"; 
 import ejsMate from "ejs-mate";
+import "express-async-errors";
 import fileUpload from "express-fileupload";
 import flash from "connect-flash";
 import connectdb from "./db.js";

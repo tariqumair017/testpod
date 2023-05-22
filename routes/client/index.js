@@ -7,7 +7,31 @@ import FlagPuzzleGame from "../../models/flagPuzzleGame.js";
 import AllFlagsData from "../../models/allFlagsData.js";
 import ipify from "ipify";
 import asyncHandler from "express-async-handler";   
+import connectEnsureLogin from "connect-ensure-login";
  
+
+// Sign Up 
+router.get("/sign-up", asyncHandler(async (req, res, next) => { 
+  res.render("Client/index/SignUp");
+}));
+
+//Handel Sign Up Logic
+// router.post('/admin/sign-up', asyncHandler(async (req, res, next) => {  
+//     try {
+//       const newAdmin = new Admin({username: req.body.username, email: req.body.email});
+//       const registeredAdmin = await Admin.register(newAdmin, req.body.password); 
+//       res.redirect("/login");
+//     } catch (error) { 
+//       req.flash("error", error.message);
+//       return res.redirect("/sign-up");
+//     }
+// }));
+
+// Login Page 
+router.get("/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), asyncHandler(async (req, res, next) => { 
+    res.render("Client/index/Login");
+}));
+
 
 //Client Index page
 router.get("/", asyncHandler(async (req, res, next) => { 
@@ -45,88 +69,92 @@ router.get("/games", asyncHandler(async (req, res, next) => {
 
 //Game Slider Control 
 router.get("/game-slider/index/:game", asyncHandler(async (req, res, next) => { 
-
-    if(req.params.game == 'guessCountry')
-    {    
-        //=== IP Address (Can get only When Site is deployed) ====//  
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
-        if (ip.substr(0, 7) == "::ffff:") {
-        ip = ip.substr(7)
-        }
-        //=== This is a Package to detect IP Address ====//  
-        // const ClientIP = await ipify({useIPv6: false});
-        // console.log(ClientIP);
+    try {
         
-        //=== Fetch Location through IP Address ====//
-        const response = await fetch(`http://ipwho.is/${ip}`);
-        var location = await response.json();
-        const data = await guessCountryGame.distinct("region");
-        for (let i = 0; i < data.length; i++) { 
-            if(location.continent.includes(data[i]))
-            {
-                return res.redirect(`/guess-country/${data[i].toLowerCase()}/easy`); 
+        if(req.params.game == 'guessCountry')
+        {    
+            //=== IP Address (Can get only When Site is deployed) ====//  
+            var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+            if (ip.substr(0, 7) == "::ffff:") {
+            ip = ip.substr(7)
+            }
+            //=== This is a Package to detect IP Address ====//  
+            // const ClientIP = await ipify({useIPv6: false});
+            // console.log(ClientIP);
+            
+            //=== Fetch Location through IP Address ====//
+            const response = await fetch(`http://ipwho.is/${ip}`);
+            var location = await response.json();
+            const data = await guessCountryGame.distinct("region");
+            for (let i = 0; i < data.length; i++) { 
+                if(location.continent.includes(data[i]))
+                {
+                    return res.redirect(`/guess-country/${data[i].toLowerCase()}/easy`); 
+                }
+            }
+        }   
+        else if(req.params.game == 'drawFlag')
+        { 
+            return res.redirect("/draw-flags");
+        } 
+        else if(req.params.game == 'guessFlag')
+        { 
+            //=== IP Address (Can get only When Site is deployed) ====//  
+            var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+            if (ip.substr(0, 7) == "::ffff:") {
+            ip = ip.substr(7)
+            }
+            //=== This is a Package to detect IP Address ====//  
+            // const ClientIP = await ipify({useIPv6: false});
+            // console.log(ClientIP);
+            
+            //=== Fetch Location through IP Address ====//
+            const response = await fetch(`http://ipwho.is/${ip}`);
+            var location = await response.json();
+            const data = await GuessFlagGame.distinct("region");
+            for (let i = 0; i < data.length; i++) { 
+                if(location.continent.includes(data[i]))
+                {
+                    return res.redirect(`/guess-flag/${data[i].toLowerCase()}/easy`); 
+                }
             }
         }
-    }   
-    else if(req.params.game == 'drawFlag')
-    { 
-        return res.redirect("/draw-flags");
-    } 
-    else if(req.params.game == 'guessFlag')
-    { 
-        //=== IP Address (Can get only When Site is deployed) ====//  
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
-        if (ip.substr(0, 7) == "::ffff:") {
-        ip = ip.substr(7)
-        }
-        //=== This is a Package to detect IP Address ====//  
-        // const ClientIP = await ipify({useIPv6: false});
-        // console.log(ClientIP);
-        
-        //=== Fetch Location through IP Address ====//
-        const response = await fetch(`http://ipwho.is/${ip}`);
-        var location = await response.json();
-        const data = await GuessFlagGame.distinct("region");
-        for (let i = 0; i < data.length; i++) { 
-            if(location.continent.includes(data[i]))
-            {
-                return res.redirect(`/guess-flag/${data[i].toLowerCase()}/easy`); 
+        else if(req.params.game == 'flagPuzzle')
+        { 
+            //=== IP Address (Can get only When Site is deployed) ====//  
+            var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+            if (ip.substr(0, 7) == "::ffff:") {
+            ip = ip.substr(7)
+            }
+            //=== This is a Package to detect IP Address ====//  
+            // const ClientIP = await ipify({useIPv6: false});
+            // console.log(ClientIP);
+            
+            //=== Fetch Location through IP Address ====//
+            const response = await fetch(`http://ipwho.is/${ip}`);
+            var location = await response.json();
+            const data = await FlagPuzzleGame.distinct("region");
+            for (let i = 0; i < data.length; i++) { 
+                if(location.continent.includes(data[i]))
+                {
+                    return res.redirect(`/flag-puzzle/${data[i].toLowerCase()}/easy`); 
+                }
             }
         }
-    }
-    else if(req.params.game == 'flagPuzzle')
-    { 
-        //=== IP Address (Can get only When Site is deployed) ====//  
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
-        if (ip.substr(0, 7) == "::ffff:") {
-        ip = ip.substr(7)
+        else if(req.params.game == 'learnAboutFlag')
+        { 
+            return res.redirect("/learn-about-flags");
         }
-        //=== This is a Package to detect IP Address ====//  
-        // const ClientIP = await ipify({useIPv6: false});
-        // console.log(ClientIP);
-        
-        //=== Fetch Location through IP Address ====//
-        const response = await fetch(`http://ipwho.is/${ip}`);
-        var location = await response.json();
-        const data = await FlagPuzzleGame.distinct("region");
-        for (let i = 0; i < data.length; i++) { 
-            if(location.continent.includes(data[i]))
-            {
-                return res.redirect(`/flag-puzzle/${data[i].toLowerCase()}/easy`); 
-            }
+        else if(req.params.game == 'test')
+        {
+            return res.redirect("/dmv-test/states");
         }
-    }
-    else if(req.params.game == 'learnAboutFlag')
-    { 
-        return res.redirect("/learn-about-flags");
-    }
-    else if(req.params.game == 'test')
-    {
-        return res.redirect("/dmv-test/states");
-    }
-    else
-    {
-        return res.redirect("/");
+        else
+        {
+            return res.redirect("/");
+        }
+    } catch (error) {
+        return next(error.message);
     }
 }));
 

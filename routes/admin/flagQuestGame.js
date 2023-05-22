@@ -8,27 +8,43 @@ import connectEnsureLogin from "connect-ensure-login";
 import asyncHandler from "express-async-handler";  
  
 
-const s3 = new AWS.S3({
+try {
+  const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-});
+  });
+} catch (error) {
+  throw new Error(error.message);
+}
    
 //Admin: Distinct Region form All Flags Data
 router.get("/all-flags-data", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  try {
     const data = await AllFlagsData.distinct("region"); 
     res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }
 }));
   
 //Admin: Find All Countries of Selected Region from All Flags Data
 router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  try {
     const data = await AllFlagsData.find({region: req.params.region});
     res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }
 }));
   
 //Admin: Find Flag of selected Country from All Flags Data
 router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  try {
     const data = await AllFlagsData.findOne({country: req.params.country});
     res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
  
@@ -39,7 +55,7 @@ router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
  
 //Admin: Create-Guess-Flag Handel
 router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-
+  try {
     const find = await FlagQuestGame.findOne({region: req.body.region, level: req.body.level});
   
     if(!find)
@@ -116,25 +132,37 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
         req.flash("error", `${find.region.toUpperCase()} with Selected level is already exist`);
         res.redirect("/admin/flag-quest-game/add"); 
     }
+  } catch (error) {
+    return next(error.message);
+  }
 }));
      
 //Admin Manage-Guess-Flag page
 router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  try {
     const data = await FlagQuestGame.find({});
     res.render("Admin/FlagQuestGame/ManageFlagQuestGame", { data, title: "Manage-FlagQuestGame" });
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 //Admin - Delete Whole Guess Flag Game
 router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  try {
     const { id } = req.params;
     await FlagQuestGame.findByIdAndDelete(id);
     console.log("FlagQuestGame Deleted Successfully");  
     req.flash("success", `Game Deleted Successfully`);
-    res.send({url: "/admin/flag-quest-game/manage"}); 
+    res.send({url: "/admin/flag-quest-game/manage"});
+  } catch (error) {
+    return next(error.message);
+  } 
 }));
 
 //Admin: Show All Questions of Guess Flag Game
 router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+  try {
     const data = await FlagQuestGame.findById(req.params.id); 
     if(!data)
     {
@@ -142,6 +170,9 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
       return res.redirect("/admin/flag-quest-game/manage");
     }
     res.render("Admin/FlagQuestGame/AllFlagQuestGame", { data, title: "Manage-FlagQuestGame-Questions" }); 
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 //Admin - Edit Game Name
@@ -152,8 +183,8 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
 
 // Admin: Add new Question in Game
 router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
-  
-    var find = await FlagQuestGame.findById(req.params.id);
+  try {
+      var find = await FlagQuestGame.findById(req.params.id);
   
       if(find)
       {    
@@ -187,11 +218,15 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
         req.flash("error", "Game not found");
         res.redirect(`/admin/flag-quest-game/manage/${req.params.id}/all-questions`); 
       }
+  } catch (error) {
+    return next(error.message);
+  }
 }));
   
 //Admin: Update Question of a Game
 router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
-  const updatedGame = await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}}); 
+  try {
+    const updatedGame = await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}}); 
   
     if(req.files)
     { 
@@ -246,18 +281,23 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
     console.log("Question Updated");
     req.flash("success", "Question Updated Successfully");
     res.redirect(`/admin/flag-quest-game/manage/${req.params.pid}/all-questions`); 
+  } catch (error) {
+    return next(error.message);
+  }
 }));
 
 
 //Admin: Delete Question of Game
 router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+  try {
     await FlagQuestGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");
     req.flash("success", "Question Deleted Successfully");
     res.redirect(`/admin/flag-quest-game/manage/${req.params.pid}/all-questions`);
+  } catch (error) {
+    return next(error.message);
+  }
 }));
-
-
 
 
 
