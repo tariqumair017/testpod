@@ -413,9 +413,7 @@ function callResultScreen() {
     height="100px"
     src=${result_screen_images[i].image}
     />
-    <p class="result_screen_flag_name">${result_screen_images[
-      i
-    ].customRadio?.getAttribute("id")}</p>
+    <p class="result_screen_flag_name">${questions[i].country}</p>
     ${result_screen_images[i].customRadio?.getAttribute("ans")=="correct" ? 
       `<div class="result_position"><i class="result_quest_true_false  fas fa-check"></i></div>` : `<div class="result_position_wrong"><i class="result_quest_true_false fas fa-times"></i></div>'`
     }
@@ -429,14 +427,14 @@ function callResultScreen() {
 flag_detective_music_on.onclick = () => {
   flag_detective_music_on.classList.add("d-none");
   flag_detective_music_off.classList.remove("d-none");
-  music.play();
-  music.loop = "true";
+  music.pause();
 };
 
 flag_detective_music_off.onclick = () => {
   flag_detective_music_on.classList.remove("d-none");
   flag_detective_music_off.classList.add("d-none");
-  music.pause();
+  music.play();
+  music.loop = "true";
 };
 
 //Shuffle String Character Function

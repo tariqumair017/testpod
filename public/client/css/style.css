@@ -7067,6 +7067,10 @@ label {
   background: #A8171A;
 }
 
+.home-question{
+  padding: 5px;
+}
+
 /* Quiz-Citys */
 
 .quiz-citys{
@@ -7197,6 +7201,10 @@ label {
   height:auto;
 }
 
+/* .card-img-guess-country:hover{
+  transform: scale(1.1);
+} */
+
 .quiz-card-item{
   cursor: pointer;
   border-radius: 10px;
@@ -7214,9 +7222,11 @@ label {
 }
 
 .quiz-card-item:hover{
-  transition: all .3s ease-in;
+  /* transition: all .3s ease-in;
+  transform: translate(0,-5px); */
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-  transform: translate(0,-5px);
+  transform: scale(1.05);
+
 }
 
 .card-mistakes{
@@ -7401,6 +7411,10 @@ label {
   font-weight: 600;
 
   }
+
+
+
+
 
   .disabled{
 
@@ -7736,7 +7750,7 @@ label {
   display: block;
 }
 .main-menu {
-  margin-right: -60px;
+  /* margin-right: -60px; */
   position: relative;
   z-index: 9;
 }
@@ -8109,6 +8123,7 @@ label {
 }
 .slider-four .slider-img {
   margin-top: 50px;
+  width: 100%;
   margin-right: -120px;
 }
 
@@ -8198,6 +8213,13 @@ label {
 
 .search-top2 {
   float: right;
+  display: none;
+}
+@media screen and (max-width:700px) {
+ 
+.search-top2 {
+  display: contents;
+}
 }
 
 .search-top2 li {
@@ -10945,7 +10967,7 @@ footer .more_test:hover {
   display: flex;
   justify-content: center;
   height: 150vh;
-  background-image: url(/client/img/bg/Start.svg);
+  background-image: url(/client/img/bg/Start.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -11042,8 +11064,21 @@ top: -15px;
   background-color: #8C0000;
   padding: 10px 20px;
   width: fit-content;
-  border-radius: 5px;
-  
+  border-radius: 5px; 
+}
+
+.detective-icon{
+  background-color: #8C0000;
+  padding: 10px 10px;
+  width: fit-content;
+  border-radius: 5px; 
+}
+.popover-header{
+  background-color: #A8171A;
+  color: #ffffff;
+}
+.popover{
+  border: 1px solid #A8171A;
 }
 
 .result_box_bottom{
@@ -11159,8 +11194,8 @@ top: -15px;
 .flag-detective-game-header{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+  /* align-items: center; */
+  padding: 10px;
   background-color: #ffffff;
   border-bottom: 1px solid lightgray;
 }
@@ -11416,8 +11451,9 @@ top: -15px;
   padding: 0px 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   height: 100%;
+  margin-top: 50px;
 }
 
 .flag-detective-game-scorus-card{
@@ -11427,6 +11463,17 @@ top: -15px;
   align-items: center;
   border-top: 1px solid lightgray;
 }
+
+.flag-detective-game-scorus-card p{
+  /* color: #A8171A; */
+  font-size: larger;
+  font-weight: 800;
+}
+
+/* .detective-level{
+  font-size: medium;
+  font-weight: 600;
+} */
 
 .card-hint-flag {
   background:lightgray;
@@ -12942,8 +12989,28 @@ section:hover .section-title h2::before {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 20px;
+  height: 100%;
   
 }
+
+.services-box:hover{
+  --card-shine-gradient: conic-gradient(from 205deg at 50% 50%, rgba(16, 185, 129, 0) 0deg, #10B981 25deg, rgba(52, 211, 153, 0.18) 295deg, rgba(16, 185, 129, 0) 360deg);
+  --card-line-color: #2A2B2C;
+  --card-tile-color: rgba(16, 185, 129, 0.05);
+  --card-hover-border-color: rgba(255, 255, 255, 0.2);
+  --card-hover-box-shadow-1: rgba(0, 0, 0, 0.04);
+  --card-hover-box-shadow-1-y: 5px;
+  --card-hover-box-shadow-1-blur: 10px;
+  --card-hover-box-shadow-2: rgba(0, 0, 0, 0.3);
+  --card-hover-box-shadow-2-y: 15px;
+  --card-hover-box-shadow-2-blur: 25px;
+  --card-hover-icon-color: #34D399;
+  --card-hover-icon-background-color: rgba(52, 211, 153, 0.1);
+  --card-hover-icon-border-color: rgba(52, 211, 153, 0.2);
+  --blur-opacity: .01;
+}
+
+
 
 .services-box .services-icon {
   border: 1px solid #A8171A;
@@ -18023,6 +18090,39 @@ p.checkout-coupon input[type="text"] {
 .order-button-payment input:hover {
   background: #fe4536 none repeat scroll 0 0;
 }
+
+.header_img {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.header_img img {
+  width: 40px;
+}
+
+.user-avatar{
+  height: fit-content;
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width:700px) {
+  .header_img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .header_img img {
+    width: 45px;
+  }
+}
+
 
 .payment-method .btn-link {
   -moz-user-select: none;
