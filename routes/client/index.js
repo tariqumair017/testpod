@@ -15,6 +15,11 @@ router.get("/sign-up", asyncHandler(async (req, res, next) => {
   res.render("Client/index/SignUp");
 }));
 
+router.get("/hello", asyncHandler(async (req, res, next) => { 
+    res.render("Client/index/hello");
+  }));
+
+
 //Handel Sign Up Logic
 // router.post('/admin/sign-up', asyncHandler(async (req, res, next) => {  
 //     try {
@@ -55,8 +60,92 @@ router.get("/", asyncHandler(async (req, res, next) => {
     //     }
     // });
 
+    const gamesliderData = [
+        {
+            name:"Guess Country",
+            detail:"Can You Match Flag With Its Country?",
+            path:"guessCountry",
+            image:"/client/img/pngs/5.png"
+        },
+        {
+            name:"Draw Flags",
+            detail:"Can You Draw Flag With Its Country?",
+            path:"drawFlag",
+            image:"/client/img/pngs/5.png"
+        },
+        {
+            name:"Guess Flags",
+            detail:"Can You Match Country With Its Flags?",
+            path:"guessFlag",
+            image:"/client/img/pngs/5.png"
+        },
+        {
+            name:"Flags Puzzle",
+            detail:"Can You Solve The Puzzle of Flags?",
+            path:"flagPuzzle",
+            image:"/client/img/pngs/5.png"
+        },
+        {
+            name:"Learn About Flags",
+            detail:"Click On Flags To Learn About Them?",
+            path:"learnAboutFlag",
+            image:"/client/img/pngs/5.png"
+        },
+        {
+            name:"Guess Country",
+            detail:"Can You Match Flag With Its Country?",
+            path:"guessCountry",
+            image:"/client/img/pngs/5.png"
+        },
+        {
+            name:"Guess Country",
+            detail:"Can You Match Flag With Its Country?",
+            path:"guessCountry",
+            image:"/client/img/pngs/5.png"
+        },
+        
+    ]
 
-    res.render("Client/index/index", { title: "Testpod" });
+    const data = [
+        {
+            name:"You’ll Pass",
+            detail:"Our clients boast an impressive 99.2% success rate in passing their DMV written test.",
+            icon:"https://testpod-bucket.s3.amazonaws.com/pages/pv-icon1.png",
+        },
+        {
+            name:"We Cover It All",
+            detail:"Our tests use real DMV questions for all licenses, so you can avoid surprises on exam day.",
+            icon:"https://testpod-bucket.s3.amazonaws.com/pages/pv-icon2.png",
+
+        },
+        {
+            name:"Fast & Easy",
+            detail:"Get immediate feedback as you begin a test, with the ability to start within seconds.",
+            icon:"https://testpod-bucket.s3.amazonaws.com/pages/pv-icon3.png",
+
+        },
+        {
+            name:"Always FREE",
+            detail:"Absolutely free with no strings attached, including no hidden fees or subscriptions.",
+            icon:"https://testpod-bucket.s3.amazonaws.com/pages/pv-icon4.png",
+
+        },
+        {
+            name:"State-specific",
+            detail:"Our test questions are tailored to individual U.S. states, with the majority being unique to each state.",
+            icon:"https://testpod-bucket.s3.amazonaws.com/pages/pv-icon5.png",
+
+        },
+        {
+            name:"Vast Question Bank",
+            detail:"Prepare using accurate, up-to-date questions based on your state's official handbook and traffic laws.",
+            icon:"https://testpod-bucket.s3.amazonaws.com/pages/pv-icon6.png",
+
+        }
+    ]
+
+
+    res.render("Client/index/index", { title: "Testpod",data,gamesliderData });
 }));
 
 
@@ -67,35 +156,35 @@ router.get("/games", asyncHandler(async (req, res, next) => {
     const data = [
         {
             name: "Guess Country Game",
-            image: "/client/img/flag-cards/3.jpg",
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/3.jpg",
             url:"/guess-country/regions"
         },
         {
             name: "Flag detective Game",
-            image: "/client/img/flag-cards/4.jpg",
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/4.jpg",
             url:"/flag-detective/regions"
         },
          {
             name: "Draw Flag Game",
-            image: "/client/img/flag-cards/1.jpg",
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/1.jpg",
             url:"/draw-flags"
         }, {
             name: "Guess Flag Game",
-            image: "/client/img/flag-cards/5.jpg",
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/5.jpg",
             url:"/guess-flag/regions"
         },
         {
            name: "Flag Quest Game",
-           image: "/client/img/flag-cards/6.jpg",
+           image: "https://testpod-bucket.s3.amazonaws.com/pages/6.jpg",
            url:"/flag-quest/regions"
        },
         {
             name: "Flag Puzzle Game",
-            image: "/client/img/flag-cards/2.jpg"
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/2.jpg"
         },
          {
             name: "Learn About Flag",
-            image: "/client/img/flag-cards/7.jpg",
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/7.jpg",
             url:"/learn-about-flags"
         },
     ]

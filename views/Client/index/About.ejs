@@ -1,545 +1,536 @@
 <% layout('Client/layouts/boilerPlate') -%>
 
-<!-- main-area -->
-<main>
-  <section
-    class="breadcrumb-area d-flex align-items-center"
-    style="
+  <link rel="stylesheet" href="/client/css/card.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css" />
+
+
+  <!-- main-area -->
+  <main>
+    <section class="breadcrumb-area d-flex align-items-center" style="
       background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png);
-    "
-  >
+    ">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-12 col-lg-12">
+            <div class="breadcrumb-wrap text-left">
+              <div class="breadcrumb-title wow animate__fadeInDown" data-wow-duration=".9s">
+                <h2>About Us</h2>
+                <div class="breadcrumb-wrap">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        <b>About</b>
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- about-area -->
+  <section id="about" class="about-area about-p spacing p-relative" style="
+    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png)
+      no-repeat;
+    background-position: center center;
+  ">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-xl-12 col-lg-12">
-          <div class="breadcrumb-wrap text-left">
-            <div class="breadcrumb-title wow animate__fadeInDown" data-wow-duration=".9s">
-              <h2>About Us</h2>
-              <div class="breadcrumb-wrap">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      <b>About</b>
-                    </li>
-                  </ol>
-                </nav>
+        <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+          <div class="s-about-img p-relative wow fadeInLeft animated" data-animation="fadeInLeft" data-delay=".4s">
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/about_img.svg" alt="img" />
+            <div class="about-text second-about">
+              <div class="all-text">
+                <h3>50</h3>
+                <span>years of <br />
+                  experience</span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="about-content s-about-content wow fadeInRight animated" data-animation="fadeInRight"
+            data-delay=".4s">
+            <div class="about-title second-atitle pb-25">
+              <h5>About</h5>
+              <h2>Welcome To Testpod.</h2>
+            </div>
+
+            <p>
+              We are dedicated to providing engaging and educational content for
+              individuals looking to improve their knowledge and skills. Our goal
+              is to offer a fun and interactive learning experience through our
+              DMV practice tests and flag game.
+            </p>
+
+            <div class="about-content3">
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="green">
+                    <li>
+                      DMV Practice Tests: Our DMV practice tests are designed to
+                      help users prepare for their driver's license exams. We
+                      offer a wide range of practice tests covering various topics
+                      such as traffic signs, road rules, and safety regulations.
+                    </li>
+                    <li>
+                      Flag Game: Our flag game is a fun and interactive way for
+                      users to test their knowledge of world flags. Users can
+                      challenge themselves and learn about different countries and
+                      their flags through an engaging quiz-style game.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-btn mt-10">
+              <a href="/about-us" class="btn ss-btn" data-animation="fadeInRight" data-delay=".8s">Read More</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-</main>
-<!-- about-area -->
-<section
-  id="about"
-  class="about-area about-p spacing p-relative"
-  style="
+  <!-- about-area-end -->
+
+  <!-- mission-area-start -->
+
+  <section id="about" class="about-area about-p spacing p-relative" style="
     background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png)
       no-repeat;
     background-position: center center;
-  "
->
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
-        <div
-          class="s-about-img p-relative wow fadeInLeft animated"
-          data-animation="fadeInLeft"
-          data-delay=".4s"
-        >
-          <img
-            src="https://testpod-bucket.s3.amazonaws.com/pages/about_img.svg"
-            alt="img"
-          />
-          <div class="about-text second-about">
-            <div class="all-text">
-              <h3>50</h3>
-              <span
-                >years of <br />
-                experience</span
-              >
+  ">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="about-content s-about-content wow fadeInRight animated" data-animation="fadeInRight"
+            data-delay=".4s">
+            <div class="about-title second-atitle pb-25">
+              <h5>Mission</h5>
+              <h2>Safe and Independent Driving</h2>
             </div>
+
+            <p style="line-height: 28px">
+              Do you struggle to pass your DMV written test? Fear not! Our mission
+              is to help you ace it on your first try. DMV Practice Test provides
+              free practice drivers tests modeled on the real thing for all 50
+              states, including regular non-commercial licenses, CDLs, and
+              motorcycle licenses. No hidden fees, tricks, or credit card
+              information required. Boost your confidence and prepare for the
+              actual exam with our practice tests. Let us help you pass with
+              flying colors and make the DMV written test a piece of cake. Say
+              goodbye to stress and anxiety and hello to success!
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+          <div class="s-about-img p-relative wow fadeInLeft animated" data-animation="fadeInLeft" data-delay=".4s">
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/mission-variation-02.svg" alt="img" />
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <div
-          class="about-content s-about-content wow fadeInRight animated"
-          data-animation="fadeInRight"
-          data-delay=".4s"
-        >
-          <div class="about-title second-atitle pb-25">
-            <h5>About</h5>
-            <h2>Welcome To Testpod.</h2>
+  <!-- mission-area-end -->
+
+  <!-- Vision-area-start -->
+
+  <section id="about" class="about-area about-p spacing p-relative" style="
+    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png)
+      no-repeat;
+    background-position: center center;
+  ">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+          <div class="s-about-img p-relative wow fadeInLeft animated" data-animation="fadeInLeft" data-delay=".4s">
+            <img src="https://testpod-bucket.s3.amazonaws.com/pages/OurVision.svg" alt="img" />
           </div>
+        </div>
 
-          <p>
-            We are dedicated to providing engaging and educational content for
-            individuals looking to improve their knowledge and skills. Our goal
-            is to offer a fun and interactive learning experience through our
-            DMV practice tests and flag game.
-          </p>
-
-          <div class="about-content3">
-            <div class="row">
-              <div class="col-md-12">
-                <ul class="green">
-                  <li>
-                    DMV Practice Tests: Our DMV practice tests are designed to
-                    help users prepare for their driver's license exams. We
-                    offer a wide range of practice tests covering various topics
-                    such as traffic signs, road rules, and safety regulations.
-                  </li>
-                  <li>
-                    Flag Game: Our flag game is a fun and interactive way for
-                    users to test their knowledge of world flags. Users can
-                    challenge themselves and learn about different countries and
-                    their flags through an engaging quiz-style game.
-                  </li>
-                </ul>
-              </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="about-content s-about-content wow fadeInRight animated" data-animation="fadeInRight"
+            data-delay=".4s">
+            <div class="about-title second-atitle">
+              <h5>Vision</h5>
+              <h2>Free DMV Practice Tests for Success</h2>
             </div>
-          </div>
 
-          <div class="slider-btn mt-10">
-            <a
-              href="/about-us"
-              class="btn ss-btn"
-              data-animation="fadeInRight"
-              data-delay=".8s"
-              >Read More</a
-            >
+            <p>
+              The Department of Motor Vehicles (DMV) has the responsibility to
+              enhance highway safety by increasing driver competency. Along with
+              this responsibility, the DMV wants to keep all drivers licensed for
+              as long as it is safe for them to continue operating a motor
+              vehicle.
+            </p>
+            <p>
+              The DMV recognizes that the independence and mobility provided by
+              the driving privilege is an important factor in the quality of life
+              for most Californians. The good news is that impaired vision will
+              not usually prevent you from obtaining a driver license if you can
+              show that you are able to drive safely.
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- about-area-end -->
+  </section>
 
-<!-- mission-area-start -->
+  <!-- Vision-area-end -->
 
-<section
-  id="about"
-  class="about-area about-p spacing p-relative"
-  style="
-    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png)
-      no-repeat;
-    background-position: center center;
-  "
->
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <div
-          class="about-content s-about-content wow fadeInRight animated"
-          data-animation="fadeInRight"
-          data-delay=".4s"
-        >
-          <div class="about-title second-atitle pb-25">
-            <h5>Mission</h5>
-            <h2>Safe and Independent Driving</h2>
-          </div>
-
-          <p style="line-height: 28px">
-            Do you struggle to pass your DMV written test? Fear not! Our mission
-            is to help you ace it on your first try. DMV Practice Test provides
-            free practice drivers tests modeled on the real thing for all 50
-            states, including regular non-commercial licenses, CDLs, and
-            motorcycle licenses. No hidden fees, tricks, or credit card
-            information required. Boost your confidence and prepare for the
-            actual exam with our practice tests. Let us help you pass with
-            flying colors and make the DMV written test a piece of cake. Say
-            goodbye to stress and anxiety and hello to success!
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
-        <div
-          class="s-about-img p-relative wow fadeInLeft animated"
-          data-animation="fadeInLeft"
-          data-delay=".4s"
-        >
-          <img
-            src="https://testpod-bucket.s3.amazonaws.com/pages/mission-variation-02.svg"
-            alt="img"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- mission-area-end -->
-
-<!-- Vision-area-start -->
-
-<section
-  id="about"
-  class="about-area about-p spacing p-relative"
-  style="
-    background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png)
-      no-repeat;
-    background-position: center center;
-  "
->
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
-        <div
-          class="s-about-img p-relative wow fadeInLeft animated"
-          data-animation="fadeInLeft"
-          data-delay=".4s"
-        >
-          <img
-            src="https://testpod-bucket.s3.amazonaws.com/pages/OurVision.svg"
-            alt="img"
-          />
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <div
-          class="about-content s-about-content wow fadeInRight animated"
-          data-animation="fadeInRight"
-          data-delay=".4s"
-        >
-          <div class="about-title second-atitle">
-            <h5>Vision</h5>
-            <h2>Free DMV Practice Tests for Success</h2>
-          </div>
-
-          <p>
-            The Department of Motor Vehicles (DMV) has the responsibility to
-            enhance highway safety by increasing driver competency. Along with
-            this responsibility, the DMV wants to keep all drivers licensed for
-            as long as it is safe for them to continue operating a motor
-            vehicle.
-          </p>
-          <p>
-            The DMV recognizes that the independence and mobility provided by
-            the driving privilege is an important factor in the quality of life
-            for most Californians. The good news is that impaired vision will
-            not usually prevent you from obtaining a driver license if you can
-            show that you are able to drive safely.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Vision-area-end -->
-
-<!-- vedio-area -->
-<section
-  id="vedio"
-  class="vedio-area pt-90 spacing fix"
-  style="
+  <!-- vedio-area -->
+  <section id="vedio" class="vedio-area pt-90 spacing fix" style="
     background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/vedio-bg.png);
     background-repeat: no-repeat;
-  "
->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="section-title center-align text-center wow animate__fadeInUp"
-        data-wow-delay="0.4s">
-          <h5>Watch Us</h5>
-          <h2>Start Growing With Community</h2>
+  ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title center-align text-center wow animate__fadeInUp" data-wow-delay="0.4s">
+            <h5>Watch Us</h5>
+            <h2>Start Growing With Community</h2>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <div
-          class="video-img wow fadeInRight animated"
-          data-animation="fadeInDown animated"
-          data-delay=".2s"
-          style="
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="video-img wow fadeInRight animated" data-animation="fadeInDown animated" data-delay=".2s" style="
             background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/vedio-img.png);
             background-repeat: no-repeat;
             background-position: center;
-          "
-        >
-          <a id="play-video" class="video-i popup-video">
-            <img
-              src="https://testpod-bucket.s3.amazonaws.com/pages/play.svg"
-              alt="img"
-              class="active-icon"
-          /></a>
-          <video class="about-video" width="100%" controls>
-            <source
-              src="https://testpod-bucket.s3.amazonaws.com/pages/Testpodfinalvideo.mp4"
-              type="video/mp4"
-            />
-            <source src="mov_bbb.ogg" type="video/ogg" />
-            Your browser does not support HTML video.
-          </video>
+          ">
+            <a id="play-video" class="video-i popup-video">
+              <img src="https://testpod-bucket.s3.amazonaws.com/pages/play.svg" alt="img" class="active-icon" /></a>
+            <video class="about-video" width="100%" controls>
+              <source src="https://testpod-bucket.s3.amazonaws.com/pages/Testpodfinalvideo.mp4" type="video/mp4" />
+              <source src="mov_bbb.ogg" type="video/ogg" />
+              Your browser does not support HTML video.
+            </video>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- vedio-area-end -->
-<!-- testimonial-area -->
-<section
-  class="testimonial-area pt-90 pb-90 spacing"
-  style="
-    background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg-aliments.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #fff7f5;
-  "
->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="about-title second-atitle pt-15">
-          <h5>Testimonial</h5>
-          <h2>What our users are saying</h2>
-          <p class="pt-15">
-            <b>dev.testpod.com</b> A popular platform empowering 130,000+ aspiring
-            American users to enhance coding, data analysis, and digital
-            marketing skills with its user-friendly interface and personalized
-            feedback.
-          </p>
-        </div>
-      </div>
-
-      <div class="col-lg-6" style="margin: auto">
-        <swiper-container
-          autoplay
-          class="mySwiper"
-          pagination="false"
-          effect="cube"
-          grab-cursor="true"
-          centered-slides="true"
-          slides-per-view="1"
-          coverflow-effect-rotate="100"
-          coverflow-effect-stretch="0"
-          coverflow-effect-depth="100"
-          coverflow-effect-modifier="1"
-          coverflow-effect-slide-shadows="true"
-        >
-          <swiper-slide>
-            <div class="testimonial-active">
-              <div class="single-testimonial">
-                <div class="testi-author">
-                  <img
-                    style="width: 100px; border-radius: 50%"
-                    src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.19.23+-+create+avatar+cute+girl+.png"
-                    alt="img"
-                  />
-                  <div class="ta-info">
-                    <h6>Ted Kay</h6>
-                    <span>Student</span>
-                  </div>
-                </div>
-                <div class="qt-img">
-                  <img
-                    src="https://testpod-bucket.s3.amazonaws.com/pages/qt-icon.png"
-                    alt="img"
-                  />
-                </div>
-                <p>
-                  This site is amazing. With just 24 hours of practice and going
-                  through each test, I passed the drivers test at Santa Monica,
-                  California DMV on my first attempt, outperforming others.
-                </p>
-              </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="testimonial-active">
-              <div class="single-testimonial">
-                <div class="testi-author">
-                  <img
-                    style="width: 100px; border-radius: 50%"
-                    src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.59.30+-+create+avatar+cute+girl+.png"
-                    alt="img"
-                  />
-                  <div class="ta-info">
-                    <h6>Stacey Finegan Whittle</h6>
-                    <span>Student</span>
-                  </div>
-                </div>
-                <div class="qt-img">
-                  <img
-                    src="https://testpod-bucket.s3.amazonaws.com/pages/qt-icon.png"
-                    alt="img"
-                  />
-                </div>
-                <p>
-                  I failed the DMV written test the first time I tried, but
-                  after studying the tests on this AWESOME site, I passed it
-                  with only 3 questions wrong, on my 22nd birthday. This tool
-                  ROCKED. Thanks so much!
-                </p>
-              </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="testimonial-active">
-              <div class="single-testimonial">
-                <div class="testi-author">
-                  <img
-                    style="width: 100px; border-radius: 50%"
-                    src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.19.23+-+create+avatar+cute+girl+.png"
-                    alt="img"
-                  />
-                  <div class="ta-info">
-                    <h6>Elizabeth Heaney</h6>
-                    <span>Student</span>
-                  </div>
-                </div>
-                <div class="qt-img">
-                  <img
-                    src="https://testpod-bucket.s3.amazonaws.com/pages/qt-icon.png"
-                    alt="img"
-                  />
-                </div>
-                <p>
-                  I took the test today and passed, I literally knew every
-                  single question on that test, I looked around thinking to
-                  myself, Are they serious?! lol, If you want to pass, these
-                  practice tests will help for sure!
-                </p>
-              </div>
-            </div>
-          </swiper-slide>
-        </swiper-container>
-      </div>
+  </section>
+  <!-- vedio-area-end -->
+  <!-- testimonial-area -->
+  <section class="testimonial-area spacing pt-20" style="
+ background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg-aliments.png);
+ background-repeat: no-repeat;
+ background-position: center;
+ background-color: #fff7f5;
+">
+    <div class="about-title second-atitle">
+      <h5 style="margin: 0px;text-align: center;">Testimonial</h5>
+      <h2 style="text-align: center;margin: 0px;">What our users are saying</h2>
     </div>
-  </div>
-</section>
-<!-- testimonial-area-end -->
+    <div class="flex-box-wrap">
+      <aside class="single-view-content">
+        <ul class="team-info">
+          <li class="team-info-item active">
+            <h1 class="heading">Hi, my name is Ted Kay </h1>
+            <article class="content">
+              <p>
+                This site is amazing. With just 24 hours of practice and going
+                through each test, I passed the drivers test at Santa Monica,
+                California DMV on my first attempt, outperforming others.
 
-<!-- FAQ-area-start -->
+              </p>
+            </article>
 
-<section
-  id="about"
-  class="about-area about-p spacing p-relative"
-  style="
+          </li>
+
+          <li class="team-info-item">
+            <h1 class="heading">Hi, my name is Stacey Finegan</h1>
+            <article class="content">
+              <p>
+                I failed the DMV written test the first time I tried, but after studying the tests on this AWESOME
+                site, I passed it with only 3 questions wrong, on my 22nd birthday. This tool ROCKED. Thanks so
+                much!
+
+              </p>
+
+
+            </article>
+          </li>
+
+          <li class="team-info-item">
+            <h1 class="heading">Hi, my name is Elizabeth Heaney</h1>
+            <article class="content">
+              <p>
+                I took the test today and passed, I literally knew every single question on that test, I looked
+                around thinking to myself, Are they serious?! lol, If you want to pass, these practice tests will
+                help for sure!
+
+              </p>
+            </article>
+          </li>
+        </ul>
+      </aside>
+      <main class="main-single-view">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/client/img/pngs/1.png" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="/client/img/pngs/3.png" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="/client/img/pngs/4.png" alt="">
+            </div>
+            <!-- <div class="swiper-slide">
+         <img src="https://md-aqil.github.io/images/adult-armchair-attractive-235498-removebg-preview.png"
+           alt="">
+       </div>
+       <div class="swiper-slide">
+         <img src="https://md-aqil.github.io/images/beautiful-dress-elegant-1375736-removebg-preview.png" alt="">
+       </div> -->
+
+            <!-- Add Pagination -->
+
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+    </div>
+    <!-- <div class="container">
+ <div class="row">
+   <div class="col-lg-6 wow animate__fadeInLeft" data-wow-delay="0.2s">
+     <div class="about-title second-atitle pt-15">
+       <h5>Testimonial</h5>
+       <h2>What our users are saying</h2>
+       <p class="pt-15">
+         <b>dev.testpod.com</b> A popular platform empowering 130,000+ aspiring
+         American users to enhance coding, data analysis, and digital
+         marketing skills with its user-friendly interface and personalized
+         feedback.
+       </p>
+     </div>
+   </div>
+
+   <div class="col-lg-6" style="margin: auto;">
+     <swiper-container autoplay class="mySwiper" pagination="false" effect="cube" grab-cursor="true"
+       centered-slides="true" slides-per-view="1" coverflow-effect-rotate="100" coverflow-effect-stretch="0"
+       coverflow-effect-depth="100" coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+       <swiper-slide>
+         <div class="testimonial-active ">
+           <div class="single-testimonial">
+             <div class="testi-author">
+               <img style="width: 100px;border-radius: 50%;"
+                 src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.19.23+-+create+avatar+cute+girl+.png"
+                 alt="img" />
+               <div class="ta-info">
+                 <h6>Ted Kay</h6>
+                 <span>Student</span>
+               </div>
+             </div>
+             <div class="qt-img">
+               <img src="https://testpod-bucket.s3.amazonaws.com/pages/qt-icon.png" alt="img" />
+             </div>
+             <p>
+               This site is amazing. With just 24 hours of practice and going
+               through each test, I passed the drivers test at Santa Monica,
+               California DMV on my first attempt, outperforming others.
+           </div>
+         </div>
+
+       </swiper-slide>
+       <swiper-slide>
+         <div class="testimonial-active">
+           <div class="single-testimonial ">
+             <div class="testi-author">
+               <img style="width: 100px;border-radius: 50%;"
+                 src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.59.30+-+create+avatar+cute+girl+.png"
+                 alt="img" />
+               <div class="ta-info">
+                 <h6>Stacey Finegan Whittle</h6>
+                 <span>Student</span>
+               </div>
+             </div>
+             <div class="qt-img">
+               <img src="https://testpod-bucket.s3.amazonaws.com/pages/qt-icon.png" alt="img" />
+             </div>
+             <p>
+               I failed the DMV written test the first time I tried, but after studying the tests on this AWESOME
+               site, I passed it with only 3 questions wrong, on my 22nd birthday. This tool ROCKED. Thanks so
+               much!
+           </div>
+         </div>
+       </swiper-slide>
+       <swiper-slide>
+         <div class="testimonial-active">
+
+           <div class="single-testimonial">
+             <div class="testi-author">
+               <img style="width: 100px;border-radius: 50%;"
+                 src="https://testpod-bucket.s3.amazonaws.com/pages/DALL%C3%82%C2%B7E+2023-03-07+16.19.23+-+create+avatar+cute+girl+.png"
+                 alt="img" />
+               <div class="ta-info">
+                 <h6>Elizabeth Heaney</h6>
+                 <span>Student</span>
+               </div>
+             </div>
+             <div class="qt-img">
+               <img src="https://testpod-bucket.s3.amazonaws.com/pages/qt-icon.png" alt="img" />
+             </div>
+             <p>
+               I took the test today and passed, I literally knew every single question on that test, I looked
+               around thinking to myself, Are they serious?! lol, If you want to pass, these practice tests will
+               help for sure!
+           </div>
+         </div>
+       </swiper-slide>
+     </swiper-container>
+   </div>
+ </div>
+</div> -->
+  </section>
+  <!-- testimonial-area-end -->
+
+  <!-- FAQ-area-start -->
+
+  <section id="about" class="about-area about-p spacing p-relative" style="
     background: url(https://testpod-bucket.s3.amazonaws.com/pages/about-bg-aliments.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-  "
->
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div
-          class="about-content s-about-content wow fadeInRight animated"
-          data-animation="fadeInRight"
-          data-delay=".4s"
-        >
-          <div class="about-title second-atitle">
-            <h5>FAQ</h5>
-            <h2>Frequently Asked Questions</h2>
-            <div class="accordion accordion-flush" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button
-                    class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="true"
-                    aria-controls="collapseOne"
-                    style="color: black"
-                  >
-                    Lorem ipsum dolor sit amet
-                  </button>
-                </h2>
-                <div
-                  id="collapseOne"
-                  class="accordion-collapse collapse show"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat.
+  ">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="about-content s-about-content wow fadeInRight animated" data-animation="fadeInRight"
+            data-delay=".4s">
+            <div class="about-title second-atitle">
+              <h5>FAQ</h5>
+              <h2>Frequently Asked Questions</h2>
+              <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                      style="color: black">
+                      Lorem ipsum dolor sit amet
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum dolor
+                      sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt ut labore et dolore magna aliqua. Ut enim ad
+                      minim veniam, quis nostrud exercitation ullamco laboris nisi
+                      ut aliquip ex ea commodo consequat.
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo"
-                    style="color: black"
-                  >
-                    Lorem ipsum dolor sit amet
-                  </button>
-                </h2>
-                <div
-                  id="collapseTwo"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat.
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                      style="color: black">
+                      Lorem ipsum dolor sit amet
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum dolor
+                      sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt ut labore et dolore magna aliqua. Ut enim ad
+                      minim veniam, quis nostrud exercitation ullamco laboris nisi
+                      ut aliquip ex ea commodo consequat.
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                    style="color: black"
-                  >
-                    Lorem ipsum dolor sit amet
-                  </button>
-                </h2>
-                <div
-                  id="collapseThree"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingThree"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat.
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                      style="color: black">
+                      Lorem ipsum dolor sit amet
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>Lorem ipsum dolor sit amet</strong>Lorem ipsum dolor
+                      sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt ut labore et dolore magna aliqua. Ut enim ad
+                      minim veniam, quis nostrud exercitation ullamco laboris nisi
+                      ut aliquip ex ea commodo consequat.
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <p style="line-height: 28px"></p>
+            <p style="line-height: 28px"></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- main-area-end -->
+  <!-- main-area-end -->
 
-<script src="/client/js/about.js"></script>
-<script src="/client/js/playVideo.js"></script>
+  <script src="/client/js/about.js"></script>
+  <script src="/client/js/playVideo.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+  <script>
+
+    var colors = [
+      "--dark-green",
+      "--light-brown",
+      "--light-red",
+      "--light-teal",
+      "--light-gray"
+    ];
+
+    let window_Width = window.innerWidth
+    var swiperZoom = new Swiper(".swiper-container", {
+      grabCursor: true,
+      centeredSlides: true,
+
+      slidesPerView: window_Width >= 700 ? "2" : "1",
+      autoplay: {
+        delay: 2000,
+      },
+
+      effect: "coverflow",
+      keyboard: true,
+
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 4,
+        slideShadows: false
+      }
+    });
+
+    swiperZoom.on("slideChange", function () {
+      var index = this.activeIndex;
+      document.querySelector(".single-view-content").style.background = "var(" + colors[index % colors.length] + ")";
+
+      var teamInfoItems = document.querySelectorAll(".team-info .team-info-item");
+      var activeIndex = this.activeIndex;
+
+      teamInfoItems.forEach(function (item, index) {
+        item.classList.remove("active");
+
+        if (index === activeIndex) {
+          item.classList.add("active");
+        }
+      });
+    });
+  </script>
