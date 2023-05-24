@@ -7,6 +7,10 @@ let AdminSchema = new mongoose.Schema({
         type:String, 
         required:true,
         unique:true
+    },
+    admin: {
+        type: Boolean,
+        default: true
     }
 });
 

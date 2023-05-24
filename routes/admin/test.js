@@ -4,17 +4,17 @@ import path from "path";
 import QuizModel from "../../models/test.js";  
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login"; 
+import asyncHandler from "express-async-handler";   
+import middleware from "../../middleware/index.js";
  
  
 //Admin: Add Question page
-router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.get("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
     res.render("Admin/Test/AddTest", {title: "Create-Test"});
 }));
   
 //Admin: Add Questions
-router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const find = await QuizModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }, stateName: {$regex : req.body.stateName.toString(), "$options": "i" }, quizName: {$regex : req.body.quizName.toString(), "$options": "i" }});
   
@@ -97,9 +97,19 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
     return next(error.message);
   }  
 })); 
-  
+
+//Admin: Search State Api for Manage Page
+router.get("/search/:state", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
+  try {
+    const data = await QuizModel.find({stateName: req.params.state}); 
+    res.send(data); 
+  } catch (error) {
+    return next(error.message);
+  }
+}));
+
 //Admin: Manage Quiz Page
-router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/manage", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const data = await QuizModel.find({}); 
     res.render("Admin/Test/ManageTest", { data, title: "Manage-Test" });
@@ -109,7 +119,7 @@ router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(
 }));
 
 //Admin - Destroy Whole Question
-router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.delete("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const { id } = req.params;
     await QuizModel.findByIdAndDelete(id);
@@ -121,7 +131,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
 }));
   
 //Admin: show All Question
-router.get("/manage/:id/all-quizzes", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
+router.get("/manage/:id/all-quizzes", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {
   try {
     const data = await QuizModel.findById(req.params.id);
     if(!data)
@@ -136,7 +146,7 @@ router.get("/manage/:id/all-quizzes", connectEnsureLogin.ensureLoggedIn("/login"
 }));
 
 //Admin - Edit Test Name
-router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.put("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     await QuizModel.updateOne({_id: req.params.id}, {$set:{"quizName": req.body.testName}});
     res.redirect(`/admin/test/manage/${req.params.id}/all-quizzes`);
@@ -146,7 +156,7 @@ router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHand
 }));
 
   // Admin: Add new Question in Test
-router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post('/manage/:id/new', middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     var find = await QuizModel.findById(req.params.id);
   
@@ -177,7 +187,7 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 }));
   
 // Admin: Edit Question
-router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get('/manage/:id/edit', middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const data = await QuizModel.findById(req.params.id);
     res.send(data);
@@ -187,7 +197,7 @@ router.get('/manage/:id/edit', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 }));
   
 //Admin: Update Question
-router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {    
+router.put("/manage/:cid/:pid", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {    
   try {
     await QuizModel.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": req.body.Question}});
     console.log("Quiz Updated");
@@ -199,7 +209,7 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
 }));
   
 //Admin: Delete Question
-router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.delete("/manage/:pid/:cid", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
   try {
     await QuizModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Quiz Deleted Successfully");

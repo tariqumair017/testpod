@@ -3,11 +3,11 @@ const router = Router();
 import path from "path";  
 import DrawFlagGameModel from "../../models/drawFlagGame.js";
 import DrawNewFlagModel from "../../models/drawNewFlag.js";
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login"; 
+import asyncHandler from "express-async-handler";   
+import middleware from "../../middleware/index.js";
 
 //Admin: Get document of selected country
-router.get("/game-management/draw-flags-games/countryName/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/game-management/draw-flags-games/countryName/:country", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const data = await DrawNewFlagModel.findOne({country: req.params.country});
     res.send(data);
@@ -17,7 +17,7 @@ router.get("/game-management/draw-flags-games/countryName/:country", connectEnsu
 })); 
 
 //Admin: Add Draw Flag Game Page
-router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
     try {
       var data = await DrawNewFlagModel.find({});
       res.render("Admin/DrawFlagGame/AddDrawFlagGame", { data, title: "Create-DrawFlagGame" });
@@ -27,7 +27,7 @@ router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
 }));
   
 //Admin: Add Draw Flag Game Handel
-router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const find = await DrawFlagGameModel.findOne({gameName: {$regex : req.body.gameName.toString(), "$options": "i" }});
 
@@ -93,7 +93,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 }));
   
 //Admin: Manage Flag Page
-router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/manage", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const data = await DrawFlagGameModel.find({}); 
     res.render("Admin/DrawFlagGame/ManageDrawFlagGame", { data, title: "Manage-DrawFlagGame" });
@@ -103,7 +103,7 @@ router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(
 }));
  
 //Admin - Delete Whole Flag Game
-router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.delete("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const { id } = req.params;
     await DrawFlagGameModel.findByIdAndDelete(id);
@@ -115,7 +115,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
 }));
 
 //Admin: Show All Questions of Game 
-router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
+router.get("/manage/:id/all-questions", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {
   try {
     const data = await DrawFlagGameModel.findById(req.params.id);
     var allFlags = await DrawNewFlagModel.find({}); 
@@ -131,7 +131,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
 }));
   
 //Admin - Edit Game Name
-router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.put("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     await DrawFlagGameModel.updateOne({_id: req.params.id}, {$set:{"gameName": req.body.gameName}});
     res.redirect(`/admin/draw-flag-game/manage/${req.params.id}/all-questions`);
@@ -141,7 +141,7 @@ router.put("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHand
 }));
   
 // Admin: Add new Question in Game
-router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post('/manage/:id/new', middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     var find = await DrawFlagGameModel.findById(req.params.id);
 
@@ -165,7 +165,7 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 }));
   
 //Admin: Delete Question of a Game
-router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.delete("/manage/:pid/:cid", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
   try {
     await DrawFlagGameModel.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");

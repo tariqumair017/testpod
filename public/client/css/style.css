@@ -21255,3 +21255,16 @@ div.single-cta:last-child {
 .couress-box .course-meta2 li {
   color: #fff;
 }
+
+.user-login-text{
+  margin: 0%;
+  color: #A8171A;
+  font-weight: 800;
+  padding: 5px;
+}
+
+.user-login-text:hover{
+  background-color: lightgray;
+  transition: .3s;
+  border-radius: 5px;
+}

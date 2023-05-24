@@ -8,34 +8,6 @@ import AllFlagsData from "../../models/allFlagsData.js";
 import ipify from "ipify";
 import asyncHandler from "express-async-handler";   
 import connectEnsureLogin from "connect-ensure-login";
- 
-
-// Sign Up 
-router.get("/sign-up", asyncHandler(async (req, res, next) => { 
-  res.render("Client/index/SignUp");
-}));
-
-router.get("/hello", asyncHandler(async (req, res, next) => { 
-    res.render("Client/index/hello");
-  }));
-
-
-//Handel Sign Up Logic
-// router.post('/admin/sign-up', asyncHandler(async (req, res, next) => {  
-//     try {
-//       const newAdmin = new Admin({username: req.body.username, email: req.body.email});
-//       const registeredAdmin = await Admin.register(newAdmin, req.body.password); 
-//       res.redirect("/login");
-//     } catch (error) { 
-//       req.flash("error", error.message);
-//       return res.redirect("/sign-up");
-//     }
-// }));
-
-// Login Page 
-router.get("/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), asyncHandler(async (req, res, next) => { 
-    res.render("Client/index/Login");
-}));
 
 
 //Client Index page

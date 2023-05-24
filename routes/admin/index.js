@@ -3,11 +3,12 @@ const router = Router();
 import passport from "passport"; 
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login"; 
+import middleware from "../../middleware/index.js";
 
 // Sign Up 
-router.get("/admin/sign-up", asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/SignUp");
-}));
+// router.get("/admin/sign-up", asyncHandler(async (req, res, next) => { 
+//   res.render("Admin/index/SignUp");
+// }));
 
 //Handel Sign Up Logic
 // router.post('/admin/sign-up', asyncHandler(async (req, res, next) => {  
@@ -23,40 +24,40 @@ router.get("/admin/sign-up", asyncHandler(async (req, res, next) => {
 
 
 // Login Page 
-router.get("/admin/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/login", asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/Login");
 }));
 
 //Handel Login Logic
-router.post("/admin/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), passport.authenticate("admin", {
+router.post("/admin/login", passport.authenticate("admin", {
   failureFlash: true,
-  failureRedirect: "/login"
+  failureRedirect: "/admin/login"
 }), (req, res) => {  
   res.redirect("/admin/dashboard"); 
 });
 
 //Admin: Dashboard Page
-router.get("/admin/dashboard", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/dashboard", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/Dashboard", {title: "Admin-Dashboard"});
 }));
 
 //Admin: Content Management Page
-router.get("/admin/content-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/content-management", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/ContentManagement", {title: "Content-Management"});
 }));
  
 //Admin: Result Management Page
-router.get("/admin/result-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/result-management", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/ResultManagement", {title: "Result-Management"});
 }));
 
 //Admin: User Management Page
-router.get("/admin/user-management", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/user-management", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/UserManagement", {title: "User-Management"});
 }));
 
 //Admin: Analytics Page
-router.get("/admin/analytics", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/admin/analytics", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/Analytics", {title: "Analytics"});
 }));
 

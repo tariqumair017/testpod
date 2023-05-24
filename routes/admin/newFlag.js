@@ -3,8 +3,8 @@ const router = Router();
 import path from "path";  
 import AWS from "aws-sdk";
 import DrawNewFlagModel from "../../models/drawNewFlag.js"; 
-import asyncHandler from "express-async-handler";  
-import connectEnsureLogin from "connect-ensure-login";
+import asyncHandler from "express-async-handler";   
+import middleware from "../../middleware/index.js";
 
 
 try {
@@ -18,7 +18,7 @@ try {
 
   
 //Admin: Draw-New-Flags Page
-router.get("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
     try {
         const data = await DrawNewFlagModel.find({});
         res.render("Admin/NewFlag/Draw-New-Flags", { data, title: "Create-NewFlag" });
@@ -28,7 +28,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async 
 }));
    
 //Admin: Draw-New-Flags Page Handel
-router.post("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post("/", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
     try {
         const find = await DrawNewFlagModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }});
 
@@ -75,7 +75,7 @@ router.post("/", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async
 }));  
   
 //Admin - Update Game Name
-router.put("/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.put("/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
     try {
         if(req.files)
         {
@@ -125,7 +125,7 @@ router.put("/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(asy
  
 
 //Admin - Delete Flag 
-router.delete("/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.delete("/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
     try {
         const { id } = req.params;
         await DrawNewFlagModel.findByIdAndDelete(id);

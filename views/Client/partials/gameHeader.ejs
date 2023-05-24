@@ -2,48 +2,52 @@
   <span class="header-image">
     <a href="/"><img style="cursor: pointer" src="/client/img/logo/logo1.svg" width="100%" height="100%" alt="" />
     </a>
-  </span>
-  <div class="col-xl-8 col-lg-8">
-    <div id="mobile-main-menu" class="main-menu text-right text-xl-right">
-      <nav id="mobile-menu" style="display: block">
-        <ul style="display: flex;align-items: center;">
-          <li class="sub">
-            <a href="/">Home</a>
-          </li>
-          <li class="sub"><a href="/about-us">About Us</a></li>
-          <li class="sub">
-            <a href="/games">Flags Games</a>
-            <ul>
-              <li><a href="/guess-country/regions">Guess Country</a></li>
-              <li><a href="/draw-flags">Draw Flags</a></li>
-              <li><a href="/guess-flag/regions">Guess Flags</a></li>
-              <li><a href="/flag-detective/regions">Flags Detective</a></li>
-              <li><a href="/flag-puzzle/regions">Flags Puzzle</a></li>
-              <li><a href="/flag-quest/regions">Flag Quest Game</a></li>
-              <li><a href="/learn-about-flags">Learn About Flags</a></li>
-
-            </ul>
-          </li>
-          <li class="sub">
-            <a href="javascript:(0)">Practice Test</a>
-            <ul>
-              <li><a href="/dmv-test/states">DMV Test</a></li>
-            </ul>
-          </li>
-          <li class="sub"><a href="/contact-us">Contact</a></li>
-          <li class="sub">
-            <a class="user-avatar" href="/login">
-              <%if("helo"==="h" ){ %>
-                <img class="header_img" src="/admin/img/profile.avif" alt="" />
-                <% } %>
-              <p style="margin: 0%;color:#A8171A;">Login</p>
-            </a>
-            <%if("helo"==="h" ){ %>
-              <ul style="right: 0px;min-width: 150px !important;">
-                <li><a href="/guess-country/regions">Profile</a></li>
-                <li><a href="/draw-flags">Achievement</a></li>
-                <li><a href="/guess-flag/regions">Settings</a></li>
+    </span>
+    <div class="col-xl-8 col-lg-8">
+      <div id="mobile-main-menu" class="main-menu text-right text-xl-right">
+        <nav id="mobile-menu" style="display: block">
+          <ul style="display: flex;align-items: center;" >
+            <li class="sub">
+              <a href="/">Home</a>
+            </li>
+            <li class="sub"><a href="/about-us">About Us</a></li>
+            <li class="sub">
+              <a href="/games">Flags Games</a>
+              <ul>
+                <li><a href="/guess-country/regions">Guess Country</a></li>
+                <li><a href="/draw-flags">Draw Flags</a></li>
+                <li><a href="/guess-flag/regions">Guess Flags</a></li>
+                <li><a href="/flag-detective/regions">Flags Detective</a></li>
+                <li><a href="/flag-puzzle/regions">Flags Puzzle</a></li>
+                <li><a href="/flag-quest/regions">Flag Quest Game</a></li>
+                <li><a href="/learn-about-flags">Learn About Flags</a></li>
+                
               </ul>
+            </li>
+            <li class="sub">
+              <a href="javascript:(0)">Practice Test</a>
+              <ul>
+                <li><a href="/dmv-test/states">DMV Test</a></li>
+              </ul>
+            </li>
+            <li class="sub"><a href="/contact-us">Contact</a></li>
+            <li class="sub">
+              <%if(currentUser && !currentUser.admin){%>
+                <a class="user-avatar" href="javascript:(0)"><img class="header_img" src="/admin/img/profile.avif" alt=""/><%= currentUser.name %></a>
+                <ul style="right: 0px;min-width: 150px !important;" >
+                  <li><a href="/guess-country/regions">Profile</a></li>
+                  <li><a href="/draw-flags">Achievement</a></li>
+                  <li><a href="/guess-flag/regions">Settings</a></li>
+                  <li><a href="/logout">Logout</a></li>
+                </ul> 
+              <% } else if(currentUser && currentUser.admin){%>
+                  <a class="user-avatar" href="javascript:(0)"><img class="header_img" src="/admin/img/profile.avif" alt=""/><%= currentUser.username.toUpperCase() %></a>
+                  <ul style="right: 0px;min-width: 150px !important;" >
+                    <li><a href="/admin/dashboard">Dashboard</a></li> 
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+               <% } else { %>
+                <a class="user-avatar" href="/login"><p class="user-login-text">Login</p></a>
               <% } %>
           </li>
         </ul>

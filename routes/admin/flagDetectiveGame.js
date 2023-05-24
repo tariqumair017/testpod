@@ -2,13 +2,13 @@ import express, { Router } from "express";
 const router = Router();
 import path from "path";  
 import FlagDetectiveGame from "../../models/flagDetectiveGame.js";
-import AllFlagsData from "../../models/allFlagsData.js";
-import connectEnsureLogin from "connect-ensure-login"; 
+import AllFlagsData from "../../models/allFlagsData.js"; 
 import asyncHandler from "express-async-handler";
+import middleware from "../../middleware/index.js";
 
 
 //Admin: Distinct Region form All Flags Data
-router.get("/data-of-allFlags", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/data-of-allFlags", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const data = await AllFlagsData.distinct("region"); 
     res.send(data);
@@ -18,7 +18,7 @@ router.get("/data-of-allFlags", connectEnsureLogin.ensureLoggedIn("/login"), asy
 }));
 
 //Admin: Find All Countries of Selected Region from All Flags Data
-router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.get("/all-flags-data/country/:region", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
   try {
     const data = await AllFlagsData.find({region: req.params.region});
     res.send(data);
@@ -28,7 +28,7 @@ router.get("/all-flags-data/country/:region", connectEnsureLogin.ensureLoggedIn(
 }));
 
 //Admin: Find Flag of selected Country from All Flags Data
-router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.get("/all-flags-data/country-for-flag/:country", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
   try {
     const data = await AllFlagsData.findOne({country: req.params.country});
     res.send(data);
@@ -38,12 +38,12 @@ router.get("/all-flags-data/country-for-flag/:country", connectEnsureLogin.ensur
 }));
 
 //Admin: Create Flag Detective Game Page
-router.get("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
     res.render("Admin/FlagDetectiveGame/AddFlagDetectiveGame", { title: "Create-FlagDetectiveGame" });
 }));
 
 //Admin: Create Flag Detective Game Handel
-router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const find = await FlagDetectiveGame.findOne({continent: req.body.continent, level: req.body.level});
 
@@ -95,7 +95,7 @@ router.post("/add", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(as
 }));
  
 //Admin: Search Region Api for Manage Page
-router.get("/search/:continent", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.get("/search/:continent", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
   try {
     const data = await FlagDetectiveGame.find({continent: req.params.continent}); 
     res.send(data); 
@@ -105,7 +105,7 @@ router.get("/search/:continent", connectEnsureLogin.ensureLoggedIn("/login"), as
 }));
  
 //Admin: Manage Flag Detective Game Page
-router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.get("/manage", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const data = await FlagDetectiveGame.find({});
     res.render("Admin/FlagDetectiveGame/ManageFlagDetectiveGame", { data, title: "Manage-FlagDetectiveGame" });
@@ -115,7 +115,7 @@ router.get("/manage", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(
 }));
 
 //Admin - Delete Flag Detective Game
-router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.delete("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     const { id } = req.params;
     await FlagDetectiveGame.findByIdAndDelete(id);
@@ -127,7 +127,7 @@ router.delete("/manage/:id", connectEnsureLogin.ensureLoggedIn("/login"), asyncH
 }));
  
 //Admin: Show All Questions of Flag Detective Game 
-router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {
+router.get("/manage/:id/all-questions", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {
   try {
     const data = await FlagDetectiveGame.findById(req.params.id); 
     if(!data)
@@ -148,7 +148,7 @@ router.get("/manage/:id/all-questions", connectEnsureLogin.ensureLoggedIn("/logi
 // }));
 
 // Admin: Add new Question in Game
-router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => { 
+router.post('/manage/:id/new', middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
     var find = await FlagDetectiveGame.findById(req.params.id);
 
@@ -173,7 +173,7 @@ router.post('/manage/:id/new', connectEnsureLogin.ensureLoggedIn("/login"), asyn
 
 
 //Admin: Update Question of Flag Detective Game
-router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {   
+router.put("/manage/:cid/:pid", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {   
   try {
     var question = {country: req.body.country, flagUrl: req.body.flagUrl, hint: req.body.hint}; 
     await FlagDetectiveGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
@@ -190,7 +190,7 @@ router.put("/manage/:cid/:pid", connectEnsureLogin.ensureLoggedIn("/login"), asy
 
 
 //Admin: Delete Question of a Game
-router.delete("/manage/:pid/:cid", connectEnsureLogin.ensureLoggedIn("/login"), asyncHandler(async (req, res, next) => {  
+router.delete("/manage/:pid/:cid", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
   try {
     await FlagDetectiveGame.findOneAndUpdate({"questions._id": req.params.cid}, {$pull:{"questions":{_id: req.params.cid}}});
     console.log("Question Deleted Successfully");

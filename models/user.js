@@ -3,13 +3,16 @@ import passportLocalMongoose from "passport-local-mongoose";
 
 
 let UserSchema = new mongoose.Schema({ 
+    admin: {
+        type: Boolean,
+        default: false
+    },
     name: {
         type:String,
         required:true
     },
     dob: {
-        type:String,
-        required:true
+        type:String
     },
     phoneNum: {
         type:Number,
@@ -20,20 +23,16 @@ let UserSchema = new mongoose.Schema({
         required:true
     },
     gender: {
-        type:String,
-        required:true
+        type:String, 
     },
     learningGoal: {
-        type:String,
-        required:true
+        type:String, 
     },
     location: {
-        type:String,
-        required:true
+        type:String, 
     },
     aboutMe: {
-        type:String,
-        required:true,
+        type:String, 
         maxLength: 150
     }
 });

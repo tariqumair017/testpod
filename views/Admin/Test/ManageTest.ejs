@@ -2,8 +2,18 @@
 
 <!--Container Main start-->
 <div class="application bg-light">
-  <h3>Manage Quiz</h3>
-  <div class="cards row"> 
+  <div class="d-flex justify-content-between">
+    <h3>Manage Quiz</h3> 
+    <div class="col-md-3 position-relative"> 
+      <select class="form-select" id="search">
+        <option hidden>Search State</option>
+        <option value="All">All</option>  
+        <option value="new-jersey">New-Jersey</option>  
+        <option value="new-york">New-York</option>   
+      </select>
+    </div>
+  </div>
+  <div id="testCards" class="cards row"> 
     <% data?.forEach(single => { %> 
     <div class="col-xl-4 col-md-6 mb-4">
       <div class="card dashboard-card border-bottom-success h-100">
@@ -50,4 +60,58 @@
         });
     } 
   }  
+
+ 
+  var allData = <%-JSON.stringify(data)%>; 
+  window.onload = testAppendData(allData);
+
+  document.getElementById("search").addEventListener("change", async (event) => { 
+    if(event.target.value == 'All')
+    {
+      testAppendData(allData);
+    }
+    else
+    {
+      const response = await fetch(`/admin/test/search/${event.target.value}`);
+      const data = await response.json(); 
+      if(data)
+      {
+        testAppendData(data);
+      } 
+    } 
+  }); 
+
+
+  function testAppendData(data)
+  {
+    var _html = ''; 
+    data.forEach(single => {  
+      _html += `<div class="col-xl-4 col-md-6 mb-4">`;
+      _html += `<div class="card dashboard-card border-bottom-success shadow h-100 py-2">`;
+      _html += `<div class="card-body">`;
+      _html += `<div class="row no-gutters">`;
+      _html += `<div class="col mr-2">`;
+      _html += `<div class="card-title text-xs font-weight-bold text-uppercase">`;
+      _html += `<li>${single.quizName}</li> `;
+      _html += `<li class="manage-state-name">`;
+      _html += `<b>${single.stateName}</b>`;
+      _html += `</li> `;
+      _html += `</div>`;
+      _html += `<div class="manage-action-btn" >`;
+      _html += `<div class="dashboard-total-rating">${single.questions.length}</div>`;
+      _html += `<span>`;
+      _html += `<a href="/admin/test/manage/${single._id}/all-quizzes" style="margin-right: 10px;"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>`;
+      _html += `<a onclick="deleteQuiz('${single._id}')"><i class="manage-delete-btn fa-solid fa-trash"></i></a>`;
+      _html += `</span>`;
+      _html += `</div>`;
+      _html += `</div>`;
+      _html += `</div>`;
+      _html += `</div>`;
+      _html += `</div>`;
+      _html += `</div>`; 
+    }); 
+
+    document.getElementById("testCards").innerHTML = _html; 
+  }
+
 </script>

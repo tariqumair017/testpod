@@ -14,6 +14,7 @@ import helmet from "helmet";
 import { fileURLToPath } from "url";  
 import methodOverride from "method-override";  
 import Admin from "./models/admin.js";
+import User from "./models/user.js";
 const app = express(); 
  
 
@@ -37,8 +38,9 @@ import ClientDrawFlagGameRoutes from "./routes/client/drawFlagGame.js";
 import ClientGuessFlagGameRoutes from './routes/client/guessFlagGame.js';
 import ClientFlagDetectiveGameRoutes from './routes/client/flagDetectiveGame.js';
 import ClientLearnFlagGameRoutes from './routes/client/learnFlagGame.js';
-import ClientFlagPuzzleGameRoutes from './routes/client/flagPuzzleGame.js'
-import ClientFlagQuestGameRoutes from './routes/client/flagQuestGame.js'
+import ClientFlagPuzzleGameRoutes from './routes/client/flagPuzzleGame.js';
+import ClientFlagQuestGameRoutes from './routes/client/flagQuestGame.js';
+import UserManagementRoutes from "./routes/client/userManagement.js";
 
 
 //Database Connection
@@ -68,12 +70,26 @@ app.use(session({
     // }
 }));
 
-//Authentication For Admin 
 app.use(passport.initialize());
 app.use(passport.session());
+//Authentication For Admin 
 passport.use("admin", new LocalStrategy(Admin.authenticate()));
-passport.serializeUser(Admin.serializeUser());
-passport.deserializeUser(Admin.deserializeUser());
+// passport.serializeUser(Admin.serializeUser());
+// passport.deserializeUser(Admin.deserializeUser());
+//Authentication For User 
+passport.use("user", new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) {
+    process.nextTick(function() {
+        done(null, user);
+    });
+});  
+passport.deserializeUser(function(user, done) {
+    process.nextTick(function() {
+      return done(null, user);
+    });
+});
 
 
 // Server cache clear
@@ -113,7 +129,8 @@ app.use(ClientGuessFlagGameRoutes);
 app.use(ClientFlagDetectiveGameRoutes);
 app.use(ClientLearnFlagGameRoutes);
 app.use(ClientFlagPuzzleGameRoutes);
-app.use(ClientFlagQuestGameRoutes)
+app.use(ClientFlagQuestGameRoutes);
+app.use(UserManagementRoutes);
 
 
 app.all('*', (req, res, next) => {
