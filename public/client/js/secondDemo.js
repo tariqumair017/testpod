@@ -147,7 +147,7 @@ function showQuetions(index) {
   let detail = questions[index].hint;
 
   if (questions[index].questionImg) {
-    let option_images = `<img class="quiz-image-optional" src="/upload-images/${questions[index].questionImg}"}" />`;
+    let option_images = `<img class="quiz-image-optional" src="${questions[index].questionImg}"}" />`;
     quiz_image.innerHTML = option_images;
   }
 

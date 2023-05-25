@@ -1,172 +1,194 @@
-<% layout('Client/layouts/boilerPlate') -%>
+<% layout('Client/layouts/gameBoilerPlate') -%>
+  <%-include('../partials/gameHeader')%>
 
-<main>
-  <!-- breadcrumb-area -->
-  <section
-    class="breadcrumb-area d-flex align-items-center"
-    style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png)"
-  >
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-xl-12 col-lg-12">
-          <div class="breadcrumb-wrap text-left">
-            <div class="breadcrumb-title">
-              <h2>Guess Country Game</h2>
-              <div class="breadcrumb-wrap">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:(0)"><%=data.region%></a></li> 
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Can You Match Flag With Its Country?
-                    </li>
-                  </ol>
-                </nav>
+    <main>
+      <!-- breadcrumb-area -->
+      <!-- <section class="breadcrumb-area d-flex align-items-center"
+      style="background-image: url(https://testpod-bucket.s3.amazonaws.com/pages/test-bg.png)">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-12 col-lg-12">
+            <div class="breadcrumb-wrap text-left">
+              <div class="breadcrumb-title">
+                <h2>Guess Country Game</h2>
+                <div class="breadcrumb-wrap">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/">Home</a></li>
+                      <li class="breadcrumb-item"><a href="javascript:(0)">
+                          <%=data.region%>
+                        </a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Can You Match Flag With Its Country?
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section> -->
+      <!-- <div class="all-quiz-upper-section">
+  <div class="all-quiz-upper-section-header">
+    <h6><%=data.region%> Flags Game</h6> 
+  </div>
+  <div class="all-quiz-upper-section-inner">
+    <div class="all-quiz-upper-section-part-left">
+      <h4><%=data.region%></h4>
+      <p class="guess-country-flags-details">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum laudantium facere exercitationem fugiat nam labore necessitatibus, deleniti sunt, dolor consequuntur ea ullam? Dicta aliquid, aperiam enim veritatis necessitatibus expedita ipsa.
+      </p>
     </div>
-  </section>
+  </div>
+</div> -->
 
-  <section class="all-quiz">
-    <div class="all-quiz-upper-section">
-      <div class="all-quiz-upper-section-header">
-        <h6><%=data.region%> Flags Game</h6> 
-      </div>
-      <div class="all-quiz-upper-section-inner">
-        <div class="all-quiz-upper-section-part-left">
-          <h4><%=data.region%></h4>
-          <p class="guess-country-flags-details">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum laudantium facere exercitationem fugiat nam labore necessitatibus, deleniti sunt, dolor consequuntur ea ullam? Dicta aliquid, aperiam enim veritatis necessitatibus expedita ipsa.
-          </p>
-        </div>
-      </div>
-    </div>
+      <section class="guess-country-main">
+        <div class="guess-country-inner">
+          <div id="hello" class="main-guess-country-game">
+            <div class="all-quiz-left-part" style="width: 70%; border-radius: 0%;">
+              <div class="questions-box" style=" background-image: url(/client/img/bg/bg.svg);
+              background-repeat: no-repeat;
+              background-size: cover;
+                background-color: #ffffff;
+              height: fit-content;">
+                <div class="flag-quest-game-header">
+                  <span class="flag-detective-score-card questions_total_score wow animate__fadeInLeft"
+                    data-wow-delay="0.2s" style="font-size: larger; font-weight: 700">
+                    Score : 01
+                  </span>
+                  <div class="wow animate__fadeInRight" data-wow-delay="0.2s"
+                    style="display: flex; gap: 5px; flex-wrap: wrap">
+                    <span class="flag-detective-music-on d-none flag-detective-sound ">
+                      <img src="/client/img/bg/volume_up_white_24dp.svg" />
+                    </span>
+                    <span class="flag-detective-music-off flag-detective-sound">
+                      <img src="/client/img/bg/volume_off_white_24dp.svg" />
+                    </span>
+                    <a href="/guess-country/regions" class="flag-detective-score-card">
+                      <i class="fa-solid fa-xmark" style="color: #ffffff; font-size: larger"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="align-items-center">
+                  <div class="quiz-image">
+                    <div class="que_text" style="display: flex;justify-content: center;">
+                      <div class="loading-skeleton"></div>
+                    </div>
 
-    <div id="hello" class="all-quizzes">
-      <div  class="all-quiz-left-part">
-        <div class="questions-box">
-          <div class="align-items-center">
-            <div class="quiz-image">
-              <div class="que_text">
-            <div class="loading-skeleton"></div>
-              </div>
-              
-            </div>
-            <input class="focus-input" style="width: 0.1px;height: 0.1px;"/>
+                  </div>
+                  <input class="focus-input" style="width: 0.1px;height: 0.1px;" />
 
-            <div style="margin-top: 10px">
-              <div class="option_list">
-            <div class="loading-skeleton-inputs"></div>
-            <div class="loading-skeleton-inputs"></div>
-            <div class="loading-skeleton-inputs"></div>
-
-              </div>
-            </div>
-            <div style="width: 100%">
-              <div
-                class="time_line"
-                style="
+                  <div style="margin-top: 10px">
+                    <div class="option_list">
+                    </div>
+                  </div>
+                  <div style="width: 100%">
+                    <div class="time_line" style="
                   background: #eb2d00;
                   height: 7px;
                   border-radius: 50px;
                   transition: all 0.2s;
-                "
-              ></div>
-            </div>
-          </div>
-          <div class="row justify-content-center align-items-center">
-            <div class="col-md-6 text-center">
-              <button
-                class="btn btn ss-btn next_btn d-none"
-                style="width: 200px"
-              >
-                Next Question ➜
-              </button>
+                "></div>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-6 text-center">
+                    <button class="btn btn ss-btn next_btn d-none" style="width: 200px">
+                      Next Question ➜
+                    </button>
 
-              <button
-              class="btn btn-danger result_btn d-none"
-              style="width: 200px; margin-top: 10px"
-              >
-                Show Result
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="result_box d-none">
-          <canvas
-            id="myChart"
-            style="
+                    <button class="btn btn-danger result_btn d-none" style="width: 200px; margin-top: 10px">
+                      Show Result
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="result_box d-none">
+                <canvas id="myChart" style="
               width: 100%;
               display: block;
               border: 2px solid #ccc;
               border-radius: 5px;
               box-shadow: 2px 2px 5px #ccc;
               padding: 15px;
-            "
-          ></canvas>
-          <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-            <% if (data.level == 0) { %>
-              <a href="/guess-country/<%=data.region.toLowerCase()%>/easy" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-            <% } else if(data.level == 1) { %>
-              <a href="/guess-country/<%=data.region.toLowerCase()%>/normal" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-            <% } else if(data.level == 2) { %>
-              <a href="/guess-country/<%=data.region.toLowerCase()%>/hard" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-            <% } else if(data.level == 3) { %>
-              <a href="/guess-country/<%=data.region.toLowerCase()%>/extreme" target="_self" ><button class="btn ss-btn"><i class="fa-solid fa-rotate-right" style="margin-right: 10px;"></i>ReTake</button></a>
-            <% } %>
-            <button id="nextLevel" class="btn ss-btn" >Next Level</button>
-          </div>
-        </div>
-      </div>
-      <div class="all-quiz-right-part">
-        <div class="all-quiz-progress">
-          <div class="progress-timer">
-            <span
-              class="total_que"
-              style="font-size: 30px; font-weight: bold"
-            ></span>
-            <span
-              class="time_up d-none"
-              style="font-size: 30px; font-weight: bold;color:#A8171A"
-            >Completed</span>
-            <h2
-              id="testDuration"
-              style="font-size: 30px; font-weight: bold; color: #A8171A"
-            >
-              --
-            </h2>
-          </div>
-          <div class="all-quiz-upper-section-part-right">
-            <div class="all-quiz-upper-section-scorus-card">
-              <p>Question</p> 
-              <h5 id="total-questions"></h5>
+            "></canvas>
+                <div style="display: flex;justify-content: space-between;margin-top: 20px;">
+                  <% if (data.level==0) { %>
+                    <a href="/guess-country/<%=data.region.toLowerCase()%>/easy" target="_self"><button
+                        class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                          style="margin-right: 10px;"></i>ReTake</button></a>
+                    <% } else if(data.level==1) { %>
+                      <a href="/guess-country/<%=data.region.toLowerCase()%>/normal" target="_self"><button
+                          class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                            style="margin-right: 10px;"></i>ReTake</button></a>
+                      <% } else if(data.level==2) { %>
+                        <a href="/guess-country/<%=data.region.toLowerCase()%>/hard" target="_self"><button
+                            class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                              style="margin-right: 10px;"></i>ReTake</button></a>
+                        <% } else if(data.level==3) { %>
+                          <a href="/guess-country/<%=data.region.toLowerCase()%>/extreme" target="_self"><button
+                              class="btn ss-btn"><i class="fa-solid fa-rotate-right"
+                                style="margin-right: 10px;"></i>ReTake</button></a>
+                          <% } %>
+                            <button id="nextLevel" class="btn ss-btn">Next Level</button>
+                </div>
+              </div>
             </div>
-            <div class="all-quiz-upper-section-scorus-card">
+          </div>
+           <div class="mobile-side-view" style="background-image: url(/client/img/maps/Group1.svg);
+           background-repeat: no-repeat;
+           background-size: cover;
+           width: 15%;
+           border-radius: 0px;
+           ">
+            <div class="flag-detective-game-right-part">
+              <div class="all-quiz-progress" style="width: 100%; position: static">
+                <div class="flag-detective-game-timer">
+                  <div class="loading-skeleton-timer"></div>
+                </div>
+                <!-- <h5>Your Progress</h5> -->
+                <div class="flag-detective-game-scorus-card">
+                  <p>Flags</p>
+                  <h5 class="detective-total-questions">05</h5>
+                </div>
+                <!-- <div class="flag-detective-game-scorus-card">
               <p>Correct</p>
-              <h5 id="total-correct">--</h5>
-            </div>
-            <div class="all-quiz-upper-section-scorus-card">
-              <p>In-Correct</p>
-              <h5 id="total-in-correct">--</h5>
+              <h5 class="detective-total-correct">--</h5>
+            </div> -->
+                <div class="flag-detective-game-scorus-card">
+                  <p>In-Correct</p>
+                  <h5 class="detective-total-in-correct">--</h5>
+                </div>
+                <div class="flag-detective-game-hint">
+                  <!-- <div class="detective-icon"> -->
+                  <div class="example-popover" title="Hint">
+                    <i class="fa-solid fa-lightbulb fa-2xl info-btn" style="cursor: pointer;color: #8C0000;"
+                      title="Hint"></i>
+                    <div hidden>
+                      <p id="mypopover-content"></p>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                </div>
+                <div class="flag-detective-game-scorus-card">
+                  <div class="detective-icon">
+                    <i class="fa-solid fa-signal fa-2xl" style="color: #ffffff"></i>
+                  </div>
+                  <h5 class="detective-level"></h5>
+                </div>
+              </div>
             </div>
           </div>
-          <h5 style="margin-top: 20px;margin-bottom: -3%;">Hint</h5>
-          <div class="your-progress">
         </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+      </section>
+    </main>
 
-<script>
-    var region = '<%=data.region%>';
-    var currenLevel = '<%=data.level%>';
-    var _id = '<%=data._id%>';
-</script>
-<script src="/client/js/select-country.js"></script>
-<script src="/client/js/about.js"></script>
-
+    <script>
+      var region = '<%=data.region%>';
+      var currenLevel = '<%=data.level%>';
+      var _id = '<%=data._id%>';
+    </script>
+    <script src="/client/js/select-country.js"></script>
+    <script src="/client/js/about.js"></script>

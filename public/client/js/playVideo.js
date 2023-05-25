@@ -1,12 +1,19 @@
 const play_video = document.getElementById("play-video")
 
-const vid = document.querySelector(".about-video");
+play_video.classList.add("d-none")
 
-play_video.onclick=()=>{
-    document.querySelector(".video-i").classList.add("d-none")
-    vid.play()
-  }
+setTimeout(()=>{
+  play_video.classList.remove("d-none")
+},2000)
 
-  vid.onclick=()=>{
-    document.querySelector(".video-i").classList.toggle("d-none")
-  }
+// const vid = document.querySelector(".about-video");
+
+
+// play_video.onclick=()=>{
+//     document.querySelector(".video-i").classList.add("d-none")
+//     vid.play()
+//   }
+
+//   vid.onclick=()=>{
+//     document.querySelector(".video-i").classList.toggle("d-none")
+//   }

@@ -63,8 +63,6 @@ let userWrongScore = 0;
 
 let total_inputs = [];
 
-
-
 var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
   container: 'body',
   html: true,
@@ -72,6 +70,8 @@ var popover = new bootstrap.Popover(document.querySelector('.example-popover'), 
   delay: { show: 0, hide: 100 },
   content: document.getElementById('mypopover-content'),
 })
+
+
 
 var flagDetective;
 

@@ -128,7 +128,7 @@ function nextQuestions(question_counter) {
 
     quest_question_name.innerHTML = "Flag of " + questions[question_counter].country
 
-    debugger
+    
   var option_1 =
     '<input class="customRadio" ans="correct" type="radio" name=q' +
     questions[question_counter].numb +

@@ -47,7 +47,7 @@
     <div class="row quiz-card">
       <% let count = 0 %>
       <%data.forEach(value => { count > 3 ? count=1 : count++%> 
-      <a href="/dmv-test/<%=value%>" class="card quiz-card-item col-md-3 wow animate__fadeInLeft" data-wow-delay="<%=count*.2%>s" style="width: 17rem; padding: 0%">
+      <a href="/dmv-test/<%=value%>" class="state-card quiz-card-item col-md-3 wow animate__fadeInLeft" data-wow-delay="<%=count*.2%>s" style="width: 17rem; padding: 0%">
           <% if(value == "new-york") {%>
             <img src="https://testpod-bucket.s3.amazonaws.com/pages/new-york-city.jpg" class="card-img-top card-img" alt="..." />
           <% } else if(value == "new-jersey") {%>
