@@ -23,17 +23,21 @@
           </div>
           <p class="flag-quest-box-left-name slide-right quest_question_name"></p>
           <div class="flag-quest-flags guess-check">
-            <div class="option-one">
-              <div class="loading-skeleton"></div>
+            <div class="flag-quest-pair">
+              <div class="option-one">
+                <div class="loading-skeleton"></div>
+              </div>
+              <div class="option-two">
+                <div class="loading-skeleton"></div>
+              </div>
             </div>
-            <div class="option-two">
-              <div class="loading-skeleton"></div>
-            </div>
-            <div class="option-three">
-              <div class="loading-skeleton"></div>
-            </div>
-            <div class="option-four">
-              <div class="loading-skeleton"></div>
+            <div class="flag-quest-pair">
+              <div class="option-three">
+                <div class="loading-skeleton"></div>
+              </div>
+              <div class="option-four">
+                <div class="loading-skeleton"></div>
+              </div>
             </div>
             <div class="flag-quest-timer">
               <div class="flag-detective-game-timer">
@@ -134,7 +138,7 @@
     </section>
 
     <script>
-      var data = <%-JSON.stringify(data) %>;
+      var data = <%-JSON.stringify(data)%>;
       var currentLevel = '<%=data.level%>'; 
     </script>
     <script src="/client/js/flagQueastGame.js"></script>

@@ -8806,6 +8806,10 @@ label {
 .quiz-image {
   border-radius: 10px;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .progress-timer {
@@ -8830,12 +8834,13 @@ label {
 }
 
 .with-image-quiz {
-  display: flex;
+  /* display: flex; */
+  gap: 10px;
 }
 
 .quiz-image-optional {
-  width: 170px;
-  padding-right: 20px;
+  width: 200px;
+  height: 200px;
 }
 
 @media screen and (max-width:700px) {
@@ -12750,11 +12755,17 @@ footer .more_test:hover {
 .flag-quest-flags {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
   gap: 60px;
   padding: 20px;
   position: relative;
+}
+
+.flag-quest-pair{
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
 }
 
 
@@ -13533,8 +13544,9 @@ footer .more_test:hover {
   .mobile-side-view {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100% !important;
     margin-bottom: 50px;
+    margin-right: 10px;
   }
 
   .base-timer {
@@ -13579,6 +13591,30 @@ footer .more_test:hover {
 
 .guess-country-inner{
   display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width:700px) {
+  .guess-country-inner{
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+  }
+
+.main-guess-country-game{
+  width: 100% !important;
+  padding: 0px !important;
+}  
+.all-quiz-left-part{
+  width: 100% !important;
+  gap: 20px !important;
+}
+
+.questions-box{
+  gap: 10px !important;
+}
+  
 }
 
 .all-quiz-upper-section {
@@ -13604,7 +13640,7 @@ footer .more_test:hover {
 .questions-box {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .questions-box.disable {
@@ -16600,6 +16636,7 @@ section:hover .section-title h2::before {
 
 .second-demo {
   display: flex;
+  height: 100vh;
 }
 
 .soundbtn {
@@ -16760,6 +16797,9 @@ section:hover .section-title h2::before {
   width: 90%;
   line-height: 40px;
   letter-spacing: normal;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .demo-header-img {
@@ -16779,14 +16819,16 @@ section:hover .section-title h2::before {
   margin-top: 15px;
 }
 
-.extra {
+/* .extra {
   margin-top: 100.5px;
-}
+} */
 
 .demo-question-box {
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
+  overflow-y:auto;
+  height: 80vh;
 }
 
 .second-header-logo {
@@ -16825,6 +16867,7 @@ section:hover .section-title h2::before {
 @media screen and (max-width:700px) {
   .second-demo {
     flex-direction: column;
+    height: auto !important;
   }
 
   .second-demo-quiz {

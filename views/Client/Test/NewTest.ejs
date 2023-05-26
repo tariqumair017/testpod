@@ -1,110 +1,121 @@
 <% layout('Client/layouts/gameBoilerPlate') -%>
+  <div class="second-demo">
+    <div class="second-demo-img">
+      <div onclick="location='/'" class="demo-header-img">
+        <img style="cursor: pointer;" src="https://testpod-bucket.s3.amazonaws.com/pages/logo1.svg" width="50%"
+          alt="" />
+        <div class="search-top2 demo-header-logo" style="padding: 20px;display: flex;justify-content: end;">
+          <ul>
+            <li style="background-color: #A8171A; border-radius: 5px">
+              <a href="javascript:(0)" class="menu-tigger"><img
+                  src="https://testpod-bucket.s3.amazonaws.com/pages/menu.png" alt="logo" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="second-demo-container-left">
+        <div class="state-and-test">
+          <!-- <h5 style="margin: 0px;font-size: large;font-weight: 900;color: #ffffff;"><%=data.quizName.toUpperCase() %></h5> -->
+          <h5 style="margin: 0px;font-size: small;letter-spacing: 5px;color: #ffffff;margin-top: 5px;font-weight: 400;">
+            <%=data.stateName.toUpperCase()%>
+          </h5>
 
-    <div class="second-demo">
-        <div class="second-demo-img">
-            <div onclick="location='/'" class="demo-header-img">
-                <img style="cursor: pointer;" src="https://testpod-bucket.s3.amazonaws.com/pages/logo1.svg" width="50%" alt=""/>
-                <div class="search-top2 demo-header-logo" style="padding: 20px;display: flex;justify-content: end;">
-                  <ul>
-                    <li style="background-color: #A8171A; border-radius: 5px">
-                      <a
-                        href="javascript:(0)"
-                        class="menu-tigger"
-                        ><img src="https://testpod-bucket.s3.amazonaws.com/pages/menu.png" alt="logo"
-                      /></a>
-                    </li>
-                  </ul>
+        </div>
+        <div class="second-demo-right-part">
+          <div class="all-quiz-progress">
+            <div class="demo-all-quiz-upper-section-part-right">
+              <h4>Your Progress</h4>
+              <div class="demo-result-box">
+                <div class="demo-all-quiz-upper-section-scorus-card">
+                  <h6 style="margin: 0px; font-size:large" id="demo-total-correct">--</h6>
+                  <span class="badge"
+                    style="background-color: #1DCF71;border-radius: 5px;font-size:large">Correct</span>
                 </div>
-            </div>
-            <div class="second-demo-container-left">
-              <div class="state-and-test">
-                <!-- <h5 style="margin: 0px;font-size: large;font-weight: 900;color: #ffffff;"><%=data.quizName.toUpperCase() %></h5> -->
-                <h5 style="margin: 0px;font-size: small;letter-spacing: 5px;color: #ffffff;margin-top: 5px;font-weight: 400;"><%=data.stateName.toUpperCase()%></h5>
-
-              </div>
-                <div class="second-demo-right-part">
-                    <div class="all-quiz-progress">
-                        <div class="demo-all-quiz-upper-section-part-right">
-                            <h4>Your Progress</h4>
-                            <div class="demo-result-box">
-                                <div class="demo-all-quiz-upper-section-scorus-card">
-                                    <h6 style="margin: 0px; font-size:large" id="demo-total-correct">--</h6>
-                                    <span class="badge" style="background-color: #1DCF71;border-radius: 5px;font-size:large">Correct</span>
-                                </div>
-                                <!-- <div>
+                <!-- <div>
                                     <span class="demo-passing-score" >(08 Allowed To Pass)</span>
                                 </div> -->
-                                <div class="demo-all-quiz-upper-section-scorus-card">
-                                    <h6 style="margin: 0px;font-size:large" id="demo-total-in-correct">--</h6>
-                                    <span class="badge" style="background-color: #A8171A;border-radius: 5px;font-size:large">Incorrect</span>
-                                </div>
-                            </div>
-                            <div>
-                              <h5>Questions</h5>
-                                <div class="number-questions" ></div>
-                            </div>
-                      </div>
-                      <div class="demo-hint d-none">
-                      <h5  style="margin: 0px;padding:0px">Details</h5>
-                      <img class="soundDetailbtn d-none" src="https://testpod-bucket.s3.amazonaws.com/pages/volume_up_white_24dp.svg" />
-                      <img class="cancelDetail" src="https://testpod-bucket.s3.amazonaws.com/pages/volume_off_white_24dp.svg" />
-                    </div>
-                      <p class="demo-your-quiz-progress-detail d-none"></p>
-                    </div>
-                    </div>
-                    </div>
-        </div>
-        <div class="second-demo-quiz">
-            <div class="second-demo-container">
-              <div class="second-header-logo">
-                <ul>
-                  <li style="background-color: #A8171A; border-radius: 5px">
-                    <a
-                      href="javascript:(0)"
-                      class="menu-tigger"
-                      ><img src="https://testpod-bucket.s3.amazonaws.com/pages/menu.png" alt="logo"
-                    /></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="demo-question-box">
-              <div class="que_text mb-3 second-demo-question"></div>
-                <div  class="second-demo-left-part">
-                    <div class="second-demo-questions-box">
-                  <div class="with-image-quiz">
-                    <div class="quiz-image">
-                    </div>
-                    <div style="margin-top: 10px;width: 100%;">
-                      <div class="second-demo-option-list"></div>
-                    </div>
-                    <input class="focus-input" style="width: 0.1px;height: 0.1px;"/>
-                  </div>
-                  <div class="row justify-content-center align-items-center">
-                    <div class="col-md-6 text-center">
-                      <button
-                        class="btn btn ss-btn next_btn d-none"
-                        style="width: 200px;margin-top: 15px;"
-                        >
-                        Next Question ➜
-                      </button>
-                    </div>
-                  </div>
-                  <div class="extra" ></div>
+                <div class="demo-all-quiz-upper-section-scorus-card">
+                  <h6 style="margin: 0px;font-size:large" id="demo-total-in-correct">--</h6>
+                  <span class="badge"
+                    style="background-color: #A8171A;border-radius: 5px;font-size:large">Incorrect</span>
                 </div>
               </div>
+              <div>
+                <h5>Questions</h5>
+                <div class="number-questions"></div>
               </div>
             </div>
+            <div class="demo-hint d-none">
+              <h5 style="margin: 0px;padding:0px">Details</h5>
+              <img class="soundDetailbtn d-none"
+                src="https://testpod-bucket.s3.amazonaws.com/pages/volume_up_white_24dp.svg" />
+              <img class="cancelDetail" src="https://testpod-bucket.s3.amazonaws.com/pages/volume_off_white_24dp.svg" />
+            </div>
+            <p class="demo-your-quiz-progress-detail d-none"></p>
+          </div>
         </div>
-        </div>
-        <!-- <input id="data-question"  style="display: none;" /> -->
+      </div>
     </div>
-    <!-- script tags -->
+    <div class="second-demo-quiz">
+      <div class="second-demo-container">
+        <div class="second-header-logo">
+          <ul>
+            <li style="background-color: #A8171A; border-radius: 5px">
+              <a href="javascript:(0)" class="menu-tigger"><img
+                  src="https://testpod-bucket.s3.amazonaws.com/pages/menu.png" alt="logo" /></a>
+            </li>
+          </ul>
+        </div>
+        <div class="demo-question-box">
+          <div class="que_text mb-3 second-demo-question"></div>
+          <div class="second-demo-left-part">
+            <div class="second-demo-questions-box">
+              <div class="with-image-quiz">
+                <div class="quiz-image">
+                </div>
+                <div style="margin-top: 10px;width: 100%;">
+                  <div class="second-demo-option-list"></div>
+                </div>
+              </div>
+              <div class="row justify-content-center align-items-center">
+                <div class="col-md-6 text-center">
+                  <button class="btn btn ss-btn next_btn d-none" style="width: 200px;margin-top: 15px;">
+                    Next Question ➜
+                  </button>
+                  <button class="btn btn-danger result_btn d-none" style="width: 200px; margin-top: 10px">
+                    Show Result
+                  </button>
+                </div>
+              </div>
+              <div class="extra"></div>
+            </div>
+          </div>
+        </div>
+        <div class="result_box d-none" style="display: flex;justify-content: center; align-items: center;height: 85vh;">
+        <div style="height: 400px; width: 80%;">
+          <canvas id="myChart" style="
+        background-color: #ffffff;
+        border-radius: 5px;
+        width:80%;
+        height:300px;
+        padding: 15px;
+        background-image: url(/client/img/bg/bg.svg);
+              background-repeat: no-repeat;
+              background-size: cover;
+      "></canvas>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- <input id="data-question"  style="display: none;" /> -->
+  </div>
+  <!-- script tags -->
 
-    <!-- Menu Slide bar -->
+  <!-- Menu Slide bar -->
 
-<!-- offcanvas-area -->
-<div id="offcanvas-menu">
-  <span id="menu-close" ><i class="fas fa-times"></i></span>
+  <!-- offcanvas-area -->
+  <div id="offcanvas-menu">
+    <span id="menu-close"><i class="fas fa-times"></i></span>
     <div id="cssmenu3" class="menu-one-page-menu-container">
       <ul id="menu-one-page-menu-2" class="menu">
         <li class="menu-item menu-item-type-custom menu-item-object-custom">
@@ -125,15 +136,15 @@
         </li>
       </ul>
     </div>
-</div>
-<div class="offcanvas-overly"></div>
-<!-- offcanvas-end -->
-<!-- Menu Slide bar -->
+  </div>
+  <div class="offcanvas-overly"></div>
+  <!-- offcanvas-end -->
+  <!-- Menu Slide bar -->
 
 
 
-    <!-- Script -->
-    <script>
-      var data = <%-JSON.stringify(data)%>;
-    </script>
-    <script src="/client/js/secondDemo.js"></script>
+  <!-- Script -->
+  <script>
+    var data = <%-JSON.stringify(data)%>;
+  </script>
+  <script src="/client/js/secondDemo.js"></script>

@@ -36,43 +36,43 @@ router.get("/", asyncHandler(async (req, res, next) => {
             name:"Guess Country",
             detail:"Can You Match Flag With Its Country?",
             path:"guessCountry",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         {
             name:"Draw Flags",
             detail:"Can You Draw Flag With Its Country?",
             path:"drawFlag",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         {
             name:"Guess Flags",
             detail:"Can You Match Country With Its Flags?",
             path:"guessFlag",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         {
             name:"Flags Puzzle",
             detail:"Can You Solve The Puzzle of Flags?",
             path:"flagPuzzle",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         {
             name:"Learn About Flags",
             detail:"Click On Flags To Learn About Them?",
             path:"learnAboutFlag",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         {
             name:"Guess Country",
             detail:"Can You Match Flag With Its Country?",
             path:"guessCountry",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         {
             name:"Guess Country",
             detail:"Can You Match Flag With Its Country?",
             path:"guessCountry",
-            image:"/client/img/pngs/5.png"
+            image:"https://testpod-bucket.s3.amazonaws.com/pages/banner.png"
         },
         
     ]

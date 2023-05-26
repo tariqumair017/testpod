@@ -39,7 +39,7 @@ const your_quiz_progress_detail = document.querySelector(
 
 const number_questions = document.querySelector(".number-questions");
 
-const focus_question = document.querySelector(".focus-input");
+const demo_question_box = document.querySelector(".demo-question-box")
 
 const demo_hint = document.querySelector(".demo-hint");
 
@@ -138,9 +138,8 @@ function numberOfQuestions() {
 
 function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
-  let que_tag = `<div><div class="demoQuestion slide-left">${
-    questions[index].numb < 11 ? "0" + que_numb : que_numb
-  }.  ${questions[index].question}</div>
+  let que_tag = `<div><div class="demoQuestion slide-left">${questions[index].numb < 11 ? "0" + que_numb : que_numb
+    }.  ${questions[index].question}</div>
   <img class="cancelSoundBtn" src="/client/img/bg/volume_off_white_24dp.svg" /><img class="soundbtn d-none" src="/client/img/bg/volume_up_white_24dp.svg" /></div>
   `;
 
@@ -186,18 +185,18 @@ function showQuetions(index) {
   cancel.onclick = () => {
     convertText2Speech(
       questions[index].question +
-        "  option A" +
-        "  " +
-        questions[index].options[0] +
-        "  option b" +  
-        "  " +
-        questions[index].options[1] +
-        "  option c" +
-        "  " +
-        questions[index].options[2] +
-        "  option d" +
-        "  " +
-        questions[index].options[3]
+      "  option A" +
+      "  " +
+      questions[index].options[0] +
+      "  option b" +
+      "  " +
+      questions[index].options[1] +
+      "  option c" +
+      "  " +
+      questions[index].options[2] +
+      "  option d" +
+      "  " +
+      questions[index].options[3]
     );
     cancel.classList.add("d-none");
     sound_on.classList.remove("d-none");
@@ -226,9 +225,6 @@ function showQuetions(index) {
     cancelDetail.classList.remove("d-none");
     soundDetailbtn.classList.add("d-none");
   };
-
-  window.addEventListener("load", focus_question.focus());
-  focus_question.classList.add("d-none");
 }
 
 // if Next Que button clicked
@@ -288,8 +284,17 @@ function optionSelected(answer) {
     demo_hint.classList.add("d-none");
     your_quiz_progress_detail.classList.add("d-none");
   }
+  if (questions[que_count]?.hint) {- 
+    demo_hint.classList.remove("d-none")
+    your_quiz_progress_detail.classList.remove("d-none")
+   } else {
+     demo_hint.classList.add("d-none")
+    your_quiz_progress_detail.classList.add("d-none")
+     }
   if (que_numb === questions.length) {
     disableOptions();
+    next_btn.classList.add("d-none")
+    result_btn.classList.remove("d-none");;
   }
 
 
@@ -333,6 +338,10 @@ function optionSelected(answer) {
     answer.insertAdjacentHTML("beforeend", crossIconTag);
     callCorrectOption();
     next_btn.classList.remove("d-none");
+    if (que_numb === questions.length) {
+     next_btn.classList.add("d-none")
+      result_btn.classList.remove("d-none");;
+    }
 
     //auto select correct option
   }
@@ -362,12 +371,7 @@ function callCorrectOption() {
       option_list.children[i].firstChild.classList.add("option-number-correct");
       option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
     }
-  }
-
-  if (que_numb === questions.length) {
-    result_btn.classList.remove("d-none");
-  } else {
-  }
+  }  
   const sound_on = document.querySelector(".soundbtn");
 
   disableOptions();
@@ -382,23 +386,110 @@ function disableOptions() {
   }
 }
 
-  function convertText2Speech(x) {
-    speech.text = x;
-    speech.pitch = 1;
-    speech.volume = 1;
-    speech.lang = "en-US";
-    speech.rate = 0.5;
-    speechSynthesis.speak(speech);
-  }
 
-  function convertDetail2Speech(x) {
-    detailSpeech.text = x;
-    detailSpeech.pitch = 1;
-    detailSpeech.volume = 1;
-    detailSpeech.lang = "en-US";
-    detailSpeech.rate = 0.6;
-    speechSynthesis.speak(detailSpeech);
-  }
+
+
+
+// Result Box
+
+//show result box-shadow
+
+result_btn.onclick = async () => {
+
+  console.log("")
+  questions_box.classList.add("d-none");
+
+  demo_question_box.classList.add("d-none")
+
+  result_box.classList.remove("d-none");
+
+  result_btn.classList.add("d-none");
+
+  // flag_detective_score_card.innerHTML = questions.length - userScore
+
+  //Post Api  
+
+  var valRight = (userScore / questions.length) * 360;
+
+  var valWrong = 360 - valRight;
+
+
+  var xValues = ["Right", "Wrong"];
+
+  var yValues = [valRight, valWrong];
+
+  var barColors = ["#1DCF71", "#EA4A4A"];
+
+  new Chart("myChart", {
+    type: "pie",
+
+    data: {
+      labels: xValues,
+
+      datasets: [
+        {
+          backgroundColor: barColors,
+
+          data: yValues,
+        },
+      ],
+    },
+
+    options: {
+      title: {
+        display: true,
+
+        text: "You got " + userScore + " out of " + questions.length,
+      },
+    },
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function convertText2Speech(x) {
+  speech.text = x;
+  speech.pitch = 1;
+  speech.volume = 1;
+  speech.lang = "en-US";
+  speech.rate = 0.5;
+  speechSynthesis.speak(speech);
+}
+
+function convertDetail2Speech(x) {
+  detailSpeech.text = x;
+  detailSpeech.pitch = 1;
+  detailSpeech.volume = 1;
+  detailSpeech.lang = "en-US";
+  detailSpeech.rate = 0.6;
+  speechSynthesis.speak(detailSpeech);
+}
 
 
 function cancelSpeech() {

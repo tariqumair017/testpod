@@ -373,6 +373,8 @@ fetch(`/game/all/${region}/${currenLevel}`)
         if (timeLeft === 0) {
           onTimesUp(timerInterval);
           result_btn.click()
+          detective_total_in_correct.innerHTML = questions.length- userScore
+ 
         }
       }, 1000);
     }
@@ -520,7 +522,7 @@ async function optionSelected(answer) {
   if (userAns.replace(/\s/g, '').toLowerCase() === correcAns.replace(/\s/g, '').toLowerCase()) {
     userScore += 1; //upgrading score value with 1
 
-    flag_detective_score_card.innerHTML = userScore;
+    flag_detective_score_card.innerHTML =userScore < 10 ? "Score : 0" + userScore : "Score : " + userScore;;
 
     answer.classList.add("correct");
 
@@ -530,7 +532,6 @@ async function optionSelected(answer) {
 
     if (que_numb === questions.length) {
       result_btn.classList.remove("d-none");
-      // time_up.classList.add("d-none");
       next_btn.classList.add("d-none");
 
     } else {
