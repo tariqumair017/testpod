@@ -166,7 +166,7 @@ fetch(`/game/all/${region}/${currenLevel}`)
       }
     };
 
-    const TIME_LIMIT = questions.length * 1;
+    const TIME_LIMIT = questions.length * 30;
     let timePassed = 0;
     let timeLeft = TIME_LIMIT;
     let timerInterval = null;

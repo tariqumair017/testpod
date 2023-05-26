@@ -7,15 +7,11 @@ import GuessFlagGame from "../../models/guessFlagGame.js";
 import asyncHandler from "express-async-handler";  
 import middleware from "../../middleware/index.js";
 
-
-try {
+ 
   const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  });
-} catch (error) {
-  throw new Error(error.message);
-}
+  }); 
 
 
 //Admin: Distinct Region form All Flags Data
@@ -165,16 +161,16 @@ router.delete("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req
 //Admin: Show All Questions of Guess Flag Game
 router.get("/manage/:id/all-questions", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
-    const data = await GuessFlagGame.findById(req.params.id); 
-    if(!data)
-    {
-      req.flash("error", "Game not found");
-      return res.redirect("/admin/guess-flag-game/manage");
+      const data = await GuessFlagGame.findById(req.params.id); 
+      if(!data)
+      {
+        req.flash("error", "Game not found");
+        return res.redirect("/admin/guess-flag-game/manage");
+      }
+      res.render("Admin/GuessFlagGame/AllGuessFlagsGames", { data, title: "Manage-GuessFlagGame-Questions" }); 
+    } catch (error) {
+      return next(error.message);
     }
-    res.render("Admin/GuessFlagGame/AllGuessFlagsGames", { data, title: "Manage-GuessFlagGame-Questions" }); 
-  } catch (error) {
-    return next(error.message);
-  }
 }));
 
 //Admin - Edit Game Name

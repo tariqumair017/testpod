@@ -80,9 +80,9 @@
                     <%if(currentUser && !currentUser.admin){%>
                       <a class="user-avatar" href="javascript:(0)"><img class="header_img" src="/admin/img/profile.avif" alt=""/><%= currentUser.name %></a>
                       <ul style="right: 0px;min-width: 150px !important;" >
-                        <li><a href="/guess-country/regions">Profile</a></li>
-                        <li><a href="/draw-flags">Achievement</a></li>
-                        <li><a href="/guess-flag/regions">Settings</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/achievements">Achievement</a></li>
+                        <li><a href="/settings">Settings</a></li>
                         <li><a href="/logout">Logout</a></li>
                       </ul> 
                     <% } else if(currentUser && currentUser.admin){%>

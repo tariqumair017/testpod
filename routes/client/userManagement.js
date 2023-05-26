@@ -3,8 +3,9 @@ const router = Router();
 import User from "../../models/user.js";
 import passport from "passport"; 
 import asyncHandler from "express-async-handler";   
+import middleware from "../../middleware/index.js";
 import connectEnsureLogin from "connect-ensure-login";
- 
+
 
 // Sign Up 
 router.get("/sign-up", asyncHandler(async (req, res, next) => { 
@@ -47,6 +48,13 @@ router.post("/login", connectEnsureLogin.ensureLoggedOut("/"), passport.authenti
   }), (req, res) => {   
     res.redirect("/"); 
 });
+
+
+// Profile Page
+router.get("/profile", middleware.isUserLoggedin, asyncHandler(async (req, res, next) => {
+    res.render("Client/UserManagement/Profile");
+}));
+
 
 //Logput
 router.post('/logout', connectEnsureLogin.ensureLoggedIn("/"), function(req, res, next) {

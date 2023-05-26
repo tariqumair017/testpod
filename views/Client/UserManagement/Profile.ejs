@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+     <!-- CSS here --> 
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">    
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body>
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col">
+              <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item"><a href="/">Home</a></li> 
+                  <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+      
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <% if(currentUser.profileImg) { %> 
+                      <img src="<%= currentUser.profileImg %>" alt="img">
+                  <% } else { %>
+                    <img src="data:image/png;base64,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" alt="img">
+                   <% } %> 
+                  <h5 class="my-3"><%= currentUser.name %></h5>
+                  <p class="text-muted mb-1"><%= currentUser.aboutMe ? currentUser.aboutMe: 'About me is mising' %></p>
+                  <!-- <p class="text-muted mb-4"></p> -->
+                  <div class="d-flex justify-content-center m-3">  
+                    <button type="button" class="btn btn-outline-primary ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Edit profile
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                <div class="card-body p-0">
+                  <ul class="list-group list-group-flush rounded-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i class="fas fa-globe fa-lg text-warning"></i>
+                      <p class="mb-0">https://mdbootstrap.com</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                      <p class="mb-0">mdbootstrap</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                      <p class="mb-0">@mdbootstrap</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                      <p class="mb-0">mdbootstrap</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                      <p class="mb-0">mdbootstrap</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.name %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.username %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Date of Birth</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.dob ? currentUser.dob: "missing" %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.phoneNum %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Gender</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.gender ? currentUser.gender: 'missing' %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Country</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.country %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Location</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.location ? currentUser.location: 'missing' %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Learning Goal</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= currentUser.learningGoal ? currentUser.learningGoal: 'missing' %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                      <p class="mb-4"><span class="text-primary font-italic me-1">Playing</span>Games Status
+                      </p>
+                      <p class="mb-1" style="font-size: .77rem;">Guess Country Game</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Guess Flag Game</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Flag Quest Game</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Draw Flag Game</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Flag Puzzle Game</p>
+                      <div class="progress rounded mb-2" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                      <p class="mb-4"><span class="text-primary font-italic me-1">Attempting</span>Test Status
+                      </p>
+                      <p class="mb-1" style="font-size: .77rem;">Driving Test</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Practice Test</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Driving Rules Test</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Sleeping Test</p>
+                      <div class="progress rounded" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <p class="mt-4 mb-1" style="font-size: .77rem;">Weeping Test</p>
+                      <div class="progress rounded mb-2" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Edit Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pt-1">
+            <form>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Date of Birth:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Mobile:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Gender:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-2">
+                <label for="learning-goal" class="col-form-label">Learning Goal:</label>
+                <select class="form-select" id="learning-goal" aria-label="Default select example">
+                  <option selected>Select Goal</option>
+                  <option value="Flags">Flags</option>
+                  <option value="driving-tests">Driving Tests</option>
+                  <option value="practice-tests">Practice Tests</option>
+                </select>
+              </div>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Country:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-4">
+                <label for="recipient-name" class="col-form-label">Location:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- JS here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>

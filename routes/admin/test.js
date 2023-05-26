@@ -1,12 +1,19 @@
 import express, { Router } from "express";
 const router = Router(); 
 import path from "path";
+import AWS from "aws-sdk";
 import QuizModel from "../../models/test.js";  
 import LogModel from "../../models/logs.js";
 import ResultModel from "../../models/result.js";
 import asyncHandler from "express-async-handler";   
 import middleware from "../../middleware/index.js";
  
+ 
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  }); 
+
  
 //Admin: Add Question page
 router.get("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
@@ -16,83 +23,111 @@ router.get("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, nex
 //Admin: Add Questions
 router.post("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
-    const find = await QuizModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }, stateName: {$regex : req.body.stateName.toString(), "$options": "i" }, quizName: {$regex : req.body.quizName.toString(), "$options": "i" }});
+        req.body.quizName = req.body.quizName.toLowerCase();
+        const arr = req.body.quizName.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1); 
+        }
+        var QuizName = arr.join(" ");
+
+    const find = await QuizModel.findOne({country: {$regex : req.body.country.toString(), "$options": "i" }, stateName: {$regex : req.body.stateName.toString(), "$options": "i" }, quizName: QuizName});
   
-  if(!find)
-  { 
-    var stateFileName = Date.now() + '-' + req.files.stateImg.name;
-    const newPath  = path.join(process.cwd(), '/public/upload-images', stateFileName);
-    req.files.stateImg.mv(newPath);
+    if(!find)
+    { 
+      var testImgFile;
+ 
+      await s3.upload({
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `test/${req.files.testImg.name}`,
+        Body: req.files.testImg.data,
+        ContentType: req.files.testImg.mimetype,
+        ACL: 'public-read'
+      }).promise().then( async (data) => {
+        testImgFile = data.Location; 
+      }); 
 
-    if(typeof(req.body.question) == "string")
-    {
-      var questionFileName = '';
-      if(req.files.questionImg0 != undefined)
+      if(typeof(req.body.question) == "string")
       {
-        questionFileName = Date.now() + '-' + req.files.questionImg0.name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-        req.files.questionImg0.mv(newPath);
-      }
+        var questionFileName = '';
+        if(req.files.questionImg0 != undefined)
+        {
+          await s3.upload({
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: `test/${req.files.questionImg0.name}`,
+            Body: req.files.questionImg0.data,
+            ContentType: req.files.questionImg0.mimetype,
+            ACL: 'public-read'
+          }).promise().then( async (data) => {
+            questionFileName = data.Location; 
+          });  
+        }
 
-      const questions = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
-      const singleQuiz = new QuizModel({
-        quizName: req.body.quizName,
-        country: req.body.country,
-        stateName: req.body.stateName,
-        stateImg: stateFileName,
-        questions: questions,
-        category: req.body.category,
-        quizDetail: req.body.quizDetail,
-      });
-      await singleQuiz.save();
-      console.log("Single Quiz Added Successfully"); 
-      res.redirect("/admin/test/manage");
+        const questions = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
+        const singleQuiz = new QuizModel({
+          quizName: QuizName,
+          country: req.body.country,
+          stateName: req.body.stateName,
+          testImg: testImgFile,
+          questions: questions,
+          category: req.body.category,
+          quizDetail: req.body.quizDetail,
+        });
+        await singleQuiz.save();
+        console.log("Single Quiz Added Successfully"); 
+        res.redirect("/admin/test/manage");
+      }
+      else if(typeof(req.body.question) == "object")
+      {
+        const newQuestions = [];
+        for (let i = 0; i < req.body.question.length; i++) { 
+
+        var questionFileName = '';  
+        if(req.files[`questionImg${i}`] != undefined)
+        { 
+          await s3.upload({
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: `test/${req.files[`questionImg${i}`]['name']}`,
+            Body: req.files[`questionImg${i}`]['data'],
+            ContentType: req.files[`questionImg${i}`]['mimetype'],
+            ACL: 'public-read'
+          }).promise().then( async (data) => {
+            questionFileName = data.Location; 
+          });   
+        }
+
+            const newQuestion = {
+              question: req.body.question[i], 
+              optionA: req.body.optionA[i],
+              optionB: req.body.optionB[i],
+              optionC: req.body.optionC[i],
+              optionD: req.body.optionD[i],
+              correct: req.body.correct[i],
+              hint: req.body.hint[i],
+              questionImg: questionFileName
+            }
+    
+          newQuestions.push(newQuestion);
+        }
+
+        const newQuiz = new QuizModel({
+          quizName: QuizName,
+          country: req.body.country,
+          stateName: req.body.stateName,
+          testImg: testImgFile,
+          questions: newQuestions,
+          category: req.body.category,
+          quizDetail: req.body.quizDetail,
+        });
+        await newQuiz.save(); 
+        console.log("Multiple Quiz Added Successfully"); 
+        res.redirect("/admin/test/manage");
+      }  
     }
-    else if(typeof(req.body.question) == "object")
-    {
-      const newQuestions = [];
-      for (let i = 0; i < req.body.question.length; i++) { 
-
-      var questionFileName = '';  
-      if(req.files[`questionImg${i}`] != undefined)
-      {
-        questionFileName = Date.now() + '-' + req.files[`questionImg${i}`].name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-        req.files[`questionImg${i}`].mv(newPath);
-      }
-
-          const newQuestion = {
-            question: req.body.question[i], 
-            optionA: req.body.optionA[i],
-            optionB: req.body.optionB[i],
-            optionC: req.body.optionC[i],
-            optionD: req.body.optionD[i],
-            correct: req.body.correct[i],
-            hint: req.body.hint[i],
-            questionImg: questionFileName
-          }
-  
-        newQuestions.push(newQuestion);
-      }
-      const newQuiz = new QuizModel({
-        quizName: req.body.quizName,
-        country: req.body.country,
-        stateName: req.body.stateName,
-        stateImg: stateFileName,
-        questions: newQuestions,
-        category: req.body.category,
-        quizDetail: req.body.quizDetail,
-      });
-      await newQuiz.save(); 
-      console.log("Multiple Quiz Added Successfully"); 
-      res.redirect("/admin/test/manage");
-    }  
-  }
-  else
-  {   
-    req.flash("error", `${find.quizName} is already exist`);
-    res.redirect("/admin/test/add"); 
-  }
+    else
+    {   
+      req.flash("error", `${find.quizName} is already exist`);
+      res.redirect("/admin/test/add"); 
+    }
   } catch (error) {
     return next(error.message);
   }  
@@ -148,8 +183,15 @@ router.get("/manage/:id/all-quizzes", middleware.isAdminLoggedin, asyncHandler(a
 //Admin - Edit Test Name
 router.put("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
-    await QuizModel.updateOne({_id: req.params.id}, {$set:{"quizName": req.body.testName}});
-    res.redirect(`/admin/test/manage/${req.params.id}/all-quizzes`);
+        req.body.quizName = req.body.quizName.toLowerCase();
+        const arr = req.body.quizName.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1); 
+        }
+        var QuizName = arr.join(" ");
+
+      await QuizModel.updateOne({_id: req.params.id}, {$set:{"quizName": QuizName}});
+      res.redirect(`/admin/test/manage/${req.params.id}/all-quizzes`);
   } catch (error) {
     return next(error.message);
   } 
@@ -158,17 +200,23 @@ router.put("/manage/:id", middleware.isAdminLoggedin, asyncHandler(async (req, r
   // Admin: Add new Question in Test
 router.post('/manage/:id/new', middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   try {
-    var find = await QuizModel.findById(req.params.id);
+      var find = await QuizModel.findById(req.params.id);
   
       if(find)
       {
         var questionFileName = '';
-       if(req.files)
-       {
-        questionFileName = Date.now() + '-' + req.files.questionImg.name;
-        const newPath  = path.join(process.cwd(), '/public/upload-images', questionFileName);
-        req.files.questionImg.mv(newPath);
-       }
+        if(req.files)
+          { 
+            await s3.upload({
+              Bucket: process.env.AWS_BUCKET_NAME,
+              Key: `test/${req.files.questionImg.name}`,
+              Body: req.files.questionImg.data,
+              ContentType: req.files.questionImg.mimetype,
+              ACL: 'public-read'
+            }).promise().then( async (data) => {
+              questionFileName = data.Location; 
+            });  
+          }
   
         const question = {question: req.body.question, optionA: req.body.optionA, optionB: req.body.optionB, optionC: req.body.optionC, optionD: req.body.optionD, correct: req.body.correct, hint: req.body.hint, questionImg: questionFileName}; 
         await QuizModel.updateOne({_id: find._id}, {$push:{questions: question}});

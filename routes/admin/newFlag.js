@@ -5,17 +5,13 @@ import AWS from "aws-sdk";
 import DrawNewFlagModel from "../../models/drawNewFlag.js"; 
 import asyncHandler from "express-async-handler";   
 import middleware from "../../middleware/index.js";
+ 
 
-
-try {
-    const s3 = new AWS.S3({
-        accessKeyId: process.env.AWS_ACCESS_KEY,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    });
-} catch (error) {
-    throw new Error(error.message);
-}
-
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  });  
+  
   
 //Admin: Draw-New-Flags Page
 router.get("/", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 

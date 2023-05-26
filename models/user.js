@@ -7,6 +7,9 @@ let UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    profileImg: {
+        type:String
+    },
     name: {
         type:String,
         required:true

@@ -54,9 +54,14 @@ router.get("/dmv-test/:stateName", asyncHandler(async (req, res, next) => {
 router.get("/dmv-test/:stateName/:quizName", asyncHandler(async (req, res, next) => {  
     try {
         var nameOfQuiz = req.params.quizName.replace(/-/g," ");
-
+        const arr = nameOfQuiz.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1); 
+        }
+        nameOfQuiz = arr.join(" ");
         req.session.newResultIDForQuiz = undefined;
-        const data = await QuizModel.findOne({quizName: {$regex : nameOfQuiz.toString(), "$options": "i" }});   
+
+        const data = await QuizModel.findOne({stateName: req.params.stateName, quizName: nameOfQuiz});   
         // var allTests = await QuizModel.find({});   
         
         if(!data)

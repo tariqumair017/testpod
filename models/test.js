@@ -5,8 +5,7 @@ import mongoosePaginate from "mongoose-paginate";
 
 const TestSchema = new mongoose.Schema({ 
   quizName: {
-    type: String,
-    unique: true,
+    type: String, 
     required: true
     },
   country: {
@@ -17,11 +16,14 @@ const TestSchema = new mongoose.Schema({
     type: String,
     required: true
     },
-  stateImg: {
+  testImg: {
     type: String,
     required: true
     }, 
   questions: [{
+    questionImg: {
+      type: String
+    },
     question: {
     type: String,
     required: true
@@ -48,8 +50,7 @@ const TestSchema = new mongoose.Schema({
     },
     hint: {
       type: String,
-    },
-    questionImg: String
+    }
   }], 
   category: {
     type: String,

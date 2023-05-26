@@ -6,8 +6,7 @@ import GuessFlagGame from "../../models/guessFlagGame.js";
 import FlagPuzzleGame from "../../models/flagPuzzleGame.js";
 import AllFlagsData from "../../models/allFlagsData.js";
 import ipify from "ipify";
-import asyncHandler from "express-async-handler";   
-import connectEnsureLogin from "connect-ensure-login";
+import asyncHandler from "express-async-handler";    
 
 
 //Client Index page

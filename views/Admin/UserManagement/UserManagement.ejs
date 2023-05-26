@@ -1,0 +1,66 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+    <h4>User Management</h4>
+    <%- include ('../partials/SuccessError'); -%>
+      <table class="table">
+          <thead>
+            <tr>
+              <th class="table-hash-col" >#</th>
+              <th class="table-question-col-flag">Name</th>
+              <th class="table-option-col" >Phone</th>
+              <th class="table-option-col" >Country</th>
+              <th class="table-option-col" >Username/Email</th> 
+              <th class="table-action-col" class="table-buttons" >Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%var count = 1%>
+            <% data.forEach(item => { %> 
+              <tr>
+                <th scope="row"><%=count%></th> 
+                <td><%=item.name%></td>
+                <td><%=item.phoneNum%></td>
+                <td><%=item.country%></td>
+                <td><%=item.username%></td> 
+                <td> 
+                  <span class="table-buttons">  
+                    <!-- <button type="submit" onclick="deleteUser('<%=item._id%>')" class="btn btn-danger">Delete</button>  -->
+                     <!-- Button trigger modal -->
+                    <button onclick="document.querySelector('#id').value = '<%=item._id%>', document.querySelector('#body-id').innerHTML = `Sure you want to delete '<%=item.name%>' ?`" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Delete
+                    </button>
+                  </span>  
+                </td>
+              </tr>
+              <%++count%> 
+            <%})%> 
+          </tbody>
+        </table> 
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div id="body-id" class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="/admin/user-management/delete?_method=DELETE" method="POST"> 
+                  <input hidden type="text" name="id" id="id">
+                  <button type="submit" class="btn btn-danger">Delete</button> 
+                </form> 
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+
+
+<!--Container Main end-->

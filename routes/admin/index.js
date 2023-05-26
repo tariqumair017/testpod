@@ -51,11 +51,6 @@ router.get("/admin/result-management", middleware.isAdminLoggedin, asyncHandler(
   res.render("Admin/index/ResultManagement", {title: "Result-Management"});
 }));
 
-//Admin: User Management Page
-router.get("/admin/user-management", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
-  res.render("Admin/index/UserManagement", {title: "User-Management"});
-}));
-
 //Admin: Analytics Page
 router.get("/admin/analytics", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/Analytics", {title: "Analytics"});
