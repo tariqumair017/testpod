@@ -15,7 +15,7 @@ let UserSchema = new mongoose.Schema({
         required:true
     },
     dob: {
-        type:String
+        type:Date
     },
     phoneNum: {
         type:Number,

@@ -30,13 +30,17 @@
             <div class="col-lg-4">
               <div class="card mb-4">
                 <div class="card-body text-center">
-                  <% if(currentUser.profileImg) { %> 
-                      <img src="<%= currentUser.profileImg %>" alt="img">
+                  <% if(data.profileImg) { %> 
+                      <img src="<%= data.profileImg %>" alt="img">
                   <% } else { %>
                     <img src="data:image/png;base64,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" alt="img">
                    <% } %> 
-                  <h5 class="my-3"><%= currentUser.name %></h5>
-                  <p class="text-muted mb-1"><%= currentUser.aboutMe ? currentUser.aboutMe: 'About me is mising' %></p>
+                   <form class="d-flex justify-content-center m-2" action="/profile/profileImage/<%=data._id%>?_method=PUT" method="post" enctype="multipart/form-data">  
+                     <input type="file" id="pImage" name="profileImg">
+                     <button onclick="importData(this)" class="border-0 bg-white text-decoration-underline link-primary" type="submit">Edit Photo</button>
+                   </form>
+                  <h5 class="my-3"><%= data.name %></h5>
+                  <p class="text-muted mb-1"><%= data.aboutMe ? data.aboutMe: 'About me is mising' %></p>
                   <!-- <p class="text-muted mb-4"></p> -->
                   <div class="d-flex justify-content-center m-3">  
                     <button type="button" class="btn btn-outline-primary ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -45,7 +49,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card mb-4 mb-lg-0">
+              <!-- <div class="card mb-4 mb-lg-0">
                 <div class="card-body p-0">
                   <ul class="list-group list-group-flush rounded-3">
                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -70,7 +74,7 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="col-lg-8">
               <div class="card mb-4">
@@ -80,7 +84,7 @@
                       <p class="mb-0">Full Name</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.name %></p>
+                      <p class="text-muted mb-0"><%= data.name %></p>
                     </div>
                   </div>
                   <hr>
@@ -89,7 +93,7 @@
                       <p class="mb-0">Email</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.username %></p>
+                      <p class="text-muted mb-0"><%= data.username %></p>
                     </div>
                   </div>
                   <hr>
@@ -98,7 +102,7 @@
                       <p class="mb-0">Date of Birth</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.dob ? currentUser.dob: "missing" %></p>
+                      <p class="text-muted mb-0"><%= data.dob ? data.dob.toLocaleDateString(): "missing" %></p>
                     </div>
                   </div>
                   <hr>
@@ -107,7 +111,7 @@
                       <p class="mb-0">Mobile</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.phoneNum %></p>
+                      <p class="text-muted mb-0"><%= data.phoneNum %></p>
                     </div>
                   </div>
                   <hr>
@@ -116,7 +120,7 @@
                       <p class="mb-0">Gender</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.gender ? currentUser.gender: 'missing' %></p>
+                      <p class="text-muted mb-0"><%= data.gender ? data.gender.toUpperCase(): 'missing' %></p>
                     </div>
                   </div>
                   <hr>
@@ -125,7 +129,7 @@
                       <p class="mb-0">Country</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.country %></p>
+                      <p class="text-muted mb-0"><%= data.country.toUpperCase() %></p>
                     </div>
                   </div>
                   <hr>
@@ -134,7 +138,7 @@
                       <p class="mb-0">Location</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.location ? currentUser.location: 'missing' %></p>
+                      <p class="text-muted mb-0"><%= data.location ? data.location: 'missing' %></p>
                     </div>
                   </div>
                   <hr>
@@ -143,12 +147,12 @@
                       <p class="mb-0">Learning Goal</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><%= currentUser.learningGoal ? currentUser.learningGoal: 'missing' %></p>
+                      <p class="text-muted mb-0"><%= data.learningGoal ? data.learningGoal: 'missing' %></p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <div class="card mb-4 mb-md-0">
                     <div class="card-body">
@@ -215,7 +219,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -231,31 +235,31 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pt-1">
-            <form>
+            <form action="/profile/<%=data._id%>?_method=PUT" method="POST">
               <div class="mb-2">
                 <label for="recipient-name" class="col-form-label">Name:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <input type="text" class="form-control" id="recipient-name" name="data[name]" value="<%= data.name %>">
               </div>
               <div class="mb-2">
                 <label for="recipient-name" class="col-form-label">Date of Birth:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="mb-2">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
+                <input type="date" class="form-control" id="recipient-name" name="data[dob]" value="">
+              </div> 
               <div class="mb-2">
                 <label for="recipient-name" class="col-form-label">Mobile:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <input type="text" class="form-control" id="recipient-name" name="data[phoneNum]" value="<%= data.phoneNum %>">
               </div>
               <div class="mb-2">
-                <label for="recipient-name" class="col-form-label">Gender:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <label for="recipient-name" class="col-form-label">Gender:</label> 
+                <select class="form-select" id="learning-goal" aria-label="Default select example" name="data[gender]">
+                  <option selected disabled hidden>Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option> 
+                </select>
               </div>
               <div class="mb-2">
                 <label for="learning-goal" class="col-form-label">Learning Goal:</label>
-                <select class="form-select" id="learning-goal" aria-label="Default select example">
-                  <option selected>Select Goal</option>
+                <select class="form-select" id="learning-goal" aria-label="Default select example" name="data[learningGoal]" value="<%= data.learningGoal %>">
+                  <option selected disabled hidden>Select Goal</option>
                   <option value="Flags">Flags</option>
                   <option value="driving-tests">Driving Tests</option>
                   <option value="practice-tests">Practice Tests</option>
@@ -263,11 +267,15 @@
               </div>
               <div class="mb-2">
                 <label for="recipient-name" class="col-form-label">Country:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <input type="text" class="form-control" id="recipient-name" name="data[country]" value="<%= data.country %>">
+              </div>
+              <div class="mb-2">
+                <label for="recipient-name" class="col-form-label">Location:</label>
+                <input type="text" class="form-control" id="recipient-name" name="data[location]" value="<%= data.location %>">
               </div>
               <div class="mb-4">
-                <label for="recipient-name" class="col-form-label">Location:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <label for="recipient-name" class="col-form-label">About Me:</label>
+                <textarea class="form-control" id="" cols="3" rows="3" name="data[aboutMe]"><%= data.aboutMe %></textarea> 
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -279,6 +287,7 @@
       </div>
     </div>
 
+  
 
 <!-- JS here -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -287,6 +296,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
 integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+  
+  function importData(e) { 
+    document.getElementById('pImage').click();  
+    e.preventDefault();
+  };  
+</script>
 
 </body>
 </html>

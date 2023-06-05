@@ -52,9 +52,30 @@ router.post("/login", connectEnsureLogin.ensureLoggedOut("/"), passport.authenti
 
 // Profile Page
 router.get("/profile", middleware.isUserLoggedin, asyncHandler(async (req, res, next) => {
-    res.render("Client/UserManagement/Profile");
+    const data = await User.findById(req.user._id);
+    res.render("Client/UserManagement/Profile", { data });
 }));
 
+// Edit Profile Page
+router.put("/profile/:id", middleware.isUserLoggedin, asyncHandler(async (req, res, next) => {
+    const { id } = req.params; 
+    await User.findByIdAndUpdate(id, { ...req.body.data }, {new: true}); 
+    console.log("Profile Updated Successfully!");
+    // req.flash("success", "Profile Updated!");
+    res.redirect("/profile");
+}));
+
+// Edit Profile Image
+router.put("/profile/profileImage/:id", middleware.isUserLoggedin, asyncHandler(async (req, res, next) => {
+    const { id } = req.params; 
+    const { profileImg } = req.body;
+    console.log(id);
+    console.log(req.files);  
+    // await User.findByIdAndUpdate(id, { ...req.body.data }, {new: true}); 
+    // console.log("Profile Updated Successfully!");
+    // req.flash("success", "Profile Updated!");
+    // res.redirect("/profile");
+}));
 
 //Logput
 router.post('/logout', connectEnsureLogin.ensureLoggedIn("/"), function(req, res, next) {
