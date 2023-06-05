@@ -82,7 +82,7 @@ router.post("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, ne
     }
     else
     {   
-        req.flash("error", `${find.region.toFUpperCase()} with Selected level is already exist`);
+        req.flash("error", `${find.region.toUpperCase()} with Selected level is already exist`);
         res.redirect("/admin/flag-puzzle-game/add"); 
     }
   } catch (error) {

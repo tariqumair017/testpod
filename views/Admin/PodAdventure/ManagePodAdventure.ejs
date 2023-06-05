@@ -1,0 +1,100 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+  <div class="d-flex justify-content-between">
+    <h3>Manage PodAdventure Games</h3> 
+    <!-- <div class="col-md-3 position-relative"> 
+      <select class="form-select" id="search">
+        <option hidden>Search Region</option>
+        <option value="All">All</option>  
+        <option value="Africa">Africa</option>  
+        <option value="America">America</option>  
+        <option value="Antarctic">Antarctic</option>  
+        <option value="Asia">Asia</option> 
+        <option value="Europe">Europe</option> 
+        <option value="Oceania">Oceania</option> 
+      </select>
+    </div> -->
+  </div>
+  <%- include ('../partials/SuccessError'); -%>
+  <div class="cards row">
+    <% data.forEach(single => { %>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card dashboard-card border-bottom-success shadow h-100 py-2">
+            <div class="card-body">
+            <div class="row no-gutters">
+            <div class="col mr-2">
+            <div class="card-title text-xs font-weight-bold text-uppercase">
+            <li><%= single.unit %></li>  
+            </div>
+            <div class="manage-action-btn">
+                <ul class="px-0">
+                    <li><%= single.modules[0] %></li>
+                    <li><%= single.modules[1] %></li>
+                    <li><%= single.modules[2] %></li>
+                </ul> 
+            <span>
+            <a href="/admin/pod-adventure/manage/<%=single._id%>/all-questions" style="margin-right: 10px;"><i class="manage-edit-btn fa-solid fa-pen-to-square"></i></a>
+            <button onclick="document.querySelector('#podId').value = '<%=single._id%>', document.querySelector('#body-id').innerHTML = `Sure you want to delete '<%=single.unit%>' ?`" type="button" class="border-0 bg-white" data-bs-toggle="modal" data-bs-target="#deletePodAdventureModal">
+                <i class="manage-delete-btn fa-solid fa-trash"></i>
+            </button> 
+            </span>
+            </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+  </div>
+</div>
+<!--Container Main end-->
+
+
+ <!-- Modal for Delete PodAdventure Game -->
+ <div class="modal fade" id="deletePodAdventureModal" tabindex="-1" aria-labelledby="deletePodAdventureModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deletePodAdventureModalLabel">Delete Game</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="body-id" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form action="/admin/pod-adventure/manage/delete?_method=DELETE" method="POST"> 
+            <input hidden type="text" name="id" id="podId">
+            <button type="submit" class="btn btn-danger">Delete</button> 
+          </form> 
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<script>
+
+  async function deletePodAdventureGame(id) {    
+    if(confirm("Sure you want to delete this Game..?"))
+    {
+      await fetch(`/admin/flag-quest-game/manage/${id}`, {
+        method: "DELETE", 
+        headers: {
+          "Content-Type": "application/json",
+        }
+      }).then((response) => response.json())
+        .then((data) => {  
+          window.location.href = data.url;
+        })
+        .catch((error) => {
+          console.log("Error:");
+          console.log(error);
+        });
+    } 
+  }  
+
+</script>

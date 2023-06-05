@@ -30,7 +30,9 @@ import AdminWebAnalyticsRoutes from './routes/admin/webAnalytics.js';
 import AdminFlagPuzzleGameRoutes from './routes/admin/flagPuzzleGame.js';
 import AdminFlagQuestGameRoutes from './routes/admin/flagQuestGame.js';
 import AdminUserManagementRoutes from './routes/admin/userManagement.js';
-
+import AdminBlogManagementRoutes from './routes/admin/blogManagement.js';
+import AdminPodAdventureRoutes from './routes/admin/podAdventure.js';
+ 
 //Requring Client Routes
 import ClientIndexRoutes from "./routes/client/index.js";
 import ClientGuessCountryGameRoutes from "./routes/client/guessCountryGame.js";
@@ -43,7 +45,6 @@ import ClientFlagPuzzleGameRoutes from './routes/client/flagPuzzleGame.js';
 import ClientFlagQuestGameRoutes from './routes/client/flagQuestGame.js';
 import UserManagementRoutes from "./routes/client/userManagement.js";
 import ClientPodAdtentureRoutes from "./routes/client/podAdventure.js"
-
 
 //Database Connection
 connectdb();
@@ -121,7 +122,9 @@ app.use("/admin/flag-detective-game", AdminFlagDetectiveGameRoutes);
 app.use("/admin/web-analytics", AdminWebAnalyticsRoutes);
 app.use("/admin/flag-puzzle-game", AdminFlagPuzzleGameRoutes);
 app.use("/admin/flag-quest-game", AdminFlagQuestGameRoutes);
-app.use("/admin", AdminUserManagementRoutes);
+app.use("/admin/user-management", AdminUserManagementRoutes);
+app.use("/admin/blog-management", AdminBlogManagementRoutes);
+app.use("/admin/pod-adventure", AdminPodAdventureRoutes);
 
 //Using Client Routes
 app.use(ClientIndexRoutes);

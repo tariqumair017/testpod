@@ -8840,7 +8840,7 @@ label {
 
 .quiz-image-optional {
   width: 200px;
-  height: 200px;
+  height: auto;
 }
 
 @media screen and (max-width:700px) {
@@ -13813,8 +13813,7 @@ footer .more_test:hover {
   margin-bottom: 100px;
 }
 
-.guess-country-main{
-  background-image: url(/client/img/bg/Artboard-2.png);
+.guess-country-main{ 
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -1,0 +1,931 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+
+    <!--Container Main start-->
+    <div class="application bg-light">
+        <h4 class="mb-3">Create Pod Adventure</h4>
+        <div class="mb-3 row"><h5 class="col-md-1 bg-secondary p-1 text-white text-center">Step 1</h5></div>
+        <%- include ('../partials/SuccessError'); -%>
+            <form class="add-quiz-form row needs-validation" action="/admin/pod-adventure/add/step1" method="POST" enctype="multipart/form-data" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="podUnit" class="form-label">Add Unit</label>
+                        <input name="unit" placeholder="Please Enter Unit" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="module" class="form-label">Select Game Module</label>
+                        <select class="form-select" id="module" name="module" required>
+                            <option hidden>Please Select Game Module</option>
+                            <option value="guess country game">Guess Country Game</option> 
+                            <option value="guess flag game">Guess Flag Game</option> 
+                            <option value="flag detective game">Flag Detective Game</option> 
+                            <option value="flag puzzle game">Flag Puzzle Game</option> 
+                            <option value="flag quest game">Flag Quest Game</option> 
+                        </select>
+                    </div>
+                    <div id="regionDiv" class="col-md-6 mt-3 d-none">
+                        <label for="regionID" class="form-label">Select Region</label>
+                        <select class="form-select" id="regionID" name="region" required>
+                            <option hidden>Please Select Region</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div id="moduleAppendDiv"></div> 
+                <div id="formButtonDiv" class="col-12 mt-2 d-none">
+                    <button class="btn" style="background-color: #a8171a; color: white; float: right;" type="submit">Next</button>
+                </div>
+        </form>
+
+
+
+            <!-- Flag Quest Game -->
+            <div style="display: none;">
+            <div id="FormForFlagQuestGame">
+                <h4 class="mb-4"><u>Flag Quest Game</u></h4> 
+                <div class="form-data"> 
+                    <h5 class="m-0 p-0 text-primary"><i>Question:01</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForQuest1" class="form-label">Select Counrty</label>
+                            <select class="form-select" name="country" id="allCountriesForQuest1" onchange="flagQuestselectedCountry(this)" required>
+                                <option selected disabled hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" id="IcountryForQuest1"
+                                placeholder="Please Enter In Correct Country" type="text" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input placeholder="Flag Url" readonly class="add-quiz-image formFile form-control" type="text"
+                                    name="correctImg" id="flagUrlForQuest1" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 1</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[0]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 2</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[0]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 3</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[0]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:02</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForQuest2" class="form-label">Select Counrty</label>
+                            <select class="form-select" name="country" id="allCountriesForQuest2" onchange="flagQuestselectedCountry(this)" required>
+                                <option selected disabled hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" id="IcountryForQuest2"
+                                placeholder="Please Enter In Correct Country" type="text" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input placeholder="Flag Url" readonly class="add-quiz-image formFile form-control" type="text"
+                                    name="correctImg" id="flagUrlForQuest2" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 1</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[1]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 2</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[1]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 3</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[1]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:03</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForQuest3" class="form-label">Select Counrty</label>
+                            <select class="form-select" name="country" id="allCountriesForQuest3" onchange="flagQuestselectedCountry(this)" required>
+                                <option selected disabled hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" id="IcountryForQuest3" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input placeholder="Flag Url" readonly class="add-quiz-image formFile form-control" type="text" name="correctImg" id="flagUrlForQuest3" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 1</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[2]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 2</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[2]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 3</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg[2]"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            </div>
+            <!-- Guess Country Game -->
+            <div style="display: none;">
+            <div id="FormForGuessCountryGame">
+                <h4 class="mb-4"><u>Guess Country Game</u></h4> 
+                <div class="form-data">
+                  <h5 class="m-0 p-0 text-primary"><i>Question:01</i></h5>
+                  <div class="row">
+                    <div class="col-md-6"> 
+                      <label for="country" class="form-label">Select Country</label>
+                      <select class="form-select" name="country" id="countryIDForGuessCountry1" onchange="guessCountryselectedCountry(this)" required> 
+                        <option hidden>Please Select Country</option>     
+                      </select> 
+                    </div>
+                    <div class="col-md-6"> 
+                      <label for="flagUrlForGuessCountry" class="form-label">Flag Url</label>
+                      <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" id="flagUrlForGuessCountry1" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-3 position-relative">
+                    <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
+                    <div class="invalid-tooltip">
+                      Please provide a Option A.
+                    </div>
+                  </div> 
+                  <div class="col-md-3 position-relative">
+                    <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
+                    <div class="invalid-tooltip">
+                      Please provide a Option B.
+                    </div>
+                  </div> 
+                  <div class="col-md-3 position-relative">
+                    <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
+                    <div class="invalid-tooltip">
+                      Please provide a Option C.
+                    </div>
+                  </div> 
+                  <div class="col-md-3 position-relative">
+                    <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
+                    <div class="invalid-tooltip">
+                      Please provide a Option D.
+                    </div>
+                  </div>
+                  </div> 
+                  <div class="row">
+                  <div class="col-md-6 position-relative">
+                    <label for="correctIDForGuessCountry" class="form-label">Correct Answer</label>
+                    <input readonly name="correct" id="correctIDForGuessCountry1" placeholder="Correct Answer" type="text" class="form-control" required>
+                    <div class="invalid-tooltip">
+                      Please provide a Answer.
+                    </div>
+                  </div>
+                  <div class="col-md-6 position-relative">
+                    <label for="hint" class="form-label">Please Enter Hint</label>
+                    <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="findCountryGameHint" required>
+                    <div class="invalid-tooltip">
+                      Please provide a Hint.
+                    </div>
+                  </div>
+                  </div>
+                  <hr>
+                </div>
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:02</i></h5>
+                    <div class="row">
+                      <div class="col-md-6"> 
+                        <label for="country" class="form-label">Select Country</label>
+                        <select class="form-select" name="country" id="countryIDForGuessCountry2" onchange="guessCountryselectedCountry(this)" required> 
+                          <option hidden>Please Select Country</option>     
+                        </select> 
+                      </div>
+                      <div class="col-md-6"> 
+                        <label for="flagUrlForGuessCountry" class="form-label">Flag Url</label>
+                        <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" id="flagUrlForGuessCountry2" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-3 position-relative">
+                      <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option A.
+                      </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                      <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option B.
+                      </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                      <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option C.
+                      </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                      <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option D.
+                      </div>
+                    </div>
+                    </div> 
+                    <div class="row">
+                    <div class="col-md-6 position-relative">
+                      <label for="correctIDForGuessCountry" class="form-label">Correct Answer</label>
+                      <input readonly name="correct" id="correctIDForGuessCountry2" placeholder="Correct Answer" type="text" class="form-control" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Answer.
+                      </div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                      <label for="hint" class="form-label">Please Enter Hint</label>
+                      <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="findCountryGameHint" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Hint.
+                      </div>
+                    </div>
+                    </div>
+                    <hr>
+                  </div> 
+                  <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:03</i></h5>
+                    <div class="row">
+                      <div class="col-md-6"> 
+                        <label for="country" class="form-label">Select Country</label>
+                        <select class="form-select" name="country" id="countryIDForGuessCountry3" onchange="guessCountryselectedCountry(this)" required> 
+                          <option hidden>Please Select Country</option>     
+                        </select> 
+                      </div>
+                      <div class="col-md-6"> 
+                        <label for="flagUrlForGuessCountry" class="form-label">Flag Url</label>
+                        <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" id="flagUrlForGuessCountry3" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-3 position-relative">
+                      <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option A.
+                      </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                      <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option B.
+                      </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                      <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option C.
+                      </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                      <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Option D.
+                      </div>
+                    </div>
+                    </div> 
+                    <div class="row">
+                    <div class="col-md-6 position-relative">
+                      <label for="correctIDForGuessCountry" class="form-label">Correct Answer</label>
+                      <input readonly name="correct" id="correctIDForGuessCountry3" placeholder="Correct Answer" type="text" class="form-control" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Answer.
+                      </div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                      <label for="hint" class="form-label">Please Enter Hint</label>
+                      <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="findCountryGameHint" required>
+                      <div class="invalid-tooltip">
+                        Please provide a Hint.
+                      </div>
+                    </div>
+                    </div>
+                    <hr>
+                  </div>   
+            </div>
+            </div>
+            <!-- Guess Flag Game -->
+            <div style="display: none;">
+            <div id="FormForGuessFlagGame">
+                <h4 class="mb-4"><u>Guess Flag Game</u></h4> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:01</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForGuessFlag" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" id="allCountriesForGuessFlag1" onchange="guessFlagselectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" id="IcountryforGuessFlag1"
+                                placeholder="Please Enter In Correct Country" type="text" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input placeholder="Flag Url" readonly class="add-quiz-image formFile form-control" type="text"
+                                    name="correctImg" id="flagUrlForGuessFlag1" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:02</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForGuessFlag" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" id="allCountriesForGuessFlag2" onchange="guessFlagselectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" id="IcountryforGuessFlag2"
+                                placeholder="Please Enter In Correct Country" type="text" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input placeholder="Flag Url" readonly class="add-quiz-image formFile form-control" type="text"
+                                    name="correctImg" id="flagUrlForGuessFlag2" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:03</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForGuessFlag" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" id="allCountriesForGuessFlag3" onchange="guessFlagselectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" id="IcountryforGuessFlag3"
+                                placeholder="Please Enter In Correct Country" type="text" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input placeholder="Flag Url" readonly class="add-quiz-image formFile form-control" type="text"
+                                    name="correctImg" id="flagUrlForGuessFlag3" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg"
+                                    onchange="preview()" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div>  
+            </div> 
+            </div>
+            <!-- Flag Detective Game -->
+            <div style="display: none;">
+            <div id="FormForFlagDetectiveGame">
+                <h4 class="mb-4"><u>Flag Detective Game</u></h4> 
+                <div class="form-data">
+                  <h5 class="m-0 p-0 text-primary"><i>Question:01</i></h5>
+                  <div class="row">
+                    <div class="col-md-6 position-relative"> 
+                      <label for="flagName0" class="form-label">Select Country</label>
+                      <select class="form-select" name="country" id="allCountriesForDetective1" onchange="flagDetectiveSelectedCountry(this)" required> 
+                          <option hidden>Please Select Country</option> 
+                      </select> 
+                      <div class="invalid-tooltip">
+                          Please provide a Country Name.
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="validationTooltip03" class="form-label"
+                        >Flag Url</label
+                      >
+                      <div class="add-quiz-state-image">
+                        <input readonly class="add-quiz-image-input formFile form-control"
+                          type="text"
+                          name="flagUrl" 
+                          id="flagUrlForDetective1"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mt-2 position-relative">
+                      <label for="hint" class="form-label">Enter Hint</label>
+                      <input
+                        maxlength="200"
+                        name="hint" 
+                        type="text"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <hr />
+                </div> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:02</i></h5>
+                    <div class="row">
+                      <div class="col-md-6 position-relative"> 
+                        <label for="flagName0" class="form-label">Select Country</label>
+                        <select class="form-select" name="country" id="allCountriesForDetective2" onchange="flagDetectiveSelectedCountry(this)" required> 
+                            <option hidden>Please Select Country</option> 
+                        </select> 
+                        <div class="invalid-tooltip">
+                            Please provide a Country Name.
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="validationTooltip03" class="form-label"
+                          >Flag Url</label
+                        >
+                        <div class="add-quiz-state-image">
+                          <input readonly class="add-quiz-image-input formFile form-control"
+                            type="text"
+                            name="flagUrl" 
+                            id="flagUrlForDetective2"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 mt-2 position-relative">
+                        <label for="hint" class="form-label">Enter Hint</label>
+                        <input
+                          maxlength="200"
+                          name="hint" 
+                          type="text"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <hr />
+                </div> 
+                <div class="form-data">
+                <h5 class="m-0 p-0 text-primary"><i>Question:03</i></h5>
+                <div class="row">
+                    <div class="col-md-6 position-relative"> 
+                    <label for="flagName0" class="form-label">Select Country</label>
+                    <select class="form-select" name="country" id="allCountriesForDetective3" onchange="flagDetectiveSelectedCountry(this)" required> 
+                        <option hidden>Please Select Country</option> 
+                    </select> 
+                    <div class="invalid-tooltip">
+                        Please provide a Country Name.
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <label for="validationTooltip03" class="form-label"
+                        >Flag Url</label
+                    >
+                    <div class="add-quiz-state-image">
+                        <input readonly class="add-quiz-image-input formFile form-control"
+                        type="text"
+                        name="flagUrl" 
+                        id="flagUrlForDetective3"
+                        required
+                        />
+                    </div>
+                    </div>
+                    <div class="col-md-6 mt-2 position-relative">
+                    <label for="hint" class="form-label">Enter Hint</label>
+                    <input
+                        maxlength="200"
+                        name="hint" 
+                        type="text"
+                        class="form-control"
+                        required
+                    />
+                    </div>
+                </div>
+                <hr />
+                </div> 
+            </div>
+            </div>
+            <!-- Flag Puzzle Game -->
+            <div style="display: none;">
+            <div id="FormForFlagPuzzleGame">
+                <h4 class="mb-4"><u>Flag Puzzle Game</u></h4> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:01</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForFlagPuzzle1" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" id="allCountriesForFlagPuzzle1" onchange="flagPuzzleSelectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text"
+                                    name="flag" id="flagUrlForPuzzle1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>  
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:02</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForFlagPuzzle2" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" id="allCountriesForFlagPuzzle2" onchange="flagPuzzleSelectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="flagUrlForPuzzle2" class="form-label">Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text"
+                                    name="flag" id="flagUrlForPuzzle2" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div> 
+                <div class="form-data">
+                    <h5 class="m-0 p-0 text-primary"><i>Question:03</i></h5>
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForFlagPuzzle3" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" id="allCountriesForFlagPuzzle3" onchange="flagPuzzleSelectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="flagUrlForPuzzle3" class="form-label">Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text"
+                                    name="flag" id="flagUrlForPuzzle3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div> 
+            </div>
+            </div> 
+
+        
+
+
+            <!-- Add Multiple Questions for Flag Quest -->
+            <!-- <div style="display: none;">
+                <div id="addNewFormForQuest" class="form-data">
+                    <div class="row mt-4">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForQuest" class="form-label">Select Counrty</label>
+                            <select class="form-select" name="country" onchange="flagQuestselectedCountry(this)" required>
+                                <option hidden>Please Select Country</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" placeholder="Please Enter In Correct Country" type="text"
+                                class="form-control" required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text" name="correctImg"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 1</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 2</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 3</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div> -->
+
+            <!-- Add Multiple Questions for Guess Country -->
+            <!-- <div style="display: none;" >
+                <div id="addNewFormForGuessCountry">
+                <div class="form-data">
+                    <div class="row">
+                    <div class="col-md-6"> 
+                        <label for="country" class="form-label">Select Country</label>
+                        <select class="form-select" name="country" onchange="guessCountryselectedCountry(this)" required> 
+                        <option hidden>Please Select Country</option>     
+                        </select> 
+                    </div>
+                    <div class="col-md-6"> 
+                        <label for="" class="form-label">Flag Url</label>
+                        <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" required>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-3 position-relative">
+                    <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
+                    <div class="invalid-tooltip">
+                        Please provide a Option A.
+                    </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                    <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
+                    <div class="invalid-tooltip">
+                        Please provide a Option B.
+                    </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                    <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
+                    <div class="invalid-tooltip">
+                        Please provide a Option C.
+                    </div>
+                    </div> 
+                    <div class="col-md-3 position-relative">
+                    <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
+                    <div class="invalid-tooltip">
+                        Please provide a Option D.
+                    </div>
+                    </div>
+                    </div> 
+                    <div class="row">
+                    <div class="col-md-6 position-relative">
+                    <label for="" class="form-label">Correct Answer</label>
+                    <input readonly name="correct" placeholder="Correct Answer" type="text" class="form-control" required>
+                    <div class="invalid-tooltip">
+                        Please provide a Answer.
+                    </div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                    <label for="hint" class="form-label">Please Enter Hint</label>
+                    <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="findCountryGameHint" required>
+                    <div class="invalid-tooltip">
+                        Please provide a Hint.
+                    </div>
+                    </div>
+                    </div>
+                    <hr>
+                    </div> 
+                    </div>
+            </div> -->
+
+            <!-- Add Multiple Questions for Guess Flag -->
+            <!-- <div style="display: none;">
+                <div id="addNewFormForGuessFlag" class="form-data">
+                    <div class="row mt-4">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForGuessFlag" class="form-label">Select Counrty</label>
+                            <select class="form-select" name="country" onchange="guessFlagselectedCountry(this)" required>
+                                <option hidden>Please Select Counrty</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative d-none">
+                            <input hidden name="Icountry" placeholder="Please Enter In Correct Country" type="text"
+                                class="form-control" required>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text" name="correctImg"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3">
+                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
+                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div> -->
+
+            <!-- Add Multiple Questions for Flag Detective -->
+            <!-- <div style="display: none">
+                <div id="addNewFormForFlagDetective" class="form-data">
+                <div class="row">
+                    <div class="col-md-6 position-relative"> 
+                    <label for="flagName0" class="form-label">Select Country</label>
+                    <select class="form-select" name="country" onchange="flagDetectiveSelectedCountry(this)" required> 
+                        <option hidden>Please Select Country</option> 
+                    </select> 
+                    <div class="invalid-tooltip">
+                        Please provide a Country Name.
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <label for="validationTooltip03" class="form-label"
+                        >Flag Url</label
+                    >
+                    <div class="add-quiz-state-image">
+                        <input readonly
+                        class="add-quiz-image-input formFile form-control"
+                        type="text"
+                        name="flagUrl" 
+                        required
+                        />
+                    </div>
+                    </div>
+                    <div class="col-md-6 position-relative mt-2">
+                    <label for="hint" class="form-label">Enter Hint</label>
+                    <input
+                        maxlength="200"
+                        name="hint" 
+                        type="text"
+                        class="form-control"
+                        required
+                    />
+                    </div>
+                </div>
+                <hr />
+                </div>
+            </div> -->
+
+            <!-- Add Multiple Questions for Flag Puzzle -->
+            <!-- <div style="display: none;">
+                <div id="addNewFormForFlagPuzzle" class="form-data">
+                    <div class="row mt-4">
+                        <div class="col-md-6 position-relative">
+                            <label for="allCountriesForFlagPuzzle" class="form-label">Select Country</label>
+                            <select class="form-select" name="country" onchange="flagPuzzleSelectedCountry(this)" required>
+                                <option hidden>Please Select Counrty</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Please provide a Country Name.
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
+                            <div class="add-quiz-state-image">
+                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text" name="flag"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div> -->
+    </div>
+</div>
+<!--Container Main end-->
+
+<script src="/admin/js/podAdventureMultiple.js"></script>

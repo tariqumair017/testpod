@@ -1,0 +1,72 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+    <h4 class="mb-4">Add Blog</h4>
+    <%- include ('../partials/SuccessError'); -%>  
+    <form class="add-quiz-form row needs-validation" action="/admin/blog-management/add" method="POST" novalidate>
+        <div class="row mb-0">
+          <div class="col-md-6"> 
+            <label for="blogTitle" class="form-label">Blog Title</label>
+            <input name="title" placeholder="Blog Title" type="text" class="form-control mb-2" id="blogTitle" required>
+            <h6 id="blogURL" class="d-none">Blog: <a id="blogLink" href=""></a></h6>
+          </div> 
+          <div class="col-md-6"> 
+            <label for="blogImg" class="form-label">Blog Image</label>
+            <input type="file" name="flag" placeholder="Flag Url" class="form-control" id="blogImg" required>
+          </div>
+        </div>
+        <hr>
+         <div id="setNewForm">
+            <div class="form-data">
+              <div class="row">
+                <div class="col-md-6"> 
+                  <label for="blogDescription" class="form-label">Blog Description</label>
+                  <textarea class="form-control" name="description" id="blogDescription" cols="20" rows="3"></textarea>
+                </div> 
+              </div>
+              <hr>
+            </div>
+         </div>
+         <div class="col-12 mt-2">
+            <button class="btn" style="background-color: #a8171a;color: white;" type="submit">Submit</button>
+            <!-- <button style="float: right; border-radius: 50%; background-color: #a8171a;color: white;" class="show-form btn " type="button"><i class="fa-solid fa-plus"></i></button> -->
+         </div>
+    </form>
+</div>
+   
+
+<script>
+    document.getElementById("blogTitle").addEventListener("focusout", (event) => {
+        const slug = titleToSlug(event.target.value); 
+        document.getElementById("blogLink").innerHTML = slug;
+        document.getElementById("blogLink").href = slug;
+        document.getElementById("blogURL").classList.remove("d-none");
+    });
+
+    //function to create slug
+    const titleToSlug = title => {
+    let slug;
+
+    // convert to lower case
+    slug = title.toLowerCase();
+
+    // remove special characters
+    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+    // The /gi modifier is used to do a case insensitive search of all occurrences of a regular expression in a string
+
+    // replace spaces with dash symbols
+    slug = slug.replace(/ /gi, "-");
+    
+    // remove consecutive dash symbols 
+    slug = slug.replace(/\-\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-/gi, '-');
+
+    // remove the unwanted dash symbols at the beginning and the end of the slug
+    slug = '@' + slug + '@';
+    slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+    return slug;
+    };
+</script>

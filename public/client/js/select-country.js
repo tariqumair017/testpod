@@ -28,12 +28,8 @@ const total_questions = document.getElementById("total-questions")
 const result_btn = document.querySelector(".result_btn");
 const flag_detective_game_card = document.querySelector(".flag-detective-game-timer")
 
-const detective_total_questions = document.querySelector(
-  ".detective-total-questions"
-);
-const detective_total_in_correct = document.querySelector(
-  ".detective-total-in-correct"
-);
+const detective_total_questions = document.querySelector(".detective-total-questions");
+const detective_total_in_correct = document.querySelector(".detective-total-in-correct");
 
 const flag_detective_score_card = document.querySelector(".flag-detective-score-card")
 
@@ -53,12 +49,8 @@ const time_up = document.querySelector(".time_up");
 
 const focus_question = document.querySelector(".focus-input")
 
-const flag_detective_music_on = document.querySelector(
-  ".flag-detective-music-on"
-);
-const flag_detective_music_off = document.querySelector(
-  ".flag-detective-music-off"
-);
+const flag_detective_music_on = document.querySelector(".flag-detective-music-on");
+const flag_detective_music_off = document.querySelector(".flag-detective-music-off");
 
 
 
@@ -88,9 +80,7 @@ let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 var questions;
 
 
-
-
-
+ 
 document.getElementById("nextLevel").addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -133,8 +123,7 @@ fetch(`/game/all/${region}/${currenLevel}`)
 
       queCounter(1); //passing 1 parameter to queCounter
 
-      startTimerLine(0);
-
+      startTimerLine(0); 
 
     }
 
@@ -172,8 +161,7 @@ fetch(`/game/all/${region}/${currenLevel}`)
     let timerInterval = null;
     let remainingPathColor = COLOR_CODES.info.color;
 
-    detective_total_questions.innerHTML =
-      questions.length < 10 ? "0" + questions.length : questions.length;
+    detective_total_questions.innerHTML = questions.length < 10 ? "0" + questions.length : questions.length;
 
     // getting questions and options from array
 

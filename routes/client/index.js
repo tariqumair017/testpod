@@ -122,7 +122,7 @@ router.get("/", asyncHandler(async (req, res, next) => {
 
 
 
-//Client All GAme page
+//Client All Game page
 router.get("/games", asyncHandler(async (req, res, next) => {
     const data = [
         {
@@ -329,6 +329,15 @@ router.get("/thank-you", asyncHandler(async (req, res, next) => {
     res.render("Client/index/Thank-You", { title: "Thank-You" });
 }));
 
+//Client Privacy-Policy page
+router.get("/privacy", asyncHandler(async (req, res, next) => {
+    res.render("Client/index/PrivacyPolicy", { title: "Testpod-Policy" });
+}));
+
+//Client Terms-Conditions page
+router.get("/terms", asyncHandler(async (req, res, next) => {
+    res.render("Client/index/TermsCondition", { title: "Testpod-Terms" });
+}));
 
 
 export default router;

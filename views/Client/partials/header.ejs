@@ -78,7 +78,11 @@
                   <li class="sub"><a href="/contact-us">Contact</a></li>
                   <li class="sub">
                     <%if(currentUser && !currentUser.admin){%>
+                      <% if(currentUser.profileImg) { %> 
+                        <a class="user-avatar" href="javascript:(0)"><img class="header_img" src="<%= currentUser.profileImg %>" alt=""/><%= currentUser.name %></a> 
+                    <% } else { %> 
                       <a class="user-avatar" href="javascript:(0)"><img class="header_img" src="/admin/img/profile.avif" alt=""/><%= currentUser.name %></a>
+                     <% } %> 
                       <ul style="right: 0px;min-width: 150px !important;" >
                         <li><a href="/profile">Profile</a></li>
                         <li><a href="/achievements">Achievement</a></li>

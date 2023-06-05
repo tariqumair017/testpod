@@ -1,0 +1,53 @@
+<% layout('Admin/layouts/boilerPlate') -%>
+
+<!--Container Main start-->
+<div class="application bg-light">
+    <h4>Blogs</h4>
+    <div class="d-md-flex justify-content-md-end">
+      <a class="btn btn-secondary btn-sm" href="/admin/blog-management/add">Add Blog</a>
+    </div>
+    <%- include ('../partials/SuccessError'); -%>  
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="table-hash-col" >#</th>
+          <th class="table-question-col-flag">Blog Title</th>
+          <th class="table-option-col" >Description</th> 
+          <th class="table-action-col" class="table-buttons">Actions</th>
+        </tr>
+      </thead>
+      <tbody> 
+          <tr>
+            <th scope="row">1</th> 
+            <td>title 1</td>
+            <td>description 1</td> 
+            <td> 
+              <span class="table-buttons">   
+                <button type="button" onclick="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Edit
+                </button> 
+                <button onclick="" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Delete
+                </button>
+              </span>  
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th> 
+            <td>title 2</td>
+            <td>description 2</td> 
+            <td> 
+              <span class="table-buttons">   
+                <button type="button" onclick="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Edit
+                </button> 
+                <button onclick="" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Delete
+                </button>
+              </span>  
+            </td>
+          </tr> 
+      </tbody>
+    </table> 
+</div>
+   

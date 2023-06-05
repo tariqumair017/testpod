@@ -63,6 +63,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.getElementById("collapseThree").classList.add("show")
       document.getElementById("flag-game").classList.add("active-nav")
     }
+    else if(pathname == "/admin/pod-adventure/add/step1"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("add-pod-adventure-game").classList.add("active-nav")
+    }
+    else if(pathname == "/admin/pod-adventure/manage"){
+      document.getElementById("game-management").classList.add("active")
+      document.getElementById("collapseOne").classList.add("show")
+      document.getElementById("manage-pod-adventure-game").classList.add("active-nav")
+    } 
     else if(pathname == "/admin/guess-country-game/add"){
       document.getElementById("game-management").classList.add("active")
       document.getElementById("collapseOne").classList.add("show")

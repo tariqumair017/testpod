@@ -25,10 +25,11 @@
                 <td><%=item.country%></td>
                 <td><%=item.username%></td> 
                 <td> 
-                  <span class="table-buttons">  
-                    <!-- <button type="submit" onclick="deleteUser('<%=item._id%>')" class="btn btn-danger">Delete</button>  -->
-                     <!-- Button trigger modal -->
-                    <button onclick="document.querySelector('#id').value = '<%=item._id%>', document.querySelector('#body-id').innerHTML = `Sure you want to delete '<%=item.name%>' ?`" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <span class="table-buttons">   
+                    <button type="button" onclick="editUser(`<%=JSON.stringify(item)%>`)" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Edit
+                    </button> 
+                    <button onclick="document.querySelector('#id').value = '<%=item._id%>', document.querySelector('#body-id').innerHTML = `Sure you want to delete '<%=item.name%>' ?`" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       Delete
                     </button>
                   </span>  
@@ -39,7 +40,7 @@
           </tbody>
         </table> 
 
-        <!-- Modal -->
+        <!-- Modal for Delete User -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -60,7 +61,133 @@
             </div>
           </div>
         </div>
+
+
+        <!-- Modal for Block/Unblock User -->
+        <div class="modal fade" id="blockUserModal" tabindex="-1" aria-labelledby="blockUserModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="blockUserModalLabel">Block/Unblock User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div id="blockedUserBody" class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="/admin/user-management/block?_method=PUT" method="POST"> 
+                  <input hidden type="text" name="id" id="blockedUserid">
+                  <button id="blockSubmitBtn" type="submit" class="btn btn-danger">Block/Unblock</button> 
+                </form> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- Modal for Edit User -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Edit Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-1">
+              <h6 id="blockInfo" class="bg-danger text-white text-center p-2 mt-1 mb-0"><i>This User is blocked</i></h6>
+              <form id="EditUserForm" action="" method="POST">
+                <div class="mb-2">
+                  <label for="userName" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="userName" name="data[name]">
+                </div>
+                <div class="mb-2">
+                  <label for="userDOB" class="col-form-label">Date of Birth:</label>
+                  <input type="date" class="form-control" id="userDOB" name="data[dob]">
+                </div> 
+                <div class="mb-2">
+                  <label for="userPhone" class="col-form-label">Mobile:</label>
+                  <input type="text" class="form-control" id="userPhone" name="data[phoneNum]">
+                </div>
+                <div class="mb-2">
+                  <label for="userGender" class="col-form-label">Gender:</label> 
+                  <select class="form-select" id="userGender" aria-label="Default select example" name="data[gender]">
+                    <option selected disabled hidden>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option> 
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <label for="userLearningGoal" class="col-form-label">Learning Goal:</label>
+                  <select class="form-select" id="userLearningGoal" aria-label="Default select example" name="data[learningGoal]">
+                    <option selected disabled hidden>Select Goal</option>
+                    <option value="Flags">Flags</option>
+                    <option value="driving-tests">Driving Tests</option>
+                    <option value="practice-tests">Practice Tests</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <label for="userCountry" class="col-form-label">Country:</label>
+                  <input type="text" class="form-control" id="userCountry" name="data[country]">
+                </div>
+                <div class="mb-2">
+                  <label for="userLocation" class="col-form-label">Location:</label>
+                  <input type="text" class="form-control" id="userLocation" name="data[location]">
+                </div>
+                <div class="mb-4">
+                  <label for="userAboutMe" class="col-form-label">About Me:</label>
+                  <textarea class="form-control" id="userAboutMe" cols="3" rows="3" name="data[aboutMe]"></textarea> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success btn-sm">Update</button>
+                  <div id="UserBlockDiv">
+          
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
+
+<script>
+    async function editUser(item) { 
+    item = JSON.parse(item); 
+    document.getElementById("blockInfo").classList.add("d-none");    
+    if(item.blocked)
+    {
+      document.getElementById("blockInfo").classList.remove("d-none"); 
+    }
+    document.getElementById("UserBlockDiv").innerHTML = `<button onclick="blockFunc('${item._id}', '${item.name}', '${item.blocked}')" type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#blockUserModal">${item.blocked ? 'Blocked': 'Unblocked'}</button>`;
+    var dob;  
+   if(item.dob)
+   {
+    var now = new Date(item.dob);
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2); 
+    var dob = `${now.getFullYear()}-${month}-${day}`;
+   } 
+
+    document.getElementById("staticBackdropLabel").innerHTML = `Edit Profile of ${item.name}`;
+    document.getElementById("userName").value = item.name;
+    document.getElementById("userDOB").value = dob;
+    document.getElementById("userPhone").value = item.phoneNum;
+    document.getElementById("userGender").value = item.gender;
+    document.getElementById("userLearningGoal").value = item.learningGoal;
+    document.getElementById("userCountry").value = item.country; 
+    document.getElementById("userLocation").value = item.location ? item.location: ''; 
+    document.getElementById("userAboutMe").value = item.aboutMe ? item.aboutMe: '';
+    document.getElementById("EditUserForm").action = `/admin/user-management/edit/${item._id}?_method=PUT`;
+}
+
+async function blockFunc(id, name, blocked)
+  {  
+    document.querySelector('#blockedUserid').value = id; 
+    document.querySelector('#blockedUserBody').innerHTML = `Sure you want to ${JSON.parse(blocked) ? 'Unblock': 'Block'} '${name}' ?`;
+    document.querySelector('#blockSubmitBtn').innerHTML = `${JSON.parse(blocked) ? 'Unblock': 'Block'}`;
+  }
+</script>
 
 
 <!--Container Main end-->

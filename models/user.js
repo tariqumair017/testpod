@@ -37,7 +37,11 @@ let UserSchema = new mongoose.Schema({
     aboutMe: {
         type:String, 
         maxLength: 150
-    }
+    },
+    blocked: {
+        type: Boolean,
+        default: false
+    },
 });
 
 UserSchema.plugin(passportLocalMongoose);
