@@ -12066,6 +12066,233 @@ circle {
   overflow-y: auto;
 }
 
+.pod-adventure{
+  display: flex;
+  justify-content: center;
+}
+
+.pod-adventure-game{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pod-adventure-back-icon{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pod-adventure-progress-line-box{
+  width: 100%;
+  background-color: #E5E5E5;
+  border-radius: 20px;
+  height: 15px;
+}
+
+.pod-adventure-back-icon i{
+  font-size: x-large;
+  color: gray;
+}
+
+.pod-adventure-progress-line{
+  background-color: green;
+  width: 100%;
+}
+
+.guess-flag-footer{
+  background-color: #FFDFE0;
+  border-top: 1px solid #FFDFE0 !important;
+
+}
+
+.cross-guess-flag{
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 50%;
+}
+
+.pod-adventure-disabled{
+  cursor: none;
+  background-color: lightgrey;
+  color: lightgray;
+}
+
+.worng-area{
+  display: flex;
+  gap: 10px;
+}
+
+.pod-adventure-footer{
+  height: 20vh;
+  border-top: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* button */
+
+
+
+/* CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 15px;
+  border: 1px solid lightgray;
+  border-bottom: 4px solid lightgray;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding: 10px 40px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:hover{
+  background-color:#E5E5E5
+}
+
+
+/* Danger Button */
+
+
+
+.button-19 {
+  align-items: center;
+  appearance: none;
+  background-color: #FF4B4B;
+  border-radius: 15px;
+  border: 1px solid #EA2B2B;
+  border-bottom: 4px solid #EA2B2B;
+  /* box-shadow: #EA2B2B 0 2px 4px,#EA2B2B 0 7px 13px -5px; */
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding: 10px 40px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-19:hover{
+  background-color: #ff6565;
+  border: 1px solid #ff6565;
+  border-bottom: 4px solid #ff6565;
+}
+
+
+
+
+/* disabled button */
+
+.button-18-disabled {
+  align-items: center;
+  appearance: none;
+  background-color: lightgray;
+  border-radius: 15px;
+  border: 1px solid rgb(202, 198, 198);
+  border-bottom: 4px solid rgb(202, 198, 198);
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding: 10px 40px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+  pointer-events: none;
+
+}
+
+
+
+/* Succress Button */
+
+
+
+.button-18 {
+  align-items: center;
+  appearance: none;
+  background-color: #61E002;
+  border-radius: 15px;
+  border: 1px solid #61B800;
+  border-bottom: 4px solid #61B800;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding: 10px 40px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-18:hover{
+  background-color: #79d412;
+  border: 1px solid #61B800;
+  border-bottom: 4px solid #61B800;
+}
+
 
 /* puzzle area end */
 
@@ -12752,6 +12979,8 @@ footer .more_test:hover {
   border-radius: 5px;
 }
 
+
+
 .flag-quest-flags {
   display: flex;
   justify-content: center;
@@ -12909,12 +13138,13 @@ footer .more_test:hover {
 }
 
 .popover-header {
-  background-color: #A8171A;
+  background-color: #f51515;
   color: #ffffff;
+  
 }
 
 .popover {
-  border: 1px solid #A8171A;
+  border: 1px solid #f51515;
 }
 
 .result_box_bottom {
