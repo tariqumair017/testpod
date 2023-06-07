@@ -8910,9 +8910,6 @@ label {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border: none;
-
-
-
 }
 
 .customLable.correct {
@@ -8939,6 +8936,138 @@ label {
 
 }
 
+
+.pod-adventure-option_list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.pod-adventure-customLable{
+  background-color: #ffffff;
+  border-radius: 5px !important;
+  border: 1px solid lightgray;
+  border-bottom: 4px solid lightgray;
+  font-size: 25px;
+  display: flex;
+
+  /* padding: 8px 0px; */
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  margin-bottom: 10px;
+
+  position: relative;
+  align-items: center;
+  width: 42%;
+}
+
+
+.pod-adventure-customLable:hover {
+
+  background-color:#E5E5E5 !important
+
+}
+
+.pod-adventure-customLable strong {
+
+  background: #ffffff;
+
+  padding: 10px 20px;
+
+  font-weight: 500;
+
+  margin-right: 10px;
+  color: #000;
+
+  font-size: x-large;
+  /* color: #ffffff; */
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: 1px solid lightgray;
+
+}
+
+
+.pod-adventure-customLable-avtive:hover {
+
+  background-color:#DDF4FF !important
+
+}
+
+.pod-adventure-customLable-avtive{
+  background-color: #DDF4FF;
+  border-radius: 5px !important;
+  border: 1px solid #84d8ff;
+  border-bottom: 4px solid #84d8ff;
+  font-size: 25px;
+  display: flex;
+  color: #84d8ff;
+
+  /* padding: 8px 0px; */
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  margin-bottom: 10px;
+
+  position: relative;
+  align-items: center;
+  width: 42%;
+}
+
+.pod-adventure-customLable-avtive strong {
+
+  background: #DDF4FF;
+
+  padding: 10px 20px;
+
+  font-weight: 500;
+
+  margin-right: 10px;
+  color: #84d8ff;
+
+  font-size: x-large;
+  /* color: #ffffff; */
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: 1px solid #84d8ff;
+
+}
+
+
+
+.pod-adventure-customLable.correct {
+
+
+  box-shadow: 0 0 2px 0 #1dcf71
+
+}
+
+.pod-adventure-quest-game{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.pod-adventure-customLable.incorrect {
+  box-shadow: 0 0 4px 0 #A8171A;;
+
+}
+
+.pod-adventure-customLable.incorrect strong,
+.pod-adventure-customLable.correct strong {
+
+  background: #A8171A;
+
+
+  /* font-weight: 600; */
+
+}
 
 
 
@@ -9005,10 +9134,6 @@ label {
   right: 15px;
 
   top: 13px;
-
-
-
-
 }
 
 .option_list .icon {
@@ -10001,7 +10126,7 @@ label {
 
   margin-right: 5px;
 
-  border: 2px solid #f9f9f9;
+  border: 2px solid #ffffff;
 
   cursor: pointer;
 
@@ -10085,13 +10210,9 @@ label {
 
   align-items: center;
 
-  border: 2px solid #d6d6d6;
+  border: 5px solid #d6d6d6;
 
   cursor: pointer;
-
-
-
-
 }
 
 .customLableWimageQuest:hover {
@@ -11697,7 +11818,7 @@ circle {
 
   margin-right: 5px;
 
-  border: 2px solid #f9f9f9;
+  border: 5px solid #ffffff;
 
   cursor: pointer;
 
@@ -12066,6 +12187,11 @@ circle {
   overflow-y: auto;
 }
 
+.pod-adventure-options{
+  width: 188px;
+}
+
+
 .pod-adventure{
   display: flex;
   justify-content: center;
@@ -12098,26 +12224,58 @@ circle {
 }
 
 .pod-adventure-progress-line{
-  background-color: green;
+  /* background-color: green; */
   width: 100%;
 }
 
-.guess-flag-footer{
+
+.pod-incorrect-ans-footer{
   background-color: #FFDFE0;
   border-top: 1px solid #FFDFE0 !important;
 
 }
 
+.pod-correct-ans-footer{
+  background-color: #D7FFB8 !important;
+  border-top: 1px solid #D7FFB8 !important;
+
+}
+
 .cross-guess-flag{
   background-color: #ffffff;
-  padding: 15px 20px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-guess-flag{
+  background-color: #ffffff;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pod-adventure-disabled{
   cursor: none;
   background-color: lightgrey;
   color: lightgray;
+}
+
+.well_done{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Not_true{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .worng-area{
@@ -12137,12 +12295,14 @@ circle {
 
 
 
+
+
 /* CSS */
 .button-30 {
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 1px solid lightgray;
   border-bottom: 4px solid lightgray;
   box-sizing: border-box;
@@ -12181,7 +12341,7 @@ circle {
   align-items: center;
   appearance: none;
   background-color: #FF4B4B;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 1px solid #EA2B2B;
   border-bottom: 4px solid #EA2B2B;
   /* box-shadow: #EA2B2B 0 2px 4px,#EA2B2B 0 7px 13px -5px; */
@@ -12223,7 +12383,7 @@ circle {
   align-items: center;
   appearance: none;
   background-color: lightgray;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 1px solid rgb(202, 198, 198);
   border-bottom: 4px solid rgb(202, 198, 198);
   box-sizing: border-box;
@@ -12260,10 +12420,10 @@ circle {
 .button-18 {
   align-items: center;
   appearance: none;
-  background-color: #61E002;
-  border-radius: 15px;
-  border: 1px solid #61B800;
-  border-bottom: 4px solid #61B800;
+  background-color: #61E002 !important;
+  border-radius: 5px;
+  border: 1px solid #61B800 !important;
+  border-bottom: 4px solid #61B800 !important;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
@@ -13164,6 +13324,11 @@ footer .more_test:hover {
 
 }
 
+.pod-adventure-game-detective-image{
+  display: flex;
+  justify-content: center;
+}
+
 .question-number {
   font-size: 22px;
   font-weight: 800;
@@ -13174,9 +13339,14 @@ footer .more_test:hover {
 
 }
 
+#Multiple-game{
+  width: 70%;
+} 
+
 .question-hint {
   font-size: 20px;
   font-weight: 700;
+
   line-height: 25px;
   text-align: center;
   color: black;

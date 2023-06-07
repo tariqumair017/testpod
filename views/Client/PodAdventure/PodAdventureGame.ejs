@@ -27,17 +27,41 @@
 <body>
 
     <div style="height: 100vh;">
-        <header class="pod-adventure" style="height: 20vh;">
+        <header class="pod-adventure" style="height: 15vh;">
             <div class="pod-adventure-game">
                 <div onclick="location='/'" class="pod-adventure-back-icon"><i class="fa-solid fa-arrow-left"></i></div>
                 <div class="pod-adventure-progress-line-box">
                     <div class="pod-adventure-progress-line">
+                        <div class="time_line" style="
+                  background: #58CC02;
+                  height: 15px;
+                  border-radius: 50px;
+                  transition: all 0.2s;
+                  width: 0%;
+                  position: relative;
+                ">
+                <div class="time_line_inner"  style="
+                background: #79D635;
+                height: 5px;
+                border-radius: 50px;
+                transition: all 0.2s;
+                width: 0%;
+                position: absolute;
+                left: 10px;
+                top: 3px;
+              ">
+
+                </div>
+                </div>
                     </div>
                 </div>
             </div>
         </header>
-        <section style="height: 60vh;display: flex;justify-content: center;flex-direction: column;">
-            <div class="text-center mb-4 questions-name">
+        <section style="height: 65vh;display: flex;flex-direction: column;align-items: center;">
+            <div id="Multiple-game">
+
+            </div>
+            <!-- <div class="text-center mb-4 questions-name">
                 <span style="font-size: 30px;font-weight: bold;color: back">
                     Can you guess flag of "Pakistan"
                 </span>
@@ -46,35 +70,41 @@
                 <div class="pod-adventure-game" style="height: auto;">
                     <div style="width: 100%;display: flex;justify-content: space-around;">
                         <div class="pod-adventure-guess-option-left">
-                            <input class="customRadio" ans="correct" type="radio" name=q1 id="1"><label
+                            <input class="customRadio"ans="correct" type="radio" name=q1 id="1"/><label
                                 class="customLableWimage" for="1"><img class="guess-flag-image" style="height: auto;"
                                     src="/client/img/Flags/01-correct.svg" alt=""></label>'
                         </div>
 
                         <div class="pod-adventure-guess-option-right">
                             <div class="pod-adventure-guess-option-right">
-                                <input class="customRadio" ans="correct" type="radio" name=q2 id="2"><label
+                                <input class="customRadio"  type="radio" name=q1 id="2"/><label
                                     class="customLableWimage" for="2"><img class="guess-flag-image"
                                         style="height: auto;" src="/client/img/Flags/01-correct.svg" alt=""></label>'
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
         </section>
         <section class="pod-adventure-footer">
             <div style="width: 70%;">
                 <div class="pod-adventure-game" style="justify-content: space-between;width: 100%;">
                     <div>
-                        <button class="button-30 skip-guess-flag" role="button">Skip</button>
+                        <button class="button-30 skip-guess-flag" role="button">I Don't Know</button>
                         <div class="worng-area">
                             <span class="cross-guess-flag d-none">
                                 <i class="fa-solid fa-xmark fa-2xl" style="color: #EA2B2B;"></i>
                             </span>
-                            <!-- <div>
-                            <h4 style="color: #EA2B2B;margin: 0%;" >Correct solution:</h4>
-                            <img width="50px" src="/client/img/Flags/01-correct.svg" />
-                        </div> -->
+                            <span class="right-guess-flag d-none">
+                                <i class="fa-solid fa-check fa-2xl" style="color: #61B800;"></i>
+                            </span>
+                            <div class="well_done d-none">
+                                <h4 style="color: #61B800;margin: 0%;">Well done!</h4>
+                            </div>
+                            <div class="Not_true d-none">
+                                <h4 style="color: #EA2B2B;margin: 0%;">Not true</h4>
+                            </div>
                         </div>
                     </div>
                     <button class="button-18-disabled check-guess-flag">Check</button>
@@ -82,14 +112,15 @@
                 </div>
                 <div id="guess-flag-details" class="d-none"
                     style="display: flex;justify-content: center;align-items: center;gap: 5px;">
-                    <div class="example-popover"  >
+                    <div class="example-popover">
                         <i class="fa-regular fa-message" style="color: #EA2B2B;font-size: larger;"></i> <span
                             style="color: #EA2B2B;font-size: larger">Details</span>
                     </div>
                 </div>
                 <div hidden>
                     <p id="mypopover-content">
-                        Badshahi Mosque. Badshahi Masjid the historical Mosque built by Mughal empire, famous for its widest courtyard, is a symbol of Islamic...
+                        Badshahi Mosque. Badshahi Masjid the historical Mosque built by Mughal empire, famous for its
+                        widest courtyard, is a symbol of Islamic...
                     </p>
                 </div>
             </div>
@@ -112,7 +143,9 @@
 
 
     <!-- script -->
-
+    <script>
+        var data = <%-JSON.stringify(data) %>
+    </script>
     <script src="/client/js/pod-adventure.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -124,9 +157,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        new WOW().init()
+            new WOW().init()
     </script>
     <script src="/client/js/form-validation.js"></script>
+
 
 </body>
 
