@@ -2,7 +2,7 @@
 // Flag Data Api for All Regions
 //=====================================
 
-fetch("/admin/pod-adventure/all-flags-data")
+fetch("/admin/flag-data-api/distinct-region")
   .then((res) => res.json())
   .then((json) => {
     var _html = "";
@@ -30,7 +30,7 @@ document.getElementById("module").addEventListener("change", function (event) {
 
     document.getElementById("regionID").addEventListener("change", async (event) => {
     // region_input_flag_quest = event.target.value;
-    const response = await fetch(`/admin/pod-adventure/all-flags-data/country/${event.target.value}`);
+    const response = await fetch(`/admin/flag-data-api/country/${event.target.value}`);
     const data = await response.json();
     var _html = "";
     data.forEach((element) => {
@@ -56,7 +56,7 @@ document.getElementById("module").addEventListener("change", function (event) {
 
     document.getElementById("regionID").addEventListener("change", async (event) => {
         // region_input_guess_country = event.target.value;
-        const response = await fetch(`/admin/pod-adventure/all-flags-data/country/${event.target.value}`);
+        const response = await fetch(`/admin/flag-data-api/country/${event.target.value}`);
         const data = await response.json();
         var _html = "";
         data.forEach((element) => {
@@ -81,7 +81,7 @@ document.getElementById("module").addEventListener("change", function (event) {
 
     document.getElementById("regionID").addEventListener("change", async (event) => {
         // region_input_guess_country = event.target.value;
-        const response = await fetch(`/admin/pod-adventure/all-flags-data/country/${event.target.value}`);
+        const response = await fetch(`/admin/flag-data-api/country/${event.target.value}`);
         const data = await response.json();
         var _html = "";
         data.forEach((element) => {
@@ -106,7 +106,7 @@ document.getElementById("module").addEventListener("change", function (event) {
 
     document.getElementById("regionID").addEventListener("change", async (event) => {
         // region_input_guess_country = event.target.value;
-        const response = await fetch(`/admin/pod-adventure/all-flags-data/country/${event.target.value}`);
+        const response = await fetch(`/admin/flag-data-api/country/${event.target.value}`);
         const data = await response.json();
         var _html = "";
         data.forEach((element) => {
@@ -131,7 +131,7 @@ document.getElementById("module").addEventListener("change", function (event) {
 
     document.getElementById("regionID").addEventListener("change", async (event) => {
         // region_input_guess_country = event.target.value;
-        const response = await fetch(`/admin/pod-adventure/all-flags-data/country/${event.target.value}`);
+        const response = await fetch(`/admin/flag-data-api/country/${event.target.value}`);
         const data = await response.json();
         var _html = "";
         data.forEach((element) => {
@@ -159,7 +159,7 @@ async function flagQuestselectedCountry(e) {
   const num = id.match(/(\d+)/)[0];
   document.getElementById(`IcountryForQuest${num}`).value = shuffledCountry;
 
-  const response = await fetch(`/admin/pod-adventure/all-flags-data/country-for-flag/${countryName}`);
+  const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
   const data = await response.json();
   document.getElementById(`flagUrlForQuest${num}`).value = data.flag;
 }
@@ -249,7 +249,7 @@ async function flagQuestselectedCountry(e) {
     var num = id.match(/(\d+)/)[0];
     const countryName = document.getElementById(id).value;
 
-    const response = await fetch(`/admin/pod-adventure/all-flags-data/country-for-flag/${countryName}`);
+    const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
     const data = await response.json();
     document.getElementById(`flagUrlForGuessCountry${num}`).value = data.flag;
     document.getElementById(`correctIDForGuessCountry${num}`).value = countryName.charAt(0).toUpperCase() + countryName.slice(1);
@@ -345,7 +345,7 @@ async function guessFlagselectedCountry(e) {
   const num = id.match(/(\d+)/)[0];
   document.getElementById(`IcountryforGuessFlag${num}`).value = shuffledCountry;
 
-  const response = await fetch(`/admin/pod-adventure/all-flags-data/country-for-flag/${countryName}`);
+  const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
   const data = await response.json();
   document.getElementById(`flagUrlForGuessFlag${num}`).value = data.flag;
 }
@@ -455,7 +455,7 @@ async function flagDetectiveSelectedCountry(e) {
   const countryName = document.getElementById(id).value;
   const num = id.match(/(\d+)/)[0];
 
-  const response = await fetch(`/admin/pod-adventure/all-flags-data/country-for-flag/${countryName}`);
+  const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
   const data = await response.json();
   document.getElementById(`flagUrlForDetective${num}`).value = data.flag;
 }
@@ -558,7 +558,7 @@ async function flagPuzzleSelectedCountry(e) {
   const countryName = document.getElementById(id).value;
   const num = id.match(/(\d+)/)[0];
 
-  const response = await fetch(`/admin/pod-adventure/all-flags-data/country-for-flag/${countryName}`);
+  const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
   const data = await response.json();
   document.getElementById(`flagUrlForPuzzle${num}`).value = data.flag;
 }

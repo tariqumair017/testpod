@@ -17,8 +17,8 @@ const PodAdventureGameSchema = new mongoose.Schema({
       required: true
     },
     flag: {
-    type: String,
-    required: true
+      type: String,
+      required: true
     },
     optionA: {
       type: String,
@@ -28,19 +28,15 @@ const PodAdventureGameSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    optionC: {
-      type: String,
-      required: true
-    },
-    optionD: {
-      type: String,
-      required: true
-    },
     correct: {
       type: String,
       required: true
     },
     hint: {
+      type: String,
+      required: true
+    },
+    detail: {
       type: String,
       required: true
     }
@@ -65,6 +61,10 @@ const PodAdventureGameSchema = new mongoose.Schema({
     hint: {
       type: String,
       required: true
+    },
+    detail: {
+      type: String,
+      required: true
     }
   }],
   flagDetective: [{
@@ -72,13 +72,17 @@ const PodAdventureGameSchema = new mongoose.Schema({
       type: String,
       required: true
       }, 
-      flagUrl: {
+    flagUrl: {
         type: String,
         required: true
       },
     hint: {
       type: String,
       required: true
+      },
+    detail: {
+        type: String,
+        required: true
       }
   }],
   flagPuzzle: [{
@@ -90,6 +94,14 @@ const PodAdventureGameSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    hint: {
+      type: String,
+      required: true
+    },
+    detail: {
+      type: String,
+      required: true
+    }
   }],
   flagQuest: [{
     country: {
@@ -117,6 +129,10 @@ const PodAdventureGameSchema = new mongoose.Schema({
         required: true
     },
     hint: {
+      type: String,
+      required: true
+    },
+    detail: {
       type: String,
       required: true
     }

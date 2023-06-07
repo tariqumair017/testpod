@@ -177,7 +177,7 @@
 <script>    
     
   const continent = `<%-data.region%>`; 
-  fetch(`/admin/flag-puzzle-game/all-flags-data/country/${continent}`)
+  fetch(`/admin/flag-data-api/country/${continent}`)
       .then(response => response.json())
       .then((data) => {  
           var _html = '';
@@ -195,7 +195,7 @@ async function newSelectedCountryForPuzzle(e)
     { 
       const id = e.getAttribute("id"); 
       const countryName = document.getElementById(id).value;  
-      const response = await fetch(`/admin/flag-puzzle-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById("newFlagUrl").value = data.flag;
     }    
@@ -206,7 +206,7 @@ async function editSelectedCountryForPuzzle(e)
       const id = e.getAttribute("id")
       const countryName = document.getElementById(id).value; 
 
-      const response = await fetch(`/admin/flag-puzzle-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById("editFlagPuzzleFlag").value = data.flag;
     }  

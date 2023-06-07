@@ -5,7 +5,7 @@ var region_input = '';
 var Counter = 0;
 
 
-fetch('/admin/guess-country-game/all-flags-data')
+fetch('/admin/flag-data-api/distinct-region')
         .then(res => res.json())
         .then((json) => {  
             var _html = '';
@@ -19,7 +19,7 @@ fetch('/admin/guess-country-game/all-flags-data')
 
 document.getElementById("regionID").addEventListener("change", async (event) => {
   region_input = event.target.value;
-  const response = await fetch(`/admin/guess-country-game/all-flags-data/country/${event.target.value}`);
+  const response = await fetch(`/admin/flag-data-api/country/${event.target.value}`);
   const data = await response.json();
     var _html = '';
     document.getElementById("countryID").innerHTML = `<option hidden>Please Select Country</option>`;
@@ -45,7 +45,7 @@ add_new_form.onclick = async () => {
   
   if(region_input != '')
   {
-    const response = await fetch(`/admin/guess-country-game/all-flags-data/country/${region_input}`);
+    const response = await fetch(`/admin/flag-data-api/country/${region_input}`);
     const data = await response.json();
       var _html = '';
       document.getElementById(`countryID${Counter}`).innerHTML = `<option hidden>Please Select Country</option>`;
@@ -58,7 +58,7 @@ add_new_form.onclick = async () => {
 
 
 document.getElementById("countryID").addEventListener("change", async (event) => {   
-  const response = await fetch(`/admin/guess-country-game/all-flags-data/country-for-flag/${event.target.value}`);
+  const response = await fetch(`/admin/flag-data-api/country-for-flag/${event.target.value}`);
   const data = await response.json();
   document.getElementById("flagUrl").value = data.flag;   
   document.getElementById("correctID").value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1); 
@@ -72,7 +72,7 @@ async function selectedCountryHere(element)
     var num = id.match(/(\d+)/)[0]; 
     const countryName = document.getElementById(id).value; 
     
-    const response = await fetch(`/admin/guess-country-game/all-flags-data/country-for-flag/${countryName}`);
+    const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
     const data = await response.json();
     document.getElementById(`flagUrl${num}`).value = data.flag;   
     document.getElementById(`correctID${num}`).value = countryName.charAt(0).toUpperCase() + countryName.slice(1); 

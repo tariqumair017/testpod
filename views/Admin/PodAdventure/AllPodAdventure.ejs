@@ -17,12 +17,13 @@
       <thead>
         <tr>
           <th class="table-hash-col">#</th>
-          <th >Country</th> 
-          <th >Correct Img</th>
-          <th >Incorrect Img 1</th>
-          <th >Incorrect Img 2</th>
-          <th >Incorrect Img 3</th>
-          <th >Hint</th>
+          <th>Country</th> 
+          <th>Correct Img</th>
+          <th>Incorrect Img 1</th>
+          <th>Incorrect Img 2</th>
+          <th>Incorrect Img 3</th>
+          <th>Hint</th>
+          <th>Detail</th>
           <th class="table-buttons">Actions</th>
         </tr>
       </thead>
@@ -37,10 +38,11 @@
             <td><img class="border" width="50" src="<%=item.IcorrectImg2%>" alt="..img"></td> 
             <td><img class="border" width="50" src="<%=item.IcorrectImg3%>" alt="..img"></td> 
             <td><%=item.hint%></td> 
+            <td><%=item.detail%></td> 
             <td>
               <span class="table-buttons">
-                <button onclick="editFlagQuestGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
-                <form action="/admin/flag-quest-game/manage/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
+                <!-- <button onclick="editFlagQuestGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#FlagQuestEditModal" class="btn btn-primary">Edit</button> -->
+                <form action="/admin/pod-adventure/manage/flag-quest/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                   <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
               </span>
@@ -62,7 +64,8 @@
           <th class="table-hash-col">#</th>
           <th>Country</th>
           <th>Flag Image</th>
-          <th>Flag Hint</th>
+          <th>Hint</th>
+          <th>Detail</th>
           <th class="table-buttons">Actions</th>
         </tr>
       </thead>
@@ -74,12 +77,13 @@
           <td><%=item.country.toUpperCase()%></td>
           <td><img class="border" width="50" src="<%=item.flagUrl%>" alt="..img"></td>
           <td><%=item.hint%></td>
+          <td><%=item.detail%></td>
           <td>
             <span class="table-buttons">
-              <button onclick="editFlagDetectiveGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
+              <!-- <button onclick="editFlagDetectiveGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#FlagDetectiveEditModal" class="btn btn-primary">
                 Edit
-              </button>
-              <form action="/admin/flag-detective-game/manage/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST">
+              </button> -->
+              <form action="/admin/pod-adventure/manage/flag-detective/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST">
                 <button type="submit" class="btn btn-danger">Delete</button>
               </form>
             </span>
@@ -99,8 +103,10 @@
       <thead>
         <tr>
           <th class="table-hash-col">#</th>
-          <th style="width: 20%">Country</th> 
-          <th style="width: 62%;" >Correct Img</th>
+          <th>Country</th> 
+          <th>Correct Img</th>
+          <th>Hint</th>
+          <th>Detail</th>
           <th class="table-buttons">Actions</th>
         </tr>
       </thead>
@@ -111,10 +117,12 @@
             <th scope="row"><%=count%></th>
             <td><%=item.country.toUpperCase()%></td> 
             <td><img class="border" width="50" src="<%=item.flag%>" alt="..img"></td>
+            <td><%=item.hint%></td>  
+            <td><%=item.detail%></td>  
             <td>
               <span class="table-buttons">
-                <button onclick="editFlagPuzzleGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
-                <form action="/admin/flag-puzzle-game/manage/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST"> 
+                <!-- <button onclick="editFlagPuzzleGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#FlagPuzzleEditModal" class="btn btn-primary">Edit</button> -->
+                <form action="/admin/pod-adventure/manage/flag-puzzle/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST"> 
                   <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
               </span>
@@ -136,10 +144,10 @@
             <th class="table-hash-col" >#</th>
             <th class="table-question-col-flag">Flag</th>
             <th class="table-option-col" >Option A</th>
-            <th class="table-option-col" >Option B</th>
-            <th class="table-option-col" >Option C</th>
-            <th class="table-option-col" >Option D</th>
+            <th class="table-option-col" >Option B</th> 
             <th class="table-answer-col" >Answer</th>
+            <th class="table-answer-col" >Hint</th>
+            <th class="table-answer-col" >Detail</th>
             <th class="table-action-col" class="table-buttons" >Actions</th>
         </tr>
         </thead>
@@ -150,14 +158,14 @@
             <th scope="row"><%=count%></th>
             <td ><img width="50px" height="40px" src="<%=item.flag%>" /></td>
             <td><%=item.optionA%></td>
-            <td><%=item.optionB%></td>
-            <td><%=item.optionC%></td>
-            <td><%=item.optionD%></td>
+            <td><%=item.optionB%></td> 
             <td><%=item.correct%></td>
+            <td><%=item.hint%></td>
+            <td><%=item.detail%></td>
             <td>
                 <span class="table-buttons">
-                <button onclick="editQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
-                <form action="/admin/guess-country-game/manage/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
+                <!-- <button onclick="editQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#GuessCountryEditModal" class="btn btn-primary">Edit</button> -->
+                <form action="/admin/pod-adventure/manage/guess-country/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                     <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
                 </span>
@@ -181,6 +189,7 @@
           <th >Correct Img</th>
           <th >Incorrect Img</th>
           <th >Hint</th>
+          <th >Detail</th>
           <th class="table-buttons">Actions</th>
         </tr>
       </thead>
@@ -193,10 +202,11 @@
             <td><img class="border" width="50" src="<%=item.correctImg%>" alt="..img"></td>
             <td><img class="border" width="50" src="<%=item.IcorrectImg%>" alt="..img"></td> 
             <td><%=item.hint%></td> 
+            <td><%=item.detail%></td> 
             <td>
               <span class="table-buttons">
-                <button onclick="editGuessFlagGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Edit</button>
-                <form action="/admin/guess-flag-game/manage/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
+                <!-- <button onclick="editGuessFlagGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#GuessFlagEditModal" class="btn btn-primary">Edit</button> -->
+                <form action="/admin/pod-adventure/manage/guess-flag/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                   <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
               </span>
@@ -215,16 +225,16 @@
     <!-- flagQuest Edit Quiz -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="FlagQuestEditModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="FlagQuestEditModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Question
+            <h1 class="modal-title fs-5" id="FlagQuestEditModalLabel">
+              Flag-Quest: Edit Question
             </h1>
             <button
               type="button"
@@ -296,16 +306,16 @@
     <!-- flagDetective Edit Quiz -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="FlagDetectiveEditModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="FlagDetectiveEditModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Question
+            <h1 class="modal-title fs-5" id="FlagDetectiveEditModalLabel">
+              Flag-Detective: Edit Question
             </h1>
             <button
               type="button"
@@ -373,16 +383,16 @@
     <!-- flagPuzzle Edit Quiz -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="FlagPuzzleEditModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="FlagPuzzleEditModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Question
+            <h1 class="modal-title fs-5" id="FlagPuzzleEditModalLabel">
+              Flag-Puzzle: Edit Question
             </h1>
             <button
               type="button"
@@ -424,11 +434,11 @@
     </div>
 
     <!-- guessCountry Edit Quiz --> 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="GuessCountryEditModal" tabindex="-1" aria-labelledby="GuessCountryEditModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Question</h1>
+              <h1 class="modal-title fs-5" id="GuessCountryEditModalLabel">Guess-Country: Edit Question</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -495,17 +505,17 @@
     <!-- guessFlag Edit Quiz -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="GuessFlagEditModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="GuessFlagEditModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit Question
-            </h1>
+            <h2 class="modal-title fs-5" id="GuessFlagEditModalLabel">
+              Guess-Flag: Edit Question
+            </h2>
             <button
               type="button"
               class="btn-close"
@@ -566,80 +576,5 @@
   </div>
   <!--Container Main end-->
 
-<!-- <script>    
 
-const region = `<%-data.region%>`;  
-  fetch(`/admin/flag-quest-game/all-flags-data/country/${region}`)
-      .then(response => response.json())
-      .then((data) => { 
-          var _html = '';
-          document.getElementById("newCountry").innerHTML = `<option hidden>Please Select Country</option>`;
-          data.forEach(element => {
-            _html += `<option value="${element.country}">${element.country}</option>`;
-          });     
-          document.getElementById("newCountry").innerHTML += _html; 
-          document.getElementById("editCountry").innerHTML = _html;
-      })
-      .catch(err => console.error('error:' + err)); 
-
-
- async function newSelectedCountry(e)
-    { 
-      const id = e.getAttribute("id"); 
-      const countryName = document.getElementById(id).value; 
-      const shuffledCountry = shuffleStr(countryName); 
-      document.getElementById(`newICountry`).value = shuffledCountry;
-
-      
-      const response = await fetch(`/admin/flag-quest-game/all-flags-data/country-for-flag/${countryName}`);
-      const data = await response.json();
-      document.getElementById("newFlagUrl").value = data.flag;
-    }
-
-async function editSelectedCountry(e)
-    {
-      const id = e.getAttribute("id")
-      const countryName = document.getElementById(id).value;
-      const shuffledCountry = shuffleStr(countryName);  
-      document.getElementById(`editICountry`).value = shuffledCountry;
-
-      const response = await fetch(`/admin/flag-quest-game/all-flags-data/country-for-flag/${countryName}`);
-      const data = await response.json();
-      document.getElementById("editFlagUrl").value = data.flag;
-    }
- 
-//Shuffle String Character Function
-function shuffleStr(s) { 
-let arr = s.split(''), arr_len = arr.length; 
-while (arr_len) {
-    let rnd = Math.floor(Math.random() * arr_len--);
-    [arr[arr_len], arr[rnd]] = [arr[rnd] , arr[arr_len]];
-} 
-let str = arr.join('');
-return str;
-}
-
-
-  async function editFlagQuestGameQuestion(Pid, item) {    
-    item = JSON.parse(item);   
-    
-    // var editCountryy = document.getElementById("editCountry");
-
-    // for (let i = 0; i < editCountryy.options.length; i++) { 
-    //   if(editCountryy.options[i].value.toLowerCase() == data.country.toLowerCase())
-    //   { 
-    //     debugger;
-    //     editCountryy.options[i].setAttribute("selected", true);
-    //   }
-    // }
-    document.getElementById("editCountry").innerHTML += `<option selected value="${item.country}">${item.country}</option>`;
-    document.getElementById("editICountry").value = item.Icountry;
-    document.getElementById("editFlagUrl").value = item.correctImg; 
-    document.getElementById("editHint").value = item.hint; 
-    document.getElementById("guessFlagEditForm").action = `/admin/flag-quest-game/manage/${item._id}/${Pid}?_method=PUT`;
-}
-
-</script> -->
-  <!-- <script src="/admin/js/allQuiz.js"></script>
-  <script src="/admin/js/draw-new-flag.js" ></script> -->
 

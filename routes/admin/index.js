@@ -3,7 +3,40 @@ const router = Router();
 import passport from "passport"; 
 import asyncHandler from "express-async-handler";  
 import connectEnsureLogin from "connect-ensure-login"; 
+import AllFlagsData from "../../models/allFlagsData.js";
 import middleware from "../../middleware/index.js";
+
+
+// Flag-Data-Apis 
+//Distinct Region form All Flags Data
+router.get("/admin/flag-data-api/distinct-region", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
+  try {
+    const data = await AllFlagsData.distinct("region"); 
+    res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }
+}));
+
+//Find All Countries of Selected Region
+router.get("/admin/flag-data-api/country/:region", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
+  try {
+    const data = await AllFlagsData.find({region: req.params.region});
+    res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }
+}));
+
+//Find Document of selected Country
+router.get("/admin/flag-data-api/country-for-flag/:country", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
+  try {
+    const data = await AllFlagsData.findOne({country: req.params.country});
+    res.send(data);
+  } catch (error) {
+    return next(error.message);
+  }
+}));
 
 // Sign Up 
 // router.get("/admin/sign-up", asyncHandler(async (req, res, next) => { 

@@ -4,7 +4,28 @@
     <!--Container Main start-->
     <div class="application bg-light">
         <h4 class="mb-3">Create Pod Adventure</h4>
-        <div class="mb-3 row"><h5 class="col-md-1 bg-secondary p-1 text-white text-center">Step 1</h5></div>
+        <!-- <div class="mb-3 row"><h5 class="col-md-1 bg-secondary p-1 text-white text-center">Step 1</h5></div> -->
+        <!-- Progress Bar -->
+        <div class="mb-3 d-flex justify-content-center align-items-center">
+            <div class="progresses"> 
+                    <div class="steps bg-primary">
+                        <span class="font-weight-bold">1</span>
+                    </div>
+
+                    <span class="line bg-secondary"></span>
+
+                    <div class="steps bg-secondary">
+                        <span class="font-weight-bold">2</span>
+                    </div> 
+
+                    <span class="line bg-secondary"></span>
+
+                    <div class="steps bg-secondary">
+                        <span class="font-weight-bold">3</span>
+                    </div> 
+            </div>    
+        </div>
+
         <%- include ('../partials/SuccessError'); -%>
             <form class="add-quiz-form row needs-validation" action="/admin/pod-adventure/add/step1" method="POST" enctype="multipart/form-data" novalidate>
                 <div class="row">
@@ -93,6 +114,11 @@
                             <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
                                 required>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Please Enter Detail</label>
+                            <input name="detail" placeholder="Please Enter detail" type="text" class="form-control"
+                                required>
+                        </div>
                     </div>
                     <hr>
                 </div> 
@@ -146,6 +172,11 @@
                             <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
                                 required>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Please Enter Detail</label>
+                            <input name="detail" placeholder="Please Enter detail" type="text" class="form-control"
+                                required>
+                        </div>
                     </div>
                     <hr>
                 </div>
@@ -196,6 +227,11 @@
                             <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
                                 required>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Please Enter Detail</label>
+                            <input name="detail" placeholder="Please Enter detail" type="text" class="form-control"
+                                required>
+                        </div>
                     </div>
                     <hr>
                 </div>
@@ -220,30 +256,18 @@
                     </div>
                   </div>
                   <div class="row">
-                  <div class="col-md-3 position-relative">
+                  <div class="col-md-6 position-relative">
                     <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
                     <div class="invalid-tooltip">
                       Please provide a Option A.
                     </div>
                   </div> 
-                  <div class="col-md-3 position-relative">
+                  <div class="col-md-6 position-relative">
                     <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
                     <div class="invalid-tooltip">
                       Please provide a Option B.
                     </div>
                   </div> 
-                  <div class="col-md-3 position-relative">
-                    <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
-                    <div class="invalid-tooltip">
-                      Please provide a Option C.
-                    </div>
-                  </div> 
-                  <div class="col-md-3 position-relative">
-                    <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
-                    <div class="invalid-tooltip">
-                      Please provide a Option D.
-                    </div>
-                  </div>
                   </div> 
                   <div class="row">
                   <div class="col-md-6 position-relative">
@@ -260,6 +284,15 @@
                       Please provide a Hint.
                     </div>
                   </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6  position-relative">
+                        <label for="detail" class="form-label">Please Enter Detail</label>
+                        <input name="detail" placeholder="Please Enter Detail" type="text" class="form-control" id="detail" required>
+                        <div class="invalid-tooltip">
+                          Please provide a Detail.
+                        </div>
+                      </div>
                   </div>
                   <hr>
                 </div>
@@ -278,30 +311,18 @@
                       </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-3 position-relative">
+                    <div class="col-md-6 position-relative">
                       <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
                       <div class="invalid-tooltip">
                         Please provide a Option A.
                       </div>
                     </div> 
-                    <div class="col-md-3 position-relative">
+                    <div class="col-md-6 position-relative">
                       <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
                       <div class="invalid-tooltip">
                         Please provide a Option B.
                       </div>
                     </div> 
-                    <div class="col-md-3 position-relative">
-                      <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
-                      <div class="invalid-tooltip">
-                        Please provide a Option C.
-                      </div>
-                    </div> 
-                    <div class="col-md-3 position-relative">
-                      <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
-                      <div class="invalid-tooltip">
-                        Please provide a Option D.
-                      </div>
-                    </div>
                     </div> 
                     <div class="row">
                     <div class="col-md-6 position-relative">
@@ -318,6 +339,17 @@
                         Please provide a Hint.
                       </div>
                     </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6  position-relative">
+                                <label for="detail" class="form-label">Please Enter Detail</label>
+                                <input name="detail" placeholder="Please Enter Detail" type="text" class="form-control" id="detail" required>
+                                <div class="invalid-tooltip">
+                                  Please provide a Detail.
+                                </div>
+                              </div>
+                        </div>
                     </div>
                     <hr>
                   </div> 
@@ -336,30 +368,18 @@
                       </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-3 position-relative">
+                    <div class="col-md-6 position-relative">
                       <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
                       <div class="invalid-tooltip">
                         Please provide a Option A.
                       </div>
                     </div> 
-                    <div class="col-md-3 position-relative">
+                    <div class="col-md-6 position-relative">
                       <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
                       <div class="invalid-tooltip">
                         Please provide a Option B.
                       </div>
                     </div> 
-                    <div class="col-md-3 position-relative">
-                      <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
-                      <div class="invalid-tooltip">
-                        Please provide a Option C.
-                      </div>
-                    </div> 
-                    <div class="col-md-3 position-relative">
-                      <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
-                      <div class="invalid-tooltip">
-                        Please provide a Option D.
-                      </div>
-                    </div>
                     </div> 
                     <div class="row">
                     <div class="col-md-6 position-relative">
@@ -376,6 +396,17 @@
                         Please provide a Hint.
                       </div>
                     </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6  position-relative">
+                                <label for="detail" class="form-label">Please Enter Detail</label>
+                                <input name="detail" placeholder="Please Enter Detail" type="text" class="form-control" id="detail" required>
+                                <div class="invalid-tooltip">
+                                  Please provide a Detail.
+                                </div>
+                              </div>
+                          </div>
                     </div>
                     <hr>
                   </div>   
@@ -421,6 +452,11 @@
                             <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
                                 required>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Please Enter Detail</label>
+                            <input name="detail" placeholder="Please Enter Detail" type="text" class="form-control"
+                                required>
+                        </div>
                     </div>
                     <hr>
                 </div> 
@@ -458,6 +494,11 @@
                         <div class="col-md-6 mt-3 position-relative">
                             <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
                             <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Please Enter Detail</label>
+                            <input name="detail" placeholder="Please Enter Detail" type="text" class="form-control"
                                 required>
                         </div>
                     </div>
@@ -499,6 +540,11 @@
                             <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
                                 required>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Please Enter Detail</label>
+                            <input name="detail" placeholder="Please Enter Detail" type="text" class="form-control"
+                                required>
+                        </div>
                     </div>
                     <hr>
                 </div>  
@@ -526,6 +572,7 @@
                       >
                       <div class="add-quiz-state-image">
                         <input readonly class="add-quiz-image-input formFile form-control"
+                          placeholder="Flag Url"
                           type="text"
                           name="flagUrl" 
                           id="flagUrlForDetective1"
@@ -536,13 +583,23 @@
                     <div class="col-md-6 mt-2 position-relative">
                       <label for="hint" class="form-label">Enter Hint</label>
                       <input
-                        maxlength="200"
+                        placeholder="Enter Hint"
                         name="hint" 
                         type="text"
                         class="form-control"
                         required
                       />
                     </div>
+                    <div class="col-md-6 mt-2 position-relative">
+                        <label for="detail" class="form-label">Enter Detail</label>
+                        <input
+                          placeholder="Enter Detail"
+                          name="detail" 
+                          type="text"
+                          class="form-control"
+                          required
+                        />
+                      </div>
                   </div>
                   <hr />
                 </div> 
@@ -564,6 +621,7 @@
                         >
                         <div class="add-quiz-state-image">
                           <input readonly class="add-quiz-image-input formFile form-control"
+                            placeholder="Flag Url"
                             type="text"
                             name="flagUrl" 
                             id="flagUrlForDetective2"
@@ -574,8 +632,18 @@
                       <div class="col-md-6 mt-2 position-relative">
                         <label for="hint" class="form-label">Enter Hint</label>
                         <input
-                          maxlength="200"
+                          placeholder="Enter Hint"
                           name="hint" 
+                          type="text"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6 mt-2 position-relative">
+                        <label for="detail" class="form-label">Enter Detail</label>
+                        <input
+                        placeholder="Enter Detail"
+                          name="detail" 
                           type="text"
                           class="form-control"
                           required
@@ -602,6 +670,7 @@
                     >
                     <div class="add-quiz-state-image">
                         <input readonly class="add-quiz-image-input formFile form-control"
+                        placeholder="Flag Url"
                         type="text"
                         name="flagUrl" 
                         id="flagUrlForDetective3"
@@ -612,13 +681,23 @@
                     <div class="col-md-6 mt-2 position-relative">
                     <label for="hint" class="form-label">Enter Hint</label>
                     <input
-                        maxlength="200"
+                        placeholder="Enter Hint"
                         name="hint" 
                         type="text"
                         class="form-control"
                         required
                     />
                     </div>
+                    <div class="col-md-6 mt-2 position-relative">
+                        <label for="detail" class="form-label">Enter Detail</label>
+                        <input
+                          placeholder="Enter Detail"
+                          name="detail" 
+                          type="text"
+                          class="form-control"
+                          required
+                        />
+                      </div>
                 </div>
                 <hr />
                 </div> 
@@ -647,6 +726,26 @@
                                     name="flag" id="flagUrlForPuzzle1" required>
                             </div>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="hint" class="form-label">Enter Hint</label>
+                            <input
+                            placeholder="Enter Hint"
+                              name="hint" 
+                              type="text"
+                              class="form-control"
+                              required
+                            />
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Enter Detail</label>
+                            <input
+                            placeholder="Enter Detail"
+                              name="detail" 
+                              type="text"
+                              class="form-control"
+                              required
+                            />
+                        </div>
                     </div>
                     <hr>
                 </div>  
@@ -668,6 +767,26 @@
                                 <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text"
                                     name="flag" id="flagUrlForPuzzle2" required>
                             </div>
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="hint" class="form-label">Enter Hint</label>
+                            <input
+                            placeholder="Enter Hint"
+                              name="hint" 
+                              type="text"
+                              class="form-control"
+                              required
+                            />
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Enter Detail</label>
+                            <input
+                              placeholder="Enter Detail"
+                              name="detail" 
+                              type="text"
+                              class="form-control"
+                              required
+                            />
                         </div>
                     </div>
                     <hr>
@@ -691,6 +810,26 @@
                                     name="flag" id="flagUrlForPuzzle3" required>
                             </div>
                         </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="hint" class="form-label">Enter Hint</label>
+                            <input
+                              placeholder="Enter Hint"
+                              name="hint" 
+                              type="text"
+                              class="form-control"
+                              required
+                            />
+                        </div>
+                        <div class="col-md-6 mt-3 position-relative">
+                            <label for="detail" class="form-label">Enter Detail</label>
+                            <input
+                              placeholder="Enter Detail"
+                              name="detail" 
+                              type="text"
+                              class="form-control"
+                              required
+                            />
+                        </div>
                     </div>
                     <hr>
                 </div> 
@@ -698,232 +837,6 @@
             </div> 
 
         
-
-
-            <!-- Add Multiple Questions for Flag Quest -->
-            <!-- <div style="display: none;">
-                <div id="addNewFormForQuest" class="form-data">
-                    <div class="row mt-4">
-                        <div class="col-md-6 position-relative">
-                            <label for="allCountriesForQuest" class="form-label">Select Counrty</label>
-                            <select class="form-select" name="country" onchange="flagQuestselectedCountry(this)" required>
-                                <option hidden>Please Select Country</option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Please provide a Country Name.
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative d-none">
-                            <input hidden name="Icountry" placeholder="Please Enter In Correct Country" type="text"
-                                class="form-control" required>
-                        </div>
-                        <div class="col-md-6 position-relative">
-                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
-                            <div class="add-quiz-state-image">
-                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text" name="correctImg"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-3">
-                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 1</label>
-                            <div class="add-quiz-state-image">
-                                <input class="add-quiz-image formFile form-control" type="file"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-3">
-                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 2</label>
-                            <div class="add-quiz-state-image">
-                                <input class="add-quiz-image formFile form-control" type="file"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-3">
-                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag 3</label>
-                            <div class="add-quiz-state-image">
-                                <input class="add-quiz-image formFile form-control" type="file"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-3 position-relative">
-                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
-                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
-                                required>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-            </div> -->
-
-            <!-- Add Multiple Questions for Guess Country -->
-            <!-- <div style="display: none;" >
-                <div id="addNewFormForGuessCountry">
-                <div class="form-data">
-                    <div class="row">
-                    <div class="col-md-6"> 
-                        <label for="country" class="form-label">Select Country</label>
-                        <select class="form-select" name="country" onchange="guessCountryselectedCountry(this)" required> 
-                        <option hidden>Please Select Country</option>     
-                        </select> 
-                    </div>
-                    <div class="col-md-6"> 
-                        <label for="" class="form-label">Flag Url</label>
-                        <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" required>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-3 position-relative">
-                    <input name="optionA" placeholder="Please Enter Option A" type="text" class="form-control" id="findCountryGameOptionA" required>
-                    <div class="invalid-tooltip">
-                        Please provide a Option A.
-                    </div>
-                    </div> 
-                    <div class="col-md-3 position-relative">
-                    <input name="optionB" placeholder="Please Enter Option B" type="text" class="form-control" id="findCountryGameOptionB" required>
-                    <div class="invalid-tooltip">
-                        Please provide a Option B.
-                    </div>
-                    </div> 
-                    <div class="col-md-3 position-relative">
-                    <input name="optionC" placeholder="Please Enter Option C" type="text" class="form-control" id="findCountryGameOptionC" required>
-                    <div class="invalid-tooltip">
-                        Please provide a Option C.
-                    </div>
-                    </div> 
-                    <div class="col-md-3 position-relative">
-                    <input name="optionD" placeholder="Please Enter Option D" type="text" class="form-control" id="findCountryGameOptionD" required>
-                    <div class="invalid-tooltip">
-                        Please provide a Option D.
-                    </div>
-                    </div>
-                    </div> 
-                    <div class="row">
-                    <div class="col-md-6 position-relative">
-                    <label for="" class="form-label">Correct Answer</label>
-                    <input readonly name="correct" placeholder="Correct Answer" type="text" class="form-control" required>
-                    <div class="invalid-tooltip">
-                        Please provide a Answer.
-                    </div>
-                    </div>
-                    <div class="col-md-6 position-relative">
-                    <label for="hint" class="form-label">Please Enter Hint</label>
-                    <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control" id="findCountryGameHint" required>
-                    <div class="invalid-tooltip">
-                        Please provide a Hint.
-                    </div>
-                    </div>
-                    </div>
-                    <hr>
-                    </div> 
-                    </div>
-            </div> -->
-
-            <!-- Add Multiple Questions for Guess Flag -->
-            <!-- <div style="display: none;">
-                <div id="addNewFormForGuessFlag" class="form-data">
-                    <div class="row mt-4">
-                        <div class="col-md-6 position-relative">
-                            <label for="allCountriesForGuessFlag" class="form-label">Select Counrty</label>
-                            <select class="form-select" name="country" onchange="guessFlagselectedCountry(this)" required>
-                                <option hidden>Please Select Counrty</option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Please provide a Country Name.
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative d-none">
-                            <input hidden name="Icountry" placeholder="Please Enter In Correct Country" type="text"
-                                class="form-control" required>
-                        </div>
-                        <div class="col-md-6 position-relative">
-                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
-                            <div class="add-quiz-state-image">
-                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text" name="correctImg"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-3">
-                            <label for="validationTooltip03" class="form-label">Select In-Correct Flag</label>
-                            <div class="add-quiz-state-image">
-                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-3 position-relative">
-                            <label for="validationTooltip03" class="form-label">Please Enter Hint</label>
-                            <input name="hint" placeholder="Please Enter Hint" type="text" class="form-control"
-                                required>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-            </div> -->
-
-            <!-- Add Multiple Questions for Flag Detective -->
-            <!-- <div style="display: none">
-                <div id="addNewFormForFlagDetective" class="form-data">
-                <div class="row">
-                    <div class="col-md-6 position-relative"> 
-                    <label for="flagName0" class="form-label">Select Country</label>
-                    <select class="form-select" name="country" onchange="flagDetectiveSelectedCountry(this)" required> 
-                        <option hidden>Please Select Country</option> 
-                    </select> 
-                    <div class="invalid-tooltip">
-                        Please provide a Country Name.
-                    </div>
-                    </div>
-                    <div class="col-md-6">
-                    <label for="validationTooltip03" class="form-label"
-                        >Flag Url</label
-                    >
-                    <div class="add-quiz-state-image">
-                        <input readonly
-                        class="add-quiz-image-input formFile form-control"
-                        type="text"
-                        name="flagUrl" 
-                        required
-                        />
-                    </div>
-                    </div>
-                    <div class="col-md-6 position-relative mt-2">
-                    <label for="hint" class="form-label">Enter Hint</label>
-                    <input
-                        maxlength="200"
-                        name="hint" 
-                        type="text"
-                        class="form-control"
-                        required
-                    />
-                    </div>
-                </div>
-                <hr />
-                </div>
-            </div> -->
-
-            <!-- Add Multiple Questions for Flag Puzzle -->
-            <!-- <div style="display: none;">
-                <div id="addNewFormForFlagPuzzle" class="form-data">
-                    <div class="row mt-4">
-                        <div class="col-md-6 position-relative">
-                            <label for="allCountriesForFlagPuzzle" class="form-label">Select Country</label>
-                            <select class="form-select" name="country" onchange="flagPuzzleSelectedCountry(this)" required>
-                                <option hidden>Please Select Counrty</option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Please provide a Country Name.
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative">
-                            <label for="validationTooltip03" class="form-label">Correct Flag</label>
-                            <div class="add-quiz-state-image">
-                                <input readonly placeholder="Flag Url" class="add-quiz-image formFile form-control" type="text" name="flag"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-            </div> -->
     </div>
 </div>
 <!--Container Main end-->

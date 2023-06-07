@@ -235,7 +235,7 @@
 <script>
 
   const continent = `<%-data.continent%>`;  
-  fetch(`/admin/flag-detective-game/all-flags-data/country/${continent}`)
+  fetch(`/admin/flag-data-api/country/${continent}`)
       .then(response => response.json())
       .then((data) => { 
           var _html = '';
@@ -253,7 +253,7 @@ async function newSelectedCountry(e)
     { 
       const id = e.getAttribute("id"); 
       const countryName = document.getElementById(id).value;  
-      const response = await fetch(`/admin/flag-detective-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById("newFlagUrl").value = data.flag;
     }    
@@ -264,7 +264,7 @@ async function editSelectedCountry(e)
       const id = e.getAttribute("id")
       const countryName = document.getElementById(id).value; 
 
-      const response = await fetch(`/admin/flag-detective-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById("editFlagUrl").value = data.flag;
     }  

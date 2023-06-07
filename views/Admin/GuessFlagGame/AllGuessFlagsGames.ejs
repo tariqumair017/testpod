@@ -221,7 +221,7 @@
 <script>    
 
 const region = `<%-data.region%>`;  
-  fetch(`/admin/guess-flag-game/all-flags-data/country/${region}`)
+  fetch(`/admin/flag-data-api/country/${region}`)
       .then(response => response.json())
       .then((data) => { 
           var _html = '';
@@ -243,7 +243,7 @@ const region = `<%-data.region%>`;
       document.getElementById(`newICountry`).value = shuffledCountry;
 
       
-      const response = await fetch(`/admin/guess-flag-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById("newFlagUrl").value = data.flag;
     }
@@ -255,7 +255,7 @@ async function editSelectedCountry(e)
       const shuffledCountry = shuffleStr(countryName);  
       document.getElementById(`editICountry`).value = shuffledCountry;
 
-      const response = await fetch(`/admin/guess-flag-game/all-flags-data/country-for-flag/${countryName}`);
+      const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();
       document.getElementById("editFlagUrl").value = data.flag;
     }

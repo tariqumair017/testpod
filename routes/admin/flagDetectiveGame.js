@@ -1,41 +1,10 @@
 import express, { Router } from "express";
 const router = Router();
 import path from "path";  
-import FlagDetectiveGame from "../../models/flagDetectiveGame.js";
-import AllFlagsData from "../../models/allFlagsData.js"; 
+import FlagDetectiveGame from "../../models/flagDetectiveGame.js"; 
 import asyncHandler from "express-async-handler";
 import middleware from "../../middleware/index.js";
 
-
-//Admin: Distinct Region form All Flags Data
-router.get("/data-of-allFlags", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 
-  try {
-    const data = await AllFlagsData.distinct("region"); 
-    res.send(data);
-  } catch (error) {
-    return next(error.message);
-  }
-}));
-
-//Admin: Find All Countries of Selected Region from All Flags Data
-router.get("/all-flags-data/country/:region", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
-  try {
-    const data = await AllFlagsData.find({region: req.params.region});
-    res.send(data);
-  } catch (error) {
-    return next(error.message);
-  }
-}));
-
-//Admin: Find Flag of selected Country from All Flags Data
-router.get("/all-flags-data/country-for-flag/:country", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => {  
-  try {
-    const data = await AllFlagsData.findOne({country: req.params.country});
-    res.send(data);
-  } catch (error) {
-    return next(error.message);
-  }
-}));
 
 //Admin: Create Flag Detective Game Page
 router.get("/add", middleware.isAdminLoggedin, asyncHandler(async (req, res, next) => { 

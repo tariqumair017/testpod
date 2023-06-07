@@ -223,7 +223,7 @@
 
 <script>
 const region = `<%-data.region%>`; 
-  fetch(`/admin/guess-country-game/all-flags-data/country/${region}`)
+  fetch(`/admin/flag-data-api/country/${region}`)
       .then(response => response.json())
       .then((data) => {
           var _html = '';
@@ -238,7 +238,7 @@ const region = `<%-data.region%>`;
 
 
   document.getElementById("newCountryID").addEventListener("change", async (event) => {   
-    const response = await fetch(`/admin/guess-country-game/all-flags-data/country-for-flag/${event.target.value}`);
+    const response = await fetch(`/admin/flag-data-api/country-for-flag/${event.target.value}`);
     const data = await response.json();
     document.getElementById("newFlagUrl").value = data.flag;   
     document.getElementById("newCorrectID").value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1); 
@@ -260,7 +260,7 @@ const region = `<%-data.region%>`;
 }
 
   document.getElementById("editCountryID").addEventListener("change", async (event) => {   
-    const response = await fetch(`/admin/guess-country-game/all-flags-data/country-for-flag/${event.target.value}`);
+    const response = await fetch(`/admin/flag-data-api/country-for-flag/${event.target.value}`);
     const data = await response.json();
     document.getElementById("editFlagUrl").value = data.flag;   
     document.getElementById("correctID").value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1); 
