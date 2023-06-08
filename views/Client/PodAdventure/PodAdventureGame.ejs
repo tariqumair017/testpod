@@ -26,8 +26,17 @@
 
 <body>
 
-    <div style="height: 100vh;">
-        <header class="pod-adventure" style="height: 15vh;">
+    <div style="height: auto;position: relative;">
+        <div class="top-left-image">
+            <img src="/client/img/padAdventure/TopLeft.svg" al />
+        </div>
+        <div class="top-right-image">
+            <img src="/client/img/padAdventure/TopRight.svg" al />
+        </div>
+        <div class="bottom-left-image">
+            <img width="85%" src="/client/img/padAdventure/falg.png" al />
+        </div>
+        <header class="pod-adventure" style="height: 80px;">
             <div class="pod-adventure-game">
                 <div onclick="location='/'" class="pod-adventure-back-icon"><i class="fa-solid fa-arrow-left"></i></div>
                 <div class="pod-adventure-progress-line-box">
@@ -36,28 +45,17 @@
                   background: #58CC02;
                   height: 15px;
                   border-radius: 50px;
-                  transition: all 0.2s;
+                  transition: all 1s;
                   width: 0%;
                   position: relative;
                 ">
-                <div class="time_line_inner"  style="
-                background: #79D635;
-                height: 5px;
-                border-radius: 50px;
-                transition: all 0.2s;
-                width: 0%;
-                position: absolute;
-                left: 10px;
-                top: 3px;
-              ">
-
-                </div>
-                </div>
+                          <i class="fa-solid fa-flag progess-flag d-none"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
-        <section style="height: 65vh;display: flex;flex-direction: column;align-items: center;">
+        <section style="height: auto;display: flex;flex-direction: column;align-items: center;">
             <div id="Multiple-game">
 
             </div>
@@ -88,33 +86,38 @@
 
         </section>
         <section class="pod-adventure-footer">
-            <div style="width: 70%;">
-                <div class="pod-adventure-game" style="justify-content: space-between;width: 100%;">
-                    <div>
-                        <button class="button-30 skip-guess-flag" role="button">I Don't Know</button>
-                        <div class="worng-area">
-                            <span class="cross-guess-flag d-none">
-                                <i class="fa-solid fa-xmark fa-2xl" style="color: #EA2B2B;"></i>
-                            </span>
-                            <span class="right-guess-flag d-none">
-                                <i class="fa-solid fa-check fa-2xl" style="color: #61B800;"></i>
-                            </span>
-                            <div class="well_done d-none">
-                                <h4 style="color: #61B800;margin: 0%;">Well done!</h4>
-                            </div>
-                            <div class="Not_true d-none">
-                                <h4 style="color: #EA2B2B;margin: 0%;">Not true</h4>
+            <div class="pod-adventure-footer-inner controller">
+                <div style="width: 100%;">
+                    <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                        <div>
+                            <button class="pod-adventure-skip2 skip-guess-flag" role="button">I Don't Know</button>
+                            <div class="worng-area">
+                                <!-- <span class="cross-guess-flag d-none">
+                                    <i class="fa-solid fa-xmark fa-2xl" style="color: #EA2B2B;"></i>
+                                </span> -->
+                                <!-- <span class="right-guess-flag ">
+                                    <i class="fa-solid fa-check fa-2xl" style="color: #61B800;"></i>
+                                </span> -->
+                                <div class="well_done d-none">
+                                    <img src="/client/img/icon/Vector-tick.svg" />
+                                    <h4 style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
+                                </div>
+                                <div class="Not_true d-none">
+                                        <img src="/client/img/icon/Vector.svg" />
+                                    <h4 style="margin-bottom: 0%;padding: 10px;">Wrong</h4>
+                                </div>
                             </div>
                         </div>
+                        <button class="pod-adventure-skip2-disabled check-guess-flag">Check</button>
+                        <button class="well_done-continue continue-guess-flag d-none" role="button"><img src="/client/img/icon/VectorWrite.svg" /><h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4></button>
+                        <button class="well_done-continue game-change d-none" role="button"><img src="/client/img/icon/VectorWrite.svg" /><h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4></button>
                     </div>
-                    <button class="button-18-disabled check-guess-flag">Check</button>
-                    <button class="button-19 continue-guess-flag d-none" role="button">Continue</button>
-                </div>
-                <div id="guess-flag-details" class="d-none"
-                    style="display: flex;justify-content: center;align-items: center;gap: 5px;">
-                    <div class="example-popover">
-                        <i class="fa-regular fa-message" style="color: #EA2B2B;font-size: larger;"></i> <span
-                            style="color: #EA2B2B;font-size: larger">Details</span>
+                    <div id="guess-flag-details" class="d-none"
+                        style="display: flex;justify-content: center;align-items: center;gap: 5px;">
+                        <div class="example-popover">
+                            <i class="fa-regular fa-message" style="color: #EA2B2B;font-size: larger;"></i> <span
+                                style="color: #EA2B2B;font-size: larger">Details</span>
+                        </div>
                     </div>
                 </div>
                 <div hidden>
@@ -123,6 +126,9 @@
                         widest courtyard, is a symbol of Islamic...
                     </p>
                 </div>
+            </div>
+            <div class="controller-image vert-move">
+                <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
             </div>
         </section>
     </div>

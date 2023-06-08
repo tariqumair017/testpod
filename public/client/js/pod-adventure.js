@@ -2,15 +2,16 @@ const skip_guess_flag = document.querySelector(".skip-guess-flag")
 const check_Button = document.querySelector(".check-guess-flag")
 const continue_guess_flag = document.querySelector(".continue-guess-flag")
 const pod_adventure_footer = document.querySelector('.pod-adventure-footer')
-const cross_guess_flag = document.querySelector('.cross-guess-flag')
 const right_guess_flag = document.querySelector(".right-guess-flag")
-const guess_flag_details = document.getElementById("guess-flag-details")
+// const guess_flag_details = document.getElementById("guess-flag-details")
 const mypopover_content = document.getElementById("mypopover-content")
-const continue_button = document.querySelector(".button-19")
 const well_done = document.querySelector(".well_done")
 const Not_true = document.querySelector(".Not_true")
 const time_line = document.querySelector(".time_line");
 const time_line_inner = document.querySelector(".time_line_inner");
+const game_change = document.querySelector(".game-change")
+const controller = document.querySelector(".controller")
+
 
 
 const multiple_game = document.getElementById("Multiple-game")
@@ -25,17 +26,21 @@ var popover = new bootstrap.Popover(document.querySelector('.example-popover'), 
   content: document.getElementById('mypopover-content'),
 })
 
-const gameChnager = 0
-const questionChange = 0
+let gameChnager = 0
+let questionChange = 0
 let total_inputs = [];
+let pod_adventure_guess_country = 1
 let counterLine;
+let question_counter = 1
 
-function game(i) {
+let points = 0
+
+function gameChanger(i) {
   if (data[gameChnager]?.modules[i] == "flag detective game") {
     multiple_game.innerHTML = `<div >
     <h2 class="score-text-slide-top text-center pb-4" style="margin: 0%">Which Country Is This?</h2>
     <div class="pod-adventure-game-detective-image pb-4">
-    <span style="border-radius:7px;width:fit-content;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[0]?.flagDetective[questionChange].flagUrl}
+    <span style="border-radius:7px;width:fit-content;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
     alt="img"></span>
     </div>
     <div class="siblings-input"></div>
@@ -43,7 +48,7 @@ function game(i) {
     const siblings_input = document.querySelector(".siblings-input");
     for (let i = 0; i < data[0].flagDetective[questionChange].country.split("").length; i++) {
       siblings_input.innerHTML +=
-        '<input class="current-input" maxlength="1"  />' || ` <div class="loading-skeleton-inputs"></div>`;
+        '<input class="current-input" maxlength="1" />' || ` <div class="loading-skeleton-inputs"></div>`;
     }
 
     const inputs = document.querySelectorAll(".current-input");
@@ -86,8 +91,36 @@ function game(i) {
 
           if (_finalKey.length == total_inputs.length) {
             baba = _finalKey
+            check_Button.classList.remove("pod-adventure-skip2-disabled")
+            check_Button.classList.add("pod-adventure-skip2")
             for (let i = 0; i < total_inputs.length; i++) {
               total_inputs[i].classList.add("disabled")
+            }
+          }
+          check_Button.onclick = () => {
+            if (baba.replace(/\s/g, '').toLowerCase() == data[gameChnager]?.flagDetective[questionChange].country.replace(/\s/g, '').toLowerCase()) {
+              continue_guess_flag.classList.remove("d-none")
+              well_done.classList.remove("d-none")
+              check_Button.classList.add("d-none")
+              skip_guess_flag.classList.add("d-none")
+              controller.classList.remove("pod-adventure-footer-inner")
+              controller.classList.add("pod-adventure-footer-inner-green")
+              startTimerLineCorrect()
+            } else {
+              controller.classList.remove("pod-adventure-footer-inner")
+              controller.classList.remove("pod-adventure-footer-inner-green")
+              controller.classList.add("pod-adventure-footer-inner-red")
+              check_Button.classList.add("d-none")
+              skip_guess_flag.classList.add("d-none")
+              Not_true.classList.remove("d-none")
+              skip_guess_flag.classList.add("d-none")
+              continue_guess_flag.classList.remove("d-none")
+              startTimerLineInCorrect()
+            }
+
+            if (question_counter == data[gameChnager]?.flagDetective.length) {
+              game_change.classList.remove('d-none')
+              continue_guess_flag.classList.add("d-none")
             }
           }
         });
@@ -101,7 +134,6 @@ function game(i) {
   else if (data[gameChnager]?.modules[i] == "flag quest game") {
 
     multiple_game.innerHTML =
-
       `
     <p class="flag-quest-box-left-name slide-right quest_question_name pb-4">Flag of ${data[gameChnager]?.flagQuest[i]?.country}</p>
     <div class="pod-adventure-quest-game" style="justify-content:center" >
@@ -138,10 +170,11 @@ function game(i) {
 
   else if (data[gameChnager]?.modules[i] == "guess country game") {
 
+
     multiple_game.innerHTML =
       `
     <div class="align-items-center">
-      <h2 class="score-text-slide-top text-center" style="margin: 0%">Which Flag Is "${data[gameChnager]?.guessCountry[questionChange]?.country}" ?</h2>
+      <h2 class="score-text-slide-top text-center" style="margin: 0%">Guess the name of this flag "${data[gameChnager]?.guessCountry[questionChange]?.country}" ?</h2>
       <div class="quiz-image">
         <div class="que_text" style="display: flex;justify-content: center;">
           <span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[0]?.guessCountry[questionChange]?.flag}" alt="img"></span>
@@ -165,18 +198,16 @@ function game(i) {
       multiple_game.querySelectorAll(".pod-adventure-customLable")[1].classList.remove("pod-adventure-customLable-avtive")
       multiple_game.querySelectorAll(".pod-adventure-customLable")[0].setAttribute("select", `${data[gameChnager]?.guessCountry[questionChange]?.optionA}`)
       multiple_game.querySelectorAll(".pod-adventure-customLable")[1].removeAttribute("select")
-
-      check_Button.classList.remove("button-18-disabled")
-      check_Button.classList.add("button-18")
+      check_Button.classList.remove("pod-adventure-skip2-disabled")
+      check_Button.classList.add("pod-adventure-skip2")
     }
     multiple_game.querySelectorAll(".pod-adventure-customLable")[1].onclick = () => {
       multiple_game.querySelectorAll(".pod-adventure-customLable")[0].classList.remove("pod-adventure-customLable-avtive")
       multiple_game.querySelectorAll(".pod-adventure-customLable")[1].classList.add("pod-adventure-customLable-avtive")
       multiple_game.querySelectorAll(".pod-adventure-customLable")[1].setAttribute("select", `${data[gameChnager]?.guessCountry[questionChange]?.optionB}`)
       multiple_game.querySelectorAll(".pod-adventure-customLable")[0].removeAttribute("select")
-
-      check_Button.classList.remove("button-18-disabled")
-      check_Button.classList.add("button-18")
+      check_Button.classList.remove("pod-adventure-skip2-disabled")
+      check_Button.classList.add("pod-adventure-skip2")
     }
 
     // set onclick attribute to all available options
@@ -194,68 +225,179 @@ function game(i) {
       skip_guess_flag.classList.add("d-none")
       document.querySelector(".pod-adventure-option_list").classList.add("disabled")
       if (Array.from(s)[0].replace(/\s/g, '').toLowerCase() === data[gameChnager]?.guessCountry[questionChange]?.correct.replace(/\s/g, '').toLowerCase()) {
-        pod_adventure_footer.classList.add("pod-correct-ans-footer")
         continue_guess_flag.classList.remove("d-none")
-        continue_guess_flag.classList.add("button-18")
-        right_guess_flag.classList.remove("d-none")
         well_done.classList.remove("d-none")
-        startTimerLineCorrect(10)
-      } else {
-        skip_guess_flag.classList.add("d-none")
-        cross_guess_flag.classList.remove("d-none")
-        pod_adventure_footer.classList.add("pod-incorrect-ans-footer")
         check_Button.classList.add("d-none")
-        continue_guess_flag.classList.remove("d-none")
-        guess_flag_details.classList.remove("d-none")
+        skip_guess_flag.classList.add("d-none")
+        controller.classList.remove("pod-adventure-footer-inner")
+        controller.classList.add("pod-adventure-footer-inner-green")
+        startTimerLineCorrect()
+      } else {
+        controller.classList.remove("pod-adventure-footer-inner")
+        controller.classList.remove("pod-adventure-footer-inner-green")
+        controller.classList.add("pod-adventure-footer-inner-red")
+        check_Button.classList.add("d-none")
+        skip_guess_flag.classList.add("d-none")
         Not_true.classList.remove("d-none")
+        skip_guess_flag.classList.add("d-none")
+        continue_guess_flag.classList.remove("d-none")
+        startTimerLineInCorrect()
       }
+      if (question_counter == data[gameChnager]?.guessCountry.length) {
+        game_change.classList.remove('d-none')
+        continue_guess_flag.classList.add("d-none")
+      }
+
+
     }
-
-
   }
 
 
 
   else if (data[gameChnager]?.modules[i] == "guess flag game") {
+    console.log(questionChange)
+    data[gameChnager].guessFlag[questionChange].country
     multiple_game.innerHTML =
       `
     <div class="text-center mb-4 questions-name wow animate__fadeInUp" data-wow-delay="0.1s">
-    <span style="font-size: 30px;font-weight: bold;color: back">
-        Can you guess flag of "${data[gameChnager].guessFlag[questionChange].country}"
-    </span>
-  </div>
-  <div class="pod-adventure">
+      <span style="font-size: 40px;font-weight: bold;color: back">
+        Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"
+      </span>
+    </div>
+  <div class="pod-adventure" style="margin-bottom:50px">
         <div style="width: 100%;display: flex;justify-content: space-around;">
             <div class="pod-adventure-guess-option-left">
-                <input class="customRadio" ans="correct" type="radio" name=q1 id="1"/>
-                <label class="customLableWimage" for="1" style="width:100%;height:250px;">
-                <img class="guess-flag-image" style="height:240px;padding:10px"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
-                </label>
             </div>
   
             <div class="pod-adventure-guess-option-right" >
-                <div class="pod-adventure-guess-option-right">
-                    <input class="customRadio"  type="radio" name=q1 id="2"/>
-                    <label class="customLableWimage" for="2" style="width:100%;height:250px;">
-                        <img class="guess-flag-image" style="height:240px;padding:10px" src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
-                      </label>
-                </div>
             </div>
         </div>
   </div>
     `
+
+
+    var leftSide =
+      ` <input class="customRadio" ans="correct" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].country} >
+      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country} style="width:100%;height:250px;">
+      <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
+      </label>`
+    var RightSide =
+      ` <input class="customRadio" ans="incorrect" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].Icountry}>
+    <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry} style="width:100%;height:250px;">
+    <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
+    </label>`
+
+    var FlagOptions = [];
+    FlagOptions.push(RightSide);
+    FlagOptions.push(leftSide);
+
+    let shuffledFlagOptions = FlagOptions.sort(function () {
+      return Math.random() - 0.5;
+    });
+
+
+    multiple_game.querySelector(".pod-adventure-guess-option-left").innerHTML = shuffledFlagOptions[0];
+    multiple_game.querySelector(".pod-adventure-guess-option-right").innerHTML = shuffledFlagOptions[1];
+
+    multiple_game.querySelectorAll(".podcustomLableWimage")[0].onclick = () => {
+      check_Button.classList.remove("pod-adventure-skip2-disabled")
+      check_Button.classList.add("pod-adventure-skip2")
+      multiple_game.querySelectorAll(".customRadio")[0].classList.add("select")
+      multiple_game.querySelectorAll(".customRadio")[1].classList.remove("select")
+      multiple_game.querySelectorAll(".podcustomLableWimage")[0].classList.add("select-child")
+      multiple_game.querySelectorAll(".podcustomLableWimage")[1].classList.remove("select-child")
+    }
+
+    multiple_game.querySelectorAll(".podcustomLableWimage")[1].onclick = () => {
+      check_Button.classList.remove("pod-adventure-skip2-disabled")
+      check_Button.classList.add("pod-adventure-skip2")
+      multiple_game.querySelectorAll(".customRadio")[1].classList.add("select")
+      multiple_game.querySelectorAll(".customRadio")[0].classList.remove("select")
+      multiple_game.querySelectorAll(".podcustomLableWimage")[1].classList.add("select-child")
+      multiple_game.querySelectorAll(".podcustomLableWimage")[0].classList.remove("select-child")
+    }
+
+
+    check_Button.onclick = () => {
+      multiple_game.querySelector(".pod-adventure").classList.add("disabled")
+      if (document.querySelector(".select").getAttribute("ans") == "correct") {
+        document.querySelector(".select-child").classList.add("podcustomLableWimage-write")
+        continue_guess_flag.classList.remove("d-none")
+        well_done.classList.remove("d-none")
+        check_Button.classList.add("d-none")
+        skip_guess_flag.classList.add("d-none")
+        controller.classList.remove("pod-adventure-footer-inner")
+        controller.classList.add("pod-adventure-footer-inner-green")
+        startTimerLineCorrect()
+      } else {
+        document.querySelector(".select-child").classList.add("podcustomLableWimage-wrong")
+        controller.classList.remove("pod-adventure-footer-inner")
+        controller.classList.remove("pod-adventure-footer-inner-green")
+        controller.classList.add("pod-adventure-footer-inner-red")
+        check_Button.classList.add("d-none")
+        skip_guess_flag.classList.add("d-none")
+        Not_true.classList.remove("d-none")
+        skip_guess_flag.classList.add("d-none")
+        continue_guess_flag.classList.remove("d-none")
+        startTimerLineInCorrect()
+      }
+      if (question_counter == data[gameChnager]?.guessFlag.length) {
+        game_change.classList.remove('d-none')
+        continue_guess_flag.classList.add("d-none")
+      }
+    }
+
+
+
+
+
+
+
   }
 }
 
+
+
 var i = 0;
-game(i)
+gameChanger(i)
 
-continue_button.onclick = () => {
-  
-  i++
-  game(i)
+continue_guess_flag.onclick = () => {
+  if (question_counter < data[gameChnager]?.guessCountry.length) {
+    console.log(question_counter, data[gameChnager]?.guessCountry.length)
+    questionChange++
+    question_counter++
+    check_Button.classList.remove("d-none")
+    check_Button.classList.add("pod-adventure-skip2-disabled")
+    continue_guess_flag.classList.add("d-none")
+    pod_adventure_footer.classList.remove("pod-incorrect-ans-footer")
+    pod_adventure_footer.classList.remove("pod-correct-ans-footer")
+    // guess_flag_details.classList.add("d-none")
+    Not_true.classList.add("d-none")
+    skip_guess_flag.classList.remove("d-none")
+    well_done.classList.add("d-none")
+    controller.classList.add("pod-adventure-footer-inner")
+    controller.classList.remove("pod-adventure-footer-inner-green")
+    controller.classList.remove("pod-adventure-footer-inner-red")
+    gameChanger(i)
+  }
 }
-
+game_change.onclick = () => {
+  i++
+  questionChange = 0
+  question_counter = 1
+  console.log(question_counter, "gameChanger")
+  gameChanger(i)
+  controller.classList.add("pod-adventure-footer-inner")
+  controller.classList.remove("pod-adventure-footer-inner-green")
+  controller.classList.remove("pod-adventure-footer-inner-red")
+  skip_guess_flag.classList.remove("d-none")
+  check_Button.classList.remove("d-none")
+  check_Button.classList.add("pod-adventure-skip2-disabled")
+  continue_guess_flag.classList.add("d-none")
+  Not_true.classList.add("d-none")
+  well_done.classList.add("d-none")
+  game_change.classList.add("d-none")
+}
 
 
 
@@ -263,14 +405,13 @@ continue_button.onclick = () => {
 
 skip_guess_flag.onclick = () => {
   skip_guess_flag.classList.add("d-none")
-  cross_guess_flag.classList.remove("d-none")
-  pod_adventure_footer.classList.add("pod-incorrect-ans-footer")
-
   check_Button.classList.add("d-none")
   continue_guess_flag.classList.remove("d-none")
-  guess_flag_details.classList.remove("d-none")
+  // guess_flag_details.classList.remove("d-none")
   Not_true.classList.remove("d-none")
-
+  controller.classList.remove("pod-adventure-footer-inner")
+  controller.classList.remove("pod-adventure-footer-inner-green")
+  controller.classList.add("pod-adventure-footer-inner-red")
 }
 
 
@@ -281,14 +422,19 @@ skip_guess_flag.onclick = () => {
 
 
 
-function startTimerLineCorrect(points) {
-    time_line.style.width = points + "%"; //increasing width of time_line with px by time value
-    time_line_inner.style.width = 78 + "%"
-
+function startTimerLineCorrect() {
+  points = points + 11.1
+  time_line.style.width = points + "%"; //increasing width of time_line with px by time value
+  document.querySelector(".progess-flag").classList.remove("d-none")
 }
 
 
-function startTimerLineInCorrect(points) {
+function startTimerLineInCorrect() {
+  points = points - 11.1
+  if (points <= 0) {
+    points = 0
+    document.querySelector(".progess-flag").classList.add("d-none")
+  }
   time_line.style.width = points + "%"; //increasing width of time_line with px by time value
 
 }
