@@ -3,7 +3,7 @@ const check_Button = document.querySelector(".check-guess-flag")
 const continue_guess_flag = document.querySelector(".continue-guess-flag")
 const pod_adventure_footer = document.querySelector('.pod-adventure-footer')
 const right_guess_flag = document.querySelector(".right-guess-flag")
-// const guess_flag_details = document.getElementById("guess-flag-details")
+const guess_flag_details = document.getElementById("guess-flag-details")
 const mypopover_content = document.getElementById("mypopover-content")
 const well_done = document.querySelector(".well_done")
 const Not_true = document.querySelector(".Not_true")
@@ -11,10 +11,13 @@ const time_line = document.querySelector(".time_line");
 const time_line_inner = document.querySelector(".time_line_inner");
 const game_change = document.querySelector(".game-change")
 const controller = document.querySelector(".controller")
+const half_game_continue = document.querySelector(".half-game-continue")
+const details = document.getElementById("details")
 
 
 
 const multiple_game = document.getElementById("Multiple-game")
+
 
 
 
@@ -24,6 +27,7 @@ var popover = new bootstrap.Popover(document.querySelector('.example-popover'), 
   trigger: 'hover',
   delay: { show: 0, hide: 100 },
   content: document.getElementById('mypopover-content'),
+  placement: 'top',
 })
 
 let gameChnager = 0
@@ -46,10 +50,13 @@ function gameChanger(i) {
     <div class="siblings-input"></div>
     </div>`;
     const siblings_input = document.querySelector(".siblings-input");
-    for (let i = 0; i < data[0].flagDetective[questionChange].country.split("").length; i++) {
+    for (let i = 0; i < data[gameChnager].flagDetective[questionChange].country.split("").length; i++) {
       siblings_input.innerHTML +=
         '<input class="current-input" maxlength="1" />' || ` <div class="loading-skeleton-inputs"></div>`;
     }
+
+    details.innerHTML = data[gameChnager].flagDetective[questionChange].detail
+    
 
     const inputs = document.querySelectorAll(".current-input");
     total_inputs = inputs;
@@ -174,7 +181,7 @@ function gameChanger(i) {
     multiple_game.innerHTML =
       `
     <div class="align-items-center">
-      <h2 class="score-text-slide-top text-center" style="margin: 0%">Guess the name of this flag "${data[gameChnager]?.guessCountry[questionChange]?.country}" ?</h2>
+      <h2 class="score-text-slide-top text-center" style="margin: 0%">Guess the name of this flag ?</h2>
       <div class="quiz-image">
         <div class="que_text" style="display: flex;justify-content: center;">
           <span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[0]?.guessCountry[questionChange]?.flag}" alt="img"></span>
@@ -182,16 +189,17 @@ function gameChanger(i) {
       </div>
       <div style="margin-top: 10px">
         <div class="pod-adventure-option_list">
-          <div class="pod-adventure-customLable wow animate__fadeInUp" style="padding-left:0px" data-wow-delay="0.1s"><strong>A</strong>
+          <div class="pod-adventure-customLable wow animate__fadeInUp" style="padding-left:0px" data-wow-delay="0.1s">
             ${data[gameChnager]?.guessCountry[questionChange]?.optionA}
           </div>
-          <div class="pod-adventure-customLable wow animate__fadeInUp" style="padding-left:0px" data-wow-delay="0.2s"><strong>B</strong>
+          <div class="pod-adventure-customLable wow animate__fadeInUp" style="padding-left:0px" data-wow-delay="0.2s">
             ${data[gameChnager]?.guessCountry[questionChange]?.optionB}
           </div>
         </div>                
       </div>
     </div>
     `
+    details.innerHTML = data[gameChnager].guessCountry[questionChange].detail
 
     multiple_game.querySelectorAll(".pod-adventure-customLable")[0].onclick = () => {
       multiple_game.querySelectorAll(".pod-adventure-customLable")[0].classList.add("pod-adventure-customLable-avtive")
@@ -247,15 +255,12 @@ function gameChanger(i) {
         game_change.classList.remove('d-none')
         continue_guess_flag.classList.add("d-none")
       }
-
-
     }
   }
 
 
 
   else if (data[gameChnager]?.modules[i] == "guess flag game") {
-    console.log(questionChange)
     data[gameChnager].guessFlag[questionChange].country
     multiple_game.innerHTML =
       `
@@ -294,6 +299,9 @@ function gameChanger(i) {
     let shuffledFlagOptions = FlagOptions.sort(function () {
       return Math.random() - 0.5;
     });
+
+    details.innerHTML = data[gameChnager].guessFlag[questionChange].detail
+
 
 
     multiple_game.querySelector(".pod-adventure-guess-option-left").innerHTML = shuffledFlagOptions[0];
@@ -346,15 +354,10 @@ function gameChanger(i) {
         continue_guess_flag.classList.add("d-none")
       }
     }
-
-
-
-
-
-
-
   }
+
 }
+
 
 
 
@@ -363,7 +366,6 @@ gameChanger(i)
 
 continue_guess_flag.onclick = () => {
   if (question_counter < data[gameChnager]?.guessCountry.length) {
-    console.log(question_counter, data[gameChnager]?.guessCountry.length)
     questionChange++
     question_counter++
     check_Button.classList.remove("d-none")
@@ -371,7 +373,7 @@ continue_guess_flag.onclick = () => {
     continue_guess_flag.classList.add("d-none")
     pod_adventure_footer.classList.remove("pod-incorrect-ans-footer")
     pod_adventure_footer.classList.remove("pod-correct-ans-footer")
-    // guess_flag_details.classList.add("d-none")
+    guess_flag_details.classList.add("d-none")
     Not_true.classList.add("d-none")
     skip_guess_flag.classList.remove("d-none")
     well_done.classList.add("d-none")
@@ -385,7 +387,6 @@ game_change.onclick = () => {
   i++
   questionChange = 0
   question_counter = 1
-  console.log(question_counter, "gameChanger")
   gameChanger(i)
   controller.classList.add("pod-adventure-footer-inner")
   controller.classList.remove("pod-adventure-footer-inner-green")
@@ -400,20 +401,19 @@ game_change.onclick = () => {
 }
 
 
-
-
-
 skip_guess_flag.onclick = () => {
-  skip_guess_flag.classList.add("d-none")
-  check_Button.classList.add("d-none")
-  continue_guess_flag.classList.remove("d-none")
-  // guess_flag_details.classList.remove("d-none")
-  Not_true.classList.remove("d-none")
-  controller.classList.remove("pod-adventure-footer-inner")
-  controller.classList.remove("pod-adventure-footer-inner-green")
-  controller.classList.add("pod-adventure-footer-inner-red")
+  if(question_counter < (data[gameChnager].guessFlag.length || data[gameChnager].guessCountry.length || data[gameChnager].flagDetective.length)){
+  questionChange++
+  question_counter++
+  gameChanger(i)
 }
-
+else{
+  i++
+  questionChange = 0
+  question_counter = 1
+  gameChanger(i)
+}
+}
 
 
 
@@ -426,8 +426,49 @@ function startTimerLineCorrect() {
   points = points + 11.1
   time_line.style.width = points + "%"; //increasing width of time_line with px by time value
   document.querySelector(".progess-flag").classList.remove("d-none")
+  if (points == 55.5) {
+    document.querySelector(".hello-baba").classList.remove("d-none")
+    multiple_game.classList.add("d-none")
+    document.getElementById("half-game-screen").innerHTML =
+      `
+    <div style="height:55vh" class="chr-screen">
+    <div class="chr-png" >
+    <img src="/client/img/png/png.svg" />
+    <div class="game-half-message">
+    <img style="position: relative" src="/client/img/png/message.svg" />
+    <p class="half-image-text" >
+    You are crushing it
+    </p>
+    </div>
+    </div>
+    <div class="chr-png-shadow">
+    <img src="/client/img/png/chr-shadow.svg" />
+    </div>
+    </div>
+    `
+    document.querySelector(".controller").classList.add("d-none")
+    document.querySelector(".dublicate").classList.remove("d-none")
+
+  }
+
 }
 
+
+half_game_continue.onclick = () => {
+  console.log(half_game_continue)
+  console.log("hello")
+  document.querySelector(".hello-baba").classList.add("d-none")
+  multiple_game.classList.remove("d-none")
+  document.querySelector(".controller").classList.remove("d-none")
+    document.querySelector(".dublicate").classList.add("d-none")
+  // questionChange++
+  // question_counter++
+  // gameChanger(i)
+  // document.querySelector(".controller").classList.remove("d-none")
+  // document.querySelector(".dublicate").classList.add("d-none")
+  // document.querySelector(".chr-screen").remove(".d-none")
+  // half_game_continue.classList.add("d-none")
+}
 
 function startTimerLineInCorrect() {
   points = points - 11.1

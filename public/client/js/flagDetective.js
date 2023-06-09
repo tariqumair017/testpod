@@ -393,7 +393,7 @@ function runGuessDetectiveGame(flagDetective, id) {
     document.getElementById("callSame").addEventListener("click", callSameQuestion)
 
 
-    tryAgainTime(0, 05);
+    tryAgainTime(0, 5);
 
   }
 

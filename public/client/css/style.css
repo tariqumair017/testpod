@@ -7788,7 +7788,7 @@ text-align: center;
 
 /* 1. Theme default css */
 body {
-  font-family: Roboto;
+  font-family: Nunito;
   font-size: 15px;
   font-weight: 400;
   font-style: normal;
@@ -8942,6 +8942,7 @@ label {
 }
 
 
+
 .pod-adventure-customLable {
   background-color: #ffffff;
   border-radius: 29px !important;
@@ -8949,8 +8950,10 @@ label {
   border-bottom: 4px solid lightgray;
   font-size: 25px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
-  /* padding: 8px 0px; */
+  padding: 10px;
 
 
   cursor: pointer;
@@ -8970,7 +8973,7 @@ label {
   background-color: #E5E5E5 !important
 }
 
-.pod-adventure-customLable strong {
+/* .pod-adventure-customLable strong {
 
   background: #ffffff;
 
@@ -8982,12 +8985,11 @@ label {
   color: #000;
 
   font-size: x-large;
-  /* color: #ffffff; */
   border-top-left-radius: 29px;
   border-bottom-left-radius: 29px;
   border-right: 1px solid lightgray;
 
-}
+} */
 
 
 .pod-adventure-customLable-avtive:hover {
@@ -9002,7 +9004,7 @@ label {
   border-bottom: 4px solid #84d8ff;
   font-size: 25px;
   display: flex;
-  color: #84d8ff;
+  color: #000;
 
   /* padding: 8px 0px; */
 
@@ -9017,7 +9019,7 @@ label {
   width: 35%;
 }
 
-.pod-adventure-customLable-avtive strong {
+/* .pod-adventure-customLable-avtive strong {
 
   background: #DDF4FF;
 
@@ -9029,12 +9031,11 @@ label {
   color: #84d8ff;
 
   font-size: x-large;
-  /* color: #ffffff; */
   border-top-left-radius: 29px;
   border-bottom-left-radius: 29px;
   border-right: 1px solid #84d8ff;
 
-}
+} */
 
 
 
@@ -9931,7 +9932,7 @@ label {
 .slider-four .slider-bg .text2 h5 {
   color: #A8171A;
   font-size: 18px;
-  font-family: "Roboto";
+  font-family: "Nunito";
   font-weight: 500;
 }
 
@@ -11551,6 +11552,9 @@ circle {
   transform: translateX(50%);
 }
 
+
+
+
 .vert-move {
   -webkit-animation: mover 1s infinite  alternate;
   animation: mover 1s infinite  alternate;
@@ -12356,7 +12360,7 @@ circle {
 .pod-adventure-footer {
   display: flex;
   justify-content: center;
-  padding-bottom: 50px;
+  padding-bottom: 35px;
 }
 
 
@@ -12367,7 +12371,7 @@ circle {
   justify-content: center;
     align-items: center;
   width: 75%;
-  background: linear-gradient(0deg, #39C4FC -7.92%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(0deg, rgba(57, 196, 252, 0.69) -7.92%, rgba(255, 255, 255, 0) 123.61%);
 box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   backdrop-filter: blur(9.5px);
   border-radius: 26px;
@@ -12383,8 +12387,7 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   justify-content: center;
     align-items: center;
   width: 75%;
-  background: linear-gradient(0deg, rgba(255, 0, 0, 0.62) -7.92%, rgba(255, 255, 255, 0) 100%);
-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
+  background: linear-gradient(0deg, rgba(255, 0, 0, 0.41) -7.92%, rgba(255, 255, 255, 0) 151.4%);
   backdrop-filter: blur(9.5px);
   border-radius: 26px;
   height: 160px;
@@ -12398,8 +12401,8 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   justify-content: center;
     align-items: center;
   width: 75%;
-  background: linear-gradient(0deg, rgba(36, 255, 0, 0.62) -7.92%, rgba(255, 255, 255, 0) 100%);
-  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
+  background: linear-gradient(0deg, rgba(36, 255, 0, 0.38) -7.92%, rgba(255, 255, 255, 0) 129.23%);
+box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   backdrop-filter: blur(9.5px);
   border-radius: 26px;
   height: 160px;
@@ -12410,9 +12413,6 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
 
 
 /* button */
-
-
-
 
 
 /* CSS */
@@ -12467,13 +12467,12 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   color: #ffffff;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono", monospace;
-  height: 48px;
+  height: 35px;
   justify-content: center;
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding: 10px 40px;
+  padding: 0px 20px;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -12483,7 +12482,9 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 700;
+
 }
 
 .button-19:hover {
@@ -12508,13 +12509,12 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   color: #ffffff;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono", monospace;
-  height: 48px;
+  height: 35px;
   justify-content: center;
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding: 10px 40px;
+  padding: 0px 10px;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -12524,8 +12524,8 @@ box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 18px;
-  pointer-events: none;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .pod-adventure-skip2-disabled{
@@ -13547,7 +13547,10 @@ footer .more_test:hover {
 }
 
 .popover {
-  border: 1px solid #f51515;
+  /* border: 1px solid #f51515; */
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.21);
+
+  
 }
 
 .result_box_bottom {
@@ -13582,11 +13585,53 @@ footer .more_test:hover {
 
 }
 
-#Multiple-game {
+.hello-baba{
   width: 75%;
   padding: 50px;
   padding-top: 0px;
+  position: relative;
 }
+
+.multiple-game{
+  width: 75%;
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.chr-png{
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  z-index: 999;
+}
+.game-half-message{
+  width: fit-content;
+  position: absolute;
+  top: 25%;
+  left: -100%;
+  z-index: 999;
+}
+
+
+
+
+.chr-png-shadow{
+  position: absolute;
+  bottom: -18%;
+  right: -2%;
+  z-index: 999;
+}
+
+.half-image-text{
+  position: absolute;
+  top: 14px;
+  left: 9%;
+  font-size: larger;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
 
 .question-hint {
   font-size: 20px;
@@ -23919,6 +23964,8 @@ cite {
 .avatar__info-social a:hover {
   color: #A8171A;
 }
+
+
 
 code {
   font-size: 15px;

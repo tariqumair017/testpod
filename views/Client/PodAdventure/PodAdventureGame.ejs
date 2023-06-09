@@ -18,15 +18,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="/client/css/style.css" />
 </head>
 
-<body>
+<body style="height: 100vh;">
 
-    <div style="height: auto;position: relative;">
+    <div style="height: 100%;position: relative;display: flex;flex-direction: column;justify-content: space-around;">
         <div class="top-left-image">
             <img src="/client/img/padAdventure/TopLeft.svg" al />
         </div>
@@ -49,14 +51,17 @@
                   width: 0%;
                   position: relative;
                 ">
-                          <i class="fa-solid fa-flag progess-flag d-none"></i>
+                            <i class="fa-solid fa-flag progess-flag d-none"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
         <section style="height: auto;display: flex;flex-direction: column;align-items: center;">
-            <div id="Multiple-game">
+            <div id="Multiple-game" class="multiple-game">
+
+            </div>
+            <div id="half-game-screen" class="hello-baba d-none">
 
             </div>
             <!-- <div class="text-center mb-4 questions-name">
@@ -89,8 +94,9 @@
             <div class="pod-adventure-footer-inner controller">
                 <div style="width: 100%;">
                     <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
-                        <div>
-                            <button class="pod-adventure-skip2 skip-guess-flag" role="button">I Don't Know</button>
+                        <div class="controller_buttons">
+                            <button class="pod-adventure-skip2 skip-guess-flag" role="button">I Don't
+                                Know</button>
                             <div class="worng-area">
                                 <!-- <span class="cross-guess-flag d-none">
                                     <i class="fa-solid fa-xmark fa-2xl" style="color: #EA2B2B;"></i>
@@ -99,34 +105,62 @@
                                     <i class="fa-solid fa-check fa-2xl" style="color: #61B800;"></i>
                                 </span> -->
                                 <div class="well_done d-none">
-                                    <img src="/client/img/icon/Vector-tick.svg" />
+                                    <img class="wow animate__zoomIn" data-wow-delay="0.1ms"  src="/client/img/icon/Vector-tick.svg" />
                                     <h4 style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
                                 </div>
                                 <div class="Not_true d-none">
-                                        <img src="/client/img/icon/Vector.svg" />
+                                    <img class="wow animate__zoomIn" data-wow-delay="0.1ms"  src="/client/img/icon/Vector.svg" />
                                     <h4 style="margin-bottom: 0%;padding: 10px;">Wrong</h4>
                                 </div>
                             </div>
                         </div>
                         <button class="pod-adventure-skip2-disabled check-guess-flag">Check</button>
-                        <button class="well_done-continue continue-guess-flag d-none" role="button"><img src="/client/img/icon/VectorWrite.svg" /><h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4></button>
-                        <button class="well_done-continue game-change d-none" role="button"><img src="/client/img/icon/VectorWrite.svg" /><h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4></button>
+                        <button class="well_done-continue continue-guess-flag d-none" role="button">
+                            <!-- <img
+                                src="/client/img/icon/VectorWrite.svg" /> -->
+                            <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
+                        </button>
+                        <button class="well_done-continue game-change d-none" role="button">
+                            <!-- <img
+                                src="/client/img/icon/VectorWrite.svg" /> -->
+                            <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
+                        </button>
                     </div>
                     <div id="guess-flag-details" class="d-none"
-                        style="display: flex;justify-content: center;align-items: center;gap: 5px;">
+                        style="display: flex;justify-content: center;align-items: center;gap: 5px;cursor: pointer;">
                         <div class="example-popover">
-                            <i class="fa-regular fa-message" style="color: #EA2B2B;font-size: larger;"></i> <span
-                                style="color: #EA2B2B;font-size: larger">Details</span>
+                            <i class="fa-sharp fa-solid fa-lightbulb" style="color: #ffffff;font-size: larger;"></i>
+                            <span
+                                style="color: #ffffff;font-size: larger">Details</span>
                         </div>
                     </div>
                 </div>
                 <div hidden>
-                    <p id="mypopover-content">
-                        Badshahi Mosque. Badshahi Masjid the historical Mosque built by Mughal empire, famous for its
-                        widest courtyard, is a symbol of Islamic...
-                    </p>
+                    <div id="mypopover-content">
+                        <p id="details" style="margin: 0%;font-weight: 600;" >
+                        </p>
+                        <!-- <div style="display: flex;justify-content: space-between;">
+                            <button class="button-18-disabled  popover_cancel" >Cancel</button>
+                            <button class="button-19 popover_skip " >Skip</button>
+                        </div> -->
+                    </div>
                 </div>
             </div>
+
+
+            <div class="pod-adventure-footer-inner dublicate d-none">
+                <div style="width: 100%;">
+                    <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                        <button class="well_done-continue half-game-continue" role="button">
+                            <img
+                            src="/client/img/icon/VectorWrite.svg" />
+                        <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
+                    </button>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="controller-image vert-move">
                 <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
             </div>
