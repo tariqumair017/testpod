@@ -57,12 +57,12 @@ router.get("/admin/flag-data-api/country-for-flag/:country", middleware.isAdminL
 
 
 // Login Page 
-router.get("/admin/login", asyncHandler(async (req, res, next) => { 
+router.get("/admin/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), asyncHandler(async (req, res, next) => { 
   res.render("Admin/index/Login");
 }));
 
 //Handel Login Logic
-router.post("/admin/login", passport.authenticate("admin", {
+router.post("/admin/login", connectEnsureLogin.ensureLoggedOut("/admin/dashboard"), passport.authenticate("admin", {
   failureFlash: true,
   failureRedirect: "/admin/login"
 }), (req, res) => {  

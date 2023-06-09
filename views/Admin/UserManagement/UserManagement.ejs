@@ -159,7 +159,7 @@
     {
       document.getElementById("blockInfo").classList.remove("d-none"); 
     }
-    document.getElementById("UserBlockDiv").innerHTML = `<button onclick="blockFunc('${item._id}', '${item.name}', '${item.blocked}')" type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#blockUserModal">${item.blocked ? 'Blocked': 'Unblocked'}</button>`;
+    document.getElementById("UserBlockDiv").innerHTML = `<button onclick="blockFunc('${item._id}', '${item.name}', '${item.blocked}')" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blockUserModal">${item.blocked ? 'Blocked': 'Unblocked'}</button>`;
     var dob;  
    if(item.dob)
    {

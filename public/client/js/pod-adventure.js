@@ -33,14 +33,28 @@ var popover = new bootstrap.Popover(document.querySelector('.example-popover'), 
 let gameChnager = 0
 let questionChange = 0
 let total_inputs = [];
+let dataForRepeat = [];
+dataForRepeat[0] = {};
+dataForRepeat[0].modules = [];
+let guessCountryData = [];
+let flagDetectiveData = [];
+let guessFlagData = []; 
 let pod_adventure_guess_country = 1
 let counterLine;
 let question_counter = 1
 
 let points = 0
 
-function gameChanger(i) {
-  if (data[gameChnager]?.modules[i] == "flag detective game") {
+function gameChanger(num) {
+  debugger;
+  if(num == 3)
+  {
+    data = JSON.parse(JSON.stringify(dataForRepeat)); 
+    i = 0;
+    num = 0;
+  }
+  
+  if (data[gameChnager]?.modules[num] == "flag detective game") {
     multiple_game.innerHTML = `<div >
     <h2 class="score-text-slide-top text-center pb-4" style="margin: 0%">Which Country Is This?</h2>
     <div class="pod-adventure-game-detective-image pb-4">
@@ -104,7 +118,7 @@ function gameChanger(i) {
               total_inputs[i].classList.add("disabled")
             }
           }
-          check_Button.onclick = () => {
+          check_Button.onclick = () => { 
             if (baba.replace(/\s/g, '').toLowerCase() == data[gameChnager]?.flagDetective[questionChange].country.replace(/\s/g, '').toLowerCase()) {
               continue_guess_flag.classList.remove("d-none")
               well_done.classList.remove("d-none")
@@ -114,6 +128,8 @@ function gameChanger(i) {
               controller.classList.add("pod-adventure-footer-inner-green")
               startTimerLineCorrect()
             } else {
+              flagDetectiveData.push(data[gameChnager]?.flagDetective[questionChange]);
+              
               controller.classList.remove("pod-adventure-footer-inner")
               controller.classList.remove("pod-adventure-footer-inner-green")
               controller.classList.add("pod-adventure-footer-inner-red")
@@ -125,7 +141,11 @@ function gameChanger(i) {
               startTimerLineInCorrect()
             }
 
-            if (question_counter == data[gameChnager]?.flagDetective.length) {
+            if (question_counter == data[gameChnager]?.flagDetective.length) { 
+              dataForRepeat[0].flagDetective = flagDetectiveData;
+              flagDetectiveData = [];
+              dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+              console.log(dataForRepeat);
               game_change.classList.remove('d-none')
               continue_guess_flag.classList.add("d-none")
             }
@@ -135,10 +155,9 @@ function gameChanger(i) {
     }
     showNextInputs();
   }
+ 
 
-
-
-  else if (data[gameChnager]?.modules[i] == "flag quest game") {
+  else if (data[gameChnager]?.modules[num] == "flag quest game") {
 
     multiple_game.innerHTML =
       `
@@ -175,7 +194,7 @@ function gameChanger(i) {
   }
 
 
-  else if (data[gameChnager]?.modules[i] == "guess country game") {
+  else if (data[gameChnager]?.modules[num] == "guess country game") {
 
 
     multiple_game.innerHTML =
@@ -222,6 +241,7 @@ function gameChanger(i) {
 
 
     check_Button.onclick = () => {
+      debugger;
       let userAns = []
       for (j = 0; j < document.querySelectorAll(".pod-adventure-customLable").length; j++) {
         userAns.push(document.querySelectorAll(".pod-adventure-customLable")[j].getAttribute("select"))
@@ -231,7 +251,7 @@ function gameChanger(i) {
       s.delete(null)
       check_Button.classList.add("d-none")
       skip_guess_flag.classList.add("d-none")
-      document.querySelector(".pod-adventure-option_list").classList.add("disabled")
+      document.querySelector(".pod-adventure-option_list").classList.add("disabled") 
       if (Array.from(s)[0].replace(/\s/g, '').toLowerCase() === data[gameChnager]?.guessCountry[questionChange]?.correct.replace(/\s/g, '').toLowerCase()) {
         continue_guess_flag.classList.remove("d-none")
         well_done.classList.remove("d-none")
@@ -241,6 +261,8 @@ function gameChanger(i) {
         controller.classList.add("pod-adventure-footer-inner-green")
         startTimerLineCorrect()
       } else {
+        guessCountryData.push(data[gameChnager]?.guessCountry[questionChange]); 
+        
         controller.classList.remove("pod-adventure-footer-inner")
         controller.classList.remove("pod-adventure-footer-inner-green")
         controller.classList.add("pod-adventure-footer-inner-red")
@@ -251,16 +273,20 @@ function gameChanger(i) {
         continue_guess_flag.classList.remove("d-none")
         startTimerLineInCorrect()
       }
-      if (question_counter == data[gameChnager]?.guessCountry.length) {
+      if (question_counter == data[gameChnager]?.guessCountry.length) { 
+        dataForRepeat[0].guessCountry = guessCountryData; 
+        guessCountryData = [];
+        dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
+        console.log(dataForRepeat);
         game_change.classList.remove('d-none')
         continue_guess_flag.classList.add("d-none")
       }
     }
   }
+ 
 
-
-
-  else if (data[gameChnager]?.modules[i] == "guess flag game") {
+  else if (data[gameChnager]?.modules[num] == "guess flag game") {
+    console.log(questionChange)
     data[gameChnager].guessFlag[questionChange].country
     multiple_game.innerHTML =
       `
@@ -326,7 +352,8 @@ function gameChanger(i) {
     }
 
 
-    check_Button.onclick = () => {
+    check_Button.onclick = () => { 
+      debugger;
       multiple_game.querySelector(".pod-adventure").classList.add("disabled")
       if (document.querySelector(".select").getAttribute("ans") == "correct") {
         document.querySelector(".select-child").classList.add("podcustomLableWimage-write")
@@ -337,7 +364,8 @@ function gameChanger(i) {
         controller.classList.remove("pod-adventure-footer-inner")
         controller.classList.add("pod-adventure-footer-inner-green")
         startTimerLineCorrect()
-      } else {
+      } else { 
+        guessFlagData.push(data[gameChnager].guessFlag[questionChange]); 
         document.querySelector(".select-child").classList.add("podcustomLableWimage-wrong")
         controller.classList.remove("pod-adventure-footer-inner")
         controller.classList.remove("pod-adventure-footer-inner-green")
@@ -349,11 +377,16 @@ function gameChanger(i) {
         continue_guess_flag.classList.remove("d-none")
         startTimerLineInCorrect()
       }
-      if (question_counter == data[gameChnager]?.guessFlag.length) {
+      if (question_counter == data[gameChnager]?.guessFlag.length) { 
+        dataForRepeat[0].guessFlag = guessFlagData;
+        guessFlagData = [];
+        dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
+        console.log(dataForRepeat);
         game_change.classList.remove('d-none')
         continue_guess_flag.classList.add("d-none")
       }
-    }
+    } 
+
   }
 
 }
@@ -365,6 +398,7 @@ var i = 0;
 gameChanger(i)
 
 continue_guess_flag.onclick = () => {
+  debugger;
   if (question_counter < data[gameChnager]?.guessCountry.length) {
     questionChange++
     question_counter++

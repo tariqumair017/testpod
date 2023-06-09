@@ -76,13 +76,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 //Authentication For Admin 
-passport.use("admin", new LocalStrategy(Admin.authenticate()));
-// passport.serializeUser(Admin.serializeUser());
-// passport.deserializeUser(Admin.deserializeUser());
+passport.use("admin", new LocalStrategy(Admin.authenticate())); 
 //Authentication For User 
-passport.use("user", new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+passport.use("user", new LocalStrategy(User.authenticate())); 
 passport.serializeUser(function (user, done) {
     process.nextTick(function () {
         done(null, user);

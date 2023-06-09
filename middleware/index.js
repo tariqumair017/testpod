@@ -7,7 +7,7 @@ middlewareObj.isAdminLoggedin = function(req, res, next)
 {
     if(req.isAuthenticated())
     { 
-        if(req.user)
+        if(req.user && req.user.admin === true)
         {
             return next();
         }
@@ -28,17 +28,25 @@ middlewareObj.isUserLoggedin = function(req, res, next)
 {
     if(req.isAuthenticated())
     {
-        if(req.user && req.user.blocked == false)
+        if(req.user && req.user.admin === false)
         {
-            return next();
+            if(req.user.blocked == false)
+            {
+                return next();
+            }
+            else
+            {
+                req.logout(function(err) {
+                    if (err) { return next(err); }
+                    req.flash("error", "Your Account is Blocked!");
+                    return res.redirect("/login");
+                });
+            }
         }
         else
         {
-            req.logout(function(err) {
-                if (err) { return next(err); }
-                req.flash("error", "Your Account is Blocked!");
-                return res.redirect("/login");
-                });
+            req.flash("error", "You do not have Permission!");
+            return res.redirect("/login");
         }
     }
     else
