@@ -51,15 +51,21 @@ let repeat = 0;
 function gameChanger(num) {
 
   if (num == data[gameChnager].modules.length) {
-    repeat++;
-    if (repeat == 1) {
-      data = JSON.parse(JSON.stringify(dataForRepeat));
-      i = 0;
-      num = 0;
-    } else {
-      return;
+    if (dataForRepeat[gameChnager].modules.length) {
+      repeat++;
+      if (repeat == 1) {
+        data = JSON.parse(JSON.stringify(dataForRepeat));
+        i = 0;
+        num = 0;
+      }
     }
-  }
+    else {
+      document.querySelector(".game").classList.add("d-none")
+      confettiExplosion(origin);
+      document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
+      document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
+    }
+  } 
 
   if (data[gameChnager]?.modules[num] == "flag detective game") {
     multiple_game.innerHTML = `<div >
@@ -532,8 +538,6 @@ function startTimerLineCorrect() {
 
 
 half_game_continue.onclick = () => {
-  console.log(half_game_continue)
-  console.log("hello")
   document.querySelector(".hello-baba").classList.add("d-none")
   multiple_game.classList.remove("d-none")
   document.querySelector(".controller").classList.remove("d-none")
@@ -554,7 +558,6 @@ function startTimerLineInCorrect() {
     document.querySelector(".progess-flag").classList.add("d-none")
   }
   time_line.style.width = points + "%"; //increasing width of time_line with px by time value
-
 }
 
 
@@ -613,5 +616,3 @@ function confettiExplosion(origin) {
 }
 
 
-
-// confettiExplosion(origin);
