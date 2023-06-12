@@ -181,6 +181,7 @@ function gameChanger(num) {
               continue_guess_flag.classList.remove("d-none")
               well_done_img.classList.remove("controllers-zoom-in")
               Not_true_img.classList.add("controllers-zoom-in")
+              
               startTimerLineInCorrect()
             }
 
@@ -188,6 +189,7 @@ function gameChanger(num) {
               game_change.classList.remove('d-none')
               continue_guess_flag.classList.add("d-none")
             }
+            guess_flag_details.classList.remove("d-none")
           }
         });
       });
@@ -326,6 +328,8 @@ function gameChanger(num) {
         game_change.classList.remove('d-none')
         continue_guess_flag.classList.add("d-none")
       }
+      guess_flag_details.classList.remove("d-none")
+
     }
   }
 
@@ -435,6 +439,8 @@ function gameChanger(num) {
         game_change.classList.remove('d-none')
         continue_guess_flag.classList.add("d-none")
       }
+      guess_flag_details.classList.remove("d-none")
+
     }
   }
 }
@@ -477,6 +483,7 @@ game_change.onclick = () => {
   check_Button.classList.add("pod-adventure-skip2-disabled")
   continue_guess_flag.classList.add("d-none")
   Not_true.classList.add("d-none")
+  guess_flag_details.classList.add("d-none")
   well_done.classList.add("d-none")
   game_change.classList.add("d-none")
 }
