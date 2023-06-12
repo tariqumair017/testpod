@@ -36,167 +36,169 @@ let total_inputs = [];
 let dataForRepeat = [];
 dataForRepeat[0] = {};
 dataForRepeat[0].modules = [];
-let guessCountryData = [];
-let flagDetectiveData = [];
-let guessFlagData = []; 
+dataForRepeat[0].guessCountry = [];
+dataForRepeat[0].guessFlag = [];   
+dataForRepeat[0].flagDetective = [];
 let pod_adventure_guess_country = 1
 let counterLine;
 let question_counter = 1
 
 let points = 0
+let repeat = 0;
 
 function gameChanger(num) {
-  debugger;
-  if(num == 3)
-  {
-    data = JSON.parse(JSON.stringify(dataForRepeat)); 
-    i = 0;
-    num = 0;
+  
+  if(num == data[gameChnager].modules.length)
+  {  
+    repeat++;
+    if(repeat == 1){
+      data = JSON.parse(JSON.stringify(dataForRepeat)); 
+      i = 0;
+      num = 0;
+    } else {
+      return;
+    }
   }
   
   if (data[gameChnager]?.modules[num] == "flag detective game") {
-    multiple_game.innerHTML = `<div >
-    <h2 class="score-text-slide-top text-center pb-4" style="margin: 0%">Which Country Is This?</h2>
-    <div class="pod-adventure-game-detective-image pb-4">
-    <span style="border-radius:7px;width:fit-content;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
-    alt="img"></span>
-    </div>
-    <div class="siblings-input"></div>
-    </div>`;
-    const siblings_input = document.querySelector(".siblings-input");
-    for (let i = 0; i < data[gameChnager].flagDetective[questionChange].country.split("").length; i++) {
-      siblings_input.innerHTML +=
-        '<input class="current-input" maxlength="1" />' || ` <div class="loading-skeleton-inputs"></div>`;
-    }
+      multiple_game.innerHTML = `<div >
+      <h2 class="score-text-slide-top text-center pb-4" style="margin: 0%">Which Country Is This?</h2>
+      <div class="pod-adventure-game-detective-image pb-4">
+      <span style="border-radius:7px;width:fit-content;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
+      alt="img"></span>
+      </div>
+      <div class="siblings-input"></div>
+      </div>`;
+      const siblings_input = document.querySelector(".siblings-input");
+      for (let i = 0; i < data[gameChnager].flagDetective[questionChange].country.split("").length; i++) {
+        siblings_input.innerHTML +=
+          '<input class="current-input" maxlength="1" />' || ` <div class="loading-skeleton-inputs"></div>`;
+      }
 
-    details.innerHTML = data[gameChnager].flagDetective[questionChange].detail
-    
+      details.innerHTML = data[gameChnager].flagDetective[questionChange].detail
+      
 
-    const inputs = document.querySelectorAll(".current-input");
-    total_inputs = inputs;
-    total_inputs[0].focus()
+      const inputs = document.querySelectorAll(".current-input");
+      total_inputs = inputs;
+      total_inputs[0].focus()
 
 
-    let baba = ""
+      let baba = ""
 
-    // iterate over all inputs
-    function showNextInputs() {
-      total_inputs.forEach((input, index1) => {
-        input.addEventListener("keyup", (e) => {
-          // This code gets the current input element and stores it in the currentInput variable
-          // This code gets the next sibling element of the current input element and stores it in the nextInput variable
-          // This code gets the previous sibling element of the current input element and stores it in the prevInput variable
-          const currentInput = input,
-            nextInput = input.nextElementSibling,
-            prevInput = input.previousElementSibling;
+      // iterate over all inputs
+      function showNextInputs() {
+        total_inputs.forEach((input, index1) => {
+          input.addEventListener("keyup", (e) => {
+            // This code gets the current input element and stores it in the currentInput variable
+            // This code gets the next sibling element of the current input element and stores it in the nextInput variable
+            // This code gets the previous sibling element of the current input element and stores it in the prevInput variable
+            const currentInput = input,
+              nextInput = input.nextElementSibling,
+              prevInput = input.previousElementSibling;
 
-          // if the value has more than one character then clear it
-          if (currentInput.value.length > 1) {
-            currentInput.value = "";
-            return;
-          }
-          // if the next input is disabled and the current value is not empty
-          //  enable the next input and focus on it
-          if (nextInput && currentInput.value !== "") {
-            //   nextInput.removeAttribute("disabled");
-            nextInput.focus();
-          }
-
-          // if the backspace key is pressed
-
-          var _finalKey = "";
-
-          for (let { value } of total_inputs) {
-            _finalKey += value;
-          }
-
-          if (_finalKey.length == total_inputs.length) {
-            baba = _finalKey
-            check_Button.classList.remove("pod-adventure-skip2-disabled")
-            check_Button.classList.add("pod-adventure-skip2")
-            for (let i = 0; i < total_inputs.length; i++) {
-              total_inputs[i].classList.add("disabled")
+            // if the value has more than one character then clear it
+            if (currentInput.value.length > 1) {
+              currentInput.value = "";
+              return;
             }
-          }
-          check_Button.onclick = () => { 
-            if (baba.replace(/\s/g, '').toLowerCase() == data[gameChnager]?.flagDetective[questionChange].country.replace(/\s/g, '').toLowerCase()) {
-              continue_guess_flag.classList.remove("d-none")
-              well_done.classList.remove("d-none")
-              check_Button.classList.add("d-none")
-              skip_guess_flag.classList.add("d-none")
-              controller.classList.remove("pod-adventure-footer-inner")
-              controller.classList.add("pod-adventure-footer-inner-green")
-              startTimerLineCorrect()
-            } else {
-              flagDetectiveData.push(data[gameChnager]?.flagDetective[questionChange]);
-              
-              controller.classList.remove("pod-adventure-footer-inner")
-              controller.classList.remove("pod-adventure-footer-inner-green")
-              controller.classList.add("pod-adventure-footer-inner-red")
-              check_Button.classList.add("d-none")
-              skip_guess_flag.classList.add("d-none")
-              Not_true.classList.remove("d-none")
-              skip_guess_flag.classList.add("d-none")
-              continue_guess_flag.classList.remove("d-none")
-              startTimerLineInCorrect()
+            // if the next input is disabled and the current value is not empty
+            //  enable the next input and focus on it
+            if (nextInput && currentInput.value !== "") {
+              //   nextInput.removeAttribute("disabled");
+              nextInput.focus();
             }
 
-            if (question_counter == data[gameChnager]?.flagDetective.length) { 
-              dataForRepeat[0].flagDetective = flagDetectiveData;
-              flagDetectiveData = [];
-              dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
-              console.log(dataForRepeat);
-              game_change.classList.remove('d-none')
-              continue_guess_flag.classList.add("d-none")
+            // if the backspace key is pressed
+
+            var _finalKey = "";
+
+            for (let { value } of total_inputs) {
+              _finalKey += value;
             }
-          }
+
+            if (_finalKey.length == total_inputs.length) {
+              baba = _finalKey
+              check_Button.classList.remove("pod-adventure-skip2-disabled")
+              check_Button.classList.add("pod-adventure-skip2")
+              // for (let i = 0; i < total_inputs.length; i++) {
+              //   total_inputs[i].classList.add("disabled")
+              // }
+            }
+            check_Button.onclick = () => { 
+              if (baba.replace(/\s/g, '').toLowerCase() == data[gameChnager]?.flagDetective[questionChange].country.replace(/\s/g, '').toLowerCase()) {
+                continue_guess_flag.classList.remove("d-none")
+                well_done.classList.remove("d-none")
+                check_Button.classList.add("d-none")
+                skip_guess_flag.classList.add("d-none")
+                controller.classList.remove("pod-adventure-footer-inner")
+                controller.classList.add("pod-adventure-footer-inner-green")
+                startTimerLineCorrect()
+              } else {
+                dataForRepeat[0].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]);
+                if(dataForRepeat[0].flagDetective.length == 1)
+                {
+                  dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+                }
+
+                controller.classList.remove("pod-adventure-footer-inner")
+                controller.classList.remove("pod-adventure-footer-inner-green")
+                controller.classList.add("pod-adventure-footer-inner-red")
+                check_Button.classList.add("d-none")
+                skip_guess_flag.classList.add("d-none")
+                Not_true.classList.remove("d-none")
+                skip_guess_flag.classList.add("d-none")
+                continue_guess_flag.classList.remove("d-none")
+                startTimerLineInCorrect()
+              }
+
+              if (question_counter == data[gameChnager]?.flagDetective.length) { 
+                game_change.classList.remove('d-none')
+                continue_guess_flag.classList.add("d-none")
+              }
+            }
+          });
         });
-      });
-    }
-    showNextInputs();
+      }
+      showNextInputs(); 
   }
  
 
-  else if (data[gameChnager]?.modules[num] == "flag quest game") {
-
-    multiple_game.innerHTML =
-      `
-    <p class="flag-quest-box-left-name slide-right quest_question_name pb-4">Flag of ${data[gameChnager]?.flagQuest[i]?.country}</p>
-    <div class="pod-adventure-quest-game" style="justify-content:center" >
-    <div class="flag-quest-pair" style="gap:20px">
-      <div class="option-one pod-adventure-options">
-      <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[i]?.country}>
-      <label class="customLableWimageQuest" style='height:130px;width:' for=${data[gameChnager]?.flagQuest[i]?.country}>
-      <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[1]?.flagQuest[i]?.correctImg} alt="" ></label>
+  else if (data[gameChnager]?.modules[num] == "flag quest game") { 
+      multiple_game.innerHTML =
+        `
+      <p class="flag-quest-box-left-name slide-right quest_question_name pb-4">Flag of ${data[gameChnager]?.flagQuest[i]?.country}</p>
+      <div class="pod-adventure-quest-game" style="justify-content:center" >
+      <div class="flag-quest-pair" style="gap:20px">
+        <div class="option-one pod-adventure-options">
+        <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[i]?.country}>
+        <label class="customLableWimageQuest" style='height:130px;width:' for=${data[gameChnager]?.flagQuest[i]?.country}>
+        <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[1]?.flagQuest[i]?.correctImg} alt="" ></label>
+        </div>
+        <div class="option-two pod-adventure-options">
+        <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[i]?.country}>
+        <label class="customLableWimageQuest" style='height:130px;' for=${data[gameChnager]?.flagQuest[i]?.country}>
+        <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[gameChnager]?.flagQuest[i]?.IcorrectImg1} alt="" ></label>
+        </div>
       </div>
-      <div class="option-two pod-adventure-options">
-      <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[i]?.country}>
-      <label class="customLableWimageQuest" style='height:130px;' for=${data[gameChnager]?.flagQuest[i]?.country}>
-      <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[gameChnager]?.flagQuest[i]?.IcorrectImg1} alt="" ></label>
+      <div class="flag-quest-pair" style="gap:20px">
+        <div class="option-three pod-adventure-options">
+        <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[1]?.country}>
+        <label class="customLableWimageQuest" style='height:130px;' for=${data[gameChnager]?.flagQuest[1]?.country}>
+        <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[gameChnager]?.flagQuest[i]?.IcorrectImg2} alt="" ></label>
+        </div>
+        <div class="option-four pod-adventure-options">
+        <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[1]?.country}>
+        <label class="customLableWimageQuest" style='height:130px;' for=${data[gameChnager]?.flagQuest[1]?.country}>
+        <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[gameChnager]?.flagQuest[i]?.IcorrectImg3} alt="" ></label>
+        </div>
       </div>
-    </div>
-    <div class="flag-quest-pair" style="gap:20px">
-      <div class="option-three pod-adventure-options">
-      <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[1]?.country}>
-      <label class="customLableWimageQuest" style='height:130px;' for=${data[gameChnager]?.flagQuest[1]?.country}>
-      <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[gameChnager]?.flagQuest[i]?.IcorrectImg2} alt="" ></label>
-      </div>
-      <div class="option-four pod-adventure-options">
-      <input class="customRadio" ans="correct" type="radio" name=q${i} id=${data[gameChnager]?.flagQuest[1]?.country}>
-      <label class="customLableWimageQuest" style='height:130px;' for=${data[gameChnager]?.flagQuest[1]?.country}>
-      <img class="flag-quest-image" style='height:120px;width:180px;padding-top:0px;padding-bottom:0px' src=${data[gameChnager]?.flagQuest[i]?.IcorrectImg3} alt="" ></label>
-      </div>
-    </div>
-    </div>
-    `
-
-
+      </div>`
+ 
   }
 
 
-  else if (data[gameChnager]?.modules[num] == "guess country game") {
-
-
+  else if (data[gameChnager]?.modules[num] == "guess country game") { 
+ 
     multiple_game.innerHTML =
       `
     <div class="align-items-center">
@@ -240,8 +242,7 @@ function gameChanger(num) {
     // set onclick attribute to all available options
 
 
-    check_Button.onclick = () => {
-      debugger;
+    check_Button.onclick = () => { 
       let userAns = []
       for (j = 0; j < document.querySelectorAll(".pod-adventure-customLable").length; j++) {
         userAns.push(document.querySelectorAll(".pod-adventure-customLable")[j].getAttribute("select"))
@@ -261,7 +262,11 @@ function gameChanger(num) {
         controller.classList.add("pod-adventure-footer-inner-green")
         startTimerLineCorrect()
       } else {
-        guessCountryData.push(data[gameChnager]?.guessCountry[questionChange]); 
+        dataForRepeat[0].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]);
+        if(dataForRepeat[0].guessCountry.length == 1)
+        {
+          dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
+        } 
         
         controller.classList.remove("pod-adventure-footer-inner")
         controller.classList.remove("pod-adventure-footer-inner-green")
@@ -274,121 +279,114 @@ function gameChanger(num) {
         startTimerLineInCorrect()
       }
       if (question_counter == data[gameChnager]?.guessCountry.length) { 
-        dataForRepeat[0].guessCountry = guessCountryData; 
-        guessCountryData = [];
-        dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
-        console.log(dataForRepeat);
-        game_change.classList.remove('d-none')
-        continue_guess_flag.classList.add("d-none")
-      }
-    }
-  }
- 
-
-  else if (data[gameChnager]?.modules[num] == "guess flag game") {
-    console.log(questionChange)
-    data[gameChnager].guessFlag[questionChange].country
-    multiple_game.innerHTML =
-      `
-    <div class="text-center mb-4 questions-name wow animate__fadeInUp" data-wow-delay="0.1s">
-      <span style="font-size: 40px;font-weight: bold;color: back">
-        Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"
-      </span>
-    </div>
-  <div class="pod-adventure" style="margin-bottom:50px">
-        <div style="width: 100%;display: flex;justify-content: space-around;">
-            <div class="pod-adventure-guess-option-left">
-            </div>
-  
-            <div class="pod-adventure-guess-option-right" >
-            </div>
-        </div>
-  </div>
-    `
-
-
-    var leftSide =
-      ` <input class="customRadio" ans="correct" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].country} >
-      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country} style="width:100%;height:250px;">
-      <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
-      </label>`
-    var RightSide =
-      ` <input class="customRadio" ans="incorrect" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].Icountry}>
-    <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry} style="width:100%;height:250px;">
-    <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
-    </label>`
-
-    var FlagOptions = [];
-    FlagOptions.push(RightSide);
-    FlagOptions.push(leftSide);
-
-    let shuffledFlagOptions = FlagOptions.sort(function () {
-      return Math.random() - 0.5;
-    });
-
-    details.innerHTML = data[gameChnager].guessFlag[questionChange].detail
-
-
-
-    multiple_game.querySelector(".pod-adventure-guess-option-left").innerHTML = shuffledFlagOptions[0];
-    multiple_game.querySelector(".pod-adventure-guess-option-right").innerHTML = shuffledFlagOptions[1];
-
-    multiple_game.querySelectorAll(".podcustomLableWimage")[0].onclick = () => {
-      check_Button.classList.remove("pod-adventure-skip2-disabled")
-      check_Button.classList.add("pod-adventure-skip2")
-      multiple_game.querySelectorAll(".customRadio")[0].classList.add("select")
-      multiple_game.querySelectorAll(".customRadio")[1].classList.remove("select")
-      multiple_game.querySelectorAll(".podcustomLableWimage")[0].classList.add("select-child")
-      multiple_game.querySelectorAll(".podcustomLableWimage")[1].classList.remove("select-child")
-    }
-
-    multiple_game.querySelectorAll(".podcustomLableWimage")[1].onclick = () => {
-      check_Button.classList.remove("pod-adventure-skip2-disabled")
-      check_Button.classList.add("pod-adventure-skip2")
-      multiple_game.querySelectorAll(".customRadio")[1].classList.add("select")
-      multiple_game.querySelectorAll(".customRadio")[0].classList.remove("select")
-      multiple_game.querySelectorAll(".podcustomLableWimage")[1].classList.add("select-child")
-      multiple_game.querySelectorAll(".podcustomLableWimage")[0].classList.remove("select-child")
-    }
-
-
-    check_Button.onclick = () => { 
-      debugger;
-      multiple_game.querySelector(".pod-adventure").classList.add("disabled")
-      if (document.querySelector(".select").getAttribute("ans") == "correct") {
-        document.querySelector(".select-child").classList.add("podcustomLableWimage-write")
-        continue_guess_flag.classList.remove("d-none")
-        well_done.classList.remove("d-none")
-        check_Button.classList.add("d-none")
-        skip_guess_flag.classList.add("d-none")
-        controller.classList.remove("pod-adventure-footer-inner")
-        controller.classList.add("pod-adventure-footer-inner-green")
-        startTimerLineCorrect()
-      } else { 
-        guessFlagData.push(data[gameChnager].guessFlag[questionChange]); 
-        document.querySelector(".select-child").classList.add("podcustomLableWimage-wrong")
-        controller.classList.remove("pod-adventure-footer-inner")
-        controller.classList.remove("pod-adventure-footer-inner-green")
-        controller.classList.add("pod-adventure-footer-inner-red")
-        check_Button.classList.add("d-none")
-        skip_guess_flag.classList.add("d-none")
-        Not_true.classList.remove("d-none")
-        skip_guess_flag.classList.add("d-none")
-        continue_guess_flag.classList.remove("d-none")
-        startTimerLineInCorrect()
-      }
-      if (question_counter == data[gameChnager]?.guessFlag.length) { 
-        dataForRepeat[0].guessFlag = guessFlagData;
-        guessFlagData = [];
-        dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
-        console.log(dataForRepeat);
         game_change.classList.remove('d-none')
         continue_guess_flag.classList.add("d-none")
       }
     } 
+ }
+ 
 
+  else if (data[gameChnager]?.modules[num] == "guess flag game") {
+     
+      data[gameChnager].guessFlag[questionChange].country
+      multiple_game.innerHTML =
+        `
+      <div class="text-center mb-4 questions-name wow animate__fadeInUp" data-wow-delay="0.1s">
+        <span style="font-size: 40px;font-weight: bold;color: back">
+          Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"
+        </span>
+      </div>
+      <div class="pod-adventure" style="margin-bottom:50px">
+          <div style="width: 100%;display: flex;justify-content: space-around;">
+              <div class="pod-adventure-guess-option-left">
+              </div>
+    
+              <div class="pod-adventure-guess-option-right" >
+              </div>
+          </div>
+      </div>`
+
+
+      var leftSide =
+        ` <input class="customRadio" ans="correct" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].country} >
+        <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country} style="width:100%;height:250px;">
+        <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
+        </label>`
+      var RightSide =
+        ` <input class="customRadio" ans="incorrect" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].Icountry}>
+      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry} style="width:100%;height:250px;">
+      <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
+      </label>`
+
+      var FlagOptions = [];
+      FlagOptions.push(RightSide);
+      FlagOptions.push(leftSide);
+
+      let shuffledFlagOptions = FlagOptions.sort(function () {
+        return Math.random() - 0.5;
+      });
+
+      details.innerHTML = data[gameChnager].guessFlag[questionChange].detail
+
+
+
+      multiple_game.querySelector(".pod-adventure-guess-option-left").innerHTML = shuffledFlagOptions[0];
+      multiple_game.querySelector(".pod-adventure-guess-option-right").innerHTML = shuffledFlagOptions[1];
+
+      multiple_game.querySelectorAll(".podcustomLableWimage")[0].onclick = () => {
+        check_Button.classList.remove("pod-adventure-skip2-disabled")
+        check_Button.classList.add("pod-adventure-skip2")
+        multiple_game.querySelectorAll(".customRadio")[0].classList.add("select")
+        multiple_game.querySelectorAll(".customRadio")[1].classList.remove("select")
+        multiple_game.querySelectorAll(".podcustomLableWimage")[0].classList.add("select-child")
+        multiple_game.querySelectorAll(".podcustomLableWimage")[1].classList.remove("select-child")
+      }
+
+      multiple_game.querySelectorAll(".podcustomLableWimage")[1].onclick = () => {
+        check_Button.classList.remove("pod-adventure-skip2-disabled")
+        check_Button.classList.add("pod-adventure-skip2")
+        multiple_game.querySelectorAll(".customRadio")[1].classList.add("select")
+        multiple_game.querySelectorAll(".customRadio")[0].classList.remove("select")
+        multiple_game.querySelectorAll(".podcustomLableWimage")[1].classList.add("select-child")
+        multiple_game.querySelectorAll(".podcustomLableWimage")[0].classList.remove("select-child")
+      }
+
+
+      check_Button.onclick = () => {  
+        multiple_game.querySelector(".pod-adventure").classList.add("disabled")
+        if (document.querySelector(".select").getAttribute("ans") == "correct") {
+          document.querySelector(".select-child").classList.add("podcustomLableWimage-write")
+          continue_guess_flag.classList.remove("d-none")
+          well_done.classList.remove("d-none")
+          check_Button.classList.add("d-none")
+          skip_guess_flag.classList.add("d-none")
+          controller.classList.remove("pod-adventure-footer-inner")
+          controller.classList.add("pod-adventure-footer-inner-green")
+          startTimerLineCorrect()
+        } else {  
+          dataForRepeat[0].guessFlag.push(data[gameChnager].guessFlag[questionChange]);
+          if(dataForRepeat[0].guessFlag.length == 1)
+          {
+            dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
+          }
+
+          document.querySelector(".select-child").classList.add("podcustomLableWimage-wrong")
+          controller.classList.remove("pod-adventure-footer-inner")
+          controller.classList.remove("pod-adventure-footer-inner-green")
+          controller.classList.add("pod-adventure-footer-inner-red")
+          check_Button.classList.add("d-none")
+          skip_guess_flag.classList.add("d-none")
+          Not_true.classList.remove("d-none")
+          skip_guess_flag.classList.add("d-none")
+          continue_guess_flag.classList.remove("d-none")
+          startTimerLineInCorrect()
+        }
+        if (question_counter == data[gameChnager]?.guessFlag.length) { 
+          game_change.classList.remove('d-none')
+          continue_guess_flag.classList.add("d-none")
+        }
+      } 
   }
-
 }
 
 
@@ -397,9 +395,8 @@ function gameChanger(num) {
 var i = 0;
 gameChanger(i)
 
-continue_guess_flag.onclick = () => {
-  debugger;
-  if (question_counter < data[gameChnager]?.guessCountry.length) {
+continue_guess_flag.onclick = () => { 
+  // if (question_counter < data[gameChnager]?.guessCountry.length) {
     questionChange++
     question_counter++
     check_Button.classList.remove("d-none")
@@ -415,7 +412,7 @@ continue_guess_flag.onclick = () => {
     controller.classList.remove("pod-adventure-footer-inner-green")
     controller.classList.remove("pod-adventure-footer-inner-red")
     gameChanger(i)
-  }
+  // }
 }
 game_change.onclick = () => {
   i++
@@ -435,13 +432,32 @@ game_change.onclick = () => {
 }
 
 
-skip_guess_flag.onclick = () => {
+skip_guess_flag.onclick = () => { 
+  
+  if(data[gameChnager]?.modules[i] == "guess country game") { 
+    dataForRepeat[0].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]); 
+    if(dataForRepeat[0].guessCountry.length == 1) {
+      dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+    }  
+  } else if (data[gameChnager]?.modules[i] == "guess flag game") {
+    dataForRepeat[0].guessFlag.push(data[gameChnager].guessFlag[questionChange]); 
+    if(dataForRepeat[0].guessFlag.length == 1) {
+      dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]); 
+    }
+  } else if (data[gameChnager]?.modules[i] == "flag detective game") {
+    dataForRepeat[0].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]); 
+    if(dataForRepeat[0].flagDetective.length == 1) {
+      dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+    } 
+  }   
+
+
   if(question_counter < (data[gameChnager].guessFlag.length || data[gameChnager].guessCountry.length || data[gameChnager].flagDetective.length)){
   questionChange++
   question_counter++
   gameChanger(i)
 }
-else{
+else{ 
   i++
   questionChange = 0
   question_counter = 1
