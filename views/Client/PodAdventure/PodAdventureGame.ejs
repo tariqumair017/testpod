@@ -18,10 +18,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="/client/css/style.css" />
 </head>
@@ -29,21 +31,23 @@
 <body style="height: 100vh;">
 
     <div style="height: 100%;position: relative;display: flex;flex-direction: column;justify-content: space-around;">
-        <div class="top-left-image">
-            <img src="/client/img/padAdventure/TopLeft.svg" al />
-        </div>
-        <div class="top-right-image">
-            <img src="/client/img/padAdventure/TopRight.svg" al />
-        </div>
-        <div class="bottom-left-image">
-            <img width="85%" src="/client/img/padAdventure/falg.png" al />
-        </div>
-        <header class="pod-adventure" style="height: 80px;">
-            <div class="pod-adventure-game">
-                <div onclick="location='/'" class="pod-adventure-back-icon"><i class="fa-solid fa-arrow-left"></i></div>
-                <div class="pod-adventure-progress-line-box">
-                    <div class="pod-adventure-progress-line">
-                        <div class="time_line" style="
+        <div class="game" >
+            <div class="top-left-image">
+                <img src="/client/img/padAdventure/TopLeft.svg" al />
+            </div>
+            <div class="top-right-image">
+                <img src="/client/img/padAdventure/TopRight.svg" al />
+            </div>
+            <div class="bottom-left-image">
+                <img width="85%" src="/client/img/padAdventure/falg.png" al />
+            </div>
+            <header class="pod-adventure" style="height: 80px;">
+                <div class="pod-adventure-game">
+                    <div onclick="location='/'" class="pod-adventure-back-icon"><i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                    <div class="pod-adventure-progress-line-box">
+                        <div class="pod-adventure-progress-line">
+                            <div class="time_line" style="
                   background: #58CC02;
                   height: 15px;
                   border-radius: 50px;
@@ -51,20 +55,20 @@
                   width: 0%;
                   position: relative;
                 ">
-                            <i class="fa-solid fa-flag progess-flag d-none"></i>
+                                <i class="fa-solid fa-flag progess-flag d-none"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
-        <section style="height: auto;display: flex;flex-direction: column;align-items: center;">
-            <div id="Multiple-game" class="multiple-game">
+            </header>
+            <section style="height: auto;display: flex;flex-direction: column;align-items: center;">
+                <div id="Multiple-game" class="multiple-game">
 
-            </div>
-            <div id="half-game-screen" class="hello-baba d-none">
+                </div>
+                <div id="half-game-screen" class="hello-baba d-none">
 
-            </div>
-            <!-- <div class="text-center mb-4 questions-name">
+                </div>
+                <!-- <div class="text-center mb-4 questions-name">
                 <span style="font-size: 30px;font-weight: bold;color: back">
                     Can you guess flag of "Pakistan"
                 </span>
@@ -89,82 +93,132 @@
                 </div>
             </div> -->
 
-        </section>
-        <section class="pod-adventure-footer">
-            <div class="pod-adventure-footer-inner controller">
-                <div style="width: 100%;">
-                    <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
-                        <div class="controller_buttons">
-                            <button class="pod-adventure-skip2 skip-guess-flag" role="button">I Don't
-                                Know</button>
-                            <div class="worng-area">
-                                <!-- <span class="cross-guess-flag d-none">
+            </section>
+            <section class="pod-adventure-footer">
+                <div class="pod-adventure-footer-inner controller">
+                    <div style="width: 100%;">
+                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                            <div class="controller_buttons">
+                                <button class="pod-adventure-skip2 skip-guess-flag" role="button">I Don't
+                                    Know</button>
+                                <div class="worng-area">
+                                    <!-- <span class="cross-guess-flag d-none">
                                     <i class="fa-solid fa-xmark fa-2xl" style="color: #EA2B2B;"></i>
                                 </span> -->
-                                <!-- <span class="right-guess-flag ">
+                                    <!-- <span class="right-guess-flag ">
                                     <i class="fa-solid fa-check fa-2xl" style="color: #61B800;"></i>
                                 </span> -->
-                                <div class="well_done d-none">
-                                    <img class="wow animate__zoomIn" data-wow-delay="0.1ms"  src="/client/img/icon/Vector-tick.svg" />
-                                    <h4 style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
-                                </div>
-                                <div class="Not_true d-none">
-                                    <img class="wow animate__zoomIn" data-wow-delay="0.1ms"  src="/client/img/icon/Vector.svg" />
-                                    <h4 style="margin-bottom: 0%;padding: 10px;">Wrong</h4>
+                                    <div class="well_done d-none">
+                                        <img class="well_done_img" src="/client/img/icon/Vector-tick.svg" />
+                                        <h4 style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
+                                    </div>
+                                    <div class="Not_true d-none">
+                                        <img class="Not_true_img" src="/client/img/icon/Vector.svg" />
+                                        <h4 style="margin-bottom: 0%;padding: 10px;">Wrong</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button class="pod-adventure-skip2-disabled check-guess-flag">Check</button>
-                        <button class="well_done-continue continue-guess-flag d-none" role="button">
-                            <!-- <img
+                            <button class="pod-adventure-skip2-disabled check-guess-flag">Check</button>
+                            <button class="well_done-continue continue-guess-flag d-none" role="button">
+                                <!-- <img
                                 src="/client/img/icon/VectorWrite.svg" /> -->
-                            <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
-                        </button>
-                        <button class="well_done-continue game-change d-none" role="button">
-                            <!-- <img
+                                <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
+                            </button>
+                            <button class="well_done-continue game-change d-none" role="button">
+                                <!-- <img
                                 src="/client/img/icon/VectorWrite.svg" /> -->
-                            <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
-                        </button>
-                    </div>
-                    <div id="guess-flag-details" class="d-none"
-                        style="display: flex;justify-content: center;align-items: center;gap: 5px;cursor: pointer;">
-                        <div class="example-popover">
-                            <i class="fa-sharp fa-solid fa-lightbulb" style="color: #ffffff;font-size: larger;"></i>
-                            <span
-                                style="color: #ffffff;font-size: larger">Details</span>
+                                <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
+                            </button>
+                        </div>
+                        <div id="guess-flag-details" class="d-none"
+                            style="display: flex;justify-content: center;align-items: center;gap: 5px;cursor: pointer;">
+                            <div class="example-popover">
+                                <i class="fa-sharp fa-solid fa-lightbulb" style="color: #ffffff;font-size: larger;"></i>
+                                <span style="color: #ffffff;font-size: larger">Details</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div hidden>
-                    <div id="mypopover-content">
-                        <p id="details" style="margin: 0%;font-weight: 600;" >
-                        </p>
-                        <!-- <div style="display: flex;justify-content: space-between;">
+                    <div hidden>
+                        <div id="mypopover-content">
+                            <p id="details" style="margin: 0%;font-weight: 600;">
+                            </p>
+                            <!-- <div style="display: flex;justify-content: space-between;">
                             <button class="button-18-disabled  popover_cancel" >Cancel</button>
                             <button class="button-19 popover_skip " >Skip</button>
                         </div> -->
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="pod-adventure-footer-inner dublicate d-none">
-                <div style="width: 100%;">
-                    <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
-                        <button class="well_done-continue half-game-continue" role="button">
-                            <img
-                            src="/client/img/icon/VectorWrite.svg" />
-                        <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
-                    </button>
+                <div class="pod-adventure-footer-inner dublicate d-none">
+                    <div style="width: 100%;">
+                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                            <button class="well_done-continue half-game-continue" role="button">
+                                <img class="controllers-zoom-in" src="/client/img/icon/VectorWrite.svg" />
+                                <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="controller-image vert-move">
-                <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
+                <div class="controller-image vert-move">
+                    <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
+                </div>
+            </section>
+        </div>
+        <section class="pod_adventure_result_screen d-none">
+            <div class="top-left-image">
+                <img src="/client/img/padAdventure/TopLeft.svg" alt="" />
             </div>
+            <div class="top-right-image">
+                <img src="/client/img/padAdventure/TopRight.svg" alt="" />
+            </div>
+            <div class="bottom-left-image">
+                <img width="85%" src="/client/img/padAdventure/falg.png" alt="" />
+            </div>
+            <section
+                style="height: 55vh;display: flex;flex-direction: column;align-items: center;position: relative;gap: 5px;justify-content: center;">
+                <div class="result-chr-png">
+                    <img src="/client/img/png/png.svg" />
+                </div>
+                <div class="result-chr-png-shadow">
+                    <img src="/client/img/png/chr-shadow.svg" />
+                </div>
+
+                <div style="display: flex;flex-direction: column;gap: 50px;">
+                    <div>
+                        <h2>Exploring Star!</h2>
+                        <p style="margin: 0%;">
+                            You have explored 4 countries of Asia
+                        </p>
+                    </div>
+                    <div class="pod-result-box">
+                        <img src="/client/img/padAdventure/icons8-goal-64.png" />
+                        <p style="margin: 0%;font-size:x-large;font-weight: 700;color: #000;mar">100%</p>
+                    </div>
+                </div>
+
+            </section>
+            <section class="pod-adventure-footer">
+                <div class="pod-adventure-footer-inner controller">
+                    <div style="width:100%;">
+                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                            <div class="controller_buttons">
+                                <a href="/pod-adtenture"><button class="pod-adventure-skip2"
+                                        role="button">Retake</button></a>
+                            </div>
+                            <button class="pod-adventure-skip2">Continue</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="controller-image vert-move">
+                    <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
+                </div>
+            </section>
         </section>
+
     </div>
 
 
@@ -183,7 +237,9 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
         integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <script>
             new WOW().init()

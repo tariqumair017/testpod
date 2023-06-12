@@ -8992,16 +8992,16 @@ label {
 } */
 
 
-.pod-adventure-customLable-avtive:hover {
+/* .pod-adventure-customLable-avtive:hover {
 
   background-color: #DDF4FF !important
-}
+} */
 
 .pod-adventure-customLable-avtive {
-  background-color: #DDF4FF;
+  background-color: #E5E5E5 !important;
   border-radius: 29px !important;
-  border: 1px solid #84d8ff;
-  border-bottom: 4px solid #84d8ff;
+  border: 1px solid lightgray;
+  border-bottom: 4px solid lightgray;
   font-size: 25px;
   display: flex;
   color: #000;
@@ -9017,6 +9017,22 @@ label {
   position: relative;
   align-items: center;
   width: 35%;
+}
+
+.controllers-zoom-in {
+  animation: zoom-in-img .6s ease-out;
+}
+
+@keyframes zoom-in-img {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* .pod-adventure-customLable-avtive strong {
@@ -12363,6 +12379,17 @@ circle {
   padding-bottom: 35px;
 }
 
+.pod-result-box{
+  width: 250px;
+  background: linear-gradient(0deg, rgba(36, 255, 0, 0.38) -7.92%, rgba(255, 255, 255, 0) 129.23%);
+box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.11);
+  height: 80px;
+  border-radius: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
 
 
 .pod-adventure-footer-inner {
@@ -13604,6 +13631,13 @@ footer .more_test:hover {
   right: -10%;
   z-index: 999;
 }
+
+.result-chr-png{
+  position: absolute;
+  bottom: -10%;
+  right: 10%;
+  z-index: 999;
+}
 .game-half-message{
   width: fit-content;
   position: absolute;
@@ -13612,7 +13646,18 @@ footer .more_test:hover {
   z-index: 999;
 }
 
+.result-message{
+  width: fit-content;
+  position: relative;
+}
 
+
+.result-chr-png-shadow{
+  position: absolute;
+  bottom: -18%;
+  right: 12%;
+  z-index: 999;
+}
 
 
 .chr-png-shadow{
@@ -15729,8 +15774,9 @@ section:hover .section-title h2::before {
 
 .top-right-image {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: -40px;
+  top: -40px;
+  transform: rotate(180deg);
 }
 
 .bottom-left-image {
