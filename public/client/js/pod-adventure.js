@@ -36,11 +36,11 @@ let gameChnager = 0
 let questionChange = 0
 let total_inputs = [];
 let dataForRepeat = [];
-dataForRepeat[0] = {};
-dataForRepeat[0].modules = [];
-dataForRepeat[0].guessCountry = [];
-dataForRepeat[0].guessFlag = [];
-dataForRepeat[0].flagDetective = [];
+dataForRepeat[gameChnager] = {};
+dataForRepeat[gameChnager].modules = [];
+dataForRepeat[gameChnager].guessCountry = [];
+dataForRepeat[gameChnager].guessFlag = [];
+dataForRepeat[gameChnager].flagDetective = [];
 let pod_adventure_guess_country = 1
 let counterLine;
 let question_counter = 1
@@ -49,7 +49,7 @@ let points = 0
 let repeat = 0;
 
 function gameChanger(num) {
-
+  
   if (num == data[gameChnager].modules.length) {
     if (dataForRepeat[gameChnager].modules.length) {
       repeat++;
@@ -57,6 +57,17 @@ function gameChanger(num) {
         data = JSON.parse(JSON.stringify(dataForRepeat));
         i = 0;
         num = 0;
+      } else {
+        document.querySelector(".game").classList.add("d-none")
+        confettiExplosion(origin);
+        document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
+        document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
+        // document.querySelector(".next-unit").onclick = () => { 
+        //   gameChnager++;
+        //   points = 0;
+        //   i=0;
+        //   gameChanger(i);
+        // }
       }
     }
     else {
@@ -64,6 +75,12 @@ function gameChanger(num) {
       confettiExplosion(origin);
       document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
       document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
+      // document.querySelector(".next-unit").onclick = () => { 
+      //   gameChnager++;
+      //   points = 0;
+      //   i=0;
+      //   gameChanger(i);
+      // }
     }
   } 
 
@@ -149,9 +166,9 @@ function gameChanger(num) {
               Not_true_img.classList.remove("controllers-zoom-in")
               startTimerLineCorrect()
             } else {
-              dataForRepeat[0].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]);
-              if (dataForRepeat[0].flagDetective.length == 1) {
-                dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+              dataForRepeat[gameChnager].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]);
+              if (dataForRepeat[gameChnager].flagDetective.length == 1) {
+                dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
               }
 
               controller.classList.remove("pod-adventure-footer-inner")
@@ -260,7 +277,7 @@ function gameChanger(num) {
     setTimeout(() => {
       document.querySelector(".quiz-image").innerHTML =
         `<div class="que_text" style="display: flex;justify-content: center;">
-          <span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[0]?.guessCountry[questionChange]?.flag}" alt="img"></span>
+          <span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[gameChnager]?.guessCountry[questionChange]?.flag}" alt="img"></span>
         </div>`
     }, 1000)
 
@@ -288,9 +305,9 @@ function gameChanger(num) {
         Not_true_img.classList.remove("controllers-zoom-in")
         startTimerLineCorrect()
       } else {
-        dataForRepeat[0].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]);
-        if (dataForRepeat[0].guessCountry.length == 1) {
-          dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+        dataForRepeat[gameChnager].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]);
+        if (dataForRepeat[gameChnager].guessCountry.length == 1) {
+          dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
         }
 
         well_done_img.classList.remove("controllers-zoom-in")
@@ -396,9 +413,9 @@ function gameChanger(num) {
         Not_true_img.classList.remove("controllers-zoom-in")
         startTimerLineCorrect()
       } else {
-        dataForRepeat[0].guessFlag.push(data[gameChnager].guessFlag[questionChange]);
-        if (dataForRepeat[0].guessFlag.length == 1) {
-          dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+        dataForRepeat[gameChnager].guessFlag.push(data[gameChnager].guessFlag[questionChange]);
+        if (dataForRepeat[gameChnager].guessFlag.length == 1) {
+          dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
         }
 
         well_done_img.classList.remove("controllers-zoom-in")
@@ -468,19 +485,19 @@ game_change.onclick = () => {
 skip_guess_flag.onclick = () => {
 
   if (data[gameChnager]?.modules[i] == "guess country game") {
-    dataForRepeat[0].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]);
-    if (dataForRepeat[0].guessCountry.length == 1) {
-      dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+    dataForRepeat[gameChnager].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]);
+    if (dataForRepeat[gameChnager].guessCountry.length == 1) {
+      dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
     }
   } else if (data[gameChnager]?.modules[i] == "guess flag game") {
-    dataForRepeat[0].guessFlag.push(data[gameChnager].guessFlag[questionChange]);
-    if (dataForRepeat[0].guessFlag.length == 1) {
-      dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+    dataForRepeat[gameChnager].guessFlag.push(data[gameChnager].guessFlag[questionChange]);
+    if (dataForRepeat[gameChnager].guessFlag.length == 1) {
+      dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
     }
   } else if (data[gameChnager]?.modules[i] == "flag detective game") {
-    dataForRepeat[0].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]);
-    if (dataForRepeat[0].flagDetective.length == 1) {
-      dataForRepeat[0].modules.push(data[gameChnager]?.modules[i]);
+    dataForRepeat[gameChnager].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]);
+    if (dataForRepeat[gameChnager].flagDetective.length == 1) {
+      dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
     }
   }
 
