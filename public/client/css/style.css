@@ -13945,7 +13945,7 @@ footer .more_test:hover {
   -webkit-appearance: none;
   background-color: #eee;
   border-color: #eee;
-  height: 230px;
+  height: 260px;
   width: 350px;
 
   &::placeholder {
@@ -16332,6 +16332,8 @@ section:hover .section-title h2::before {
   align-items: center;
 
 }
+
+
 
 .video-img a::before {
   content: "";
@@ -24740,4 +24742,205 @@ div.single-cta:last-child {
   background-color: lightgray;
   transition: .3s;
   border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.fi-icon {
+  color: inherit;
+  height: 2em;
+  width: 2em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: sub;
+  opacity: 1;
+  position: absolute;
+  right: -10px;
+  top: -5px;
+}
+.has-fi-fav {
+.favorite-selector {
+  position: absolute;
+  right: 0px;
+      margin: auto;
+      height: 8em;
+      width: 8em;
+  .fi-fav {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    opacity: 0;
+    transform: scale(0);
+    transition: 200ms all ease;
+    &.fi-fav_filled {
+    color: red;
+    }
+  }
+  &.fi-fav_selected {
+    .fi-fav {
+      &.fi-fav_filled {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+  &.fi-fav_got-selected .fi-fav.fi-fav_filled {
+    animation: heartAppears 1650ms ease;
+    animation-delay: .8s;
+  }
+}
+&.gold .favorite-selector .fi-fav.fi-fav_filled {
+  color: red;
+}
+}
+.fi-icon_fill {
+  stroke-width: 0;
+  fill: currentColor;
+}
+.hi-fav_explosion {
+transform-origin: center;
+transform: scale(1.5) translateY(-5%);
+}
+.hi-fav_explosion .explosion {
+transform-origin: center;
+  transform: scale(0);
+animation: explosion 1650ms ease;
+animation-delay: .8s;
+}
+.gold .hi-fav_explosion .explosion {
+animation-name: explosion-gold;
+}
+.hi-fav_explosion .particle {
+transform-origin: center;
+opacity: 0;
+&.particle-1 {
+  animation: particle-1-explosion 1650ms ease 150ms;
+  animation-delay: .8s;
+}
+&.particle-2 {
+  animation: particle-2-explosion 1650ms ease 150ms;
+  animation-delay: .8s;
+}
+}
+@keyframes explosion {
+0% {
+  color: red;
+  stroke: red;
+  stroke-width: 2;
+  transform: scale(0);
+}
+3% {
+  color: red;
+}
+9% {
+  stroke: red;
+}
+13% {
+  stroke-width: 2;
+}
+14% {
+  color: red;
+  opacity: 1;
+}
+17% {
+  stroke: red;
+  transform: scale(1);
+}
+19% {
+  color: red;
+}
+30%, 100% {
+  color: red;
+  stroke-width: 0;
+  opacity: 0;
+  stroke: #a72866;
+}
+}
+@keyframes explosion-gold {
+0% {
+  color: red;
+  color: red;
+  stroke-width: 2;
+  transform: scale(0);
+}
+3% {
+  color: red;
+}
+9% {
+  color: rgba(255, 198, 106, 0);
+}
+13% {
+  stroke-width: 2;
+}
+14% {
+  color: #ffc66a;
+  opacity: 1;
+}
+17% {
+  stroke: #ffc66a;
+  transform: scale(1);
+}
+19% {
+  color: rgba(255, 198, 106, 0);
+}
+30%, 100% {
+  color: rgba(255, 198, 106, 0);
+  stroke-width: 0;
+  opacity: 0;
+  stroke: #ffc66a;
+}
+}
+@keyframes particle-1-explosion {
+0% {
+  opacity: 0;
+  transform: scale(1);
+}
+9% {
+  opacity: 1;
+}
+45% {
+  transform: scale(1.375);
+}
+60%, 100% {
+  opacity: 0;
+  transform: scale(0);
+}
+}
+@keyframes particle-2-explosion {
+0% {
+  opacity: 0;
+  transform: scale(1);
+}
+6% {
+  opacity: 1;
+}
+50%, 100% {
+  opacity: 0;
+      transform: scale(1.15);
+}
+}
+@keyframes heartAppears {
+0%, 25% {
+  transform: scale(0);
+  opacity: 0;
+}
+40% {
+  transform: scale(1.15);
+}
+30%, 100% {
+  transform: scale(1);
+  opacity: 1;
+}
 }

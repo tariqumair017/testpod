@@ -56,6 +56,8 @@
                   position: relative;
                 ">
                                 <i class="fa-solid fa-flag progess-flag d-none"></i>
+                                <div class="has-fi-fav gold">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                                 </span> -->
                                     <div class="well_done d-none">
                                         <img class="well_done_img" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/correct-vector.svg" />
-                                        <h4 style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
+                                        <h4 class="greats" style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
                                     </div>
                                     <div class="Not_true d-none">
                                         <img class="Not_true_img" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/wrong-vector.svg" />
@@ -131,7 +133,9 @@
                             </button>
                         </div>
                         <div id="guess-flag-details" class="d-none"
-                            style="display: flex;justify-content: center;align-items: center;gap: 5px;cursor: pointer;">
+                            style="display: flex;justify-content: center;align-items: center;gap: 5px;cursor: pointer;position: absolute;
+                            bottom: 0px;
+                            width: 100%;">
                             <div class="example-popover">
                                 <i class="fa-sharp fa-solid fa-lightbulb" style="color: #000;font-size: larger;"></i>
                                 <span style="color: #000;font-size: larger">Details</span>

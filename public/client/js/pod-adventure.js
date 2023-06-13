@@ -15,6 +15,7 @@ const half_game_continue = document.querySelector(".half-game-continue")
 const details = document.getElementById("details")
 const well_done_img = document.querySelector(".well_done_img")
 const Not_true_img = document.querySelector(".Not_true_img")
+const greats_text = document.querySelector(".greats")
 
 
 
@@ -48,7 +49,30 @@ let question_counter = 1
 let points = 0
 let repeat = 0;
 
+
+const greats= ["Excellent!",
+"Well done!",
+"Bravo!",
+"Impressive!",
+"Superb!",
+"Amazing job!",
+"Kudos!",
+"Way to go!",
+"Nice!",
+"Correct!",
+"Nice job!",
+"Awesome!",
+"Nicely done!",
+"Good job!"]
+
+
+
+
+
 function gameChanger(num) {
+  let shuffledGreats = greats.sort(function () {
+    return Math.random() - 0.5;
+  });
   
   if (num == data[gameChnager].modules.length) {
     if (dataForRepeat[gameChnager].modules.length) {
@@ -60,7 +84,7 @@ function gameChanger(num) {
       } else {
         document.querySelector(".game").classList.add("d-none")
         confettiExplosion(origin);
-        document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
+        document.querySelector(".pod-percentage").innerHTML = Math.round(points) + "%"
         document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
         document.querySelector(".next-unit").onclick = () => { 
           startTimerLineEmpty();
@@ -82,7 +106,7 @@ function gameChanger(num) {
     else {
       document.querySelector(".game").classList.add("d-none")
       confettiExplosion(origin);
-      document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
+      document.querySelector(".pod-percentage").innerHTML = Math.round(points) + "%"
       document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
       document.querySelector(".next-unit").onclick = () => { 
         startTimerLineEmpty();
@@ -100,7 +124,7 @@ function gameChanger(num) {
         gameChanger(i);
       }
     }
-  } 
+  }
 
   if (data[gameChnager]?.modules[num] == "flag detective game") {
     multiple_game.innerHTML = `<div >
@@ -126,7 +150,7 @@ function gameChanger(num) {
 
     setTimeout(() => {
       document.querySelector(".pod-adventure-game-detective-image").innerHTML =
-        `<span style="border-radius:7px;width:fit-content;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
+        `<span style="border-radius:7px;width:fit-content;height:260px;display:flex;justify-content:center; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
        alt="img"></span>`
     }, 1000)
 
@@ -168,9 +192,7 @@ function gameChanger(num) {
             baba = _finalKey
             check_Button.classList.remove("pod-adventure-skip2-disabled")
             check_Button.classList.add("pod-adventure-skip2")
-            // for (let i = 0; i < total_inputs.length; i++) {
-            //   total_inputs[i].classList.add("disabled")
-            // }
+           
           }
           check_Button.onclick = () => {
             if (baba.replace(/\s/g, '').toLowerCase() == data[gameChnager]?.flagDetective[questionChange].country.replace(/\s/g, '').toLowerCase()) {
@@ -199,7 +221,7 @@ function gameChanger(num) {
               continue_guess_flag.classList.remove("d-none")
               well_done_img.classList.remove("controllers-zoom-in")
               Not_true_img.classList.add("controllers-zoom-in")
-              
+
               startTimerLineInCorrect()
             }
 
@@ -208,6 +230,10 @@ function gameChanger(num) {
               continue_guess_flag.classList.add("d-none")
             }
             guess_flag_details.classList.remove("d-none")
+            greats_text.innerHTML=shuffledGreats[0]
+            for (let i = 0; i < total_inputs.length; i++) {
+              total_inputs[i].classList.add("disabled")
+            }
           }
         });
       });
@@ -297,7 +323,7 @@ function gameChanger(num) {
     setTimeout(() => {
       document.querySelector(".quiz-image").innerHTML =
         `<div class="que_text" style="display: flex;justify-content: center;">
-          <span class="flag-icon-background" style="border-radius:7px;width:100%;height:250px;display:flex;justify-content:center;margin-right:5px; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[gameChnager]?.guessCountry[questionChange]?.flag}" alt="img"></span>
+          <span class="flag-icon-background" style="border-radius:7px;width:100%;height:260px;display:flex;justify-content:center; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[gameChnager]?.guessCountry[questionChange]?.flag}" alt="img"></span>
         </div>`
     }, 1000)
 
@@ -347,6 +373,8 @@ function gameChanger(num) {
         continue_guess_flag.classList.add("d-none")
       }
       guess_flag_details.classList.remove("d-none")
+
+      greats_text.innerHTML=shuffledGreats[0]
 
     }
   }
@@ -458,6 +486,8 @@ function gameChanger(num) {
         continue_guess_flag.classList.add("d-none")
       }
       guess_flag_details.classList.remove("d-none")
+      greats_text.innerHTML=shuffledGreats[0]
+
 
     }
   }
@@ -571,10 +601,39 @@ function startTimerLineCorrect() {
     </div>
     </div>
     `
+
+   
     document.querySelector(".controller").classList.add("d-none")
     document.querySelector(".dublicate").classList.remove("d-none")
 
   }
+
+  document.querySelector(".has-fi-fav").innerHTML =
+  `
+<div class="favorite-selector fi-fav_selected fi-fav_got-selected">
+                                    <svg class="fi-icon fi-icon_fill fi-fav fi-fav_filled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none"/>
+                            
+                                    </svg>
+                                    <svg class="fi-icon fi-icon_fill hi-fav_explosion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <circle class="explosion" cx="12" cy="12" r="8"></circle>
+                                        <circle class="particle particle-1" cx="20"                 cy="12"                 r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="19.91846879578665"  cy="10.650420754361766" r=".5"  style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-1" cx="16.972879746165315" cy="18.266615277019866" r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="16.926943203175824" cy="18.54486444277137"  r=".5"  style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-1" cx="10.182383242455304" cy="19.79078104702556"  r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="10.486311661105013" cy="19.872096630662394" r=".5"  style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-1" cx="4.76742286386351"   cy="15.419039041870638" r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="5.634167923999488"  cy="14.000702054580593" r=".5"  style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-1" cx="4.825932669326824"  cy="8.45983645364118"   r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="4.833803538780229"  cy="9.494569493035156"  r=".5"  style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-1" cx="10.313633604553763" cy="4.179759058679224"  r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="10.80120673085787"  cy="4.270899612031962"  r=".5"  style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-1" cx="17.077543007541077" cy="5.817884099552103"  r=".75" style="fill:#58cc02;"></circle>
+                                        <circle class="particle particle-2" cx="17.270852881861437" cy="5.105744706123251"  r=".5"  style="fill:#58cc02;"></circle>
+                                    </svg>
+                                </div>
+`
 
 }
 
