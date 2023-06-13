@@ -54,7 +54,7 @@ function gameChanger(num) {
     if (dataForRepeat[gameChnager].modules.length) {
       repeat++;
       if (repeat == 1) {
-        data = JSON.parse(JSON.stringify(dataForRepeat));
+        data[gameChnager] = JSON.parse(JSON.stringify(dataForRepeat[gameChnager]));
         i = 0;
         num = 0;
       } else {
@@ -62,12 +62,21 @@ function gameChanger(num) {
         confettiExplosion(origin);
         document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
         document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
-        // document.querySelector(".next-unit").onclick = () => { 
-        //   gameChnager++;
-        //   points = 0;
-        //   i=0;
-        //   gameChanger(i);
-        // }
+        document.querySelector(".next-unit").onclick = () => { 
+          startTimerLineEmpty();
+          document.querySelector(".game").classList.remove("d-none");
+          document.querySelector(".pod_adventure_result_screen").classList.add("d-none");
+          gameChnager++;
+          points = 0;
+          dataForRepeat[gameChnager] = {};
+          dataForRepeat[gameChnager].modules = [];
+          dataForRepeat[gameChnager].guessCountry = [];
+          dataForRepeat[gameChnager].guessFlag = [];
+          dataForRepeat[gameChnager].flagDetective = [];
+          repeat = 0;
+          i=0;
+          gameChanger(i);
+        }
       }
     }
     else {
@@ -75,12 +84,21 @@ function gameChanger(num) {
       confettiExplosion(origin);
       document.querySelector(".pod-percentage").innerHTML =  Math.round(points) + "%"
       document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
-      // document.querySelector(".next-unit").onclick = () => { 
-      //   gameChnager++;
-      //   points = 0;
-      //   i=0;
-      //   gameChanger(i);
-      // }
+      document.querySelector(".next-unit").onclick = () => { 
+        startTimerLineEmpty();
+        document.querySelector(".game").classList.remove("d-none");
+        document.querySelector(".pod_adventure_result_screen").classList.add("d-none");
+        gameChnager++;
+        points = 0;
+        dataForRepeat[gameChnager] = {};
+        dataForRepeat[gameChnager].modules = [];
+        dataForRepeat[gameChnager].guessCountry = [];
+        dataForRepeat[gameChnager].guessFlag = [];
+        dataForRepeat[gameChnager].flagDetective = [];
+        repeat = 0;
+        i=0;
+        gameChanger(i);
+      }
     }
   } 
 
@@ -540,16 +558,16 @@ function startTimerLineCorrect() {
       `
     <div style="height:55vh" class="chr-screen">
     <div class="chr-png" >
-    <img src="/client/img/png/png.svg" />
+    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
     <div class="game-half-message">
-    <img style="position: relative" src="/client/img/png/message.svg" />
+    <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
     <p class="half-image-text" >
     You are crushing it
     </p>
     </div>
     </div>
     <div class="chr-png-shadow">
-    <img src="/client/img/png/chr-shadow.svg" />
+    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
     </div>
     </div>
     `
@@ -558,6 +576,13 @@ function startTimerLineCorrect() {
 
   }
 
+}
+
+
+function startTimerLineEmpty() {
+  points = 0;
+  time_line.style.width = points + "%"; //increasing width of time_line with px by time value
+  document.querySelector(".progess-flag").classList.add("d-none")
 }
 
 

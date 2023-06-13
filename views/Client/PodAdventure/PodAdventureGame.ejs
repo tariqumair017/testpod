@@ -33,13 +33,13 @@
     <div style="height: 100%;position: relative;display: flex;flex-direction: column;justify-content: space-around;">
         <div class="game" >
             <div class="top-left-image">
-                <img src="/client/img/padAdventure/TopLeft.svg" al />
+                <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopLeft.svg" al />
             </div>
             <div class="top-right-image">
-                <img src="/client/img/padAdventure/TopRight.svg" al />
+                <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopRight.svg" al />
             </div>
             <div class="bottom-left-image">
-                <img width="85%" src="/client/img/padAdventure/falg.png" al />
+                <img width="85%" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/show-case-flag.png" al />
             </div>
             <header class="pod-adventure" style="height: 80px;">
                 <div class="pod-adventure-game">
@@ -109,11 +109,11 @@
                                     <i class="fa-solid fa-check fa-2xl" style="color: #61B800;"></i>
                                 </span> -->
                                     <div class="well_done d-none">
-                                        <img class="well_done_img" src="/client/img/icon/Vector-tick.svg" />
+                                        <img class="well_done_img" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/correct-vector.svg" />
                                         <h4 style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
                                     </div>
                                     <div class="Not_true d-none">
-                                        <img class="Not_true_img" src="/client/img/icon/Vector.svg" />
+                                        <img class="Not_true_img" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/wrong-vector.svg" />
                                         <h4 style="margin-bottom: 0%;padding: 10px;">Wrong</h4>
                                     </div>
                                 </div>
@@ -121,12 +121,12 @@
                             <button class="pod-adventure-skip2-disabled check-guess-flag">Check</button>
                             <button class="well_done-continue continue-guess-flag d-none" role="button">
                                 <!-- <img
-                                src="/client/img/icon/VectorWrite.svg" /> -->
+                                src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/continuous-vector.svg" /> -->
                                 <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
                             </button>
                             <button class="well_done-continue game-change d-none" role="button">
                                 <!-- <img
-                                src="/client/img/icon/VectorWrite.svg" /> -->
+                                src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/continuous-vector.svg" /> -->
                                 <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
                             </button>
                         </div>
@@ -155,7 +155,7 @@
                     <div style="width: 100%;">
                         <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
                             <button class="well_done-continue half-game-continue" role="button">
-                                <img class="controllers-zoom-in" src="/client/img/icon/VectorWrite.svg" />
+                                <img class="controllers-zoom-in" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/continuous-vector.svg" />
                                 <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
                             </button>
                         </div>
@@ -164,27 +164,27 @@
 
 
                 <div class="controller-image vert-move">
-                    <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
+                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/orange-ball.svg" alt="" />
                 </div>
             </section>
         </div>
         <section class="pod_adventure_result_screen d-none">
             <div class="top-left-image">
-                <img src="/client/img/padAdventure/TopLeft.svg" alt="" />
+                <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopLeft.svg" alt="" />
             </div>
             <div class="top-right-image">
-                <img src="/client/img/padAdventure/TopRight.svg" alt="" />
+                <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopRight.svg" alt="" />
             </div>
             <div class="bottom-left-image">
-                <img width="85%" src="/client/img/padAdventure/falg.png" alt="" />
+                <img width="85%" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/show-case-flag.png" alt="" />
             </div>
             <section
                 style="height: 55vh;display: flex;flex-direction: column;align-items: center;position: relative;gap: 5px;justify-content: center;">
                 <div class="result-chr-png">
-                    <img src="/client/img/png/png.svg" />
+                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
                 </div>
                 <div class="result-chr-png-shadow">
-                    <img src="/client/img/png/chr-shadow.svg" />
+                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
                 </div>
 
                 <div style="display: flex;flex-direction: column;gap: 50px;">
@@ -195,7 +195,7 @@
                         </p>
                     </div>
                     <div class="pod-result-box">
-                        <img src="/client/img/padAdventure/icons8-goal-64.png" />
+                        <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/result-flag.png" />
                         <p class="pod-percentage" style="margin: 0%;font-size:x-large;font-weight: 700;color: #000;">100%</p>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                     </div>
                 </div>
                 <div class="controller-image vert-move">
-                    <img src="/client/img/padAdventure/orange-ball.svg" alt="" />
+                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/orange-ball.svg" alt="" />
                 </div>
             </section>
         </section>
@@ -227,7 +227,7 @@
 
     <!-- script -->
     <script>
-        var data = <%-JSON.stringify(data) %>
+        var data = <%-JSON.stringify(data)%>
     </script>
     <script src="/client/js/pod-adventure.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
