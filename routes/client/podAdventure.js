@@ -7,7 +7,7 @@ import asyncHandler from "express-async-handler";
 
 
 //Client pod-adtenture
-router.get("/pod-adtenture", asyncHandler(async (req, res, next) => {
+router.get("/pod-adventure", asyncHandler(async (req, res, next) => {
     try {
         const data = await PodAdventureGame.find({}); 
         res.render("Client/PodAdventure/PodAdventureGame",{data, title: "Pod Adventure Game"});

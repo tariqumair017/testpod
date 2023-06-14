@@ -157,7 +157,7 @@ router.get("/games", asyncHandler(async (req, res, next) => {
         },
     ]
 
-    res.render("Client/index/AllGames", { title: "Flags Games", data });
+    res.render("Client/index/AllGames", { title: "Flag Games", data });
 }));
 
 //Game Slider Control 

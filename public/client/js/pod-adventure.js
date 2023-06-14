@@ -142,7 +142,6 @@ function gameChanger(num) {
 
     details.innerHTML = data[gameChnager].flagDetective[questionChange].detail
 
-
     const inputs = document.querySelectorAll(".current-input");
     total_inputs = inputs;
     total_inputs[0].focus()
@@ -192,7 +191,6 @@ function gameChanger(num) {
             baba = _finalKey
             check_Button.classList.remove("pod-adventure-skip2-disabled")
             check_Button.classList.add("pod-adventure-skip2")
-           
           }
           check_Button.onclick = () => {
             if (baba.replace(/\s/g, '').toLowerCase() == data[gameChnager]?.flagDetective[questionChange].country.replace(/\s/g, '').toLowerCase()) {
@@ -667,19 +665,6 @@ function startTimerLineInCorrect() {
   }
   time_line.style.width = points + "%"; //increasing width of time_line with px by time value
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
