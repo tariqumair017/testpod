@@ -78,9 +78,11 @@ function gameChanger(num) {
     if (dataForRepeat[gameChnager].modules.length) {
       repeat++;
       if (repeat == 1) {
+        console.log("hello")
         data[gameChnager] = JSON.parse(JSON.stringify(dataForRepeat[gameChnager]));
         i = 0;
         num = 0;
+
       } else {
         document.querySelector(".game").classList.add("d-none")
         confettiExplosion(origin);
@@ -403,13 +405,13 @@ function gameChanger(num) {
 
     var leftSide =
       ` <input class="customRadio" ans="correct" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].country} >
-        <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country} style="width:100%;height:250px;">
-        <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
+        <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country} style="width:350px;height:250px;">
+        <img class="guess-flag-image border " style="height:240px;width:350px;"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
         </label>`
     var RightSide =
       ` <input class="customRadio" ans="incorrect" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].Icountry}>
-      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry} style="width:100%;height:250px;">
-      <img class="guess-flag-image border " style="height:240px;"src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
+      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry} style="width:350px;height:250px;">
+      <img class="guess-flag-image border " style="height:240px;width:350px;"src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
       </label>`
 
     var FlagOptions = [];

@@ -15859,6 +15859,7 @@ section:hover .section-title h2::before {
   z-index: -1;
 }
 
+
 @media screen and (max-width : 700px) {
   .top-left-image {
     display: none;
@@ -15892,6 +15893,7 @@ section:hover .section-title h2::before {
   }
 
   .pod-guess-flag-image-container {
+    align-items: center;
     flex-direction: column;
     gap: 20px;
   }
