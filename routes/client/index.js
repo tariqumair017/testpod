@@ -123,6 +123,11 @@ router.get("/", asyncHandler(async (req, res, next) => {
 router.get("/games", asyncHandler(async (req, res, next) => {
     const data = [
         {
+            name: "Pod Adventure Game",
+            image: "https://testpod-bucket.s3.amazonaws.com/pages/5.jpg",
+            url:"/pod-adventure"
+        },
+        {
             name: "Guess Country Game",
             image: "https://testpod-bucket.s3.amazonaws.com/pages/3.jpg",
             url:"/guess-country/regions"
@@ -132,15 +137,16 @@ router.get("/games", asyncHandler(async (req, res, next) => {
             image: "https://testpod-bucket.s3.amazonaws.com/pages/4.jpg",
             url:"/flag-detective/regions"
         },
-         {
-            name: "Draw Flag Game",
-            image: "https://testpod-bucket.s3.amazonaws.com/pages/1.jpg",
-            url:"/draw-flags"
-        }, {
+        {
             name: "Guess Flag Game",
             image: "https://testpod-bucket.s3.amazonaws.com/pages/5.jpg",
             url:"/guess-flag/regions"
         },
+        {
+           name: "Draw Flag Game",
+           image: "https://testpod-bucket.s3.amazonaws.com/pages/1.jpg",
+           url:"/draw-flags"
+       },
         {
            name: "Flag Quest Game",
            image: "https://testpod-bucket.s3.amazonaws.com/pages/6.jpg",
