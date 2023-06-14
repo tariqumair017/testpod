@@ -127,7 +127,7 @@ function gameChanger(num) {
   }
 
   if (data[gameChnager]?.modules[num] == "flag detective game") {
-    multiple_game.innerHTML = `<div >
+    multiple_game.innerHTML = `<div class="pod-detective-game">
     <h2 class="score-text-slide-top text-center pb-4" style="margin: 0%">Which Country Is This?</h2>
     <div class="pod-adventure-game-detective-image pb-4">
     <div class="loading-skeleton"></div>
