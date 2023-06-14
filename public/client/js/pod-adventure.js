@@ -384,12 +384,12 @@ function gameChanger(num) {
     multiple_game.innerHTML =
       `
       <div class="text-center mb-4 questions-name wow animate__fadeInUp" data-wow-delay="0.1s">
-        <span style="font-size: 40px;font-weight: bold;color: back">
+        <span class="pod-guess-flag">
           Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"
         </span>
       </div>
       <div class="pod-adventure" style="margin-bottom:50px">
-          <div style="width: 100%;display: flex;justify-content: space-around;">
+          <div class="pod-guess-flag-image-container">
               <div class="pod-adventure-guess-option-left">
                 <div class="loading-skeleton"></div>
               </div>
@@ -586,7 +586,7 @@ function startTimerLineCorrect() {
       `
     <div style="height:55vh" class="chr-screen">
     <div class="chr-png" >
-    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
+    <img class="char-png" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
     <div class="game-half-message">
     <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
     <p class="half-image-text" >
