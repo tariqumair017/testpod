@@ -10151,20 +10151,19 @@ label {
 
 .podcustomLableWimage {
 
-  width: 100%;
+  width:350px;
 
   height: 250px;
 
   display: inline-block;
 
-  margin-right: 5px;
 
   border: 5px solid #ffffff;
 
   cursor: pointer;
 
-  margin-bottom: 10px;
 }
+
 
 .podcustomLableWimage:hover {
 
@@ -12302,6 +12301,11 @@ circle {
   display: flex;
   justify-content: center;
 }
+.pod-adventure-header{
+  display: flex;
+  justify-content: center;
+  height: 80px;
+}
 
 .pod-adventure-game {
   width: 62%;
@@ -12658,6 +12662,11 @@ circle {
   cursor: pointer;
 }
 
+.Not_true h4{
+  margin-bottom: 0px;
+  padding: 10px;
+}
+
 .well_done {
   background-color: #ffffff !important;
   border-radius: 29px;
@@ -12706,6 +12715,27 @@ circle {
   font-size: 18px;
   padding: 3px;
   cursor: pointer;
+}
+
+.repeat-wrongQuestion-button{
+  background-color: #ffffff !important;
+  border-radius: 29px;
+  border: none;
+  / box-sizing: border-box; /
+  color: #000;
+  font-weight: 700;
+  height: 55px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.half-game-continue h4{
+  padding: 10px;
+  margin-bottom: 0px;
 }
 
 
@@ -13673,6 +13703,17 @@ footer .more_test:hover {
   top: 25%;
   left: -100%;
   z-index: 999;
+}
+
+.repeat-image-text {
+  position: absolute;
+  top: 7px;
+  left: 8%;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: normal;
 }
 
 .result-message {
@@ -15841,10 +15882,11 @@ section:hover .section-title h2::before {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .pod-result-center-section {
-  height: 55vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15859,8 +15901,88 @@ section:hover .section-title h2::before {
   z-index: -1;
 }
 
+.greats{
+  padding: 10px;
+  margin-bottom: 0px;
+}
 
-@media screen and (max-width : 700px) {
+.game{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pod-guess-country-image{
+  border-radius:7px;
+  width:100%;
+  height:260px;
+  display:flex;
+  justify-content:center;
+  padding:10px
+}
+
+@media screen and (max-width:1500px) and (min-width:1100px) {
+  .pod-guess-flag{
+    font-size: 30px;
+  }
+  .podcustomLableWimage {
+    width: 280px;
+    height: 200px;
+}
+.pod-guess-flag-image {
+  height: 190px !important;
+}
+.loading-skeleton{
+  width: 280px;
+    height: 200px;
+}
+.bottom-left-image{
+  width: 22%;
+}
+
+}
+
+
+@media screen and (max-width : 900px) {
+  
+  .chr-png-shadow {
+    bottom: -28%;
+    right: -2%;
+    width: 50%;
+}
+.chr-png {
+  bottom: -24%;
+  right: -10%;
+  width: 50%;
+}
+  .podcustomLableWimage{
+    width: 250px;
+    height: auto;
+  }
+  
+  .pod-guess-flag-image {
+    width: 100%;
+    height: auto !important;
+  }
+  .loading-skeleton{
+    width: 250px;
+    height: 167px;
+  }
+  .pod-complete-game{
+    justify-content: start;
+    height: 73vh;
+  }
+  .pod-adventure-header {
+    height: 12vh;
+  }
+  .pod-adventure-footer {
+    position: sticky;
+    padding-bottom: 0px !important;
+    bottom: 0px;
+    height: 15vh;
+  }
+
   .top-left-image {
     display: none;
   }
@@ -15884,7 +16006,7 @@ section:hover .section-title h2::before {
   }
 
   .pod-guess-flag {
-    font-size: 26px;
+    font-size: 20px;
   }
 
   .multiple-game {
@@ -15898,28 +16020,33 @@ section:hover .section-title h2::before {
     gap: 20px;
   }
 
-  .podcustomLableWimage {
-    height: 210px;
+  .pod-guess-country-image{
+    width:250px;
+    height:auto;
   }
+
+ 
 
   .pod-body {
     height: auto !important;
   }
+  
 
-  .pod-adventure-footer {
-    position: sticky;
-    padding-bottom: 0px !important;
-    bottom: 0px;
-  }
-
+  
   .pod-adventure-footer-inner {
     width: 100%;
     border-radius: 0px;
+    height: auto;
+
+
   }
 
   .pod-adventure-footer-inner-red {
     width: 100%;
     border-radius: 0px;
+    height: auto;
+
+
   }
 
 
@@ -15927,37 +16054,54 @@ section:hover .section-title h2::before {
   .pod-adventure-footer-inner-green {
     width: 100%;
     border-radius: 0px;
+    height: auto;
   }
 
-  .pod-adventure-skip2 {
-    font-size: 15px;
+  .pod-adventure-skip2{
+    height: 40px;
+    padding: 10px 15px !important;
   }
-
-  .pod-adventure-skip1-disabled {
-    font-size: 15px;
+  .pod-adventure-skip2-disabled{
+    height: 40px;
+    padding: 10px 15px !important; 
   }
-
-  .well_done {
-    font-size: 15px;
+  .well_done{
+    height: 40px;
   }
-
-  .well_done_img {
-    /* width: 26%; */
+  .greats{
+    padding: 5px;
   }
-
-  .well_done h4 {
-    font-size: 15px;
+  .well_done img{
+    width: 30px;
   }
-
-  .well_done-continue {
-    font-size: 15px;
+  .well_done-continue{
+    padding: 10px 10px;
+    height: 40px;
   }
 
   .half-game-continue h4{
     font-size: 15px;
   }
-  .Not_true h4 {
+
+  .repeat-wrongQuestion-button h4{
     font-size: 15px;
+  }
+
+  .half-game-continue{
+    height: 40px;
+  }
+  .half-game-continue img{
+    width: 30px;
+  }
+  .Not_true{
+    height: 40px;
+  }
+  .Not_true h4{
+    padding: 5px;
+  }
+  
+  .Not_true img{
+    width: 30px;
   }
 
   .pod-adventure-option_list {
@@ -15965,11 +16109,12 @@ section:hover .section-title h2::before {
   }
 
   .pod-adventure-customLable {
-    width: 90% !important;
+    width: 250px !important;
+    font-size: 20px;
   }
 
   .multiple-game h2 {
-    font-size: 26px !important;
+    font-size: 20px !important;
   }
 
   .siblings-input input {
@@ -15981,7 +16126,7 @@ section:hover .section-title h2::before {
     display: none;
   }
   .pod-result-center-section {
-    height: 77vh;
+    height: 85vh;
   }
 
   .result-chr-png-shadow{
@@ -15989,35 +16134,74 @@ section:hover .section-title h2::before {
   }
 
   .half-image-text {
-    top: 6px;
+    top: 2px;
     left: 3%;
     font-size: revert;
 }
 .game-half-message {
   top: 23%;
-  left: -61%;
-}
-.game-half-message img{
-width: 70%;
+  left: -115%;
+  width: 100%;
 }
 
 
-.chr-png {
-  bottom: -10%;
-  right: -70%;
-}
-.char-png{
-  width: 50%;
-}
-.chr-png-shadow {
-  bottom: -18%;
-  right: -21%;
-}
-.pod-detective-game{
-  height: 75vh;
-}
 
 }
+
+
+@media screen and (max-width:400px) {
+  .pod-guess-flag-image-container{
+    gap: 10px;
+  }
+  .well_done{
+    height: 40px;
+  }
+  .greats{
+    padding: 5px;
+  }
+  .well_done img{
+    width: 30px;
+  }
+  .well_done-continue{
+    padding: 10px 10px;
+    height: 40px;
+  }
+  .podcustomLableWimage{
+    width: 250px;
+    height: auto;
+  }
+  
+  .pod-guess-flag-image {
+    width: 100%;
+    height: auto !important;
+  }
+  .loading-skeleton{
+    width: 250px;
+    height: 168px;
+  }
+  .Not_true{
+    height: 40px;
+  }
+  .Not_true h4{
+    padding: 5px;
+  }
+  
+  .Not_true img{
+    width: 30px;
+  }
+.pod-adventure-skip2{
+  height: 40px;
+  padding: 10px 15px !important;
+}
+.pod-adventure-skip2-disabled{
+  height: 40px;
+  padding: 10px 15px !important; 
+}
+.pod-guess-flag{
+  font-size: 20px;
+}
+}
+
 .s-single-services:hover {
   background: #fff;
 }

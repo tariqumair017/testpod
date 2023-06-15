@@ -1,6 +1,7 @@
 const skip_guess_flag = document.querySelector(".skip-guess-flag")
 const check_Button = document.querySelector(".check-guess-flag")
 const continue_guess_flag = document.querySelector(".continue-guess-flag")
+const repeat_wrongQuestion_button = document.querySelector(".repeat-wrongQuestion-button");
 const pod_adventure_footer = document.querySelector('.pod-adventure-footer')
 const right_guess_flag = document.querySelector(".right-guess-flag")
 const guess_flag_details = document.getElementById("guess-flag-details")
@@ -55,9 +56,9 @@ const greats= ["Excellent!",
 "Bravo!",
 "Impressive!",
 "Superb!",
-"Amazing job!",
+// "Amazing job!",
 "Kudos!",
-"Way to go!",
+// "Way to go!",
 "Nice!",
 "Correct!",
 "Nice job!",
@@ -78,10 +79,30 @@ function gameChanger(num) {
     if (dataForRepeat[gameChnager].modules.length) {
       repeat++;
       if (repeat == 1) {
-        console.log("hello")
-        data[gameChnager] = JSON.parse(JSON.stringify(dataForRepeat[gameChnager]));
-        i = 0;
-        num = 0;
+        document.querySelector(".hello-baba").classList.remove("d-none")
+        multiple_game.classList.add("d-none")
+        document.getElementById("half-game-screen").innerHTML = `
+        <div style="height:55vh" class="chr-screen">
+        <div class="chr-png" >
+        <img class="char-png" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
+        <div class="game-half-message">
+        <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
+        <p class="repeat-image-text">
+            Even when you make a mistake, you’re still learning!
+        </p>
+        </div>
+        </div>
+        <div class="chr-png-shadow">
+        <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
+        </div>
+        </div>`;   
+
+        document.querySelector(".controller").classList.add("d-none")
+        document.querySelector(".repeat-wrongQuestion-footer").classList.remove("d-none")
+
+        // data[gameChnager] = JSON.parse(JSON.stringify(dataForRepeat[gameChnager]));
+        // i = 0;
+        // num = 0;
 
       } else {
         document.querySelector(".game").classList.add("d-none")
@@ -151,7 +172,7 @@ function gameChanger(num) {
 
     setTimeout(() => {
       document.querySelector(".pod-adventure-game-detective-image").innerHTML =
-        `<span style="border-radius:7px;width:fit-content;height:260px;display:flex;justify-content:center; border: 2px solid #f9f9f9;padding:10px"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
+        `<span class="pod-guess-country-image"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
        alt="img"></span>`
     }, 1000)
 
@@ -282,7 +303,6 @@ function gameChanger(num) {
       `
     <div class="align-items-center">
       <h2 class="score-text-slide-top text-center" style="margin: 0%">Guess the name of this flag ?</h2>
-      
       <div class="quiz-image">
       <div class="loading-skeleton"></div>
     </div>
@@ -323,7 +343,7 @@ function gameChanger(num) {
     setTimeout(() => {
       document.querySelector(".quiz-image").innerHTML =
         `<div class="que_text" style="display: flex;justify-content: center;">
-          <span class="flag-icon-background" style="border-radius:7px;width:100%;height:260px;display:flex;justify-content:center; border: 2px solid #f9f9f9;padding:10px"><img class="border" src="${data[gameChnager]?.guessCountry[questionChange]?.flag}" alt="img"></span>
+          <span class="pod-guess-country-image"><img class="border" src="${data[gameChnager]?.guessCountry[questionChange]?.flag}" alt="img"></span>
         </div>`
     }, 1000)
 
@@ -390,7 +410,7 @@ function gameChanger(num) {
           Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"
         </span>
       </div>
-      <div class="pod-adventure" style="margin-bottom:50px">
+      <div class="pod-adventure">
           <div class="pod-guess-flag-image-container">
               <div class="pod-adventure-guess-option-left">
                 <div class="loading-skeleton"></div>
@@ -405,13 +425,13 @@ function gameChanger(num) {
 
     var leftSide =
       ` <input class="customRadio" ans="correct" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].country} >
-        <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country} style="width:350px;height:250px;">
-        <img class="guess-flag-image border " style="height:240px;width:350px;"src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
+        <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].country}>
+        <img class="pod-guess-flag-image border "src=${data[gameChnager].guessFlag[questionChange].correctImg} alt=""/>
         </label>`
     var RightSide =
       ` <input class="customRadio" ans="incorrect" type="radio" name="q1${data[gameChnager].guessFlag[questionChange].country}" id=${data[gameChnager].guessFlag[questionChange].Icountry}>
-      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry} style="width:350px;height:250px;">
-      <img class="guess-flag-image border " style="height:240px;width:350px;"src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
+      <label class="podcustomLableWimage" for=${data[gameChnager].guessFlag[questionChange].Icountry}>
+      <img class="pod-guess-flag-image border " src=${data[gameChnager].guessFlag[questionChange].IcorrectImg} alt=""/>
       </label>`
 
     var FlagOptions = [];
@@ -499,8 +519,7 @@ function gameChanger(num) {
 var i = 0;
 gameChanger(i)
 
-continue_guess_flag.onclick = () => {
-  // if (question_counter < data[gameChnager]?.guessCountry.length) {
+continue_guess_flag.onclick = () => { 
   questionChange++
   question_counter++
   check_Button.classList.remove("d-none")
@@ -515,9 +534,19 @@ continue_guess_flag.onclick = () => {
   controller.classList.add("pod-adventure-footer-inner")
   controller.classList.remove("pod-adventure-footer-inner-green")
   controller.classList.remove("pod-adventure-footer-inner-red")
-  gameChanger(i)
-  // }
+  gameChanger(i) 
 }
+
+repeat_wrongQuestion_button.onclick = () => {
+  document.querySelector(".hello-baba").classList.add("d-none")
+  multiple_game.classList.remove("d-none")
+  document.querySelector(".controller").classList.remove("d-none")
+  document.querySelector(".repeat-wrongQuestion-footer").classList.add("d-none")
+  data[gameChnager] = JSON.parse(JSON.stringify(dataForRepeat[gameChnager]));
+  i = 0; 
+  gameChanger(i);
+}
+
 game_change.onclick = () => {
   i++
   questionChange = 0
@@ -587,18 +616,18 @@ function startTimerLineCorrect() {
     document.getElementById("half-game-screen").innerHTML =
       `
     <div style="height:55vh" class="chr-screen">
-    <div class="chr-png" >
-    <img class="char-png" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
-    <div class="game-half-message">
-    <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
-    <p class="half-image-text" >
-    You are crushing it
-    </p>
-    </div>
-    </div>
-    <div class="chr-png-shadow">
-    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
-    </div>
+      <div class="chr-png" >
+        <img class="wow animate__fadeInRight" class="char-png" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
+        <div class="game-half-message controllers-zoom-in">
+          <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
+          <p class="half-image-text wow animate__fadeInLeft" data-wow-delay="500ms" >
+            You are crushing it
+          </p>
+        </div>
+      </div>
+      <div class="chr-png-shadow">
+        <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
+      </div>
     </div>
     `
 

@@ -30,7 +30,7 @@
 
 <body class="pod-body">
 
-    <div style="height: 100%;position: relative;display: flex;flex-direction: column;justify-content: space-around;">
+    <div style="height: 100%;position: relative;">
         <div class="game" >
             <div class="top-left-image">
                 <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopLeft.svg" al />
@@ -41,7 +41,7 @@
             <div class="bottom-left-image">
                 <img width="85%" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/show-case-flag.png" al />
             </div>
-            <header class="pod-adventure" style="height: 80px;">
+            <header class="pod-adventure-header">
                 <div class="pod-adventure-game">
                     <div onclick="location='/'" class="pod-adventure-back-icon"><i class="fa-solid fa-arrow-left"></i>
                     </div>
@@ -99,7 +99,7 @@
             <section class="pod-adventure-footer">
                 <div class="pod-adventure-footer-inner controller">
                     <div style="width: 100%;">
-                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;padding: 10px;">
                             <div class="controller_buttons">
                                 <button class="pod-adventure-skip2 skip-guess-flag" role="button">I Don't
                                     Know</button>
@@ -112,11 +112,11 @@
                                 </span> -->
                                     <div class="well_done d-none">
                                         <img class="well_done_img" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/correct-vector.svg" />
-                                        <h4 class="greats" style="margin-bottom: 0%;padding: 10px;">Well done!</h4>
+                                        <h4 class="greats">Well done!</h4>
                                     </div>
                                     <div class="Not_true d-none">
                                         <img class="Not_true_img" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/wrong-vector.svg" />
-                                        <h4 style="margin-bottom: 0%;padding: 10px;">Wrong</h4>
+                                        <h4>Wrong</h4>
                                     </div>
                                 </div>
                             </div>
@@ -160,6 +160,17 @@
                         <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
                             <button class="half-game-continue" role="button">
                                 <img class="controllers-zoom-in" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/continuous-vector.svg" />
+                                <h4>Continue</h4>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pod-adventure-footer-inner repeat-wrongQuestion-footer d-none">
+                    <div style="width: 100%;">
+                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
+                             <button class="repeat-wrongQuestion-button" role="button">
+                                <img class="controllers-zoom-in" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/continuous-vector.svg" />
                                 <h4 style="margin-bottom: 0%;padding: 10px;">Continue</h4>
                             </button>
                         </div>
@@ -174,63 +185,10 @@
         </div>
 
 
-        <!-- Question Repeat Screen -->
-
-
-        <section class="pod_adventure_result_screen d-none">
-            <div class="top-left-image">
-                <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopLeft.svg" alt="" />
-            </div>
-            <div class="top-right-image">
-                <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopRight.svg" alt="" />
-            </div>
-            <div class="bottom-left-image">
-                <img width="85%" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/show-case-flag.png" alt="" />
-            </div>
-            <section
-                class="pod-result-center-section">
-                <div class="result-chr-png">
-                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
-                </div>
-                <div class="result-chr-png-shadow">
-                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
-                </div>
-
-                <div style="display: flex;flex-direction: column;gap: 50px;">
-                    <div>
-                        <h2>Exploring Star!</h2>
-                        <p style="margin: 0%;">
-                            You have explored 4 countries of Asia
-                        </p>
-                    </div>
-                    <div class="pod-result-box">
-                        <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/result-flag.png" />
-                        <p class="pod-percentage" style="margin: 0%;font-size:x-large;font-weight: 700;color: #000;">100%</p>
-                    </div>
-                </div>
-
-            </section>
-            <section class="pod-adventure-footer">
-                <div class="pod-adventure-footer-inner controller">
-                    <div style="width:100%;">
-                        <div class="pod-adventure-game" style="justify-content: space-around;width: 100%;">
-                            <div class="controller_buttons">
-                                <a href="/pod-adventure"><button class="pod-adventure-skip2"
-                                        role="button">Retake</button></a>
-                            </div>
-                            <button class="pod-adventure-skip2 next-unit">Continue</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="controller-image vert-move">
-                    <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/orange-ball.svg" alt="" />
-                </div>
-            </section>
-        </section>
-
 
 
         <!-- Result Screen -->
+
         <section class="pod_adventure_result_screen d-none">
             <div class="top-left-image">
                 <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/TopLeft.svg" alt="" />
