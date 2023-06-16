@@ -17,10 +17,19 @@ const details = document.getElementById("details")
 const well_done_img = document.querySelector(".well_done_img")
 const Not_true_img = document.querySelector(".Not_true_img")
 const greats_text = document.querySelector(".greats")
-
-
-
+const lead_progress_line = document.querySelector(".lead-progress-line")
 const multiple_game = document.getElementById("Multiple-game")
+const pod_adventure_sound_icon = document.querySelector(".pod-adventure-sound-icon")
+
+
+let speech = new SpeechSynthesisUtterance();
+let RightAnswerSound = new Audio("/client/sounds/correctoptionsound.mp3")
+let wrongAnswerSound = new Audio("/client/sounds/wronganswersound.mp3")
+let ResultScreenSound = new Audio("/client/sounds/mixkit-achievement-completed-2068_0hZtl2XO.mp3")
+const questionSpeech = speechSynthesis;
+
+
+
 
 
 
@@ -49,6 +58,8 @@ let question_counter = 1
 
 let points = 0
 let repeat = 0;
+let lead_counter = 0
+let count_wrong_answer = 0
 
 
 const greats= ["Excellent!",
@@ -88,7 +99,7 @@ function gameChanger(num) {
         <div class="game-half-message">
         <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
         <p class="repeat-image-text">
-            Even when you make a mistake, you’re still learning!
+            Lets review the flags you missed!
         </p>
         </div>
         </div>
@@ -96,6 +107,13 @@ function gameChanger(num) {
         <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
         </div>
         </div>`;   
+
+        pod_adventure_sound_icon.onclick=()=>{
+          console.log(pod_adventure_sound_icon)
+          convertText2Speech(`Lets review the flags you missed!`)
+        }
+    convertText2Speech("Lets review the flags you missed")
+
 
         document.querySelector(".controller").classList.add("d-none")
         document.querySelector(".repeat-wrongQuestion-footer").classList.remove("d-none")
@@ -109,6 +127,7 @@ function gameChanger(num) {
         confettiExplosion(origin);
         document.querySelector(".pod-percentage").innerHTML = Math.round(points) + "%"
         document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
+        ResultScreenSound.play()
         document.querySelector(".next-unit").onclick = () => { 
           startTimerLineEmpty();
           document.querySelector(".game").classList.remove("d-none");
@@ -122,6 +141,8 @@ function gameChanger(num) {
           dataForRepeat[gameChnager].flagDetective = [];
           repeat = 0;
           i=0;
+          count_wrong_answer = 0
+          lead_counter = 0
           gameChanger(i);
         }
       }
@@ -131,6 +152,7 @@ function gameChanger(num) {
       confettiExplosion(origin);
       document.querySelector(".pod-percentage").innerHTML = Math.round(points) + "%"
       document.querySelector(".pod_adventure_result_screen").classList.remove("d-none")
+      ResultScreenSound.play()
       document.querySelector(".next-unit").onclick = () => { 
         startTimerLineEmpty();
         document.querySelector(".game").classList.remove("d-none");
@@ -144,6 +166,8 @@ function gameChanger(num) {
         dataForRepeat[gameChnager].flagDetective = [];
         repeat = 0;
         i=0;
+        count_wrong_answer = 0
+        lead_counter = 0
         gameChanger(i);
       }
     }
@@ -175,6 +199,8 @@ function gameChanger(num) {
         `<span class="pod-guess-country-image"><img class="border" src=${data[gameChnager]?.flagDetective[questionChange].flagUrl}
        alt="img"></span>`
     }, 1000)
+
+
 
 
     let baba = ""
@@ -225,7 +251,9 @@ function gameChanger(num) {
               controller.classList.add("pod-adventure-footer-inner-green")
               well_done_img.classList.add("controllers-zoom-in")
               Not_true_img.classList.remove("controllers-zoom-in")
+              lead_counter++
               startTimerLineCorrect()
+              RightAnswerSound.play()
             } else {
               dataForRepeat[gameChnager].flagDetective.push(data[gameChnager]?.flagDetective[questionChange]);
               if (dataForRepeat[gameChnager].flagDetective.length == 1) {
@@ -242,8 +270,11 @@ function gameChanger(num) {
               continue_guess_flag.classList.remove("d-none")
               well_done_img.classList.remove("controllers-zoom-in")
               Not_true_img.classList.add("controllers-zoom-in")
-
+              lead_counter=0
               startTimerLineInCorrect()
+              wrongAnswerSound.play()
+              count_wrong_answer++
+
             }
 
             if (question_counter == data[gameChnager]?.flagDetective.length) {
@@ -260,6 +291,11 @@ function gameChanger(num) {
       });
     }
     showNextInputs();
+    pod_adventure_sound_icon.onclick=()=>{
+      console.log(pod_adventure_sound_icon)
+      convertText2Speech("Which Country Is This")
+    }
+
   }
 
 
@@ -347,6 +383,11 @@ function gameChanger(num) {
         </div>`
     }, 1000)
 
+    pod_adventure_sound_icon.onclick=()=>{
+      console.log(pod_adventure_sound_icon)
+      convertText2Speech("Guess the name of this flag")
+    }
+
 
 
     check_Button.onclick = () => {
@@ -369,7 +410,9 @@ function gameChanger(num) {
         controller.classList.add("pod-adventure-footer-inner-green")
         well_done_img.classList.add("controllers-zoom-in")
         Not_true_img.classList.remove("controllers-zoom-in")
+        lead_counter++
         startTimerLineCorrect()
+        RightAnswerSound.play()
       } else {
         dataForRepeat[gameChnager].guessCountry.push(data[gameChnager]?.guessCountry[questionChange]);
         if (dataForRepeat[gameChnager].guessCountry.length == 1) {
@@ -386,7 +429,11 @@ function gameChanger(num) {
         Not_true.classList.remove("d-none")
         skip_guess_flag.classList.add("d-none")
         continue_guess_flag.classList.remove("d-none")
+        lead_counter = 0
         startTimerLineInCorrect()
+        wrongAnswerSound.play()
+        count_wrong_answer++
+
       }
       if (question_counter == data[gameChnager]?.guessCountry.length) {
         game_change.classList.remove('d-none')
@@ -469,6 +516,10 @@ function gameChanger(num) {
 
     }, 1000)
 
+    pod_adventure_sound_icon.onclick=()=>{
+      console.log(pod_adventure_sound_icon)
+      convertText2Speech(`Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"`)
+    }
     check_Button.onclick = () => {
       multiple_game.querySelector(".pod-adventure").classList.add("disabled")
       if (document.querySelector(".select").getAttribute("ans") == "correct") {
@@ -481,7 +532,9 @@ function gameChanger(num) {
         controller.classList.add("pod-adventure-footer-inner-green")
         well_done_img.classList.add("controllers-zoom-in")
         Not_true_img.classList.remove("controllers-zoom-in")
+        lead_counter++
         startTimerLineCorrect()
+        RightAnswerSound.play()
       } else {
         dataForRepeat[gameChnager].guessFlag.push(data[gameChnager].guessFlag[questionChange]);
         if (dataForRepeat[gameChnager].guessFlag.length == 1) {
@@ -499,7 +552,11 @@ function gameChanger(num) {
         Not_true.classList.remove("d-none")
         skip_guess_flag.classList.add("d-none")
         continue_guess_flag.classList.remove("d-none")
+        lead_counter = 0
         startTimerLineInCorrect()
+        wrongAnswerSound.play()
+        count_wrong_answer++
+
       }
       if (question_counter == data[gameChnager]?.guessFlag.length) {
         game_change.classList.remove('d-none')
@@ -534,6 +591,7 @@ continue_guess_flag.onclick = () => {
   controller.classList.add("pod-adventure-footer-inner")
   controller.classList.remove("pod-adventure-footer-inner-green")
   controller.classList.remove("pod-adventure-footer-inner-red")
+  lead_progress_line.classList.add("d-none")
   gameChanger(i) 
 }
 
@@ -563,6 +621,8 @@ game_change.onclick = () => {
   guess_flag_details.classList.add("d-none")
   well_done.classList.add("d-none")
   game_change.classList.add("d-none")
+  lead_progress_line.classList.add("d-none")
+
 }
 
 
@@ -584,6 +644,7 @@ skip_guess_flag.onclick = () => {
       dataForRepeat[gameChnager].modules.push(data[gameChnager]?.modules[i]);
     }
   }
+  count_wrong_answer++
 
 
   if (question_counter < (data[gameChnager].guessFlag.length || data[gameChnager].guessCountry.length || data[gameChnager].flagDetective.length)) {
@@ -630,12 +691,19 @@ function startTimerLineCorrect() {
       </div>
     </div>
     `
-
-   
+    pod_adventure_sound_icon.onclick=()=>{
+      console.log(pod_adventure_sound_icon)
+      convertText2Speech(`You are crushing it`)
+    }
+    convertText2Speech("You are crushing it")
     document.querySelector(".controller").classList.add("d-none")
     document.querySelector(".dublicate").classList.remove("d-none")
-
   }
+  if(lead_counter > "2"){
+    lead_progress_line.classList.remove("d-none")
+    lead_progress_line.innerHTML = lead_counter + " IN A ROW"
+  }
+
 
   document.querySelector(".has-fi-fav").innerHTML =
   `
@@ -694,6 +762,35 @@ function startTimerLineInCorrect() {
     points = 0
     document.querySelector(".progess-flag").classList.add("d-none")
   }
+  if(count_wrong_answer == 4){
+    document.querySelector(".hello-baba").classList.remove("d-none")
+    multiple_game.classList.add("d-none")
+    document.getElementById("half-game-screen").innerHTML =
+      `
+    <div style="height:55vh" class="chr-screen">
+      <div class="chr-png" >
+        <img class="wow animate__fadeInRight" class="char-png" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/png.svg" />
+        <div class="game-half-message controllers-zoom-in">
+          <img style="position: relative" src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/message.svg" />
+          <p class="half-image-text wow animate__fadeInLeft" data-wow-delay="500ms" style="top:10px;line-height:18px;font-size:14px" >
+            Even when you make a mistake , you are still learning
+          </p>
+        </div>
+      </div>
+      <div class="chr-png-shadow">
+        <img src="https://testpod-bucket.s3.amazonaws.com/pod-adventure/chr-shadow.svg" />
+      </div>
+    </div>
+    `
+    pod_adventure_sound_icon.onclick=()=>{
+      console.log(pod_adventure_sound_icon)
+      convertText2Speech(`Even when you make a mistake , you are still learning`)
+    }
+    convertText2Speech("Even when you make a mistake , you are still learning")
+    document.querySelector(".controller").classList.add("d-none")
+    document.querySelector(".dublicate").classList.remove("d-none")
+  }
+  lead_progress_line.classList.add("d-none")
   time_line.style.width = points + "%"; //increasing width of time_line with px by time value
 }
 
@@ -740,3 +837,19 @@ function confettiExplosion(origin) {
 }
 
 
+
+
+
+function convertText2Speech(x) {
+  console.log(x)
+  speech.text = x;
+  speech.pitch = 1;
+  speech.volume = 1;
+  speech.lang = "en-US";
+  speech.rate = 1;
+  speechSynthesis.speak(speech);
+}
+
+function cancelSpeech() {
+  questionSpeech.cancel();
+}

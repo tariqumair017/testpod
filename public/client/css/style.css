@@ -10660,7 +10660,7 @@ label {
 /* flag detective */
 .siblings-input input {
   height: 3rem;
-  width: 8%;
+  width: 5%;
   border-radius: 6px;
   outline: none;
   font-size: 1.125rem;
@@ -12328,6 +12328,18 @@ circle {
   height: 15px;
 }
 
+.pod-adventure-sound-icon{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  cursor: pointer;  
+}
+.pod-adventure-sound-icon i {
+  font-size: large;
+  color: gray;
+  cursor: pointer;
+}
+
 .pod-adventure-back-icon i {
   font-size: x-large;
   color: gray;
@@ -12464,7 +12476,7 @@ circle {
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
-  border-radius: 5px;
+  border-radius: 29px;
   border: 1px solid lightgray;
   border-bottom: 4px solid lightgray;
   box-sizing: border-box;
@@ -12503,7 +12515,7 @@ circle {
   align-items: center;
   appearance: none;
   background-color: #FF4B4B;
-  border-radius: 5px;
+  border-radius: 29px;
   border: 1px solid #EA2B2B;
   border-bottom: 4px solid #EA2B2B;
   /* box-shadow: #EA2B2B 0 2px 4px,#EA2B2B 0 7px 13px -5px; */
@@ -12511,12 +12523,12 @@ circle {
   color: #ffffff;
   cursor: pointer;
   display: inline-flex;
-  height: 35px;
+  height: 48px;
   justify-content: center;
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding: 0px 20px;
+  padding: 10px 40px;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -12526,7 +12538,7 @@ circle {
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
 
 }
@@ -12644,6 +12656,16 @@ circle {
   color: #58CC02;
 }
 
+.lead-progress-line{
+  position: absolute;
+  top: -25px;
+  color: #58CC02;
+  font-size: 15px;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+
 .Not_true {
   background-color: #ffffff !important;
   border-radius: 29px;
@@ -12721,7 +12743,7 @@ circle {
   background-color: #ffffff !important;
   border-radius: 29px;
   border: none;
-  / box-sizing: border-box; /
+  /* / box-sizing: border-box; / */
   color: #000;
   font-weight: 700;
   height: 55px;
@@ -13707,8 +13729,8 @@ footer .more_test:hover {
 
 .repeat-image-text {
   position: absolute;
-  top: 7px;
-  left: 8%;
+  top: 17px;
+  left: 6%;
   font-size: 15px;
   color: #ffffff;
   font-weight: 600;
@@ -15846,6 +15868,7 @@ section:hover .section-title h2::before {
   position: absolute;
   right: -40px;
   top: -40px;
+  z-index: -1;
   transform: rotate(180deg);
 }
 
@@ -15915,32 +15938,118 @@ section:hover .section-title h2::before {
 
 .pod-guess-country-image{
   border-radius:7px;
-  width:100%;
+  width:350px;
   height:260px;
   display:flex;
   justify-content:center;
   padding:10px
 }
 
-@media screen and (max-width:1500px) and (min-width:1100px) {
+@media screen and (max-width:1500px) and (min-width:900px) {
+  .pod-adventure-skip2{
+    height: 40px;
+    padding: 10px 15px !important;
+    font-size: 15px;
+  }
+  .pod-adventure-skip2-disabled{
+    height: 40px;
+    padding: 10px 15px !important; 
+    font-size: 15px;
+
+  }
+  .well_done{
+    height: 40px;
+  }
+  .greats{
+    padding: 5px;
+  }
+  .well_done img{
+    width: 30px;
+  }
+  .well_done-continue{
+    padding: 10px 10px;
+    height: 40px;
+  }
+
+  .half-game-continue h4{
+    font-size: 15px;
+  }
+
+  .repeat-wrongQuestion-button h4{
+    font-size: 15px;
+  }
+
+  .half-game-continue{
+    height: 40px;
+  }
+  .half-game-continue img{
+    width: 30px;
+  }
+  .Not_true{
+    height: 40px;
+  }
+  .Not_true h4{
+    padding: 5px;
+  }
+  
+  .Not_true img{
+    width: 30px;
+  }
   .pod-guess-flag{
     font-size: 30px;
   }
   .podcustomLableWimage {
-    width: 280px;
-    height: 200px;
+    width: 200px;
+    height: auto;
+}
+.pod-guess-country-image{
+  width: 200px;
+  height: auto;
+}
+.multiple-game h2{
+  font-size: 20px;
+}
+.pod-adventure-customLable {
+  font-size: 20px;
+  width: 200px;
 }
 .pod-guess-flag-image {
-  height: 190px !important;
+  height: auto !important;
 }
+
 .loading-skeleton{
-  width: 280px;
-    height: 200px;
+  width: 190px;
+  height: 133px;
 }
 .bottom-left-image{
   width: 22%;
 }
+.pod-adventure-footer-inner{
+  height: 100px !important;
+}
+.pod-adventure-footer-inner-red {
+  height: 100px !important;
+}
 
+
+.pod-adventure-footer-inner-green {
+ height: 100px !important;
+}
+.pod-guess-flag {
+  font-size: 20px;
+}
+
+
+}
+
+.custom-offcanvas {
+  height: 150px !important;
+}
+
+.offcanvas-manager{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 
@@ -16049,6 +16158,11 @@ section:hover .section-title h2::before {
 
   }
 
+  .lead-progress-line{
+    font-size: 10px;
+    top: -20px;
+  }
+
 
 
   .pod-adventure-footer-inner-green {
@@ -16129,6 +16243,11 @@ section:hover .section-title h2::before {
     height: 85vh;
   }
 
+  .repeat-image-text{
+    font-size: 7px;
+    top: 10px;
+  }
+
   .result-chr-png-shadow{
     display: none;
   }
@@ -16136,7 +16255,7 @@ section:hover .section-title h2::before {
   .half-image-text {
     top: 2px;
     left: 3%;
-    font-size: revert;
+    font-size: 10px;
 }
 .game-half-message {
   top: 23%;

@@ -452,27 +452,6 @@ result_btn.onclick = async () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function convertText2Speech(x) {
   speech.text = x;
   speech.pitch = 1;
