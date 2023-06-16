@@ -109,7 +109,6 @@ function gameChanger(num) {
         </div>`;   
 
         pod_adventure_sound_icon.onclick=()=>{
-          console.log(pod_adventure_sound_icon)
           convertText2Speech(`Lets review the flags you missed!`)
         }
     convertText2Speech("Lets review the flags you missed")
@@ -292,7 +291,6 @@ function gameChanger(num) {
     }
     showNextInputs();
     pod_adventure_sound_icon.onclick=()=>{
-      console.log(pod_adventure_sound_icon)
       convertText2Speech("Which Country Is This")
     }
 
@@ -384,7 +382,6 @@ function gameChanger(num) {
     }, 1000)
 
     pod_adventure_sound_icon.onclick=()=>{
-      console.log(pod_adventure_sound_icon)
       convertText2Speech("Guess the name of this flag")
     }
 
@@ -517,7 +514,6 @@ function gameChanger(num) {
     }, 1000)
 
     pod_adventure_sound_icon.onclick=()=>{
-      console.log(pod_adventure_sound_icon)
       convertText2Speech(`Can you guess the flag of "${data[gameChnager].guessFlag[questionChange].country}"`)
     }
     check_Button.onclick = () => {
@@ -692,7 +688,6 @@ function startTimerLineCorrect() {
     </div>
     `
     pod_adventure_sound_icon.onclick=()=>{
-      console.log(pod_adventure_sound_icon)
       convertText2Speech(`You are crushing it`)
     }
     convertText2Speech("You are crushing it")
@@ -745,6 +740,9 @@ function startTimerLineEmpty() {
 half_game_continue.onclick = () => {
   document.querySelector(".hello-baba").classList.add("d-none")
   multiple_game.classList.remove("d-none")
+  pod_adventure_sound_icon.onclick=()=>{
+    convertText2Speech(``)
+  }
   document.querySelector(".controller").classList.remove("d-none")
   document.querySelector(".dublicate").classList.add("d-none")
   // questionChange++
@@ -783,7 +781,6 @@ function startTimerLineInCorrect() {
     </div>
     `
     pod_adventure_sound_icon.onclick=()=>{
-      console.log(pod_adventure_sound_icon)
       convertText2Speech(`Even when you make a mistake , you are still learning`)
     }
     convertText2Speech("Even when you make a mistake , you are still learning")
@@ -841,7 +838,6 @@ function confettiExplosion(origin) {
 
 
 function convertText2Speech(x) {
-  console.log(x)
   speech.text = x;
   speech.pitch = 1;
   speech.volume = 1;
