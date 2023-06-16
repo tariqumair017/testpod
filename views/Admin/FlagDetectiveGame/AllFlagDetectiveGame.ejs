@@ -260,9 +260,8 @@ async function newSelectedCountry(e)
 
 
 async function editSelectedCountry(e)
-    {
-      const id = e.getAttribute("id")
-      const countryName = document.getElementById(id).value; 
+    { 
+      const countryName = e.value; 
 
       const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
       const data = await response.json();

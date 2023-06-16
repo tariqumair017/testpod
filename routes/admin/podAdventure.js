@@ -64,7 +64,7 @@ router.post("/add/step1", middleware.isAdminLoggedin, asyncHandler(async (req, r
                 console.log(err)
               } 
             }
-            const newQuestion = {country: req.body.country[i], Icountry: req.body.Icountry[i], correctImg: req.body.correctImg[i], IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint[i], detail: req.body.detail[i]};           
+            const newQuestion = {country: req.body.country[i], Icountry: req.body.Icountry[i], correctImg: req.body.correctImg[i], IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint[i], detail: req.body.detail[i], region: req.body.region};           
             newGame.flagQuest.push(newQuestion); 
           }
           await newGame.save();
@@ -80,7 +80,8 @@ router.post("/add/step1", middleware.isAdminLoggedin, asyncHandler(async (req, r
                   optionB: req.body.optionB[i],  
                   correct: req.body.correct[i], 
                   hint: req.body.hint[i],
-                  detail: req.body.detail[i]
+                  detail: req.body.detail[i],
+                  region: req.body.region
                 } 
                 newGame.guessCountry.push(newQuestion); 
           }
@@ -105,7 +106,8 @@ router.post("/add/step1", middleware.isAdminLoggedin, asyncHandler(async (req, r
                     correctImg: req.body.correctImg[i], 
                     IcorrectImg: data.Location, 
                     hint: req.body.hint[i],
-                    detail: req.body.detail[i]
+                    detail: req.body.detail[i],
+                    region: req.body.region
                   }; 
                   newGame.guessFlag.push(newQuestion); 
                 });  
@@ -122,7 +124,8 @@ router.post("/add/step1", middleware.isAdminLoggedin, asyncHandler(async (req, r
                 country: req.body.country[i], 
                 flagUrl: req.body.flagUrl[i],
                 hint: req.body.hint[i], 
-                detail: req.body.detail[i]
+                detail: req.body.detail[i],
+                region: req.body.region
               } 
               newGame.flagDetective.push(newQuestion);
           } 
@@ -138,7 +141,8 @@ router.post("/add/step1", middleware.isAdminLoggedin, asyncHandler(async (req, r
               country: req.body.country[i], 
               flag: req.body.flag[i], 
               hint: req.body.hint[i],
-              detail: req.body.detail[i]
+              detail: req.body.detail[i],
+              region: req.body.region
             }; 
             
             newGame.flagPuzzle.push(newQuestion);
@@ -220,7 +224,7 @@ router.post("/add/step2", middleware.isAdminLoggedin, asyncHandler(async (req, r
                 console.log(err)
               } 
             }
-            const newQuestion = {country: req.body.country[i], Icountry: req.body.Icountry[i], correctImg: req.body.correctImg[i], IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint[i], detail: req.body.detail[i]};           
+            const newQuestion = {country: req.body.country[i], Icountry: req.body.Icountry[i], correctImg: req.body.correctImg[i], IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint[i], detail: req.body.detail[i], region: req.body.region};           
             unitExist.flagQuest.push(newQuestion); 
           }
           await unitExist.save();
@@ -237,6 +241,7 @@ router.post("/add/step2", middleware.isAdminLoggedin, asyncHandler(async (req, r
                   correct: req.body.correct[i], 
                   hint: req.body.hint[i],
                   detail: req.body.detail[i],
+                  region: req.body.region
                 } 
                 unitExist.guessCountry.push(newQuestion); 
           }
@@ -261,7 +266,8 @@ router.post("/add/step2", middleware.isAdminLoggedin, asyncHandler(async (req, r
                     correctImg: req.body.correctImg[i], 
                     IcorrectImg: data.Location, 
                     hint: req.body.hint[i],
-                    detail: req.body.detail[i]
+                    detail: req.body.detail[i],
+                    region: req.body.region
                   }; 
                   unitExist.guessFlag.push(newQuestion); 
                 });  
@@ -278,7 +284,8 @@ router.post("/add/step2", middleware.isAdminLoggedin, asyncHandler(async (req, r
                 country: req.body.country[i], 
                 flagUrl: req.body.flagUrl[i],
                 hint: req.body.hint[i], 
-                detail: req.body.detail[i]
+                detail: req.body.detail[i],
+                region: req.body.region
               } 
               unitExist.flagDetective.push(newQuestion);
           } 
@@ -294,7 +301,8 @@ router.post("/add/step2", middleware.isAdminLoggedin, asyncHandler(async (req, r
               country: req.body.country[i], 
               flag: req.body.flag[i], 
               hint: req.body.hint[i],
-              detail: req.body.detail[i]
+              detail: req.body.detail[i],
+              region: req.body.region
             }; 
             
             unitExist.flagPuzzle.push(newQuestion);
@@ -376,7 +384,7 @@ router.post("/add/step3", middleware.isAdminLoggedin, asyncHandler(async (req, r
                 console.log(err)
               } 
             }
-            const newQuestion = {country: req.body.country[i], Icountry: req.body.Icountry[i], correctImg: req.body.correctImg[i], IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint[i], detail: req.body.detail[i]};           
+            const newQuestion = {country: req.body.country[i], Icountry: req.body.Icountry[i], correctImg: req.body.correctImg[i], IcorrectImg1: incorrectFlagsUrl[0], IcorrectImg2: incorrectFlagsUrl[1], IcorrectImg3: incorrectFlagsUrl[2], hint: req.body.hint[i], detail: req.body.detail[i], region: req.body.region};           
             unitExist.flagQuest.push(newQuestion); 
           }
           await unitExist.save();
@@ -392,7 +400,8 @@ router.post("/add/step3", middleware.isAdminLoggedin, asyncHandler(async (req, r
                   optionB: req.body.optionB[i],  
                   correct: req.body.correct[i], 
                   hint: req.body.hint[i],
-                  detail: req.body.detail[i]
+                  detail: req.body.detail[i],
+                  region: req.body.region
                 } 
                 unitExist.guessCountry.push(newQuestion); 
           }
@@ -417,7 +426,8 @@ router.post("/add/step3", middleware.isAdminLoggedin, asyncHandler(async (req, r
                     correctImg: req.body.correctImg[i], 
                     IcorrectImg: data.Location, 
                     hint: req.body.hint[i],
-                    detail: req.body.detail[i]
+                    detail: req.body.detail[i],
+                    region: req.body.region
                   }; 
                   unitExist.guessFlag.push(newQuestion); 
                 });  
@@ -434,7 +444,8 @@ router.post("/add/step3", middleware.isAdminLoggedin, asyncHandler(async (req, r
                 country: req.body.country[i], 
                 flagUrl: req.body.flagUrl[i],
                 hint: req.body.hint[i], 
-                detail: req.body.detail[i]
+                detail: req.body.detail[i],
+                region: req.body.region
               } 
               unitExist.flagDetective.push(newQuestion);
           } 
@@ -450,7 +461,8 @@ router.post("/add/step3", middleware.isAdminLoggedin, asyncHandler(async (req, r
               country: req.body.country[i], 
               flag: req.body.flag[i], 
               hint: req.body.hint[i],
-              detail: req.body.detail[i]
+              detail: req.body.detail[i],
+              region: req.body.region
             }; 
             
             unitExist.flagPuzzle.push(newQuestion);
@@ -521,46 +533,52 @@ router.get("/manage/:id/all-questions", middleware.isAdminLoggedin, asyncHandler
 // }));
   
 //Admin: Update Question of a Game
-// router.put("/manage/:cid/:pid",  asyncHandler(async (req, res, next) => {   
-//   try {
-//     var question;
-//     if(req.files)
-//     { 
-//       let key_name = req.body.IcorrectImgDelete.split('/'); 
-      
-//         try { 
-//           var params = {
-//             Bucket: process.env.AWS_BUCKET_NAME,
-//             Key: `games/${key_name[key_name.length-1]}`,
-//           }; 
-//           await s3.deleteObject(params).promise();
-    
-//           await s3.upload({
-//             Bucket: process.env.AWS_BUCKET_NAME,
-//             Key: `games/${req.files.IcorrectImg.name}`,
-//             Body: req.files.IcorrectImg.data,
-//             ContentType: req.files.IcorrectImg.mimetype,
-//             ACL: 'public-read'
-//           }).promise().then( async (data) => {
-//             question = {country: req.body.country, Icountry: req.body.Icountry, correctImg: req.body.correctImg, IcorrectImg: data.Location, hint: req.body.hint}; 
-//             await PodAdventureGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$": question}});
-//           });
-//         } catch (error) {
-//           console.log(error);
-//         }
-//     }
-//     else
-//     {
-//       await PodAdventureGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}});
-//     }
+router.put("/manage/:module/:cid/:pid",  asyncHandler(async (req, res, next) => {   
+  try { 
+    if(req.files)
+    { 
+      if(req.params.module == 'guess-flag') {
+        let key_name = req.body.IcorrectImgDelete.split('/'); 
+       
+        var params = {
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key: `pod-adventure/${key_name[key_name.length-1]}`,
+        }; 
+        await s3.deleteObject(params).promise();
+  
+        await s3.upload({
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key: `pod-adventure/${req.files.IcorrectImg.name}`,
+          Body: req.files.IcorrectImg.data,
+          ContentType: req.files.IcorrectImg.mimetype,
+          ACL: 'public-read'
+        }).promise().then( async (data) => {
+          await PodAdventureGame.findOneAndUpdate({"guessFlag._id": req.params.cid}, {$set:{"guessFlag.$.country": req.body.country, "guessFlag.$.Icountry": req.body.Icountry, "guessFlag.$.correctImg": req.body.correctImg, "guessFlag.$.IcorrectImg": data.Location, "guessFlag.$.hint": req.body.hint, "guessFlag.$.detail": req.body.detail}});
+        }); 
+      }
+    }
+    else
+    {
+      if(req.params.module == 'flag-quest') {
+        await PodAdventureGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}});
+      } else if(req.params.module == 'flag-detective') {
+        await PodAdventureGame.findOneAndUpdate({"flagDetective._id": req.params.cid}, {$set:{"flagDetective.$.country": req.body.country, "flagDetective.$.flagUrl": req.body.flagUrl, "flagDetective.$.hint": req.body.hint, "flagDetective.$.detail": req.body.detail}});
+      } else if(req.params.module == 'flag-puzzle') {
+        await PodAdventureGame.findOneAndUpdate({"questions._id": req.params.cid}, {$set:{"questions.$.country": req.body.country, "questions.$.Icountry": req.body.Icountry, "questions.$.correctImg": req.body.correctImg, "questions.$.hint": req.body.hint}});
+      } else if(req.params.module == 'guess-country') {
+        await PodAdventureGame.findOneAndUpdate({"guessCountry._id": req.params.cid}, {$set:{"guessCountry.$.country": req.body.country, "guessCountry.$.flag": req.body.flag, "guessCountry.$.optionA": req.body.optionA, "guessCountry.$.optionB": req.body.optionB, "guessCountry.$.correct": req.body.correct, "guessCountry.$.hint": req.body.hint, "guessCountry.$.detail": req.body.detail}});
+      } else if(req.params.module == 'guess-flag') {
+        await PodAdventureGame.findOneAndUpdate({"guessFlag._id": req.params.cid}, {$set:{"guessFlag.$.country": req.body.country, "guessFlag.$.Icountry": req.body.Icountry, "guessFlag.$.correctImg": req.body.correctImg, "guessFlag.$.hint": req.body.hint, "guessFlag.$.detail": req.body.detail}});
+      }
+    }
    
-//     console.log("Question Updated");
-//     req.flash("success", "Question Updated Successfully");
-//     res.redirect(`/admin/guess-flag-game/manage/${req.params.pid}/all-questions`); 
-//   } catch (error) {
-//     return next(error.message);
-//   }
-// }));
+    console.log("Question Updated");
+    req.flash("success", "Question Updated Successfully");
+    res.redirect(`/admin/pod-adventure/manage/${req.params.pid}/all-questions`); 
+  } catch (error) {
+    return next(error.message);
+  }
+}));
 
 
 // Admin: Delete Question of Flag-Quest-Game

@@ -80,9 +80,9 @@
           <td><%=item.detail%></td>
           <td>
             <span class="table-buttons">
-              <!-- <button onclick="editFlagDetectiveGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#FlagDetectiveEditModal" class="btn btn-primary">
+              <button onclick="editFlagDetectiveGameQuestionInPodAdventure(`<%=data._id%>`, `<%=item._id%>`, 'flag-detective', `<%=item.country%>`, `<%=item.flagUrl%>`, `<%=item.hint%>`, `<%=item.detail%>`, `<%=item.region%>`)" data-bs-toggle="modal" data-bs-target="#FlagDetectiveEditModal" class="btn btn-primary">
                 Edit
-              </button> -->
+              </button>
               <form action="/admin/pod-adventure/manage/flag-detective/<%=data._id%>/<%=item._id%>?_method=Delete" method="POST">
                 <button type="submit" class="btn btn-danger">Delete</button>
               </form>
@@ -164,10 +164,10 @@
             <td><%=item.detail%></td>
             <td>
                 <span class="table-buttons">
-                <!-- <button onclick="editQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#GuessCountryEditModal" class="btn btn-primary">Edit</button> -->
-                <form action="/admin/pod-adventure/manage/guess-country/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
-                    <button type="submit" class="btn btn-danger">Delete</button> 
-                </form>
+                  <button onclick="editGuessCountryGameQuestionInPodAdventure(`<%=data._id%>`, `<%=item._id%>`, 'guess-country', `<%=item.country%>`, `<%=item.flag%>`, `<%=item.optionA%>`, `<%=item.optionB%>`, `<%=item.correct%>`, `<%=item.hint%>`, `<%=item.detail%>`, `<%=item.region%>`)" data-bs-toggle="modal" data-bs-target="#GuessCountryEditModal" class="btn btn-primary">Edit</button>
+                  <form action="/admin/pod-adventure/manage/guess-country/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
+                      <button type="submit" class="btn btn-danger">Delete</button> 
+                  </form>
                 </span>
             </td>
             </tr>
@@ -205,7 +205,7 @@
             <td><%=item.detail%></td> 
             <td>
               <span class="table-buttons">
-                <!-- <button onclick="editGuessFlagGameQuestion(`<%=data._id%>`, `<%=JSON.stringify(item)%>`)" data-bs-toggle="modal" data-bs-target="#GuessFlagEditModal" class="btn btn-primary">Edit</button> -->
+                <button onclick="editGuessFlagGameQuestionInPodAdventure(`<%=data._id%>`, `<%=item._id%>`, 'guess-flag', `<%=item.country%>`, `<%=item.Icountry%>`, `<%=item.correctImg%>`, `<%=item.IcorrectImg%>`, `<%=item.hint%>`, `<%=item.detail%>`, `<%=item.region%>`)" data-bs-toggle="modal" data-bs-target="#GuessFlagEditModal" class="btn btn-primary">Edit</button>
                 <form action="/admin/pod-adventure/manage/guess-flag/<%=data._id%>/<%=item._id%>?_method=DELETE" method="POST"> 
                   <button type="submit" class="btn btn-danger">Delete</button> 
                 </form>
@@ -244,7 +244,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="guessFlagEditForm" class="add-quiz-form row needs-validation" action="" method="POST" enctype="multipart/form-data" novalidate>
+            <form id="" class="add-quiz-form row needs-validation" action="" method="POST" enctype="multipart/form-data" novalidate>
               <div id="setNewForm">
                  <div class="form-data">
                      <div class="row">
@@ -326,7 +326,7 @@
           </div>
           <div class="modal-body">
             <form
-              id="editFlagDetectiveForm"
+              id="flagDetectiveEditForm"
               class="add-quiz-form row g-4 needs-validation"
               novalidate
               action=""
@@ -336,8 +336,8 @@
                     <div class="form-data">
                       <div class="row">
                         <div class="col-md-6 position-relative"> 
-                          <label for="flagName0" class="form-label">Select Counrty</label>
-                          <select class="form-select" name="country" id="editCountry" onchange="editSelectedCountry(this)" required> 
+                          <label for="editCountryOfDetective" class="form-label">Select Counrty</label>
+                          <select class="form-select" name="country" id="editCountryOfDetective" onchange="getFlagOfSelectedCountry(this)" required> 
                               <option hidden>Please Select Counrty</option> 
                           </select> 
                           <div class="invalid-tooltip">
@@ -345,24 +345,35 @@
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <label for="validationTooltip03" class="form-label"
+                          <label for="editFlagUrlOfDetective" class="form-label"
                             >Flag Url</label
                           >
                           <div class="add-quiz-state-image">
                             <input readonly
                               class="add-quiz-image-input formFile form-control"
                               type="text"
-                              id="editFlagUrl"
+                              id="editFlagUrlOfDetective"
                               name="flagUrl"  
                             />
                           </div>
                         </div>
                         <div class="col-md-6 mt-2 position-relative">
-                          <label for="edithint" class="form-label">Enter Hint</label>
+                          <label for="editHintOfDetective" class="form-label">Enter Hint</label>
                           <input
                             maxlength="200"
                             name="hint" 
-                            id="edithint"
+                            id="editHintOfDetective"
+                            type="text"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6 mt-2 position-relative">
+                          <label for="editDetailOfDetective" class="form-label">Enter Detail</label>
+                          <input
+                            maxlength="200"
+                            name="detail" 
+                            id="editDetailOfDetective"
                             type="text"
                             class="form-control"
                             required
@@ -402,7 +413,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="puzzleFlagEditForm" class="add-quiz-form row needs-validation" action="" method="POST" novalidate>
+            <form id="" class="add-quiz-form row needs-validation" action="" method="POST" novalidate>
               <div id="setNewForm">
                  <div class="form-data">
                     <div class="row">
@@ -442,57 +453,50 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="updateForm" class="add-quiz-form row g-4 needs-validation" novalidate action="" method="POST">
+              <form id="EditGuessCountryForm" class="add-quiz-form row g-4 mt-1 needs-validation" novalidate action="" method="POST">
                   <div class="row">
                       <div class="col-md-6"> 
                         <label for="country" class="form-label">Select Country</label>
-                        <select class="form-select" name="country" id="editCountryID" required> 
+                        <select class="form-select" name="country" id="editCountryOfGuessCountry" onchange="getFlagOfSelectedCountry(this)" required> 
                           <option hidden>Please Select Country</option>     
                         </select> 
                       </div>
                       <div class="col-md-6"> 
                         <label for="flagUrl" class="form-label">Flag Url</label>
-                        <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" id="editFlagUrl" required>
+                        <input readonly name="flag" placeholder="Flag Url" type="text" class="form-control" id="editFlagOfGuessCountry" required>
                       </div>
                   </div>
                     <div class="modal-options  row" >
                     <div class="col-md-6 position-relative">
                       <label for="validationTooltip03" class="form-label">Option A</label>
-                      <input name="optionA" id="optionAID" type="text" class="form-control" required>
+                      <input name="optionA" id="EditOptionAGuessCountry" type="text" class="form-control" required>
                       <div class="invalid-tooltip">
                         Please provide a Option.
                       </div>
-                    </div> <div class="col-md-6 position-relative">
+                    </div> 
+                    <div class="col-md-6 position-relative">
                       <label for="validationTooltip03" class="form-label">Option B</label>
-                      <input name="optionB" id="optionBID" type="text" class="form-control" required>
+                      <input name="optionB" id="EditOptionBGuessCountry" type="text" class="form-control" required>
                       <div class="invalid-tooltip">
                         Please provide a Option.
                       </div>
-                    </div> <div class="col-md-6 position-relative" style="margin-top: 20px;">
-                      <label for="validationTooltip03" class="form-label">Option C</label>
-                      <input name="optionC" id="optionCID" type="text" class="form-control" required>
-                      <div class="invalid-tooltip">
-                        Please provide a Option.
-                      </div>
-                    </div> <div class="col-md-6 position-relative" style="margin-top: 20px;">
-                      <label for="validationTooltip03" class="form-label">Option D</label>
-                      <input name="optionD" id="optionDID" type="text" class="form-control" required>
-                      <div class="invalid-tooltip">
-                        Please provide a Option.
-                      </div>
-                    </div>
+                    </div>    
                     </div> 
                     <div class="col-md-12 position-relative" style="margin: 0px;">
                       <label for="validationTooltip03" class="form-label">Answer</label>
-                      <input readonly name="correct" id="correctID" placeholder="Correct Answer" type="text" class="form-control" required> 
+                      <input readonly name="correct" id="EditCorrectGuessCountry" placeholder="Correct Answer" type="text" class="form-control" required> 
                       <div class="invalid-tooltip">
                         Please provide a Answer.
                       </div>
                     </div>
                     <div class="col-md-12 position-relative" style="margin: 0px;">
                       <label for="validationTooltip03" class="form-label">Hint</label>
-                      <input name="hint" id="hintID" type="text" class="form-control">
+                      <input name="hint" id="EditHintGuessCountry" type="text" class="form-control">
                     </div> 
+                    <div class="col-md-12 position-relative" style="margin: 0px;">
+                      <label for="validationTooltip03" class="form-label">Detail</label>
+                      <input name="detail" id="EditDetailGuessCountry" type="text" class="form-control">
+                    </div>
                   <div class="col-12 mt-2">
                     <button data-bs-toggle="tooltip"  class="btn" style="background-color: #a8171a;color: white;" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">Submit</button>
                   </div>
@@ -524,13 +528,13 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="guessFlagEditForm" class="add-quiz-form row needs-validation" action="" method="POST" enctype="multipart/form-data" novalidate>
+            <form id="EditGuessFlagForm" class="add-quiz-form row needs-validation" action="" method="POST" enctype="multipart/form-data" novalidate>
               <div id="setNewForm">
                  <div class="form-data">
                      <div class="row">
                          <div class="col-md-6 position-relative">
                              <label for="validationTooltip03" class="form-label">Country</label>
-                             <select class="form-select" name="country" id="editCountry" onchange="editSelectedCountry(this)" required> 
+                             <select class="form-select" name="country" id="editCountryOfGuessFlag" onchange="getFlagOfSelectedCountry(this)" required> 
                                <option hidden>Please Select Counrty</option>  
                              </select> 
                              <div class="invalid-tooltip">
@@ -538,7 +542,7 @@
                              </div>
                          </div>
                          <div class="col-md-6 position-relative">
-                             <input hidden name="Icountry" id="editICountry" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
+                             <input hidden name="Icountry" id="editICountryOfGuessFlag" placeholder="Please Enter In Correct Country" type="text" class="form-control" required>
                              <div class="invalid-tooltip">
                                  Please provide a In Correct Country.
                              </div>
@@ -546,20 +550,24 @@
                          <div class="col-md-12 position-relative mt-3">  
                               <label for="validationTooltip03" class="form-label">Correct Images</label>
                               <div class="add-quiz-state-image">
-                                  <input readonly class="add-quiz-image formFile form-control" type="text" id="editFlagUrl" name="correctImg"> 
+                                  <input readonly class="add-quiz-image formFile form-control" type="text" id="editFlagOfGuessFlag" name="correctImg"> 
                               </div> 
                          </div> 
                          <div class="col-md-12 position-relative mt-3">
                              <label for="validationTooltip03" class="form-label">Select In-Correct Images</label>
                              <div class="add-quiz-state-image">
-                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()">
-                                <input hidden name="IcorrectImgDelete" id="IcorrectImgDelete" type="text" class="form-control" required>
+                                <input class="add-quiz-image formFile form-control" type="file" name="IcorrectImg" onchange="preview()"> 
+                                <input hidden name="IcorrectImgDelete" id="IcorrectImgDeleteOfGuessFlag" type="text" class="form-control" required>
                              </div>
                          </div> 
                          <div class="col-md-12 mt-4 position-relative">
                              <label for="validationTooltip03" class="form-label">Hint</label>
-                             <input name="hint" id="editHint" placeholder="Please Enter Detail" type="text" class="form-control" required>
-                           </div>
+                             <input name="hint" id="editHintOfGuessFlag" placeholder="Please Enter Hint" type="text" class="form-control" required>
+                          </div>
+                          <div class="col-md-12 mt-4 position-relative">
+                            <label for="validationTooltip03" class="form-label">Detail</label>
+                            <input name="detail" id="editDetailOfGuessFlag" placeholder="Please Enter Detail" type="text" class="form-control" required>
+                         </div>
                      </div>
                    </div>
                    </div>
@@ -576,5 +584,85 @@
   </div>
   <!--Container Main end-->
 
+<script>
 
+  async function getCountriesOfRegion(region) {
+    const response = await fetch(`/admin/flag-data-api/country/${region}`);
+    const data = await response.json(); 
+
+    let _html = '';
+    document.getElementById("editCountryOfDetective").innerHTML = `<option hidden>Please Select Country</option>`;
+    document.getElementById("editCountryOfGuessCountry").innerHTML = `<option hidden>Please Select Country</option>`;
+    document.getElementById("editCountryOfGuessFlag").innerHTML = `<option hidden>Please Select Country</option>`;
+    data.forEach(element => {
+      _html += `<option value="${element.country}">${element.country}</option>`;
+    });     
+    document.getElementById("editCountryOfDetective").innerHTML += _html; 
+    document.getElementById("editCountryOfGuessCountry").innerHTML += _html;
+    document.getElementById("editCountryOfGuessFlag").innerHTML += _html;
+  }
+
+  async function getFlagOfSelectedCountry(e) { 
+    const countryName = e.value; 
+    const shuffledCountry = shuffleStr(countryName);  
+    document.getElementById("editICountryOfGuessFlag").value = shuffledCountry;
+
+    const response = await fetch(`/admin/flag-data-api/country-for-flag/${countryName}`);
+    const data = await response.json();
+    document.getElementById("editFlagUrlOfDetective").value = data.flag;
+    document.getElementById("editFlagOfGuessCountry").value = data.flag;
+    document.getElementById("EditCorrectGuessCountry").value = countryName.charAt(0).toUpperCase() + countryName.slice(1); 
+    document.getElementById("editFlagOfGuessFlag").value = data.flag;
+  }
+
+  //Shuffle String Character Function
+  function shuffleStr(s) { 
+    let arr = s.split(''), arr_len = arr.length; 
+    while (arr_len) {
+      let rnd = Math.floor(Math.random() * arr_len--);
+      [arr[arr_len], arr[rnd]] = [arr[rnd] , arr[arr_len]];
+    } 
+    let str = arr.join('');
+    return str;
+  }
+
+  // Flag-Detective-Edit
+  async function editFlagDetectiveGameQuestionInPodAdventure(Pid, Cid, module, country, flag, hint, detail, region) {  
+    await getCountriesOfRegion(region);
+  
+    document.getElementById("editCountryOfDetective").innerHTML += `<option selected value="${country}">${country}</option>`; 
+    document.getElementById("editFlagUrlOfDetective").value = flag;
+    document.getElementById("editHintOfDetective").value = hint; 
+    document.getElementById("editDetailOfDetective").value = detail; 
+    document.getElementById("flagDetectiveEditForm").action = `/admin/pod-adventure/manage/${module}/${Cid}/${Pid}?_method=PUT`;
+  } 
+
+// Guess-Country-Edit
+async function editGuessCountryGameQuestionInPodAdventure(Pid, Cid, module, country, flag, optionA, optionB, correct, hint, detail, region) {  
+  await getCountriesOfRegion(region); 
+
+  document.getElementById("editCountryOfGuessCountry").innerHTML += `<option selected value="${country}">${country}</option>`;
+  document.getElementById("editFlagOfGuessCountry").value = flag;
+  document.getElementById("EditOptionAGuessCountry").value = optionA;
+  document.getElementById("EditOptionBGuessCountry").value = optionB; 
+  document.getElementById("EditCorrectGuessCountry").value = correct; 
+  document.getElementById("EditHintGuessCountry").value = hint; 
+  document.getElementById("EditDetailGuessCountry").value = detail; 
+  document.getElementById("EditGuessCountryForm").action = `/admin/pod-adventure/manage/${module}/${Cid}/${Pid}?_method=PUT`;
+}
+
+// Guess-Flag-Edit
+async function editGuessFlagGameQuestionInPodAdventure(Pid, Cid, module, country, Icountry, correctImg, IcorrectImg, hint, detail, region) {   
+  await getCountriesOfRegion(region); 
+  
+  document.getElementById("editCountryOfGuessFlag").innerHTML += `<option selected value="${country}">${country}</option>`;
+  document.getElementById("editICountryOfGuessFlag").value = Icountry;
+  document.getElementById("editFlagOfGuessFlag").value = correctImg; 
+  document.getElementById("IcorrectImgDeleteOfGuessFlag").value = IcorrectImg;
+  document.getElementById("editHintOfGuessFlag").value = hint; 
+  document.getElementById("editDetailOfGuessFlag").value = detail; 
+  document.getElementById("EditGuessFlagForm").action = `/admin/pod-adventure/manage/${module}/${Cid}/${Pid}?_method=PUT`;
+}
+
+</script>
 

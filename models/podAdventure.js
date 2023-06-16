@@ -10,7 +10,7 @@ const PodAdventureGameSchema = new mongoose.Schema({
   modules: {
     type: Array,
     required: true
-    }, 
+    },  
   guessCountry: [{
     country: {
       type: String,
@@ -39,6 +39,10 @@ const PodAdventureGameSchema = new mongoose.Schema({
     detail: {
       type: String,
       required: true
+    },
+    region: {
+      type: String,
+      required: true
     }
   }],
   guessFlag: [{
@@ -65,6 +69,10 @@ const PodAdventureGameSchema = new mongoose.Schema({
     detail: {
       type: String,
       required: true
+    },
+    region: {
+      type: String,
+      required: true
     }
   }],
   flagDetective: [{
@@ -83,7 +91,11 @@ const PodAdventureGameSchema = new mongoose.Schema({
     detail: {
         type: String,
         required: true
-      }
+      },
+    region: {
+      type: String,
+      required: true
+    }
   }],
   flagPuzzle: [{
     country: {
@@ -99,6 +111,10 @@ const PodAdventureGameSchema = new mongoose.Schema({
       required: true
     },
     detail: {
+      type: String,
+      required: true
+    },
+    region: {
       type: String,
       required: true
     }
@@ -133,6 +149,10 @@ const PodAdventureGameSchema = new mongoose.Schema({
       required: true
     },
     detail: {
+      type: String,
+      required: true
+    },
+    region: {
       type: String,
       required: true
     }
